@@ -17,7 +17,7 @@ datos. Lo que no se pudo abrir también está anotado en
 | --- | --- | --- | --- | --- | --- |
 | NCBI E-utilities | Buscar y contar qué existe antes de bajar nada: `esearch`, `esummary`, `efetch` sobre `assembly`, `sra`, `nuccore`, `taxonomy`. Es la forma auditable de responder "¿hay datos?" | `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/` (VERIFICADA por uso) | términos de consulta en la URL | XML o JSON | sí, es un HTTP GET |
 | NCBI Datasets v2 | Ficha de un ensamblado: nivel, N50, tecnología, BioProject y, sobre todo, **si tiene anotación** | `https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/{ACC}/dataset_report` (VERIFICADA por uso) | accesión GCA/GCF | JSON | sí |
-| NCBI Assembly / GenBank | Los tres ensamblados de *D. maidis* (`GCA_975739785.1` cromosómico del Sanger, `GCA_975739835.1` haplotipo alternativo, `GCA_054756405.1` CIAP v1 del INTA), el de *Spiroplasma kunkelii* (`GCA_001274875.1`, completo y anotado) y los cuatro de *Candidatus* Phytoplasma asteris | `https://www.ncbi.nlm.nih.gov/datasets/genome/` (la página HTML **NO VERIFICADA**: no renderiza sin JavaScript; se usó la API de arriba) | accesión | FASTA genómico, GFF3 cuando hay anotación | descarga sí; el genoma de 972 Mb ocupa ~1 GB sin comprimir |
+| NCBI Assembly / GenBank | Los tres ensamblados de *D. maidis* (`GCA_975739785.1` cromosómico del Sanger, `GCA_975739835.1` haplotipo alternativo, `GCA_054756405.1` CIAP v1 del INTA), el de *Spiroplasma kunkelii* (`GCA_001274875.1`, completo y anotado), los cuatro de *Candidatus* Phytoplasma asteris y —**corrección del 2026-10-17, el dato se nos había escapado por el cambio de nomenclatura**— el del fitoplasma del achaparramiento arbustivo del maíz, hoy '*Candidatus* Phytoplasma zeae' (TaxId 202462): `GCA_001712875.1` / `GCF_001712875.1`, cepa M3, **genoma completo en una sola secuencia**, 576.118 pb, 28,5 % de GC, Illumina MiSeq con Velvet 1.2.10, `PRJNA317711`, aislado de un *D. maidis* colectado el 29/05/2013 en Piracicaba (São Paulo, Brasil); 544 genes y 485 codificantes en la anotación de 2016, 581 y 524 en la reanotación de RefSeq del 07/06/2026. Los tres genomas nuevos de Pellegrinetti et al. 2026 (`PRJNA1294367`) **no devuelven ensamblados en `db=assembly`** al 2026-10-17: buscarlos por BioSample | `https://www.ncbi.nlm.nih.gov/datasets/genome/` (la página HTML **NO VERIFICADA**: no renderiza sin JavaScript; se usó la API de arriba) | accesión | FASTA genómico, GFF3 cuando hay anotación | descarga sí; el genoma de 972 Mb ocupa ~1 GB sin comprimir |
 | NCBI SRA | Las lecturas crudas: 37 corridas de *D. maidis*, 23 de ellas RNA-Seq | `https://www.ncbi.nlm.nih.gov/sra` (verificada por E-utilities, no por HTML) | accesión SRR/ERR | FASTQ vía `fasterq-dump` | la descarga sí; una corrida de RNA-Seq de 20 M de lecturas son ~5 GB |
 | TSA (Transcriptome Shotgun Assembly) | **El atajo del proyecto**: el transcriptoma ensamblado de *D. maidis*, 56.116 transcriptos, accesión `GITV00000000` | se descarga por NCBI nuccore / `efetch` con la accesión (VERIFICADA la accesión en el paper de Xu et al. 2021) | accesión | FASTA de transcriptos | sí, son decenas de MB |
 | Repositorio institucional del INTA | El ensamblado `Dalbulus_CIAPv0.1` en `.fasta` más las métricas, declarado "versión actualizable". **Licencia CC BY-NC-SA**, o sea no comercial | `https://repositorio.inta.gob.ar/xmlui/handle/20.500.12123/18043` (VERIFICADA) | — | FASTA, DOCX | sí |
@@ -58,7 +58,7 @@ datos. Lo que no se pudo abrir también está anotado en
 | Trinity | Ensamblado *de novo* de transcriptoma. **Se descarta por costo**: la regla práctica es ~1 GB de RAM por millón de lecturas y ~0,5–1 h por millón, y el conjunto de Xu et al. son 1.727 millones de lecturas | `https://github.com/trinityrnaseq/trinityrnaseq` (NO VERIFICADA en esta corrida; la regla es `[R]`, de materiales de taller de UCLA y Cornell que citan Haas et al. 2013) | FASTQ | FASTA de transcriptos | **no**: necesita cluster o nube, y no vale la pena cuando el TSA ya está publicado |
 | TransDecoder | Encontrar los ORF en transcriptos, necesario porque dsRIP y la evidencia de Cedden et al. muestran que apuntar al ORF supera a apuntar a las UTR | `https://github.com/TransDecoder/TransDecoder` (NO VERIFICADA en esta corrida) | FASTA de transcriptos | FASTA de péptidos y CDS, GFF3 | sí |
 | BUSCO 6.1.0 | Medir completitud de un ensamblado o transcriptoma antes de confiar en él. Referencia de comparación ya verificada: 68,6 % para el borrador del INTA y 82,4 % para el transcriptoma de Xu et al. | `https://busco.ezlab.org/` (VERIFICADA; datasets `odb12.2`, conda y Docker; cita Tegenfeldt et al. 2025, doi 10.1093/nar/gkae987) | FASTA de genoma, transcriptos o proteínas | resumen `short_summary.txt`, tablas | sí |
-| Galaxy Europe | Plantea la salida al problema del cluster: entorno web gratuito con BLAST y la mayoría de estos pasos. **Es el que usó el grupo de Catalano en Andrada et al. 2026**, así que es un precedente metodológico del propio problema, no una recomendación genérica | `https://usegalaxy.eu/` (NO VERIFICADA en esta corrida; su uso está documentado en el paper, que sí se verificó) | FASTA, FASTQ | lo que corresponda al paso | no: es remoto, y por eso resuelve lo que la notebook no puede |
+| Galaxy Europe | Plantea la salida al problema del cluster: entorno web gratuito con BLAST y la mayoría de estos pasos. **Es el que usó el grupo de Catalano en Andrada et al. 2026**, así que es un precedente metodológico del propio problema, no una recomendación genérica. Escala verificada el 2026-10-17 en el paper de actualización del proyecto: los servicios públicos de EE. UU., Australia y Europa acumulan más de 500.000 usuarios registrados y en 2023 más de 11.000 usuarios individuales corrieron en promedio más de 1.000.000 de trabajos por mes, con más de 9.000 herramientas; cada trabajo muestra una estimación de sus emisiones de CO₂ | `https://usegalaxy.eu/` (la URL del servicio sigue NO VERIFICADA por acceso directo). Cita verificada por texto completo: The Galaxy Community (2024), *Nucleic Acids Research* 52(W1):W83, doi 10.1093/nar/gkae410 | FASTA, FASTQ | lo que corresponda al paso | no: es remoto, y por eso resuelve lo que la notebook no puede |
 
 ## 4. Formatos que circulan
 
@@ -95,3 +95,43 @@ elegir regiones blanco y tamizar especificidad — un transcriptoma con 82,4 % d
 completitud BUSCO alcanza. Si en algún momento hace falta un paso pesado, la vía
 es Galaxy Europe, que es gratis y es lo que usó el grupo que publicó RNAi en
 esta especie.
+
+
+---
+
+## 6. Ampliación del 2026-10-17
+
+Esta sección se agregó al escribir `REPORT.md`, cuando la ampliación de fuentes
+dejó tres cosas que la tabla de la primera corrida no tenía. Se escribe acá, y no
+reemplazando las tablas de arriba, para que quede visible qué se supo después.
+
+### 6.1 Herramientas y recursos nuevos
+
+| Recurso | Para qué sirve en este proyecto | URL / cita | Entrada | Salida | ¿Local? |
+| --- | --- | --- | --- | --- | --- |
+| **dsRNAEngineer** | Tercera herramienta publicada de diseño de dsRNA, y la única que declara su arquitectura: front-end en Vue.js, back-end en Sanic, visualización con Canvas API. Trae **942 transcriptomas** del NCBI precargados (plagas de insectos, ácaros, nematodos, hongos y especies de evaluación de seguridad) y agrega la función *screen-target*, que busca una región conservada que sirva de blanco común a varias plagas, con ventana deslizante de 50 a 100 pb. Su lección para nosotros es de arquitectura: el valor está en los transcriptomas precargados, no en la interfaz | `https://dsrna-engineer.cn/` (NO VERIFICADA: no se abrió el servicio). Preprint verificado por texto completo: bioRxiv 2024.07.22.604585. `[?]` La versión revisada por pares figura en el índice de búsqueda (*Trends in Biotechnology*) pero no se abrió | secuencia del gen blanco | regiones recomendadas, análisis on/off/multi/screen-target | no: es web |
+| **Script de off-target de la EFSA** | Implementa el conjunto de reglas de la guía de 2025 para reportar transcriptos off-target de cada ARN pequeño de 21 nt: hasta cuatro mismatches sin hueco o tres más un hueco, G:U como medio mismatch, un solo hueco de un nucleótido, nada en las posiciones 10 u 11, no más de dos mismatches en los primeros 12 nt del 5′, y cociente de energía libre del dúplex sobre el del complemento perfecto mayor que 0,75. **Bowtie con 0 a 2 mismatches no evalúa nada de eso salvo los mismatches**, así que los dos tamizajes no son intercambiables | Declarado en EFSA (2025), *EFSA Journal* 23:e9321, doi 10.2903/j.efsa.2025.9321, con repositorio propio de la agencia (URL citada en la guía; no se abrió el repositorio) | secuencia consulta, transcriptomas | transcriptos off-target que cumplen las reglas | sí: la guía dice que corre en el entorno que elija el usuario y no depende de ninguna base de la agencia |
+
+### 6.2 La cadena de genómica bacteriana, con un precedente en este patosistema
+
+Pellegrinetti et al. (2026) reconstruyeron genomas de fitoplasma a partir de
+tejido de insecto y de planta con una cadena enteramente de software libre, y es
+el molde a copiar si alguna vez hace falta ensamblar un patógeno del complejo:
+**fastp** v0.23.4 para recorte, **KrakenTools** v1.2 para remover lecturas del
+hospedador (incluidas las del propio *D. maidis*), **MEGAHIT** v1.1.4 y
+**MetaSPAdes** v4.1.0 corridos en paralelo para comparar desempeño, **BLASTn**
+contra el genoma M3 ya publicado para identificar los contigs del fitoplasma,
+**RagTag** v2.1.0 para andamiaje, **Pilon** v1.23.0 para pulido, **CheckM** y
+**CheckM2** para completitud y contaminación, **Bakta** v1.11.3 para anotación y
+el flujo pangenómico de **Anvi'o** v8 para la comparación. Todo eso corre en una
+notebook cuando el objeto es un genoma de menos de un megabase; lo que no corre
+en una notebook sigue siendo el genoma de 972 Mb del insecto.
+
+### 6.3 Qué quedó corregido de la primera corrida
+
+Dos cosas. La fila de Galaxy Europe tenía la cita sin verificar y ahora está
+verificada por texto completo, con la escala del servicio. Y la fila de NCBI
+Assembly afirmaba implícitamente que el único patógeno del complejo con genoma
+completo y anotado era *Spiroplasma kunkelii*: no lo es, y el error venía de
+buscar por el nombre informal "maize bushy stunt phytoplasma" en lugar del taxón,
+que recién recibió nombre formal en 2026.

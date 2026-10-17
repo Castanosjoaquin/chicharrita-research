@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R5 — Metodologías de los tres ejes y plan de equipo</title>
+<meta name="description" content="R5: cómo se trabaja en bioinformática y datos, desarrollo computacional e innovación abierta para el diseño y la priorización de ARN exógeno contra Dalbulus maidis. Rúbrica interactiva y plan para cuatro personas. Vista de lectura del REPORT.md.">
+<style>
+:root{
+  --ink:#141b1a;
+  --ink-soft:#3e4c49;
+  --ink-faint:#6b7a77;
+  --paper:#ffffff;
+  --paper-alt:#f1f4f3;
+  --rule:#d4dcda;
+  --teal:#0f5c52;
+  --teal-bright:#14887a;
+  --ochre:#a8620c;
+  --ochre-soft:#f5ead9;
+  --crimson:#8e2231;
+  --slate:#2f4b66;
+  --shell:#fbfcfc;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#e4ebe9;
+    --ink-soft:#aebbb8;
+    --ink-faint:#7f8d8a;
+    --paper:#121817;
+    --paper-alt:#1b2322;
+    --rule:#2d3938;
+    --teal:#4fc4b0;
+    --teal-bright:#6fd8c4;
+    --ochre:#e0a259;
+    --ochre-soft:#2a2118;
+    --crimson:#e58696;
+    --slate:#8fb4d6;
+    --shell:#0d1211;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--shell);
+  color:var(--ink);
+  font:400 17px/1.65 "Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,serif;
+  font-weight:600;
+  line-height:1.2;
+  letter-spacing:-.01em;
+  font-style:normal;
+}
+h1{font-size:2.1rem;margin:0 0 .3em}
+h2{font-size:1.55rem;margin:2.6em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--teal)}
+h3{font-size:1.18rem;margin:2em 0 .4em;color:var(--teal)}
+h4{font-size:1rem;margin:1.5em 0 .3em;color:var(--ink-soft)}
+p{margin:0 0 1.05em}
+a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a:hover{color:var(--ochre)}
+strong{font-weight:650}
+
+.wrap{display:flex;gap:0;max-width:1180px;margin:0 auto;align-items:flex-start}
+nav{
+  flex:0 0 232px;position:sticky;top:0;max-height:100vh;overflow-y:auto;
+  padding:2rem 1.1rem 3rem;border-right:1px solid var(--rule);
+}
+nav .navtitle{
+  font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:.95rem;
+  color:var(--ink-faint);border-bottom:1px solid var(--rule);
+  padding-bottom:.5rem;margin-bottom:.7rem;
+}
+nav ol{list-style:none;margin:0;padding:0}
+nav li{margin:0}
+nav a{
+  display:block;padding:.34rem .5rem .34rem .6rem;font-size:.9rem;line-height:1.35;
+  color:var(--ink-soft);text-decoration:none;border-left:3px solid transparent;
+}
+nav a:hover{border-left-color:var(--ochre);color:var(--ink);background:var(--paper-alt)}
+nav .sub a{font-size:.82rem;padding-left:1.4rem;color:var(--ink-faint)}
+
+main{flex:1 1 auto;min-width:0;padding:2rem 2.2rem 6rem;background:var(--paper);border-right:1px solid var(--rule)}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:62ch}
+.meta{font-size:.84rem;color:var(--ink-faint);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:.6rem 0;margin:1.4rem 0 2rem}
+
+/* marcadores de evidencia */
+.m{
+  display:inline-block;font-size:.72rem;font-weight:700;line-height:1;
+  padding:.22em .42em;border-radius:2px;vertical-align:.08em;white-space:nowrap;
+}
+.mE{background:var(--teal);color:var(--paper)}
+.mR{background:var(--ochre);color:var(--paper)}
+.mH{background:var(--slate);color:var(--paper)}
+.mQ{background:var(--crimson);color:var(--paper)}
+@media (prefers-color-scheme: dark){
+  .mE,.mR,.mH,.mQ{color:#0d1211}
+}
+.legend{display:flex;flex-wrap:wrap;gap:1.1rem;font-size:.85rem;color:var(--ink-soft);margin:0 0 1.6rem}
+.legend span{display:flex;align-items:center;gap:.4rem}
+
+.callout{
+  border-left:4px solid var(--ochre);background:var(--ochre-soft);
+  padding:.9rem 1.1rem;margin:1.6rem 0;font-size:.97rem;
+}
+.callout.key{border-left-color:var(--teal);background:var(--paper-alt)}
+.callout p:last-child{margin-bottom:0}
+.callout .tag{
+  display:block;font-family:"Iowan Old Style",Palatino,Georgia,serif;
+  font-size:.9rem;color:var(--ink-faint);margin-bottom:.35rem;
+}
+
+table{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.89rem}
+caption{text-align:left;font-size:.84rem;color:var(--ink-faint);padding-bottom:.5rem}
+th,td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:650;color:var(--teal);border-bottom:2px solid var(--teal);font-size:.84rem}
+tbody tr:hover{background:var(--paper-alt)}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+ul.tight{margin:0 0 1.1em;padding-left:1.15rem}
+ul.tight li{margin:.3em 0}
+
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-size:.84rem;color:var(--ink-faint);margin-top:.6rem;max-width:68ch}
+
+.files{font-size:.9rem}
+.files dt{font-weight:650;margin-top:.8rem;color:var(--teal)}
+.files dd{margin:.15rem 0 0 0;color:var(--ink-soft)}
+
+footer{padding:1.6rem 2.2rem 3rem;max-width:1180px;margin:0 auto;font-size:.85rem;color:var(--ink-faint)}
+
+@media (max-width:860px){
+  .wrap{display:block}
+  nav{
+    position:static;flex:none;max-height:none;width:100%;
+    border-right:0;border-bottom:1px solid var(--rule);padding:1.2rem 1.2rem 1.4rem;
+    background:var(--paper-alt);
+  }
+  nav ol{column-count:2;column-gap:1rem}
+  nav .sub{display:none}
+  main{padding:1.5rem 1.1rem 4rem;border-right:0}
+  footer{padding:1.4rem 1.1rem 3rem}
+  h1{font-size:1.65rem}
+  h2{font-size:1.3rem}
+  body{font-size:16px}
+}
+</style>
+<style>
+/* --- controles de la tabla interactiva: mismas variables, sin botones pildora --- */
+.controls{
+  display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:.8rem 0;margin:1.4rem 0;
+}
+.controls label{display:block;font-size:.8rem;color:var(--ink-faint);margin-bottom:.25rem}
+.controls select,.controls input[type=search]{
+  font:inherit;font-size:.9rem;color:var(--ink);background:var(--paper);
+  border:1px solid var(--rule);border-radius:0;padding:.35rem .5rem;min-width:13rem;
+}
+.controls select:focus,.controls input[type=search]:focus{outline:2px solid var(--teal);outline-offset:1px}
+table.sortable th[data-k]{cursor:pointer;user-select:none}
+table.sortable th[data-k]:hover{color:var(--ochre)}
+th.sorted::after{content:" \2193";font-weight:400}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.capped td.total{color:var(--crimson);font-weight:650}
+tr.anchors td{background:var(--paper-alt);font-size:.85rem}
+tr.anchors ol{margin:.2rem 0 .2rem 1.1rem;padding:0}
+tr.anchors li{margin:.15rem 0}
+.hint{font-size:.84rem;color:var(--ink-faint);margin:-.8rem 0 1.4rem}
+.rowlink{color:var(--teal);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<nav aria-label="Índice">
+  <div class="navtitle">R5 · Metodologías y plan</div>
+  <ol>
+    <li><a href="#s1">Bioinformática y datos</a></li>
+    <li class="sub"><a href="#orden">El orden de consulta</a></li>
+    <li class="sub"><a href="#precedentes">Precedentes del patosistema</a></li>
+    <li><a href="#s2">Desarrollo computacional</a></li>
+    <li class="sub"><a href="#opciones">Las cuatro opciones</a></li>
+    <li class="sub"><a href="#repro">Reproducibilidad</a></li>
+    <li><a href="#s3">Innovación abierta</a></li>
+    <li class="sub"><a href="#monitoreo">Monitoreo colaborativo</a></li>
+    <li class="sub"><a href="#licencias">Licencias y estándares</a></li>
+    <li><a href="#s4">La rúbrica</a></li>
+    <li class="sub"><a href="#criterios">Tabla de criterios</a></li>
+    <li class="sub"><a href="#ejemplo">Ejemplo trabajado</a></li>
+    <li><a href="#s5">Plan de equipo</a></li>
+    <li class="sub"><a href="#diagrama">El diagrama</a></li>
+    <li><a href="#s6">Sin resolver</a></li>
+    <li><a href="#archivos">Archivos y fuentes</a></li>
+  </ol>
+</nav>
+
+<main>
+  <h1>Metodologías de los tres ejes y plan de equipo</h1>
+  <p class="lede">Cómo se trabaja de verdad en bioinformática y datos, desarrollo computacional e innovación abierta cuando el problema es diseñar y priorizar ARN exógeno contra la chicharrita del maíz. Incluye la rúbrica de priorización, que es la respuesta directa a la palabra «priorizar» de la pregunta del track, y el reparto para cuatro personas sin laboratorio.</p>
+
+  <p class="meta">Investigación R5 · cierre 17 de octubre de 2026 · 56 fuentes abiertas y citadas · <strong>esta es la vista de lectura; la fuente de verdad es <code>REPORT.md</code></strong></p>
+
+  <div class="legend">
+    <span><i class="m mE">E</i> establecido: literatura revisada o norma vigente</span>
+    <span><i class="m mR">R</i> reportado: pocas fuentes, preprint, material institucional</span>
+    <span><i class="m mH">H</i> hipótesis nuestra</span>
+    <span><i class="m mQ">?</i> incierto o contradictorio</span>
+  </div>
+
+  <div class="callout">
+    <span class="tag">Advertencia de lectura</span>
+    <p>Esta investigación se hizo en dos corridas. La segunda, que escribió el reporte, no tuvo acceso a los sitios institucionales argentinos y brasileños ni a la API de GBIF: <strong>todo lo que se afirma sobre esas fuentes se apoya en la verificación de la primera corrida y no se volvió a comprobar</strong>. Está marcado donde corresponde y detallado en la sección final.</p>
+  </div>
+
+  <h2 id="s1">1. Bioinformática y datos</h2>
+
+  <p>La decisión metodológica más importante de toda la investigación cabe en una oración: <strong>en este sistema la consulta no empieza por el genoma, porque el genoma todavía no sirve para elegir blancos</strong>. <i>Dalbulus maidis</i> tiene tres ensamblados en GenBank —el cromosómico del Wellcome Sanger Institute, con 972.206.121 pares de bases en diez cromosomas, su haplotipo alternativo, y el CIAP v1 del INTA— y <strong>ninguno de los tres tiene anotación de genes en el NCBI</strong> <i class="m mE">E</i>. Hay genoma y no hay modelos de genes.</p>
+
+  <h3 id="orden">El orden de consulta, y por qué ese orden</h3>
+
+  <p>El primer paso no es descargar: es contar, con las E-utilities y la API <code>datasets</code> del NCBI, que devuelven texto plano y dejan registro auditable de la consulta <i class="m mE">E</i>. Ese paso es el que produjo el hallazgo de arriba, y el que obliga al segundo: el transcriptoma ensamblado. Xu et al. (2021) depositaron <strong>56.116 transcriptos no redundantes</strong> de la especie bajo la accesión <code>GITV00000000</code>, con 82,4&nbsp;% de completitud BUSCO <i class="m mE">E</i>. Ese archivo, de decenas de megabytes, es el insumo central del proyecto.</p>
+
+  <p>El tercer paso es el maíz, que se baja del FTP de Ensembl Plants porque es la URL que efectivamente entrega archivos <i class="m mE">E</i>. El cuarto son los patógenos, y acá esta corrida corrige un supuesto del equipo.</p>
+
+  <div class="callout key">
+    <span class="tag">Corrección: el fitoplasma del maíz sí tiene genoma completo</span>
+    <p>La primera corrida concluyó que <i>Spiroplasma kunkelii</i> era el único patógeno del complejo con genoma completo y anotado. No lo es. El fitoplasma del achaparramiento arbustivo del maíz está completo <strong>en una sola secuencia desde agosto de 2016</strong>: <code>GCA_001712875.1</code> / <code>GCF_001712875.1</code>, cepa M3, 576.118 pares de bases, 28,5&nbsp;% de GC, con 544 genes en la anotación original y 524 codificantes en la reanotación de RefSeq del 7 de junio de 2026. La muestra de origen se colectó el 29 de mayo de 2013 en Piracicaba, São Paulo, y su hospedador declarado es <i>Dalbulus maidis</i> <i class="m mE">E</i>.</p>
+    <p>El dato se nos había escapado por nomenclatura: el organismo figuraba como «maize bushy stunt phytoplasma», que no es un taxón, y recién en 2026 recibió nombre formal —«<i>Candidatus</i> Phytoplasma zeae»—, que la taxonomía del NCBI ya usa <i class="m mE">E</i>. La búsqueda por el nombre viejo no encuentra lo que existe.</p>
+  </div>
+
+  <p>El quinto paso son los organismos no objetivo, que no existen curados para el agroecosistema del maíz argentino y hay que armar. El sexto es la anotación funcional, con UniProtKB, KEGG y el tamizaje contra Rfam, que en su release 15.1 de enero de 2026 tiene 4.227 familias de ARN no codificante <i class="m mE">E</i>. El séptimo, barato, es la distribución del vector: GBIF devuelve 610 registros globales de la especie, <strong>de los cuales 17 en Argentina</strong>, e iNaturalist 151 observaciones <i class="m mE">E</i>. Ese número es en sí mismo un resultado y reaparece en la sección 3.</p>
+
+  <h3 id="precedentes">Dos precedentes publicados en este mismo patosistema</h3>
+
+  <p>Ninguna metodología se propone acá sin mostrar quién la usa. Andrada et al. (2026), para silenciar <i>eth</i> y <i>burs-α</i> en la especie, trabajaron sobre un transcriptoma propio, corrieron el análisis en <strong>Galaxy Europe</strong> y verificaron la especificidad del ARN de doble cadena y de los cebadores con tBLASTn y BLASTn con umbrales explícitos: E-value menor a 1×10⁻⁴, identidad mayor al 35&nbsp;% y bit score mayor al 40&nbsp;% <i class="m mR">R</i>. Pellegrinetti et al. (2026) reconstruyeron genomas de fitoplasma con una cadena enteramente de software libre —fastp, KrakenTools, MEGAHIT y MetaSPAdes en paralelo, BLASTn, RagTag, Pilon, CheckM y CheckM2, Bakta y Anvi'o— <i class="m mE">E</i>, que es el molde a copiar si alguna vez hace falta ensamblar un patógeno del complejo.</p>
+
+  <p>Sobre el cómputo pesado, la salida de la gente que publica en esta especie no es un cluster privado sino Galaxy. La actualización de 2024 del proyecto documenta más de 500.000 usuarios registrados en los servicios públicos y, durante 2023, más de 11.000 usuarios individuales corriendo en promedio más de 1.000.000 de trabajos por mes, con más de 9.000 herramientas y estadísticas operativas públicas <i class="m mE">E</i>.</p>
+
+  <p>El entregable defendible de esta rama son dos artefactos: un <strong>paquete de datos congelado y versionado</strong>, con manifiesto de hashes, licencia por insumo y procedencia —lo que los principios FAIR llaman R1.1 y R1.2 <i class="m mE">E</i>—, y el <strong>informe de especificidad por candidato</strong>, que la rúbrica identifica numéricamente como la medición más barata que más cambia el orden.</p>
+
+  <h2 id="s2">2. Desarrollo computacional</h2>
+
+  <p>Antes de elegir qué construir conviene mirar qué construyeron los tres grupos que publicaron herramientas de diseño de ARN de doble cadena, porque las tres eligieron arquitecturas distintas y las tres pagaron un costo. <strong>si-Fi</strong> es una aplicación de escritorio que corre <strong>solo en Windows</strong>, con interfaz en Python 2.7 y Qt4 <i class="m mE">E</i>: en las máquinas del equipo no corre sin máquina virtual, así que cualquier pipeline que dependa de ella no es reproducible para nosotros. <strong>dsRIP</strong> es una aplicación web <i class="m mE">E</i>: la salida hay que exportarla y versionarla, o el puntaje no se regenera. <strong>dsRNAEngineer</strong> publica su arquitectura —front-end en Vue.js, back-end en Sanic— y, sobre todo, trae <strong>942 transcriptomas</strong> del NCBI precargados <i class="m mR">R</i>. Esa es la lección de arquitectura: el valor está en los datos precargados, no en la interfaz.</p>
+
+  <h3 id="opciones">Las cuatro opciones de artefacto</h3>
+
+  <div class="scroller">
+  <table>
+    <caption>Horas en horas-persona de estudiante de tercer año, con el presupuesto de 8 h por persona por semana declarado en <code>PLAN_EQUIPO.md</code>.</caption>
+    <thead><tr><th>Opción</th><th>Stack mínimo</th><th class="num">Horas</th><th>Qué demuestra</th><th>Riesgo principal</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A.</strong> Herramienta de scoring y priorización</td><td>Python, validación de esquema, salida Markdown/HTML, tests</td><td class="num">26</td><td>Que el equipo convirtió una pregunta abierta en una función de decisión auditable</td><td>Que se lea como «una planilla con pasos»: se responde con los topes, la sensibilidad y los tests</td></tr>
+      <tr><td><strong>B.</strong> Pipeline reproducible de tamizaje</td><td>Snakemake, entornos por regla desde Bioconda, datos versionados por hash</td><td class="num">28</td><td>Que la evidencia del puntaje se regenera con un comando</td><td>Tiempo de descarga e indexado; se mitiga con el paquete offline congelado</td></tr>
+      <tr><td><strong>C.</strong> Dashboard de exploración</td><td>HTML estático con JSON embebido, o Streamlit</td><td class="num">12–30</td><td>Comunicación, nada más</td><td>Es el riesgo que el propio organizador declara: la interfaz vistosa no gana <i class="m mR">R</i></td></tr>
+      <tr><td><strong>D.</strong> API pública</td><td>Servicio HTTP, contenedor, hosting</td><td class="num">20 +</td><td>Que la herramienta es consumible por terceros</td><td>Nadie la consume en el plazo del evento y hay que sostener el hosting</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p><strong>Recomendación: A + B fusionados, C reducido a una vista de lectura estática, D descartada.</strong> El argumento no es de gusto. Lo que ya existe y funciona es la plataforma de diseño con chequeo de off-targets; lo que nadie publicó es el <strong>criterio de agregación</strong> que convierte esos reportes en un orden defendible, con pesos declarados antes de puntuar, topes que impiden compensar una vía de entrega inexistente con un diseño de secuencia brillante, y un análisis de sensibilidad que diga cuál es la medición más barata que cambiaría la decisión <i class="m mH">H</i>.</p>
+
+  <h3 id="repro">Reproducibilidad, como requisito y no como virtud</h3>
+
+  <p>La pregunta del track pide una solución reproducible con esa palabra, así que se usa un marco publicado: las diez reglas de Sandve et al. (2013) <i class="m mE">E</i>, que se mapean una a una contra decisiones concretas —trazar cómo se produjo cada resultado, evitar pasos manuales, fijar versiones exactas, versionar scripts, guardar intermedios en formatos estándar, anotar semillas, guardar los datos crudos detrás de cada figura, salida jerárquica, conectar afirmaciones con resultados y dar acceso público—. Las herramientas con las que se cumple están verificadas: Snakemake declara y despliega el software requerido desde Conda-Forge y Bioconda y genera reportes portables <i class="m mE">E</i>, Bioconda fija versiones <i class="m mE">E</i>, DVC versiona los datos por hash fuera de git <i class="m mE">E</i>, y el DOI sale del flujo documentado de GitHub con Zenodo <i class="m mE">E</i>.</p>
+
+  <p>Una aclaración honesta: nf-core y Nextflow es la alternativa obvia a Snakemake y no se pudo abrir ni el paper ni la documentación en ninguna de las dos corridas, así que <strong>no se recomienda ni se cita</strong>.</p>
+
+  <h2 id="s3">3. Innovación abierta</h2>
+
+  <p>Este eje se llena de palabras con facilidad, así que la regla de admisión es estricta: acá sólo entra un antecedente si existe, si se puede mirar y si se puede evaluar contra un criterio.</p>
+
+  <h3 id="monitoreo">Monitoreo colaborativo del vector: tres antecedentes y lo que enseña cada uno</h3>
+
+  <p>El primero es argentino y es el que deja el hueco más claro. La <strong>Red Nacional de Monitoreo de <i>Dalbulus maidis</i></strong> publicó su séptimo informe, del 22 de octubre al 8 de noviembre de 2024, con capturas por localidad y por quincena en <strong>426 localidades de Argentina</strong> más 17 de Uruguay, operada por una coalición que el documento declara: AAPPCE, Aapresid, CASAFE, CONICET, CREA, EEAOC, INTA, MAIZAR y SENASA <i class="m mR">R</i>. El hueco es el formato: <strong>el dato se publica en PDF, sin API, sin CSV y sin licencia declarada</strong>. Existe el dato y no existe el dataset.</p>
+
+  <p>El segundo es brasileño y muestra la misma asimetría desde otro ángulo. <strong>Monitora Oeste</strong>, de Embrapa Territorial con la Associação Baiana de Produtores de Algodão, es web y aplicación de monitoreo con trampas, datos en tiempo real y alertas, de acceso gratuito <i class="m mR">R</i>; los datos los cargan los técnicos de la asociación, de modo que <strong>el dato crudo queda del lado privado</strong>. Es la colaboración público-privada funcionando, con la apertura detenida en la capa de presentación.</p>
+
+  <p>El tercero no es de agro pero resuelve lo que a los dos anteriores les falta. <strong>Mosquito Alert</strong>, operativo desde 2014, publicó su conjunto de datos 2014-2020 como artículo de datos y <strong>como conjunto de datos en GBIF</strong> <i class="m mE">E</i>. Cuatro piezas de su diseño son trasladables a una red de chicharrita: los registros van ligados a fotografías de los participantes <strong>validadas por entomólogos</strong>; hay un módulo para enviar muestras físicas a laboratorios de referencia; la aplicación recoge la distribución anónima de los participantes <strong>para corregir el sesgo de esfuerzo de muestreo</strong>; y las imágenes validadas ya se usaron para entrenar un modelo que preselecciona casos para el validador humano <i class="m mE">E</i>. Eso último es exactamente el aporte que un equipo de IA puede hacer a una red de monitoreo.</p>
+
+  <p>Y para que no quede duda de que el diseño distribuido escala en agricultura: van Etten et al. (2019) generaron un conjunto de datos de <strong>12.409 parcelas manejadas por agricultores</strong> en Nicaragua, Etiopía e India, en el que cada participante recibe tres variedades al azar y ordena su desempeño <i class="m mE">E</i>. Escala porque lo que se pide a cada participante es mínimo y comparativo.</p>
+
+  <div class="callout">
+    <span class="tag">La propuesta concreta que sale de los cuatro</span>
+    <p>Publicar como conjunto de datos en formato Darwin Core, con licencia CC BY y DOI por Zenodo, la consolidación de lo que hoy está disperso: los 610 registros de GBIF, las 151 observaciones de iNaturalist y, con permiso, la serie de la Red Nacional transcrita de los PDF, con el esquema declarado y el procedimiento de transcripción versionado <i class="m mH">H</i>. Para dimensionar la brecha: hoy GBIF tiene <strong>17 registros de la especie en Argentina</strong>, en el país del brote y con una red nacional de 426 localidades funcionando.</p>
+  </div>
+
+  <h3 id="licencias">Licencias que ya nos condicionan, estándares y resultados negativos</h3>
+
+  <p>La parte menos glamorosa es la que más decisiones cambia. El ensamblado del genoma del INTA, publicado en su repositorio institucional como conjunto de datos de «versión actualizable», está bajo <strong>CC BY-NC-SA</strong>, es decir no comercial <i class="m mR">R</i>, con una ambigüedad de versión anotada <i class="m mQ">?</i>; el preprint del borrador está bajo CC BY-NC-ND 4.0 <i class="m mR">R</i>; y los pesos de Nucleotide Transformer son CC BY-NC-SA 4.0 <i class="m mR">R</i>. La consecuencia operativa está en el criterio C6 de la rúbrica: un candidato derivado de un insumo con cláusula no comercial no puede puntuar 4, y eso se declara en vez de descubrirse después.</p>
+
+  <p>Sobre estándares, un dato abierto sin estándar es un archivo que hay que interpretar a mano. <strong>Darwin Core</strong> es el estándar de la comunidad de biodiversidad y su paper de referencia describe las categorías de términos, las extensiones a nuevas comunidades y el proceso comunitario de mantenimiento, consignando que ya en 2012 GBIF indexaba del orden de 300 millones de registros en ese formato publicados por más de 340 organizaciones de 43 países <i class="m mE">E</i>. Para la parte vegetal está MIAPPE y para secuencias el marco es INSDC <i class="m mR">R</i>.</p>
+
+  <p>Publicar lo que no funcionó es la pieza que casi nadie entrega y que este proyecto ya tiene a medio construir en <code>00_meta/CAMINOS_PROBADOS.md</code>. Hay precedente editorial: <i>Life Science Alliance</i> declara explícitamente que acepta trabajos con resultados nulos, y sostiene que el sesgo contra los datos negativos deja persistir en el registro científico callejones sin salida, reactivos defectuosos e hipótesis erróneas <i class="m mE">E</i>.</p>
+
+  <p>Sobre colaboración público-privada, lo que existe con nombre propio: el INTA publica convenios con empresas, licencia de tecnologías, <strong>asistencia técnica a terceros</strong>, Empresas de Base Tecnológica con INCUINTA, Nodos de Innovación y una vía de entrada llamada «Banco de ideas» <i class="m mR">R</i>. Para un equipo sin laboratorio, las dos últimas son las puertas concretas, y esa concreción es lo que vuelve puntuable el criterio C5. Del lado del CONICET, una nota institucional informa que Apolo Biotech es una Empresa de Base Tecnológica fundada por un investigador del IFIBYNE, con la primera planta de producción de ARN de América Latina en Santa Fe <i class="m mR">R</i>; hay que decir que <strong>esa nota no la vincula con la chicharrita ni menciona RNAi</strong>.</p>
+
+  <div class="callout key">
+    <span class="tag">El antecedente más cercano, y es de este patosistema</span>
+    <p>La propuesta de «<i>Candidatus</i> Phytoplasma zeae» está firmada por una coalición de grupos de Brasil, Colombia, México, Estados Unidos y Canadá que estudiaron el patógeno por más de una década, y los autores declaran que la designación se propone <strong>por consenso de esa comunidad</strong> bajo la Regla c de las guías del IRPCM <i class="m mE">E</i>. Depositaron los genomas en GenBank y además <strong>los ejemplares de <i>Dalbulus maidis</i> como vouchers en la Colección Nacional Canadiense de Insectos, Arácnidos y Nematodos</strong>, con número de voucher y curador nombrado <i class="m mE">E</i>. Eso es la diferencia entre «compartimos datos» y «otro laboratorio puede ir a ver el bicho»: reproducibilidad material, no declarativa.</p>
+    <p>Dos cosas para el equipo. Los tres genomas nuevos de ese trabajo <strong>no devuelven ensamblados registrados</strong> en la base <code>assembly</code> del NCBI al día de hoy <i class="m mQ">?</i>: hay que buscarlos por BioSample. Y el mismo trabajo afirma que la enfermedad «no fue reportada todavía» en Argentina <i class="m mQ">?</i>, lo que no se concilia de forma obvia con la epifitia de 2023/2024: puede ser la distinción entre el achaparramiento arbustivo del fitoplasma y el del espiroplasma, o un error. Es una pregunta corta y de alto valor para el investigador.</p>
+  </div>
+
+  <h2 id="s4">4. La rúbrica de priorización</h2>
+
+  <p>El propósito lo fija el organizador: su pregunta abierta es, textual, «¿cuáles merecen validación y por qué?» sobre candidatos preliminares que su equipo ya tiene diseñados <i class="m mR">R</i>. La rúbrica completa, con las anclas textuales de 0 a 4 por criterio, las compuertas, la fórmula y los topes, está en <code>RUBRICA.md</code>. Antes de los puntajes hay cuatro compuertas que no se ponderan: alcance ético, existencia de la secuencia, especificidad mínima y trazabilidad del cálculo. La última es la que vuelve operativa la palabra «reproducible» del track: no es un criterio que se pesa, es una condición de admisión.</p>
+
+  <h3 id="criterios">Los ocho criterios</h3>
+
+  <p class="hint">Tabla interactiva: ordená por cualquier columna, filtrá por texto, y abrí un criterio para ver sus cinco anclas de puntaje.</p>
+
+  <div class="controls">
+    <div>
+      <label for="fcrit">Filtrar criterios</label>
+      <input type="search" id="fcrit" placeholder="por ejemplo: entrega, off-target, licencia">
+    </div>
+  </div>
+
+  <div class="scroller">
+  <table class="sortable" id="tcrit">
+    <thead><tr>
+      <th data-k="id">Criterio</th>
+      <th data-k="peso" class="num">Peso</th>
+      <th data-k="mide">Qué mide</th>
+      <th data-k="ev">Evidencia que lo hace puntuable</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+  </div>
+
+  <h3 id="ejemplo">Ejemplo trabajado: cinco candidatos, hoy</h3>
+
+  <p>Cinco candidatos construidos por nosotros sobre blancos con evidencia publicada y verificada, para mostrar que la rúbrica corre hoy. <strong>No son los candidatos del EPILAB</strong>, que no conocemos. Los puntajes son <i class="m mH">H</i>: aplicación nuestra de la rúbrica sobre evidencia citada. Los criterios marcados «(P)» son los que podemos producir pero todavía no produjimos; el control de abajo los resuelve de tres maneras y muestra el efecto.</p>
+
+  <div class="controls">
+    <div>
+      <label for="wsel">Esquema de pesos</label>
+      <select id="wsel">
+        <option value="dec">Declarado (C1 20 · C4 20)</option>
+        <option value="alt">Alternativo (C1 10 · C4 30)</option>
+      </select>
+    </div>
+    <div>
+      <label for="psel">Cómo se resuelven los (P)</label>
+      <select id="psel">
+        <option value="cons">Conservador: los (P) valen 1 — es el orden oficial</option>
+        <option value="mid">Como en la tabla de RUBRICA.md: los (P) valen 2</option>
+        <option value="opt">Optimista: los (P) valen 4</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="scroller">
+  <table class="sortable" id="tcand">
+    <thead><tr>
+      <th data-k="id">Candidato</th>
+      <th data-k="C1" class="num">C1</th>
+      <th data-k="C2" class="num">C2</th>
+      <th data-k="C3" class="num">C3</th>
+      <th data-k="C4" class="num">C4</th>
+      <th data-k="C5" class="num">C5</th>
+      <th data-k="C6" class="num">C6</th>
+      <th data-k="C7" class="num">C7</th>
+      <th data-k="C8" class="num">C8</th>
+      <th data-k="total" class="num">Total</th>
+      <th data-k="tope">Tope</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+  </div>
+  <p class="hint" id="orden-actual"></p>
+
+  <div class="callout key">
+    <span class="tag">La decisión que produce la rúbrica</span>
+    <p>No es «elijan K2». Con los pesos declarados los dos candidatos de cabeza quedan separados por <strong>1,3 puntos sobre 100</strong> y sus rangos de incertidumbre se superponen casi por completo: el orden entre ellos <strong>no está determinado</strong> con la evidencia de hoy. Con el esquema alternativo —la lectura literal de que la barrera es la entrega— el orden de los dos primeros <strong>se invierte</strong>, y se invierte tanto con los puntajes conservadores como con los de la tabla. El desempate es el tamizaje de especificidad, que cuesta una tarde de cómputo en una notebook con datos públicos, sin laboratorio y sin permiso de nadie. Y el candidato con el mejor fenotipo publicado en la especie es el que peor prioriza, porque toda su evidencia es por microinyección, que no es una vía de aplicación agronómica.</p>
+  </div>
+
+  <p>Dos cosas cambiaron en la rúbrica durante esta corrida. Se incorporó el criterio de off-target de la guía de la <strong>EFSA</strong> de 2025, que exige reportar todo transcripto que cumpla siete condiciones sobre apareamientos erróneos, huecos, posiciones y cociente de energía libre, para cada ARN pequeño de 21 nucleótidos derivable; es <strong>más permisivo en complementariedad y por lo tanto más exigente en resultado</strong> que el umbral de 19 nucleótidos que usan las herramientas de insectos, y la agencia publica el script para correrlo <i class="m mE">E</i>. Hay que decir al citarla que su alcance son plantas modificadas genéticamente, no ARN pulverizado, y que declara explícitamente no cubrir la evaluación de riesgo ambiental <i class="m mE">E</i>. Y se corrigió un error aritmético de la versión 1.0: dos totales de la fila conservadora estaban calculados con el supuesto equivocado, el arreglo cambia el orden de los dos últimos candidatos, y queda escrito en el archivo porque es justamente la falla que la compuerta de trazabilidad existe para atrapar.</p>
+
+  <h2 id="s5">5. Plan para cuatro personas</h2>
+
+  <p>El riesgo real de un equipo de cuatro con poco tiempo no es la falta de capacidad: es que tres esperen a uno. Eso se resuelve con una decisión concreta y verificable, no con una metodología: <strong>el primer entregable del equipo, en las primeras cuatro horas, son los dos esquemas de datos y sus casos de prueba</strong>. Con el esquema de la ficha de candidato, el de la ficha de puntaje y cinco candidatos de juguete que los cumplan, cada rama avanza contra datos falsos mientras llegan los reales.</p>
+
+  <figure id="diagrama">
+  <svg viewBox="0 0 880 640" role="img" aria-labelledby="pl-t pl-d">
+    <title id="pl-t">Grafo de dependencias y cronograma del plan de cuatro personas</title>
+    <desc id="pl-d">El día uno, las cuatro personas producen juntas los esquemas de datos, los casos de prueba y la lista de taxones no objetivo. A partir de ahí cuatro ramas avanzan en paralelo: datos y genómica, diseño y tamizaje, herramienta y reproducibilidad, y rúbrica aplicada con riesgo y apertura. Las ramas confluyen en el informe de tamizaje y en el orden con sus fichas de decisión, con tres puntos de sincronización.</desc>
+
+    <rect x="8" y="8" width="864" height="74" fill="var(--ochre-soft)" stroke="var(--ochre)" stroke-width="3"/>
+    <text x="24" y="34" font-size="14" font-weight="700" fill="var(--ochre)" font-family="Georgia,serif">DÍA 1 — cuatro horas, los cuatro juntos. La única dependencia dura, y se paga primero.</text>
+    <g font-family="Helvetica,Arial,sans-serif" font-size="12" fill="var(--ink-soft)">
+      <text x="24" y="54">esquema_candidato.json · esquema_score.json · cinco candidatos de prueba · lista de taxones no objetivo (P4 → P2)</text>
+      <text x="24" y="72">Se declaran los pesos de la rúbrica ANTES de ver ningún candidato y se registra la decisión.</text>
+    </g>
+
+    <g stroke="var(--rule)" stroke-width="2" fill="none">
+      <path d="M220,82 L220,108"/><path d="M440,82 L440,108"/><path d="M660,82 L660,108"/><path d="M110,82 L110,108"/>
+    </g>
+
+    <g font-family="Helvetica,Arial,sans-serif">
+      <rect x="14" y="108" width="196" height="150" fill="var(--paper-alt)" stroke="var(--teal)" stroke-width="2"/>
+      <text x="26" y="130" font-size="12" font-weight="700" fill="var(--teal)">P1 · datos y genómica</text>
+      <text x="26" y="150" font-size="11" fill="var(--ink-soft)">Entregable: paquete de datos</text>
+      <text x="26" y="165" font-size="11" fill="var(--ink-soft)">congelado, con manifiesto de</text>
+      <text x="26" y="180" font-size="11" fill="var(--ink-soft)">hashes y licencia por insumo.</text>
+      <text x="26" y="200" font-size="11" fill="var(--ink-soft)">TSA GITV00000000 · maíz de</text>
+      <text x="26" y="215" font-size="11" fill="var(--ink-soft)">Ensembl · patógenos · ORF</text>
+      <text x="26" y="230" font-size="11" fill="var(--ink-soft)">con TransDecoder · BUSCO</text>
+      <text x="26" y="250" font-size="11" font-weight="700" fill="var(--ink)">20 horas-persona</text>
+
+      <rect x="234" y="108" width="196" height="150" fill="var(--paper-alt)" stroke="var(--teal)" stroke-width="2"/>
+      <text x="246" y="130" font-size="12" font-weight="700" fill="var(--teal)">P2 · diseño y tamizaje</text>
+      <text x="246" y="150" font-size="11" fill="var(--ink-soft)">Entregable: informe de</text>
+      <text x="246" y="165" font-size="11" fill="var(--ink-soft)">especificidad por candidato.</text>
+      <text x="246" y="180" font-size="11" fill="var(--ink-soft)">Es la evidencia de C1b, C2 y C3</text>
+      <text x="246" y="200" font-size="11" fill="var(--ink-soft)">ViennaRNA · Bowtie 1 · Rfam</text>
+      <text x="246" y="215" font-size="11" fill="var(--ink-soft)">umbral de 19 nt y reglas EFSA</text>
+      <text x="246" y="230" font-size="11" fill="var(--ink-soft)">Nunca si-Fi: no corre acá</text>
+      <text x="246" y="250" font-size="11" font-weight="700" fill="var(--ink)">28 horas-persona · la más cargada</text>
+
+      <rect x="454" y="108" width="196" height="150" fill="var(--paper-alt)" stroke="var(--teal)" stroke-width="2"/>
+      <text x="466" y="130" font-size="12" font-weight="700" fill="var(--teal)">P3 · herramienta</text>
+      <text x="466" y="150" font-size="11" fill="var(--ink-soft)">Entregable: artefacto de</text>
+      <text x="466" y="165" font-size="11" fill="var(--ink-soft)">decisión. Motor de puntaje,</text>
+      <text x="466" y="180" font-size="11" fill="var(--ink-soft)">topes, sensibilidad, fichas.</text>
+      <text x="466" y="200" font-size="11" fill="var(--ink-soft)">Snakemake · Bioconda · DVC</text>
+      <text x="466" y="215" font-size="11" fill="var(--ink-soft)">DOI por Zenodo · tests sobre</text>
+      <text x="466" y="230" font-size="11" fill="var(--ink-soft)">los casos de prueba del día 1</text>
+      <text x="466" y="250" font-size="11" font-weight="700" fill="var(--ink)">26 horas-persona</text>
+
+      <rect x="674" y="108" width="192" height="150" fill="var(--paper-alt)" stroke="var(--teal)" stroke-width="2"/>
+      <text x="686" y="130" font-size="12" font-weight="700" fill="var(--teal)">P4 · evidencia y apertura</text>
+      <text x="686" y="150" font-size="11" fill="var(--ink-soft)">Entregable: dossier de</text>
+      <text x="686" y="165" font-size="11" fill="var(--ink-soft)">evidencia y paquete de</text>
+      <text x="686" y="180" font-size="11" fill="var(--ink-soft)">apertura.</text>
+      <text x="686" y="200" font-size="11" fill="var(--ink-soft)">Taxones no objetivo · C1a por</text>
+      <text x="686" y="215" font-size="11" fill="var(--ink-soft)">gen · regulatorio · licencias</text>
+      <text x="686" y="230" font-size="11" fill="var(--ink-soft)">Mantiene 00_meta al día</text>
+      <text x="686" y="250" font-size="11" font-weight="700" fill="var(--ink)">22 horas-persona</text>
+    </g>
+
+    <g stroke="var(--teal)" stroke-width="2" fill="none">
+      <path d="M112,258 L112,286 L330,286 L330,300"/>
+      <path d="M770,258 L770,286 L336,286"/>
+      <path d="M332,258 L332,300"/>
+    </g>
+    <rect x="180" y="300" width="300" height="44" fill="var(--paper)" stroke="var(--teal)" stroke-width="2"/>
+    <text x="196" y="320" font-size="12" font-weight="700" fill="var(--ink)" font-family="Helvetica,Arial,sans-serif">Informe de tamizaje por candidato</text>
+    <text x="196" y="336" font-size="11" fill="var(--ink-soft)" font-family="Helvetica,Arial,sans-serif">la medición que más mueve el orden</text>
+
+    <g stroke="var(--teal)" stroke-width="2" fill="none">
+      <path d="M480,322 L552,322 L552,300"/>
+      <path d="M552,258 L552,300"/>
+    </g>
+    <rect x="552" y="300" width="314" height="44" fill="var(--paper)" stroke="var(--ochre)" stroke-width="3"/>
+    <text x="568" y="320" font-size="12" font-weight="700" fill="var(--ochre)" font-family="Helvetica,Arial,sans-serif">ORDEN + FICHAS DE DECISIÓN</text>
+    <text x="568" y="336" font-size="11" fill="var(--ink-soft)" font-family="Helvetica,Arial,sans-serif">una carilla por candidato, con «dónde no pudimos mirar»</text>
+
+    <line x1="8" y1="372" x2="872" y2="372" stroke="var(--rule)" stroke-width="1"/>
+    <text x="8" y="396" font-size="13" font-weight="700" fill="var(--teal)" font-family="Georgia,serif">Cronograma y puntos de sincronización</text>
+
+    <g font-family="Helvetica,Arial,sans-serif">
+      <rect x="8" y="410" width="210" height="88" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="22" y="430" font-size="12" font-weight="700" fill="var(--ink)">S-3 · 32 h</text>
+      <text x="22" y="448" font-size="11" fill="var(--ink-soft)">Día 1 juntos, después en</text>
+      <text x="22" y="463" font-size="11" fill="var(--ink-soft)">paralelo: descarga, features,</text>
+      <text x="22" y="478" font-size="11" fill="var(--ink-soft)">motor de puntaje, taxones</text>
+      <text x="22" y="493" font-size="11" fill="var(--ink-faint)">Sinc. 1: ¿corre sobre pruebas?</text>
+
+      <rect x="226" y="410" width="210" height="88" fill="var(--paper)" stroke="var(--ochre)" stroke-width="3"/>
+      <text x="240" y="430" font-size="12" font-weight="700" fill="var(--ochre)">S-2 · 32 h</text>
+      <text x="240" y="448" font-size="11" fill="var(--ink-soft)">TransDecoder y BUSCO,</text>
+      <text x="240" y="463" font-size="11" fill="var(--ink-soft)">tamizaje completo, fichas,</text>
+      <text x="240" y="478" font-size="11" fill="var(--ink-soft)">dossier y apertura</text>
+      <text x="240" y="493" font-size="11" font-weight="700" fill="var(--ochre)">Sinc. 2: el hito a proteger</text>
+
+      <rect x="444" y="410" width="210" height="88" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="458" y="430" font-size="12" font-weight="700" fill="var(--ink)">S-1 · 32 h</text>
+      <text x="458" y="448" font-size="11" fill="var(--ink-soft)">Endurecimiento: tests, DOI,</text>
+      <text x="458" y="463" font-size="11" fill="var(--ink-soft)">una página de documentación</text>
+      <text x="458" y="478" font-size="11" fill="var(--ink-soft)">por rama, paquete offline</text>
+      <text x="458" y="493" font-size="11" fill="var(--ink-faint)">Sinc. 3: se congela la versión</text>
+
+      <rect x="662" y="410" width="204" height="88" fill="var(--paper)" stroke="var(--teal)" stroke-width="2"/>
+      <text x="676" y="430" font-size="12" font-weight="700" fill="var(--teal)">Evento</text>
+      <text x="676" y="448" font-size="11" fill="var(--ink-soft)">Se reemplazan nuestros</text>
+      <text x="676" y="463" font-size="11" fill="var(--ink-soft)">candidatos por los del EPILAB</text>
+      <text x="676" y="478" font-size="11" fill="var(--ink-soft)">y se vuelve a correr.</text>
+      <text x="676" y="493" font-size="11" font-weight="700" fill="var(--ink)">Sustitución, no construcción</text>
+    </g>
+
+    <rect x="8" y="516" width="858" height="112" fill="var(--paper-alt)" stroke="var(--crimson)" stroke-width="2"/>
+    <text x="24" y="540" font-size="13" font-weight="700" fill="var(--crimson)" font-family="Georgia,serif">Plan B del escenario más probable: que no existan los datos para entrenar nada</text>
+    <g font-family="Helvetica,Arial,sans-serif" font-size="11.5" fill="var(--ink-soft)">
+      <text x="24" y="562">Ya es verdad hoy. No hay un conjunto de pares secuencia-eficacia en Dalbulus maidis; lo más cercano son 31 siRNA probados en</text>
+      <text x="24" y="580">Tribolium castaneum, 29 de los cuales entraron a un modelo de supervivencia con C de Harrell de 0,76: otro orden de insectos, n de dos cifras.</text>
+      <text x="24" y="598" font-weight="700" fill="var(--ink)">El equipo no va a entrenar nada, y eso es una decisión, no una limitación.</text>
+      <text x="24" y="616">Priorizar con criterio explícito y evidencia citada no requiere entrenamiento: la rúbrica y el tamizaje son cómputo determinista sobre secuencias públicas.</text>
+    </g>
+  </svg>
+  <figcaption>El plan completo —roles, dependencias blandas y cómo se neutralizan, los cinco niveles del plan B y el orden de recorte si el plazo se acorta— está en <code>PLAN_EQUIPO.md</code>. Ninguna rama tiene a otra en su camino crítico después del día uno.</figcaption>
+  </figure>
+
+  <h2 id="s6">6. Lo que quedó sin resolver</h2>
+
+  <p><strong>Fuentes que no se pudieron abrir.</strong> El paper del marco nf-core y Nextflow no tiene ubicación de acceso abierto accesible desde este entorno y no se abrió en ninguna de las dos corridas: por la regla del proyecto no se cita. La versión revisada por pares de dsRNAEngineer figura en el índice de búsqueda pero no se abrió, así que lo que se cita es el preprint. Los PDF de los trabajos de 2022 y 2023 del grupo de Catalano siguen siendo de suscripción.</p>
+
+  <p><strong>Dominios no accesibles en esta corrida.</strong> Los sitios institucionales argentinos y brasileños y la API de GBIF quedaron fuera de la lista de dominios permitidos del entorno de la segunda corrida. Todo lo que se afirma acá sobre la Red Nacional de Monitoreo, el taller de gobernanza, Monitora Oeste, REDAPE, el repositorio del INTA, la vinculación tecnológica del INTA, la nota del CONICET, GBIF e iNaturalist viene de la verificación de la primera corrida, transcrita en <code>notes/evidencia_verificada.md</code>, y no se volvió a comprobar hoy. Nada se reconstruyó de memoria: o estaba verificado con cita textual, o no entró.</p>
+
+  <p><strong>Contradicciones abiertas.</strong> Que el trabajo de delineación del fitoplasma afirme que la enfermedad no fue reportada en Argentina <i class="m mQ">?</i>; que el BioProject de sus tres genomas nuevos no devuelva ensamblados registrados <i class="m mQ">?</i>; y la ambigüedad de versión de la licencia del ensamblado del INTA <i class="m mQ">?</i>.</p>
+
+  <p><strong>Un vacío que buscamos y no está.</strong> Las búsquedas de análisis multicriterio aplicado a priorización fitosanitaria devolvieron 131 resultados, todos de mapeo de riesgo veterinario o espacial y ninguno aplicable a priorización de candidatos moleculares: no se encontró un antecedente metodológico publicado de rúbrica para esta clase de decisión, lo que deja los pesos como <i class="m mH">H</i> del equipo, tal como ya estaban marcados.</p>
+
+  <h2 id="archivos">Archivos y fuentes</h2>
+  <dl class="files">
+    <dt>REPORT.md</dt><dd>Las cinco secciones completas, en prosa. Es la fuente de verdad: esta página resume y no afirma nada que no esté allí con su fuente.</dd>
+    <dt>RUBRICA.md</dt><dd>La rúbrica v1.1 completa: cuatro compuertas, ocho criterios con anclas textuales de 0 a 4, pesos con su justificación, fórmula, topes, tratamiento de la incertidumbre, ficha de decisión y el ejemplo trabajado recalculado.</dd>
+    <dt>PLAN_EQUIPO.md</dt><dd>Roles, ramas, grafo de dependencias, cronograma en semanas relativas, qué se entrega y qué se presenta, plan B en cinco niveles y orden de recorte.</dd>
+    <dt>stack_bioinformatico.md</dt><dd>Bases de datos y herramientas con URL, formatos de entrada y salida, si corren en una notebook, y el estado de verificación de cada URL.</dd>
+    <dt>sources.json</dt><dd>Las 57 fuentes con su alcance de verificación declarado: texto completo, metadatos, API por uso o no verificada. Una sola figura como no verificada y por eso no se cita.</dd>
+    <dt>notes/evidencia_verificada.md</dt><dd>Las citas textuales de cada fuente y cómo se verificó, corrida por corrida, incluidas las búsquedas que no encontraron nada.</dd>
+  </dl>
+
+  <div class="callout">
+    <span class="tag">Qué cambió en los archivos de la corrida anterior</span>
+    <p>Al ampliar las fuentes para este reporte quedaron desactualizados tres archivos y se corrigieron en su lugar, con el motivo escrito adentro de cada uno: <code>RUBRICA.md</code> incorporó el criterio de off-target de la EFSA, cerró el pendiente regulatorio y corrigió dos totales mal calculados del ejemplo; <code>PLAN_EQUIPO.md</code> sumó el genoma del fitoplasma a la rama de datos, el tamizaje con el criterio de la EFSA a la de diseño, con su costo en horas declarado, y tres precedentes regulatorios a la de evidencia; y <code>stack_bioinformatico.md</code> sumó dsRNAEngineer, el script de la EFSA y la cadena de genómica bacteriana, y corrigió la afirmación de que el fitoplasma del maíz no tenía genoma completo.</p>
+  </div>
+</main>
+</div>
+
+<footer>
+  R5 · Investigathón Y-Hat, track chicharrita del maíz y ARN exógeno · documento interno del equipo · fuente abierta y publicada, control fitosanitario agrícola.
+</footer>
+
+<script>
+(function(){
+"use strict";
+var CRIT = [
+ {id:"C1 · probabilidad de acción biológica", peso:20, pesoAlt:10,
+  mide:"Si hay evidencia de que silenciar ese gen produce el efecto buscado, y la calidad de la secuencia del disparador. Se parte en C1a y C1b y se promedia.",
+  ev:"Búsqueda en Europe PMC por gen y especie; ortología con OrthoFinder; anotación por BLASTX contra UniProtKB y KO en KEGG; las cuatro features significativas de Cedden et al. 2025 calculadas con ViennaRNA. Todo local.",
+  anclas:["Esencialidad sólo postulada, o el fenotipo esperado no se relaciona con alimentación, supervivencia ni transmisión.",
+   "Gen esencial por tamizaje en un insecto modelo, con ortólogo identificable, sin datos en hemípteros.",
+   "Silenciamiento del ortólogo en otro hemíptero con fenotipo cuantificado y ortología establecida en D. maidis.",
+   "Silenciamiento del gen en D. maidis con fenotipo cuantificado, pero por inyección o en condiciones no agronómicas.",
+   "Silenciamiento del gen en D. maidis por una vía aplicable, con fenotipo cuantificado, control adecuado y revisión por pares."]},
+ {id:"C2 · especificidad y off-target en el maíz", peso:15, pesoAlt:15,
+  mide:"Cuántos siRNA derivables del disparador coinciden con transcriptos de Zea mays, y si en el propio vector los hits se concentran en el gen blanco.",
+  ev:"Bowtie 1 contra el transcriptoma de maíz de Ensembl Plants y contra los 56.116 transcriptos del TSA GITV00000000, con 0, 1 y 2 mismatches, reportando los tres. La ficha declara si se puntuó con el umbral de 19 nt o con las reglas de la EFSA 2025, que devuelven un superconjunto de hits.",
+  anclas:["Hits con 0 mismatches en genes esenciales del maíz. Además dispara la compuerta G2.",
+   "Hits en genes no esenciales del maíz, o dispersión del disparador sobre varios genes no relacionados del vector.",
+   "Tamizaje no corrido todavía (P), con los insumos disponibles.",
+   "Cero hits en maíz con 0 mismatches; algún hit con 1 mismatch en genes no esenciales.",
+   "Cero siRNA con 19 nt o más complementarios en el transcriptoma de maíz, y en el vector los hits se concentran en el gen blanco y su familia."]},
+ {id:"C3 · riesgo para no objetivo y ambiente", peso:15, pesoAlt:15,
+  mide:"Coincidencias de secuencia con taxones del agroecosistema y con polinizadores, y la declaración explícita de dónde no se pudo mirar.",
+  ev:"Tamizaje contra transcriptomas de no objetivo. Dos fuentes verificadas para la lista de especies: los grupos que ofrece dsRIP y los nueve taxones presentes en al menos dos regiones y cuatro sitios de Ahmad et al. 2016 —trabajo de autores de Monsanto y financiado por Monsanto, hay que decirlo—. Criterios de selección de especies de prueba según Romeis y Widmer 2020.",
+  anclas:["Hits con 0 mismatches en genes esenciales de Apis mellifera, o el candidato apunta a un gen conservado en el filo.",
+   "Hits en un enemigo natural o polinizador, sin evidencia de efecto fenotípico.",
+   "Tamizaje no corrido todavía (P), o corrido contra una selección parcial de taxones.",
+   "Cero hits en polinizadores y enemigos naturales; algún hit en un taxón de relevancia menor o con 2 mismatches.",
+   "Cero hits de 19 nt o más en los nueve taxones representativos y en polinizadores, con los taxones sin transcriptoma declarados como vacío de datos."]},
+ {id:"C4 · viabilidad de la vía de entrega", peso:20, pesoAlt:30,
+  mide:"Si la vía propuesta es agronómicamente aplicable y si hay respuesta a la barrera de las dsRNasas, que es la barrera que el organizador declara central.",
+  ev:"Dalaisón-Fuentes et al. 2023 identifican tres dsRNasas en la especie, con Dmai-dsRNase-2 la más expresada en intestino medio y glándulas salivales, y muestran que silenciarla mejora la respuesta al dsRNA. Nitnavare et al. 2021 para el contexto de orden: los hemípteros son relativamente ineficientes por degradación en el intestino medio.",
+  anclas:["No hay vía de entrega identificada para el compartimento donde está el blanco.",
+   "Sólo por inyección, o requiere planta transgénica, lo que mueve el proyecto a otro plazo y otro marco regulatorio.",
+   "Eficacia demostrada por alimentación en dieta artificial, sin paso a planta ni formulación.",
+   "Vía aplicable con una estrategia explícita y respaldada contra las dsRNasas, sin eficacia demostrada todavía en esta especie.",
+   "Vía agronómicamente aplicable con eficacia demostrada y publicada en D. maidis o en un cicadélido cercano."]},
+ {id:"C5 · factibilidad técnica y de costo", peso:10, pesoAlt:10,
+  mide:"Qué hace falta para avanzar un paso más, y si el equipo puede conseguirlo sin laboratorio.",
+  ev:"La vía institucional concreta y no una estimación: los instrumentos de vinculación tecnológica del INTA —asistencia técnica a terceros, Empresas de Base Tecnológica, Banco de ideas— y la capacidad local de síntesis de ARN informada por el CONICET.",
+  anclas:["Requiere infraestructura que no existe en el país o una escala fuera de alcance.",
+   "Requiere capacidad de formulación o nanoencapsulado, o transformación de planta.",
+   "Requiere un bioensayo con planta o cría de insectos, y por lo tanto un convenio.",
+   "Requiere síntesis de dsRNA y un bioensayo de alimentación estándar, que un laboratorio asociado corre en semanas.",
+   "Todo lo que falta lo podemos hacer nosotros con datos públicos y una notebook."]},
+ {id:"C6 · reproducibilidad", peso:10, pesoAlt:10,
+  mide:"Cuánto del candidato —no de nuestro cálculo, que ya lo exige la compuerta G3— puede reproducir un tercero.",
+  ev:"Las tres trampas verificadas de este proyecto: el ensamblado del INTA está bajo licencia no comercial, si-Fi corre sólo en Windows, y dsRIP es web y hay que exportar su salida. Las anclas altas se sostienen con Snakemake, Bioconda, DVC y el flujo de GitHub con Zenodo.",
+  anclas:["No se puede reconstruir de dónde salió el candidato.",
+   "Depende de un dato no publicado o de una herramienta que no corre en nuestra plataforma.",
+   "La secuencia es reproducible pero algún paso depende de una herramienta web sin versión declarada ni salida exportable.",
+   "Todo reproducible, pero algún insumo tiene licencia restrictiva —por ejemplo no comercial— o requiere registro.",
+   "Accesión pública, insumos con licencia que permite reuso, entorno con versiones fijas, semillas fijadas, y el puntaje se regenera con un comando."]},
+ {id:"C7 · viabilidad regulatoria", peso:5, pesoAlt:5,
+  mide:"Si la clase de producto tiene precedente de registro, y en qué jurisdicción.",
+  ev:"El registro del ingrediente activo ledprona por la EPA el 22 de diciembre de 2023, primer dsRNA pulverizable autorizado comercialmente, con expediente público; el número de registro como bioplaguicida y el expediente presentado en Estados Unidos, la Unión Europea y Brasil para un dsRNA contra Erysiphe necator; y la guía de la EFSA de 2025, cuyo alcance son plantas modificadas genéticamente y que no cubre riesgo ambiental.",
+  anclas:["Obstáculo regulatorio identificado y sin vía de resolución.",
+   "Requiere marco de organismo genéticamente modificado, es decir planta transgénica.",
+   "Clase de producto sin precedente pero sin obstáculo identificado.",
+   "Precedente en otra jurisdicción, con datos que podrían ser transportables.",
+   "La clase de producto tiene precedente de registro para aplicación foliar sobre un cultivo alimenticio."]},
+ {id:"C8 · tiempo hasta demostración", peso:5, pesoAlt:5,
+  mide:"Cuánto falta para poder mostrar algo verificable, no para tener un producto.",
+  ev:"El plan de la rama correspondiente en PLAN_EQUIPO.md, con sus horas-persona asignadas. Un 4 no premia ser ambicioso: premia que exista una afirmación falsable que el equipo pueda cerrar con lo que tiene.",
+  anclas:["Sin camino de demostración definido.",
+   "Más de un año: campo o planta transgénica.",
+   "Meses: bioensayo con planta.",
+   "Semanas: síntesis más un bioensayo de alimentación.",
+   "Se puede demostrar algo verificable dentro del plazo del evento, con datos públicos."]}
+];
+
+var CAND = [
+ {id:"K1", desc:"dsRNA anti-Dmai-dsRNase-2 co-entregado con anti-BicC, pulverización foliar",
+  s:{C1:2.5, C2:"P2", C3:"P2", C4:3, C5:2, C6:3, C7:2, C8:2}},
+ {id:"K2", desc:"dsRNA anti-BicC solo, entrega oral en dieta y luego foliar",
+  s:{C1:3, C2:"P2", C3:"P2", C4:2, C5:3, C6:3, C7:2, C8:3}},
+ {id:"K3", desc:"dsRNA anti-eth, el blanco con mejor fenotipo publicado en la especie",
+  s:{C1:3.5, C2:"P2", C3:"P2", C4:0, C5:3, C6:3, C7:1, C8:3}},
+ {id:"K4", desc:"dsRNA contra un gen esencial anotado de Spiroplasma kunkelii, aplicado a la planta",
+  s:{C1:1, C2:"P2", C3:3, C4:1, C5:2, C6:3, C7:1, C8:1}},
+ {id:"K5", desc:"dsRNA contra el genoma de MRFV, para bloquear la transmisión dentro del insecto",
+  s:{C1:1.5, C2:"P2", C3:3, C4:1, C5:2, C6:3, C7:1, C8:1}}
+];
+
+var KEYS = ["C1","C2","C3","C4","C5","C6","C7","C8"];
+function fmt(x){ return x.toFixed(1).replace(".", ","); }
+function pesos(scheme){
+  var w={};
+  CRIT.forEach(function(c,i){ w[KEYS[i]] = (scheme==="alt") ? c.pesoAlt : c.peso; });
+  return w;
+}
+function valor(v, modo){
+  if(typeof v === "string"){ return modo==="cons" ? 1 : (modo==="opt" ? 4 : parseFloat(v.slice(1))); }
+  return v;
+}
+function calcular(cand, scheme, modo){
+  var w = pesos(scheme), suma = 0, sc = {};
+  KEYS.forEach(function(k){ sc[k] = valor(cand.s[k], modo); suma += w[k]*sc[k]; });
+  var crudo = suma/4, tope = null;
+  var ceros = KEYS.filter(function(k){ return sc[k]===0; }).length;
+  var unos = ["C1","C2","C3","C4"].filter(function(k){ return sc[k]===1; }).length;
+  if(ceros>0){ tope = 40; } else if(unos>=2){ tope = 60; }
+  var fin = (tope!==null) ? Math.min(crudo, tope) : crudo;
+  return {sc:sc, crudo:crudo, fin:fin, tope:tope, topado:(tope!==null && fin<crudo)};
+}
+
+/* ---- tabla de criterios ---- */
+var tb = document.querySelector("#tcrit tbody");
+function pintarCriterios(filtro, orden, desc){
+  var rows = CRIT.slice();
+  if(orden){
+    rows.sort(function(a,b){
+      var x=a[orden], y=b[orden];
+      if(typeof x==="string"){ return desc ? y.localeCompare(x) : x.localeCompare(y); }
+      return desc ? y-x : x-y;
+    });
+  }
+  tb.innerHTML = "";
+  rows.forEach(function(c){
+    var blob = (c.id+" "+c.mide+" "+c.ev+" "+c.anclas.join(" ")).toLowerCase();
+    if(filtro && blob.indexOf(filtro) === -1){ return; }
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td><span class="rowlink">'+c.id+'</span></td>'
+      + '<td class="num">'+c.peso+'</td><td>'+c.mide+'</td><td>'+c.ev+'</td>';
+    tb.appendChild(tr);
+    var ab = document.createElement("tr");
+    ab.className = "anchors";
+    ab.style.display = "none";
+    ab.innerHTML = '<td colspan="4"><strong>Anclas de puntaje, de 0 a 4:</strong><ol start="0">'
+      + c.anclas.map(function(a){ return "<li>"+a+"</li>"; }).join("") + "</ol></td>";
+    tb.appendChild(ab);
+    tr.querySelector(".rowlink").addEventListener("click", function(){
+      ab.style.display = (ab.style.display === "none") ? "table-row" : "none";
+    });
+  });
+}
+var ordenCrit = {k:null, desc:false};
+document.querySelectorAll("#tcrit th[data-k]").forEach(function(th){
+  th.addEventListener("click", function(){
+    var k = th.getAttribute("data-k");
+    k = (k==="id") ? "id" : (k==="peso" ? "peso" : (k==="mide" ? "mide" : "ev"));
+    ordenCrit.desc = (ordenCrit.k===k) ? !ordenCrit.desc : (k==="peso");
+    ordenCrit.k = k;
+    document.querySelectorAll("#tcrit th").forEach(function(h){ h.classList.remove("sorted"); });
+    th.classList.add("sorted");
+    pintarCriterios(document.getElementById("fcrit").value.trim().toLowerCase(), k, ordenCrit.desc);
+  });
+});
+document.getElementById("fcrit").addEventListener("input", function(e){
+  pintarCriterios(e.target.value.trim().toLowerCase(), ordenCrit.k, ordenCrit.desc);
+});
+pintarCriterios("", null, false);
+
+/* ---- tabla del ejemplo trabajado ---- */
+var tbc = document.querySelector("#tcand tbody");
+var ordenCand = {k:"total", desc:true};
+function pintarCandidatos(){
+  var scheme = document.getElementById("wsel").value;
+  var modo = document.getElementById("psel").value;
+  var filas = CAND.map(function(c){
+    var r = calcular(c, scheme, modo);
+    return {id:c.id, desc:c.desc, sc:r.sc, total:r.fin, crudo:r.crudo, tope:r.tope, topado:r.topado};
+  });
+  filas.sort(function(a,b){
+    var x = (ordenCand.k==="total") ? a.total : (ordenCand.k==="id" ? a.id : a.sc[ordenCand.k]);
+    var y = (ordenCand.k==="total") ? b.total : (ordenCand.k==="id" ? b.id : b.sc[ordenCand.k]);
+    if(typeof x === "string"){ return ordenCand.desc ? y.localeCompare(x) : x.localeCompare(y); }
+    return ordenCand.desc ? y-x : x-y;
+  });
+  tbc.innerHTML = "";
+  filas.forEach(function(f){
+    var tr = document.createElement("tr");
+    if(f.topado){ tr.className = "capped"; }
+    var celdas = KEYS.map(function(k){
+      var marca = (typeof CAND.filter(function(c){return c.id===f.id;})[0].s[k] === "string") ? " (P)" : "";
+      return '<td class="num">'+fmt(f.sc[k])+marca+'</td>';
+    }).join("");
+    tr.innerHTML = '<td><strong>'+f.id+'</strong><br><span style="font-size:.84rem;color:var(--ink-faint)">'+f.desc+'</span></td>'
+      + celdas
+      + '<td class="num total">'+fmt(f.total)+'</td>'
+      + '<td>'+(f.topado ? ("sí, en "+f.tope+" — sin topar daría "+fmt(f.crudo)) : "no")+'</td>';
+    tbc.appendChild(tr);
+  });
+  var orden = filas.slice().sort(function(a,b){ return b.total-a.total; })
+     .map(function(f){ return f.id+" ("+fmt(f.total)+")"; }).join(" > ");
+  var leyenda = (modo==="cons") ? "Puntaje conservador, los (P) valen 1: es el orden oficial de la rúbrica."
+    : (modo==="opt" ? "Puntaje optimista, los (P) valen 4: es el techo, no una promesa."
+    : "Los (P) valen 2, que es la tabla impresa en RUBRICA.md.");
+  var esq = (scheme==="alt") ? " Pesos alternativos: C4 a 30 y C1 a 10, la lectura literal de que la barrera es la entrega." : " Pesos declarados antes de ver ningún candidato.";
+  document.getElementById("orden-actual").innerHTML = "<strong>Orden con esta configuración:</strong> " + orden + ". " + leyenda + esq;
+}
+document.querySelectorAll("#tcand th[data-k]").forEach(function(th){
+  th.addEventListener("click", function(){
+    var k = th.getAttribute("data-k");
+    if(k === "tope"){ return; }
+    ordenCand.desc = (ordenCand.k===k) ? !ordenCand.desc : true;
+    ordenCand.k = k;
+    document.querySelectorAll("#tcand th").forEach(function(h){ h.classList.remove("sorted"); });
+    th.classList.add("sorted");
+    pintarCandidatos();
+  });
+});
+document.getElementById("wsel").addEventListener("change", pintarCandidatos);
+document.getElementById("psel").addEventListener("change", pintarCandidatos);
+pintarCandidatos();
+})();
+</script>
+</body>
+</html>

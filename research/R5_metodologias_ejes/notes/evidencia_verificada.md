@@ -301,11 +301,11 @@ Todo lo de (3) es por inyección, que no es una vía de aplicación agronómica.
 ## F. Reproducibilidad: herramientas con fuente
 
 - **nf-core / Nextflow** — Ewels et al. (2020), *Nature Biotechnology*,
-  doi 10.1038/s41587-020-0439-x (preprint bioRxiv 610741). Motivación
-  verificada: muchos pipelines se construyen para una instalación local y eso
-  hace difícil reproducir resultados; los pipelines de nf-core están escritos en
-  Nextflow y heredan soporte nativo de Docker y Singularity, con conjuntos de
-  datos mínimos de prueba.
+  doi 10.1038/s41587-020-0439-x. **NO VERIFICADO**: solo tenemos resultados de
+  búsqueda, no abrimos el paper ni la documentación. Por la regla de `CLAUDE.md`
+  no se cita en los entregables; queda anotado en `PREGUNTAS_ABIERTAS.md`. La
+  recomendación de reproducibilidad se sostiene con Snakemake y Bioconda, que sí
+  se verificaron.
 - **Snakemake** — Mölder F et al. (2021), "Sustainable data analysis with
   Snakemake", *F1000Research* 10:33, citado por la documentación oficial como el
   paper "rolling" a citar. Define flujos en un lenguaje basado en Python;
@@ -434,3 +434,191 @@ verificación en `REPORT.md`, sección 3):
   una "Mesa Nacional de Chicharrita" con resolución (lo que hay es un Comité de
   Crisis de la Secretaría de Bioeconomía); el contenido de AgroAPI de Embrapa
   (página JS; el modelo de token pago viene de prensa).
+
+
+---
+
+# Segunda corrida — 2026-10-17: fuentes abiertas hoy
+
+Todo lo de esta sección se abrió en esta corrida: texto completo por DOI o
+consulta directa a una API. Los dominios institucionales
+(`argentina.gob.ar`, `embrapa.br`, `repositorio.inta.gob.ar`, `api.gbif.org`) **no
+estaban accesibles desde este entorno**, así que las secciones A a G de arriba
+conservan su propio alcance de verificación y no se volvieron a comprobar.
+
+## H. Metodología, reproducibilidad y estándares
+
+- **Wilkinson MD et al. (2016)**, *Scientific Data* 3:160018,
+  doi 10.1038/sdata.2016.18. Texto completo. Los quince principios del Box 2,
+  textuales: F1 identificador único y persistente; F2 metadatos ricos; F3 el
+  metadato incluye el identificador del dato; F4 indexado en un recurso
+  buscable; A1 recuperable por su identificador con un protocolo estandarizado,
+  A1.1 abierto, libre y universalmente implementable, A1.2 con autenticación
+  cuando haga falta; A2 los metadatos siguen accesibles aunque el dato ya no
+  esté; I1 lenguaje formal y compartido de representación; I2 vocabularios que
+  siguen FAIR; I3 referencias calificadas a otros datos; R1 descripción rica,
+  R1.1 "(meta)data are released with a clear and accessible data usage license",
+  R1.2 procedencia detallada, R1.3 estándares de la comunidad del dominio.
+- **Sandve GK, Nekrutenko A, Taylor J, Hovig E (2013)**, *PLoS Computational
+  Biology* 9(10):e1003285, doi 10.1371/journal.pcbi.1003285. Texto completo. Las
+  diez reglas, con el enunciado de cada una verificado: registrar cómo se produjo
+  cada resultado; evitar pasos manuales de manipulación de datos; archivar las
+  versiones exactas de los programas externos; versionar todo script propio;
+  registrar los resultados intermedios en formatos estandarizados; anotar las
+  semillas aleatorias; guardar siempre los datos crudos detrás de los gráficos;
+  generar salida jerárquica; conectar las afirmaciones textuales con los
+  resultados que las sostienen; dar acceso público a scripts, corridas y
+  resultados. Nombra Subversion, Git y Mercurial como sistemas de control de
+  versiones.
+- **The Galaxy Community (2024)**, *Nucleic Acids Research* 52(W1):W83,
+  doi 10.1093/nar/gkae410. Texto completo. Textual: los servicios `usegalaxy.*`
+  de Estados Unidos, Australia y Europa "have amassed > 500 000 registered
+  users", y durante 2023 más de 11.000 usuarios individuales corrieron en
+  promedio más de 1.000.000 de trabajos por mes; más de 9.000 herramientas
+  científicas y más de 400 tipos de datos; estadísticas operativas públicas en
+  `status.galaxyproject.org`. Incluye estimación de emisiones de CO₂ por trabajo
+  y una base comunitaria de requisitos de recursos por herramienta (TPV).
+- **Wieczorek J et al. (2012)**, *PLoS ONE* 7(1):e29715,
+  doi 10.1371/journal.pone.0029715. Texto completo. Describe categorías de
+  términos, Darwin Core simple frente a relacional, documentación normativa y no
+  normativa (Quick Reference Guide, XML Guide, Text Guide, Namespace Policy,
+  Decision History), extensiones a metagenómica y recursos genéticos, y el
+  proceso comunitario de mantenimiento. Consigna que GBIF indexaba entonces
+  "approximately 300 million Darwin Core-formatted records published by more than
+  340 organizations in 43 countries".
+
+## I. Antecedentes evaluables de innovación abierta y de regulación
+
+- **van Etten J et al. (2019)**, *PNAS* 116(10):4194-4199,
+  doi 10.1073/pnas.1813720116, CC BY-NC-ND 4.0. Texto completo en PMC.
+  **12.409 parcelas experimentales manejadas por agricultores** en Nicaragua
+  (*Phaseolus vulgaris*), Etiopía (*Triticum durum*) e India (*T. aestivum*), con
+  el enfoque *tricot*: cada agricultor planta un paquete personal de tres
+  variedades asignadas al azar de un conjunto mayor y ordena su desempeño; las
+  observaciones se compilan y analizan centralmente. La predicción del
+  desempeño a partir de variables climáticas estacionales resultó generalizable
+  entre campañas.
+- **Južnič-Zonta Ž et al. (2022)**, *Gigabyte*, doi 10.46471/gigabyte.54, CC BY
+  4.0. Texto completo. Mosquito Alert, operativo desde 2014: registros de
+  mosquitos adultos 2014-2020 ligados a fotografías enviadas por los
+  participantes y **validadas por entomólogos** para cinco especies vectoras
+  europeas; módulo para enviar muestras a laboratorios de referencia; la
+  aplicación recoge información anónima sobre la distribución geográfica de los
+  participantes "to correct for sampling effort biases"; sistema de puntaje y
+  notificaciones para sostener la participación; publicado como conjunto de
+  datos en GBIF; las imágenes validadas se usaron para entrenar un modelo de
+  aprendizaje profundo que actúa como preselector para la validación experta.
+  Desde el otoño de 2020 la cobertura se amplió con entomólogos voluntarios
+  coordinados por la Acción AIM-COST.
+- **Fessenden M (2026)**, "Reframing 'disappointing' data at *Life Science
+  Alliance*", doi 10.26508/lsa.202603674, CC BY 4.0. Texto completo. La revista
+  "explicitly welcomes submissions describing negative results"; el sesgo
+  sistémico contra los resultados negativos deja persistir callejones sin
+  salida, reactivos defectuosos e hipótesis erróneas, que consumen recursos más
+  tiempo del que deberían.
+- **EFSA (2025)**, *EFSA Journal* 23:e9321, doi 10.2903/j.efsa.2025.9321,
+  aprobada el 7 de marzo de 2025. Texto completo. Reglas que el solicitante debe
+  cumplir **todas** para reportar un transcripto off-target, para cada ARN
+  pequeño de 21 nt producible: no más de cuatro mismatches sin hueco, o tres más
+  un hueco; un par G:U cuenta como medio mismatch; un solo hueco, en el blanco o
+  en el ARN pequeño; huecos de un solo nucleótido; ningún mismatch ni hueco en
+  las posiciones 10 u 11; no más de dos mismatches (o uno más un hueco) en los
+  primeros 12 nt del extremo 5′; y cociente entre la energía libre mínima del
+  dúplex y la del complemento perfecto mayor que 0,75 (citan Allen et al. 2005).
+  Debe usarse el transcriptoma más actualizado de la especie. La discusión del
+  riesgo se basa en el número de ARN pequeños distintos que coinciden con el
+  mismo transcripto, porque la probabilidad de represión correlaciona con ese
+  número (citan Hannus et al. 2014), y los transcriptos con múltiples
+  coincidencias son el foco. La agencia publica un script para correr el
+  análisis, que "can be run by users on an environment of their choice, and is
+  not linked to any EFSA database". Dos límites declarados: la guía es para
+  plantas modificadas genéticamente y **"does not cover environmental RA
+  considerations"**.
+- **Perspectiva sobre comercialización de RNAi (2026)**, *Pest Management
+  Science* 82(7):5971-5986, doi 10.1002/ps.70806, CC BY 4.0. Texto completo. La
+  EPA aprobó en 2023 el primer insecticida de dsRNA, ledprona, contra el
+  escarabajo de la papa de Colorado, registrado como bioplaguicida con el
+  número **EPA 94614-2**; un producto de dsRNA contra el ácaro *Varroa*
+  —vadescana— también llegó a comercialización; se presentó un expediente en
+  Estados Unidos, la Unión Europea y **Brasil** para un ingrediente activo de
+  dsRNA contra *Erysiphe necator*. Para ledprona, dsRNA de **490 pb** producido
+  con una plataforma propietaria libre de células, se reportan costos de
+  producción proyectados **por debajo de 1 USD por unidad de dsRNA** en la etapa
+  de síntesis. Los productos de HIGS se tratan como OGM y los evalúa la CTNBio en
+  Brasil, la EPA bajo la HSNO Act en Nueva Zelanda, la OGTR en Australia y el
+  GEAC en India. Argumento de apertura: desarrollar estas tecnologías en marcos
+  de investigación pública o liberarlas sin patentes restrictivas reduciría el
+  riesgo de dependencias de explotación en la cadena de suministro.
+
+## J. El fitoplasma del maíz: nombre nuevo y genoma que ya existía
+
+- **Pellegrinetti TA et al. (2026)**, *International Journal of Systematic and
+  Evolutionary Microbiology* 76(10):007301, doi 10.1099/ijsem.0.007301, CC BY
+  4.0, PMC13660524. Texto completo (XML de Europe PMC). Proponen
+  '*Candidatus* Phytoplasma zeae' para el fitoplasma del achaparramiento
+  arbustivo del maíz, transmitido exclusivamente por *Dalbulus maidis* y
+  *Dalbulus elimatus*; identidad de 16S rRNA mayor al 99 % con '*Ca.* P.
+  asteris' pero con polimorfismos distintivos; ANI de 92,6 a 98,4 % contra todos
+  los genomas disponibles de cepas emparentadas con '*Ca.* P. asteris' y de 93,3
+  a 93,4 % contra '*Ca.* P. tritici'; AAI de 96,65 a 96,88 % contra
+  '*Ca.* P. asteris'. Cepa de referencia MBSP-BR RS. Reconstruyeron genomas de
+  cepas de Brasil y Estados Unidos con fastp v0.23.4, KrakenTools v1.2, MEGAHIT
+  v1.1.4 y MetaSPAdes v4.1.0, identificación de contigs por BLASTn contra el
+  genoma M3 (`GCA_001712875.1`), RagTag v2.1.0, Pilon v1.23.0, CheckM y CheckM2
+  (completitud 97,14-98,57 % y 0 % de contaminación por CheckM), anotación con
+  Bakta v1.11.3 y pangenoma con Anvi'o v8. Depósitos: BioProject
+  `PRJNA1294367`, BioSamples `SAMN50092827`, `SAMN50092828` y `SAMN50092829`;
+  16S de la cepa de referencia `PZ340875`; ejemplares de *D. maidis* como
+  vouchers en la Colección Nacional Canadiense de Insectos, Arácnidos y
+  Nematodos (`CNC2183353`-`CNC2183358`), con curador nombrado. La designación la
+  proponen "members of the research community who have studied this pathogen for
+  over a decade", una coalición de Brasil, Colombia, México, Estados Unidos y
+  Canadá, bajo la Regla c de las guías del IRPCM.
+  `[?]` **Contradicción a resolver:** el trabajo dice que *D. maidis* llega
+  "as far south as Argentina, although the disease has not yet been reported
+  there". No se concilia de forma obvia con la epifitia argentina de 2023/2024.
+  Puede ser la distinción entre el achaparramiento arbustivo (fitoplasma) y el
+  achaparramiento del espiroplasma, o un error. Pregunta para el investigador.
+- **NCBI Datasets, consulta directa del 2026-10-17** sobre
+  `GCA_001712875.1`: nivel "Complete Genome", `ASM171287v1`, par RefSeq
+  `GCF_001712875.1`, **576.118 pb en una sola secuencia**, 28,5 % de GC,
+  Illumina MiSeq, Velvet v1.2.10, `PRJNA317711`, enviado por la Academia Sinica,
+  liberado el 25/08/2016, categoría RefSeq "reference genome". BioSample
+  `SAMN04623572`: colectada el 29/05/2013, "Brazil: Piracicaba, Sao Paulo",
+  hospedador *Dalbulus maidis*, organismo declarado hoy '*Candidatus*
+  Phytoplasma zeae' (TaxId 202462). Anotación de 2016: 544 genes totales, 485
+  codificantes, 38 no codificantes, 21 pseudogenes. Reanotación de RefSeq
+  `GCF_001712875.1-RS_2026_06_07`: 581 totales, 524 codificantes, 41 no
+  codificantes, 16 pseudogenes.
+  `esearch db=assembly term=PRJNA1294367` devuelve **Count = 0**: los tres
+  genomas nuevos del trabajo de 2026 no están registrados como ensamblados.
+
+## K. Consultas bibliográficas de esta corrida
+
+API REST de Europe PMC (`/europepmc/webservices/rest/search`), verificadas por
+uso. `"Dalbulus maidis" AND (Argentina) AND (monitoring OR surveillance OR
+epidemic OR outbreak)` devolvió 11 resultados, entre ellos el trabajo de
+delineación de '*Ca.* P. zeae'. `TITLE:"Candidatus Phytoplasma zeae"` devolvió 2
+(el artículo y su preprint). `(EFSA) AND (dsRNA OR "RNA interference") AND (risk
+assessment) AND (guidance OR opinion OR workshop)` devolvió 137, de donde salió
+la guía de 2025. Las búsquedas de análisis multicriterio aplicado a priorización
+de plagas devolvieron 131 resultados, todos de mapeo de riesgo veterinario o
+espacial y ninguno aplicable a priorización de candidatos moleculares: **no se
+encontró un antecedente metodológico publicado de rúbrica de priorización para
+este tipo de decisión**, lo que deja los pesos de `RUBRICA.md` como `[H]` del
+equipo, tal como ya estaban marcados.
+
+## L. Fuentes buscadas y no abiertas en esta corrida
+
+- **nf-core / Nextflow** (Ewels et al. 2020, *Nature Biotechnology*,
+  doi 10.1038/s41587-020-0439-x): Unpaywall no devuelve ubicación de acceso
+  abierto, no hay PMCID y la página del editor requiere raspado. Sigue sin
+  citarse.
+- **Versión revisada por pares de dsRNAEngineer** (*Trends in Biotechnology*):
+  aparece en el índice de búsqueda; no se abrió. Se cita el preprint.
+- **Sitios institucionales**: `argentina.gob.ar`, `embrapa.br`,
+  `repositorio.inta.gob.ar` y `api.gbif.org` quedaron fuera de la lista de
+  dominios permitidos del entorno de esta corrida. No se reintentó por vías
+  alternativas ni se buscaron espejos.
+- **Programas de innovación abierta de Embrapa**: aparecen en resultados de
+  búsqueda pero sus páginas no se abrieron. No se citan.
