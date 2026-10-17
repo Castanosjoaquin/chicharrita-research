@@ -108,3 +108,89 @@ decenas de megabytes a un repositorio de texto.
 **Consecuencia:** quien clone el repositorio no recibe ese material. Todo dato
 que venga de ahí y se use en un reporte tiene que quedar citado en el reporte,
 no solo referenciado al archivo local.
+
+---
+
+## D7 — El aporte del equipo es la priorización auditable, no el diseño ni la entrega
+**Fecha:** 2026-10-17
+**Quién:** el orquestador, al integrar las cinco investigaciones.
+**Decisión:** el eje central de la propuesta es una función de decisión sobre
+candidatos *dados* —orden, criterio escrito, evidencia citada e incertidumbre
+propagada—, y no el diseño de secuencias nuevas, ni la formulación, ni la vía de
+entrega.
+**Alternativas consideradas:** atacar la barrera de entrega, que es la que el
+organizador declara central; construir una plataforma de diseño de ARN con
+chequeo de off-targets; entrenar un modelo de eficacia.
+**Criterio:** tres resultados independientes apuntan al mismo lugar. R3 muestra
+que el diseño con chequeo de off-targets ya existe y se llama Apolo Rocket, que
+la encapsulación está publicada desde 2017 con al menos seis químicas, y que la
+co-entrega contra la dsRNasa del insecto la propuso un grupo argentino en 2023:
+proponer cualquiera de las tres como novedad sería proponerle a alguien del
+EPILAB lo que ya hace. R3 muestra además que el cuello de botella de la entrega
+es experimental y de capital, no computacional. Y el propio organizador declara
+abierta exactamente la pregunta de priorización: tiene candidatos preliminares y
+pregunta cuáles merecen validación y por qué. R2 y R4, que trabajaron por
+separado y desde preguntas distintas, llegaron de forma independiente a la misma
+propuesta —R2 la llama PRIOR-dsRNA y R4 la llama L1—, lo que es la mejor señal
+disponible de que el encuadre es el correcto.
+**Consecuencia:** el entregable se juzga por la calidad de la decisión que
+produce, no por la novedad del método ni por la interfaz. La línea de base a
+superar o a alimentar es dsRIP, que ya hace la mayor parte del cálculo, y
+reconocerlo en voz alta es parte de la propuesta. Si el método no le gana a
+dsRIP en la validación retrospectiva, el entregable sigue siendo válido y así
+está declarado de antemano.
+
+---
+
+## D8 — No se entrena ningún modelo, y eso es una decisión declarada, no una carencia
+**Fecha:** 2026-10-17
+**Decisión:** no entrenar ni ajustar ningún modelo. El cálculo es una función de
+puntuación explícita con coeficientes publicados, más tamizaje por alineamiento,
+más cuantificación de incertidumbre. Los datos de fenotipo existentes se reservan
+íntegros para validar.
+**Alternativas consideradas:** ajuste fino de un modelo fundacional de ácidos
+nucleicos (la línea L4 de R4); un cabezal liviano sobre representaciones
+congeladas; entrenar sobre los datos humanos de siRNA y transferir.
+**Criterio:** el conjunto de entrenamiento honesto que existe en este subcampo
+son 31 siRNA probados en un coleóptero, de los cuales 29 entraron al modelo
+publicado. No hay nada en Hemiptera. Cuatro evaluaciones independientes —Tang y
+Koo en *Genome Biology*, BEND, BEACON y el relevamiento revisado por pares de 21
+modelos de ARN— coinciden en que los modelos fundacionales no dan ventaja
+consistente fuera de su dominio, y en la tarea medida más parecida a nuestro
+tamizaje de off-target rinden la mitad que una red convolucional entrenada desde
+cero. Entrenar sobre datos humanos y transferir es lo que la evidencia
+desaconseja de forma más directa: el contenido GC en las posiciones 9 a 14 del
+antisentido invierte su signo entre humano e insecto.
+**Consecuencia:** el cálculo es determinista y reproducible bit a bit, lo que
+satisface la palabra «reproducible» de la pregunta del track sin esfuerzo
+adicional. Y el único conjunto de validación que existe sigue siendo conjunto de
+validación: usarlo para ajustar lo habría quemado. La contracara es que no hay
+nada que presentar como «nuestro modelo», y conviene decirlo antes de que lo
+pregunten.
+
+---
+
+## D9 — Lo heredado de corridas anteriores se mantiene con su nivel de verificación declarado
+**Fecha:** 2026-10-17
+**Decisión:** las afirmaciones que vienen de una corrida previa de la misma
+investigación se conservan tal como quedaron registradas, con su nivel de
+verificación explícito, en lugar de reabrir todas las fuentes.
+**Alternativas consideradas:** reabrir y reverificar cada fuente en cada corrida.
+**Criterio:** reabrir tiene costo y no agrega información cuando la cita textual
+quedó registrada en las notas; lo que sí agrega información es **declarar** qué
+se verificó cuándo. El riesgo que importa no es que una fuente vieja esté mal
+copiada: es que alguien lea el reporte creyendo que todo se verificó hoy.
+**Consecuencia:** hay tres declaraciones vigentes que viajan con los números y
+que hay que repetir al presentarlos. R4: 29 de las 52 entradas de `modelos.json`
+tienen su especificación tomada de la tabla de un relevamiento revisado por pares
+que sí se abrió, y no de su artículo primario; está declarado entrada por entrada
+en el campo `nivel_verificacion`, y por eso esa investigación no marca su propia
+lista de verificación como aprobada. R5: unas diez fuentes de la sección de
+innovación abierta dependen de dominios institucionales que no estaban
+disponibles en la última corrida —`argentina.gob.ar`, `embrapa.br`,
+`repositorio.inta.gob.ar` y la API de GBIF—, conservan la verificación de la
+corrida anterior con sus citas textuales en `notes/evidencia_verificada.md`, y no
+se volvieron a comprobar. R1: una parte de las fuentes está marcada `[RES]`,
+leída sólo en el resumen, y su hallazgo central sobre la ausencia de maquinaria
+de RNAi en mollicutes proviene de una consulta de anotación, no de una búsqueda
+por perfil.

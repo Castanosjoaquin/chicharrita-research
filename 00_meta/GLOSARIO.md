@@ -314,3 +314,130 @@ insecto tarde: una vez infectivo, lo es hasta que muere. Y, del lado
 constructivo, abre una ventana de intervención distinta: interferir con la
 adquisición o con el pasaje interno dentro del vector en lugar de atacar al
 patógeno en la planta.
+
+---
+
+## Segunda pasada — fusión de los glosarios parciales
+
+Hecha el 2026-10-17, al integrar las cinco investigaciones. Cumple lo que
+`DECISIONS.md` D4 dejó comprometido: el núcleo conceptual de arriba se escribió antes de
+tener fuentes, y acá se le suman los términos que las investigaciones efectivamente usaron,
+cada uno con el documento del repositorio donde está empleado y citado.
+
+La referencia biológica completa y citada es `research/R1_fundamentos/glosario_parcial.md`,
+77 entradas en orden temático. Lo que sigue son los términos que ese glosario aporta y que
+el núcleo de arriba no tenía, más los términos de método que introdujeron R2, R4 y R5.
+
+### Clases de ARN
+
+| Término | Definición en una línea | Por qué nos importa |
+| --- | --- | --- |
+| **microARN (miRNA)** | ARN endógeno corto, de 20 a 24 nt, que regula negativamente otros genes, muchas veces con apareamiento imperfecto. | Es la vía que la sobresaturación de dsRNA puede alterar, causando letalidad inespecífica. |
+| **vsiRNA** | siRNA derivado de un virus, generado por la planta a partir del ARN viral. | Su presencia indica que la defensa se activó, pero no prueba que la planta esté protegida. |
+| **syn-tasiRNA / atasiRNA** | Dúplex de 21 nt diseñados y expresados desde precursores *TAS* ingenierizados, con registro de corte definido. | Es el extremo de "precisión" del espacio de diseño que plantea el organizador: dúplex predefinidos en vez de pool heterogéneo. |
+
+### El mecanismo
+
+| Término | Definición en una línea | Por qué nos importa |
+| --- | --- | --- |
+| **Dicer-2** | La Dicer de insectos especializada en dsRNA largo exógeno y viral. | Su variación entre órdenes explica por qué el largo del siRNA cambia de 20 a 22 nt según el insecto. |
+| **Dominio PAZ** | Dominio que reconoce el extremo característico del dúplex (saliente de 2 nt en 3′), presente en Dicer y en Argonaute. | Junto con RNasa III forma la "regla molecular" que mide el largo del producto. |
+| **Dominio PIWI** | Dominio catalítico de Argonaute, con plegamiento tipo RNasa H y tríada DDX cuando corta. | Su ausencia en un genoma es evidencia directa de que no hay Argonaute: es el dominio que contamos en los mollicutes. |
+| **Dominio MID** | Dominio de Argonaute que une el fosfato 5′ de la hebra guía. | Mutarlo abole el corte, a diferencia de mutar PAZ: el extremo 5′ manda. |
+| **RNasa III** | Familia de endonucleasas que cortan ARN de doble cadena; ubicua en bacterias. | Que un mollicute la tenga **no** significa que tenga Dicer: es la tijera genérica, no la regla. |
+| **Hebra guía / hebra pasajera** | De las dos hebras del dúplex, la que se conserva en el RISC y la que se degrada. | Si se carga la equivocada, el complejo busca la secuencia equivocada: es el núcleo del problema de diseño. |
+| ***Slicer*** | La actividad de corte endonucleolítico del dominio PIWI. | No todas las Argonautas la tienen; de las cuatro humanas, sólo Ago2. |
+| **Knockdown** | Reducción parcial de la expresión de un gen, medida típicamente por RT-qPCR. | Es la métrica de eficacia que reportan los papers (por ejemplo ~95 % para *burs-α* en *D. maidis*). |
+| **SID-1 / SID-2** | Proteínas del sistema de diseminación sistémica del silenciamiento en nematodos. | Los insectos carecen de homólogos: la señal no se disemina sola. |
+
+### Las plataformas de aplicación
+
+| Término | Definición en una línea | Por qué nos importa |
+| --- | --- | --- |
+| **Portador / nanoportador** | Material que encapsula el dsRNA para protegerlo y liberarlo gradualmente (quitosano, liposomas, nanoarcillas LDH). | Las nanoarcillas LDH ("BioClay") protegen del lavado y la degradación por al menos 30 días. |
+| **Pirimidina 2′-F** | Nucleótido modificado químicamente en la posición 2′ del azúcar, más resistente a nucleasas. | Con 32–55 % de incorporación aumentó la mortalidad 12–35 % en varios hemípteros. |
+| **dsRNasa** | Nucleasa que degrada específicamente ARN de doble cadena. | *D. maidis* tiene tres, una muy expresada en intestino medio y glándulas salivales: es el cuello de botella declarado de la entrega oral. |
+
+### El sistema patógeno
+
+| Término | Definición en una línea | Por qué nos importa |
+| --- | --- | --- |
+| **Floema** | Tejido vascular que transporta la savia elaborada. | Es donde se alimenta el vector y donde viven los cuatro patógenos. |
+| **Fitófago de floema** | Insecto que se alimenta perforando el floema con su estilete. | Explica por qué el dsRNA pulverizado en superficie le llega mal: depende de captación vascular. |
+| **Transmisión persistente circulativa** | El patógeno circula por el insecto pero **no** se multiplica en él. | Una fuente atribuye este modo al MSMV y otra lo da por desconocido: queda como incertidumbre. |
+| **Período latente** | Tiempo entre la adquisición y el momento en que el insecto puede transmitir. | En *S. kunkelii* es de 18 a 22 días: es la ventana donde una intervención sobre el insecto todavía sirve. |
+| **Transmisión transovárica** | Paso del patógeno de la madre a la descendencia por el huevo. | No ocurre en este sistema: cada individuo debe adquirir por su cuenta. |
+| **Mollicute** | Bacteria sin pared celular, de genoma pequeño y bajo contenido GC. | *S. kunkelii* y el fitoplasma lo son, y es la razón central de que no respondan a RNAi. |
+| **Marafivirus** | Género de virus de ARN de cadena simple de sentido positivo; acá, MRFV. | Es uno de los dos virus del complejo, y se multiplica dentro del insecto. |
+| **Mastrevirus / Geminiviridae** | Género y familia de virus de ADN de cadena simple transmitidos por chicharritas; acá, MSMV (*Mastrevirus striatis*). | Es el único patógeno del complejo contra el cual la planta puede usar la vía RdDM. |
+| **+ssRNA / ssDNA** | ARN de cadena simple de sentido positivo / ADN de cadena simple. | Son los tipos de genoma de MRFV y MSMV: determinan qué vía de defensa vegetal aplica. |
+| **Maíz guacho** | Plantas voluntarias de maíz que sobreviven entre campañas y sirven de "puente verde" al vector. | Eliminarlo es una de las pocas medidas culturales con lógica epidemiológica clara. |
+| ***Safrinha*** | Segunda zafra brasileña de maíz, sembrada después de la soja. | Es el contexto de la mayoría de los datos de incidencia brasileños. |
+| **Brocosomas** | Partículas proteicas que las chicharritas secretan y esparcen sobre su cutícula. | Son una barrera física que limita la eficacia de los hongos entomopatógenos. |
+| **Antixenosis** | Resistencia por no preferencia: el insecto evita la planta. | Reduce el tiempo de contacto y con él la eficiencia de transmisión. |
+| **Antibiosis** | Resistencia que afecta la biología del insecto que sí se alimenta. | Es el otro componente separable de la resistencia del híbrido. |
+| **Incidencia / severidad** | Proporción de plantas con síntomas / intensidad del cuadro en las plantas afectadas. | A campo, el índice de severidad explicó el 72 % de la variabilidad del rendimiento; la acumulación del patógeno no lo explicó. |
+| **Estadio V2 / R4** | Etapas fenológicas del maíz: dos hojas desarrolladas / grano pastoso. | El tratamiento de semilla fue efectivo sólo hasta V2; la incidencia se evaluó en R4. |
+| **DAS-ELISA** | Inmunoensayo de doble sándwich para detectar un antígeno. | Es la técnica con la que se confirmó *S. kunkelii* en el ensayo argentino. |
+| **CL50** | Concentración letal 50: la dosis que mata a la mitad de los individuos. | Es la unidad en la que se mide la resistencia a insecticidas. |
+| **Razón de resistencia (RR)** | Cociente entre la CL50 de una cepa resistente y la de una susceptible. | 3.170 veces para bifentrina: la magnitud del problema que justifica buscar otro modo de acción. |
+
+### Herramientas y conceptos de cómputo
+
+| Término | Definición en una línea | Por qué nos importa |
+| --- | --- | --- |
+| **Bowtie** | Alineador de lecturas cortas con índice Burrows-Wheeler y backtracking consciente de la calidad. | Es el motor que usan si-Fi y dsRIP para buscar off-targets; tampoco calcula energía. |
+| **Mismatch** | Posición donde el siRNA y el transcrito no aparean. | Los minimizadores de off-target cuentan coincidencias permitiendo 1 o 2 mismatches. |
+| **Ortólogo** | Gen de otra especie derivado del mismo gen ancestral. | Es como se transfieren blancos efectivos de una plaga modelo a la plaga objetivo. |
+| **Transcriptoma** | Conjunto de todos los transcritos de un organismo o tejido. | Es el insumo mínimo para cualquier análisis de off-target; el de *D. maidis* tiene 56.116 transcriptos. |
+| **si-Fi21 / si-Fi** | Diseñador de disparadores largos y predictor de off-targets. | Hace la enumeración de x-meros que el equipo creía que hacía BLAST, y usa Bowtie + RNAplfold. |
+| **dsRIP** | Plataforma de diseño de dsRNA para manejo de plagas. | Es la herramienta con el tratamiento cuantitativo más explícito de eficacia y de riesgo no objetivo. |
+| **pssRNAit / P-SAMS** | Diseñadores de ARN pequeños **para plantas**. | Importante: no sirven para diseñar contra un insecto; sus bases y reglas son vegetales. |
+
+### Términos biológicos de apoyo que aparecen en el reporte
+
+| Término | Definición en una línea | Por qué nos importa |
+| --- | --- | --- |
+| **Estilete** | Pieza bucal alargada con la que el hemíptero perfora el tejido y succiona savia. | Es la vía física por la cual el insecto adquiere e inocula los patógenos. |
+| **Ninfa / estadio ninfal** | Cada una de las etapas juveniles por las que pasa el insecto antes de ser adulto; *D. maidis* tiene cinco. | Las ninfas ya transmiten, y el tercer estadio fue el más sensible al RNAi en un psílido emparentado. |
+| **Ecdisis / muda** | Proceso de desprenderse del exoesqueleto viejo para crecer. | Es el proceso que fallan los insectos con *burs-α* o *eth* silenciados, y por eso mueren. |
+| **Hemolinfa** | El "sangre" de los insectos: fluido circulatorio del hemocele. | Es por donde circula el patógeno entre el intestino y las glándulas salivales. |
+| **Glándulas salivales** | Órganos que producen la saliva que el insecto inyecta al alimentarse. | Colonizarlas es el último paso antes de que el insecto pueda transmitir. |
+| **Ovogénesis** | Formación de los oocitos en el ovario. | Es el proceso que afecta el silenciamiento de *Bicaudal C*, el primer blanco validado en *D. maidis*. |
+| **Virulífero** | Insecto que porta el patógeno y puede transmitirlo. | Es la condición que se cuenta en los ensayos de transmisión. |
+| **Epifitia** | Brote epidémico de una enfermedad en una población vegetal. | Es la palabra que corresponde al episodio argentino de 2023/24. |
+| **Efector** | Proteína que un patógeno secreta en el hospedador para manipular su fisiología. | Es la vía por la cual los mollicutes alteran la planta y el vector, y un blanco alternativo al RNAi. |
+| **Supresor viral del silenciamiento (RSS)** | Proteína codificada por un virus que bloquea la maquinaria de RNAi del hospedador. | Explica que la defensa antiviral vegetal exista y aun así el virus se establezca. |
+| **Apoplasto** | El espacio extracelular de la planta, fuera de la membrana celular. | Las RNasas apoplásticas degradan el ARNdc pulverizado antes de que entre a la célula. |
+| **Estoma** | Poro regulable de la epidermis foliar que controla el intercambio gaseoso. | Es la vía principal implicada en la captación foliar de ARNdc. |
+| **RT-qPCR** | PCR cuantitativa sobre ADN copiado desde ARN; mide cuánto transcrito hay. | Es la técnica con la que se mide el *knockdown* en todos los trabajos citados. |
+| ***In vitro* / *in vivo* / *ex vivo*** | En tubo / en el organismo vivo / en tejido extraído del organismo. | Distingue, por ejemplo, el corte de ARN por Argonautas procariotas (demostrado *in vitro*, rol *in vivo* desconocido). |
+| **x-mero** | Subcadena de largo *x* extraída de una secuencia; para nosotros, cada ventana de 21 nt del disparador. | Es la unidad que enumeran los diseñadores de ARNdc por ventana deslizante. |
+
+### Método, decisión e incertidumbre (R2, R4 y R5)
+
+| Término | Definición en una línea | Por qué nos importa |
+| --- | --- | --- |
+| **Frente de Pareto** | Subconjunto de candidatos que ningún otro supera simultáneamente en todos los criterios. | Es la parte del ordenamiento que **no** depende de los pesos que elijamos, y por eso es la parte no discutible de una priorización. `[E]` — uso en `R2/PROPUESTA.md` §3 y `R2/REPORT.md` §3.3. |
+| **Predicción conformal (*conformal prediction*)** | Envoltorio sobre cualquier predictor que devuelve un conjunto o intervalo con cobertura garantizada sin suponer una distribución. | Es la forma concreta de entregar «este candidato es mejor, y con esta confianza» en lugar de un número pelado; el relevamiento del campo señala la ausencia de cuantificación de incertidumbre como la brecha de máxima prioridad. `[E]` — `R4/REPORT.md` y `R4/lineas_de_ataque.md` L1. |
+| **Estabilidad del ordenamiento** | Fracción de remuestreos (pesos del simplex y bootstrap de coeficientes) en que un candidato precede a otro; por encima de 0,90 lo llamamos orden robusto y por debajo, empate. | Convierte un ranking en una afirmación falsable y es lo que permite decir «estos dos están empatados dentro de la incertidumbre». `[H]` del equipo — `R2/PROPUESTA.md` §3. |
+| **Modelo de riesgos proporcionales de Cox / *hazard ratio*** | Modelo de supervivencia que estima cuánto multiplica un factor la tasa instantánea de muerte; el hazard ratio es ese multiplicador. | Es la forma en que está medida la eficacia de un ARNdc en el único conjunto de datos de insecto con diseño controlado, y por lo tanto la unidad en la que podemos validar. `[E]` — `R1/REPORT.md` §6, `R2/REPORT.md` §2.2. |
+| **Estadístico C de Harrell** | Medida de concordancia de un modelo de supervivencia, análoga al AUC: probabilidad de ordenar bien un par al azar. | Es el 0,76 (IC 95 % 0,73–0,79) que define cuánta confianza merece el puntaje de eficacia que vamos a reusar. `[E]` — `R1/REPORT.md` §6. |
+| **Fuga de datos (*data leakage*)** | Contaminación entre entrenamiento y prueba que infla artificialmente el resultado de un benchmark. | El relevamiento del campo de siRNA la señala como causa sistemática de resultados inflados; por eso nuestras particiones son por gen y por especie, nunca aleatorias. `[E]` — `R4/REPORT.md`, `R2/REPORT.md` §5. |
+| **Partición dejando un gen afuera (*leave-one-gene-out*)** | Validación cruzada en la que todas las ventanas de un mismo gen blanco quedan juntas en el pliegue de prueba. | Con n = 29 es la única partición honesta disponible para validar el puntaje sin fuga. `[E]` — `R2/REPORT.md` §5. |
+| **Modelo fundacional de secuencias** | Red preentrenada sobre grandes volúmenes de ADN o ARN sin etiquetas, que se reusa como extractor de representaciones. | Es la familia que el equipo tenía como primera intuición; cuatro evaluaciones independientes muestran que fuera de su dominio no aventaja a una codificación simple. `[E]` — `R4/REPORT.md` §1 y `R4/modelos.json`. |
+| **Representación aprendida (*embedding*)** | Vector de números con el que un modelo representa cada nucleótido o secuencia. | El relevamiento del subcampo los califica de «suficientes pero no necesarios» para el estado del arte en predicción de eficacia. `[E]` — `R4/REPORT.md` §3. |
+| **Atención (*attention*)** | Mecanismo que pondera qué partes de la entrada mira un modelo al producir cada salida. | Es el núcleo de la idea original del equipo; la literatura sostiene que sus pesos **no** habilitan una lectura causal, y para nuestro caso el perfil posicional explícito del puntaje cumple la misma función y es fiel por construcción. `[E]`/`[?]` — `R2/REPORT.md` §3.5. |
+| **Explicación fiel frente a plausible (*faithful* / *plausible*)** | Fiel es la que refleja el proceso real de decisión del modelo; plausible es la que convence a una persona. | Distinción que evita el error más caro que podríamos cometer ante un jurado académico: presentar un mapa de atención como evidencia. `[E]` — `R2/REPORT.md` §3.5. |
+| **Compuerta (*gate*) de la rúbrica** | Condición de admisión que no se puntúa ni se compensa: G0 alcance ético, G1 blanco verificable, G2 especificidad mínima, G3 trazabilidad. | Es lo que impide que un buen puntaje tape un problema inadmisible, y G3 es la que vuelve operativa la palabra «reproducible» del track. `[H]` del equipo — `R5/RUBRICA.md` §2. |
+| **Marca (P) de la rúbrica** | Señal de que un dato todavía no existe pero lo podemos producir nosotros dentro del plazo. | Permite reportar dos órdenes, conservador y optimista, y leer en la distancia entre ambos qué medición hay que hacer antes de decidir. `[H]` del equipo — `R5/RUBRICA.md` §5.3. |
+| **Criterio de off-target de la EFSA (2025)** | Conjunto de reglas regulatorias para marcar transcriptos fuera de blanco de cada ARN pequeño de 21 nt: hasta cuatro apareamientos erróneos sin hueco (o tres más un hueco), G:U como medio error, nada en las posiciones 10 u 11, no más de dos errores en los primeros 12 nt del extremo 5′, y cociente de energía libre mayor que 0,75. | Es más exigente que el umbral de 19 nt complementarios que usan las herramientas de insectos, y marca más candidatos, no menos; su alcance declarado son plantas modificadas genéticamente y **no** cubre riesgo ambiental. `[E]` — `R5/RUBRICA.md` G2. |
+| ***Candidatus* Phytoplasma zeae** | Nombre formal, dado en 2026, del fitoplasma del achaparramiento arbustivo del maíz, transmitido exclusivamente por *Dalbulus maidis* y *D. elimatus*. | Cierra una pregunta abierta del proyecto: el genoma del fitoplasma del complejo existe, completo y anotado, y no es ninguno de los de *Ca.* P. asteris. `[E]` — `R5/REPORT.md` y `R5/RUBRICA.md` §7.1. |
+| **TSA (*Transcriptome Shotgun Assembly*)** | División del NCBI donde se depositan transcriptomas ensamblados, con su propio prefijo de accesión. | El transcriptoma de *D. maidis* que usamos como insumo central vive ahí (`GITV00000000`), y su ausencia o presencia decide si hay análisis de off-target intraespecífico. `[E]` — `R5/PLAN_EQUIPO.md` P1. |
+| **Paquete de datos congelado (*data package*)** | Conjunto de insumos descargados, con manifiesto de hashes, licencia por insumo y procedencia. | Es el entregable de la rama de datos y la condición para que el puntaje se pueda regenerar: sin él, G3 no se cumple. `[H]` del equipo — `R5/PLAN_EQUIPO.md` P1 y `R5/REPORT.md` §2. |
+
+### Conflictos de definición
+
+Ninguno. Las cinco investigaciones coincidieron en los términos que comparten, incluida
+la distinción entre alineamiento y termodinámica que R1 y R2 verificaron por separado
+—la redundancia deliberada de `DECISIONS.md` D3—, y llegaron a la misma conclusión.
