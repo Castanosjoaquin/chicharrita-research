@@ -12,9 +12,10 @@
       "url": "docs/sesion-tecnica-EPILAB-notas.md",
       "tipo": "material institucional del organizador",
       "nivel_evidencia": "primario sobre lo que el desafío pide; [R] para sus afirmaciones científicas sin cita",
-      "acceso": "interno al repositorio",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "El criterio de evaluación textual ('no debería ganar por construir la interfaz más vistosa, sino por producir la mejor decisión científica posible'), la pregunta abierta ('¿cuáles merecen validación y por qué?'), la barrera declarada de las RNasas, los cuatro patógenos del complejo y el esquema de pulverización. Fija el propósito de RUBRICA.md y la recomendación de artefacto de REPORT.md sección 2."
+      "usado_para": "El criterio de evaluación textual ('no debería ganar por construir la interfaz más vistosa, sino por producir la mejor decisión científica posible'), la pregunta abierta ('¿cuáles merecen validación y por qué?'), la barrera declarada de las RNasas, los cuatro patógenos del complejo y el esquema de pulverización. Fija el propósito de RUBRICA.md y la recomendación de artefacto de REPORT.md sección 2.",
+      "acceso_detalle": "interno al repositorio"
     },
     {
       "id": "dalaison-fuentes-2022",
@@ -27,7 +28,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "paywall",
       "alcance_verificacion": "metadatos",
-      "usado_para": "C1a de la rúbrica: único blanco (BicC) con eficacia demostrada por vía oral en la especie; reducción del transcripto de hasta 170 veces y caída de la oviposición. Candidato K2 del ejemplo trabajado. Confirma la afirmación del organizador de que hay RNAi experimental publicado en D. maidis."
+      "usado_para": "C1a de la rúbrica: único blanco (BicC) con eficacia demostrada por vía oral en la especie; reducción del transcripto de hasta 170 veces y caída de la oviposición. Candidato K2 del ejemplo trabajado. Confirma la afirmación del organizador de que hay RNAi experimental publicado en D. maidis.",
+      "acceso_detalle": "paywall"
     },
     {
       "id": "dalaison-fuentes-2023",
@@ -40,7 +42,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "paywall",
       "alcance_verificacion": "metadatos",
-      "usado_para": "C4 de la rúbrica (viabilidad de entrega): tres dsRNasas, Dmai-dsRNase-2 la más expresada en intestino medio y glándulas salivales, degradación rápida ex vivo, y la co-entrega de dsRNA anti-dsRNasa como estrategia. Es el respaldo primario de la barrera declarada por el organizador y la base del candidato K1."
+      "usado_para": "C4 de la rúbrica (viabilidad de entrega): tres dsRNasas, Dmai-dsRNase-2 la más expresada en intestino medio y glándulas salivales, degradación rápida ex vivo, y la co-entrega de dsRNA anti-dsRNasa como estrategia. Es el respaldo primario de la barrera declarada por el organizador y la base del candidato K1.",
+      "acceso_detalle": "paywall"
     },
     {
       "id": "andrada-2026",
@@ -53,7 +56,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "C1a y C4: knockdown de ~95% (burs-α) y ~90% (eth) con supervivencia del 10%, n=40, pero SOLO por microinyección de 0,25 µL a 500 ng/µL — base del candidato K3 y de su 0 en C4. También es el precedente metodológico computacional de stack_bioinformatico.md: Galaxy Europe, tBLASTn con E-value < 1e-4, identidad > 35%, bit score > 40%, Primer3plus, MAFFT. Accesiones PZ371507-PZ371510."
+      "usado_para": "C1a y C4: knockdown de ~95% (burs-α) y ~90% (eth) con supervivencia del 10%, n=40, pero SOLO por microinyección de 0,25 µL a 500 ng/µL — base del candidato K3 y de su 0 en C4. También es el precedente metodológico computacional de stack_bioinformatico.md: Galaxy Europe, tBLASTn con E-value < 1e-4, identidad > 35%, bit score > 40%, Primer3plus, MAFFT. Accesiones PZ371507-PZ371510.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "xu-2021",
@@ -64,9 +68,10 @@
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8612151/",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto (obra del gobierno de EE. UU., sin copyright en EE. UU.)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "El insumo central de la rama de datos: 56.116 transcriptos no redundantes de 1.727.369.026 lecturas, BUSCO v4.1.1 82,4% completo, accesión TSA GITV00000000 y BioProject PRJNA579843. Justifica no ensamblar de novo (stack_bioinformatico.md sección 5) y es la base de C2 y C3."
+      "usado_para": "El insumo central de la rama de datos: 56.116 transcriptos no redundantes de 1.727.369.026 lecturas, BUSCO v4.1.1 82,4% completo, accesión TSA GITV00000000 y BioProject PRJNA579843. Justifica no ensamblar de novo (stack_bioinformatico.md sección 5) y es la base de C2 y C3.",
+      "acceso_detalle": "abierto (obra del gobierno de EE. UU., sin copyright en EE. UU.)"
     },
     {
       "id": "debat-fernandez-2024",
@@ -77,9 +82,10 @@
       "url": "https://www.biorxiv.org/content/10.1101/2024.06.25.600652v1.full",
       "tipo": "preprint",
       "nivel_evidencia": "[R]",
-      "acceso": "abierto, licencia CC BY-NC-ND 4.0",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Dalbulus_CIAPv0.1: 584.127.104 pb, N50 50.453, 22.107 contigs, BUSCO 68,6% (insecta_odb10), ONT MinION + Flye 2.9.1 + Medaka, sin anotación de genes. BioProject PRJNA1120083, BioSample SAMN41674197. Declara el recurso como actualizable. Antecedente de publicación abierta de datos preliminares (REPORT.md sección 3)."
+      "usado_para": "Dalbulus_CIAPv0.1: 584.127.104 pb, N50 50.453, 22.107 contigs, BUSCO 68,6% (insecta_odb10), ONT MinION + Flye 2.9.1 + Medaka, sin anotación de genes. BioProject PRJNA1120083, BioSample SAMN41674197. Declara el recurso como actualizable. Antecedente de publicación abierta de datos preliminares (REPORT.md sección 3).",
+      "acceso_detalle": "abierto, licencia CC BY-NC-ND 4.0"
     },
     {
       "id": "ncbi-assembly-sanger",
@@ -92,7 +98,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "api_por_uso",
-      "usado_para": "El hallazgo que condiciona la rama de bioinformática: existe ensamblado a nivel cromosoma (10 cromosomas, 972.206.121 pb, N50 scaffold 93.705.284, PacBio + Arima2 Hi-C, liberado 2025-10-26, PRJEB97791/SAMEA117578701) y NO tiene anotación de genes en el NCBI."
+      "usado_para": "El hallazgo que condiciona la rama de bioinformática: existe ensamblado a nivel cromosoma (10 cromosomas, 972.206.121 pb, N50 scaffold 93.705.284, PacBio + Arima2 Hi-C, liberado 2025-10-26, PRJEB97791/SAMEA117578701) y NO tiene anotación de genes en el NCBI.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "ncbi-assembly-inta",
@@ -105,7 +112,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "api_por_uso",
-      "usado_para": "585.210.080 pb en 22.333 contigs, N50 50.514, ONT MinION, Flye v2.9.1, 20x, liberado 2026-01-26, PRJNA1120083/SAMN41674197, sin anotación. Muestra que el recurso declarado como actualizable efectivamente se formalizó en INSDC."
+      "usado_para": "585.210.080 pb en 22.333 contigs, N50 50.514, ONT MinION, Flye v2.9.1, 20x, liberado 2026-01-26, PRJNA1120083/SAMN41674197, sin anotación. Muestra que el recurso declarado como actualizable efectivamente se formalizó en INSDC.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "ncbi-assembly-skunkelii",
@@ -118,7 +126,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "api_por_uso",
-      "usado_para": "El único patógeno del complejo con genoma completo Y anotado: 1.514.561 pb, 4 replicones, PacBio, PRJNA270865, anotación con 1.760 genes totales y 1.685 codificantes. Base del candidato K4 y del orden de consulta de bases en REPORT.md sección 1."
+      "usado_para": "El único patógeno del complejo con genoma completo Y anotado: 1.514.561 pb, 4 replicones, PacBio, PRJNA270865, anotación con 1.760 genes totales y 1.685 codificantes. Base del candidato K4 y del orden de consulta de bases en REPORT.md sección 1.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "ncbi-eutils-dalbulus",
@@ -131,7 +140,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "api_por_uso",
-      "usado_para": "El inventario de datos que existen: 3 ensamblados y 37 corridas SRA de D. maidis (23 RNA-Seq, con PRJNA579843, PRJNA631706, PRJNA1282137, PRJNA505618, PRJNA318849, PRJNA562189, PRJNA272239, PRJEB96547); 4 ensamblados de Ca. Phytoplasma asteris (GCF_038505995.1, GCF_038396745.1, GCF_047530585.1, GCA_030686925.1), ninguno aislado del complejo del maíz; MRFV TaxId 59749 con 3 genomas completos; el nombre que resuelve para MSMV es maize striate mosaic virus, TaxId 2025388, con 19 registros de nucleótidos."
+      "usado_para": "El inventario de datos que existen: 3 ensamblados y 37 corridas SRA de D. maidis (23 RNA-Seq, con PRJNA579843, PRJNA631706, PRJNA1282137, PRJNA505618, PRJNA318849, PRJNA562189, PRJNA272239, PRJEB96547); 4 ensamblados de Ca. Phytoplasma asteris (GCF_038505995.1, GCF_038396745.1, GCF_047530585.1, GCA_030686925.1), ninguno aislado del complejo del maíz; MRFV TaxId 59749 con 3 genomas completos; el nombre que resuelve para MSMV es maize striate mosaic virus, TaxId 2025388, con 19 registros de nucleótidos.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "cedden-2025-dsrip",
@@ -142,9 +152,10 @@
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12039203/",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "[E] para Tribolium castaneum; [?] para su transferencia a hemípteros",
-      "acceso": "abierto, CC BY",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "C1b de la rúbrica: las cuatro features significativas (asimetría termodinámica, autoplegado de la antisentido, GC en posiciones 9-14, adenina en posición 10), con 31 siRNA probados y 29 en el modelo de Cox, C de Harrell 0,76 (IC 0,73-0,79); el GC alto en 9-14 al revés de los datos humanos; accesibilidad del mRNA NO significativa (P=0,41); ORF sobre UTR con razón de riesgo 9,91 (P=0,011); ventana deslizante de 300 pb; score de seguridad con off-targets en genes esenciales ponderados 20:1; Bowtie1 para off-target y OrthoFinder para ortología. También el n=29 que sostiene el plan B de 'no hay datos para entrenar'."
+      "usado_para": "C1b de la rúbrica: las cuatro features significativas (asimetría termodinámica, autoplegado de la antisentido, GC en posiciones 9-14, adenina en posición 10), con 31 siRNA probados y 29 en el modelo de Cox, C de Harrell 0,76 (IC 0,73-0,79); el GC alto en 9-14 al revés de los datos humanos; accesibilidad del mRNA NO significativa (P=0,41); ORF sobre UTR con razón de riesgo 9,91 (P=0,011); ventana deslizante de 300 pb; score de seguridad con off-targets en genes esenciales ponderados 20:1; Bowtie1 para off-target y OrthoFinder para ortología. También el n=29 que sostiene el plan B de 'no hay datos para entrenar'.",
+      "acceso_detalle": "abierto, CC BY"
     },
     {
       "id": "dsrip-web",
@@ -157,7 +168,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Parámetros concretos de C1b y C3: largos de siRNA 19-23 nt (21 sugerido para la mayoría de las plagas), grupos de especies no objetivo (paquete recomendado, polinizadores, enemigos naturales, microorganismos, mamíferos, plantas, organismos modelo), 0/1/2 mismatches, deslizador eficacia-seguridad al 50/50. Y la restricción de reproducibilidad de C6: es web, hay que exportar y versionar la salida."
+      "usado_para": "Parámetros concretos de C1b y C3: largos de siRNA 19-23 nt (21 sugerido para la mayoría de las plagas), grupos de especies no objetivo (paquete recomendado, polinizadores, enemigos naturales, microorganismos, mamíferos, plantas, organismos modelo), 0/1/2 mismatches, deslizador eficacia-seguridad al 50/50. Y la restricción de reproducibilidad de C6: es web, hay que exportar y versionar la salida.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "cedden-2026-review",
@@ -168,9 +180,10 @@
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13340966/",
       "tipo": "revisión revisada por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto, CC BY",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "La compuerta G2 de la rúbrica, textual: 'the presence of at least 19 complementary nucleotides to an off-target transcript is sufficient to flag the siRNA'. El mapa de herramientas con sus limitaciones (dsRIP, dsRNAmax, dsRNAEngineer, dsOMG, si-Fi, iBeetle-Base, E-RNAi, dsCheck, DEQOR), que fundamenta stack_bioinformatico.md sección 2. Los métodos de validación experimental (secuenciación de ARN pequeño unido a RISC, degradómica PARE) que el equipo NO puede hacer y por eso delimitan el alcance."
+      "usado_para": "La compuerta G2 de la rúbrica, textual: 'the presence of at least 19 complementary nucleotides to an off-target transcript is sufficient to flag the siRNA'. El mapa de herramientas con sus limitaciones (dsRIP, dsRNAmax, dsRNAEngineer, dsOMG, si-Fi, iBeetle-Base, E-RNAi, dsCheck, DEQOR), que fundamenta stack_bioinformatico.md sección 2. Los métodos de validación experimental (secuenciación de ARN pequeño unido a RISC, degradómica PARE) que el equipo NO puede hacer y por eso delimitan el alcance.",
+      "acceso_detalle": "abierto, CC BY"
     },
     {
       "id": "luck-2019-sifi",
@@ -181,9 +194,10 @@
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6704232/",
       "tipo": "paper revisado por pares y documentación de herramienta",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto, CC BY-SA 4.0 según el paper",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Las reglas de selección de hebra guía que P2 reimplementa (U o A en el 5', mayor MFE en el 5', ΔMFE de los tres primeros nucleótidos > 1 kcal/mol), el uso de Bowtie para off-target y de RNAplfold para accesibilidad del sitio blanco. Y la restricción decisiva de C6: corre solo en Windows 7+, Python 2.7, Qt4. [?] Licencia discrepante entre el paper (CC BY-SA 4.0) y SourceForge (CC BY-NC 2.0)."
+      "usado_para": "Las reglas de selección de hebra guía que P2 reimplementa (U o A en el 5', mayor MFE en el 5', ΔMFE de los tres primeros nucleótidos > 1 kcal/mol), el uso de Bowtie para off-target y de RNAplfold para accesibilidad del sitio blanco. Y la restricción decisiva de C6: corre solo en Windows 7+, Python 2.7, Qt4. [?] Licencia discrepante entre el paper (CC BY-SA 4.0) y SourceForge (CC BY-NC 2.0).",
+      "acceso_detalle": "abierto, CC BY-SA 4.0 según el paper"
     },
     {
       "id": "imbb-forth-tools",
@@ -196,7 +210,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Existencia y propósito de dos herramientas de diseño con foco en organismos no objetivo (https://dsrna-analyzer.org/ y https://bioinformatics.imbb.forth.gr/dsrna-specificity/). La página NO declara publicación, formatos ni tamaño de las bases: el conteo de '>90 genomas y >70 transcriptomas' queda NO VERIFICADO."
+      "usado_para": "Existencia y propósito de dos herramientas de diseño con foco en organismos no objetivo (https://dsrna-analyzer.org/ y https://bioinformatics.imbb.forth.gr/dsrna-specificity/). La página NO declara publicación, formatos ni tamaño de las bases: el conteo de '>90 genomas y >70 transcriptomas' queda NO VERIFICADO.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "nitnavare-2021",
@@ -209,7 +224,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "El orden de respuesta a RNAi entre órdenes de insectos (coleópteros 'maximum response', hemípteros 'relatively inefficient', lepidópteros 'minimum response') y las razones en hemípteros (degradación en intestino medio, menor penetración, necesidad de dosis alta). El rango documentado de 185 a 675 pb para el disparador, que es el ancla de C1b. [?] Su afirmación de que 'even a single base pair mismatch would prevent binding to off-targets' contradice el umbral de 19 nt de Cedden 2026 y se reporta como contradicción."
+      "usado_para": "El orden de respuesta a RNAi entre órdenes de insectos (coleópteros 'maximum response', hemípteros 'relatively inefficient', lepidópteros 'minimum response') y las razones en hemípteros (degradación en intestino medio, menor penetración, necesidad de dosis alta). El rango documentado de 185 a 675 pb para el disparador, que es el ancla de C1b. [?] Su afirmación de que 'even a single base pair mismatch would prevent binding to off-targets' contradice el umbral de 19 nt de Cedden 2026 y se reporta como contradicción.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "zielinska-2026",
@@ -220,9 +236,10 @@
       "url": "https://www.plantprotection.pl/RNA-Interference-for-Hemipteran-Pest-Control-Mechanisms-Resistance-Factors-and-Advances,211556,0,2.html",
       "tipo": "revisión revisada por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto, CC BY 4.0",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "C4: el catálogo de estrategias de entrega para hemípteros (HIGS, SIGS, nanovehículos, formulaciones biodegradables, expresión transplastómica) y los tres desafíos (degradación digestiva, captación celular ineficiente, difusión sistémica limitada). No menciona Dalbulus en el cuerpo; cita trabajos en Euscelidius variegatus y Scaphoideus titanus en las referencias, que es la línea pendiente registrada tras el rechazo de búsqueda."
+      "usado_para": "C4: el catálogo de estrategias de entrega para hemípteros (HIGS, SIGS, nanovehículos, formulaciones biodegradables, expresión transplastómica) y los tres desafíos (degradación digestiva, captación celular ineficiente, difusión sistémica limitada). No menciona Dalbulus en el cuerpo; cita trabajos en Euscelidius variegatus y Scaphoideus titanus en las referencias, que es la línea pendiente registrada tras el rechazo de búsqueda.",
+      "acceso_detalle": "abierto, CC BY 4.0"
     },
     {
       "id": "romeis-widmer-2020",
@@ -235,7 +252,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "C3 de la rúbrica: los tres criterios de selección de especies de prueba (sensibilidad, 'species closely related to the target organism are more likely to be susceptible'; relevancia, 'representative of valued taxa or functional groups that are most likely to be exposed'; y disponibilidad práctica), las rutas de exposición para enemigos naturales, y la advertencia central de que la homología de secuencia no establece sensibilidad (el colémbolo con seis coincidencias de 21 nt sin efecto). Fundamenta que G2 mande a rediseño y no a descarte."
+      "usado_para": "C3 de la rúbrica: los tres criterios de selección de especies de prueba (sensibilidad, 'species closely related to the target organism are more likely to be susceptible'; relevancia, 'representative of valued taxa or functional groups that are most likely to be exposed'; y disponibilidad práctica), las rutas de exposición para enemigos naturales, y la advertencia central de que la homología de secuencia no establece sensibilidad (el colémbolo con seis coincidencias de 21 nt sin efecto). Fundamenta que G2 mande a rediseño y no a descarte.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "ahmad-2016",
@@ -248,7 +266,8 @@
       "nivel_evidencia": "[R] — autores de Monsanto y financiado por Monsanto: hay que declararlo al citarlo",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "C3 y C7: los nueve taxones representativos del agroecosistema de maíz presentes en al menos dos regiones y cuatro sitios sobre 14 sitios en EE. UU., Argentina y Brasil (áfido, tijereta depredadora, crisopa, vaquita, chicharrita, chinche pirata, avispa parasitoide, escarabajo de la savia, araña), sin diferencias en 96,1% de las comparaciones de abundancia, y el argumento de transportabilidad regional de datos ('where the ecological assessment endpoints are similar', con 'proper justification'). Es la lista de taxones regionalmente defendible para el tamizaje de no objetivo."
+      "usado_para": "C3 y C7: los nueve taxones representativos del agroecosistema de maíz presentes en al menos dos regiones y cuatro sitios sobre 14 sitios en EE. UU., Argentina y Brasil (áfido, tijereta depredadora, crisopa, vaquita, chicharrita, chinche pirata, avispa parasitoide, escarabajo de la savia, araña), sin diferencias en 96,1% de las comparaciones de abundancia, y el argumento de transportabilidad regional de datos ('where the ecological assessment endpoints are similar', con 'proper justification'). Es la lista de taxones regionalmente defendible para el tamizaje de no objetivo.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "epa-ledprona-2023",
@@ -261,7 +280,8 @@
       "nivel_evidencia": "[R], fuente institucional primaria",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "C7 de la rúbrica: el precedente regulatorio. Ingrediente activo ledprona, dsRNA pulverizable contra el escarabajo de la papa de Colorado que silencia el gen de la proteína PSMB5, registrado por tres años, descrito como 'the first sprayable dsRNA pesticide in the world allowed to be used commercially and sprayed on plants', sin riesgo de preocupación para salud humana ni ambiente, con consulta a expertos internacionales a través de la OCDE; expediente EPA-HQ-OPP-2021-0271."
+      "usado_para": "C7 de la rúbrica: el precedente regulatorio. Ingrediente activo ledprona, dsRNA pulverizable contra el escarabajo de la papa de Colorado que silencia el gen de la proteína PSMB5, registrado por tres años, descrito como 'the first sprayable dsRNA pesticide in the world allowed to be used commercially and sprayed on plants', sin riesgo de preocupación para salud humana ni ambiente, con consulta a expertos internacionales a través de la OCDE; expediente EPA-HQ-OPP-2021-0271.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "ensembl-plants-ftp",
@@ -274,7 +294,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "La vía verificada para obtener genoma, modelos de genes y ortologías de Zea mays para el tamizaje de off-target en el cultivo: directorios fasta/, gff3/, gtf/, compara/, variation/, mysql/ y species_EnsemblPlants.txt. Se usa en lugar de las páginas HTML de plants.ensembl.org y maizegdb.org, que no se pudieron leer."
+      "usado_para": "La vía verificada para obtener genoma, modelos de genes y ortologías de Zea mays para el tamizaje de off-target en el cultivo: directorios fasta/, gff3/, gtf/, compara/, variation/, mysql/ y species_EnsemblPlants.txt. Se usa en lugar de las páginas HTML de plants.ensembl.org y maizegdb.org, que no se pudieron leer.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "rfam",
@@ -287,7 +308,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Paso del pipeline que evita diseñar el disparador sobre una familia de ARN no codificante conservada (ancla de 0 en C1b). Release 15.1 de enero de 2026 con 4.227 familias, alineamientos múltiples, estructuras consenso y modelos de covarianza, con búsqueda por secuencia en FASTA. También sirve para desambiguar el supuesto S3 del proyecto."
+      "usado_para": "Paso del pipeline que evita diseñar el disparador sobre una familia de ARN no codificante conservada (ancla de 0 en C1b). Release 15.1 de enero de 2026 con 4.227 familias, alineamientos múltiples, estructuras consenso y modelos de covarianza, con búsqueda por secuencia en FASTA. También sirve para desambiguar el supuesto S3 del proyecto.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "kegg",
@@ -298,9 +320,10 @@
       "url": "https://www.genome.jp/kegg/",
       "tipo": "base de datos primaria",
       "nivel_evidencia": "[E]",
-      "acceso": "servicios web abiertos; el FTP tiene suscripción, [?] términos no verificados",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Anotación funcional y argumento de esencialidad del gen blanco en C1a: bases PATHWAY, KO, GENES, MODULE, BRITE y herramientas BlastKOALA, GhostKOALA y KEGG Mapper. El genoma de S. kunkelii está indexado como T04056."
+      "usado_para": "Anotación funcional y argumento de esencialidad del gen blanco en C1a: bases PATHWAY, KO, GENES, MODULE, BRITE y herramientas BlastKOALA, GhostKOALA y KEGG Mapper. El genoma de S. kunkelii está indexado como T04056.",
+      "acceso_detalle": "servicios web abiertos; el FTP tiene suscripción, [?] términos no verificados"
     },
     {
       "id": "uniprot-2025",
@@ -311,9 +334,10 @@
       "url": "https://doi.org/10.1093/nar/gkae1010",
       "tipo": "paper de base de datos revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto (PMC11701636)",
+      "acceso": "abierto",
       "alcance_verificacion": "metadatos",
-      "usado_para": "Cita de referencia de UniProtKB en stack_bioinformatico.md, usado para anotación funcional de blancos candidatos y como sustituto del transcriptoma de maíz en el plan B 6.2. La página web de uniprot.org no entrega texto sin JavaScript y queda marcada NO VERIFICADA."
+      "usado_para": "Cita de referencia de UniProtKB en stack_bioinformatico.md, usado para anotación funcional de blancos candidatos y como sustituto del transcriptoma de maíz en el plan B 6.2. La página web de uniprot.org no entrega texto sin JavaScript y queda marcada NO VERIFICADA.",
+      "acceso_detalle": "abierto (PMC11701636)"
     },
     {
       "id": "busco-6",
@@ -326,7 +350,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo (documentación); metadatos (paper)",
-      "usado_para": "Control de calidad de los insumos antes de confiar en ellos, con las dos referencias de comparación ya verificadas del proyecto: 68,6% para el borrador del INTA y 82,4% para el transcriptoma de Xu et al. Modos genome/protein/transcriptome, datasets odb12.2, conda y Docker. Cita doi 10.1093/nar/gkae987."
+      "usado_para": "Control de calidad de los insumos antes de confiar en ellos, con las dos referencias de comparación ya verificadas del proyecto: 68,6% para el borrador del INTA y 82,4% para el transcriptoma de Xu et al. Modos genome/protein/transcriptome, datasets odb12.2, conda y Docker. Cita doi 10.1093/nar/gkae987.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "orthofinder",
@@ -337,9 +362,10 @@
       "url": "https://github.com/davidemms/OrthoFinder",
       "tipo": "documentación de herramienta",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto, GPL-3.0",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo (repositorio); no abrimos los papers",
-      "usado_para": "Transferencia de blancos por ortología en C1a (es el método que dsRIP usa internamente). Entrada de un FASTA de proteínas por especie, salida N0.tsv y ortólogos por par. El dato de hardware que delimita el alcance del equipo: 80 proteomas de vertebrados en ~20 h en un escritorio de 4 núcleos y 8 GB de RAM con --core/--assign."
+      "usado_para": "Transferencia de blancos por ortología en C1a (es el método que dsRIP usa internamente). Entrada de un FASTA de proteínas por especie, salida N0.tsv y ortólogos por par. El dato de hardware que delimita el alcance del equipo: 80 proteomas de vertebrados en ~20 h en un escritorio de 4 núcleos y 8 GB de RAM con --core/--assign.",
+      "acceso_detalle": "abierto, GPL-3.0"
     },
     {
       "id": "viennarna",
@@ -350,9 +376,10 @@
       "url": "https://www.tbi.univie.ac.at/RNA/",
       "tipo": "documentación de herramienta y paper revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto; [?] la página no declara licencia",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo (documentación); no abrimos el paper",
-      "usado_para": "La termodinámica que el supuesto S2 confundía con BLAST: RNAfold, RNAplfold, RNAcofold, RNAeval, RNAsubopt. Versión 2.7.2 del 29 de diciembre de 2025, con binarios para macOS Intel y ARM, Linux y Windows, y bindings de Python en PyPI, lo que lo hace la base local del tamizaje de P2. Cita doi 10.1186/1748-7188-6-26."
+      "usado_para": "La termodinámica que el supuesto S2 confundía con BLAST: RNAfold, RNAplfold, RNAcofold, RNAeval, RNAsubopt. Versión 2.7.2 del 29 de diciembre de 2025, con binarios para macOS Intel y ARM, Linux y Windows, y bindings de Python en PyPI, lo que lo hace la base local del tamizaje de P2. Cita doi 10.1186/1748-7188-6-26.",
+      "acceso_detalle": "abierto; [?] la página no declara licencia"
     },
     {
       "id": "snakemake",
@@ -365,7 +392,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo (documentación); no abrimos el paper",
-      "usado_para": "El ancla de 4 en C6 (reproducibilidad) y el entorno de P3: declaración y despliegue automático del software requerido desde Conda-Forge y Bioconda, y reportes interactivos y portables que combinan resultados con parámetros, código y software. La documentación pide citar el paper 'rolling' de 2021."
+      "usado_para": "El ancla de 4 en C6 (reproducibilidad) y el entorno de P3: declaración y despliegue automático del software requerido desde Conda-Forge y Bioconda, y reportes interactivos y portables que combinan resultados con parámetros, código y software. La documentación pide citar el paper 'rolling' de 2021.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "bioconda",
@@ -376,9 +404,10 @@
       "url": "https://doi.org/10.1038/s41592-018-0046-7",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "PMC11070151",
+      "acceso": "abierto",
       "alcance_verificacion": "metadatos",
-      "usado_para": "Fijado de versiones de software en el entorno reproducible de P3 (C6). Se verificó el registro bibliográfico en Europe PMC, no el texto completo."
+      "usado_para": "Fijado de versiones de software en el entorno reproducible de P3 (C6). Se verificó el registro bibliográfico en Europe PMC, no el texto completo.",
+      "acceso_detalle": "PMC11070151"
     },
     {
       "id": "dvc",
@@ -389,9 +418,10 @@
       "url": "https://doc.dvc.org/start",
       "tipo": "documentación de herramienta",
       "nivel_evidencia": "[R]",
-      "acceso": "abierto; [?] la página no declara licencia",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Versionado de datos en C6 y en el paquete de datos de P1: archivos .dvc con hash y ruta commiteados a git mientras el dato queda fuera, caché .dvc/cache indexado por hash, y remotos (dvc remote add -d, push, pull, checkout). Backends: S3, NFS, SSH, Google Drive, Azure Blob, HDFS, GCS, OSS, HTTP, WebDAV."
+      "usado_para": "Versionado de datos en C6 y en el paquete de datos de P1: archivos .dvc con hash y ruta commiteados a git mientras el dato queda fuera, caché .dvc/cache indexado por hash, y remotos (dvc remote add -d, push, pull, checkout). Backends: S3, NFS, SSH, Google Drive, Azure Blob, HDFS, GCS, OSS, HTTP, WebDAV.",
+      "acceso_detalle": "abierto; [?] la página no declara licencia"
     },
     {
       "id": "github-zenodo-doi",
@@ -404,7 +434,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "El paso de 'citabilidad' del eje de innovación abierta y de C6: repositorio público, licencia declarada, activación en https://zenodo.org/account/settings/github/, y un DOI nuevo por cada release."
+      "usado_para": "El paso de 'citabilidad' del eje de innovación abierta y de C6: repositorio público, licencia declarada, activación en https://zenodo.org/account/settings/github/, y un DOI nuevo por cada release.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "red-nacional-monitoreo-2024",
@@ -415,9 +446,10 @@
       "url": "https://argentina.gob.ar/sites/default/files/2024/08/7mo_informe_red_nacional_de_monitoreo.pdf",
       "tipo": "nota / informe institucional",
       "nivel_evidencia": "[R]",
-      "acceso": "abierto, pero sin licencia declarada",
+      "acceso": "abierto",
       "alcance_verificacion": "delegado (texto extraído del PDF)",
-      "usado_para": "REPORT.md sección 3: el antecedente central de monitoreo colaborativo del vector en Argentina, con 426 localidades (NOA 74, NEA 77, Litoral 35, Centro Norte 77, Centro Sur 163) más 17 de Uruguay, capturas por localidad y por quincena. Y el hallazgo que define el aporte posible del equipo: es PDF solamente, sin licencia, sin API y sin CSV, con datos sujetos a modificación hasta auditar las trampas."
+      "usado_para": "REPORT.md sección 3: el antecedente central de monitoreo colaborativo del vector en Argentina, con 426 localidades (NOA 74, NEA 77, Litoral 35, Centro Norte 77, Centro Sur 163) más 17 de Uruguay, capturas por localidad y por quincena. Y el hallazgo que define el aporte posible del equipo: es PDF solamente, sin licencia, sin API y sin CSV, con datos sujetos a modificación hasta auditar las trampas.",
+      "acceso_detalle": "abierto, pero sin licencia declarada"
     },
     {
       "id": "taller-gobernanza-chicharrita-2024",
@@ -430,7 +462,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "delegado, PARCIAL: existe y se leyó la portada; el cuerpo usa fuentes con codificación CID y no es extraíble como texto",
-      "usado_para": "REPORT.md sección 3: el antecedente institucional más citable de innovación abierta aplicada a este problema específico, y el argumento de que el cuello de botella reconocido oficialmente es la gobernanza del dato. El contenido del cuerpo queda NO VERIFICADO y se complementó con prensa (bichosdecampo, 16/9/2024), que lista a INTA, SENASA, INASE, la Comisión Federal Fitosanitaria, Maizar, ASA, FADIA, CREA, APRONOR, Aapresid, CASAFE, CIAFA, AAPPCE, SRA, Coninagro y CRA, y aclara que no hubo compromisos concretos ni se mencionó dato abierto."
+      "usado_para": "REPORT.md sección 3: el antecedente institucional más citable de innovación abierta aplicada a este problema específico, y el argumento de que el cuello de botella reconocido oficialmente es la gobernanza del dato. El contenido del cuerpo queda NO VERIFICADO y se complementó con prensa (bichosdecampo, 16/9/2024), que lista a INTA, SENASA, INASE, la Comisión Federal Fitosanitaria, Maizar, ASA, FADIA, CREA, APRONOR, Aapresid, CASAFE, CIAFA, AAPPCE, SRA, Coninagro y CRA, y aclara que no hubo compromisos concretos ni se mencionó dato abierto.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "inta-repositorio-genoma",
@@ -441,9 +474,10 @@
       "url": "https://repositorio.inta.gob.ar/xmlui/handle/20.500.12123/18043",
       "tipo": "conjunto de datos en repositorio institucional",
       "nivel_evidencia": "[E] como existencia del recurso",
-      "acceso": "abierto, licencia CC BY-NC-SA ([?] el pie del sitio dice 2.5 Unported y los metadatos del ítem enlazan 4.0)",
+      "acceso": "abierto",
       "alcance_verificacion": "delegado",
-      "usado_para": "REPORT.md sección 3 y C6 de la rúbrica: el ensamblado descargable en .fasta sin trámite, y la cláusula no comercial que es un límite real si el equipo quisiera licenciar a una empresa. Es el ancla de 3 en lugar de 4 en reproducibilidad para cualquier candidato derivado de él."
+      "usado_para": "REPORT.md sección 3 y C6 de la rúbrica: el ensamblado descargable en .fasta sin trámite, y la cláusula no comercial que es un límite real si el equipo quisiera licenciar a una empresa. Es el ancla de 3 en lugar de 4 en reproducibilidad para cualquier candidato derivado de él.",
+      "acceso_detalle": "abierto, licencia CC BY-NC-SA ([?] el pie del sitio dice 2.5 Unported y los metadatos del ítem enlazan 4.0)"
     },
     {
       "id": "gbif-dalbulus",
@@ -456,7 +490,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "delegado, api_por_uso",
-      "usado_para": "REPORT.md sección 3: 610 registros globales de D. maidis (BR 282, US 214, MX 24, CO 23, AR 17, DO 15, PR 14, CA 2, NI 2, BB 1). El contraste entre 17 registros argentinos en GBIF y 426 localidades por quincena en los PDF del INTA es el hueco concreto que un equipo de cuatro puede llenar sin laboratorio."
+      "usado_para": "REPORT.md sección 3: 610 registros globales de D. maidis (BR 282, US 214, MX 24, CO 23, AR 17, DO 15, PR 14, CA 2, NI 2, BB 1). El contraste entre 17 registros argentinos en GBIF y 426 localidades por quincena en los PDF del INTA es el hueco concreto que un equipo de cuatro puede llenar sin laboratorio.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "inaturalist-dalbulus",
@@ -469,7 +504,8 @@
       "nivel_evidencia": "[E] como conteo",
       "acceso": "abierto",
       "alcance_verificacion": "delegado, api_por_uso",
-      "usado_para": "REPORT.md sección 3: 151 observaciones globales. Sirve de canal de reporte y API gratuita, pero el volumen muestra que no reemplaza la red institucional. La home de argentinat.org devolvió HTTP 403 y queda NO VERIFICADA."
+      "usado_para": "REPORT.md sección 3: 151 observaciones globales. Sirve de canal de reporte y API gratuita, pero el volumen muestra que no reemplaza la red institucional. La home de argentinat.org devolvió HTTP 403 y queda NO VERIFICADA.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "embrapa-monitora-oeste-2025",
@@ -482,7 +518,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "delegado (texto extraído del PDF)",
-      "usado_para": "REPORT.md sección 3: el precedente regional más parecido a lo que el problema necesita. Web y app de monitoreo con trampas de feromona para Anthonomus grandis en el Oeste de Bahía, datos en tiempo real y alertas; 'O acesso à ferramenta é gratuito'; 'fruto de uma parceria entre a Embrapa Territorial e a Associação Baiana de Produtores de Algodão (Abapa)'. Muestra que el dato crudo queda del lado privado."
+      "usado_para": "REPORT.md sección 3: el precedente regional más parecido a lo que el problema necesita. Web y app de monitoreo con trampas de feromona para Anthonomus grandis en el Oeste de Bahía, datos en tiempo real y alertas; 'O acesso à ferramenta é gratuito'; 'fruto de uma parceria entre a Embrapa Territorial e a Associação Baiana de Produtores de Algodão (Abapa)'. Muestra que el dato crudo queda del lado privado.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "embrapa-redape",
@@ -493,9 +530,10 @@
       "url": "https://www.gov.br/pt-br/servicos/acessar-o-repositorio-de-dados-de-pesquisa-da-embrapa-redape",
       "tipo": "página de servicio institucional",
       "nivel_evidencia": "[R]",
-      "acceso": "abierto, 'O acesso é público e gratuito'; sin licencia única, cada dataset declara la suya",
+      "acceso": "abierto",
       "alcance_verificacion": "delegado",
-      "usado_para": "REPORT.md sección 3: el destino posible para depositar nuestros propios datos y resultados negativos. No se encontró ningún dataset de plagas de maíz, lo que se reporta como vacío."
+      "usado_para": "REPORT.md sección 3: el destino posible para depositar nuestros propios datos y resultados negativos. No se encontró ningún dataset de plagas de maíz, lo que se reporta como vacío.",
+      "acceso_detalle": "abierto, 'O acesso é público e gratuito'; sin licencia única, cada dataset declara la suya"
     },
     {
       "id": "inta-vinculacion-tecnologica",
@@ -508,7 +546,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "delegado",
-      "usado_para": "C5 de la rúbrica y REPORT.md sección 3: los instrumentos reales de colaboración público-privada (convenios con empresas, licencia de tecnologías, asistencia técnica a terceros, Empresas de Base Tecnológica con INCUINTA, Facilitadores de Flujo de Proyectos junto a INIS BIOTECH SA autorizados por ANPCyT, Nodos de Innovación, gestión de propiedad intelectual), la base pública de convenios en sigec.inta.gov.ar y la vía de entrada por 'Banco de ideas'. Es el mapa concreto de por dónde entra un grupo sin laboratorio."
+      "usado_para": "C5 de la rúbrica y REPORT.md sección 3: los instrumentos reales de colaboración público-privada (convenios con empresas, licencia de tecnologías, asistencia técnica a terceros, Empresas de Base Tecnológica con INCUINTA, Facilitadores de Flujo de Proyectos junto a INIS BIOTECH SA autorizados por ANPCyT, Nodos de Innovación, gestión de propiedad intelectual), la base pública de convenios en sigec.inta.gov.ar y la vía de entrada por 'Banco de ideas'. Es el mapa concreto de por dónde entra un grupo sin laboratorio.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "conicet-articulacion-2024",
@@ -521,7 +560,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "delegado",
-      "usado_para": "C5 y REPORT.md sección 3: Apolo Biotech como Empresa de Base Tecnológica fundada por Federico Ariel (IFIBYNE, CONICET-UBA), con tecnologías basadas en ARN para control de plagas, la primera planta de producción de ARN de América Latina en Santa Fe y 30 empleados. IMPORTANTE: la nota NO vincula a esa empresa con la chicharrita ni menciona RNAi, y el proyecto conjunto con IABIMO aparece solo en prensa NO VERIFICADA. Dato de contexto: el organizador del Investigathón es EPILAB · IFIBYNE, el mismo instituto de origen del fundador."
+      "usado_para": "C5 y REPORT.md sección 3: Apolo Biotech como Empresa de Base Tecnológica fundada por Federico Ariel (IFIBYNE, CONICET-UBA), con tecnologías basadas en ARN para control de plagas, la primera planta de producción de ARN de América Latina en Santa Fe y 30 empleados. IMPORTANTE: la nota NO vincula a esa empresa con la chicharrita ni menciona RNAi, y el proyecto conjunto con IABIMO aparece solo en prensa NO VERIFICADA. Dato de contexto: el organizador del Investigathón es EPILAB · IFIBYNE, el mismo instituto de origen del fundador.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "darwin-core",
@@ -532,9 +572,10 @@
       "url": "https://dwc.tdwg.org/",
       "tipo": "guía de consorcio / estándar",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto; contenido del sitio bajo CC BY 4.0",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo (home) y delegado (terms/)",
-      "usado_para": "REPORT.md sección 3: el estándar de interoperabilidad que el equipo puede adoptar en una tarde y sin laboratorio, para publicar la serie de monitoreo en un formato reutilizable. La página no muestra versión ni la lista de clases, y la Quick Reference Guide aclara que no es parte del estándar."
+      "usado_para": "REPORT.md sección 3: el estándar de interoperabilidad que el equipo puede adoptar en una tarde y sin laboratorio, para publicar la serie de monitoreo en un formato reutilizable. La página no muestra versión ni la lista de clases, y la Quick Reference Guide aclara que no es parte del estándar.",
+      "acceso_detalle": "abierto; contenido del sitio bajo CC BY 4.0"
     },
     {
       "id": "miappe",
@@ -547,7 +588,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "delegado",
-      "usado_para": "REPORT.md sección 3: estándar de metadatos de experimentos de fenotipado vegetal, relevante solo si el proyecto llega a bioensayos con planta. La home no declara versión ni licencia."
+      "usado_para": "REPORT.md sección 3: estándar de metadatos de experimentos de fenotipado vegetal, relevante solo si el proyecto llega a bioensayos con planta. La home no declara versión ni licencia.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "insdc",
@@ -560,7 +602,8 @@
       "nivel_evidencia": "[R]",
       "acceso": "abierto",
       "alcance_verificacion": "delegado",
-      "usado_para": "REPORT.md sección 3: el marco de depósito de secuencias donde el proyecto podría aportar. La home NO enuncia la política de acceso libre y sin restricciones: ese detalle queda NO VERIFICADO."
+      "usado_para": "REPORT.md sección 3: el marco de depósito de secuencias donde el proyecto podría aportar. La home NO enuncia la política de acceso libre y sin restricciones: ese detalle queda NO VERIFICADO.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "nf-core-ewels-2020",
@@ -571,9 +614,10 @@
       "url": "https://doi.org/10.1038/s41587-020-0439-x",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "no evaluable: no abrimos la fuente",
-      "acceso": "no_accesible en esta corrida",
+      "acceso": "no_accesible",
       "alcance_verificacion": "no_verificado",
-      "usado_para": "NADA. Se registra para dejar constancia de que apareció en búsqueda y se descartó citarlo por la regla de CLAUDE.md de no citar fuentes no abiertas. La recomendación de reproducibilidad se sostiene con Snakemake, Bioconda y DVC. Anotado en 00_meta/PREGUNTAS_ABIERTAS.md."
+      "usado_para": "NADA. Se registra para dejar constancia de que apareció en búsqueda y se descartó citarlo por la regla de CLAUDE.md de no citar fuentes no abiertas. La recomendación de reproducibilidad se sostiene con Snakemake, Bioconda y DVC. Anotado en 00_meta/PREGUNTAS_ABIERTAS.md.",
+      "acceso_detalle": "no_accesible en esta corrida"
     },
     {
       "id": "wilkinson-2016-fair",
@@ -584,9 +628,10 @@
       "url": "https://doi.org/10.1038/sdata.2016.18",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "[E] estándar de facto de gestión de datos científicos",
-      "acceso": "abierto (gold OA)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Los quince principios textuales del Box 2, en particular F1 (identificador único y persistente), R1.1 (licencia de uso clara y accesible), R1.2 (procedencia detallada) y R1.3 (estándares de la comunidad). Sostienen el entregable 'paquete de datos' de REPORT.md sección 1.5, la capa FAIR de la sección 2.4 y el paquete de apertura de la sección 3.8."
+      "usado_para": "Los quince principios textuales del Box 2, en particular F1 (identificador único y persistente), R1.1 (licencia de uso clara y accesible), R1.2 (procedencia detallada) y R1.3 (estándares de la comunidad). Sostienen el entregable 'paquete de datos' de REPORT.md sección 1.5, la capa FAIR de la sección 2.4 y el paquete de apertura de la sección 3.8.",
+      "acceso_detalle": "abierto (gold OA)"
     },
     {
       "id": "sandve-2013-reproducible",
@@ -597,9 +642,10 @@
       "url": "https://doi.org/10.1371/journal.pcbi.1003285",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto (gold OA)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Las diez reglas textuales, que en REPORT.md sección 2.4 se mapean una a una contra decisiones concretas del proyecto: trazar cómo se produjo cada resultado, evitar pasos manuales, archivar versiones exactas de programas externos, versionar scripts, guardar intermedios en formatos estándar, anotar semillas, guardar los datos crudos detrás de cada figura, salida jerárquica, conectar afirmaciones con resultados y dar acceso público."
+      "usado_para": "Las diez reglas textuales, que en REPORT.md sección 2.4 se mapean una a una contra decisiones concretas del proyecto: trazar cómo se produjo cada resultado, evitar pasos manuales, archivar versiones exactas de programas externos, versionar scripts, guardar intermedios en formatos estándar, anotar semillas, guardar los datos crudos detrás de cada figura, salida jerárquica, conectar afirmaciones con resultados y dar acceso público.",
+      "acceso_detalle": "abierto (gold OA)"
     },
     {
       "id": "galaxy-2024",
@@ -610,9 +656,10 @@
       "url": "https://doi.org/10.1093/nar/gkae410",
       "tipo": "paper de recurso revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto (gold OA)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Dimensionar la vía de escape para cómputo pesado: los servicios usegalaxy.* de EE. UU., Australia y Europa acumulan >500.000 usuarios registrados y en 2023 >11.000 usuarios individuales corrieron en promedio >1.000.000 de trabajos por mes, con >9.000 herramientas y estadísticas operativas públicas; cada trabajo muestra una estimación de emisiones de CO2. REPORT.md sección 1.4."
+      "usado_para": "Dimensionar la vía de escape para cómputo pesado: los servicios usegalaxy.* de EE. UU., Australia y Europa acumulan >500.000 usuarios registrados y en 2023 >11.000 usuarios individuales corrieron en promedio >1.000.000 de trabajos por mes, con >9.000 herramientas y estadísticas operativas públicas; cada trabajo muestra una estimación de emisiones de CO2. REPORT.md sección 1.4.",
+      "acceso_detalle": "abierto (gold OA)"
     },
     {
       "id": "wieczorek-2012-darwincore",
@@ -623,9 +670,10 @@
       "url": "https://doi.org/10.1371/journal.pone.0029715",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto (gold OA)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "El estándar de publicación de registros de ocurrencia: categorías de términos, Darwin Core simple frente a relacional, extensiones a metagenómica y recursos genéticos, proceso comunitario de mantenimiento, y la escala declarada en 2012 (del orden de 300 millones de registros en GBIF publicados por más de 340 organizaciones de 43 países). REPORT.md sección 3.4."
+      "usado_para": "El estándar de publicación de registros de ocurrencia: categorías de términos, Darwin Core simple frente a relacional, extensiones a metagenómica y recursos genéticos, proceso comunitario de mantenimiento, y la escala declarada en 2012 (del orden de 300 millones de registros en GBIF publicados por más de 340 organizaciones de 43 países). REPORT.md sección 3.4.",
+      "acceso_detalle": "abierto (gold OA)"
     },
     {
       "id": "vanetten-2019-tricot",
@@ -636,9 +684,10 @@
       "url": "https://doi.org/10.1073/pnas.1813720116",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto en PMC (CC BY-NC-ND 4.0)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Antecedente real y evaluable de ciencia ciudadana agrícola a escala: 12.409 parcelas manejadas por agricultores en Nicaragua, Etiopía e India con el enfoque tricot (comparación triádica de tecnologías), cada participante ordenando tres variedades asignadas al azar y compilación centralizada. REPORT.md sección 3.2, como evidencia de que el diseño distribuido escala cuando la tarea pedida es mínima y comparativa."
+      "usado_para": "Antecedente real y evaluable de ciencia ciudadana agrícola a escala: 12.409 parcelas manejadas por agricultores en Nicaragua, Etiopía e India con el enfoque tricot (comparación triádica de tecnologías), cada participante ordenando tres variedades asignadas al azar y compilación centralizada. REPORT.md sección 3.2, como evidencia de que el diseño distribuido escala cuando la tarea pedida es mínima y comparativa.",
+      "acceso_detalle": "abierto en PMC (CC BY-NC-ND 4.0)"
     },
     {
       "id": "mosquito-alert-2022",
@@ -649,9 +698,10 @@
       "url": "https://doi.org/10.46471/gigabyte.54",
       "tipo": "artículo de datos revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto (CC BY 4.0)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "El diseño de monitoreo participativo que sí produce dato reutilizable: registros 2014-2020 ligados a fotografías de participantes y validadas por entomólogos, módulo de envío de muestras a laboratorios de referencia, recolección de la distribución anónima de participantes para corregir el sesgo de esfuerzo de muestreo, publicación como conjunto de datos en GBIF, y uso de las imágenes validadas para entrenar un clasificador que preselecciona casos. REPORT.md sección 3.2."
+      "usado_para": "El diseño de monitoreo participativo que sí produce dato reutilizable: registros 2014-2020 ligados a fotografías de participantes y validadas por entomólogos, módulo de envío de muestras a laboratorios de referencia, recolección de la distribución anónima de participantes para corregir el sesgo de esfuerzo de muestreo, publicación como conjunto de datos en GBIF, y uso de las imágenes validadas para entrenar un clasificador que preselecciona casos. REPORT.md sección 3.2.",
+      "acceso_detalle": "abierto (CC BY 4.0)"
     },
     {
       "id": "dsrnaengineer-2024-preprint",
@@ -662,9 +712,10 @@
       "url": "https://doi.org/10.1101/2024.07.22.604585",
       "tipo": "preprint",
       "nivel_evidencia": "[R] preprint; la versión revisada por pares figura en el índice de búsqueda (Trends in Biotechnology) pero NO se abrió y no se cita como tal",
-      "acceso": "abierto (preprint, 'all rights reserved' en el pie de bioRxiv)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Tercer ejemplo de arquitectura real de herramienta de diseño de dsRNA: front-end en Vue.js, back-end en Sanic, visualización con Canvas API, 942 transcriptomas del NCBI precargados (plagas de insectos, ácaros, nematodos, hongos y especies de evaluación de seguridad), funcionalidad screen-target para blancos conservados entre plagas y ventana deslizante de 50 a 100 pb. REPORT.md sección 2.1, y la conclusión de que el valor está en los datos precargados y no en la interfaz."
+      "usado_para": "Tercer ejemplo de arquitectura real de herramienta de diseño de dsRNA: front-end en Vue.js, back-end en Sanic, visualización con Canvas API, 942 transcriptomas del NCBI precargados (plagas de insectos, ácaros, nematodos, hongos y especies de evaluación de seguridad), funcionalidad screen-target para blancos conservados entre plagas y ventana deslizante de 50 a 100 pb. REPORT.md sección 2.1, y la conclusión de que el valor está en los datos precargados y no en la interfaz.",
+      "acceso_detalle": "abierto (preprint, 'all rights reserved' en el pie de bioRxiv)"
     },
     {
       "id": "efsa-2025-rnai",
@@ -677,7 +728,8 @@
       "nivel_evidencia": "[E] norma vigente en su jurisdicción",
       "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "El conjunto de reglas de off-target que un regulador exige reportar para cada ARN pequeño de 21 nt derivable (hasta cuatro mismatches sin hueco o tres más un hueco; G:U como medio mismatch; un solo hueco de un solo nucleótido; ningún mismatch ni hueco en las posiciones 10 u 11; no más de dos mismatches en los primeros 12 nt del 5'; cociente de energía libre del dúplex sobre el del complemento perfecto mayor que 0,75), la recomendación de basar la discusión en cuántos ARN pequeños distintos coinciden con el mismo transcripto, y la existencia de un script publicado por la agencia. Incorporada a la compuerta G2 y al criterio C2 de RUBRICA.md, y cierra el pendiente regulatorio de C7. Límites de alcance declarados por la propia guía: aplica a plantas modificadas genéticamente, no a dsRNA pulverizado, y no cubre la evaluación de riesgo ambiental."
+      "usado_para": "El conjunto de reglas de off-target que un regulador exige reportar para cada ARN pequeño de 21 nt derivable (hasta cuatro mismatches sin hueco o tres más un hueco; G:U como medio mismatch; un solo hueco de un solo nucleótido; ningún mismatch ni hueco en las posiciones 10 u 11; no más de dos mismatches en los primeros 12 nt del 5'; cociente de energía libre del dúplex sobre el del complemento perfecto mayor que 0,75), la recomendación de basar la discusión en cuántos ARN pequeños distintos coinciden con el mismo transcripto, y la existencia de un script publicado por la agencia. Incorporada a la compuerta G2 y al criterio C2 de RUBRICA.md, y cierra el pendiente regulatorio de C7. Límites de alcance declarados por la propia guía: aplica a plantas modificadas genéticamente, no a dsRNA pulverizado, y no cubre la evaluación de riesgo ambiental.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "rnai-comercializacion-2026",
@@ -688,9 +740,10 @@
       "url": "https://doi.org/10.1002/ps.70806",
       "tipo": "artículo de perspectiva revisado por pares",
       "nivel_evidencia": "[R] perspectiva, no revisión sistemática",
-      "acceso": "abierto (CC BY 4.0)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Precedentes regulatorios adicionales para C7: ledprona registrada como bioplaguicida con número EPA 94614-2, vadescana (contra Varroa) comercializada, y expediente presentado en Estados Unidos, la Unión Europea y Brasil para un dsRNA contra Erysiphe necator; HIGS tratado como OGM y evaluado por la CTNBio en Brasil; costos de producción proyectados por debajo de 1 USD por unidad de dsRNA para los 490 pb de ledprona con bioproceso libre de células; y el argumento de que desarrollar RNAi en marcos de investigación pública o sin patentes restrictivas reduce dependencias de explotación. REPORT.md secciones 3.6 y 4."
+      "usado_para": "Precedentes regulatorios adicionales para C7: ledprona registrada como bioplaguicida con número EPA 94614-2, vadescana (contra Varroa) comercializada, y expediente presentado en Estados Unidos, la Unión Europea y Brasil para un dsRNA contra Erysiphe necator; HIGS tratado como OGM y evaluado por la CTNBio en Brasil; costos de producción proyectados por debajo de 1 USD por unidad de dsRNA para los 490 pb de ledprona con bioproceso libre de células; y el argumento de que desarrollar RNAi en marcos de investigación pública o sin patentes restrictivas reduce dependencias de explotación. REPORT.md secciones 3.6 y 4.",
+      "acceso_detalle": "abierto (CC BY 4.0)"
     },
     {
       "id": "lsa-resultados-negativos-2026",
@@ -701,9 +754,10 @@
       "url": "https://doi.org/10.26508/lsa.202603674",
       "tipo": "editorial de revista revisada por pares",
       "nivel_evidencia": "[E] política editorial declarada",
-      "acceso": "abierto (CC BY 4.0)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Precedente editorial concreto para la publicación de resultados negativos: la revista declara explícitamente que acepta trabajos con resultados nulos, y el editorial sostiene que el sesgo contra los datos negativos deja persistir callejones sin salida, reactivos defectuosos e hipótesis erróneas en el registro científico. REPORT.md sección 3.5."
+      "usado_para": "Precedente editorial concreto para la publicación de resultados negativos: la revista declara explícitamente que acepta trabajos con resultados nulos, y el editorial sostiene que el sesgo contra los datos negativos deja persistir callejones sin salida, reactivos defectuosos e hipótesis erróneas en el registro científico. REPORT.md sección 3.5.",
+      "acceso_detalle": "abierto (CC BY 4.0)"
     },
     {
       "id": "pellegrinetti-2026-phytoplasma-zeae",
@@ -714,9 +768,10 @@
       "url": "https://doi.org/10.1099/ijsem.0.007301",
       "tipo": "paper revisado por pares",
       "nivel_evidencia": "[E]",
-      "acceso": "abierto (CC BY 4.0, PMC13660524)",
+      "acceso": "abierto",
       "alcance_verificacion": "texto_completo",
-      "usado_para": "Tres cosas. (1) El nombre formal del fitoplasma del achaparramiento arbustivo del maíz, transmitido exclusivamente por Dalbulus maidis y D. elimatus, con ANI de 92,6-98,4 % frente a las cepas emparentadas con 'Ca. P. asteris' pese a >99 % de identidad en 16S; cepa de referencia MBSP-BR RS, BioProject PRJNA1294367, BioSamples SAMN50092827/28/29, 16S PZ340875, vouchers de insectos en la Colección Nacional Canadiense. (2) Un pipeline de genómica completo con software libre: fastp, KrakenTools, MEGAHIT y MetaSPAdes en paralelo, BLASTn contra el genoma M3, RagTag, Pilon, CheckM y CheckM2, Bakta y Anvi'o. (3) Un antecedente real y evaluable de innovación abierta en este mismo patosistema: designación propuesta por consenso de una coalición de grupos de Brasil, Colombia, México, EE. UU. y Canadá bajo la Regla c del IRPCM. Deja abierto un [?]: el trabajo afirma que la enfermedad no fue reportada en Argentina."
+      "usado_para": "Tres cosas. (1) El nombre formal del fitoplasma del achaparramiento arbustivo del maíz, transmitido exclusivamente por Dalbulus maidis y D. elimatus, con ANI de 92,6-98,4 % frente a las cepas emparentadas con 'Ca. P. asteris' pese a >99 % de identidad en 16S; cepa de referencia MBSP-BR RS, BioProject PRJNA1294367, BioSamples SAMN50092827/28/29, 16S PZ340875, vouchers de insectos en la Colección Nacional Canadiense. (2) Un pipeline de genómica completo con software libre: fastp, KrakenTools, MEGAHIT y MetaSPAdes en paralelo, BLASTn contra el genoma M3, RagTag, Pilon, CheckM y CheckM2, Bakta y Anvi'o. (3) Un antecedente real y evaluable de innovación abierta en este mismo patosistema: designación propuesta por consenso de una coalición de grupos de Brasil, Colombia, México, EE. UU. y Canadá bajo la Regla c del IRPCM. Deja abierto un [?]: el trabajo afirma que la enfermedad no fue reportada en Argentina.",
+      "acceso_detalle": "abierto (CC BY 4.0, PMC13660524)"
     },
     {
       "id": "ncbi-assembly-mbsp-m3",
@@ -729,7 +784,8 @@
       "nivel_evidencia": "[E]",
       "acceso": "abierto",
       "alcance_verificacion": "api_por_uso",
-      "usado_para": "Corregir el supuesto de que Spiroplasma kunkelii era el único patógeno del complejo con genoma completo y anotado. El genoma del fitoplasma del achaparramiento arbustivo del maíz está completo en una sola secuencia desde el 25 de agosto de 2016: 576.118 pb, 28,5 % de GC, Illumina MiSeq, ensamblado con Velvet 1.2.10, BioProject PRJNA317711, BioSample SAMN04623572 colectada el 29 de mayo de 2013 en Piracicaba (São Paulo, Brasil) con hospedador declarado Dalbulus maidis; 544 genes y 485 codificantes en la anotación original, 581 y 524 en la reanotación de RefSeq del 7 de junio de 2026; la taxonomía del NCBI ya usa el nombre 'Candidatus Phytoplasma zeae' (TaxId 202462). Verificado también que el BioProject PRJNA1294367 no devuelve ensamblados en db=assembly."
+      "usado_para": "Corregir el supuesto de que Spiroplasma kunkelii era el único patógeno del complejo con genoma completo y anotado. El genoma del fitoplasma del achaparramiento arbustivo del maíz está completo en una sola secuencia desde el 25 de agosto de 2016: 576.118 pb, 28,5 % de GC, Illumina MiSeq, ensamblado con Velvet 1.2.10, BioProject PRJNA317711, BioSample SAMN04623572 colectada el 29 de mayo de 2013 en Piracicaba (São Paulo, Brasil) con hospedador declarado Dalbulus maidis; 544 genes y 485 codificantes en la anotación original, 581 y 524 en la reanotación de RefSeq del 7 de junio de 2026; la taxonomía del NCBI ya usa el nombre 'Candidatus Phytoplasma zeae' (TaxId 202462). Verificado también que el BioProject PRJNA1294367 no devuelve ensamblados en db=assembly.",
+      "acceso_detalle": "abierto"
     },
     {
       "id": "europepmc-api-r5",
@@ -742,7 +798,8 @@
       "nivel_evidencia": "[E] para la existencia y los metadatos de los registros devueltos",
       "acceso": "abierto",
       "alcance_verificacion": "api_por_uso",
-      "usado_para": "Localizar las fuentes nuevas de esta corrida: la delineación de 'Ca. P. zeae', la guía de la EFSA de 2025, la perspectiva de comercialización de RNAi, el editorial de resultados negativos y el artículo de datos de Mosquito Alert. Las consultas y sus conteos quedan en notes/evidencia_verificada.md."
+      "usado_para": "Localizar las fuentes nuevas de esta corrida: la delineación de 'Ca. P. zeae', la guía de la EFSA de 2025, la perspectiva de comercialización de RNAi, el editorial de resultados negativos y el artículo de datos de Mosquito Alert. Las consultas y sus conteos quedan en notes/evidencia_verificada.md.",
+      "acceso_detalle": "abierto"
     }
   ],
   "rechazos_de_herramienta_registrados": [

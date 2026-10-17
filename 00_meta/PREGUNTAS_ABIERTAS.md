@@ -316,3 +316,24 @@ pena hacer si el tiempo con él es corto.
     incertidumbre sobre ese orden?
 15. ¿Nos pueden pasar el PDF del trabajo de dsRNasas en *D. maidis* (PubMed
     37945254), que no pudimos abrir?
+
+---
+
+## Pendiente interno: enlaces de fuentes de R1 que no se registraron
+**Fecha:** 2026-10-17
+
+Seis fuentes de `research/R1_fundamentos/sources.json` tienen `url: null` y una
+`url_nota`. R1 las abrió (cinco hasta el resumen, una a texto completo) pero no
+anotó el enlace de la página, y ningún otro archivo del repositorio lo conserva.
+Hay que reencontrarlas por título y completar el campo antes de usarlas como cita
+en una presentación:
+
+- `S12` Gomes et al. 2004, *Pesquisa Agropecuária Brasileira* 39(1):61-65 (acceso abierto).
+- `S27` Arricau-Bouvery et al. 2026, *Microbiological Research* 305:128416.
+- `S30` Natterin-like y legumaina de intestino de insecto (multiplicación de un patógeno).
+- `S31` y `S32` Los dos informes del mastrevirus de maíz transmitido por *D. maidis*.
+- `S39` Bioeficacia de *Chromobacterium piscinae* contra *D. maidis*.
+
+`S17` (dsRNasas de *D. maidis*, Dalaisón-Fuentes et al. 2023) se completó desde el
+DOI que ya consignan R2 y R3. Sigue valiendo la pregunta 15 de arriba: solo se leyó
+el resumen.
