@@ -23,7 +23,7 @@ adjudica con la evidencia y se deja dicho cómo.
 ## S1 — La identidad de los patógenos y qué síntoma causa cada uno
 
 **Qué decíamos.** Cuatro agentes: MRFV, MSMV, un fitoplasma y *Spiroplasma
-kunkelii* (`SINTESIS.md` §2; `R1/REPORT.md` §3). La asignación de síntomas que el
+kunkelii* (`SINTESIS_v1.md` §2; `R1/REPORT.md` §3). La asignación de síntomas que el
 equipo traía de la charla —uno afecta los granos, el otro el tallo— ya había sido
 **corregida en la ola 1** con un experimento de inoculación separada: la reducción
 de grano fue significativamente mayor con el espiroplasma (P < 0,01) y la
@@ -124,7 +124,7 @@ sino de decidir mejor con lo que ya se calcula.
 ## S3 — ARN exógeno frente a ARN no codificante: confirmado, y con una vuelta de tuerca
 
 **Qué decíamos.** Que son cosas distintas: una vía de administración y una clase
-de molécula (`SINTESIS.md` §2).
+de molécula (`SINTESIS_v1.md` §2).
 
 **Qué dice el corpus.** Lo confirma en los hechos: los siete papers aplican ARN
 desde afuera y ninguno discute ARN no codificante endógeno como tratamiento. Y

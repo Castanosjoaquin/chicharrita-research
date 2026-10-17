@@ -164,6 +164,20 @@ lavado**. Si la afirmación "BioClay protege del UV y de las nucleasas" circula
 —y circula— está **sin respaldo** en lo verificable `[?]`. Es el tipo de dato
 que conviene no repetir frente a alguien que conoce la literatura.
 
+> **Corrección de la ola 2 — 2026-10-17.** El corpus trae el paper primario de
+> BioClay (`YHat-Biotech/Papers/nplants2016207 (1).pdf`) y la advertencia de
+> arriba resulta **medio incorrecta y medio correcta**:
+>
+> - **Nucleasas: estábamos equivocados.** El trabajo **sí mide** protección
+>   frente a RNasa A, con cuatro réplicas y figura dedicada (*Stability of dsRNA
+>   loaded into LDH*, fig. 3e). Esa mitad pasa de `[?]` a `[E]`.
+> - **UV: estábamos en lo cierto.** No lo mide: la palabra aparece una sola vez
+>   en todo el artículo, en la frase que enuncia el objetivo.
+>
+> La conclusión práctica se invierte a la mitad: frente a alguien que conoce la
+> literatura, lo que no hay que repetir es la protección frente a UV, no la
+> protección frente a nucleasas. Ver `research/ola2/CORRECCIONES.md`, entrada B1.
+
 Segunda: hay una **tensión no resuelta** entre los dos extremos de la tabla. La
 academia muestra que los portadores extienden la ventana de días a semanas, y el
 único producto registrado del mundo salió al mercado **sin portador**, con

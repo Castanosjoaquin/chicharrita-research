@@ -28,15 +28,34 @@ existen y qué vamos a construir cada uno.
 
 | Si querés… | Leé |
 | --- | --- |
-| el panorama completo en una sentada | `SINTESIS.md` |
+| el panorama completo en una sentada | `SINTESIS_V2.md` |
+| qué cambió al llegar el material oficial | `research/ola2/CORRECCIONES.md` |
+| los cuatro candidatos del EPILAB | `research/ola2/W5_secuencias_epilab/REPORT.md` |
 | entender la biología desde cero | `research/R1_fundamentos/REPORT.md` |
 | saber qué significa cada término | `00_meta/GLOSARIO.md` |
 | la versión navegable, para leer en el celular | `index.html` y el `index.html` de cada carpeta |
 
-`SINTESIS.md` es el entregable del equipo: qué sabemos ahora que no sabíamos,
-cómo quedaron los tres supuestos que traíamos de la charla, la cartera de
-enfoques candidatos priorizada con su matriz, el reparto para cuatro personas y
-las preguntas concretas para el investigador.
+`SINTESIS_V2.md` es el entregable del equipo: qué cambió al contrastar con el
+corpus oficial, qué nos habilita concretamente cada herramienta y cada dato, la
+cartera de enfoques re-priorizada con su matriz, el reparto para cuatro personas
+y las preguntas concretas para el investigador.
+
+`SINTESIS_v1.md` es la versión anterior y se conserva a propósito: es el estado
+de lo que sabíamos **antes** de recibir el material oficial. El historial de lo
+que creíamos y por qué cambiamos de opinión es parte del valor del repositorio, y
+por eso las correcciones se agregan fechadas en lugar de reescribir los reportes.
+
+## Las dos olas
+
+| Ola | Qué es | Dónde |
+| --- | --- | --- |
+| **Ola 1** | Investigación previa con fuentes públicas, sin el material oficial. Cinco investigaciones, R1 a R5. | `research/R1_*` a `research/R5_*`, `SINTESIS_v1.md` |
+| **Ola 2** | Contraste contra el corpus oficial del Investigathón: papers, bases de datos, herramientas y los candidatos del EPILAB. Cinco investigaciones, W1 a W5. | `research/ola2/`, `SINTESIS_V2.md` |
+
+El corpus oficial vive en `YHat-Biotech/` y **no está en el control de
+versiones**: contiene secuencias no publicadas del EPILAB y PDF con derechos de
+autor, y este repositorio tiene remoto público (`00_meta/DECISIONS.md`, D10). Su
+inventario completo, archivo por archivo, está en `research/ola2/MANIFEST.md`.
 
 ## Las cinco investigaciones
 

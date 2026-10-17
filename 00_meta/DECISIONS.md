@@ -194,3 +194,73 @@ se volvieron a comprobar. R1: una parte de las fuentes está marcada `[RES]`,
 leída sólo en el resumen, y su hallazgo central sobre la ausencia de maquinaria
 de RNAi en mollicutes proviene de una consulta de anotación, no de una búsqueda
 por perfil.
+
+---
+
+## D10 — El corpus oficial no entra al control de versiones
+**Fecha:** 2026-10-17
+**Decisión:** `YHat-Biotech/` y `work/` quedan en `.gitignore`. El corpus se cita
+por ruta y se describe en `research/ola2/MANIFEST.md`; sus archivos no se
+commitean.
+**Alternativas consideradas:** versionar el corpus completo para que el
+repositorio sea autocontenido.
+**Criterio:** el repositorio tiene remoto en GitHub, y la planilla
+`Sequences_EPILAB.xlsx` contiene secuencias **no publicadas** de un tercero. Un
+commit es un paso a un empujón de distancia de publicarlas. Los PDF, además, son
+material con derechos de autor, y ya existía la decisión D6 para el material
+pesado de referencia.
+**Consecuencia:** quien clone el repositorio no recibe el corpus. Todo lo que se
+use de él tiene que quedar citado con su archivo y su contenido descrito en el
+manifiesto, no sólo referenciado. Y ninguna de las cinco investigaciones de la
+ola 2 subió secuencias de EPILAB a un servicio de terceros: donde hacía falta un
+ejemplo, se usó una secuencia pública de referencia, y la limitación quedó
+declarada.
+
+---
+
+## D11 — El aporte se reorienta: desagregar lo que la herramienta oficial suma
+**Fecha:** 2026-10-17
+**Decisión:** el eje del aporte deja de formularse como «decidir mejor que un
+modelo» y pasa a formularse como **desagregar y calificar el número que la
+herramienta oficial ya produce**, más el término de conservación entre aislados,
+que resultó tener un caso real y medido.
+**Alternativas consideradas:** sostener el encuadre de la ola 1 sin cambios;
+o pivotear hacia construir una herramienta de diseño propia.
+**Criterio:** tres resultados de la ola 2, todos verificados. Primero, la
+herramienta oficial **no estima eficacia de ninguna forma**: cuenta coincidencias
+exactas de k-meros con Bowtie y las suma, de modo que la vara a superar es mucho
+más baja de lo que suponía la ola 1. Segundo, ese conteo **no es interpretable
+como riesgo** sin desagregarlo: está dominado por la condición de 16 pb (70 de 70
+aciertos en maíz y 67 de 67 en abeja) y mezcla ventanas riesgosas con parálogos
+alcanzados. Tercero, el candidato de cápside del EPILAB es 100 % idéntico sólo al
+aislado de Costa Rica y pierde la mayor parte de sus siRNA conservados frente a
+los aislados brasileños, lo que es precisamente lo que nuestro término de
+conservación existía para detectar.
+**Consecuencia:** la cartera de enfoques no cambia de orden, pero sí de
+argumento, y hay un entregable nuevo y barato que antes no existía: una lectura
+desagregada del tamizaje oficial, candidato por candidato. Queda registrado en
+`SINTESIS_V2.md`.
+
+---
+
+## D12 — Las contradicciones entre investigaciones se adjudican con evidencia, no por autoridad
+**Fecha:** 2026-10-17
+**Decisión:** cuando dos investigaciones de la misma ola se contradicen, el
+orquestador verifica el punto por su cuenta y deja escrito cómo lo resolvió, en
+lugar de promediar, elegir la más reciente o dar por buena la que suene más
+segura.
+**Alternativas consideradas:** confiar en la investigación más específica del
+tema; o reportar las dos sin resolver.
+**Criterio:** en esta ola pasó dos veces y las dos se resolvieron mirando la
+fuente. En el fitoplasma, W4 afirmó que el taxón 202462 no tenía ensamblados; tres
+consultas directas a NCBI Datasets mostraron que sí —`total_count: 2`, genoma
+completo de 576.118 pb— y que el error venía de consultar por nombre común en
+lugar de por taxid. **La ola 1 tenía razón y la investigación nueva estaba mal**,
+que es exactamente el caso que la regla «el corpus no gana por ser oficial» tiene
+que cubrir. En MSMV, W4 dio el cuarto agente por resuelto y W3 mostró que la sigla
+mapea a dos taxones de familias distintas: se adjudicó a favor de W3 por ser
+estrictamente más completo.
+**Consecuencia:** las dos correcciones se devolvieron a la investigación que las
+produjo, que las aplicó y volvió a medir. Y queda una advertencia de método en el
+repositorio: **un cero devuelto por una consulta por nombre común no es una
+ausencia**; hay que resolver el taxid primero.

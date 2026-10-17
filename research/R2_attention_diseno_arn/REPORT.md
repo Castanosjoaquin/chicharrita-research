@@ -5,6 +5,36 @@ ARN como tokens de un modelo de lenguaje grande (large language model, LLM) y us
 mecanismo de atención (attention) para encontrar qué secuencia mejora la respuesta, con la
 termodinámica de BLAST como función de pérdida (loss).
 
+> **Correcciones de la ola 2 — 2026-10-17.** Con el corpus oficial en la mano,
+> cuatro puntos de este reporte cambian. El detalle de cada uno, con su cita al
+> archivo del corpus, está en `research/ola2/CORRECCIONES.md`.
+>
+> 1. **El veredicto sobre BLAST y termodinámica se confirma, y la atribución se
+>    afina** (entrada S2). Verificado sobre las herramientas reales del corpus:
+>    ninguna de las dos calcula termodinámica. Pero el tamizaje de off-target no
+>    lo hace BLAST sino **Bowtie**, y BLAST queda para homología entre plagas y
+>    anotación. La separación conceptual de este reporte era correcta; el reparto
+>    de funciones, impreciso. Y el probable origen de la frase del equipo es
+>    **Primer-BLAST**, que sí calcula Tm de cebadores con la tabla SantaLucia
+>    1998, dentro del mismo sitio de BLAST.
+> 2. **El camino crítico deja de serlo** (entrada H2). Este reporte declaraba que
+>    no existe transcriptoma público del vector y que construirlo era la primera
+>    tarea. Hay **tres** transcriptomas TSA descargables —`GITV00000000`,
+>    `GHCC00000000` y `GCWP00000000`—, más uno propio y no publicado que es el que
+>    usa el grupo que publica en la especie. Ensamblar deja de ser prioridad.
+> 3. **El rango de 200 a 500 pb no es defendible para un candidato dirigido a la
+>    planta** (entrada B10). En planta el corpus usa 147, 140 y hasta 21 nt, y
+>    reporta que subir de 120 a 231 nt no dio ganancias. Dos de los cuatro
+>    candidatos del EPILAB apuntan al MRFV, así que esto nos toca.
+> 4. **V1 y V3 tratan como una sola variable dos que se mueven distinto**
+>    (entrada B4). En entrega oral a un hemíptero la mortalidad sube con la dosis
+>    mientras el knockdown no correlaciona, y el control de ARNdc inespecífico ya
+>    mata a dosis alta. Hazard ratio y reducción de transcripto hay que medirlos
+>    y reportarlos por separado.
+>
+> Lo que **no** cambia: el descarte de la idea original, los cuatro métodos
+> publicados que la reinventan, y la reformulación como priorización auditable.
+
 ---
 
 ## Veredicto

@@ -5,6 +5,31 @@ termodinámica de BLAST como loss— se descarta por error factual y por reinven
 métodos publicados. La reformulación que sigue **sí es viable**. El argumento completo del
 descarte está en `REPORT.md`; acá va la especificación de lo que se rescata y se construye.
 
+> **Actualización de la ola 2 — 2026-10-17.** El corpus oficial llegó y esta
+> propuesta **sobrevive, con tres cambios concretos y una validación**. Detalle en
+> `research/ola2/CORRECCIONES.md`.
+>
+> - **La dependencia externa dejó de serlo.** El riesgo 1 de la sección 8 era que
+>   los candidatos del EPILAB no llegaran. Llegaron: son **cuatro**, ya están
+>   caracterizados en `research/ola2/W5_secuencias_epilab/`, y dos apuntan al MRFV
+>   y dos al vector.
+> - **El término de conservación tiene su primer caso real y medido** (entrada
+>   E3). La región elegida de cápside del MRFV es 100 % idéntica sólo al aislado
+>   de Costa Rica; contra los 45 registros brasileños cae a 91,5-93,5 %, con una
+>   mediana de 44 de 180 siRNA conservados. No hay secuencias argentinas de MRFV
+>   en GenBank. Es exactamente lo que este término existía para detectar.
+> - **El término de off-target hay que reorientarlo** (entrada E4): el riesgo
+>   medido no está en el maíz ni en los polinizadores —cero coincidencias
+>   perfectas— sino en los **cicadélidos no objetivo**, con 30 siRNA de ≥19 nt
+>   sobre el ortólogo de bicaudal C de *H. vitripennis*.
+> - **La métrica primaria se parte en dos** (entrada B4): hazard ratio y
+>   reducción de transcripto no son la misma variable y no se pueden validar como
+>   si lo fueran.
+>
+> Y la contribución queda **mejor parada que antes**: la herramienta oficial
+> cuenta coincidencias exactas de k-meros y las suma, sin estimar eficacia ni
+> declarar incertidumbre. La vara a superar es más baja de lo que suponíamos.
+
 **Nombre de trabajo:** PRIOR-dsRNA.
 **Qué es en una oración:** una función de puntuación multiobjetivo sobre candidatos de ARNdc
 *dados*, que devuelve un ordenamiento con la incertidumbre propagada y cada término trazable

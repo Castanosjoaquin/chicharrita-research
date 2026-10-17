@@ -305,3 +305,61 @@ del proyecto. Las fuentes que se buscaron y no se pudieron abrir no están acá:
 | `pellegrinetti-2026-phytoplasma-zeae` | ['Candidatus Phytoplasma zeae': community-driven species delineation of the maize bushy stunt phytoplasma, a Dalbulus-transmitted corn pathogen confined to the Americas. Pellegrinetti TA, Molligan J, Santos AA, Canale MC, Duffeck MR, Olmedo-Velarde A, Jacques J, Valmorbida I, Faris A, de Andrade MVS, Manica MAP, Luna M, Reyes-Caldas P, Rodriguez-Chalarca J, Dumonceaux T, Pérez-López E. 2026. International Journal of Systematic and Evolutionary Microbiology 76(10):007301](https://doi.org/10.1099/ijsem.0.007301) | paper revisado por pares | [E] | abierto (CC BY 4.0, PMC13660524) | Tres cosas. (1) El nombre formal del fitoplasma del achaparramiento arbustivo del maíz, transmitido exclusivamente por Dalbulus maidis y D. elimatus, con ANI de 92,6-98,4 % frente a las cepas emparentadas con 'Ca. P. asteris' pese a >99 % de identidad en 16S; cepa de referencia MBSP-BR RS, BioProject PRJNA1294367, BioSamples SAMN50092827/28/29, 16S PZ340875, vouchers de insecto |
 | `ncbi-assembly-mbsp-m3` | [Dataset report del ensamblado GCA_001712875.1 / GCF_001712875.1 (ASM171287v1), 'Candidatus Phytoplasma zeae' cepa M3. NCBI Datasets v2alpha (envío: Academia Sinica). 2016. NCBI GenBank / RefSeq](https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCA_001712875.1/dataset_report) | registro de base de datos primaria | [E] | abierto | Corregir el supuesto de que Spiroplasma kunkelii era el único patógeno del complejo con genoma completo y anotado. El genoma del fitoplasma del achaparramiento arbustivo del maíz está completo en una sola secuencia desde el 25 de agosto de 2016: 576.118 pb, 28,5 % de GC, Illumina MiSeq, ensamblado con Velvet 1.2.10, BioProject PRJNA317711, BioSample SAMN04623572 colectada el 29 |
 | `europepmc-api-r5` | [Consultas a la API REST de Europe PMC (búsqueda bibliográfica de la segunda corrida). Europe PMC. 2026. EMBL-EBI](https://www.ebi.ac.uk/europepmc/webservices/rest/search) | consulta a base de datos primaria | [E] para la existencia y los metadatos de los registros devueltos | abierto | Localizar las fuentes nuevas de esta corrida: la delineación de 'Ca. P. zeae', la guía de la EFSA de 2025, la perspectiva de comercialización de RNAi, el editorial de resultados negativos y el artículo de datos de Mosquito Alert. Las consultas y sus conteos quedan en notes/evidencia_verificada.md. |
+
+---
+
+## Corpus oficial del Investigathón (ola 2)
+
+Incorporado el 2026-10-17. Son los 10 archivos de `YHat-Biotech/`, inventariados uno por uno
+en `research/ola2/MANIFEST.md`. **No están en el control de versiones** (decisión D10): la
+planilla contiene secuencias no publicadas y los PDF son material con derechos de autor,
+y el repositorio tiene remoto público. Se citan por ruta.
+
+### Los siete papers
+
+| id | Archivo | Fuente | Tipo | Relevancia |
+| --- | --- | --- | --- | --- |
+| `P1` | `YHat-Biotech/Papers/Dcitri.pdf` | Galdeano, Diogo Manzano; Breton, Michèle Claire; Spotti Lopes, João Roberto; Falk, Bryce W.; Machado, Marcos Antonio. Oral delivery of double-stranded RNAs induces mortality in nymphs and adults of the Asian citrus psyllid, Diaphorina citri. PLoS ONE 12(3):e0171847 (2017). doi:10.1371/journal.pone.0171847 | experimental | alta |
+| `P2` | `YHat-Biotech/Papers/PLD3-4-e00224.pdf` | Mlotshwa, Sizolwenkosi; Xu, Junhuan; Willie, Kristen; Khatri, Nitika; Marty, DeeMarie; Stewart, Lucy R.. Engineering Maize rayado fino virus for virus-induced gene silencing. Plant Direct 4:e00224 (2020). doi:10.1002/pld3.224 | metodológico | alta |
+| `P3` | `YHat-Biotech/Papers/finsc-6-1811933.pdf` | Andrada, Nicolás Luján; Crespo, Mariana; Baricalla, Agustín Ariel; Dalaisón-Fuentes, Lucía Inés; Sterkel, Marcos; Catalano, María Inés. ETH and Burs-α are necessary for the normal molting in Dalbulus maidis and Delphacodes kuscheli. Frontiers in Insect Science 6:1811933 (2026). doi:10.3389/finsc.2026.1811933 | experimental | alta |
+| `P4` | `YHat-Biotech/Papers/nplants2016207 (1).pdf` | Mitter, Neena; Worrall, Elizabeth A.; Robinson, Karl E.; Li, Peng; Jain, Ritesh G.; Taochy, Christelle; Fletcher, Stephen J.; Carroll, Bernard J.; Lu, G. Q. (Max); Xu, Zhi Ping. Clay nanosheets for topical delivery of RNAi for sustained protection against plant viruses. Nature Plants 3:16207 (2017). doi:10.1038/nplants.2016.207 | experimental | media |
+| `P5` | `YHat-Biotech/Papers/s00299-010-0911-z.pdf` | Gan, Defang; Zhang, Jiao; Jiang, Haibo; Jiang, Tong; Zhu, Suwen; Cheng, Beijiu. Bacterially expressed dsRNA protects maize against SCMV infection. Plant Cell Reports 29:1261-1268 (2010). doi:10.1007/s00299-010-0911-z | experimental | alta |
+| `P6` | `YHat-Biotech/Papers/s10340-023-01670-0.pdf` | Rossi, Marika; Ottati, Sara; Bucci, Luca; Fusco, Alessia; Abbà, Simona; Bosco, Domenico; Marzachì, Cristina; Galetto, Luciana. Lab-scale method for plant-mediated delivery of dsRNAs to phloem-feeding leafhoppers. Journal of Pest Science 97:455-467 (2024). doi:10.1007/s10340-023-01670-0 | metodológico | alta |
+| `P7` | `YHat-Biotech/Papers/s12298-024-01500-2.pdf` | Balassa, Kinga; Balassa, György; Almási, Asztéria; Visnovitz, Tamás; Rudnóy, Szabolcs. Detection of exogenous siRNA inside sweet corn bundle sheath cells and the RNAi dynamics in the early stage of Maize dwarf mosaic virus infection. Physiology and Molecular Biology of Plants 30(8):1265-1276 (2024). doi:10.1007/s12298-024-01500-2 | experimental | alta |
+
+El triaje completo, con el resumen de cada uno y qué reporte de la ola 1 toca, está en
+`research/ola2/W1_papers/papers.json` y `REPORT.md`.
+
+### Los otros tres archivos del corpus
+
+| Archivo | Qué es | Dónde se analizó |
+| --- | --- | --- |
+| `YHat-Biotech/Links de interes.docx` | Cuatro enlaces bajo tres rótulos: NCBI, NCBI Datasets, dsRNA-Engineer y BLAST. Sin credenciales ni instrucciones. | `ola2/W3_bases_datos/` y `ola2/W2_herramientas/` |
+| `YHat-Biotech/Sequences_EPILAB.xlsx` | Los cuatro candidatos preliminares del EPILAB, con secuencia completa, región elegida, posición y conteo de siRNA eficientes. **No publicado.** | `ola2/W5_secuencias_epilab/` |
+| `YHat-Biotech/Sesion_tecnica_Investigathon_60min_v2.pptx.pdf` | Presentación del organizador, 17 diapositivas. Idéntica (mismo MD5) a la que ya teníamos; transcrita en `docs/sesion-tecnica-EPILAB-notas.md`. | `ola2/W1_papers/` |
+
+### Fuentes externas abiertas en la ola 2
+
+Además del corpus, las cinco investigaciones abrieron y citaron fuentes externas, y
+ejecutaron consultas y herramientas cuyas salidas quedaron guardadas. El detalle está en
+los entregables de cada una; el resumen:
+
+| Investigación | Fuentes externas abiertas | Material ejecutado y guardado |
+| --- | --- | --- |
+| W1 papers | 7 | — |
+| W2 herramientas | 10 | BLAST+ 2.17.0, Bowtie 1.3.1, ViennaRNA 2.7.2 y una corrida real de dsRNA-Engineer con secuencia pública (`W2_herramientas/ejemplos/`) |
+| W3 bases de datos | 13 | 409 consultas sobre 8 bases Entrez y 24 organismos (`W3_bases_datos/consultas/`) |
+| W4 genomas | 4 | 17 conjuntos del NCBI descargados y 43 archivos medidos con scripts propios (`W4_genomas/scripts/`) |
+| W5 secuencias | 15 | Identificación y tamizaje de los cuatro candidatos, todo local (`W5_secuencias_epilab/analisis/`) |
+
+**Límites de verificación declarados en esta ola**, que viajan con sus números:
+
+- La versión revisada por pares de dsRNA-Engineer (*Trends in Biotechnology*) está tras
+  muro de pago y no se abrió: la descripción algorítmica viene del preprint, del cliente
+  desplegado, de la API y de una corrida real.
+- Los materiales suplementarios de los siete papers no vienen en el corpus.
+- La completitud de los ensamblados es un proxy con miniprot calibrado contra el valor
+  publicado, no BUSCO oficial.
+- Los papers de BLAST+, ViennaRNA, Primer-BLAST y Altschul 1990 se nombran como
+  referencia habitual y **no se abrieron** en esta ola.
+- El panel de organismos no objetivo son especies modelo sustitutas.

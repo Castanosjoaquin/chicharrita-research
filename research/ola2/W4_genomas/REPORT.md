@@ -244,8 +244,8 @@ phytoplasma* figura como su nombre común `[E]` (consulta a
 `/taxonomy/taxon/202462` del 17 de octubre de 2026). Consultado **por taxid**, el taxón
 devuelve **dos ensamblados**: `GCA_001712875.1` y su par RefSeq `GCF_001712875.1`, los dos
 del ensamblado ASM171287v1, liberado el **25 de agosto de 2016** `[E]`. La investigación
-W5 de esta misma ola ya lo había registrado así —es la corrección que aporta— y la citamos
-como tal (`research/R5_metodologias_ejes/sources.json`, entrada
+R5, de la **ola 1**, ya lo había registrado así —es la corrección que esa investigación
+aporta— y la citamos como tal (`research/R5_metodologias_ejes/sources.json`, entrada
 `pellegrinetti-2026-phytoplasma-zeae` y el dataset report de ASM171287v1).
 
 Bajamos el ensamblado RefSeq y lo medimos con nuestros propios scripts, igual que el
@@ -260,9 +260,10 @@ identificadores cruzan con el W3 por `locus_tag` y por proteínas `WP_`.
 La consecuencia es doble y conviene decirla sin rodeos. Primero: **los tres patógenos
 procariotas y virales del complejo que importan acá tienen genoma completo y anotado**, de
 modo que el sistema está mejor cubierto de lo que decía nuestra versión anterior y mejor
-de lo que la ola 1 suponía. Segundo: el genoma del fitoplasma es el **más chico** del
-conjunto —576 kb contra 1,5 Mb del espiroplasma—, lo que lo vuelve barato de usar como
-referencia de descarte de off-targets.
+de lo que la ola 1 suponía. Segundo: entre los **genomas celulares** del complejo, el del
+fitoplasma es el más chico —576 kb contra 1,5 Mb del espiroplasma—, lo que lo vuelve
+barato de usar como referencia de descarte de off-targets. Los virus del complejo son dos
+órdenes de magnitud más chicos todavía: el MRFV son 6.366 nt.
 
 Mantenemos descargados los dos genomas de *'Candidatus* Phytoplasma asteris'
 —`GCF_038505995.1` (778.308 bp, GC 27,835 %, 781 genes, 740 codificantes) y

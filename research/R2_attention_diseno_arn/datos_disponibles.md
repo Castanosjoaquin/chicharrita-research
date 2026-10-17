@@ -5,6 +5,28 @@ consultaron por la API de NCBI Datasets v2alpha o por E-utilities el 16 de octub
 2026; los tamaños son los que devuelve la API. Las filas marcadas **NO VERIFICADO** no
 se abrieron y no deben usarse sin comprobarlas.
 
+> **Correcciones de la ola 2 — 2026-10-17.** Este archivo listaba los datos que
+> esperábamos necesitar, con lo que se podía verificar sin el material oficial.
+> Contrastado contra lo que efectivamente se descargó y se midió
+> (`research/ola2/W4_genomas/` y `research/ola2/W3_bases_datos/`):
+>
+> - Hay **tres** transcriptomas TSA del vector —`GITV00000000`, `GHCC00000000` y
+>   `GCWP00000000`—, de modo que el «no existe transcriptoma público» de este
+>   archivo es falso y el ensamblado propio deja de ser el camino crítico.
+> - Hay **37 corridas SRA** (23 de RNA-seq, 110,1 Gbases; 10 de WGS, 129,8
+>   Gbases), no 20.
+> - Los tres ensamblados del vector **no son equivalentes**: 97,7 % de
+>   completitud el de Sanger, 68,8 % el del CIAP-INTA y 35,5 % el haplotipo
+>   alternativo, que no es utilizable como referencia. Ninguno está anotado.
+> - El fitoplasma del complejo **sí tiene genoma completo y anotado**
+>   (`GCF_001712875.1`, 576.118 pb, 565 genes), descargado y medido.
+> - Existe el genoma de *Dalbulus elimatus* (`GCA_976225285.1`), el congénere más
+>   cercano, que este archivo no registraba.
+> - El cuarto agente, MSMV, **mapea a dos taxones de familias virales distintas**
+>   y sigue sin definirse `[?]`.
+>
+> Detalle en `research/ola2/CORRECCIONES.md`, parte III.
+
 ## El hallazgo que condiciona todo lo demás
 
 **Ningún ensamblado genómico público de *Dalbulus maidis* tiene anotación de genes.** Los

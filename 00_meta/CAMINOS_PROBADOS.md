@@ -248,3 +248,96 @@ nombre formal recién en 2026, '*Candidatus* Phytoplasma zeae'.
 **Estado:** corregido. **La lección operativa:** en bases taxonómicas hay que
 buscar por taxón y por accesión, no por nombre común, y hay que revisar si el
 nombre cambió. Queda como advertencia para la rama de datos.
+
+---
+
+## Nivel corpus — lo que la ola 2 deja cerrado (2026-10-17)
+
+### Ensamblar el transcriptoma del vector desde las corridas públicas
+**Qué se intentó:** la ola 1 lo declaró el **camino crítico** del proyecto y le
+asignó cuatro días-persona, porque daba por inexistente el transcriptoma de
+*Dalbulus maidis*.
+**Qué pasó:** descartado por innecesario, esta vez con la verificación hecha. Hay
+**tres** transcriptomas TSA descargables —`GITV00000000` con 56.117 secuencias,
+`GHCC00000000` con 55.286 y `GCWP00000000` con 25.662—, y además el grupo que
+publica en la especie usa un cuarto, propio y no publicado. La ola 1 conocía sólo
+el primero y lo daba por no depositado.
+**Estado:** descartado. El camino crítico deja de serlo y libera el presupuesto
+de tiempo más grande del plan.
+**Qué lo reabriría:** que el laboratorio necesite un ensamblado con criterios
+propios, o que los tres públicos resulten insuficientes para las regiones de
+interés.
+
+### Tomar el conteo de off-target de la herramienta oficial como medida de riesgo
+**Qué se intentó:** usar el número que devuelve dsRNA-Engineer como el término de
+seguridad del scoring.
+**Qué pasó:** descartado como medida directa, al desagregarlo contra los archivos
+crudos de una corrida real. El conteo **está dominado por la condición de 16 pb**
+—70 de 70 aciertos en maíz y 67 de 67 en abeja vienen de ahí, ninguno del tamaño
+de corte de Dicer-2 que la propia herramienta declara relevante— y **mezcla
+ventanas riesgosas con parálogos alcanzados**: los 70 de maíz son 28 posiciones
+distintas de la consulta repartidas en 60 transcriptos.
+**Estado:** descartado como número; **en pie como insumo**, una vez desagregado.
+Esa desagregación es ahora uno de nuestros entregables.
+
+### Usar el conteo on-target de la herramienta como verificación del blanco
+**Qué se intentó:** leer los aciertos dentro del organismo blanco como evidencia
+de que el candidato efectivamente apunta a su gen.
+**Qué pasó:** descartado. El *D. maidis* de la herramienta es un ensamblado de
+novo de **una sola corrida pública** (SRR15166998, Trinity), y los 190 aciertos
+perfectos de una corrida real cayeron todos en un contig que cubre 210 de los 615
+nt de un ARNm publicado. Ese conteo **mide cobertura de ensamblado, no identidad
+de blanco**.
+**Estado:** descartado.
+
+### Reproducir la columna «Nro de eficientes por gen» con criterios publicados
+**Qué se intentó:** ingeniería inversa del criterio con el que EPILAB clasificó
+siRNA como eficientes, reimplementando localmente los criterios de la literatura.
+**Qué pasó:** no se logró. Contra los 114, 35, 199 y 33 declarados, la
+reimplementación da 87/21/136/26 contando una hebra y 179/43/259/62 contando
+cualquiera, y **ninguna de 2.132 combinaciones de parámetros** reproduce los
+cuatro números. W2 agrega por qué: dsRNA-Engineer **no clasifica siRNA como
+eficientes**, cuenta aciertos.
+**Estado:** descartado por ahora, y convertido en la primera pregunta técnica
+para el investigador.
+**Qué lo reabriría:** que nos digan la herramienta y la versión.
+
+### Correr si-Fi21 para comparar criterios
+**Qué se intentó:** usarlo como línea de base, como preveía la ola 1.
+**Qué pasó:** descartado en este entorno. Es un binario de Windows con interfaz
+gráfica y no es ejecutable acá, lo que la ola 1 ya sospechaba y ahora está
+confirmado en la práctica.
+**Estado:** descartado como dependencia; se reimplementan sus reglas, que el
+propio artículo describe.
+
+### Subir las secuencias de EPILAB a dsRNA-Engineer o al BLAST web
+**Qué se intentó:** nada: quedó vedado de entrada por la regla de
+confidencialidad del corpus.
+**Qué pasó:** se corrió todo con BLAST+, Bowtie y ViennaRNA locales, y la corrida
+del servicio se hizo con una secuencia pública de referencia. El servicio, además,
+**no declara licencia, no publica código y no documenta política de retención**,
+lo que confirma que la regla era la correcta.
+**Estado:** descartado de forma permanente. No es una limitación técnica: es una
+condición del trabajo.
+
+### Diseñar sobre la secuencia de referencia de un virus sin mirar los aislados
+**Qué se intentó:** nada todavía, y por eso entra acá antes de que alguien lo
+haga.
+**Qué pasó:** el caso real apareció medido en el propio corpus. La región de
+cápside elegida por EPILAB es 100 % idéntica **sólo al aislado de Costa Rica**;
+contra los 45 registros brasileños la identidad cae a 91,5-93,5 % y la mediana de
+siRNA de 21 nt con apareamiento perfecto es **44 de 180**. Y en GenBank no hay
+ninguna secuencia argentina de MRFV.
+**Estado:** descartado como práctica. Todo candidato antiviral se evalúa contra el
+conjunto de aislados disponibles, no contra una referencia.
+
+### Buscar genomas en el NCBI por nombre común
+**Qué se intentó:** localizar el genoma del fitoplasma del achaparramiento
+consultando por «maize bushy stunt phytoplasma».
+**Qué pasó:** devolvió cero y llevó a afirmar, dentro de esta misma ola, que el
+agente no tenía genoma secuenciado. Es falso: consultado **por taxid**, el 202462
+devuelve dos ensamblados del genoma completo de 576.118 pb.
+**Estado:** descartado como método. Se resuelve el taxid primero y después se
+consulta; el script de consulta del repositorio ya lo hace así.
+**La lección, que vale más que el caso:** un cero devuelto por una consulta por
+nombre no es una ausencia.

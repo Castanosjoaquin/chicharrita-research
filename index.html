@@ -148,7 +148,9 @@
   están empatados dentro de la incertidumbre. No diseñamos secuencias nuevas, no entrenamos
   ningún modelo y no atacamos la barrera de entrega: son las tres cosas que no podríamos
   validar sin laboratorio.</p>
-  <p style="margin-bottom:0"><a href="SINTESIS.md"><strong>Leer la síntesis completa →</strong></a></p>
+  <p style="margin-bottom:0"><a href="SINTESIS_V2.md"><strong>Leer la síntesis completa →</strong></a>
+  · <a href="research/ola2/CORRECCIONES.md">Qué cambió al llegar el material oficial</a>
+  · <a href="SINTESIS_v1.md">La síntesis anterior, antes del corpus</a></p>
 </div>
 
 <h2>El hallazgo que ordena la estrategia</h2>
@@ -240,7 +242,78 @@ pregunta para el investigador.</p>
       </div>
 </div>
 
-<h2>La cartera de enfoques, priorizada</h2>
+<h2>Ola 2 — el corpus oficial</h2>
+<p class="lead">El 17 de octubre llegó el material del organizador: siete papers, dos enlaces a bases
+de datos, dos enlaces a herramientas y <strong>los cuatro candidatos preliminares del EPILAB</strong>.
+Cinco investigaciones nuevas lo analizaron y contrastaron contra la ola 1. El inventario completo,
+archivo por archivo, está en <a href="research/ola2/MANIFEST.md">MANIFEST.md</a>; qué cambió, en
+<a href="research/ola2/CORRECCIONES.md">CORRECCIONES.md</a>.</p>
+
+<div class="calls">
+  <div class="call ok">
+    <p class="k">Supuesto S2 · cerrado</p>
+    <p class="v">Ninguna de las dos herramientas oficiales calcula termodinámica</p>
+    <p class="n">El tamizaje de off-target lo hace <strong>Bowtie</strong> sobre coincidencia exacta de
+    k-meros; BLAST queda para homología y anotación. La termodinámica del sitio oficial es el Tm de
+    cebadores de Primer-BLAST, que es probablemente el origen de la frase del equipo.
+    <span class="tag e">E</span></p>
+  </div>
+  <div class="call warn">
+    <p class="k">Entrega</p>
+    <p class="v">El ARN exógeno no llega al floema</p>
+    <p class="n">Tres trabajos del corpus, con tres técnicas distintas, lo encuentran en apoplasto,
+    xilema y vaina del haz, y ninguno en floema, que es donde se alimenta el vector. La vía que el
+    corpus habilita es la adquisición durante el sondeo de xilema. <span class="tag r">R</span></p>
+  </div>
+  <div class="call ok">
+    <p class="k">Candidatos del EPILAB</p>
+    <p class="v">Cuatro, y ninguno contra mollicutes</p>
+    <p class="n">Dos contra MRFV y dos contra el vector, identificados por alineamiento local con
+    confianza alta. La predicción de la ola 1 se cumplió exactamente: cero de cuatro contra fitoplasma
+    o espiroplasma. <span class="tag e">E</span></p>
+  </div>
+</div>
+
+<div class="toc">
+  <div class="card">
+    <p class="id">W1 · Papers</p>
+    <p class="t">Los siete papers del corpus, leídos a fondo</p>
+    <p class="d">Triaje y lectura profunda, sin descartes. Ningún paper propone silenciar un gen de
+    mollicute, ninguno evalúa organismos no objetivo, y los criterios de diseño del corpus son
+    mínimos: esa es la medida exacta del hueco que podemos llenar.</p>
+    <p class="f"><a href="research/ola2/W1_papers/index.html">Leer</a> · <a href="research/ola2/W1_papers/REPORT.md">REPORT.md</a> · <a href="research/ola2/W1_papers/contradicciones.md">Contradicciones</a></p>
+  </div>
+  <div class="card">
+    <p class="id">W2 · Herramientas</p>
+    <p class="t">Qué hacen por dentro dsRNA-Engineer y BLAST</p>
+    <p class="d">Con corridas reales de BLAST+, Bowtie y ViennaRNA locales, más una corrida del
+    servicio oficial con secuencia pública. Responde el supuesto S2 con cita a archivo y línea.</p>
+    <p class="f"><a href="research/ola2/W2_herramientas/index.html">Leer</a> · <a href="research/ola2/W2_herramientas/REPORT.md">REPORT.md</a> · <a href="research/ola2/W2_herramientas/pipelines.md">Pipelines</a></p>
+  </div>
+  <div class="card">
+    <p class="id">W3 · Bases de datos</p>
+    <p class="t">Qué hay realmente en el NCBI sobre nuestro sistema</p>
+    <p class="d">409 consultas sobre 8 bases y 24 organismos. La base Gene tiene 37 registros del
+    vector y los 37 son mitocondriales. Hay tres transcriptomas TSA, no uno.</p>
+    <p class="f"><a href="research/ola2/W3_bases_datos/index.html">Leer</a> · <a href="research/ola2/W3_bases_datos/REPORT.md">REPORT.md</a> · <a href="research/ola2/W3_bases_datos/plan_ingesta.md">Plan de ingesta</a></p>
+  </div>
+  <div class="card">
+    <p class="id">W4 · Genomas</p>
+    <p class="t">Inventario genómico propio, descargado y medido</p>
+    <p class="d">17 conjuntos bajados y 43 archivos medidos con scripts propios. Los tres ensamblados
+    del vector no son equivalentes y ninguno está anotado, pero 64 de 64 ortólogos alinean.</p>
+    <p class="f"><a href="research/ola2/W4_genomas/index.html">Leer</a> · <a href="research/ola2/W4_genomas/REPORT.md">REPORT.md</a> · <a href="research/ola2/W4_genomas/viabilidad_lineas.md">Viabilidad por línea</a></p>
+  </div>
+  <div class="card">
+    <p class="id">W5 · Secuencias de EPILAB</p>
+    <p class="t">Los cuatro candidatos, caracterizados sin que salieran del entorno</p>
+    <p class="d">Identificación por alineamiento local, tamizaje de off-target y conservación entre
+    aislados. Es donde está el hallazgo más accionable de la ola.</p>
+    <p class="f"><a href="research/ola2/W5_secuencias_epilab/index.html">Leer</a> · <a href="research/ola2/W5_secuencias_epilab/REPORT.md">REPORT.md</a> · <a href="research/ola2/W5_secuencias_epilab/aprovechamiento.md">Cómo los aprovechamos</a></p>
+  </div>
+</div>
+
+<h2>La cartera de enfoques, re-priorizada</h2>
 <div class="tw">
 <table>
   <caption>El criterio de orden es el del organizador: cuánta decisión defendible produce cada línea,
@@ -273,25 +346,45 @@ pregunta para el investigador.</p>
 <p><strong>La matriz.</strong> Cada línea se puntúa de 1 a 5 en cuatro ejes; en riesgo, 5 es el peor caso
 y entra invertido: total = impacto + factibilidad + diferenciación + (6 − riesgo). Son puntajes de
 juicio del equipo, no una medición; la justificación de cada celda, con su fuente, está en
-<a href="SINTESIS.md">SINTESIS.md</a>.</p>
+<a href="SINTESIS_V2.md">SINTESIS_V2.md</a>, y los puntajes de la ola 1 en
+<a href="SINTESIS_v1.md">SINTESIS_v1.md</a>.</p>
 <div class="tw">
 <table class="matriz">
   <caption>Impacto esperado, factibilidad para cuatro personas sin laboratorio, diferenciación frente a lo que ya hace la industria, y riesgo.</caption>
   <thead><tr><th>Línea</th><th>Impacto</th><th>Factibilidad</th><th>Diferenciación</th><th>Riesgo</th><th>Total</th><th>El puntaje se apoya en</th></tr></thead>
   <tbody>
-    <tr><td><strong>L1</strong> Priorización auditable</td><td class="num">5</td><td class="num">4</td><td class="num">4</td><td class="num">3</td><td class="num"><strong>16</strong></td>
-        <td>Es la pregunta abierta del organizador. Falta anotación génica de <em>D. maidis</em>. Nadie publicó el criterio de agregación ni la incertidumbre del orden.</td></tr>
-    <tr><td><strong>L3</strong> Riesgo fuera de blanco</td><td class="num">4</td><td class="num">3</td><td class="num">4</td><td class="num">3</td><td class="num"><strong>14</strong></td>
-        <td>La lista de no objetivo de SENASA 1004/2023 es corta y concreta. El panel está incompleto.</td></tr>
-    <tr><td><strong>L2</strong> Validación retrospectiva</td><td class="num">3</td><td class="num">4</td><td class="num">3</td><td class="num">3</td><td class="num"><strong>13</strong></td>
-        <td>Mide a L1 y no decide por sí sola. Datos CC BY, pero n = 29.</td></tr>
+    <tr><td><strong>L1</strong> Priorización auditable</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td class="num">3</td><td class="num"><strong>18</strong></td>
+        <td>Sube de 16. Los candidatos llegaron y el transcriptoma no hay que construirlo: la factibilidad deja de ser una estimación. Y la herramienta oficial no estima eficacia ni declara incertidumbre.</td></tr>
+    <tr><td><strong>L3</strong> Riesgo fuera de blanco</td><td class="num">5</td><td class="num">3</td><td class="num">5</td><td class="num">3</td><td class="num"><strong>16</strong></td>
+        <td>Sube de 14 y pasa al segundo lugar. Hay riesgo medido donde no lo buscábamos: 30 siRNA sobre el ortólogo de un cicadélido no objetivo, cero en abeja, vaquita y colémbolo. Ninguno de los siete papers del corpus evalúa no objetivo.</td></tr>
+    <tr><td><strong>L2</strong> Validación retrospectiva</td><td class="num">3</td><td class="num">4</td><td class="num">3</td><td class="num">4</td><td class="num"><strong>12</strong></td>
+        <td>Baja de 13: el corpus muestra que mortalidad y knockdown se desacoplan y que el 95 % de knockdown descansa sobre tres réplicas de tres ninfas. Se ejecuta igual, junto con L1.</td></tr>
     <tr><td><strong>L4</strong> Ajuste fino de un modelo fundacional</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num">5</td><td class="num"><strong>5</strong></td>
-        <td>31 siRNA de un coleóptero y nada en Hemiptera. Arquitectura publicada al menos cuatro veces.</td></tr>
+        <td>Sigue muerta, ahora por partida doble: no hay etiquetas en Hemiptera y la herramienta oficial no estima eficacia de ninguna forma. No se hace.</td></tr>
   </tbody>
 </table>
 </div>
-<p>Ningún cambio de ±1 en una sola celda mueve al primero ni al último. L3 y L2 quedan a un punto, que es
-un empate dentro del error de la estimación. L2 se ejecuta igual, junto con L1: es su condición de validez.</p>
+<p><strong>Re-priorizada el 17 de octubre de 2026</strong>, con la factibilidad evaluada contra datos y
+herramientas que existen y que corrimos, no supuestas. Ningún cambio de ±1 en una sola celda mueve al
+primero ni al último. L2 baja pero <strong>se ejecuta igual, junto con L1</strong>: no es una alternativa
+sino su condición de validez. La justificación de cada celda está en
+<a href="SINTESIS_V2.md">SINTESIS_V2.md</a>, sección (c).</p>
+<div class="calls">
+  <div class="call ok">
+    <p class="k">Módulo nuevo de L1</p>
+    <p class="v">Desagregar el tamizaje oficial</p>
+    <p class="n">El conteo de dsRNA-Engineer suma tres tamaños de ventana y mezcla posiciones distintas
+    con parálogos alcanzados: 70 de 70 aciertos en maíz vienen de la condición de 16 pb. Desagregarlo
+    convierte un número opaco en una ficha interpretable. <span class="tag e">E</span></p>
+  </div>
+  <div class="call ok">
+    <p class="k">Módulo nuevo de L1 · el hallazgo de la ola</p>
+    <p class="v">Conservación entre aislados</p>
+    <p class="n">La región de cápside elegida por el EPILAB es 100 % idéntica <strong>sólo al aislado de
+    Costa Rica</strong>; contra los 45 registros brasileños cae a 91,5-93,5 %, con una mediana de 44 de
+    180 siRNA conservados. No hay secuencias argentinas de MRFV en GenBank. <span class="tag e">E</span></p>
+  </div>
+</div>
 <p>L1 y L2 son una sola decisión en dos tiempos: L1 produce el ranking y L2 lo mide; L1 sin L2 es
 una opinión. L4 queda documentada como descarte, y el orden es el aporte: el conjunto de
 entrenamiento honesto que existe en este subcampo son 31 siRNA probados en un coleóptero, y en la

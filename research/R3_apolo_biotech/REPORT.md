@@ -452,6 +452,25 @@ caña de azúcar **en maíz**, dsRNA de origen bacteriano a 3 µg/L logró inhib
 total a 30 días post-inoculación. Es el precedente de que el maíz absorbe y
 moviliza dsRNA aplicado exógenamente de modo útil contra un virus.
 
+> **Corrección de la ola 2 — 2026-10-17.** El corpus trae el trabajo original
+> (`YHat-Biotech/Papers/s00299-010-0911-z.pdf`) y el párrafo de arriba, tomado de
+> una revisión y no de la fuente, **está mal por seis órdenes de magnitud y
+> sobredeclara el resultado**:
+>
+> - La concentración es **3 µg de ácido nucleico total por µL**, no por litro, y
+>   la dosis aplicada fue 1 mL de una dilución al medio por planta.
+> - **No hubo inhibición total:** 16/20 y 14/20 plantas resistentes según los dos
+>   fragmentos de cápside, es decir 4/20 y 6/20 susceptibles (tabla 3).
+> - Además, las tablas 2 y 3 de ese mismo trabajo son internamente incoherentes:
+>   la fila de controles no inoculados figura como 18/20 susceptibles, con
+>   títulos de ELISA comparables a los de las plantas inoculadas `[?]`. Mientras
+>   no se resuelva, **sus porcentajes no se usan como línea de base
+>   cuantitativa**; sólo vale el resultado cualitativo de que el maíz es
+>   hospedador competente para la tecnología.
+>
+> Ver `research/ola2/CORRECCIONES.md`, entradas B2 y B3. La conclusión de la
+> sección no cambia; el número sí.
+
 ### 3.3 Síntesis honesta del eje de aplicación
 
 Lo que el equipo necesita saber para no proponer como novedad algo resuelto:

@@ -649,6 +649,25 @@ subunidades B y D de la ATP sintasa vacuolar, se reportó expresión reducida de
 ambos genes con mortalidad significativamente mayor y deformación de alas, en un
 preprint no revisado por pares `[R]` `S18`.
 
+> **Corrección de la ola 2 — 2026-10-17.** Al abrir el original
+> (`YHat-Biotech/Papers/finsc-6-1811933.pdf`, fig. 5) aparecen dos errores en el
+> párrafo de arriba, que se dejan tal como se escribieron porque el historial de
+> lo que creíamos es parte del valor del repositorio:
+>
+> 1. **Los porcentajes de supervivencia están cruzados entre especies.** En
+>    *Dalbulus maidis* **los dos** genes dejaron 10 % de supervivientes —día 4
+>    para *burs-α*, día 5 para *eth*—; el 17,5 % y el 20 % corresponden a
+>    *Delphacodes kuscheli*. El método y los porcentajes de knockdown sí eran
+>    exactos. Ver `research/ola2/CORRECCIONES.md`, entrada B5.
+> 2. **El ~95 % de knockdown no es un punto de calibración:** descansa sobre tres
+>    réplicas biológicas de tres ninfas cada una; las 40 son el n de
+>    supervivencia, no el de la medición molecular. Entrada B6.
+> 3. **Nomenclatura:** el blanco de la vía oral no es la «ATP sintasa vacuolar»
+>    sino la **subunidad D de la ATPasa vacuolar de protones (V-ATPasa)**, que es
+>    un complejo distinto de la ATP sintasa (F-ATPasa). Lo identificó sin
+>    ambigüedad el tblastn local de W5 sobre el candidato `ATPaseD_Dm` del
+>    EPILAB. Entrada E7.
+
 **Vía 2 — silenciar al patógeno. Para los mollicutes no hay mecanismo; para los
 virus, el blanco real es la planta.** Ya desarrollado. Lo que sí existe, y es
 conceptualmente distinto, es **silenciar genes del vector que el patógeno

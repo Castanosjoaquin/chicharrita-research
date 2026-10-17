@@ -337,3 +337,104 @@ en una presentación:
 `S17` (dsRNasas de *D. maidis*, Dalaisón-Fuentes et al. 2023) se completó desde el
 DOI que ya consignan R2 y R3. Sigue valiendo la pregunta 15 de arriba: solo se leyó
 el resumen.
+
+---
+
+# Ola 2 — después del corpus oficial (2026-10-17)
+
+## Cerradas por el corpus
+
+- **Los candidatos preliminares del EPILAB.** Era la pregunta número uno y la
+  única dependencia externa de toda la propuesta. **Están**: cuatro candidatos en
+  `Sequences_EPILAB.xlsx`, dos contra MRFV (proteína de movimiento y cápside) y
+  dos contra el vector (Bicaudal C y subunidad D de la V-ATPasa), con su región
+  elegida, su posición y un conteo de siRNA eficientes por gen. Los cuatro quedaron
+  identificados por alineamiento local con confianza alta
+  (`research/ola2/W5_secuencias_epilab/`).
+- **¿Contra qué organismo apuntan?** Dos al virus, dos al vector, **ninguno a los
+  mollicutes**. La predicción de la ola 1 se cumplió exactamente, y el corpus de
+  papers tampoco contiene un solo trabajo que proponga silenciar un gen de
+  fitoplasma o espiroplasma.
+- **El trabajo de entrega mediada por planta en cicadélidos** (P6), que en la ola 1
+  había quedado como rechazo de herramienta sin reformular: está en el corpus,
+  abierto y leído.
+- **BioClay frente a nucleasas:** el paper primario sí lo mide. Ver
+  `CORRECCIONES.md` B1.
+- **El original del SCMV en maíz:** abierto, y corrige nuestra cifra por seis
+  órdenes de magnitud. Ver `CORRECCIONES.md` B2.
+- **El genoma del fitoplasma:** descargado y medido con nuestros scripts
+  (`GCF_001712875.1`, 576.118 pb, 565 genes).
+- **¿Existe transcriptoma público del vector?** Sí, tres. Deja de ser el camino
+  crítico.
+- **¿Qué herramientas usa el organizador?** dsRNA-Engineer y BLAST del NCBI, y
+  ninguna de las dos calcula termodinámica ni estima eficacia.
+
+## Nuevas, y son más precisas porque están ancladas en archivos
+
+Ordenadas por cuánto cambian el plan. Las cuatro primeras son las que hay que
+hacer sí o sí.
+
+1. **¿De dónde sale la columna «Nro de eficientes por gen» de
+   `Sequences_EPILAB.xlsx`?** Declara 114, 35, 199 y 33. Ninguna de 2.132
+   combinaciones de parámetros de una reimplementación local de los criterios
+   publicados reproduce esos cuatro números, y dsRNA-Engineer no clasifica siRNA
+   como eficientes: cuenta aciertos. Saber la herramienta y la versión cambia cómo
+   hay que leer los cuatro candidatos.
+2. **¿Sobre qué aislado de MRFV se diseñaron los dos candidatos virales?** La
+   región de cápside es 100 % idéntica sólo al aislado de Costa Rica y cae a
+   91,5-93,5 % contra los 45 registros brasileños, con una mediana de 44 de 180
+   siRNA conservados. En GenBank no hay ninguna secuencia argentina de MRFV.
+   ¿Tienen secuencias propias de aislados locales?
+3. **¿Cuál de los cuatro transcriptomas del vector usa el laboratorio?** Hay tres
+   públicos en TSA, uno de novo dentro de dsRNA-Engineer, y el que usa el grupo que
+   publica en la especie es propio y no publicado, respaldado por una tesis de
+   maestría de la UNNOBA de 2018. ¿Nos pasan el suyo? También define si las
+   posiciones de la planilla (BicC_Dm 264-563, ATPaseD_Dm 151-450) son
+   reproducibles con datos públicos.
+4. **¿Cuál de los dos taxones es «MSMV»?** La sigla mapea a *maize striate mosaic
+   virus* (TaxID 2025388, Geminiviridae) y a *Tenuivirus zeae* (TaxID 3052767,
+   Phenuiviridae), con vectores distintos. Hasta resolverlo, cualquier diseño
+   contra ese agente apunta a un blanco indefinido.
+5. **¿El ARN exógeno llega al floema en maíz, o la vía realista es la adquisición
+   durante el sondeo de xilema?** Tres trabajos del corpus, con tres técnicas
+   distintas, lo encuentran en apoplasto, xilema y vaina del haz, y ninguno en
+   floema, que es donde se alimenta *D. maidis*. Es la pregunta que más condiciona
+   el modo de aplicación.
+6. **¿Qué desenlace mide el laboratorio: knockdown, mortalidad o transmisión?** En
+   el corpus, en entrega oral a un hemíptero, la mortalidad sube con la dosis
+   mientras el knockdown no correlaciona, y el ARNdc control ya mata a dosis alta.
+   No son la misma variable.
+7. **¿Contemplan que un ARNdc sobre la región de MP_MRFV ataque dos marcos a la
+   vez?** El tblastn local alinea ahí la poliproteína en el marco +3 y la proteína
+   de movimiento en el +1, los dos al 100 % `[H]`.
+8. **¿Evaluaron cicadélidos no objetivo?** Es donde está el riesgo medido: 30
+   siRNA de ≥19 nt de la región de BicC sobre el ortólogo de *Homalodisca
+   vitripennis*, contra cero en abeja, vaquita y colémbolo y sólo tres bloques de
+   19 nt en maíz. Y falta lo que no existe: transcriptomas de cicadélidos nativos
+   no plaga y de parasitoides de *Dalbulus*.
+9. **La planilla tiene un corrimiento de coordenadas en CP_MRFV:** declara 200-400
+   pero la región empieza en la posición 201. ¿Es base 0 en esa fila, o un error?
+10. **¿El tamaño de siRNA de 21 pb que dsRNA-Engineer asigna a *D. maidis* está
+    medido en la especie, o es un valor por defecto?** No tiene fuente ni en el
+    paper ni en el servicio, y la asignación no sigue la filogenia.
+
+## Pendientes internos nuevos
+
+- **Materiales suplementarios:** los PDF del corpus traen sólo el artículo
+  principal. Quedan sin ver los datos por insecto de P6 (tablas S2-S5), las
+  secuencias exactas de los ARNdc de P3 (tabla S1 y figura S1) y la microscopía de
+  captación de P4. Pedirlos.
+- **La versión revisada por pares de dsRNA-Engineer** (*Trends in Biotechnology*)
+  está tras muro de pago; toda la descripción algorítmica viene del preprint, del
+  cliente desplegado y de la corrida real.
+- **Incoherencia interna en el paper del SCMV** (tablas 2 y 3, controles no
+  inoculados 18/20 susceptibles): sus porcentajes no se usan hasta resolverla.
+- **La completitud de los ensamblados** es un proxy con miniprot, no BUSCO
+  oficial: compleasm no resuelve en Bioconda. Está calibrado, pero es proxy.
+- **El panel de no objetivo sigue siendo de especies modelo.** Los ceros de
+  *Apis*, *Harmonia* y *Folsomia* son reales; la ausencia de riesgo en cicadélidos
+  nativos y parasitoides **no está medida**, porque no hay transcriptomas.
+- **Licencias sin verificar:** UniProt y KEGG quedaron consignadas sin abrir sus
+  páginas de términos.
+- **Sin resolver de la ola 1:** el trabajo de dsRNasas en *D. maidis* (PubMed
+  37945254) no está en el corpus y sigue sin abrirse.

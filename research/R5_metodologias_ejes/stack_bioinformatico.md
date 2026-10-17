@@ -5,6 +5,30 @@ de entrada y salida, y si corre local. "Local" significa una notebook de
 estudiante, que acá se toma como 16 GB de RAM, 8 hilos y disco SSD con 100 GB
 libres.
 
+> **Correcciones de la ola 2 — 2026-10-17.** Medido contra las bases reales, con
+> 409 consultas ejecutadas (`research/ola2/W3_bases_datos/`) y 17 conjuntos
+> descargados y medidos (`research/ola2/W4_genomas/`):
+>
+> - **Hay tres transcriptomas TSA del vector, no uno.** A `GITV00000000` se le
+>   suman `GHCC00000000` (55.286 secuencias) y `GCWP00000000` (25.662). Y el
+>   conteo de `GITV00000000` es 56.117 según el registro del NCBI, contra las
+>   56.116 que esta tabla tomó del artículo `[?]`.
+> - **La base Gene no sirve para la especie blanco:** tiene 37 registros de
+>   *Dalbulus maidis* y **los 37 son mitocondriales**. Cero genes nucleares. El
+>   camino practicable es la ortología desde *Macrosteles quadrilineatus*
+>   (`GCF_028750875.1`, 24.178 genes anotados), que esta tabla no registraba.
+> - **Genoma anotado no implica genes indexados:** *'Ca.* Phytoplasma zeae' tiene
+>   0 registros en Gene pese a sus 581 genes. La anotación sale del GFF3 o de la
+>   base protein.
+> - **El recurso web Assembly fue retirado** en favor de NCBI Datasets, aunque la
+>   base Entrez `assembly` sigue consultable y los comandos de esta tabla no se
+>   rompen.
+> - **Falta un recurso que esta tabla no tenía y es directamente relevante:**
+>   `PRJNA631706`, 16 corridas de RNA-seq del vector expuesto al MRFV contra
+>   naive, a 4 h y 7 días.
+>
+> Ver `research/ola2/CORRECCIONES.md`, entradas H2, H3 y H5.
+
 **Estado de verificación.** Cada URL de esta tabla se abrió en esta corrida
 (2026-10-16) salvo donde dice `NO VERIFICADA`, y en ese caso se explica por qué.
 Las URL de API se verificaron por uso directo: la consulta corrió y devolvió

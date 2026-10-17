@@ -3,6 +3,28 @@
 Cuatro propuestas, ordenadas. El orden no es neutro y el criterio está escrito
 abajo. Cada línea declara explícitamente si los datos que necesita existen hoy.
 
+> **Veredicto de la ola 2 — 2026-10-17.** Con el corpus oficial y con los datos
+> efectivamente descargados y medidos, **el orden no cambia: L1 > L2 > L3 >> L4**,
+> y ahora la factibilidad está evaluada contra datos que existen de verdad. El
+> cruce línea por línea está en `research/ola2/W4_genomas/viabilidad_lineas.md`;
+> las correcciones, en `research/ola2/CORRECCIONES.md`.
+>
+> - **L1 y L2: viables con lo que hay.** El insumo que faltaba —los candidatos
+>   del EPILAB— llegó, y el transcriptoma que esta línea daba por inexistente
+>   resultó ser tres transcriptomas descargables.
+> - **L3: viable con dos faltantes declarados.** No hay etiquetas de esencialidad
+>   génica para hemípteros, y el panel de no objetivo del agroecosistema argentino
+>   sigue sin existir: lo que se corrió usa especies modelo como sustitutas.
+> - **L4: inviable, y el corpus lo confirma por una vía nueva.** No sólo faltan
+>   los datos de entrenamiento; la herramienta que el organizador entrega bajo el
+>   rótulo de diseño y verificación **no estima eficacia de ninguna forma**:
+>   cuenta coincidencias exactas de k-meros con Bowtie y las suma.
+>
+> Eso corre el eje del aporte y conviene decirlo así ante el jurado: **no se trata
+> de modelar mejor que el estado del arte, sino de decidir mejor con lo que ya se
+> calcula.** La vara es más baja de lo que suponía este documento, y el hueco de
+> eficacia es ahora un hueco verificado del material oficial.
+
 Marcadores: `[E]` establecido, `[R]` reportado, `[H]` hipótesis nuestra,
 `[?]` incierto. Las fuentes están en `sources.json`; todas fueron abiertas.
 
