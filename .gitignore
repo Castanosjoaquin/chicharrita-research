@@ -1,2 +1,5 @@
 # Material de referencia pesado: se guarda local, no en git
 *.pdf
+
+# Ruido de macOS
+.DS_Store

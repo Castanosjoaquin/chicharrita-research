@@ -1,0 +1,551 @@
+{
+  "meta": {
+    "linea": "R2 — attention y diseño de ARN",
+    "fecha_consulta": "2026-10-16",
+    "regla": "Sólo entran fuentes que se abrieron. Las que no se abrieron van en 'no_verificadas' con el motivo.",
+    "marcadores": {
+      "E": "establecido: consenso en literatura revisada por pares",
+      "R": "reportado: una o pocas fuentes, preprint, nota técnica o web institucional",
+      "H": "hipótesis nuestra",
+      "?": "incierto o contradicción entre fuentes"
+    }
+  },
+  "fuentes": [
+    {
+      "id": "cedden2025",
+      "cita": "Cedden D, Güney G, Rostás M, Bucher G. Optimizing dsRNA sequences for RNAi in pest control and research with the dsRIP web platform. BMC Biology. 2025;23:478652. doi:10.1186/s12915-025-02219-6",
+      "url_abierta": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12039203/fullTextXML",
+      "url_canonica": "https://doi.org/10.1186/s12915-025-02219-6",
+      "licencia": "CC BY 4.0",
+      "marcador": "E",
+      "usado_para": [
+        "Las cuatro features de siRNA asociadas a eficacia insecticida en Tribolium castaneum: asimetría termodinámica, energía de autoplegamiento del antisentido, %GC de las posiciones 9 a 14 del antisentido, y adenina en la posición 10",
+        "La accesibilidad del ARNm NO fue predictor significativo de eficacia en insectos (P > 0.05), al contrario de lo establecido en células humanas",
+        "El %GC se INVIERTE entre humano e insecto: alto, no bajo, se asocia a eficacia",
+        "Modelo de Cox con C-statistic de Harrell = 0.76 (IC 95%: 0.73 a 0.79) sobre 29 siRNA",
+        "El score de siRNA fue el predictor positivo más significativo de eficacia insecticida (aumento de 1.462 en hazard ratio por unidad, P = 0.003)",
+        "dsRIP calcula asimetría termodinámica como diferencia de energía de apareamiento entre los primeros cuatro nucleótidos del antisentido y los últimos cuatro del sentido",
+        "dsRIP usa ViennaRNA v2.7 para estructura secundaria y accesibilidad, y Bowtie1 v1.3 para off-targets",
+        "dsRIP combina score de eficacia y score de seguridad con un deslizador de prioridad, y una ventana deslizante que maximiza la combinación",
+        "El score de seguridad pondera off-targets en genes esenciales 20 a 1 frente a off-targets comunes",
+        "Ortología inferida con OrthoFinder v2.5 en 83 organismos",
+        "Un ARNdc diseñado por dsRIP superó a la secuencia comercial de Ledprona a dosis baja (P = 0.022, hazard ratio 2.1)",
+        "Los ARNdc de alto score produjeron en promedio 20,1% más siRNA antisentido ligado a RISC",
+        "Datos de bioensayo disponibles en Additional file 2 y Additional file 3 Tabla S1"
+      ]
+    },
+    {
+      "id": "dsrip_web",
+      "cita": "dsRIP — Designer for RNA Interference-based Pest Management, v1.2, University of Göttingen, 2025",
+      "url_abierta": "https://dsrip.uni-goettingen.de/",
+      "licencia": "El pie del sitio dice 'All rights reserved'; no se halló licencia de uso explícita",
+      "marcador": "R",
+      "usado_para": [
+        "La plataforma está en línea y ofrece RNAi Target Gene Finder, Orthology Inference in New Pests, Efficient dsRNA Designer y Primer Designer",
+        "La página principal NO lista las especies soportadas; no se pudo confirmar si Dalbulus maidis o algún cicadélido está incluido"
+      ]
+    },
+    {
+      "id": "luck2019",
+      "cita": "Lück S, Kreszies T, Strickert M, Schweizer P, Kuhlmann M, Douchkov D. siRNA-Finder (si-Fi) Software for RNAi-Target Design and Off-Target Prediction. Frontiers in Plant Science. 2019;10:1023. doi:10.3389/fpls.2019.01023",
+      "url_abierta": "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2019.01023/full",
+      "licencia": "Artículo abierto; software bajo CC BY-SA 4.0",
+      "marcador": "E",
+      "usado_para": [
+        "si-Fi21 es el baseline establecido para diseño de ARNdc largo, no de siRNA corto para sistemas de mamífero",
+        "Usa BOWTIE para el mapeo de off-targets, no BLAST, elegido por 'accuracy, speed, and memory efficiency'",
+        "Usa RNAplfold de ViennaRNA 2.0 para accesibilidad, siguiendo a Tafer et al. 2008, con u=8, L=40, W=80 y umbral 0.1",
+        "Reglas de selección de hebra citadas: U o A en el extremo 5', MFE del extremo 5' mayor que la del extremo 5' de la hebra opuesta, delta-MFE de los primeros tres nucleótidos de cada hebra mayor a 1 kcal/mol",
+        "Dos modos: HS de alta sensibilidad para búsqueda de off-target, y HE de alta eficiencia para diseño",
+        "Validación en HvMlo de cebada: la mejor correlación con el silenciamiento medido fue Pearson R = -0.61, moderada y sobre un conjunto chico de construcciones",
+        "Es software de escritorio, sólo Windows, en Python 2.7 y Qt 4; repositorio https://github.com/snowformatics/siFi21-"
+      ]
+    },
+    {
+      "id": "bai2024_oligoformer",
+      "cita": "Bai Y, Zhong W, Chen T, et al. OligoFormer: an accurate and robust prediction method for siRNA design. Bioinformatics. 2024;40(10):btae577",
+      "url_abierta": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11494384/",
+      "licencia": "Acceso abierto en PMC",
+      "marcador": "E",
+      "usado_para": [
+        "ES EL MÉTODO PUBLICADO QUE YA HACE LO QUE PROPONE LA IDEA DEL EQUIPO: combina embeddings del modelo de lenguaje de ARN RNA-FM, un encoder transformer con atención multi-cabeza, y parámetros termodinámicos, para predecir eficacia de knockdown",
+        "Datasets: nueve conjuntos públicos con 3.714 siRNA y 75 mRNA; Hüsken (2.431 siRNA, 34 mRNA, células H1299) y Takayuki (702 siRNA, 1 mRNA, HeLa)",
+        "Líneas celulares humanas: H1299, HaCaT, HEK293T, HEK293, T24, HeLa",
+        "Embeddings de RNA-FM pre-calculados y congelados: 19x640 para siRNA y 57x640 para la ventana de mRNA",
+        "Resultados intra-dataset en Hüsken: AUC 0.8619, PCC 0.7114. Inter-dataset entrenando en Hüsken: AUC 0.8163, PCC 0.5879",
+        "Ablación: quitar RNA-FM o las features de siRNA produce las caídas más grandes",
+        "Mapas de saliencia: preferencia de A/G en posiciones 1 y 2 y de U en 18 y 19",
+        "Módulo off-target por ventana deslizante de 19 nt, con filtros de motivos inmunoestimulantes y semillas tóxicas, y puntajes de TargetScan Context++ y PITA",
+        "Limitaciones declaradas por los autores: los datasets son limitados en representación y cantidad, lo que restringe la generalización",
+        "Código en https://github.com/lulab/OligoFormer"
+      ]
+    },
+    {
+      "id": "liu2023_attsioff",
+      "cita": "Liu B, Yuan Y, Pan X, Shen H, Jin C. AttSiOff: A self-attention-based approach on siRNA design with inhibition and off-target effect prediction. bioRxiv. 2023. doi:10.1101/2023.11.24.568517",
+      "url_abierta": "https://www.biorxiv.org/content/10.1101/2023.11.24.568517.full.pdf",
+      "licencia": "Preprint; los autores declaran 'All rights reserved. No reuse allowed without permission'",
+      "marcador": "R",
+      "usado_para": [
+        "SEGUNDO MÉTODO PUBLICADO QUE REINVENTA LA IDEA DEL EQUIPO, y lo dice textualmente en sus aportes declarados: aplican el modelo preentrenado RNA-FM para enriquecer el embedding de las secuencias en lugar de one-hot, y emplean el mecanismo de self-attention en predicción de inhibición de siRNA 'for the first time' para capturar dependencias globales y locales",
+        "Combina predictor de inhibición basado en self-attention con un buscador de mRNA y un filtro de off-target",
+        "El filtro de off-target cuenta sitios con coincidencia de semilla en el transcriptoma",
+        "Reconoce que los métodos previos 'suffer from limited accuracy and poor generalization'"
+      ]
+    },
+    {
+      "id": "nargab2026_review",
+      "cita": "From rules to foundation models: a comprehensive review of machine learning approaches for siRNA design. NAR Genomics and Bioinformatics. 2026;8(3):lqag099",
+      "url_abierta": "https://academic.oup.com/nargab/article/8/3/lqag099/8776214",
+      "licencia": "Acceso abierto",
+      "marcador": "E",
+      "usado_para": [
+        "Cronología completa del campo: reglas de secuencia, termodinámica, ML clásico, aprendizaje profundo, modelos fundacionales",
+        "Transformers para siRNA ya publicados: OligoFormer, AttSiOff, BERT-siRNA, DeepSilencer, DeepSipred; GNN: siRNADiscovery; modelo 3D equivariante: ENsiRNA",
+        "BERT-siRNA hereda pesos de DNA-BERT y hace fine-tuning sobre datos de siRNA, y su atención se concentra en el extremo 5' de la guía: es el cuarto método que reinventa la idea del equipo",
+        "Tabla de modelos fundacionales de ARN 2022-2026: RNA-FM, mRNA-FM, UNI-RNA, RNA-MSM, RNAErnie, ERNIE-RNA, UTR-LM, RNAGenesis (1B), AIDO.RNA (1.6B), Evo 1 (7B), RiNALMo (650M), HydraRNA, Orthrus, Evo 2",
+        "Conclusión crítica sobre embeddings: son 'sufficient but not necessary'; las ablaciones 'rest largely on single-model ablations' y no establecen que los embeddings de modelos fundacionales sean requeridos",
+        "Fuga de datos: 'data leakage between training and test sets has systematically inflated benchmark results'",
+        "Protocolos de partición contra fuga: siRNA-split (ninguna secuencia de test en train) y mRNA-split (ningún mRNA de test apuntado por un siRNA de train), con splits 70:15:15 sobre 10 semillas",
+        "Al aplicar particiones conscientes de la fuga, el rendimiento absoluto cae y las diferencias entre métodos se angostan",
+        "'chronic scarcity of experimentally validated siRNA knockdown data'; los datasets curados más grandes tienen sólo miles de siRNA",
+        "'No formal uncertainty quantification (UQ) methods have been applied to siRNA efficacy prediction' — la cuantificación de incertidumbre es 'the most critical gap'",
+        "Off-target: mecanismo por complementariedad de semilla en posiciones 2 a 8; herramientas SeedMatchR, siSPOTR (puntaje POTS para humano y ratón), pssRNAit para plantas, si-Fi (Bowtie + RNAfold); controles C911",
+        "Disección de la semilla: posiciones 2 a 5 dirigen la actividad off-target, 6 a 8 contribuyen a ambas, 8 a 14 correlacionan negativamente con off-target",
+        "Ningún sistema existente optimiza conjuntamente eficacia, seguridad off-target y compatibilidad de modificación",
+        "Propone cabezales duales de predicción y optimización bayesiana sobre el espacio de secuencias como dirección futura, sin método multiobjetivo concreto",
+        "Los tokenizadores de modelos de ARN carecen de símbolos de nucleótidos modificados",
+        "No menciona insectos en ninguna parte"
+      ]
+    },
+    {
+      "id": "cheng2024_dsrnapredictor",
+      "cita": "Characterization of double-stranded RNA and its silencing efficiency for insects using hybrid deep-learning framework. Briefings in Functional Genomics. 2024;23(6):858",
+      "url_abierta": "https://academic.oup.com/bfg/article/23/6/858/7697623",
+      "marcador": "R",
+      "usado_para": [
+        "Arquitectura: embeddings dna2vec de 100 dimensiones con 3-meros, CNN de 64 filtros, BiLSTM, capa de self-attention, clasificador sigmoide",
+        "Datos de iBeetle-Base: de 16.094 registros, 12.027 ARNdc eficientes como positivos tras quitar secuencias con más de 80% de similitud",
+        "Definición de positivo: letalidad de al menos 20% o cambio fenotípico reportado. Negativos: fragmentos de mRNA reordenados de 130 a 616 bp",
+        "Validación cruzada de cinco pliegues: exactitud 0.7602, MCC 0.523, AUC 0.8288. Test independiente: exactitud 0.7621, AUC 0.8326",
+        "El 'test independiente' es una porción retenida del MISMO dataset, no un benchmark externo",
+        "Para Aedes aegypti no reportan exactitud ni AUC: el claim de transferencia entre especies se apoya en acuerdo cualitativo, con desacuerdos reconocidos (dsCHSA_1928)",
+        "Error cuadrático medio de 0.167 en la regresión de eficiencia"
+      ]
+    },
+    {
+      "id": "lorenz2011_viennarna",
+      "cita": "Lorenz R, Bernhart SH, Höner zu Siederdissen C, Tafer H, Flamm C, Stadler PF, Hofacker IL. ViennaRNA Package 2.0. Algorithms for Molecular Biology. 2011;6:26. doi:10.1186/1748-7188-6-26",
+      "url_abierta": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3319429/fullTextXML",
+      "licencia": "CC BY 2.0 (el artículo)",
+      "marcador": "E",
+      "usado_para": [
+        "RNAfold calcula la energía libre mínima (MFE) y retrocede una estructura secundaria óptima; con la opción -p usa el algoritmo de McCaskill para la función de partición, la matriz de probabilidades de apareamiento de bases y la estructura centroide",
+        "RNAplfold calcula la probabilidad de apareamiento de bases promediada sobre todas las ventanas que contienen el par putativo, y con la opción -a las accesibilidades locales, es decir las probabilidades de que intervalos de secuencia estén de hebra simple en equilibrio termodinámico",
+        "RNAup primero calcula energías locales de apertura para ambas moléculas y después las energías de interacción, buscando el mejor sitio de interacción entre las dos",
+        "RNAduplex ignora las estructuras intramoleculares y todos los bucles multirrama en su búsqueda de regiones de interacción termodinámicamente favorables",
+        "El modelo de energía usa los parámetros Turner 2004",
+        "El paquete se descarga de http://www.tbi.univie.ac.at/RNA"
+      ]
+    },
+    {
+      "id": "rnaup_manpage",
+      "cita": "RNAup(1) manual page, ViennaRNA Package",
+      "url_abierta": "https://www.tbi.univie.ac.at/RNA/RNAup.1.html",
+      "marcador": "E",
+      "usado_para": [
+        "La descomposición explícita de la energía de interacción: dG = dGint + dGu_l, donde dGu_l es la energía de apertura de la región blanco y dGint la energía de interacción",
+        "Opciones relevantes: -u longitud de la región no estructurada (por omisión 4), -w longitud máxima de la región de interacción (por omisión 25), -T temperatura (por omisión 37 grados Celsius)",
+        "La secuencia más larga se trata como el blanco estructurado y la más corta como el ARN pequeño no estructurado"
+      ]
+    },
+    {
+      "id": "ncbi_blast_stats",
+      "cita": "Altschul SF. The Statistics of Sequence Similarity Scores. NCBI BLAST tutorial",
+      "url_abierta": "https://www.ncbi.nlm.nih.gov/BLAST/tutorial/Altschul-1.html",
+      "marcador": "E",
+      "usado_para": [
+        "EL PUNTO CENTRAL DEL MALENTENDIDO: el modelo de puntaje de BLAST se basa en puntajes de sustitución de aminoácidos y nucleótidos en forma de log-odds, construidos a partir de frecuencias objetivo y frecuencias de fondo con una constante de escala lambda. No menciona en ningún momento la energía libre de hibridación de ácidos nucleicos",
+        "La estadística se apoya en alineamientos locales, en particular sin huecos: un Smith-Waterman modificado encuentra pares de segmentos de alto puntaje (HSP)",
+        "El E-value, por la ecuación de Karlin-Altschul, crece con el tamaño del espacio de búsqueda y decrece exponencialmente con el puntaje",
+        "El bit score es el puntaje crudo normalizado con K y lambda, en unidades estándar",
+        "P = 1 - exp(-E); el número de HSP aleatorios sobre un umbral sigue una distribución de Poisson",
+        "Para alineamientos con huecos la teoría no es sólida: lambda y K se estiman empíricamente"
+      ]
+    },
+    {
+      "id": "ncbi_blast_faq",
+      "cita": "BLAST Frequently Asked Questions, NCBI",
+      "url_abierta": "https://blast.ncbi.nlm.nih.gov/doc/blast-help/FAQ.html",
+      "marcador": "E",
+      "usado_para": [
+        "Definición textual: 'The Expect value (E) is a parameter that describes the number of hits one can expect to see by chance' al buscar en una base de datos de un tamaño dado",
+        "El E-value decrece exponencialmente a medida que crece el puntaje S"
+      ]
+    },
+    {
+      "id": "altschul1990",
+      "cita": "Altschul SF, Gish W, Miller W, Myers EW, Lipman DJ. Basic local alignment search tool. Journal of Molecular Biology. 1990;215(3):403-410. PMID 2231712",
+      "url_abierta": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2231712&rettype=abstract",
+      "marcador": "E",
+      "usado_para": [
+        "BLAST 'directly approximates alignments that optimize a measure of local similarity, the maximal segment pair (MSP) score': es una heurística de alineamiento, no un cálculo físico"
+      ]
+    },
+    {
+      "id": "altschul1997",
+      "cita": "Altschul SF, Madden TL, Schäffer AA, et al. Gapped BLAST and PSI-BLAST: a new generation of protein database search programs. Nucleic Acids Research. 1997;25(17):3389-3402. PMID 9254694",
+      "url_abierta": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9254694&rettype=abstract",
+      "marcador": "E",
+      "usado_para": [
+        "'A new criterion for triggering the extension of word hits': confirma el esquema de semilla y extensión (seed-and-extend) por aciertos de palabras"
+      ]
+    },
+    {
+      "id": "dalaison2022",
+      "cita": "Dalaisón-Fuentes LI, Pascual A, Gazza E, Welchen E, Rivera-Pomar R, Catalano MI. Development of efficient RNAi methods in the corn leafhopper Dalbulus maidis, a promising application for pest control. Pest Management Science. 2022;78(7):3108-3116. doi:10.1002/ps.6937. PMID 35442515",
+      "url_abierta": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=35442515&rettype=abstract",
+      "marcador": "E",
+      "usado_para": [
+        "Primer reporte de RNAi eficiente en Dalbulus maidis, declarado así por los autores",
+        "Caracterizan los genes centrales del RNAi y evalúan la funcionalidad de la maquinaria en la especie",
+        "Blanco: Bicaudal C (BicC), por su rol en la oogénesis. Vías probadas: inyección e ingestión de ARNdc en hembras adultas",
+        "Reducción de niveles de transcripto con cambios de hasta 170 veces, y reducción de oviposiciones; alteraciones en el desarrollo del ovocito"
+      ]
+    },
+    {
+      "id": "dalaison2023_dsrnasas",
+      "cita": "Dalaisón-Fuentes LI, Pascual A, Crespo M, Andrada NL, Welchen E, Catalano MI. Knockdown of double-stranded RNases (dsRNases) enhances oral RNA interference (RNAi) in the corn leafhopper, Dalbulus maidis. Pesticide Biochemistry and Physiology. 2023;196:105618. PMID 37945254",
+      "url_abierta": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=37945254&rettype=abstract",
+      "marcador": "E",
+      "usado_para": [
+        "ES LA FUENTE PRIMARIA DE LA BARRERA QUE DECLARA EL ORGANIZADOR: el ARNdc administrado por vía oral es menos efectivo que por inyección, y las dsRNasas son la causa",
+        "Se identificaron y caracterizaron tres dsRNasas; Dmai-dsRNase-2 se expresa fuertemente en intestino medio y glándulas salivales",
+        "Un ensayo de degradación ex vivo mostró actividad nucleasa significativa y alta inestabilidad del ARNdc frente a homogenatos de tejido",
+        "Silenciar Dmai-dsRNase-2 mejoró la respuesta al ARNdc del gen de interés",
+        "La co-administración simultánea de ARNdc contra la dsRNasa y contra el gen blanco es la estrategia propuesta por los autores"
+      ]
+    },
+    {
+      "id": "andrada2026",
+      "cita": "Andrada NL, Crespo M, Baricalla AA, Dalaisón-Fuentes LI, Sterkel M, Catalano MI. ETH and Burs-α are necessary for the normal molting in Dalbulus maidis and Delphacodes kuscheli. Frontiers in Insect Science. 2026;6:1811933. PMID 42328018, PMCID PMC13279319",
+      "url_abierta": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42328018&rettype=abstract",
+      "licencia": "CC BY (Frontiers)",
+      "marcador": "E",
+      "usado_para": [
+        "Tercer trabajo de RNAi en D. maidis: silenciar burs-α y eth redujo significativamente los niveles de ARNm y causó altas tasas de mortalidad en ambas especies, con defectos severos de muda",
+        "Los autores los proponen como blancos moleculares prometedores para control de plagas en maíz",
+        "Nota de conflicto de interés: una de las autoras estaba empleada por Rizobacter Argentina S.A. al momento de la publicación"
+      ]
+    },
+    {
+      "id": "xu2021_transcriptoma",
+      "cita": "Xu J, Willman M, Todd J, Kim KH, Redinbaugh MG, Stewart LR. Transcriptome of the Maize Leafhopper (Dalbulus maidis) and Its Transcriptional Response to Maize Rayado Fino Virus (MRFV). Microbiology Spectrum. 2021;9(3):e0061221. PMID 34817206, PMCID PMC8612151",
+      "url_abierta": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34817206&rettype=abstract",
+      "marcador": "E",
+      "usado_para": [
+        "El transcriptoma ensamblado contiene 56.116 transcriptos, a partir de 1.727.369.026 lecturas pareadas de 100 nt de insectos adultos enteros",
+        "Máxima identidad y mayor número de ortólogos con el cicadélido Graminella nigrifrons: 65% de los transcriptos con coincidencias de E-value menor a 1e-5",
+        "D. maidis expresa genes de las vías Toll, Imd y Jak/STAT y genes de la vía de RNAi",
+        "72 transcriptos respondieron a la exposición a MRFV a las 4 horas y 67 a los 7 días (DESeq2)"
+      ]
+    },
+    {
+      "id": "jain2019",
+      "cita": "Jain S, Wallace BC. Attention is not Explanation. NAACL 2019:3543-3556. doi:10.18653/v1/N19-1357",
+      "url_abierta": "https://arxiv.org/abs/1902.10186 ; https://ar5iv.labs.arxiv.org/html/1902.10186 ; https://aclanthology.org/N19-1357/",
+      "marcador": "E",
+      "usado_para": [
+        "Permutar aleatoriamente los pesos de atención 'often induces only minimal changes in output'",
+        "Se pueden construir distribuciones de atención adversarias que maximizan la divergencia JSD y aun así 'yield equivalent predictions'",
+        "Conclusión de los autores sobre si la atención da explicaciones significativas: 'We find that they largely do not', y 'We thus caution against using attention weights to highlight input tokens'",
+        "LÍMITE CRÍTICO DE ALCANCE: el resultado se sostiene en encoders BiLSTM con atención aditiva, y los propios autores declaran la excepción: 'The exception to this is when one uses a very simple (averaging) encoder model'",
+        "NO testearon self-attention multi-cabeza (Transformers) ni seq2seq: extrapolar su conclusión a un Transformer no está respaldado por el paper"
+      ]
+    },
+    {
+      "id": "wiegreffe2019",
+      "cita": "Wiegreffe S, Pinter Y. Attention is not not Explanation. EMNLP 2019 (D19-1002). arXiv:1908.04626",
+      "url_abierta": "https://arxiv.org/abs/1908.04626 ; https://ar5iv.labs.arxiv.org/html/1908.04626",
+      "marcador": "E",
+      "usado_para": [
+        "La respuesta 'depends on the definition of explainability one is looking for'",
+        "La atención provee 'an explanation; not the explanation'",
+        "Cuatro tests propuestos: baseline de pesos uniformes, calibración de varianza por semilla, framework diagnóstico con pesos congelados en un MLP no contextual, y adversario entrenado end-to-end",
+        "Las distribuciones adversarias halladas rinden mal en el MLP diagnóstico: la atención entrenada captura algo real",
+        "Distinción adoptada: una reconstrucción 'plausible (but not necessarily faithful)' del proceso de decisión",
+        "'prior work does not disprove the usefulness of attention mechanisms for explainability'"
+      ]
+    },
+    {
+      "id": "serrano2019",
+      "cita": "Serrano S, Smith NA. Is Attention Interpretable? ACL 2019 (P19-1282). arXiv:1906.03731",
+      "url_abierta": "https://ar5iv.labs.arxiv.org/html/1906.03731",
+      "marcador": "E",
+      "nota_verificacion": "Se abrió la versión ar5iv del arXiv, no el PDF de ACL Anthology. Los datos de paginación vienen de búsqueda, no de página abierta",
+      "usado_para": [
+        "Método de erasure sobre la representación intermedia: ponen a cero pesos de atención, renormalizan y vuelven a correr sólo la capa de clasificación, midiendo divergencia de Jensen-Shannon y si la decisión se da vuelta",
+        "'attention does not necessarily correspond to importance' y 'ranking importance by descending attention weights is not optimal'",
+        "Los rankings por gradiente y por gradiente por atención dan vuelta la decisión quitando MENOS ítems que el ranking por atención",
+        "Los encoders recurrentes dispersan la señal entre muchos tokens; los modelos sin encoder se dan vuelta más rápido: el grado de contextualización es la variable clave"
+      ]
+    },
+    {
+      "id": "bibal2022",
+      "cita": "Bibal A, Cardon R, Alfter D, Wilkens R, Wang X, François T, Watrin P. Is Attention Explanation? An Introduction to the Debate. ACL 2022, Vol 1:3889-3900. doi:10.18653/v1/2022.acl-long.269",
+      "url_abierta": "https://aclanthology.org/2022.acl-long.269/ ; https://aclanthology.org/2022.acl-long.269.pdf",
+      "marcador": "E",
+      "usado_para": [
+        "Estado del debate: el problema es en buena medida metodológico, cada contribución se apoya en tareas, embeddings y arquitecturas distintas sin terreno común",
+        "La respuesta depende de la tarea: 'attention mechanisms seem to provide faithful explanations in syntax-related tasks', pero eso da explicación global, no local por decisión",
+        "Según este survey, Vashishth et al. 2019 sostienen que con input de una sola secuencia la atención 'is comparable to a gating unit' y los pesos no se pueden interpretar como atención, reducción que no vale para redes de self-attention ni para tareas con segunda secuencia",
+        "La faithfulness de la atención se suele evaluar usando gradientes o LIME como patrón oro, pero esas técnicas 'can lead to unexpected (and potentially misleading) results' — no hay patrón oro confiable",
+        "Inducir esparsidad 'may in fact reduce the faithfulness of attention' (Meister et al. 2021)",
+        "'the question of how to evaluate faithfulness is still open'",
+        "Asumir causalidad al evaluar el poder explicativo de la atención 'is doomed to fail by design'",
+        "Alternativas más prometedoras: effective attention, atención supervisada con humanos en el loop, y regularizaciones que refuerzan el vínculo peso-token"
+      ]
+    },
+    {
+      "id": "grimsley2020",
+      "cita": "Grimsley C, Mayfield E, Bursten JRS. Why Attention is Not Explanation: Surgical Intervention and Causal Reasoning about Neural Models. LREC 2020:1780-1790 (2020.lrec-1.220)",
+      "url_abierta": "https://aclanthology.org/2020.lrec-1.220/",
+      "marcador": "R",
+      "usado_para": [
+        "LA FUENTE MÁS DIRECTA SOBRE LA PREGUNTA CAUSAL: 'attention weights alone cannot be used as causal explanation for model behavior' (p. 1786, según la cita del survey de Bibal et al.)",
+        "Afirman 'the impossibility of causal explanations from attention layers over text data', porque el vínculo entre la capa de atención y la salida no puede aislarse de los otros componentes del modelo",
+        "Proponen marcos no causales de filosofía de la ciencia que permiten 'robust yet non-causal reasoning in explanation'"
+      ]
+    },
+    {
+      "id": "abnar2020",
+      "cita": "Abnar S, Zuidema W. Quantifying Attention Flow in Transformers. ACL 2020:4190-4197. doi:10.18653/v1/2020.acl-main.385",
+      "url_abierta": "https://arxiv.org/abs/2005.00928 ; https://aclanthology.org/2020.acl-main.385/",
+      "marcador": "R",
+      "usado_para": [
+        "La información de distintos tokens se mezcla entre capas, así que los pesos crudos son poco confiables en un Transformer multicapa",
+        "Attention rollout y attention flow 'yield higher correlations with importance scores of input tokens' obtenidas por ablación y por gradientes, que la atención cruda"
+      ]
+    },
+    {
+      "id": "bastings2020",
+      "cita": "Bastings J, Filippova K. The elephant in the interpretability room: Why use attention as explanation when we have saliency methods? BlackboxNLP @ EMNLP 2020:149-155. doi:10.18653/v1/2020.blackboxnlp-1.14",
+      "url_abierta": "https://arxiv.org/abs/2010.05607",
+      "marcador": "R",
+      "usado_para": [
+        "Si el objetivo es saber qué tokens de entrada importan y la audiencia es quien desarrolla el modelo, 'input saliency methods are better suited', y no hay 'compelling reasons to use attention'",
+        "Piden que todo trabajo declare el objetivo y la audiencia de la explicación"
+      ]
+    },
+    {
+      "id": "liu2022_faithfulness",
+      "cita": "Liu Y, et al. Rethinking Attention-Model Explainability through Faithfulness Violation Test. ICML 2022. arXiv:2201.12114",
+      "url_abierta": "https://arxiv.org/abs/2201.12114",
+      "marcador": "R",
+      "nota_verificacion": "Sólo se abrió el abstract. No se pudo confirmar si evaluaron attention rollout específicamente ni cuál método resultó mejor",
+      "usado_para": [
+        "Features con atención alta pueden SUPRIMIR la predicción: el peso de la explicación no coincide con la polaridad del efecto real",
+        "La mayoría de los métodos sufre el problema, 'especially the raw attention'"
+      ]
+    },
+    {
+      "id": "ji2021_dnabert",
+      "cita": "Ji Y, Zhou Z, Liu H, Davuluri RV. DNABERT: pre-trained Bidirectional Encoder Representations from Transformers model for DNA-language in genome. bioRxiv 2020.09.17.301879 (publicado en Bioinformatics 2021;37(15):2112-2120)",
+      "url_abierta": "https://www.biorxiv.org/content/10.1101/2020.09.17.301879v1.full",
+      "marcador": "R",
+      "nota_verificacion": "Se abrió el PREPRINT de bioRxiv, no la versión publicada en Bioinformatics. El texto publicado podría diferir",
+      "usado_para": [
+        "Usan la atención 'and use it as an importance measure'; DNABERT-viz 'accurately determines both positions and scores of TFBS predicted by P53Scan in an unsupervised manner'",
+        "Reportan que '1,595 out of 1,999 motifs discovered successfully aligned to validated motifs' en JASPAR",
+        "Caveats declarados por los propios autores: 'the model is not guaranteed to place high attention on entire region' del motivo, y atención alta al inicio de la secuencia en experimentos de baja calidad 'likely due to model bias'",
+        "NO validan la atención como explicación fiel de las decisiones del modelo, sólo su coincidencia con bases de datos de motivos"
+      ]
+    },
+    {
+      "id": "clauwaert2021",
+      "cita": "Clauwaert J, Menschaert G, Waegeman W. Explainability in transformer models for functional genomics. Briefings in Bioinformatics. 2021;22(5):bbab060. doi:10.1093/bib/bbab060",
+      "url_abierta": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8425421/",
+      "marcador": "R",
+      "usado_para": [
+        "La mayoría de las cabezas de atención están 'specialized towards identifying transcription factors', mapeando las cajas -10 y -35 de la ARN polimerasa en Escherichia coli MG1655",
+        "Caveats declarados: citan la literatura de NLP para advertir que 'attention scores do not necessarily offer transparency into the neural network'; la especialización 'cannot be ascertained for other prediction tasks or model architectures'",
+        "El mejor PR AUC en el conjunto de test curado es 0.141, y el método no tiene resolución de nucleótido único"
+      ]
+    },
+    {
+      "id": "zhou2026_anecdotal",
+      "cita": "Zhou S, Huang M, Li K. Position: Genomic Model Research Must Move Beyond Anecdotal Evaluation of Interpretability Methods. arXiv:2606.07607, 2026",
+      "url_abierta": "https://arxiv.org/abs/2606.07607",
+      "marcador": "R",
+      "nota_verificacion": "Preprint, sólo abstract. No es literatura revisada por pares consolidada",
+      "usado_para": [
+        "En un benchmark de unión de factores de transcripción, distintos métodos de interpretabilidad discrepan entre sí sobre las mismas predicciones, pueden 'fail to localize known regulatory motifs', y no reflejan de forma confiable el proceso interno de decisión"
+      ]
+    },
+    {
+      "id": "kurth2026_attnlrp",
+      "cita": "Kurth I, Yanez Sarmiento P, Renard BY. Evaluating Post-hoc Explanations of the Transformer-based Genome Language Model DNABERT-2. arXiv:2604.21690, 2026 (aceptado en XAI-2026)",
+      "url_abierta": "https://arxiv.org/abs/2604.21690",
+      "marcador": "R",
+      "nota_verificacion": "Preprint, sólo abstract. No reporta comparación directa contra pesos crudos de atención",
+      "usado_para": [
+        "Adaptan AttnLRP (layer-wise relevance propagation extendida a la atención) a DNABERT-2 y pasan las atribuciones de nivel token a nivel nucleótido: 'AttnLRP yields reliable explanations corresponding to known biological patterns'"
+      ]
+    },
+    {
+      "id": "penic2024_rinalmo",
+      "cita": "Penić RJ, Vlašić T, Huber RG, Wan Y, Šikić M. RiNALMo: General-Purpose RNA Language Models Can Generalize Well on Structure Prediction Tasks. arXiv:2403.00043, 2024",
+      "url_abierta": "https://arxiv.org/abs/2403.00043",
+      "marcador": "R",
+      "usado_para": [
+        "650M parámetros, descrito como el modelo de lenguaje de ARN más grande a la fecha de publicación",
+        "Preentrenado sobre unos 36M de secuencias de ARN no codificante; el abstract no nombra las bases de datos",
+        "Los autores afirman generalización a familias de ARN no vistas, donde otros métodos de aprendizaje profundo para estructura secundaria fallan"
+      ]
+    },
+    {
+      "id": "rnafm_repo",
+      "cita": "ml4bio/RNA-FM. Repositorio de GitHub. Paper asociado: Chen J, et al. Interpretable RNA Foundation Model from Unannotated Data. arXiv:2204.00300, 2022",
+      "url_abierta": "https://github.com/ml4bio/RNA-FM",
+      "licencia": "MIT (código)",
+      "marcador": "R",
+      "usado_para": [
+        "Encoder tipo BERT de 12 capas, unos 99M parámetros, entrenado sobre 23,7 millones de secuencias de ARN no codificante de RNAcentral por predicción de tokens enmascarados",
+        "Embeddings de 640 dimensiones por nucleótido",
+        "Pesos disponibles en HuggingFace (cuhkaih/rnafm) e instalable con pip install rna-fm",
+        "Es el modelo que usan OligoFormer y AttSiOff como fuente de embeddings"
+      ]
+    },
+    {
+      "id": "nt_modelcard",
+      "cita": "Model card de InstaDeepAI/nucleotide-transformer-v2-500m-multi-species en HuggingFace. Paper: Dalla-Torre H, et al. The Nucleotide Transformer: Building and Evaluating Robust Foundation Models for Human Genomics. bioRxiv 2023. doi:10.1101/2023.01.11.523679",
+      "url_abierta": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "licencia": "CC-BY-NC-SA-4.0",
+      "marcador": "R",
+      "usado_para": [
+        "500M parámetros; preentrenado sobre 850 genomas de NCBI de especies modelo y no modelo, EXCLUYENDO plantas y virus, con 174 Gnt (unos 29 Gtokens), y 900 Gtokens vistos",
+        "Tokenización en 6-meros cuando es posible y en nucleótidos individuales si no; vocabulario de 4.105 tokens, longitud máxima 2.048",
+        "Objetivo de preentrenamiento: modelado de lenguaje enmascarado tipo BERT, 15% de tokens, de los cuales 80% a [MASK], 10% a otro token aleatorio y 10% sin cambio",
+        "ATENCIÓN A LA LICENCIA: CC-BY-NC-SA-4.0 es no comercial. Relevante si el proyecto deriva en algo con fin comercial"
+      ]
+    },
+    {
+      "id": "ncbi_datasets_dalbulus",
+      "cita": "NCBI Datasets API v2alpha, informe de ensamblados para el taxón 74065 (Dalbulus maidis)",
+      "url_abierta": "https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/74065/dataset_report",
+      "licencia": "Dominio público (INSDC)",
+      "marcador": "E",
+      "usado_para": [
+        "GCA_975739785.1 ihDalMaid1.1, nivel cromosoma, haploide, 972.206.121 bp, 499 contigs, N50 de scaffold 93.705.284 bp, Wellcome Sanger Institute, BioProject PRJEB97791, liberado 2025-10-26, SIN ANOTACIÓN",
+        "GCA_975739835.1 haplotipo alternativo, nivel scaffold, 488.450.451 bp, 8.928 contigs, PRJEB97790, SIN ANOTACIÓN",
+        "GCA_054756405.1 CIAP v1, nivel contig, 585.210.080 bp, 22.333 contigs, N50 50.514 bp, Instituto de Patologia Vegetal CIAP-INTA, BioProject PRJNA1120083, liberado 2026-01-26, SIN ANOTACIÓN",
+        "HALLAZGO CENTRAL: ninguno de los tres ensamblados tiene anotación de genes"
+      ]
+    },
+    {
+      "id": "ncbi_eutils_sra_dalbulus",
+      "cita": "NCBI E-utilities, esearch y esummary sobre la base SRA para Dalbulus maidis[Organism]",
+      "url_abierta": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=Dalbulus+maidis%5BOrganism%5D",
+      "licencia": "Dominio público (INSDC)",
+      "marcador": "E",
+      "usado_para": [
+        "37 experimentos en total: 20 de RNA-Seq en Illumina (PRJNA631706 con 17, PRJNA318849 con 3, PRJNA562189, PRJNA505618 de huevos, PRJNA1282137), uno de 454 (PRJNA272239), más WGS, Hi-C y captura dirigida",
+        "No existe registro TSA: la búsqueda 'Dalbulus maidis[Organism] AND TSA[Division]' en la base nucleotide devuelve 0"
+      ]
+    },
+    {
+      "id": "ncbi_datasets_otros",
+      "cita": "NCBI Datasets API v2alpha, informes de ensamblados para Zea mays (4577), Apis mellifera (7460), Cicadellidae, Nilaparvata lugens, Candidatus Phytoplasma asteris, Maize rayado fino virus, Spiroplasma kunkelii (47834)",
+      "url_abierta": "https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/4577/dataset_report",
+      "licencia": "Dominio público (INSDC)",
+      "marcador": "E",
+      "usado_para": [
+        "Zea mays: GCF_902167145.1 Zm-B73-REFERENCE-NAM-5.0, nivel cromosoma, 2.182.075.994 bp, anotación RefSeq GCF_902167145.1-RS_2025_02. Es el único genoma de referencia de maíz",
+        "Apis mellifera: GCF_003254395.2 Amel_HAv3.1, 225.234.541 bp, anotación Release 104",
+        "Spiroplasma kunkelii: GCF_001274875.1 CR2-3x, genoma completo, 1.514.561 bp, anotado",
+        "Maize rayado fino virus: GCF_000862485.2, 6.366 bp, anotado",
+        "Candidatus Phytoplasma asteris: tres genomas completos de 662 kb a 834 kb, anotados",
+        "Cicadellidae: 55 ensamblados. Con anotación RefSeq: Homalodisca vitripennis GCF_021130785.1 (2,30 Gb) y Macrosteles quadrilineatus GCF_028750875.1 (1,32 Gb). Sin anotación: Nephotettix cincticeps, Matsumurasca onukii, Empoasca fabae",
+        "Nilaparvata lugens: GCF_014356525.2, nivel cromosoma, 1.085.539.448 bp, anotación Release 101"
+      ]
+    },
+    {
+      "id": "epilab_sesion_tecnica",
+      "cita": "Sesión técnica oficial del Investigathón 2026, EPILAB · IFIBYNE (UBA-CONICET). Transcripción del equipo en docs/sesion-tecnica-EPILAB-notas.md",
+      "url_abierta": "archivo local del repositorio",
+      "marcador": "R",
+      "usado_para": [
+        "El organizador declara como evidencia publicada: RNAi experimental en D. maidis; que las RNasas limitan la entrega oral del ARN; y que existen candidatos preliminares diseñados por el equipo del EPILAB",
+        "La pregunta abierta declarada sobre esos candidatos es, textualmente, '¿Cuáles merecen validación y por qué?'",
+        "El sistema tiene cuatro patógenos: MRFV, MSMV, Fitoplasma y Spiroplasma kunkelii",
+        "El organizador ordena el espacio de diseño en una escalera de precisión creciente: ARNdc largo canónico, ARNdc ingenierizado, plataformas de ARN pequeño de precisión, y siRNA de 24 nt con RdDM",
+        "Criterio de evaluación textual: 'Un equipo no debería ganar por construir la interfaz más vistosa, sino por producir la mejor decisión científica posible con el tiempo y los datos disponibles'"
+      ]
+    }
+  ],
+  "no_verificadas": [
+    {
+      "cita": "Tafer H, et al. The impact of target site accessibility on the design of effective siRNAs. Nature Biotechnology. 2008;26(5):578-583. doi:10.1038/nbt1404",
+      "motivo": "Texto completo detrás de muro de pago. Se abrió sólo el registro bibliográfico. El contenido se cita a través de Lück et al. 2019, que sí se abrió y describe su uso de RNAplfold",
+      "marcador": "R"
+    },
+    {
+      "cita": "Hüsken D, et al. (BIOPREDsi), y los demás datasets de siRNA en células humanas: Amarzguioui, Harborth, Hsieh, Khvorova, Reynolds, Vickers, Ui-Tei",
+      "motivo": "No se abrieron los originales. El tamaño del dataset (2.431 siRNA, 34 mRNA, células H1299) y el PCC de 0.66 se citan a través de OligoFormer y AttSiOff, que sí se abrieron",
+      "marcador": "R"
+    },
+    {
+      "cita": "Buer B, et al. 2024, cribado de RNAi a escala genómica en Tribolium castaneum",
+      "motivo": "Se conoce por la referencia [25] de Cedden et al. 2025, que sí se abrió. No se abrió el original. Es la fuente de la lista curada de genes blanco efectivos que usa dsRIP",
+      "marcador": "R"
+    },
+    {
+      "cita": "iBeetle-Base, https://ibeetle-base.uni-goettingen.de/",
+      "motivo": "No se pudo confirmar licencia de reuso ni formato de descarga masiva. Se sabe que es de acceso libre y que tiene interfaz REST, por la referencia [62] de Cedden et al.",
+      "marcador": "?"
+    },
+    {
+      "cita": "Evo 2 (Arc Institute / NVIDIA): 9,3 billones de nucleótidos, más de 128.000 genomas, variantes de 7B y 40B, arquitectura StripedHyena 2",
+      "motivo": "Sólo fuentes secundarias (notas de prensa y blogs). No se abrió el paper ni la model card. No se usa en la propuesta",
+      "marcador": "?"
+    },
+    {
+      "cita": "Vashishth S, et al. Attention Interpretability Across NLP Tasks. arXiv:1909.11218, 2019",
+      "motivo": "Se abrió sólo el abstract, que no desglosa por tipo de tarea. La distinción entre input de una sola secuencia y de par de secuencias se toma del texto verificado de Bibal et al. 2022",
+      "marcador": "R"
+    },
+    {
+      "cita": "Chefer H, Gur S, Wolf L. Transformer Interpretability Beyond Attention Visualization. CVPR 2021",
+      "motivo": "La página de CVPR openaccess devolvió HTTP 403. Se abrió arXiv:2012.09838, cuyo abstract no nombra el venue. La paginación viene de búsqueda",
+      "marcador": "R"
+    },
+    {
+      "cita": "Depósitos de figshare de dsRIP: 10.6084/m9.figshare.28156787 (plataforma) y 10.6084/m9.figshare.27490890.v1 (análisis de sRNA-seq)",
+      "motivo": "No se abrieron. La licencia de cada depósito hay que comprobarla antes de reusar el código",
+      "marcador": "?"
+    },
+    {
+      "cita": "El ensamblado del transcriptoma de Xu et al. 2021 con 56.116 transcriptos",
+      "motivo": "No se encontró depositado: no hay registro TSA para la especie. Puede estar sólo como material suplementario del artículo, que tiene muro de pago",
+      "marcador": "?"
+    },
+    {
+      "cita": "MSMV, el cuarto agente patógeno que nombra la diapositiva del organizador",
+      "motivo": "La búsqueda taxonómica devolvió los taxid 3052767 y 2025388 sin confirmar cuál corresponde. No se consultaron sus ensamblados. Pendiente para R1",
+      "marcador": "?"
+    },
+    {
+      "cita": "siRNAEfficacyDB y RNATx-Bench",
+      "motivo": "Mencionados por la revisión de NAR GAB; no se abrieron sus sitios ni se verificaron tamaño, formato ni licencia",
+      "marcador": "?"
+    }
+  ],
+  "rechazos_de_herramienta": [
+    {
+      "consulta": "RNAi Dalbulus maidis leafhopper dsRNA knockdown Hemiptera efficacy",
+      "herramienta": "WebSearch",
+      "detalle_del_rechazo": "[bio]",
+      "accion": "Según la regla del proyecto no se reformuló para esquivar el rechazo. La misma pregunta se respondió por una línea distinta y legítima: búsqueda bibliográfica en PubMed vía E-utilities, que devolvió los cuatro registros de RNAi en Dalbulus y permitió traer los abstracts completos. Queda anotado en 00_meta/PREGUNTAS_ABIERTAS.md"
+    }
+  ]
+}
