@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attention y diseño de ARN</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigathón Y-Hat &middot; línea R2</p>
+    <h1>Attention y diseño de ARN: evaluación de la idea del equipo</h1>
+    <p class="sub">¿Sirve tratar las porciones de ARN como tokens de un modelo de lenguaje
+    y usar la atención para encontrar la secuencia que mejora la respuesta, con la
+    termodinámica como función de pérdida?</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">Veredicto</h2>
+    <p class="lead"><strong>La idea tal como fue formulada se descarta. La reformulación como
+    priorización auditable de candidatos es viable y es lo que recomendamos construir.</strong></p>
+    <p>Se descarta por dos razones independientes. Primera, un error factual: <strong>BLAST no
+    calcula termodinámica</strong>. Es una heurística de alineamiento local cuyo puntaje son
+    log-odds de sustitución; la documentación primaria de NCBI no menciona la energía libre de
+    hibridación en ningún momento. La termodinámica la calcula ViennaRNA, un paquete distinto,
+    con un modelo físico. Y la termodinámica, aun bien calculada, no puede ser la pérdida: es
+    una variable de entrada. La única supervisión posible es el fenotipo medido.</p>
+    <p>Segunda, la arquitectura propuesta ya está publicada <strong>cuatro veces</strong>:
+    OligoFormer, AttSiOff, BERT-siRNA y DeepSipred combinan embeddings de un modelo de lenguaje
+    de ARN, atención y parámetros termodinámicos para predecir eficacia de silenciamiento.
+    Reimplementarlo no es innovación, y además todos fueron entrenados con siRNA cortos en
+    líneas celulares humanas, un dominio donde al menos un parámetro tiene el signo invertido
+    respecto de los insectos.</p>
+    <p>Lo que sí se sostiene es otra cosa: no un generador de secuencias nuevas, sino una
+    función de puntuación multiobjetivo sobre los candidatos que el laboratorio ya tiene, con
+    cada término trazable a su fuente y con la incertidumbre propagada hasta el ordenamiento.
+    Es el encuadre que el propio organizador declara como su pregunta abierta —"¿cuáles merecen
+    validación y por qué?"— y es lo único de esta familia de ideas que cuatro personas pueden
+    ejecutar <em>y validar</em> sin un experimento húmedo, porque existe un conjunto
+    retrospectivo real con medidas cuantitativas y licencia abierta.</p>
+  </section>
+
+  <div class="calls">
+    <div class="call stop">
+      <p class="k">El malentendido</p>
+      <p class="v">BLAST mide similitud, no energía</p>
+      <p class="n">Puntaje log-odds y E-value de Karlin-Altschul. Pertenece al eje de
+      especificidad, no al de eficacia.</p>
+    </div>
+    <div class="call stop">
+      <p class="k">Lo ya publicado</p>
+      <p class="v">Cuatro métodos equivalentes</p>
+      <p class="n">OligoFormer, AttSiOff, BERT-siRNA, DeepSipred. Todos en siRNA corto y
+      células humanas.</p>
+    </div>
+    <div class="call warn">
+      <p class="k">El dato que condiciona todo</p>
+      <p class="v">Sin anotación génica del vector</p>
+      <p class="n">Tres ensamblados de <em>Dalbulus maidis</em>, ninguno anotado, y sin registro
+      TSA. Hay que construir el transcriptoma.</p>
+    </div>
+    <div class="call ok">
+      <p class="k">Lo que salva al proyecto</p>
+      <p class="v">Un benchmark retrospectivo existe</p>
+      <p class="n">29 ARNdc en <em>Tribolium castaneum</em> con hazard ratio medido, datos
+      abiertos bajo CC BY 4.0.</p>
+    </div>
+  </div>
+
+  <h2>Qué se rompe y qué se rescata</h2>
+  <p>Vale separar las dos cosas, porque la idea acertó más de lo que parece. La
+  <strong>forma</strong> del problema que intuyó el integrante es correcta: una señal
+  posicional a lo largo del transcripto, donde distintas porciones valen distinto y hay que
+  encontrar cuál. Eso es exactamente el estado del arte. Lo que falla es la instrumentación.</p>
+  <ul>
+    <li><strong>Se rompe:</strong> la termodinámica como pérdida; BLAST como calculador de
+    termodinámica; el ajuste fino de un modelo sobre datos de eficacia que en Hemiptera no
+    existen; y la generación de secuencias nuevas, que produce salidas que nadie puede
+    verificar sin laboratorio.</li>
+    <li><strong>Se rescata:</strong> la ventana deslizante sobre el transcripto; la
+    termodinámica como variable de entrada, restringida a asimetría de extremos y
+    autoplegamiento de la guía, que son las dos que la evidencia en insectos sostiene; y la
+    intuición de "ver la relación entre las secuencias", que se satisface con un perfil
+    posicional explícito del puntaje, fiel por construcción, en lugar de con pesos de atención,
+    que la literatura dice que no sostienen una lectura causal.</li>
+  </ul>
+
+  <div class="note">
+    <p class="t">La accesibilidad del sitio blanco: el término que proponemos excluir</p>
+    <p>Es el pilar de la literatura humana y probablemente lo que la idea original tenía en
+    mente al hablar de termodinámica. La evidencia en insectos lo contradice dos veces en el
+    mismo trabajo: no resultó predictor significativo ni en el ensayo de siRNA individuales
+    (P&nbsp;&gt;&nbsp;0,05) ni en el de ARNdc largo (P&nbsp;=&nbsp;0,41). Lo calculamos y lo
+    reportamos para trazabilidad, pero entra al puntaje con peso cero, y medir esa ablación es
+    uno de los resultados reportables del proyecto.</p>
+  </div>
+
+  <h2>El pipeline propuesto</h2>
+  <figure>
+    <svg viewBox="0 0 980 540" role="img" aria-labelledby="dt dd">
+      <title id="dt">Diagrama del pipeline de priorización propuesto</title>
+      <desc id="dd">Los candidatos de ARNdc se dividen en ventanas de 21 nucleótidos. Cada
+      ventana recibe un puntaje de eficacia calculado con ViennaRNA y coeficientes publicados,
+      y penalidades de off-target calculadas con Bowtie contra maíz, organismos no objetivo y
+      el propio vector. La accesibilidad se calcula pero entra con peso cero. Los términos se
+      agregan por candidato junto con calidad del gen blanco, región, conservación y una
+      anotación de la vía de entrega. La salida no es un número sino tres objetos: el vector de
+      términos sin colapsar, el frente de Pareto y la matriz de estabilidad de pares.</desc>
+      <style>
+        .bx{fill:var(--bg); stroke:var(--line); stroke-width:1.5}
+        .bxa{fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.5}
+        .bxw{fill:var(--warn-soft); stroke:var(--warn); stroke-width:1.5}
+        .bxo{fill:var(--surface-2); stroke:var(--line); stroke-width:1.5}
+        .t{fill:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-size:13.5px}
+        .tb{fill:var(--text); font-weight:650; font-size:14px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+        .td{fill:var(--text-dim); font-size:12px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+        .ta{fill:var(--accent); font-weight:650; font-size:13.5px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+        .ln{stroke:var(--line); stroke-width:1.5; fill:none}
+        .lna{stroke:var(--accent); stroke-width:1.5; fill:none}
+        .sect{fill:var(--text-dim); font-size:11.5px; letter-spacing:.07em; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+      </style>
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--line)"/>
+        </marker>
+        <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
+        </marker>
+      </defs>
+
+      <text class="sect" x="24" y="26">ENTRADA</text>
+      <rect class="bxa" x="24" y="38" width="196" height="74"/>
+      <text class="ta" x="40" y="62">Candidatos del EPILAB</text>
+      <text class="td" x="40" y="81">secuencia, transcripto blanco,</text>
+      <text class="td" x="40" y="97">organismo, vía de entrega</text>
+
+      <path class="lna" d="M122,112 L122,146" marker-end="url(#ara)"/>
+      <rect class="bxa" x="24" y="146" width="196" height="50"/>
+      <text class="ta" x="40" y="169">Ventanas de 21 nt</text>
+      <text class="td" x="40" y="186">deslizantes, paso de 1 nt</text>
+
+      <text class="sect" x="286" y="26">POR VENTANA</text>
+
+      <rect class="bx" x="286" y="38" width="300" height="62"/>
+      <text class="tb" x="302" y="60">Eficacia predicha</text>
+      <text class="td" x="302" y="79">asimetría termodinámica, autoplegamiento,</text>
+      <text class="td" x="302" y="93">GC en posiciones 9 a 14, adenina en 10</text>
+
+      <rect class="bxw" x="286" y="112" width="300" height="48"/>
+      <text class="tb" x="302" y="133">Accesibilidad del blanco</text>
+      <text class="td" x="302" y="151">se calcula y se reporta, peso cero</text>
+
+      <rect class="bx" x="286" y="172" width="300" height="48"/>
+      <text class="tb" x="302" y="193">Off-target en maíz</text>
+      <text class="td" x="302" y="211">B73, desapareamientos 0, 1 y 2, y semilla</text>
+
+      <rect class="bx" x="286" y="232" width="300" height="48"/>
+      <text class="tb" x="302" y="253">Off-target en no objetivo</text>
+      <text class="td" x="302" y="271">abeja y cicadélidos; pondera genes esenciales</text>
+
+      <rect class="bx" x="286" y="292" width="300" height="48"/>
+      <text class="tb" x="302" y="313">Off-target en el propio vector</text>
+      <text class="td" x="302" y="331">requiere el transcriptoma que hay que armar</text>
+
+      <path class="ln" d="M220,171 C248,171 252,69 286,69" marker-end="url(#ar)"/>
+      <path class="ln" d="M220,171 C248,171 252,136 286,136" marker-end="url(#ar)"/>
+      <path class="ln" d="M220,171 C248,171 252,196 286,196" marker-end="url(#ar)"/>
+      <path class="ln" d="M220,171 C248,171 252,256 286,256" marker-end="url(#ar)"/>
+      <path class="ln" d="M220,171 C248,171 252,316 286,316" marker-end="url(#ar)"/>
+
+      <text class="td" x="302" y="366">Herramientas: ViennaRNA para estructura y accesibilidad;</text>
+      <text class="td" x="302" y="383">Bowtie para las coincidencias de 19 a 21 nt. No BLAST.</text>
+
+      <text class="sect" x="652" y="26">POR CANDIDATO</text>
+      <rect class="bxo" x="652" y="38" width="304" height="152"/>
+      <text class="tb" x="668" y="61">Agregación</text>
+      <text class="t" x="668" y="83">media de eficacia sobre las ventanas</text>
+      <text class="t" x="668" y="103">conteos acumulados de off-target</text>
+      <text class="t" x="668" y="123">calidad del gen blanco y parálogos</text>
+      <text class="t" x="668" y="143">región: marco de lectura o UTR</text>
+      <text class="t" x="668" y="163">conservación entre individuos</text>
+      <text class="td" x="668" y="181">anotación de entrega: ¿co-entrega anti dsRNasa?</text>
+
+      <path class="ln" d="M586,190 C620,190 622,114 652,114" marker-end="url(#ar)"/>
+
+      <path class="lna" d="M804,190 L804,224" marker-end="url(#ara)"/>
+      <rect class="bxa" x="652" y="224" width="304" height="70"/>
+      <text class="ta" x="668" y="248">Propagación de incertidumbre</text>
+      <text class="td" x="668" y="267">bootstrap de los coeficientes publicados</text>
+      <text class="td" x="668" y="284">y muestreo del simplex de pesos</text>
+
+      <text class="sect" x="652" y="326">SALIDA: TRES OBJETOS, NO UN NÚMERO</text>
+      <rect class="bxa" x="652" y="338" width="304" height="56"/>
+      <text class="ta" x="668" y="360">Vector de términos sin colapsar</text>
+      <text class="td" x="668" y="379">ganar por eficacia no es ganar en todo</text>
+
+      <rect class="bxa" x="652" y="404" width="304" height="56"/>
+      <text class="ta" x="668" y="426">Frente de Pareto</text>
+      <text class="td" x="668" y="445">independiente de los pesos que elijamos</text>
+
+      <rect class="bxa" x="652" y="470" width="304" height="56"/>
+      <text class="ta" x="668" y="492">Matriz de estabilidad de pares</text>
+      <text class="td" x="668" y="511">orden robusto, o empate: se declara cuál</text>
+
+      <path class="lna" d="M804,294 L804,338" marker-end="url(#ara)"/>
+
+      <rect class="bx" x="24" y="404" width="196" height="122"/>
+      <text class="tb" x="40" y="427">Validación sin laboratorio</text>
+      <text class="td" x="40" y="447">29 ARNdc en Tribolium</text>
+      <text class="td" x="40" y="464">6 construcciones en el vector</text>
+      <text class="td" x="40" y="481">baselines: dsRIP y si-Fi21</text>
+      <text class="td" x="40" y="498">ablaciones y controles</text>
+      <text class="td" x="40" y="515">partición por gen, no al azar</text>
+      <path class="ln" d="M220,465 L636,465" marker-end="url(#ar)" opacity="0.65"/>
+    </svg>
+    <figcaption>El puntaje se calcula por ventana de 21 nucleótidos porque así funciona el
+    mecanismo: el ARNdc largo se procesa en un pool de siRNA, y son esos los que actúan. La
+    salida deliberadamente no es un escalar: un número único esconde si el orden entre dos
+    candidatos es una afirmación o un empate, que es justamente lo que el laboratorio necesita
+    saber para decidir qué validar.</figcaption>
+  </figure>
+
+  <h2>Datos: qué existe, qué falta</h2>
+  <p>La tabla completa, con tamaños, formatos, licencias y el detalle de lo que falta en cada
+  caso, está en <code>datos_disponibles.md</code>. Lo que decide el proyecto es esto:</p>
+
+  <div class="tw">
+    <table>
+      <caption>Estado de los insumos. Consultado el 16 de octubre de 2026 por la API de NCBI
+      Datasets y por E-utilities. Marcadores: <span class="tag e">E</span> establecido,
+      <span class="tag r">R</span> reportado, <span class="tag q">?</span> no verificado.</caption>
+      <thead>
+        <tr><th scope="col">Insumo</th><th scope="col">Recurso</th><th scope="col">Tamaño</th>
+        <th scope="col">Estado</th><th scope="col">Qué falta</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Genoma del vector</td>
+          <td><em>Dalbulus maidis</em> ihDalMaid1.1, nivel cromosoma, Wellcome Sanger <span class="tag e">E</span></td>
+          <td class="num">972 Mb<br>499 contigs</td>
+          <td>Existe, dominio público</td>
+          <td><strong>Sin anotación de genes</strong></td>
+        </tr>
+        <tr>
+          <td>Genoma del vector, borrador local</td>
+          <td><em>D. maidis</em> CIAP v1, CIAP-INTA <span class="tag e">E</span></td>
+          <td class="num">585 Mb<br>22.333 contigs</td>
+          <td>Existe, dominio público</td>
+          <td>Sin anotación; muy fragmentado</td>
+        </tr>
+        <tr>
+          <td>Transcriptoma del vector</td>
+          <td>20 corridas públicas de RNA-seq, sobre todo PRJNA631706 <span class="tag e">E</span></td>
+          <td class="num">&mdash;</td>
+          <td><strong>No existe ensamblado público</strong>; sin registro TSA</td>
+          <td>Hay que ensamblarlo y anotarlo. Es el camino crítico</td>
+        </tr>
+        <tr>
+          <td>Anotación de referencia cercana</td>
+          <td><em>Homalodisca vitripennis</em> y <em>Macrosteles quadrilineatus</em>, con RefSeq <span class="tag e">E</span></td>
+          <td class="num">2,30 Gb<br>1,32 Gb</td>
+          <td>Existen y están anotados</td>
+          <td>No son <em>Dalbulus</em>; distancia filogenética sin medir</td>
+        </tr>
+        <tr>
+          <td>Off-target en el cultivo</td>
+          <td><em>Zea mays</em> B73, con anotación RefSeq <span class="tag e">E</span></td>
+          <td class="num">2,18 Gb</td>
+          <td>Existe, es el único genoma de referencia de maíz</td>
+          <td>B73 no es el germoplasma comercial argentino</td>
+        </tr>
+        <tr>
+          <td>Off-target en no objetivo</td>
+          <td><em>Apis mellifera</em> Amel_HAv3.1, con anotación <span class="tag e">E</span></td>
+          <td class="num">225 Mb</td>
+          <td>Existe</td>
+          <td>Falta curar enemigos naturales y fauna del suelo</td>
+        </tr>
+        <tr>
+          <td>Patógenos del sistema</td>
+          <td><em>Spiroplasma kunkelii</em> completo y anotado; MRFV; tres genomas de fitoplasma <span class="tag e">E</span></td>
+          <td class="num">1,51 Mb<br>6.366 pb</td>
+          <td>Disponibles</td>
+          <td>Sin confirmar cuál fitoplasma es el del achaparramiento. <strong>MSMV sin
+          identificar taxonómicamente</strong> <span class="tag q">?</span></td>
+        </tr>
+        <tr>
+          <td><strong>Calibración y validación</strong></td>
+          <td>Bioensayos de Cedden et al. 2025, bajo CC BY 4.0 <span class="tag e">E</span></td>
+          <td class="num">~29 siRNA<br>~29 ARNdc</td>
+          <td><strong>Existe y es el activo más valioso</strong>: el único conjunto de eficacia
+          de ARNdc en insectos con diseño controlado y datos abiertos</td>
+          <td>Es Coleoptera, no Hemiptera. n de dos dígitos</td>
+        </tr>
+        <tr>
+          <td>Evidencia en la especie blanco</td>
+          <td>RNAi publicado en <em>D. maidis</em>: <em>BicC</em>, tres dsRNasas,
+          <em>burs-alfa</em> y <em>eth</em> <span class="tag e">E</span></td>
+          <td class="num">6 construcciones</td>
+          <td>Existe, es la especie correcta</td>
+          <td><strong>No alcanza para entrenar nada.</strong> Sirve como prueba de rango</td>
+        </tr>
+        <tr>
+          <td>Eficacia de RNAi a escala</td>
+          <td>iBeetle-Base, ~12.000 ARNdc etiquetados <span class="tag r">R</span></td>
+          <td class="num">&gt;50% de genes</td>
+          <td>Accesible por web y API</td>
+          <td>Etiqueta binaria y grosera; dosis y vía sin controlar; licencia sin confirmar
+          <span class="tag q">?</span></td>
+        </tr>
+        <tr>
+          <td>Conservación poblacional del blanco</td>
+          <td>Seis corridas de WGS en MiSeq y una de captura dirigida <span class="tag r">R</span></td>
+          <td class="num">6 muestras</td>
+          <td><strong>Insuficiente</strong></td>
+          <td>Profundidad y origen geográfico sin verificar. No es una muestra poblacional
+          <span class="tag q">?</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p class="t">Las tres ausencias que hay que declarar en la portada</p>
+    <p><strong>No existe ningún conjunto de datos de eficacia de RNAi en Hemiptera</strong> con
+    el tamaño y el control experimental necesarios para entrenar un modelo. Lo que hay en
+    insectos es Coleoptera; en la especie blanco hay seis construcciones publicadas. Cualquier
+    propuesta que prometa "entrenamos un modelo de eficacia para <em>Dalbulus maidis</em>" es
+    hoy imposible de cumplir con datos públicos.</p>
+    <p><strong>No existe anotación génica pública del vector</strong>, de modo que el insumo
+    más básico del método hay que construirlo desde las corridas de RNA-seq. Y <strong>no
+    existe un panel de off-target curado</strong> para los organismos no objetivo del
+    agroecosistema del maíz argentino.</p>
+  </div>
+
+  <h2>Lo que no podemos validar</h2>
+  <p>Un entregable que no diga esto está vendiendo algo que no tiene. No podemos validar la
+  transferencia de Coleoptera a Hemiptera: es la incertidumbre dominante del proyecto, los
+  propios autores del método de referencia la dejan explícitamente como pendiente para otros
+  órdenes, y ningún experimento computacional la resuelve. Tampoco el término de conservación
+  poblacional, ni la relevancia funcional de los off-targets predichos, ni nada sobre la
+  eficacia real de la entrega oral más allá de anotar bajo qué condición se propone cada
+  candidato.</p>
+  <p>Sobre la atención como herramienta de interpretabilidad, la conclusión operativa es
+  estrecha y conviene enunciarla con precisión: sirve como mapa de comunicación de dónde está
+  la señal, <strong>nunca como evidencia de que el modelo usa esa región causalmente</strong>,
+  y menos aún como evidencia de causalidad biológica. La afirmación publicada más directa
+  sostiene que los pesos de atención por sí solos no pueden sostener una explicación causal,
+  porque la capa de atención no es aislable del resto del modelo. En rigor nuestro método no
+  la necesita: el perfil posicional del puntaje es fiel por construcción, porque es el cálculo
+  mismo y no una lectura de las entrañas de una red.</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Línea R2 del repositorio de investigación. El desarrollo completo está en
+    <code>REPORT.md</code>, la especificación en <code>PROPUESTA.md</code>, la tabla de datos
+    en <code>datos_disponibles.md</code> y las fuentes con su estado de verificación en
+    <code>sources.json</code>.</p>
+    <p>Todas las afirmaciones técnicas provienen de fuentes abiertas que fueron efectivamente
+    consultadas. Lo que no se pudo abrir está marcado como no verificado, y no se cita como si
+    lo estuviera.</p>
+  </div>
+</footer>
+</body>
+</html>
