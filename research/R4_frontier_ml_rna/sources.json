@@ -1,0 +1,373 @@
+{
+ "meta": {
+  "eje": "R4 - frontera aprendizaje automatico / biotecnologia de ARN",
+  "fecha_relevamiento": "2026-10-16 / 2026-10-17 (dos tandas)",
+  "regla": "Solo figuran fuentes efectivamente abiertas y leidas en esta sesion. La URL listada en 'url_abierta' es la que se abrio. Las fuentes que NO se pudieron abrir estan en la seccion 'no_abiertas' y replicadas en 00_meta/PREGUNTAS_ABIERTAS.md.",
+  "total_abiertas": 39,
+  "total_no_abiertas": 2,
+  "nota_segunda_tanda": "La segunda tanda (17-oct) amplio el relevamiento donde el prompt exige critica independiente por familia de metodos y separacion entre resultado validado experimentalmente y resultado solo computacional. Se abrieron 11 fuentes nuevas y se resolvieron dos pendientes (OligoFormer y PaperQA2). El material crudo esta en notes/03_material_crudo_ampliacion.md."
+ },
+ "fuentes": [
+  {
+   "id": "zablocki2025",
+   "cita": "Zablocki LI, Bugnon LA, Gerard M, Di Persia L, Stegmayer G, Milone DH. Comprehensive benchmarking of large language models for RNA secondary structure prediction. Briefings in Bioinformatics 26(2):bbaf137 (2025).",
+   "doi": "10.1093/bib/bbaf137",
+   "tipo": "articulo revisado por pares",
+   "marcador": "E",
+   "url_abierta": "https://academic.oup.com/bib/article/26/2/bbaf137/8109668",
+   "sostiene": "Benchmark independiente de 6 RNA-LM con embeddings congelados. Numeros de F1 por modelo y por conjunto. Conclusion textual de que bajo baja homologia ningun RNA-LM mejora significativamente sobre one-hot. Resultados cross-family por leave-one-family-out. Rendimiento en pares no canonicos. Es la critica central de la seccion 1 y de la 2.1."
+  },
+  {
+   "id": "szikszai2022",
+   "cita": "Szikszai M, Wise M, Datta A, Ward M, Mathews DH. Deep learning models for RNA secondary structure prediction (probably) do not generalize across families. Bioinformatics 38(16):3892-3899 (2022).",
+   "doi": "10.1093/bioinformatics/btac415",
+   "tipo": "articulo revisado por pares (trabajo fundacional de la critica)",
+   "marcador": "E",
+   "url_abierta": "https://academic.oup.com/bioinformatics/article/38/16/3892/6617348",
+   "sostiene": "Caida de F1 de 0.72 intra-familia a 0.50 inter-familia contra 0.60 de RNAstructure. MXfold2 0.51 y UFold 0.44 reentrenados con particion por familia. Metodologia family-fold y las recomendaciones de particion por clan de Rfam que adoptamos como protocolo."
+  },
+  {
+   "id": "kretsch2025casp16",
+   "cita": "Kretsch RC, Hummer AM, He S, Yuan R, Zhang J, Karagianes T, Cong Q, Kryshtafovych A, Das R. Assessment of Nucleic Acid Structure Prediction in CASP16. bioRxiv (2025), v2.",
+   "doi": "10.1101/2025.05.06.652459",
+   "tipo": "preprint (evaluacion ciega oficial de CASP16)",
+   "marcador": "E",
+   "url_abierta": "https://www.biorxiv.org/content/10.1101/2025.05.06.652459v2.full",
+   "sostiene": "42 blancos con acido nucleico, 65 grupos. Ranking con los tres primeros siendo predictores con experto humano. AF3-server superado por 8 grupos en global y 12 en monomeros; 8vo con MSA profundo y 19vo con MSA superficial; AF3 no hace busqueda de templates para acidos nucleicos. 21/36 monomeros con fold aceptable y solo 2 de esos sin template. Ninguna estructura natural nueva supero TM 0.8. F1 de pares no canonicos <0.5. Conclusiones textuales de que no hubo mejora respecto de desafios previos y que el aprendizaje profundo todavia no produjo aumento significativo de exactitud."
+  },
+  {
+   "id": "dallatorre2025nt",
+   "cita": "Dalla-Torre H et al. Nucleotide Transformer: building and evaluating robust foundation models for human genomics. Nature Methods 22(2):287-297 (2025).",
+   "doi": "10.1038/s41592-024-02523-z",
+   "tipo": "articulo revisado por pares",
+   "marcador": "E",
+   "url_abierta": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11810778/",
+   "sostiene": "Especificacion completa de NT v1 y v2: tamanos, corpus, tokens, objetivo, tokenizacion por 6-meros, contexto, benchmark de 18 tareas, comparacion con Enformer / DNABERT-2 / HyenaDNA, y las limitaciones declaradas por los autores (los supervisados siguen ganando en algunos settings; el de 250M es el mejor en promedio)."
+  },
+  {
+   "id": "nt_licencia_hf",
+   "cita": "Tarjeta de modelo InstaDeepAI/nucleotide-transformer-v2-250m-multi-species, HuggingFace.",
+   "tipo": "repositorio de pesos",
+   "marcador": "E",
+   "url_abierta": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-250m-multi-species",
+   "sostiene": "Licencia de los pesos de Nucleotide Transformer: cc-by-nc-sa-4.0, es decir NO COMERCIAL. Dato decisivo si el resultado se quisiera transferir a industria."
+  },
+  {
+   "id": "zhou2024dnabert2",
+   "cita": "Zhou Z et al. DNABERT-2: Efficient Foundation Model and Benchmark For Multi-Species Genome. arXiv 2306.15006, ICLR 2024.",
+   "doi": "10.48550/arXiv.2306.15006",
+   "tipo": "preprint / conferencia revisada por pares",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/abs/2306.15006",
+   "sostiene": "Argumento de tokenizacion BPE sobre k-meros; benchmark GUE (36 conjuntos, 9 tareas, 70-10000 nt); ~21x menos parametros y ~92x menos tiempo de GPU."
+  },
+  {
+   "id": "penic2025rinalmo",
+   "cita": "Penic RJ et al. RiNALMo: General-Purpose RNA Language Models Can Generalize Well on Structure Prediction Tasks. arXiv 2403.00043; Nature Communications 16:5671 (2025).",
+   "doi": "10.48550/arXiv.2403.00043",
+   "tipo": "preprint con version revisada por pares",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/abs/2403.00043",
+   "sostiene": "650M parametros, 36M secuencias de ncRNA, claim de generalizacion a familias no vistas (que el benchmark independiente de Zablocki matiza fuertemente)."
+  },
+  {
+   "id": "rinalmo_repo",
+   "cita": "Repositorio oficial lbcb-sci/RiNALMo, GitHub.",
+   "tipo": "repositorio oficial",
+   "marcador": "E",
+   "url_abierta": "https://github.com/lbcb-sci/RiNALMo",
+   "sostiene": "Licencias: codigo Apache-2.0 y parametros del modelo CC BY 4.0 (uso comercial permitido). Pesos en Zenodo record 15043668. Tamanos giga 650M, mega 150M, micro 35M."
+  },
+  {
+   "id": "rnafm_repo",
+   "cita": "Repositorio oficial ml4bio/RNA-FM, GitHub.",
+   "tipo": "repositorio oficial",
+   "marcador": "E",
+   "url_abierta": "https://github.com/ml4bio/RNA-FM",
+   "sostiene": "RNA-FM 12 capas, 640 hidden, 99M, 23.7M secuencias de RNAcentral100; mRNA-FM 12 capas, 1280 hidden, 239M, 45M CDS; pesos en huggingface.co/cuhkaih/rnafm; repositorio MIT. Tambien el dato [?] de que el repo afirma publicacion en Nature Methods pero enlaza el paper de RhoFold."
+  },
+  {
+   "id": "yin2024ernierna",
+   "cita": "Yin W, Zhang Z, He L, Jiang R, Zhang S, Liu G, Zhang X, Qin T, Xie Z. ERNIE-RNA: An RNA Language Model with Structure-enhanced Representations. bioRxiv (2024), CC-BY-NC-ND 4.0.",
+   "doi": "10.1101/2024.03.17.585376",
+   "tipo": "preprint (version de revista en Nature Communications, DOI 10.1038/s41467-025-64972-0, no abierta)",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/10.1101/2024.03.17.585376.full.pdf",
+   "sostiene": "86M parametros, sesgo de atencion informado por emparejamiento de bases con alpha inicial 0.8, RNAcentral depurado a 20.4M secuencias, F1 0.55 zero-shot en bpRNA-1m desde el mapa de atencion superando a RNAfold y RNAstructure ajustados, +14.4% de F1 binario sobre UFold hasta 0.748 con menos de un quinto de los parametros, y la observacion de que el embedding de RNA-FM es inferior a one-hot en ciertas tareas."
+  },
+  {
+   "id": "zou2024aidorna",
+   "cita": "Zou S, Tao T, Mahbub S, Ellington CN, Algayres R, Li D, Zhuang Y, Wang H, Song L, Xing EP. A Large-Scale Foundation Model for RNA Function and Structure Prediction. bioRxiv (2024); NeurIPS 2024 Workshop AIDrugX.",
+   "doi": "10.1101/2024.11.28.625345",
+   "tipo": "preprint / taller de conferencia",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/10.1101/2024.11.28.625345v1.full",
+   "sostiene": "Especificacion de AIDO.RNA 1.6B y 650M, RNAcentral v24 deduplicado a 42M, decision de descartar MARS por calidad (~85% whole-genome shotgun), benchmark propio de 26 conjuntos en 9 categorias con SOTA en 24/26 y los numeros por tarea, y la variante AIDO.RNA-CDS."
+  },
+  {
+   "id": "brixi2025evo2",
+   "cita": "Brixi G et al. Genome modeling and design across all domains of life with Evo 2. bioRxiv (2025); version de revista en Nature, DOI 10.1038/s41586-026-10176-5 (no abierta).",
+   "doi": "10.1101/2025.02.18.638918",
+   "tipo": "preprint con version revisada por pares",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/10.1101/2025.02.18.638918v1.full",
+   "sostiene": "StripedHyena 2 como primera arquitectura convolucional multihibrida, 7B y 40B, OpenGenome2 con mas de 8.8 billones de nucleotidos, 9.3T tokens, contexto extendido a 1M, exclusion deliberada de virus de hospedadores eucariotas por bioseguridad, resultados zero-shot en ARN, generacion a escala de genoma, y las limitaciones declaradas (proteinas virales humanas, menor densidad de tRNA en lo generado, validez semantica sin similitud)."
+  },
+  {
+   "id": "evo2_licencia_hf",
+   "cita": "Tarjeta de modelo arcinstitute/evo2_7b, HuggingFace.",
+   "tipo": "repositorio de pesos",
+   "marcador": "E",
+   "url_abierta": "https://huggingface.co/arcinstitute/evo2_7b",
+   "sostiene": "Licencia apache-2.0 para Evo 2: es el unico modelo fundacional grande del catalogo con licencia permisiva verificada."
+  },
+  {
+   "id": "wang2025rlmreview",
+   "cita": "Wang H, Zhang Y, Chen J, Zhan J, Zhou Y. A Comparative Review of RNA Language Models. arXiv 2505.09087 (2025).",
+   "doi": "10.48550/arXiv.2505.09087",
+   "tipo": "preprint (relevamiento comparativo con experimentos propios)",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/pdf/2505.09087v1",
+   "sostiene": "Tabla 1 con la especificacion completa de 13 RNA-LM (tamano, corpus, input, token, arquitectura, capas, cabezas, dimension, longitud maxima), que es la base del catalogo de modelos. Resultados zero-shot de estructura secundaria y de clasificacion de familias: el compromiso estructura/funcion, RNA-MSM como mejor en estructura, RNA-FM como mejor en clasificacion (OR 0.070), la degradacion de AIDO.RNA 1.6B en OR respecto de 650M, la escala en ARN frente a la saturacion de ESM2, el sesgo de rRNA/tRNA en los corpus, y el dato de que Evo quedo fuera por no proveer codigo para extraer embeddings ni atenciones."
+  },
+  {
+   "id": "li2025nabench",
+   "cita": "Li Z, Ma R, Tan J, Tan C, Zheng S. NABench: Large-Scale Benchmarks of Nucleotide Foundation Models for Fitness Prediction. arXiv 2511.02888 (2025).",
+   "doi": "10.48550/arXiv.2511.02888",
+   "tipo": "preprint",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/abs/2511.02888",
+   "sostiene": "162 ensayos, ~2.6M secuencias mutadas, 29 modelos fundacionales de nucleotidos en cuatro regimenes de evaluacion; el rendimiento varia por tarea y por tipo de acido nucleico, con modos de falla distintos. Desautoriza elegir un modelo por su tamano."
+  },
+  {
+   "id": "shen2024rhofold",
+   "cita": "Shen T et al. Accurate RNA 3D structure prediction using a language model-based deep learning approach (RhoFold+). arXiv 2207.01586 v2 (2024); version de revista reportada en Nature Methods (s41592-024-02487-0, no abierta).",
+   "doi": "10.48550/arXiv.2207.01586",
+   "tipo": "preprint con version revisada por pares",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/html/2207.01586v2",
+   "sostiene": "Arquitectura (RNA-FM + Rhoformer + modulo de estructura con IPA, MSA limitadas a 256), entrenamiento (782 clusters de 5583 cadenas, 27.732 secuencias de autodestilacion), resultados (RNA-Puzzles 4.02 A y TM 0.57; 76 estructuras nuevas con RMSD medio 7.74 A, 2.2 A mejor que AF3; cross-family 6.69 A), y las limitaciones declaradas (>500 nt, pseudonudos, multihelices, complejos, iones y ligandos, dependencia de MSA)."
+  },
+  {
+   "id": "cedden2026review",
+   "cita": "Cedden D. Emerging experimental and bioinformatic approaches in RNA interference-based pest control research. Insect Molecular Biology 35(4):364-375 (2026).",
+   "doi": "10.1111/imb.70040",
+   "tipo": "relevamiento revisado por pares",
+   "marcador": "E",
+   "url_abierta": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13340966/",
+   "sostiene": "Tabla 2 completa de herramientas bioinformaticas para RNAi en plagas (dsRIP, dsRNAmax, dsRNAEngineer, dsOMG, si-Fi, iBeetle-Base, E-RNAi, dsCheck, DEQOR) con la limitacion declarada de cada una. El hecho de que el relevamiento NO menciona aprendizaje automatico ni profundo: la prediccion de eficacia del subcampo es por reglas. La mecanica de off-target por conteo de desapareamientos (<=2 o >=19 nt de 21). El estudio en Leptinotarsa donde los cambios transcriptomicos no coincidieron con la complementariedad in silico. La advertencia de que dsRIP falta probarlo fuera de coleopteros."
+  },
+  {
+   "id": "cedden2025dsrip",
+   "cita": "Cedden D et al. Optimizing dsRNA sequences for RNAi in pest control and research with the dsRIP web platform. BMC Biology (2025); preprint bioRxiv 2025.01.09.631884.",
+   "doi": "10.1186/s12915-025-02219-6",
+   "tipo": "articulo revisado por pares (leido en su version preprint completa)",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/10.1101/2025.01.09.631884v1.full",
+   "sostiene": "El unico modelo de eficacia entrenado con bioensayos de insecto: regresion de Cox sobre 9 features con 31 siRNA contra Tc-gawky de Tribolium castaneum (n=20 larvas L5 por grupo), C de Harrell 0.76 (IC95 0.73-0.79), cuatro features significativas (asimetria termodinamica, autoplegado de la antisentido, %GC en nt 9-14, A en posicion 10), modelo a nivel dsRNA con R multiple 0.79 (gl=17) y HR 1.462 (P=0.003). Modulo de off-target con Bowtie1 y ponderacion 20:1, ortologia con OrthoFinder sobre 83 organismos. Validacion experimental en T. castaneum, Psylliodes chrysocephala y Leptinotarsa decemlineata; modulo de off-target computacional unicamente. Y el dato clave para la seccion 2.3: la accesibilidad del mRNA NO fue predictor significativo."
+  },
+  {
+   "id": "chen2024dsrnaengineer",
+   "cita": "Chen Y, Shi Y, Wang Z, An X, Wei S, Andronis C, Vontas J, Wang JJ, Niu J. dsRNAEngineer: a web-based tool of comprehensive dsRNA design for pest control. bioRxiv (2024).",
+   "doi": "10.1101/2024.07.22.604585",
+   "tipo": "preprint",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/10.1101/2024.07.22.604585v1.full",
+   "sostiene": "942 transcriptomas de NCBI (439 RefSeq) al 2024-07-05, logica de rebanado (21 pb mayoritario, 16 pb perfecto, 26 pb con 0-2 desapareamientos), conteo de impactos por posicion, preferencia ajustable entre control y bioseguridad, diseno multiblanco. Sin aprendizaje automatico, sin prediccion de eficacia y sin validacion experimental: los dos casos son computacionales, incluidos los controles sobre dsSnf-7 (2-134 off-targets) y Ledprona (0-222)."
+  },
+  {
+   "id": "cheng2024dsrnapredictor",
+   "cita": "Cheng H, Xu L, Jia C. Characterization of double-stranded RNA and its silencing efficiency for insects using hybrid deep-learning framework. Briefings in Functional Genomics 23(6):858-865 (2024).",
+   "doi": "10.1093/bfgp/elae027",
+   "tipo": "articulo revisado por pares",
+   "marcador": "R",
+   "url_abierta": "https://academic.oup.com/bfg/article/23/6/858/7697623",
+   "sostiene": "El unico modelo profundo publicado de eficacia de dsRNA en insectos: dna2vec + CNN + BiLSTM + autoatencion, 12.027 positivos de iBeetle-Base y negativos BARAJADOS, exactitud 0.76 y AUC 0.83, y el fallo de transferencia entre especies en quitina sintasa de Aedes aegypti (dsCHSA_1550 predicho contra dsCHSA_1928 experimental). Es la advertencia metodologica de la seccion 3.4."
+  },
+  {
+   "id": "khodagholi2026sirnareview",
+   "cita": "Khodagholi Z, Yousefi N. From rules to foundation models: a comprehensive review of machine learning approaches for siRNA design. NAR Genomics and Bioinformatics 8(3):lqag099 (2026).",
+   "doi": "10.1093/nargab/lqag099",
+   "tipo": "relevamiento revisado por pares",
+   "marcador": "E",
+   "url_abierta": "https://academic.oup.com/nargab/article/8/3/lqag099/8776214",
+   "sostiene": "La sintesis critica central de la seccion 3.5. Taxonomia de ocho etapas. Conjuntos de datos (Huesken 2431 siRNA contra 34 ARNm; OligoFormer con 3714 siRNA de 9 conjuntos heterogeneos; Mixset) y sus problemas. Metricas por modelo. La afirmacion textual de que la fuga de datos ha inflado sistematicamente los resultados de benchmark de todo el campo, y los protocolos siRNA-split y mRNA-split (70:15:15, 10 semillas). La afirmacion textual de que ningun metodo formal de cuantificacion de incertidumbre se ha aplicado a eficacia de siRNA y que es la brecha de maxima prioridad, con conformal prediction como via. La ausencia de publicaciones de aprendizaje activo. La conclusion de que los embeddings fundacionales son suficientes pero no necesarios (DeepSilencer 0.858 vs OligoFormer 0.845 en Mixset). La tabla 6 de herramientas de off-target y la afirmacion de que ninguna constituye un benchmark comunitario. La mecanica de la semilla (posiciones 2-5, 6-8, 8-14; 6-mero 2-7 como feature mas predictiva). Y el hecho de que el relevamiento NO evalua generalizacion entre especies y no menciona RNAi de insecto."
+  },
+  {
+   "id": "andrada2026dmaidis",
+   "cita": "Andrada NL, Crespo M, Baricalla AA, Dalaison-Fuentes LI, Sterkel M, Catalano MI. ETH and Burs-alpha are necessary for the normal molting in Dalbulus maidis and Delphacodes kuscheli. Frontiers in Insect Science 6 (2026).",
+   "doi": "10.3389/finsc.2026.1811933",
+   "tipo": "articulo revisado por pares",
+   "marcador": "E",
+   "url_abierta": "https://www.frontiersin.org/journals/insect-science/articles/10.3389/finsc.2026.1811933/full",
+   "sostiene": "RNAi experimental publicado en Dalbulus maidis, que es el dato retrospectivo aprovechable sin laboratorio. Genes eth y burs-alpha; microinyeccion en ninfas L5; 0.25 uL a 500 ng/uL; amplicones T7 de 578, 544, 326 y 394 pb; knockdown de ~95% (burs-alpha) y ~90% (eth) en D. maidis al dia 4; supervivencia cayendo a 10%; 77.5% con alas deformes; n=40 por tratamiento; secuencias blanco en material suplementario y transcriptos en GenBank PZ371507-PZ371510."
+  },
+  {
+   "id": "joshi2025grnade",
+   "cita": "Joshi CK, Gianni E, Kwok SLY, Mathis SV, Lio P, Holliger P. Generative inverse design of RNA structure and function with gRNAde. bioRxiv (2025), v2; version previa en ICLR 2025 y arXiv 2305.14749.",
+   "doi": "10.1101/2025.11.29.691298",
+   "tipo": "preprint con version previa en conferencia revisada por pares",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/10.1101/2025.11.29.691298v2.full",
+   "sostiene": "El mejor caso de diseno inverso de ARN con validacion humeda: GVP-GNN equivariante SE(3) con decodificador autorregresivo; 4211 estructuras del PDB con corte 2023-10-31; Eterna OpenKnot ronda 3 con 100% y 90% igualando expertos; ribozima 5TU con 31.5% de exito a 15-19 mutaciones contra 15.0% y 3.0%; recuperacion de secuencia nativa 32% contra 72% de expertos; licencia MIT. Y la confirmacion externa del techo de la estructura 3D: descartaron el filtro de autoconsistencia basado en RhoFold porque no recuperaba la geometria nativa."
+  },
+  {
+   "id": "mitchener2025bixbench",
+   "cita": "Mitchener L, Laurent JM, Andonian A, Tenmann B, Narayanan S, Wellawatte GP, White A, Sani L, Rodriques SG. BixBench: a Comprehensive Benchmark for LLM-based Agents in Computational Biology. arXiv 2503.00096 (2025).",
+   "doi": "10.48550/arXiv.2503.00096",
+   "tipo": "preprint",
+   "marcador": "E",
+   "url_abierta": "https://arxiv.org/abs/2503.00096",
+   "sostiene": "El dato que calibra cuanto delegar a un agente: mas de 50 escenarios reales y ~300 preguntas abiertas; ~17% de exactitud en respuesta abierta para los modelos de frontera; en opcion multiple no mejor que el azar; conclusion de que los agentes actuales no son confiables para analisis bioinformatico riguroso."
+  },
+  {
+   "id": "huang2025biomni",
+   "cita": "Huang K, Zhang S, Wang H et al. (Leskovec J). Biomni: A General-Purpose Biomedical AI Agent. bioRxiv (2025).",
+   "doi": "10.1101/2025.05.30.656746",
+   "tipo": "preprint",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/10.1101/2025.05.30.656746v1.full",
+   "sostiene": "Biomni-E1 con 150 herramientas, 105 paquetes y 59 bases; Biomni-A1 sobre CodeAct. LAB-Bench DbQA 74.4% vs 74.7% humano; SeqQA 81.9% vs 78.8%; HLE biologia 17.3%. Y los asteriscos: subconjunto del 12.5% por costos, depuracion necesaria, limitaciones declaradas, inconsistencias internas, y una unica validacion humeda (clonado de sgRNA contra B2M, 2 colonias por Sanger) con el resto computacional."
+  },
+  {
+   "id": "boiko2023coscientist",
+   "cita": "Boiko DA, MacKnight R, Kline B, Gomes G. Autonomous chemical research with large language models. Nature 624(7992):570-578 (2023).",
+   "doi": "10.1038/s41586-023-06792-0",
+   "tipo": "articulo revisado por pares",
+   "marcador": "E",
+   "url_abierta": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10733136",
+   "sostiene": "Modulos del sistema y las seis tareas. Y la parte critica: lo ejecutado fisicamente contra lo simulado; las optimizaciones de reaccion usaron conjuntos de datos existentes COMO TABLAS DE CONSULTA sin experimentos nuevos; sin rendimientos reportados para Suzuki y Sonogashira; placas movidas a mano; y datos, codigo y prompts no liberados completos por seguridad y doble uso."
+  },
+  {
+   "id": "ghareeb2025robin",
+   "cita": "Ghareeb AE, Chang B, Mitchener L, Yiu A, Szostkiewicz CJ, Laurent JM, Razzak MT, White AD, Hinks MM, Rodriques SG. Robin: A multi-agent system for automating scientific discovery. arXiv 2505.13400 (2025).",
+   "doi": "10.48550/arXiv.2505.13400",
+   "tipo": "preprint (version de revista reportada en Nature 2026, no abierta)",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/abs/2505.13400",
+   "sostiene": "Plantilla de flujo literatura -> hipotesis -> experimento propuesto -> reinterpretacion. Caso de dAMD con ripasudil y ABCA1. Declaracion de que todas las hipotesis, planes, analisis y figuras del texto principal fueron producidos por Robin, y de que el enfoque es semiautonomo con laboratorio en el circuito (mesada humana). La pagina no declara limitaciones ni codigo."
+  },
+  {
+   "id": "mehradfar2025lnp",
+   "cita": "Mehradfar A, Sepehri MS, Hernandez-Lobato JM, Kwon GS, Soltanolkotabi M, Avestimehr S, Rasoulianboroujeni M. A Machine Learning Benchmarking Framework for Lipid Nanoparticle Transfection Efficiency Prediction. arXiv 2507.03209 (2025); Communications AI & Computing 1, 2 (2026).",
+   "doi": "10.48550/arXiv.2507.03209",
+   "tipo": "preprint con referencia de revista",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/abs/2507.03209",
+   "sostiene": "Estado del arte de aprendizaje automatico en formulacion y entrega de ARN: 1100 estructuras unicas de lipido ionizable derivadas del conjunto de transfeccion en HeLa de Xu et al.; los modelos con codificacion explicita de subestructura molecular ganan y los de grafos (AGILE, Chemprop, KPGT) quedan por debajo. Limitacion: un unico conjunto derivado de HeLa, generalizacion no demostrada."
+  },
+  {
+   "id": "tang2025glm",
+   "cita": "Tang Z, Somia N, Yu Y, Koo PK. Evaluating the representational power of pre-trained DNA language models for regulatory genomics. Genome Biology 26:203 (2025).",
+   "doi": "10.1186/s13059-025-03674-8",
+   "tipo": "articulo revisado por pares (benchmark independiente)",
+   "marcador": "E",
+   "url_abierta": "https://genomebiology.biomedcentral.com/counter/pdf/10.1186/s13059-025-03674-8",
+   "sostiene": "Seccion 1.4. Probing sin ajuste fino de NT, DNABERT-2, HyenaDNA y GPN en 6 tareas de genomica funcional especificas de tipo celular. Las representaciones no dan ventaja apreciable sobre one-hot; el token CLS codifica poco mas que estadistica de bag-of-dinucleotides; los rasgos cis-regulatorios se aprenden en el ajuste fino, no en el preentrenamiento; GPN y HyenaDNA (chicos, a nivel de nucleotido) superan a los modelos grandes. Licencia del articulo CC BY-NC-ND 4.0."
+  },
+  {
+   "id": "marin2024bend",
+   "cita": "Marin FI, Teufel F, Horlacher M, Madsen D, Pultz D, Winther O, Boomsma W. BEND: Benchmarking DNA Language Models on Biologically Meaningful Tasks. ICLR 2024.",
+   "doi": "10.48550/arXiv.2311.12570",
+   "tipo": "conferencia revisada por pares (benchmark independiente)",
+   "marcador": "E",
+   "url_abierta": "https://arxiv.org/pdf/2311.12570",
+   "sostiene": "Seccion 1.4. Siete tareas sobre el genoma humano, 14 modelos de 6 fuentes, comparados contra metodos expertos. Tabla 3 completa. Los LM no dan mejoras consistentes y a veces no superan al metodo experto especializado. Limitacion declarada por los autores: BEND es solo humano y la generalizacion entre organismos queda como pregunta abierta."
+  },
+  {
+   "id": "ren2024beacon",
+   "cita": "Ren Y, Chen Z, Qiao L, Jing H, Cai Y, Xu S, Ye P, Ma X, Sun S, Yan H, Yuan D, Ouyang W, Liu X. BEACON: Benchmark for Comprehensive RNA Tasks and Language Models. NeurIPS 2024.",
+   "doi": "10.48550/arXiv.2406.10391",
+   "tipo": "conferencia revisada por pares (benchmark independiente)",
+   "marcador": "E",
+   "url_abierta": "https://arxiv.org/pdf/2406.10391",
+   "sostiene": "Secciones 1.4, 2.3 y 3.4. Trece tareas de ARN. La LSTM ingenua supera a las demas lineas base en 9 de 13 tareas y ResNet supera a casi todos los LM en algunas. Los LM superan al SOTA previo en 8 de 13. En la tarea CRI-Off (efecto fuera de blanco de CRISPR) todos los LM de ARN quedan entre 2,49 y 5,00 de correlacion de Spearman contra 11,40 de una CNN y 12,6 del SOTA."
+  },
+  {
+   "id": "wang2026bbag098",
+   "cita": "Wang H, Zhang Y, Chen J, Zhan J et al. Zero-shot benchmarking of RNA language models in structural, functional, and evolutionary learning. Briefings in Bioinformatics 27(2):bbag098 (2026).",
+   "doi": "10.1093/bib/bbag098",
+   "tipo": "relevamiento revisado por pares con experimentos propios",
+   "marcador": "E",
+   "url_abierta": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12963973/",
+   "sostiene": "Secciones 1.1, 1.3, 1.4, 2.3. Veintiun modelos de ARN en cero disparos estricto, tres tareas (atencion/embeddings/logits). RNA-MSM supera a AIDO.RNA 1,6B en 9,0% de F1 mediano. Compromiso entre representaciones estructurales, funcionales y evolutivas. Aptitud mutacional: MCC medio <0,20, AUC <0,64, SR <0,27. MP-RNA y PlantRNA-FM rinden bien por incorporar estructura de ViennaRNA en el preentrenamiento. Tabla 1 con especificaciones verificadas de 21 modelos. [?] Es casi con certeza la version revisada por pares y ampliada del preprint arXiv 2505.09087 (mismo primer autor, institucion, metodologia y resultado numerico), pero el articulo no lo declara."
+  },
+  {
+   "id": "yu2024plantrnafm",
+   "cita": "Yu H, Deng H, Zhang J et al. (corresp. Zhang H, Ding Y, Li K). An interpretable RNA foundation model for exploring functional RNA motifs in plants (PlantRNA-FM). Nature Machine Intelligence 6:1616-1625 (2024).",
+   "doi": "10.1038/s42256-024-00946-z",
+   "tipo": "articulo revisado por pares",
+   "marcador": "R",
+   "url_abierta": "https://www.nature.com/articles/s42256-024-00946-z.pdf",
+   "sostiene": "Seccion 1.3. Unico modelo fundacional de ARN de plantas del catalogo. 35M de parametros, 12 capas, 24 cabezas, dimension 480; preentrenado sobre transcriptomas de 1124 especies de plantas (OneKP) integrando secuencia, estructura predicha con RNAfold y anotacion de CDS/UTR. Anotacion de region genica F1 0,974 contra 0,639 del mejor previo. Motivos de traduccion validados experimentalmente. Articulo CC BY 4.0; licencia de pesos no declarada."
+  },
+  {
+   "id": "bai2024oligoformer",
+   "cita": "Bai Y, Zhong H, Wang T, Lu ZJ. OligoFormer: an accurate and robust prediction method for siRNA design. Bioinformatics 40(10):btae577 (2024).",
+   "doi": "10.1093/bioinformatics/btae577",
+   "tipo": "articulo revisado por pares (se abrio la version preprint completa)",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/biorxiv/early/2024/02/07/2024.02.02.578533.full.pdf",
+   "sostiene": "Seccion 3.2. Resuelve un pendiente de la primera tanda. Nueve conjuntos, todos humanos y de linea celular; umbral de 70% del maximo de inhibicion. Intra-conjunto: Huesken AUC 0,8619; Mixset 0,8444; Takayuki 0,8628. Inter-conjunto (Huesken->Mixset) AUC 0,8153 contra DSIR 0,7483. Ablacion: RNA-FM y los parametros termodinamicos ambos aportan. Off-target por PITA y TargetScan, que son herramientas de miARN. [?] El PDF servido por Unpaywall para ese DOI es el preprint bioRxiv 2024.02.02.578533, no el PDF de la revista; el resumen de la revista dice 'six comparable methods' donde el preprint dice 5 y agrega 6,6% de PRC y 5,1% de PCC, numeros que no se usan."
+  },
+  {
+   "id": "muita2026varroa",
+   "cita": "Muita BK, Damayo JE, Remnant EJ, Smith NA, Greaves IK, Ghodke AB, Kumaran N, Roberts JMK. Novel dsRNA designs increase the stability and bioefficacy of RNAi-based pesticides for Varroa destructor. Frontiers in Insect Science (17-ago-2026).",
+   "doi": "10.3389/finsc.2026.1868457",
+   "tipo": "articulo revisado por pares (validacion experimental)",
+   "marcador": "R",
+   "url_abierta": "https://www.frontiersin.org/journals/insect-science/articles/10.3389/finsc.2026.1868457/pdf",
+   "sostiene": "Seccion 3.6. Eje de diseno estructural de la molecula de dsRNA, que ningun modelo del catalogo cubre. ledRNA con apareamientos G-U (ledG:U) o protuberancias asimetricas cada 22 nt (led[D22], que no altera la secuencia antisentido): doble de estabilidad, silenciamiento 36-86%, mortalidad +32-56%, siRNA con pico 22-24 nt y sesgo antisentido. n=5 replicas biologicas salvo dos condiciones con 2 y 4. Solo laboratorio; los autores reconocen que falto control de genes con el diseno ledRNA para descartar efectos del propio diseno."
+  },
+  {
+   "id": "skarlinski2024paperqa2",
+   "cita": "Skarlinski MD, Cox S, Laurent JM, Braza JD, Hinks M, Hammerling MJ, Ponnapati M, Rodriques SG, White AD. Language agents achieve superhuman synthesis of scientific knowledge (PaperQA2 / LitQA2). arXiv 2409.13740.",
+   "doi": "10.48550/arXiv.2409.13740",
+   "tipo": "preprint",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/pdf/2409.13740",
+   "sostiene": "Seccion 4.2. Resuelve un pendiente de la primera tanda. LitQA2: PaperQA2 precision 85,2% +/- 1,1% y exactitud 66,0% +/- 1,2% (n=3), absteniendose en 21,9%; humanos con doctorado 73,8% +/- 9,6% y 67,7% +/- 11,9% (n=9). La diferencia es significativa en precision (p=0,0036) y NO en exactitud (p=0,66). WikiCrow: 13,5% de afirmaciones citadas y no sostenidas contra 24,9% de Wikipedia. ContraCrow: 2,34 +/- 1,99 contradicciones por articulo (n=93), 70% validadas por expertos."
+  },
+  {
+   "id": "gottweis2025coscientist",
+   "cita": "Gottweis J, Weng W-H, Daryin A, Tu T, Sirkovic P et al. (Google Cloud AI Research, Google DeepMind, Google Research, Stanford, Imperial College). Accelerating scientific discovery with Co-Scientist. arXiv 2502.18864.",
+   "doi": "10.48550/arXiv.2502.18864",
+   "tipo": "preprint",
+   "marcador": "R",
+   "url_abierta": "https://arxiv.org/pdf/2502.18864",
+   "sostiene": "Seccion 4.3. Sistema multiagente 'generar, debatir, evolucionar' con torneo y puntaje Elo sobre 203 objetivos de investigacion. Tres validaciones humedas: reposicionamiento para leucemia mieloide aguda in vitro; blancos epigeneticos para fibrosis hepatica en organoides hepaticos humanos; recapitulacion de un mecanismo de transferencia de elementos geneticos moviles sin publicar. Limitaciones declaradas: solo literatura de acceso abierto, 'systemic lack of access to negative experimental results', riesgo de propagar hallazgos erroneos, validacion 'remains preliminary', y necesidad de metricas que vayan mas alla del sistema de ranking actual."
+  },
+  {
+   "id": "he2024ribonanza",
+   "cita": "He S, Huang R, Townley J, Kretsch RC, Karagianes TG et al. (corresp. Das R). Ribonanza: deep learning of RNA structure through dual crowdsourcing. bioRxiv 10.1101/2024.02.24.581671 (2024), CC BY 4.0.",
+   "doi": "10.1101/2024.02.24.581671",
+   "tipo": "preprint",
+   "marcador": "R",
+   "url_abierta": "https://www.biorxiv.org/content/biorxiv/early/2024/02/27/2024.02.24.581671.full.pdf",
+   "sostiene": "Seccion 5.3. Vara de medir de cuantos datos hace falta. Mapeo quimico sobre dos millones de secuencias de ARN via Eterna y Kaggle, destilado en RibonanzaNet. Aproximadamente 400 millones de mediciones a nivel de nucleotido, con senal-ruido aceptable en 80 millones, y los autores declaran que esos conjuntos 'are much smaller than the corpora of 10 billion to many trillions of data' de otros dominios. Limitacion declarada: no pudieron evaluar prospectivamente estructura 3D."
+  },
+  {
+   "id": "flamm2022caveats",
+   "cita": "Flamm C, Wielach J, Wolfinger MT, Badelt S, Lorenz R, Hofacker IL. Caveats to Deep Learning Approaches to RNA Secondary Structure Prediction. Frontiers in Bioinformatics 2:835422 (2022).",
+   "doi": "10.3389/fbinf.2022.835422",
+   "tipo": "articulo revisado por pares (critica metodologica)",
+   "marcador": "E",
+   "url_abierta": "https://www.frontiersin.org/articles/10.3389/fbinf.2022.835422/pdf",
+   "sostiene": "Seccion 2.1. Sesgo del conjunto de datos: en bpRNA el 55% son ARN ribosomales del CRW y el 43% viene de Rfam, donde ARNr y ARNt son mas del 90%. Propone entrenar sobre datos sinteticos de un modelo biofisico simplificado. Hallazgo central: el numero de pares de bases predichos escala cuadraticamente con la longitud cuando solo puede escalar linealmente. Control de memorizacion sobre ARN plegados inversamente y barajados (MCC 0,46 en ambos)."
+  }
+ ],
+ "no_abiertas": [
+  {
+   "cita": "Knockdown of double-stranded RNases (dsRNases) enhances oral RNA interference (RNAi) in the corn leafhopper, Dalbulus maidis. PubMed 37945254; Pesticide Biochemistry and Physiology (2023).",
+   "url_intentada": "https://pubmed.ncbi.nlm.nih.gov/37945254/",
+   "motivo": "RECHAZO DE HERRAMIENTA. El submodelo de lectura de WebFetch devolvio un rechazo de politica con el codigo [bio]. Registrado sin reformular la consulta, segun la regla de alcance del proyecto.",
+   "impacto": "La afirmacion 'silenciar las dsRNasas del insecto mejora el RNAi oral en D. maidis' queda como [R] apoyada solo en el indice de PubMed. Es la pieza que conecta el cuello de botella de entrega declarado por el organizador con una decision de diseno de secuencia (dsRNA quimerico anti-dsRNasa), asi que hay que abrirla por otra via antes de construir sobre ella."
+  },
+  {
+   "cita": "Silencing efficacy prediction: a retrospective study on target mRNA features. PMC4381284.",
+   "url_intentada": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4381284/",
+   "motivo": "Limite de cuota de la sesion.",
+   "impacto": "La evidencia EN CONTRA de la accesibilidad como predictor (seccion 2.3) queda apoyada solo en la cita que hace de ella el relevamiento abierto de siRNA, mas el resultado directo de dsRIP. El punto se marca [?]."
+  }
+ ]
+}
