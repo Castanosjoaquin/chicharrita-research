@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R1 — Fundamentos: RNAi y el sistema chicharrita–achaparramiento–maíz</title>
+<meta name="description" content="R1: base molecular, mecanismo de RNAi, el sistema patógeno, por qué los patógenos son blancos difíciles, tratamientos existentes y diseño de ARNdc como problema de ingeniería. Vista de lectura del REPORT.md.">
+<style>
+:root{
+  --ink:#141b1a;
+  --ink-soft:#3e4c49;
+  --ink-faint:#6b7a77;
+  --paper:#ffffff;
+  --paper-alt:#f1f4f3;
+  --rule:#d4dcda;
+  --teal:#0f5c52;
+  --teal-bright:#14887a;
+  --ochre:#a8620c;
+  --ochre-soft:#f5ead9;
+  --crimson:#8e2231;
+  --slate:#2f4b66;
+  --shell:#fbfcfc;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#e4ebe9;
+    --ink-soft:#aebbb8;
+    --ink-faint:#7f8d8a;
+    --paper:#121817;
+    --paper-alt:#1b2322;
+    --rule:#2d3938;
+    --teal:#4fc4b0;
+    --teal-bright:#6fd8c4;
+    --ochre:#e0a259;
+    --ochre-soft:#2a2118;
+    --crimson:#e58696;
+    --slate:#8fb4d6;
+    --shell:#0d1211;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--shell);
+  color:var(--ink);
+  font:400 17px/1.65 "Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,serif;
+  font-weight:600;
+  line-height:1.2;
+  letter-spacing:-.01em;
+  font-style:normal;
+}
+h1{font-size:2.1rem;margin:0 0 .3em}
+h2{font-size:1.55rem;margin:2.6em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--teal)}
+h3{font-size:1.18rem;margin:2em 0 .4em;color:var(--teal)}
+h4{font-size:1rem;margin:1.5em 0 .3em;color:var(--ink-soft)}
+p{margin:0 0 1.05em}
+a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a:hover{color:var(--ochre)}
+strong{font-weight:650}
+
+.wrap{display:flex;gap:0;max-width:1180px;margin:0 auto;align-items:flex-start}
+nav{
+  flex:0 0 232px;position:sticky;top:0;max-height:100vh;overflow-y:auto;
+  padding:2rem 1.1rem 3rem;border-right:1px solid var(--rule);
+}
+nav .navtitle{
+  font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:.95rem;
+  color:var(--ink-faint);border-bottom:1px solid var(--rule);
+  padding-bottom:.5rem;margin-bottom:.7rem;
+}
+nav ol{list-style:none;margin:0;padding:0}
+nav li{margin:0}
+nav a{
+  display:block;padding:.34rem .5rem .34rem .6rem;font-size:.9rem;line-height:1.35;
+  color:var(--ink-soft);text-decoration:none;border-left:3px solid transparent;
+}
+nav a:hover{border-left-color:var(--ochre);color:var(--ink);background:var(--paper-alt)}
+nav .sub a{font-size:.82rem;padding-left:1.4rem;color:var(--ink-faint)}
+
+main{flex:1 1 auto;min-width:0;padding:2rem 2.2rem 6rem;background:var(--paper);border-right:1px solid var(--rule)}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:62ch}
+.meta{font-size:.84rem;color:var(--ink-faint);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:.6rem 0;margin:1.4rem 0 2rem}
+
+/* marcadores de evidencia */
+.m{
+  display:inline-block;font-size:.72rem;font-weight:700;line-height:1;
+  padding:.22em .42em;border-radius:2px;vertical-align:.08em;white-space:nowrap;
+}
+.mE{background:var(--teal);color:var(--paper)}
+.mR{background:var(--ochre);color:var(--paper)}
+.mH{background:var(--slate);color:var(--paper)}
+.mQ{background:var(--crimson);color:var(--paper)}
+@media (prefers-color-scheme: dark){
+  .mE,.mR,.mH,.mQ{color:#0d1211}
+}
+.legend{display:flex;flex-wrap:wrap;gap:1.1rem;font-size:.85rem;color:var(--ink-soft);margin:0 0 1.6rem}
+.legend span{display:flex;align-items:center;gap:.4rem}
+
+.callout{
+  border-left:4px solid var(--ochre);background:var(--ochre-soft);
+  padding:.9rem 1.1rem;margin:1.6rem 0;font-size:.97rem;
+}
+.callout.key{border-left-color:var(--teal);background:var(--paper-alt)}
+.callout p:last-child{margin-bottom:0}
+.callout .tag{
+  display:block;font-family:"Iowan Old Style",Palatino,Georgia,serif;
+  font-size:.9rem;color:var(--ink-faint);margin-bottom:.35rem;
+}
+
+table{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.89rem}
+caption{text-align:left;font-size:.84rem;color:var(--ink-faint);padding-bottom:.5rem}
+th,td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:650;color:var(--teal);border-bottom:2px solid var(--teal);font-size:.84rem}
+tbody tr:hover{background:var(--paper-alt)}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+ul.tight{margin:0 0 1.1em;padding-left:1.15rem}
+ul.tight li{margin:.3em 0}
+
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-size:.84rem;color:var(--ink-faint);margin-top:.6rem;max-width:68ch}
+
+.files{font-size:.9rem}
+.files dt{font-weight:650;margin-top:.8rem;color:var(--teal)}
+.files dd{margin:.15rem 0 0 0;color:var(--ink-soft)}
+
+footer{padding:1.6rem 2.2rem 3rem;max-width:1180px;margin:0 auto;font-size:.85rem;color:var(--ink-faint)}
+
+@media (max-width:860px){
+  .wrap{display:block}
+  nav{
+    position:static;flex:none;max-height:none;width:100%;
+    border-right:0;border-bottom:1px solid var(--rule);padding:1.2rem 1.2rem 1.4rem;
+    background:var(--paper-alt);
+  }
+  nav ol{column-count:2;column-gap:1rem}
+  nav .sub{display:none}
+  main{padding:1.5rem 1.1rem 4rem;border-right:0}
+  footer{padding:1.4rem 1.1rem 3rem}
+  h1{font-size:1.65rem}
+  h2{font-size:1.3rem}
+  body{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav aria-label="Índice">
+  <div class="navtitle">R1 · Fundamentos</div>
+  <ol>
+    <li><a href="#clave">Lo que hay que saber</a></li>
+    <li><a href="#s1">1 · Base molecular</a></li>
+    <li><a href="#s2">2 · El mecanismo de RNAi</a></li>
+    <li class="sub"><a href="#fig-rnai">Figura: el mecanismo</a></li>
+    <li class="sub"><a href="#reinos">Dónde amplifica y dónde no</a></li>
+    <li><a href="#s3">3 · El sistema patógeno</a></li>
+    <li class="sub"><a href="#fig-ciclo">Figura: el ciclo</a></li>
+    <li class="sub"><a href="#grano">Grano o tallo: la verificación</a></li>
+    <li class="sub"><a href="#magnitud">Magnitud del daño</a></li>
+    <li><a href="#s4">4 · Por qué son blancos difíciles</a></li>
+    <li class="sub"><a href="#uniprot">Nuestra verificación</a></li>
+    <li class="sub"><a href="#vias">Vector, patógeno o planta</a></li>
+    <li><a href="#s5">5 · Tratamientos existentes</a></li>
+    <li class="sub"><a href="#plataformas">SIGS, HIGS, VIGS</a></li>
+    <li><a href="#s6">6 · Diseño como ingeniería</a></li>
+    <li class="sub"><a href="#blast">BLAST y termodinámica</a></li>
+    <li class="sub"><a href="#tabla">Qué calcula cada cosa</a></li>
+    <li><a href="#implica">Lo que implica para nosotros</a></li>
+    <li><a href="#archivos">Archivos y fuentes</a></li>
+  </ol>
+</nav>
+
+<main>
+  <h1>Fundamentos: RNAi y el sistema chicharrita–achaparramiento–maíz</h1>
+  <p class="lede">Documento de base para cuatro ingenieros en IA que tienen que discutir de igual a igual
+  con un investigador de biología molecular, y decidir si una idea computacional propia tiene sentido
+  biológico antes de programarla.</p>
+  <p class="meta">Línea R1 del repositorio · 51 fuentes abiertas y una consulta propia a UniProtKB ·
+  desarrollo completo en <code>REPORT.md</code></p>
+  <p class="legend">
+    <span><span class="m mE">E</span> establecido</span>
+    <span><span class="m mR">R</span> reportado</span>
+    <span><span class="m mH">H</span> hipótesis nuestra</span>
+    <span><span class="m mQ">?</span> incierto o contradicción</span>
+  </p>
+
+  <section id="clave">
+  <div class="callout key">
+    <span class="tag">La respuesta a la pregunta central del documento</span>
+    <p><strong>El RNAi no opera sobre los mollicutes del complejo.</strong> Consultamos UniProtKB por
+    dominio InterPro y por taxón: cero proteínas con dominio PIWI, cero con PAZ y cero con el dominio de
+    dimerización de Dicer en Mollicutes (sobre 126.874 proteínas anotadas), en <em>Spiroplasma</em> (36.551),
+    en <em>Spiroplasma kunkelii</em> (1.755) y en <em>'Candidatus</em> Phytoplasma' (24.307), con control
+    positivo de RNasa III en todos los taxones y el juego completo de dominios en <em>Zea mays</em> y en
+    Hemiptera. <span class="m mE">E</span> No hay mecanismo conocido por el cual un ARNdc exógeno silencie un gen del espiroplasma
+    o del fitoplasma.</p>
+    <p><strong>Los virus sí son blanco, pero el silenciamiento no ocurre en el virus: ocurre en la célula
+    vegetal.</strong> <span class="m mE">E</span> Es la planta la que corta el ARN viral con su propia maquinaria, y eso está
+    documentado con ARNdc exógeno en 25 combinaciones virus–cultivo, incluido maíz y un virus de ADN. Para
+    MRFV y MSMV en particular no encontramos ni un solo trabajo publicado. <span class="m mQ">?</span></p>
+    <p><strong>Queda el vector, que es donde hay evidencia funcional directa en la especie exacta.</strong>
+    <span class="m mE">E</span> Y queda una segunda vía elegante: silenciar genes del vector que el patógeno necesita para
+    atravesarlo.</p>
+  </div>
+  </section>
+
+  <h2 id="s1">1 · Base molecular</h2>
+  <p>El ADN guarda la información en dos hebras complementarias; esa complementariedad es lo que hace que
+  "buscar una secuencia parecida" tenga sentido físico y no sólo combinatorio. Un <strong>gen</strong> es un
+  tramo de ADN que se lee —<strong>transcripción</strong>— para producir <strong>ARN</strong>, de una sola
+  hebra. El producto concreto de leer un gen en un momento dado es un <strong>transcrito</strong>, y la
+  distinción importa: un gen puede dar varios transcritos, y lo que nuestros algoritmos toman como entrada son
+  transcritos. <span class="m mE">E</span></p>
+  <p>Si el transcrito codifica una proteína es un <strong>ARN mensajero</strong>. La parte que efectivamente se
+  traduce es el <strong>ORF</strong>; por delante y por detrás quedan las <strong>UTR</strong> 5′ y 3′, que no
+  codifican pero regulan. Esa geografía reaparece en la sección 6 como variable de diseño con efecto medido:
+  apuntar al ORF en lugar del UTR se asoció con mayor eficacia del ARNdc. <span class="m mR">R</span></p>
+  <p>No todo el ARN se traduce. Los <strong>microARN</strong> son reguladores endógenos de 20 a 24 nt con
+  apareamiento muchas veces imperfecto; los <strong>siRNA</strong> tienen largo parecido pero vienen del corte
+  de un ARN de doble cadena y aparean de forma perfecta o casi perfecta; los <strong>lncRNA</strong> son ARN
+  funcionales de más de 200 nt sin potencial codificante. <span class="m mE">E</span></p>
+  <div class="callout">
+    <span class="tag">La idea que hay que llevarse de esta sección</span>
+    <p>El <strong>ARN de doble cadena</strong> es raro en una célula normal y es exactamente lo que produce un
+    virus al replicarse: funciona como firma molecular de infección. <span class="m mE">E</span> Por eso el ARNdc exógeno no es una
+    droga que inhibe una proteína por acoplamiento: es <strong>información</strong> que se entrega a una
+    maquinaria que ya existe en la célula. Si la maquinaria no está, el ARNdc no hace nada. Toda la sección 4
+    es una aplicación de esta frase.</p>
+  </div>
+
+  <h2 id="s2">2 · El mecanismo de RNAi, con precisión</h2>
+  <p>Una ribonucleasa de la familia RNasa III llamada <strong>Dicer</strong> reconoce el ARNdc largo y lo corta.
+  No corta al azar: su dominio <strong>PAZ</strong> reconoce el extremo característico de los intermediarios de
+  RNAi —saliente de dos nucleótidos en 3′ y fosfato en 5′— y con ese extremo anclado, PAZ y RNasa III "actúan
+  juntos como una regla molecular" que mide una distancia fija hasta el centro catalítico y define el largo del
+  producto; en la Dicer de <em>Giardia intestinalis</em> esa distancia es de 65 Å. <span class="m mE">E</span></p>
+  <p>De ahí se sigue algo contraintuitivo: <strong>el largo del siRNA no lo elige quien diseña el ARNdc, lo
+  elige la enzima del organismo que lo procesa</strong>, y no es el mismo en todos lados. En insectos, Dicer-2
+  produce 21 nt en dípteros y coleópteros, 22 nt en himenópteros y ortópteros y 20 nt en lepidópteros, con el
+  patrón sostenido frente a virus distintos y a disparadores sintéticos. <span class="m mE">E</span> Para hemípteros —el orden de la
+  chicharrita— ese trabajo no reporta perfil: es un hueco. <span class="m mQ">?</span></p>
+  <p>El dúplex se entrega a una <strong>Argonaute</strong>, que forma con él el <strong>RISC</strong>: el extremo
+  3′ lo une PAZ y el fosfato 5′ lo une MID. De las dos hebras, sólo una queda como <strong>guía</strong>; la
+  <strong>pasajera</strong> se degrada, y "su selección es un determinante clave del silenciamiento que sigue".
+  <span class="m mE">E</span> El RISC cargado une ARN complementario: la unión la inician los nucleótidos 2 a 6 de la guía, la
+  <strong>semilla</strong>, y si la complementariedad alcanza, el dominio PIWI —plegamiento tipo RNasa H, tríada
+  catalítica DDX— corta el blanco. No todas las Argonautas cortan: de las cuatro humanas, sólo Ago2. <span class="m mE">E</span></p>
+  
+  <figure id="fig-rnai">
+  <svg viewBox="0 0 880 600" role="img" aria-labelledby="f1t f1d">
+    <title id="f1t">Mecanismo de RNAi y dónde existe cada pieza</title>
+    <desc id="f1d">El ARN de doble cadena exógeno entra a la célula, Dicer lo corta en dúplex cortos,
+    una hebra se carga en Argonaute formando el RISC, que corta el ARN mensajero complementario.
+    La maquinaria existe en la planta y en el insecto, y está ausente en los mollicutes.</desc>
+    <defs>
+      <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-faint)"/>
+      </marker>
+      <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--teal)"/>
+      </marker>
+    </defs>
+    <rect x="0" y="0" width="880" height="600" fill="var(--paper-alt)"/>
+
+    <!-- paso 1 -->
+    <rect x="24" y="40" width="186" height="76" fill="var(--paper)" stroke="var(--rule)"/>
+    <text x="36" y="64" font-size="13" font-weight="650" fill="var(--ink)">1 · ARNdc exógeno</text>
+    <text x="36" y="84" font-size="12" fill="var(--ink-soft)">pulverizado, ingerido</text>
+    <text x="36" y="101" font-size="12" fill="var(--ink-soft)">o inyectado · 200–500 pb</text>
+    <g stroke="var(--teal)" stroke-width="2.5">
+      <line x1="40" y1="128" x2="194" y2="128"/><line x1="40" y1="136" x2="194" y2="136"/>
+    </g>
+    <text x="40" y="156" font-size="11" fill="var(--ink-faint)">dos hebras apareadas = señal de alarma celular</text>
+
+    <line x1="212" y1="78" x2="268" y2="78" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#a1)"/>
+
+    <!-- paso 2 Dicer -->
+    <rect x="272" y="40" width="208" height="76" fill="var(--paper)" stroke="var(--rule)"/>
+    <text x="284" y="64" font-size="13" font-weight="650" fill="var(--ink)">2 · Dicer / DCL corta</text>
+    <text x="284" y="84" font-size="12" fill="var(--ink-soft)">PAZ ancla el saliente de 2 nt en 3′</text>
+    <text x="284" y="101" font-size="12" fill="var(--ink-soft)">PAZ + RNasa III = regla molecular</text>
+
+    <line x1="482" y1="78" x2="538" y2="78" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#a1)"/>
+
+    <!-- paso 3 duplex -->
+    <rect x="542" y="40" width="314" height="76" fill="var(--paper)" stroke="var(--rule)"/>
+    <text x="554" y="64" font-size="13" font-weight="650" fill="var(--ink)">3 · Dúplex de siRNA</text>
+    <text x="554" y="84" font-size="12" fill="var(--ink-soft)">el largo lo fija la enzima del organismo:</text>
+    <text x="554" y="101" font-size="12" fill="var(--ink-soft)">20, 21 o 22 nt según el orden del insecto</text>
+
+    <line x1="699" y1="122" x2="699" y2="166" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#a1)"/>
+
+    <!-- paso 4 carga -->
+    <rect x="482" y="170" width="374" height="96" fill="var(--paper)" stroke="var(--rule)"/>
+    <text x="494" y="194" font-size="13" font-weight="650" fill="var(--ink)">4 · Carga en Argonaute: se elige una hebra</text>
+    <text x="494" y="214" font-size="12" fill="var(--ink-soft)">MID une el fosfato 5′ · PAZ une el extremo 3′</text>
+    <g stroke="var(--teal)" stroke-width="3"><line x1="494" y1="232" x2="640" y2="232"/></g>
+    <text x="648" y="236" font-size="11" fill="var(--teal)" font-weight="650">hebra guía → se conserva</text>
+    <g stroke="var(--ink-faint)" stroke-width="3" stroke-dasharray="5 4"><line x1="494" y1="252" x2="640" y2="252"/></g>
+    <text x="648" y="256" font-size="11" fill="var(--ink-faint)">pasajera → se degrada</text>
+
+    <line x1="482" y1="218" x2="426" y2="218" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#a1)"/>
+
+    <!-- paso 5 RISC -->
+    <rect x="152" y="170" width="270" height="96" fill="var(--paper)" stroke="var(--teal)" stroke-width="2"/>
+    <text x="164" y="194" font-size="13" font-weight="650" fill="var(--ink)">5 · RISC busca y corta</text>
+    <text x="164" y="214" font-size="12" fill="var(--ink-soft)">la semilla (nt 2–6) inicia la unión</text>
+    <text x="164" y="231" font-size="12" fill="var(--ink-soft)">PIWI corta el ARNm complementario</text>
+    <text x="164" y="252" font-size="12" font-weight="650" fill="var(--teal)">PTGS: el gen se transcribe, el mensaje muere</text>
+
+    <!-- rama RdDM -->
+    <line x1="760" y1="122" x2="760" y2="300" stroke="var(--ochre)" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#a1)"/>
+    <rect x="596" y="304" width="260" height="78" fill="var(--paper)" stroke="var(--ochre)"/>
+    <text x="608" y="328" font-size="13" font-weight="650" fill="var(--ink)">Rama de 24 nt (sólo plantas)</text>
+    <text x="608" y="347" font-size="12" fill="var(--ink-soft)">DCL3 → AGO4 → metilación del ADN</text>
+    <text x="608" y="366" font-size="12" font-weight="650" fill="var(--ochre)">TGS / RdDM · actúa sobre ADN geminiviral</text>
+
+    <!-- franja: donde existe -->
+    <rect x="24" y="414" width="832" height="1" fill="var(--rule)"/>
+    <text x="24" y="444" font-size="13" font-weight="650" fill="var(--ink)">Dónde existe cada pieza, y por qué eso decide la estrategia</text>
+
+    <rect x="24" y="458" width="266" height="118" fill="var(--paper)" stroke="var(--teal)"/>
+    <text x="36" y="480" font-size="12" font-weight="650" fill="var(--teal)">PLANTA (maíz)</text>
+    <text x="36" y="500" font-size="11.5" fill="var(--ink-soft)">4 DCL · 10 AGO · 6 RDR</text>
+    <text x="36" y="518" font-size="11.5" fill="var(--ink-soft)">Amplifica con RdRP y disemina</text>
+    <text x="36" y="536" font-size="11.5" fill="var(--ink-soft)">a tejidos distantes</text>
+    <text x="36" y="558" font-size="11.5" fill="var(--ink)">Es la que degrada al virus</text>
+
+    <rect x="306" y="458" width="266" height="118" fill="var(--paper)" stroke="var(--ochre)"/>
+    <text x="318" y="480" font-size="12" font-weight="650" fill="var(--ochre)">INSECTO (chicharrita)</text>
+    <text x="318" y="500" font-size="11.5" fill="var(--ink-soft)">Dicer-2 y AGO2 presentes</text>
+    <text x="318" y="518" font-size="11.5" fill="var(--ink-soft)">Sin homólogo claro de RdRP</text>
+    <text x="318" y="536" font-size="11.5" fill="var(--ink-soft)">Sin SID-1 / SID-2</text>
+    <text x="318" y="558" font-size="11.5" fill="var(--ink)">No amplifica: la dosis que entra es la que hay</text>
+
+    <rect x="588" y="458" width="268" height="118" fill="var(--paper)" stroke="var(--crimson)"/>
+    <text x="600" y="480" font-size="12" font-weight="650" fill="var(--crimson)">MOLLICUTE (espiroplasma, fitoplasma)</text>
+    <text x="600" y="500" font-size="11.5" fill="var(--ink-soft)">0 dominios PIWI · 0 PAZ</text>
+    <text x="600" y="518" font-size="11.5" fill="var(--ink-soft)">0 dimerización de Dicer</text>
+    <text x="600" y="536" font-size="11.5" fill="var(--ink-soft)">(de 126.874 proteínas anotadas)</text>
+    <text x="600" y="558" font-size="11.5" fill="var(--ink)">No hay maquinaria: no hay blanco</text>
+  </svg>
+  <figcaption>Figura 1. El recorrido del ARN de doble cadena exógeno hasta el corte del transcrito, y la
+  distribución desigual de la maquinaria entre los tres tipos de organismo del sistema. Las tres cajas
+  inferiores son la razón de que la estrategia no pueda ser la misma para el vector, para la planta y para
+  los patógenos. Fuentes: <span class="m mE">E</span> S41, S21, S08, S50 y la consulta propia D01.</figcaption>
+  </figure>
+
+  <p>Lo descrito es <strong>silenciamiento post-transcripcional (PTGS)</strong>: el gen se sigue transcribiendo y
+  lo que se destruye es el mensaje. Existe una segunda ruta, el <strong>silenciamiento transcripcional</strong>,
+  que en plantas se llama <strong>RdDM</strong>: siRNA de 24 nt cargados en AGO4 dirigen la metilación del ADN
+  del locus, y esa vía <strong>puede actuar sobre el ADN geminiviral</strong>. <span class="m mE">E</span> No es un detalle académico:
+  uno de los cuatro patógenos del complejo es un geminivirus, y la diapositiva oficial del organizador pone
+  justamente a AGO4/RdDM como el cuarto nivel de su espacio de diseño.</p>
+
+  <h3 id="reinos">Dónde se amplifica la señal y dónde no</h3>
+  <p>En <strong>plantas</strong> el silenciamiento se amplifica: hay seis ARN polimerasas dependientes de ARN en
+  <em>Arabidopsis</em>, que generan siRNA secundarios y los disemina a tejidos distantes. <span class="m mE">E</span> En
+  <strong>nematodos</strong> hay transporte activo de la señal por SID-1 y SID-2. En <strong>insectos</strong>
+  <strong>no se ha encontrado un homólogo claro de RdRP</strong> y <strong>faltan los homólogos de Sid-1 y
+  Sid-2</strong>, de modo que el mecanismo de diseminación no está resuelto. <span class="m mE">E</span></p>
+  <div class="callout">
+    <span class="tag">Consecuencia práctica</span>
+    <p>En un insecto no se puede contar con que una dosis pequeña se amplifique sola: la cantidad de disparador
+    que entra es, aproximadamente, la que hay. De ahí que la eficiencia varíe tanto entre órdenes —especies
+    recalcitrantes con 60 % de <em>knockdown</em> o menos y a menudo transitorio, algunos coleópteros con 90 % o
+    más. <span class="m mE">E</span> Y hay un techo: <strong>más ARNdc no siempre es más silenciamiento</strong>, porque la
+    sobresaturación puede alterar la vía de miRNA. En el psílido de la papa, con siete concentraciones de 0,1 a
+    500 ng/µL, la más efectiva fue 100 ng/µL para los tres blancos y las mayores no mejoraron el knockdown;
+    el efecto duró 3 a 5 días tras retirar la fuente. <span class="m mR">R</span></p>
+  </div>
+
+  <h2 id="s3">3 · El sistema patógeno: un vector, cuatro agentes y un cultivo</h2>
+  <p><em>Dalbulus maidis</em> es un fitófago de floema, especialista del género <em>Zea</em>, con cinco estadios
+  ninfales, longevidad promedio reportada de unos 78 días en machos y 30 en hembras y unos 15 huevos por día.
+  <span class="m mR">R</span> Era plaga secundaria en Brasil y desde 2015 aumentó mucho su población hasta volverse plaga principal.
+  <span class="m mR">R</span> Lo que lo convierte en un problema de otra categoría es su rol de vector, con
+  <strong>transmisión persistente propagativa</strong>: el patógeno se multiplica dentro del insecto antes de
+  ser transmitido. <span class="m mE">E</span> En <em>S. kunkelii</em> el período latente hasta las glándulas salivales es de
+  <strong>18 a 22 días</strong>; no hay transmisión transovárica y el insecto que adquiere queda inoculativo de
+  por vida. <span class="m mE">E</span></p>
+  <p>Dato que conviene tener presente: <em>D. maidis</em> <strong>expresa los genes de la vía de RNAi</strong>,
+  en un transcriptoma de 56.116 transcriptos ensamblado desde 1.727.369.026 lecturas pareadas. <span class="m mR">R</span> La
+  maquinaria que necesitamos está, en el insecto, presente y anotada.</p>
+  
+  <figure id="fig-ciclo">
+  <svg viewBox="0 0 880 620" role="img" aria-labelledby="f2t f2d">
+    <title id="f2t">Ciclo vector–patógeno–planta y puntos de intervención</title>
+    <desc id="f2d">La chicharrita adquiere el patógeno del floema de una planta infectada en minutos,
+    el patógeno atraviesa el intestino medio, circula por la hemolinfa, se multiplica y coloniza las
+    glándulas salivales tras un período latente de 18 a 22 días, y se inocula en una planta sana.</desc>
+    <defs>
+      <marker id="b1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-faint)"/>
+      </marker>
+    </defs>
+    <rect x="0" y="0" width="880" height="620" fill="var(--paper-alt)"/>
+
+    <!-- planta infectada -->
+    <rect x="24" y="48" width="196" height="104" fill="var(--paper)" stroke="var(--rule)"/>
+    <text x="36" y="72" font-size="13" font-weight="650" fill="var(--ink)">Planta infectada</text>
+    <text x="36" y="92" font-size="12" fill="var(--ink-soft)">Los cuatro agentes viven</text>
+    <text x="36" y="109" font-size="12" fill="var(--ink-soft)">restringidos al floema</text>
+    <text x="36" y="131" font-size="12" fill="var(--ink-soft)">Maíz guacho = puente verde</text>
+    <text x="36" y="146" font-size="12" fill="var(--ink-soft)">entre campañas</text>
+
+    <line x1="222" y1="100" x2="292" y2="100" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#b1)"/>
+    <text x="228" y="92" font-size="11" fill="var(--ink-faint)">adquisición</text>
+    <text x="228" y="118" font-size="11" fill="var(--ink-faint)">en minutos</text>
+
+    <!-- dentro del insecto -->
+    <rect x="296" y="30" width="300" height="196" fill="var(--paper)" stroke="var(--ochre)" stroke-width="2"/>
+    <text x="308" y="54" font-size="13" font-weight="650" fill="var(--ochre)">Dentro de la chicharrita</text>
+    <text x="308" y="80" font-size="12" fill="var(--ink-soft)">1. epitelio del intestino medio</text>
+    <text x="308" y="104" font-size="12" fill="var(--ink-soft)">2. hemolinfa (circula)</text>
+    <text x="308" y="128" font-size="12" fill="var(--ink-soft)">3. se multiplica → propagativa</text>
+    <text x="308" y="152" font-size="12" fill="var(--ink-soft)">4. glándulas salivales</text>
+    <text x="308" y="180" font-size="12" font-weight="650" fill="var(--ink)">Período latente 18–22 días</text>
+    <text x="308" y="200" font-size="11.5" fill="var(--ink-soft)">Después queda infectivo de por vida</text>
+    <text x="308" y="216" font-size="11.5" fill="var(--ink-soft)">No hay transmisión transovárica</text>
+
+    <line x1="598" y1="100" x2="662" y2="100" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#b1)"/>
+    <text x="604" y="92" font-size="11" fill="var(--ink-faint)">inoculación</text>
+    <text x="604" y="118" font-size="11" fill="var(--ink-faint)">al alimentarse</text>
+
+    <!-- planta sana -->
+    <rect x="666" y="48" width="190" height="104" fill="var(--paper)" stroke="var(--rule)"/>
+    <text x="678" y="72" font-size="13" font-weight="650" fill="var(--ink)">Planta sana</text>
+    <text x="678" y="92" font-size="12" fill="var(--ink-soft)">Síntomas a 3–5 semanas</text>
+    <text x="678" y="109" font-size="12" fill="var(--ink-soft)">Más daño si la inoculación</text>
+    <text x="678" y="126" font-size="12" fill="var(--ink-soft)">es temprana</text>
+    <text x="678" y="146" font-size="12" fill="var(--ink-soft)">Cierra el ciclo</text>
+
+    <path d="M 761 156 L 761 250 L 122 250 L 122 158" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#b1)"/>
+    <text x="364" y="244" font-size="11.5" fill="var(--ink-faint)">la planta recién infectada se vuelve fuente de adquisición</text>
+
+    <!-- los cuatro agentes -->
+    <text x="24" y="296" font-size="13" font-weight="650" fill="var(--ink)">Los cuatro agentes, con biologías distintas</text>
+    <rect x="24" y="306" width="202" height="92" fill="var(--paper)" stroke="var(--crimson)"/>
+    <text x="34" y="328" font-size="12" font-weight="650" fill="var(--crimson)">S. kunkelii</text>
+    <text x="34" y="347" font-size="11.5" fill="var(--ink-soft)">mollicute sin pared</text>
+    <text x="34" y="364" font-size="11.5" fill="var(--ink-soft)">1.463.926 pb</text>
+    <text x="34" y="381" font-size="11.5" fill="var(--ink-soft)">achaparramiento pálido</text>
+    <text x="34" y="394" font-size="11" fill="var(--ink-faint)">el que más castiga el grano</text>
+
+    <rect x="234" y="306" width="202" height="92" fill="var(--paper)" stroke="var(--crimson)"/>
+    <text x="244" y="328" font-size="12" font-weight="650" fill="var(--crimson)">Fitoplasma (MBSP)</text>
+    <text x="244" y="347" font-size="11.5" fill="var(--ink-soft)">mollicute sin pared</text>
+    <text x="244" y="364" font-size="11.5" fill="var(--ink-soft)">no cultivable</text>
+    <text x="244" y="381" font-size="11.5" fill="var(--ink-soft)">achaparramiento rojo</text>
+    <text x="244" y="394" font-size="11" fill="var(--ink-faint)">achaparra igual que el anterior</text>
+
+    <rect x="444" y="306" width="202" height="92" fill="var(--paper)" stroke="var(--slate)"/>
+    <text x="454" y="328" font-size="12" font-weight="650" fill="var(--slate)">MRFV</text>
+    <text x="454" y="347" font-size="11.5" fill="var(--ink-soft)">marafivirus +ssRNA</text>
+    <text x="454" y="364" font-size="11.5" fill="var(--ink-soft)">persistente propagativo</text>
+    <text x="454" y="381" font-size="11.5" fill="var(--ink-soft)">se multiplica en el insecto</text>
+    <text x="454" y="394" font-size="11" fill="var(--ink-faint)">sin trabajos de ARNdc publicados</text>
+
+    <rect x="654" y="306" width="202" height="92" fill="var(--paper)" stroke="var(--slate)"/>
+    <text x="664" y="328" font-size="12" font-weight="650" fill="var(--slate)">MSMV</text>
+    <text x="664" y="347" font-size="11.5" fill="var(--ink-soft)">mastrevirus de ADN simple</text>
+    <text x="664" y="364" font-size="11.5" fill="var(--ink-soft)">2.746 nt · Geminiviridae</text>
+    <text x="664" y="381" font-size="11.5" fill="var(--ink-soft)">modo de transmisión en disputa</text>
+    <text x="664" y="394" font-size="11" fill="var(--ink-faint)">único alcanzable por RdDM</text>
+
+    <!-- intervencion -->
+    <rect x="24" y="422" width="832" height="1" fill="var(--rule)"/>
+    <text x="24" y="452" font-size="13" font-weight="650" fill="var(--ink)">Dónde puede entrar el ARN exógeno</text>
+
+    <rect x="24" y="466" width="266" height="132" fill="var(--paper)" stroke="var(--teal)" stroke-width="2"/>
+    <text x="36" y="488" font-size="12" font-weight="650" fill="var(--teal)">A · Silenciar al vector</text>
+    <text x="36" y="508" font-size="11.5" fill="var(--ink-soft)">Única vía con RNAi funcional</text>
+    <text x="36" y="525" font-size="11.5" fill="var(--ink-soft)">demostrado en la especie exacta</text>
+    <text x="36" y="546" font-size="11.5" fill="var(--ink)">burs-α ~95 % · eth ~90 %</text>
+    <text x="36" y="563" font-size="11.5" fill="var(--ink)">supervivencia ~10 % a día 4</text>
+    <text x="36" y="584" font-size="11" fill="var(--ink-faint)">microinyección, 125 ng/insecto, n=40</text>
+
+    <rect x="306" y="466" width="266" height="132" fill="var(--paper)" stroke="var(--teal)" stroke-width="2"/>
+    <text x="318" y="488" font-size="12" font-weight="650" fill="var(--teal)">B · Desarmar la transmisión</text>
+    <text x="318" y="508" font-size="11.5" fill="var(--ink-soft)">Silenciar genes del vector que</text>
+    <text x="318" y="525" font-size="11.5" fill="var(--ink-soft)">el patógeno necesita para entrar</text>
+    <text x="318" y="546" font-size="11.5" fill="var(--ink)">clathrin ↓ colonización y transmisión</text>
+    <text x="318" y="563" font-size="11.5" fill="var(--ink)">uk1_LRR ↑ colonización</text>
+    <text x="318" y="584" font-size="11" fill="var(--ink-faint)">el signo no es predecible sin medirlo</text>
+
+    <rect x="588" y="466" width="268" height="132" fill="var(--paper)" stroke="var(--ochre)" stroke-width="2"/>
+    <text x="600" y="488" font-size="12" font-weight="650" fill="var(--ochre)">C · Defensa de la planta</text>
+    <text x="600" y="508" font-size="11.5" fill="var(--ink-soft)">Sólo sirve contra los dos virus:</text>
+    <text x="600" y="525" font-size="11.5" fill="var(--ink-soft)">la planta corta el ARN viral</text>
+    <text x="600" y="546" font-size="11.5" fill="var(--ink-soft)">con su propia maquinaria</text>
+    <text x="600" y="563" font-size="11.5" fill="var(--crimson)" font-weight="650">Contra los mollicutes: sin mecanismo</text>
+    <text x="600" y="584" font-size="11" fill="var(--ink-faint)">no hay Dicer ni Argonaute que los procese</text>
+  </svg>
+  <figcaption>Figura 2. El ciclo de transmisión persistente propagativa y los tres puntos donde un ARN exógeno
+  puede intervenir, con el peso de evidencia de cada uno. La ventana de dos a tres semanas del período latente
+  es lo que hace que una intervención sobre el insecto todavía tenga sentido epidemiológico; que el insecto
+  quede infectivo de por vida es lo que hace que matarlo tarde no salve a la planta.
+  Fuentes: <span class="m mE">E</span> S01, S12, S15, S29, S43 · <span class="m mR">R</span> S27, S31, S46, S47.</figcaption>
+  </figure>
+
+
+  <h3 id="grano">La verificación pedida: ¿uno afecta el grano y el otro el tallo?</h3>
+  <div class="callout">
+    <span class="tag">Supuesto del equipo: corregido</span>
+    <p><strong>La asignación, tal como estaba formulada, no se sostiene.</strong> El experimento que lo resuelve
+    inoculó fitoplasma y <em>S. kunkelii</em> por separado o juntos en cinco cultivares, en macetas hasta
+    cosecha, con detección por PCR a 30, 60 y 100 días. Resultado: la reducción de producción de grano fue
+    significativamente diferente (P&lt;0,01) entre ambos y <strong>mayor con espiroplasma</strong>, mientras que
+    la <strong>reducción en altura no fue significativamente diferente</strong> entre fitoplasma, espiroplasma o
+    ambos; la inoculación simultánea no dio sinergismo. <span class="m mE">E</span> Los dos achaparran, y achaparran parecido; el que
+    castiga más el grano es el espiroplasma. La fuente de extensión más reciente, además, no atribuye síntomas
+    por patógeno separado en absoluto: describe el cuadro combinado y aclara que varía con híbrido, estadio,
+    ambiente y combinación de patógenos. <span class="m mR">R</span></p>
+  </div>
+  <p>Un matiz de ese mismo experimento vale como aviso metodológico: la variabilidad fue alta
+  (CV = 66,7 %) porque varias plantas inoculadas no se infectaron, y los autores concluyen que la magnitud de la
+  reducción por cultivar depende de la <strong>frecuencia de plantas susceptibles</strong>, no de un nivel de
+  resistencia que atenúe el daño en las ya infectadas. <span class="m mE">E</span> Una planta que "resiste" puede ser una planta que no
+  se infectó.</p>
+
+  <h3 id="magnitud">Magnitud del daño: tres cifras que no coinciden</h3>
+  <div class="scroller">
+  <table>
+    <caption>Pérdidas atribuidas, con su contexto. Las cifras de campaña no están resueltas.</caption>
+    <thead><tr><th>Cifra</th><th>Contexto</th><th>Atribución</th><th>Marcador</th></tr></thead>
+    <tbody>
+      <tr><td>40–100 % de pérdida de rendimiento</td><td>rango general atribuido a los patógenos transmitidos por el vector</td><td>revisión del patosistema</td><td><span class="m mR">R</span></td></tr>
+      <tr><td>98,5 % del rendimiento esperado; hasta 60 millones de USD</td><td>sur de Florida, 1979–1980, semilla híbrida y viveros</td><td>episodio histórico documentado</td><td><span class="m mR">R</span></td></tr>
+      <tr><td>incidencia 6,2–49,9 %, promedio 20,7 %; ~16,5 millones de USD</td><td>Paraná, Brasil, safrinha, 24 áreas</td><td>estudio epidemiológico a campo</td><td><span class="m mR">R</span></td></tr>
+      <tr><td>incidencia 8–100 % · severidad explica el 72 % del rendimiento · −15,96 kg/ha por unidad de severidad</td><td>NOA argentino, campaña 2023/24, 14 híbridos, 5 localidades, DAS-ELISA</td><td>ensayo a campo revisado por pares</td><td><span class="m mE">E</span></td></tr>
+      <tr><td>20 % de la producción nacional argentina</td><td>campaña 2023/24</td><td>cita secundaria de Bolsa de Comercio de Rosario dentro de un paper</td><td><span class="m mR">R</span></td></tr>
+      <tr><td>77 % en Argentina 2023/24 · 40 % en Brasil 2020–2022</td><td>campaña</td><td>cita secundaria dentro de una revisión; no rastreada</td><td><span class="m mQ">?</span></td></tr>
+      <tr><td>11,5 millones de toneladas · 2.045 millones de USD</td><td>campaña 2023/24</td><td>diapositiva oficial del Investigathón, sin rótulo de qué mide cada cifra</td><td><span class="m mQ">?</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Conclusión operativa: la magnitud de la epifitia argentina de 2023/24 no está resuelta con las fuentes que
+  abrimos. Cualquier presentación nuestra debería usar la cifra atribuida con su cadena de atribución, o
+  declarar el rango con su incertidumbre. Lo que no se puede hacer es elegir el número más grande.</p>
+
+  <h2 id="s4">4 · Por qué estos patógenos son blancos difíciles</h2>
+  <p>De la sección 2 se desprende un requisito mínimo verificable: para que haya RNAi canónico hacen falta una
+  <strong>Dicer</strong> —RNasa III con dominio PAZ que mida y corte— y una <strong>Argonaute</strong> —con
+  dominio PIWI que cargue la guía y corte el blanco—. Eso convierte una pregunta biológica en una pregunta de
+  bioinformática comparativa que podemos contestar nosotros mismos.</p>
+
+  <h3 id="uniprot">Nuestra propia verificación</h3>
+  <div class="scroller">
+  <table>
+    <caption>Consulta a UniProtKB por dominio InterPro y por taxón, 17/10/2026. PIWI = IPR003165,
+    PAZ = IPR003100, dimerización de Dicer = IPR005034, RNasa III = IPR000999 (control positivo).</caption>
+    <thead><tr><th>Taxón</th><th>PIWI</th><th>PAZ</th><th>Dicer-dim.</th><th>RNasa III</th><th>Proteínas en UniProtKB</th></tr></thead>
+    <tbody>
+      <tr><td>Mollicutes</td><td><strong>0</strong></td><td><strong>0</strong></td><td><strong>0</strong></td><td>154</td><td>126.874</td></tr>
+      <tr><td><em>Spiroplasma</em></td><td><strong>0</strong></td><td><strong>0</strong></td><td><strong>0</strong></td><td>30</td><td>36.551</td></tr>
+      <tr><td><em>Spiroplasma kunkelii</em></td><td><strong>0</strong></td><td>—</td><td>—</td><td>1</td><td>1.755</td></tr>
+      <tr><td><em>'Candidatus</em> Phytoplasma'</td><td><strong>0</strong></td><td><strong>0</strong></td><td><strong>0</strong></td><td>43</td><td>24.307</td></tr>
+      <tr><td><em>Zea mays</em></td><td>79</td><td>66</td><td>15</td><td>43</td><td>—</td></tr>
+      <tr><td>Hemiptera</td><td>284</td><td>351</td><td>98</td><td>143</td><td>—</td></tr>
+      <tr><td>Bacteria (todo el dominio)</td><td>757</td><td>8</td><td>14</td><td>21.593</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>El cero no es falta de datos: hay 126.874 proteínas de mollicutes anotadas y el control de RNasa III da
+  positivo en todos los taxones. Las bacterias como dominio sí tienen 757 proteínas con dominio PIWI —las
+  Argonautas procariotas— pero casi ninguna con PAZ ni con el dominio de dimerización: <strong>no hay un Dicer
+  bacteriano</strong>. Y conviene no sobreinterpretar el RNasa III: es la familia genérica de endonucleasas de
+  ARNdc, y Dicer es un miembro especializado que además necesita PAZ y la arquitectura de doble dominio
+  catalítico para medir. Tener la tijera genérica no es tener la regla. <span class="m mE">E</span></p>
+  <p>La literatura coincide. Las Argonautas procariotas existen —en ~30 % de los genomas de arqueas y ~10 % de
+  los bacterianos— pero "actúan preferentemente sobre blancos de ADN", la mayoría son guiadas por ADN, varias
+  pueden cortar ARN <em>in vitro</em> con rol <em>in vivo</em> desconocido, y el mecanismo procariota es
+  "conceptualmente muy diferente" del RNAi eucariota. <span class="m mE">E</span> El trabajo estructural sobre la Argonauta de
+  <em>Marinitoga piezophila</em> enuncia la separación de plano: son efectores clave del RNAi
+  <strong>eucariota</strong> y, en procariotas, funcionan en defensa del genoma. <span class="m mE">E</span></p>
+  <div class="callout">
+    <span class="tag">La conclusión, y su alcance exacto</span>
+    <p>No existe evidencia de una vía de RNAi funcional en <em>Spiroplasma kunkelii</em> ni en el fitoplasma del
+    achaparramiento, y no hay mecanismo conocido por el cual un ARNdc exógeno silencie un gen de esos
+    organismos. <span class="m mE">E</span> Dos observaciones del campo aplicado lo refuerzan: una revisión de SIGS para protección de
+    cultivos <strong>no discute fitoplasmas y no presenta bacterias como blancos</strong> —aparecen sólo como
+    hospedadores de expresión, vehículos de alimentación o agentes de biocontrol— <span class="m mE">E</span>, y una revisión dedicada
+    a estrategias contra vectores de fitoplasmas dirige <strong>todas</strong> sus propuestas al vector o a la
+    planta, y dice textualmente que "los fitoplasmas no son directamente atacables debido a su estilo de vida
+    restringido al floema". <span class="m mE">E</span></p>
+    <p>Precisión importante: decimos que <strong>no hay vía de RNAi en el mollicute</strong>, no que el mollicute
+    sea invulnerable. Se lo puede atacar por otros mecanismos. Lo que no existe es la versión ingenua: pulverizar
+    ARNdc contra un gen del espiroplasma y esperar que el espiroplasma lo procese.</p>
+    <p>Esto obliga a una pregunta directa al investigador: el circuito oficial de cuatro pasos de la diapositiva
+    termina en "inhibición del crecimiento del patógeno", y ese enunciado no puede leerse como silenciamiento
+    directo del mollicute. O es una simplificación, o se refiere a los virus, o implica una vía indirecta. <span class="m mQ">?</span></p>
+  </div>
+
+  <h3>Los virus: sí son blanco, pero el RNAi no ocurre "en" el virus</h3>
+  <p>Un virus tampoco tiene maquinaria: el MSMV tiene 2.746 nucleótidos de genoma. <span class="m mR">R</span> Y sin embargo los virus
+  son blancos legítimos, porque el silenciamiento ocurre <strong>en la célula vegetal infectada</strong>. La
+  defensa antiviral vegetal depende de DCL, AGO y RDR; DCL4 genera el siRNA de 21 nt dominante, los mutantes
+  <em>dcl</em> son hipersusceptibles, y contra virus de ADN se suma la capa del RdDM. <span class="m mE">E</span> Como contracara, los
+  virus codifican supresores del silenciamiento: la defensa existe y el virus pelea contra ella. <span class="m mE">E</span></p>
+  <p>Que esto se dispare con ARNdc aplicado desde afuera está tabulado en 25 combinaciones virus–cultivo, con
+  blancos típicos en la RdRp viral, el supresor de silenciamiento y la cápside; dos entradas nos tocan de cerca:
+  una en <strong>maíz</strong> contra <em>sugarcane mosaic virus</em>, y una contra <em>tomato yellow leaf curl
+  virus</em>, descrita como vacunación con ARNdc contra un virus de ADN monopartito. <span class="m mR">R</span></p>
+  <p>Las restricciones son severas: la protección dura <strong>unos pocos días</strong> y exige reaplicación, lo
+  que los autores califican de impracticable para cultivos extensivos de ciclo largo <span class="m mE">E</span>; una hora de UV abole
+  la actividad del ARNdc <span class="m mR">R</span>; más de 20 mm de lluvia en 24 h remueven una proporción significativa del depósito
+  foliar <span class="m mR">R</span>. Y un aviso que vale para cualquier métrica que propongamos: las plantas susceptibles infectadas
+  <strong>generan siRNA virales en abundancia y aun así se infectan</strong>. Detectar siRNA no es demostrar
+  protección. <span class="m mE">E</span> Sobre MRFV y MSMV en particular no encontramos ningún trabajo de ARNdc, SIGS ni HIGS. <span class="m mQ">?</span></p>
+
+  <h3 id="vias">Entonces: ¿vector, patógeno o planta?</h3>
+  <div class="scroller">
+  <table>
+    <caption>Las tres vías, ordenadas por peso de evidencia.</caption>
+    <thead><tr><th>Vía</th><th>Qué dice la evidencia</th><th>Marcador</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Silenciar al vector</strong></td>
+        <td>Única con RNAi funcional demostrado en la especie exacta. Primer reporte: <em>Bicaudal C</em> por
+        inyección e ingestión, cambios de hasta 170 veces en transcriptos y menos oviposturas. Después:
+        microinyección en ninfas de quinto estadio, n = 40, 125 ng por insecto, control ds-β-lactamasa, knockdown
+        ~95 % de <em>burs-α</em> y ~90 % de <em>eth</em>, supervivencia a día 4 de ~10 % y ~15 % contra ~100 % del
+        control. Por vía oral, contra V-ATPasa B y D, mortalidad mayor y alas deformadas, en preprint.</td>
+        <td><span class="m mE">E</span></td></tr>
+      <tr><td><strong>Silenciar al patógeno</strong></td>
+        <td>Para los mollicutes no hay mecanismo. Para los virus, el blanco real es la planta. Lo que sí existe y
+        es conceptualmente distinto: silenciar genes del vector que el patógeno necesita. En el sistema de la
+        flavescencia dorada, silenciar <em>clathrin</em> redujo la colonización del insecto y la transmisión;
+        silenciar el receptor putativo <em>uk1_LRR</em> la aumentó.</td>
+        <td><span class="m mR">R</span></td></tr>
+      <tr><td><strong>Preparar la defensa de la planta</strong></td>
+        <td>Viable para los dos virus. Para los mollicutes no puede significar RNAi contra el patógeno: tendría
+        que significar tolerancia, resistencia genética o interferencia con efectores, y eso ya no es diseño de
+        ARN.</td>
+        <td><span class="m mE">E</span>/<span class="m mH">H</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="s5">5 · Tratamientos existentes, con ARN y sin ARN</h2>
+  <p>No hay curativo para los patógenos: el control químico apunta al vector. <span class="m mE">E</span> Y la resistencia está
+  documentada con números duros, que son el mejor argumento a favor de buscar modos de acción nuevos. Una cepa
+  seleccionada en laboratorio alcanzó una CL50 de 2.055,72 µg i.a./mL contra 0,64 de la susceptible, es decir una
+  <strong>razón de resistencia de 3.170 veces</strong> a bifentrina, con herencia autosómica, incompletamente
+  dominante y poligénica. <span class="m mE">E</span> Para metomil, una cepa derivada de una población de campo de Goiás pasó de una
+  razón de resistencia de <strong>9,73 a 163,42 veces en 26 generaciones</strong>. <span class="m mE">E</span></p>
+  <p>El tratamiento de semilla tiene una ventana corta y bien medida: imidacloprid/tiodicarb fue el más efectivo
+  en estadio V2, con 100 % de mortalidad de chicharritas sanas y 85,7 % de las infectivas; el tratamiento fue
+  <strong>efectivo sólo hasta V2</strong> y las chicharritas infectadas resultaron <strong>más
+  susceptibles</strong> que las sanas. <span class="m mR">R</span></p>
+  <p>En resistencia genética, el trabajo argentino separó los componentes en cuatro híbridos comerciales:
+  DK72-10 con antixenosis y antibiosis al vector, DK79-10 con resistencia al patógeno como retraso en la
+  aparición de síntomas, DKB390 con ambas cosas. <span class="m mE">E</span> El hallazgo que más nos sirve es otro:
+  <strong>hubo asociación entre severidad y rendimiento, pero no entre acumulación del patógeno y severidad, ni
+  entre acumulación y rendimiento</strong>. <span class="m mE">E</span> El título del patógeno no predice el daño.</p>
+  <p>En manejo cultural, el paquete es sembrar lo más temprano posible, eliminar el <strong>maíz guacho</strong>
+  —el puente verde entre campañas— y rotar con no gramíneas. <span class="m mR">R</span> En control biológico, el componente más
+  prometedor son los parasitoides de huevo: en México, donde coexisten <em>Anagrus virlai</em> y
+  <em>Paracentrobia subflava</em>, <strong>más del 80 % de las hojas experimentales con huevos resultaron
+  parasitadas</strong>, y atacan el huevo antes de que emerjan ninfas ya capaces de transmitir. <span class="m mR">R</span> Los hongos
+  entomopatógenos, en cambio, chocan con el retraso en matar, la baja mortalidad y la barrera de los brocosomas.
+  <span class="m mR">R</span></p>
+
+  <h3 id="plataformas">Las plataformas de ARN y su madurez</h3>
+  <div class="scroller">
+  <table>
+    <caption>Formatos de entrega, con lo que se sabe de cada uno.</caption>
+    <thead><tr><th>Plataforma</th><th>Qué es</th><th>Madurez y evidencia</th><th>Marcador</th></tr></thead>
+    <tbody>
+      <tr><td><strong>SIGS</strong></td><td>Pulverizar ARNdc o siRNA sobre la planta, sin transgénesis; también RNAi ambiental</td><td>Es el escenario de la diapositiva oficial. Primer insecticida de ARNdc aprobado por la EPA en 2023: ledprona, 490 pb, EPA Reg. No. 94614-2. La mayoría de los resultados publicados son de laboratorio o invernáculo: "se realizaron pocos estudios de campo"</td><td><span class="m mE">E</span></td></tr>
+      <tr><td><strong>HIGS</strong></td><td>Planta transgénica que expresa el ARNdc</td><td>Maíz MON87411 con el casete DvSnf7 contra <em>Diabrotica virgifera virgifera</em>; MON95275 aprobado por EFSA en agosto de 2024; opinión de EFSA de enero de 2025 confirma que los marcos existentes son adecuados para plantas HIGS</td><td><span class="m mE">E</span></td></tr>
+      <tr><td><strong>VIGS</strong></td><td>Vector viral recombinante que expresa la secuencia dentro de la planta</td><td>Herramienta de genómica funcional; es uno de los formatos de salida de los diseñadores de siRNA vegetales</td><td><span class="m mE">E</span></td></tr>
+      <tr><td><strong>Portadores</strong></td><td>Quitosano, liposomas, nanoarcillas LDH</td><td>Quitosano y LDH extendieron la protección hasta 20 días en un trabajo; BioClay protege de degradación y lavado por al menos 30 días en otro</td><td><span class="m mR">R</span></td></tr>
+      <tr><td><strong>Costo</strong></td><td>Producción del ARNdc</td><td>Activos convencionales 10–100 €/g. Para ARNdc: proyecciones por debajo de 1 USD/g y ~0,50 USD/g en sistemas libres de células, contra varios cientos de USD/g de la síntesis <em>in vitro</em> clásica</td><td><span class="m mR">R</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">
+    <span class="tag">El cuello de botella declarado por el organizador</span>
+    <p>Las nucleasas degradan el ARNdc antes de que llegue. En <em>D. maidis</em> esto está caracterizado: tres
+    dsRNasas identificadas, con <strong>Dmai-dsRNase-2 altamente expresada en intestino medio y glándulas
+    salivales</strong>, y alta inestabilidad del ARNdc frente a homogenatos de tejido. Por eso "el ARNdc
+    administrado oralmente es menos efectivo que los protocolos de inyección". <span class="m mE">E</span> Hay dos salidas probadas:
+    <strong>silenciar la propia dsRNasa</strong> mejoró la respuesta al ARNdc del gen de interés, de donde los
+    autores proponen coadministrar ambos <span class="m mE">E</span>; y las <strong>pirimidinas 2′-F</strong>, que con 32–55 % de
+    incorporación aumentaron la mortalidad entre 12 y 35 % en tres hemípteros. <span class="m mR">R</span></p>
+    <p>Y la limitación general que nos toca de lleno: "las plagas chupadoras de savia dependen fuertemente de la
+    captación vascular, que a menudo es ineficiente". <span class="m mE">E</span> <em>D. maidis</em> es exactamente eso.</p>
+  </div>
+
+  <h2 id="s6">6 · Diseño de ARNdc como problema de ingeniería</h2>
+  <p>Diseñar un disparador es elegir, en orden: qué gen, qué región del transcrito, qué largo, y verificar que la
+  secuencia no coincida con transcritos de organismos no objetivo. Sobre el <strong>largo</strong>: mínimo de
+  ~60 pb para captación eficiente, la mayoría de los estudios en 140–500 nt, los ARNdc pesticidas típicamente
+  200–500 pb, recomendación general de 200–1000 pb, y el producto aprobado por la EPA con 490 pb. <span class="m mE">E</span><span class="m mR">R</span>
+  Sobre la <strong>región</strong>: el ORF se asoció con mayor eficacia que el UTR <span class="m mR">R</span>; dirigir el extremo 3′
+  funcionó en mosquito y no en el pulgón del guisante. <span class="m mQ">?</span></p>
+  <p>Las dos variables físicas son la <strong>asimetría termodinámica</strong> —la hebra cuyo extremo 5′ aparea
+  más débilmente es la que se carga como guía— y la <strong>accesibilidad estructural</strong> —la probabilidad
+  de que el sitio blanco esté de cadena simple—. Reglas publicadas: U o A en el extremo 5′, MFE del extremo 5′
+  mayor que la de la hebra opuesta, ΔMFE de los tres primeros nucleótidos mayor que 1 kcal/mol, umbral de
+  accesibilidad por defecto de 0,1. <span class="m mE">E</span></p>
+  <div class="callout">
+    <span class="tag">Dos parámetros con el signo invertido respecto de la literatura humana</span>
+    <p>En el análisis de eficacia en insectos de la plataforma dsRIP, la asimetría termodinámica y el
+    autoplegamiento de la hebra antisentido resultaron predictivos, y la adenina en la posición 10 también; en
+    cambio <strong>la accesibilidad del ARNm no fue significativa</strong>, tampoco el GC global ni la energía de
+    unión antisentido–blanco, y el <strong>contenido GC en las posiciones 9–14 se asoció positivamente</strong>
+    con la eficacia, "lo opuesto a la literatura de siRNA humano". <span class="m mR">R</span> Un modelo entrenado con datos de células
+    humanas trae esos coeficientes con el signo equivocado.</p>
+  </div>
+
+  <h3 id="blast">La corrección: BLAST no calcula termodinámica</h3>
+  <p>Las notas del equipo decían que "BLAST separa en porciones y calcula la termodinámica". Es un malentendido.
+  <strong>BLAST</strong> es búsqueda heurística de similitud por semilla y extensión, con tres módulos —Setup,
+  Scanning y Trace-back—, matrices de sustitución o scores de match y mismatch, y un E-value como salida
+  estadística; <strong>el artículo primario de BLAST+ no menciona energía libre, estructura secundaria de ARN ni
+  ningún cálculo termodinámico</strong>. <span class="m mE">E</span> La termodinámica la calcula <strong>ViennaRNA</strong>: RNAfold da
+  la MFE y la función de partición con parámetros Turner 2004, RNAplfold da accesibilidades locales, RNAup da
+  energías de apertura e interacción. <span class="m mE">E</span></p>
+  <p>Son <strong>dos ejes ortogonales</strong>. BLAST y Bowtie viven en el eje de la <strong>especificidad</strong>
+  —¿a qué se parece esta secuencia, y por lo tanto qué podría silenciar de más?—. ViennaRNA vive en el eje de la
+  <strong>eficacia física</strong> —¿esta hebra se va a cargar, este sitio está accesible?—. Confundirlos lleva a
+  dos errores concretos: creer que un buen E-value dice algo sobre si el siRNA va a funcionar, y creer que un ΔG
+  favorable dice algo sobre si el diseño es seguro para organismos no objetivo.</p>
+  <p>Un detalle que cierra el círculo: la operación que el equipo creía de BLAST —"dividir en porciones"— existe,
+  pero la hace el diseñador, no el alineador. si-Fi <strong>sí</strong> divide el disparador en todos los x-meros
+  posibles por ventana deslizante, y después los mapea con <strong>Bowtie</strong>, no con BLAST, aplicando reglas
+  de selección de hebra y un filtro de accesibilidad calculado con RNAplfold. <span class="m mE">E</span></p>
+
+  <h3 id="tabla">Qué calcula cada herramienta</h3>
+  <div class="scroller">
+  <table>
+    <caption>Separación explícita entre el eje de especificidad y el de eficacia física.</caption>
+    <thead><tr><th>Herramienta</th><th>Qué calcula</th><th>Qué <em>no</em> calcula</th></tr></thead>
+    <tbody>
+      <tr><td><strong>BLAST+</strong></td><td>Alineamientos locales, bit score, E-value, filtrado de baja complejidad</td><td>Energía libre, estructura secundaria: nada termodinámico</td></tr>
+      <tr><td><strong>Bowtie</strong></td><td>Posiciones de alineamiento con mismatches, índice Burrows-Wheeler, backtracking consciente de la calidad; &gt;25 M lecturas/hora de CPU con ~1,3 GB</td><td>Energía libre, accesibilidad</td></tr>
+      <tr><td><strong>ViennaRNA</strong></td><td>MFE, función de partición, probabilidades de apareamiento, accesibilidad local, energías de apertura e interacción (Turner 2004)</td><td>Similitud de secuencia, off-targets</td></tr>
+      <tr><td><strong>si-Fi21</strong></td><td>Enumera todos los x-meros, mapea con Bowtie contando mismatches, reglas de selección de hebra, filtro de accesibilidad con RNAplfold; el modo de alta eficiencia correlacionó mejor con los datos experimentales</td><td>No simula el corte real de Dicer; su termodinámica es la MFE de las regiones terminales, no un ΔG completo</td></tr>
+      <tr><td><strong>dsRIP</strong></td><td>Blancos efectivos por ortología con el tamizaje de <em>Tribolium</em>, optimizador de eficacia por región, minimizador de off-targets con 1–2 mismatches y puntaje de seguridad 20:1 a favor de ortólogos de genes esenciales, diseñador de primers</td><td>No usa BLAST ni RNAup; no predice entrega ni formulación</td></tr>
+      <tr><td><strong>pssRNAit / P-SAMS</strong></td><td>Pools y dúplex de siRNA <strong>para plantas</strong>, con evaluación de off-targets en más de 160 especies vegetales</td><td>No sirven para diseñar contra un insecto: sus bases y reglas son vegetales</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="implica">Lo que esto implica para nuestro proyecto</h2>
+  <p>Ocho restricciones de diseño, traducidas de la biología a algo que un equipo sin laboratorio puede usar.</p>
+  <ul class="tight">
+    <li><strong>El blanco realista es el vector, no el patógeno.</strong> Cualquier propuesta que prometa
+    silenciar un gen del espiroplasma o del fitoplasma es falsa. Los virus son atacables a través de la planta,
+    pero para MRFV y MSMV no existe ni un trabajo publicado.</li>
+    <li><strong>Hay un segundo blanco elegante:</strong> los genes del vector que el patógeno necesita.
+    No es "matar al insecto" sino "desarmar la transmisión", con precedente experimental y con el recordatorio de
+    que el signo del efecto no es predecible sin medirlo.</li>
+    <li><strong>El problema es multiobjetivo y la mayoría de los términos ya tienen fórmula publicada:</strong>
+    eficacia por asimetría termodinámica y estructura de la antisentido, especificidad por conteo de
+    coincidencias con 1–2 mismatches ponderando ortólogos de genes esenciales, largo en 200–500 pb, ORF antes
+    que UTR. Todo calculable sobre secuencia.</li>
+    <li><strong>Dos parámetros tienen el signo invertido</strong> respecto de la literatura de siRNA humano:
+    accesibilidad y GC en las posiciones 9–14. Es una trampa para cualquier modelo preentrenado.</li>
+    <li><strong>El largo del siRNA lo decide el insecto, no nosotros, y para hemípteros no está medido.</strong>
+    Si el pipeline enumera 21-meros por defecto, está asumiendo un parámetro que nadie midió en la chicharrita:
+    conviene que sea explícito y no una constante escondida.</li>
+    <li><strong>La entrega es el cuello de botella y es parcialmente modelable.</strong> Tres dsRNasas; oral
+    menos efectivo que inyectado; saturación cerca de 100 ng/µL en un hemíptero emparentado; efecto de 3 a 5 días;
+    una hora de UV; 20 mm de lluvia. Nada de eso se resuelve con secuencia, pero todo define <em>bajo qué
+    condición</em> se propone cada candidato.</li>
+    <li><strong>Sin anotación del vector no hay pipeline.</strong> El transcriptoma existe, pero el insumo de
+    cualquier análisis de off-target es un conjunto anotado del objetivo y de las especies no objetivo del
+    agroecosistema del maíz argentino. Es el primer costo fijo del proyecto.</li>
+    <li><strong>Y una restricción de honestidad que vale como criterio de evaluación:</strong> el título del
+    patógeno no predice el daño, y la generación de siRNA no prueba protección. Si proponemos una métrica de
+    éxito, "menos patógeno" no es "menos pérdida".</li>
+  </ul>
+
+  <h2 id="archivos">Archivos y fuentes</h2>
+  <dl class="files">
+    <dt>REPORT.md</dt><dd>El desarrollo completo, con las seis secciones y cada número en su contexto experimental.</dd>
+    <dt>glosario_parcial.md</dt><dd>Todos los términos usados, con definición de una línea y por qué nos importa.</dd>
+    <dt>sources.json</dt><dd>Las 51 fuentes más la consulta propia, con tipo, nivel de evidencia, hasta dónde se leyó cada una y para qué afirmación se usó.</dd>
+    <dt>preguntas_abiertas.md</dt><dd>Lo que no se pudo resolver, las contradicciones entre fuentes y las seis preguntas directas para el investigador.</dd>
+    <dt>notes/</dt><dd>Las notas crudas de las dos corridas de búsqueda, con la convención de hasta dónde se leyó cada fuente y la consulta reproducible a UniProtKB.</dd>
+  </dl>
+  <p>Nada afirmado acá está fuera del <code>REPORT.md</code> con su fuente. Lo que no se pudo abrir figura como
+  pendiente y no se cita como si se hubiera abierto.</p>
+</main>
+</div>
+
+<footer>
+  <p>Línea R1 del repositorio de investigación del Investigathón Y-Hat · track chicharrita del maíz y ARN
+  exógeno. Alcance: control fitosanitario agrícola con literatura publicada.</p>
+</footer>
+</body>
+</html>
