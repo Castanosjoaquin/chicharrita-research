@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APOLO Biotech — Inteligencia competitiva</title>
+<meta name="description" content="R3: qué es APOLO Biotech, qué hace técnicamente, cómo aplica el ARN, cómo valida, y qué huecos quedan. Vista de lectura del REPORT.md.">
+<style>
+:root{
+  --ink:#141b1a;
+  --ink-soft:#3e4c49;
+  --ink-faint:#6b7a77;
+  --paper:#ffffff;
+  --paper-alt:#f1f4f3;
+  --rule:#d4dcda;
+  --teal:#0f5c52;
+  --teal-bright:#14887a;
+  --ochre:#a8620c;
+  --ochre-soft:#f5ead9;
+  --crimson:#8e2231;
+  --slate:#2f4b66;
+  --shell:#fbfcfc;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#e4ebe9;
+    --ink-soft:#aebbb8;
+    --ink-faint:#7f8d8a;
+    --paper:#121817;
+    --paper-alt:#1b2322;
+    --rule:#2d3938;
+    --teal:#4fc4b0;
+    --teal-bright:#6fd8c4;
+    --ochre:#e0a259;
+    --ochre-soft:#2a2118;
+    --crimson:#e58696;
+    --slate:#8fb4d6;
+    --shell:#0d1211;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--shell);
+  color:var(--ink);
+  font:400 17px/1.65 "Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,serif;
+  font-weight:600;
+  line-height:1.2;
+  letter-spacing:-.01em;
+  font-style:normal;
+}
+h1{font-size:2.1rem;margin:0 0 .3em}
+h2{font-size:1.55rem;margin:2.6em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--teal)}
+h3{font-size:1.18rem;margin:2em 0 .4em;color:var(--teal)}
+h4{font-size:1rem;margin:1.5em 0 .3em;color:var(--ink-soft)}
+p{margin:0 0 1.05em}
+a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a:hover{color:var(--ochre)}
+strong{font-weight:650}
+
+.wrap{display:flex;gap:0;max-width:1180px;margin:0 auto;align-items:flex-start}
+nav{
+  flex:0 0 232px;position:sticky;top:0;max-height:100vh;overflow-y:auto;
+  padding:2rem 1.1rem 3rem;border-right:1px solid var(--rule);
+}
+nav .navtitle{
+  font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:.95rem;
+  color:var(--ink-faint);border-bottom:1px solid var(--rule);
+  padding-bottom:.5rem;margin-bottom:.7rem;
+}
+nav ol{list-style:none;margin:0;padding:0}
+nav li{margin:0}
+nav a{
+  display:block;padding:.34rem .5rem .34rem .6rem;font-size:.9rem;line-height:1.35;
+  color:var(--ink-soft);text-decoration:none;border-left:3px solid transparent;
+}
+nav a:hover{border-left-color:var(--ochre);color:var(--ink);background:var(--paper-alt)}
+nav .sub a{font-size:.82rem;padding-left:1.4rem;color:var(--ink-faint)}
+
+main{flex:1 1 auto;min-width:0;padding:2rem 2.2rem 6rem;background:var(--paper);border-right:1px solid var(--rule)}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:62ch}
+.meta{font-size:.84rem;color:var(--ink-faint);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:.6rem 0;margin:1.4rem 0 2rem}
+
+/* marcadores de evidencia */
+.m{
+  display:inline-block;font-size:.72rem;font-weight:700;line-height:1;
+  padding:.22em .42em;border-radius:2px;vertical-align:.08em;white-space:nowrap;
+}
+.mE{background:var(--teal);color:var(--paper)}
+.mR{background:var(--ochre);color:var(--paper)}
+.mH{background:var(--slate);color:var(--paper)}
+.mQ{background:var(--crimson);color:var(--paper)}
+@media (prefers-color-scheme: dark){
+  .mE,.mR,.mH,.mQ{color:#0d1211}
+}
+.legend{display:flex;flex-wrap:wrap;gap:1.1rem;font-size:.85rem;color:var(--ink-soft);margin:0 0 1.6rem}
+.legend span{display:flex;align-items:center;gap:.4rem}
+
+.callout{
+  border-left:4px solid var(--ochre);background:var(--ochre-soft);
+  padding:.9rem 1.1rem;margin:1.6rem 0;font-size:.97rem;
+}
+.callout.key{border-left-color:var(--teal);background:var(--paper-alt)}
+.callout p:last-child{margin-bottom:0}
+.callout .tag{
+  display:block;font-family:"Iowan Old Style",Palatino,Georgia,serif;
+  font-size:.9rem;color:var(--ink-faint);margin-bottom:.35rem;
+}
+
+table{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.89rem}
+caption{text-align:left;font-size:.84rem;color:var(--ink-faint);padding-bottom:.5rem}
+th,td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:650;color:var(--teal);border-bottom:2px solid var(--teal);font-size:.84rem}
+tbody tr:hover{background:var(--paper-alt)}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+ul.tight{margin:0 0 1.1em;padding-left:1.15rem}
+ul.tight li{margin:.3em 0}
+
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-size:.84rem;color:var(--ink-faint);margin-top:.6rem;max-width:68ch}
+
+.files{font-size:.9rem}
+.files dt{font-weight:650;margin-top:.8rem;color:var(--teal)}
+.files dd{margin:.15rem 0 0 0;color:var(--ink-soft)}
+
+footer{padding:1.6rem 2.2rem 3rem;max-width:1180px;margin:0 auto;font-size:.85rem;color:var(--ink-faint)}
+
+@media (max-width:860px){
+  .wrap{display:block}
+  nav{
+    position:static;flex:none;max-height:none;width:100%;
+    border-right:0;border-bottom:1px solid var(--rule);padding:1.2rem 1.2rem 1.4rem;
+    background:var(--paper-alt);
+  }
+  nav ol{column-count:2;column-gap:1rem}
+  nav .sub{display:none}
+  main{padding:1.5rem 1.1rem 4rem;border-right:0}
+  footer{padding:1.4rem 1.1rem 3rem}
+  h1{font-size:1.65rem}
+  h2{font-size:1.3rem}
+  body{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav aria-label="Índice">
+  <div class="navtitle">R3 · APOLO Biotech</div>
+  <ol>
+    <li><a href="#s1">Qué es la empresa</a></li>
+    <li class="sub"><a href="#epilab">La relación con el EPILAB</a></li>
+    <li class="sub"><a href="#linea">Línea de tiempo</a></li>
+    <li><a href="#s2">Qué hacen técnicamente</a></li>
+    <li><a href="#s3">Formas de aplicación</a></li>
+    <li class="sub"><a href="#portadores">Portadores y persistencia</a></li>
+    <li><a href="#s4">Embudo de validación</a></li>
+    <li class="sub"><a href="#diagrama">El diagrama</a></li>
+    <li><a href="#s5">Chicharrita</a></li>
+    <li><a href="#s6">Huecos</a></li>
+    <li><a href="#archivos">Archivos y fuentes</a></li>
+  </ol>
+</nav>
+
+<main>
+  <h1>APOLO Biotech</h1>
+  <p class="lede">Inteligencia competitiva y técnica sobre la empresa argentina de ARN aplicado al agro, y sobre el sector en el que juega. El objetivo no es halagar ni criticar: es que el equipo sepa qué ya está hecho, para no proponerlo como novedad, y dónde quedan huecos reales.</p>
+
+  <p class="meta">Investigación R3 · cierre 17 de octubre de 2026 · fuente abierta únicamente · <strong>esta es la vista de lectura; la fuente de verdad es <code>REPORT.md</code></strong></p>
+
+  <div class="legend">
+    <span><i class="m mE">E</i> establecido: literatura revisada o norma vigente</span>
+    <span><i class="m mR">R</i> reportado: pocas fuentes, prensa, web de empresa</span>
+    <span><i class="m mH">H</i> hipótesis nuestra</span>
+    <span><i class="m mQ">?</i> incierto o contradictorio</span>
+  </div>
+
+  <div class="callout">
+    <span class="tag">Advertencia de lectura</span>
+    <p>Este material distingue tres cosas que es fácil confundir: lo que la empresa afirma de sí misma, lo que publicaron sus científicos con revisión por pares, y lo que dijo la prensa. <strong>El material de marketing es evidencia de intención, no de eficacia.</strong></p>
+  </div>
+
+  <h2 id="s1">1. Qué es la empresa</h2>
+
+  <p><strong>Identidad: confirmada, sin ambigüedad.</strong> Es <strong>APOLO Biotech S.A.S.</strong>, radicada en el Puerto de la Innovación del Parque Tecnológico Litoral Centro, en Santa Fe. No hay otra empresa de nombre parecido trabajando en ARN aplicado a cultivos. <i class="m mR">R</i></p>
+
+  <p>El nombre no es mitológico: <strong>APOLO es el nombre de una molécula</strong>. <i>AUXIN REGULATED PROMOTER LOOP RNA</i> es un ARN largo no codificante (long non-coding RNA, lncRNA) de <i>Arabidopsis thaliana</i> descrito por el grupo de Federico Ariel, y la empresa se fundó alrededor de esa línea. <i class="m mR">R</i></p>
+
+  <p><strong>La pista del CONICET quedó verificada, y era más fuerte de lo que sugería.</strong> La empresa surgió en marzo de 2022 como spinout de la Universidad Nacional del Litoral y el CONICET, financiada por la convocatoria «Ciencia y Tecnología contra el Hambre». Tiene reconocimiento como empresa de base tecnológica del CONICET. <i class="m mR">R</i> El ARN no codificante del CONICET no está relacionado con la empresa: <strong>es su origen</strong>.</p>
+
+  <h3 id="epilab">La relación con el EPILAB / IFIBYNE</h3>
+
+  <div class="callout key">
+    <span class="tag">El hallazgo que reordena la premisa del equipo</span>
+    <p>La premisa original («el investigador viene de la empresa») y su corrección («viene de un laboratorio académico») <strong>no son alternativas excluyentes</strong>. El laboratorio organizador y la empresa comparten director, personal, espacio físico y publicaciones.</p>
+  </div>
+
+  <ul class="tight">
+    <li>El IFIBYNE (CONICET-UBA) lista entre sus grupos el <strong>«Grupo Ariel — Laboratorio de Epigenética y ARNs no codificantes»</strong>. <i class="m mR">R</i></li>
+    <li>Esa página describe a su director como «Investigador Independiente de CONICET, AXA Chair 2025-2029 y <strong>cofundador y CSO de APOLO Biotech</strong>». Lo declara el sitio académico, no un intermediario. <i class="m mR">R</i></li>
+    <li>La sigla <strong>EPILAB</strong> no es el nombre institucional: aparece como identificador de la cuenta del laboratorio en X. La equivalencia EPILAB = Grupo Ariel es inferencia muy probable, no dato institucional. <i class="m mQ">?</i></li>
+    <li><strong>El personal se solapa:</strong> un integrante figura como «Investigador APOLO», dos becarias como doctorandas «UBA/APOLO», y cuatro más tienen cargo en la empresa según su web. <i class="m mR">R</i></li>
+    <li><strong>El espacio se solapa:</strong> entre las oficinas que declara la empresa figura el «Pabellón IFIBYNE, Ciudad Universitaria». <i class="m mR">R</i></li>
+    <li><strong>Las publicaciones se solapan:</strong> la revisión de 2025 en <i>The Plant Cell</i> tiene tres de cinco autores con cargo en APOLO. <i class="m mE">E</i></li>
+  </ul>
+
+  <p><strong>Consecuencia práctica.</strong> No hay que asumir filiación para la persona concreta que se presente —eso no está publicado y hay que preguntarlo— pero sí dar por sentado que <strong>quien venga del EPILAB conoce el pipeline de APOLO desde adentro</strong>. Proponer «una plataforma bioinformática para diseñar ARN específicos» es proponerles Apolo Rocket, que ya existe.</p>
+
+  <p><i class="m mQ">?</i> <strong>Lo que no se encontró:</strong> ninguna fuente pública vincula al EPILAB ni a APOLO con el trabajo sobre chicharrita del grupo de María Inés Catalano (CEBIO-UNNOBA), que es el grupo argentino con RNAi publicado en <i>Dalbulus maidis</i>. Son dos líneas que el equipo podría estar asumiendo unidas y que aparecen separadas.</p>
+
+  <h3 id="linea">Línea de tiempo</h3>
+
+  <figure>
+  <svg viewBox="0 0 880 430" role="img" aria-labelledby="tl-t tl-d">
+    <title id="tl-t">Línea de tiempo de APOLO Biotech y del laboratorio de su fundador, 2014 a 2026</title>
+    <desc id="tl-d">Dos carriles paralelos. El carril académico va de 2014 a 2026 con las publicaciones sobre el lncRNA APOLO y la cátedra AXA. El carril de la empresa arranca en 2022 con la fundación y llega a 2026 sin producto registrado.</desc>
+    <defs>
+      <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+      </marker>
+    </defs>
+
+    <!-- carril academico -->
+    <text x="0" y="26" font-size="14" font-weight="700" fill="var(--teal)" font-family="Georgia,serif">Carril académico — Laboratorio de Epigenética y ARNs no codificantes</text>
+    <line x1="8" y1="46" x2="860" y2="46" stroke="var(--teal)" stroke-width="2" color="var(--teal)" marker-end="url(#ar)"/>
+
+    <g font-size="11.5" fill="var(--ink-soft)" font-family="Helvetica,Arial,sans-serif">
+      <circle cx="30" cy="46" r="5" fill="var(--teal)"/>
+      <text x="30" y="72" text-anchor="middle" font-weight="700" fill="var(--ink)">2014</text>
+      <text x="30" y="88" text-anchor="middle">APOLO y</text>
+      <text x="30" y="102" text-anchor="middle">cromatina 3D</text>
+
+      <circle cx="175" cy="46" r="5" fill="var(--teal)"/>
+      <text x="175" y="72" text-anchor="middle" font-weight="700" fill="var(--ink)">2016</text>
+      <text x="175" y="88" text-anchor="middle">Ariel dirige el</text>
+      <text x="175" y="102" text-anchor="middle">laboratorio en el IAL</text>
+
+      <circle cx="320" cy="46" r="5" fill="var(--teal)"/>
+      <text x="320" y="72" text-anchor="middle" font-weight="700" fill="var(--ink)">2020</text>
+      <text x="320" y="88" text-anchor="middle">R-loops en</text>
+      <text x="320" y="102" text-anchor="middle">Molecular Cell</text>
+
+      <circle cx="470" cy="46" r="5" fill="var(--teal)"/>
+      <text x="470" y="72" text-anchor="middle" font-weight="700" fill="var(--ink)">2023</text>
+      <text x="470" y="88" text-anchor="middle">lncRNA exógeno</text>
+      <text x="470" y="102" text-anchor="middle">aplicado a hoja</text>
+
+      <circle cx="640" cy="46" r="5" fill="var(--teal)"/>
+      <text x="640" y="72" text-anchor="middle" font-weight="700" fill="var(--ink)">2025</text>
+      <text x="640" y="88" text-anchor="middle">Revisión en</text>
+      <text x="640" y="102" text-anchor="middle">The Plant Cell</text>
+
+      <circle cx="790" cy="46" r="7" fill="var(--ochre)"/>
+      <text x="790" y="72" text-anchor="middle" font-weight="700" fill="var(--ink)">2025–29</text>
+      <text x="790" y="88" text-anchor="middle">Cátedra AXA:</text>
+      <text x="790" y="102" text-anchor="middle">entrega por</text>
+      <text x="790" y="116" text-anchor="middle">nanotecnología</text>
+    </g>
+
+    <line x1="8" y1="152" x2="860" y2="152" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 4"/>
+
+    <!-- carril empresa -->
+    <text x="0" y="196" font-size="14" font-weight="700" fill="var(--ochre)" font-family="Georgia,serif">Carril empresa — APOLO Biotech S.A.S.</text>
+    <line x1="340" y1="216" x2="860" y2="216" stroke="var(--ochre)" stroke-width="2" color="var(--ochre)" marker-end="url(#ar)"/>
+
+    <g font-size="11.5" fill="var(--ink-soft)" font-family="Helvetica,Arial,sans-serif">
+      <circle cx="360" cy="216" r="6" fill="var(--ochre)"/>
+      <text x="360" y="242" text-anchor="middle" font-weight="700" fill="var(--ink)">mar 2022</text>
+      <text x="360" y="258" text-anchor="middle">Fundación.</text>
+      <text x="360" y="272" text-anchor="middle">Spinout UNL</text>
+      <text x="360" y="286" text-anchor="middle">y CONICET</text>
+
+      <circle cx="488" cy="216" r="5" fill="var(--ochre)"/>
+      <text x="488" y="242" text-anchor="middle" font-weight="700" fill="var(--ink)">2023</text>
+      <text x="488" y="258" text-anchor="middle">BID Lab: USD 580k.</text>
+      <text x="488" y="272" text-anchor="middle">SpeedAgro y Brometan.</text>
+      <text x="488" y="286" text-anchor="middle">21 personas</text>
+
+      <circle cx="616" cy="216" r="5" fill="var(--ochre)"/>
+      <text x="616" y="242" text-anchor="middle" font-weight="700" fill="var(--ink)">abr 2024</text>
+      <text x="616" y="258" text-anchor="middle">Planta piloto, 120 m².</text>
+      <text x="616" y="272" text-anchor="middle">Hasta 200.000 ha.</text>
+      <text x="616" y="286" text-anchor="middle">Trámite en SENASA</text>
+
+      <circle cx="740" cy="216" r="5" fill="var(--ochre)"/>
+      <text x="740" y="242" text-anchor="middle" font-weight="700" fill="var(--ink)">abr 2025</text>
+      <text x="740" y="258" text-anchor="middle">Apolo Rocket:</text>
+      <text x="740" y="272" text-anchor="middle">+140 organismos</text>
+      <text x="740" y="286" text-anchor="middle">evaluados a la vez</text>
+
+      <circle cx="845" cy="216" r="5" fill="var(--ochre)"/>
+      <text x="845" y="242" text-anchor="end" font-weight="700" fill="var(--ink)">oct 2025</text>
+      <text x="845" y="258" text-anchor="end">World Food Prize:</text>
+      <text x="845" y="272" text-anchor="end">USD 50.000</text>
+    </g>
+
+    <!-- vinculo -->
+    <path d="M30,120 C30,160 330,170 356,206" fill="none" stroke="var(--slate)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="150" y="182" font-size="11" fill="var(--slate)" font-family="Helvetica,Arial,sans-serif">la molécula del paper le da el nombre a la empresa</text>
+
+    <!-- estado -->
+    <rect x="8" y="330" width="852" height="88" fill="var(--paper-alt)" stroke="var(--crimson)" stroke-width="2"/>
+    <text x="24" y="356" font-size="13" font-weight="700" fill="var(--crimson)" font-family="Georgia,serif">Estado a octubre de 2026</text>
+    <g font-size="12" fill="var(--ink-soft)" font-family="Helvetica,Arial,sans-serif">
+      <text x="24" y="378">Sin producto registrado ni comercializado. El encaje regulatorio es, en palabras del CEO, «our main issue right now»:</text>
+      <text x="24" y="396">ninguna categoría de la Resolución SENASA 1004/2023 nombra ácidos nucleicos ni ARN de doble cadena.</text>
+      <text x="24" y="412">Cero patentes en una consulta abierta a Google Patents, ni por asignatario ni por inventor.</text>
+    </g>
+  </svg>
+  <figcaption>Los dos carriles no son independientes: comparten director y personal. El carril académico tiene doce años; el de la empresa, cuatro y medio. Fuentes en <code>sources.json</code>.</figcaption>
+  </figure>
+
+  <h4>Financiamiento, tamaño y mercados</h4>
+  <p>No hay ronda de capital de riesgo publicada. Sí hay: <strong>BID Lab</strong>, USD 130.000 no reembolsables más USD 450.000 de recuperación contingente, para la planta piloto y para optimizar la plataforma bioinformática <i class="m mR">R</i>; <strong>Fundación Sadosky</strong>, con el IABIMO (INTA-CONICET), por el proyecto «Diseño de ARNs exógenos como bioinsumos para el reemplazo de pesticidas sintéticos en la agricultura» —monto no publicado <i class="m mR">R</i>; y premios, entre ellos el <strong>Innovate for Impact Challenge</strong> de la World Food Prize Foundation, USD 50.000, en octubre de 2025 <i class="m mR">R</i>. La empresa declara operar con subsidios y acuerdos pre-comerciales sin ceder equity.</p>
+  <p>Tamaño: 21 personas en septiembre de 2023, 28 según la ficha de Cancillería, 30 en junio de 2025 <i class="m mR">R</i>. Cualquier cifra que el equipo use tiene que ir fechada.</p>
+
+  <h2 id="s2">2. Qué hacen técnicamente</h2>
+
+  <div class="callout key">
+    <span class="tag">La fuente de mayor jerarquía es de ellos mismos</span>
+    <p>Attallah C., Conti G., Zuljan F., Zavallo D. &amp; Ariel F. (2025), «Noncoding RNAs as tools for advancing translational biology in plants», <i>The Plant Cell</i> 37(5):koaf054. Revisión con revisión por pares, firmada por el CSO de la empresa como autor correspondiente y por tres personas más con cargo en ella. <i class="m mE">E</i></p>
+  </div>
+
+  <ul class="tight">
+    <li>Distinguen <strong>SIGS</strong> (spray-induced gene silencing, silenciamiento inducido por pulverización), no transgénico, de <strong>HIGS</strong>, que requiere planta transgénica. APOLO juega en SIGS. <i class="m mE">E</i></li>
+    <li>En SIGS el dsRNA exógeno puede ser captado <strong>directamente por el patógeno</strong>, o absorbido por la planta, procesado a siRNA y transferido al patógeno durante la infección. Dos rutas con consecuencias distintas de diseño. <i class="m mE">E</i></li>
+    <li>La aplicación exógena de <strong>precursores de miRNA parece menos viable</strong>, porque el procesamiento depende de la estructura secundaria. Empuja el diseño hacia dúplex maduros. <i class="m mE">E</i></li>
+    <li>El experimento fundacional, en versión revisada: <strong>APOLO transcrito in vitro y pulverizado sobre <i>Arabidopsis</i> activó sus genes blanco.</strong> <i class="m mE">E</i></li>
+    <li>«Los dsRNA desnudos son inestables en ambientes naturales», y como contracara «las formulaciones estabilizadas pueden persistir más tiempo en el ambiente». La estabilización es un intercambio, no una mejora gratis. <i class="m mE">E</i></li>
+    <li><strong>«Bioinformatic analyses play an essential role in the development of dsRNA-based pesticides»</strong>, y a la vez <strong>la bioinformática no reemplaza al ensayo</strong>. Dicho por ellos. <i class="m mE">E</i></li>
+  </ul>
+
+  <h4>Blancos, cultivos y la cifra más citable</h4>
+  <p>El blanco principal documentado es <i>Botrytis cinerea</i>. La web reporta <strong>«hasta 65% de reducción de severidad»</strong> sobre nueve ensayos de 2023/2024, con frutilla a campo y lechuga en invernáculo. <i class="m mR">R</i> <strong>Es autoafirmación:</strong> los resultados están en gráficos, sin n, sin estadística, sin publicación, y «hasta 65%» es el techo de un rango cuyo piso no se publica. Es el número más citable que tienen y el menos verificable.</p>
+
+  <div class="scroller">
+  <table>
+    <caption>Cultivos y blancos declarados, con su estado. Todo <i class="m mR">R</i>.</caption>
+    <thead><tr><th>Cultivo</th><th>Patógeno u objetivo</th><th>Estado declarado</th></tr></thead>
+    <tbody>
+      <tr><td>Frutilla</td><td><i>Botrytis cinerea</i></td><td>Ensayos a campo; primer producto previsto</td></tr>
+      <tr><td>Lechuga</td><td><i>Botrytis cinerea</i></td><td>Invernáculo, 2024</td></tr>
+      <tr><td>Maní</td><td>Viruela del maní</td><td>Argentina, Brasil, Nicaragua y EEUU; con SpeedAgro</td></tr>
+      <tr><td>Banano</td><td>Sigatoka negra</td><td>Ecuador, Colombia y Costa Rica</td></tr>
+      <tr><td>Tomate</td><td><i>Botrytis</i>; estrés térmico e hídrico</td><td>Alianza con Brometan</td></tr>
+      <tr><td>Trigo y tomate</td><td>Tolerancia a calor extremo</td><td>Programa académico de la cátedra AXA</td></tr>
+      <tr><td>Pipeline</td><td>24 patógenos; «más de 30 cultivos»</td><td>Declarado</td></tr>
+      <tr><td><strong>Maíz</strong></td><td><strong>—</strong></td><td><strong>Nada. Los extensivos quedaban para 2027</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>Producción y costo por hectárea</h4>
+  <p><strong>Ninguna fuente pública dice con qué método producen el ARN.</strong> La planta piloto de abril de 2024, de 120 m², produce ARN, enzimas y estabilizantes, con capacidad declarada de hasta 200.000 hectáreas <i class="m mR">R</i>. Que fabriquen <strong>enzimas propias</strong> apunta a transcripción in vitro con polimerasa recombinante antes que a fermentación, porque una planta de fermentación no las necesita <i class="m mH">H</i>.</p>
+  <p>«El costo de producción bajó hasta 80 veces en el último año» <i class="m mR">R</i> es una reducción relativa sin base absoluta: <strong>no hay ningún dato público de costo por hectárea ni de precio. El dato es que no hay dato.</strong> La conclusión defendible es cualitativa y suficiente: el costo por gramo determina el costo por hectárea, y por eso la tecnología entra por cultivos intensivos de alto valor y no por maíz. Es la explicación de cada decisión de pipeline que tomaron.</p>
+
+  <h2 id="s3">3. Formas de aplicación</h2>
+
+  <div class="callout">
+    <span class="tag">Por qué esta sección es la prioritaria</span>
+    <p>El organizador declara como barrera central que <strong>«las RNasas limitan la entrega oral del ARN»</strong> y pregunta qué estrategia la resuelve. Esta es la sección que apunta al cuello de botella declarado del desafío.</p>
+  </div>
+
+  <p><strong>Lo que hace APOLO es un solo modo:</strong> pulverización foliar. «Es un líquido. Se aplica con un pulverizador sobre las hojas» (Badano); «se aplica igual que cualquier insumo» (Zuljan) <i class="m mR">R</i>. Más dos propiedades declaradas: <strong>estabilización para conservar a temperatura ambiente</strong> sin cadena de frío, y <strong>efecto sistémico</strong>, con evidencia de una observación cualitativa en maní —hojas nuevas sin infección en parcelas tratadas— sin cuantificar, sin n y sin publicación <i class="m mR">R</i>.</p>
+
+  <p><i class="m mQ">?</i> <strong>No hay ningún dato público de APOLO sobre número de aplicaciones por campaña, dosis por hectárea ni persistencia en días.</strong> Para la sección cuyo eje es el modo de aplicación, es el hueco documental más grande del reporte.</p>
+
+  <p>Una excepción importante: el proyecto de la cátedra AXA declara que la <strong>entrega controlada de ARN</strong> se aborda <strong>mediante nanotecnología</strong> <i class="m mR">R</i>. Es decir, la vía de nanoportadores existe <strong>en el programa académico del grupo, no en el producto de la empresa</strong>. Si el equipo pensaba aportar por ahí, hay un grupo con financiamiento y cinco años de cátedra para ejecutarlo.</p>
+
+  <h3 id="portadores">Portadores, persistencia y la tensión no resuelta</h3>
+
+  <p>El consenso del campo, con literatura: el dsRNA activo tiene baja estabilidad ambiental, y <strong>nucleasas microbianas, radiación UV y lavado por rocío y lluvia</strong> limitan su disponibilidad <i class="m mE">E</i>. La barrera que declara el organizador no es una sospecha del desafío: es el estado del arte.</p>
+
+  <div class="scroller">
+  <table>
+    <caption>Ventanas de protección medidas. Cada fila viene de un trabajo original distinto, con especie, cultivo y dosis distintos: <strong>no son comparables entre sí</strong>. <i class="m mR">R</i></caption>
+    <thead><tr><th>Sistema o portador</th><th>Ventana de efecto</th><th>Qué aporta al caso chicharrita</th></tr></thead>
+    <tbody>
+      <tr><td>ARN desnudo, varios sistemas</td><td>5 a 12 días</td><td>El rango útil está en días, no semanas</td></tr>
+      <tr><td><strong>BioClay</strong>, nanoláminas de arcilla LDH</td><td>de 5-7 a <strong>al menos 20 días</strong>; detectable a 30</td><td>Antecedente canónico de liberación sostenida, desde 2017</td></tr>
+      <tr><td>Minicélulas de <i>E. coli</i></td><td>12 días en <i>Botrytis</i> sobre frutilla</td><td>El vehículo celular protege el ARN</td></tr>
+      <tr><td><strong>Policationes en estrella (SPc)</strong></td><td><strong>más del 97% a 7 días en <i>Sogatella furcifera</i></strong></td><td><strong>Lo más cercano que existe: hemíptero de floema, igual que <i>D. maidis</i></strong></td></tr>
+      <tr><td>Quitosano</td><td>100% de mortalidad, hasta 5 días</td><td>Química de portador accesible</td></tr>
+      <tr><td>Liposomas, entrega oral</td><td>+24-60% de mortalidad por 16 días</td><td>La vía oral se puede asistir</td></tr>
+      <tr><td>Cápsulas peptídicas (BAPC)</td><td><strong>hasta 40 días</strong></td><td>El techo publicado de persistencia</td></tr>
+      <tr><td>Formulación sola, <i>Spodoptera exigua</i></td><td>mortalidad de <strong>16% a 53%</strong></td><td>El salto es enteramente formulación</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <span class="tag">Dos precisiones que importan más que la tabla</span>
+    <p><strong>Primera.</strong> Ninguna fuente que se haya podido abrir atribuye a BioClay protección <em>medida</em> frente a fotodegradación por UV ni frente a nucleasas: las fuentes atribuyen la ventana extendida a <strong>liberación sostenida y resistencia al lavado</strong>. Si la versión «BioClay protege del UV y de las nucleasas» circula —y circula— está sin respaldo. <i class="m mQ">?</i></p>
+    <p><strong>Segunda.</strong> Hay una tensión no resuelta. La academia muestra portadores que llevan la ventana de días a semanas, y <strong>el único producto de ARN exógeno registrado del mundo para un cultivo salió al mercado sin portador</strong>: Calantha usa coadyuvantes de base látex o aceites minerales parafínicos, permite cuatro aplicaciones por año, y <strong>no muestra diferencia de persistencia entre el activo técnico y el formulado</strong> <i class="m mE">E</i>. Esa tensión es un hallazgo, no un hueco de la búsqueda.</p>
+  </div>
+
+  <p>El panorama completo por empresa —GreenLight, Bayer, Syngenta, Renaissance BioScience, AgroSpheres, Sempre AgTech, RNAgro y el resto— está en <code>panorama_industria.md</code>, con el estado regulatorio comparado de Estados Unidos, Australia, la Unión Europea, Brasil y Argentina.</p>
+
+  <h2 id="s4">4. Embudo de validación</h2>
+
+  <p>El embudo completo, con entradas y salidas de cada etapa y la marca de qué está documentado y qué es reconstrucción nuestra, está en <code>embudo_validacion.md</code>. Lo esencial es dónde se puede intervenir.</p>
+
+  <figure id="diagrama">
+  <svg viewBox="0 0 880 620" role="img" aria-labelledby="fn-t fn-d">
+    <title id="fn-t">Embudo de validación de un ARN, de candidato a producto registrado</title>
+    <desc id="fn-d">Trece etapas en columna. Las etapas 1 a 3 forman el tramo seco, accesible a un equipo sin laboratorio. Entre la etapa 3 y la 4 está el punto de inserción, donde el organizador pregunta cuáles candidatos merecen validación. Las etapas 4 a 12 son el tramo húmedo, que requiere banco, invernáculo, parcela y capital.</desc>
+
+    <!-- tramo seco -->
+    <rect x="8" y="8" width="430" height="212" fill="var(--paper-alt)" stroke="var(--teal)" stroke-width="2"/>
+    <text x="24" y="32" font-size="13" font-weight="700" fill="var(--teal)" font-family="Georgia,serif">TRAMO SECO — un equipo de IA puede trabajar acá</text>
+
+    <g font-family="Helvetica,Arial,sans-serif">
+      <rect x="24" y="44" width="398" height="38" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="36" y="62" font-size="12" font-weight="700" fill="var(--ink)">1 · Recursos genómicos y transcriptómicos</text>
+      <text x="36" y="76" font-size="11" fill="var(--ink-soft)">Genoma de D. maidis del INTA: «versión actualizable v0.1, proyecto en curso»</text>
+
+      <rect x="24" y="90" width="398" height="38" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="36" y="108" font-size="12" font-weight="700" fill="var(--ink)">2 · Selección del gen blanco</text>
+      <text x="36" y="122" font-size="11" fill="var(--ink-soft)">Criterio: gen esencial. Los pesos concretos no están publicados</text>
+
+      <rect x="24" y="136" width="398" height="52" fill="var(--paper)" stroke="var(--teal)" stroke-width="2"/>
+      <text x="36" y="154" font-size="12" font-weight="700" fill="var(--teal)">3 · Diseño y tamizaje de especificidad in silico</text>
+      <text x="36" y="168" font-size="11" fill="var(--ink-soft)">Apolo Rocket: nube, +140 organismos a la vez, reportes automáticos.</text>
+      <text x="36" y="182" font-size="11" fill="var(--ink-soft)">Nadie publicó el criterio que convierte esos reportes en un orden.</text>
+    </g>
+    <text x="24" y="208" font-size="11" fill="var(--ink-faint)" font-family="Helvetica,Arial,sans-serif">Etapa 0: definir el agente. El RNAi no silencia molicutes: las bacterias no tienen maquinaria de ARNi.</text>
+
+    <!-- punto de insercion -->
+    <path d="M223,222 L223,250" stroke="var(--ochre)" stroke-width="3" color="var(--ochre)" marker-end="url(#ar)"/>
+    <rect x="8" y="254" width="864" height="76" fill="var(--ochre-soft)" stroke="var(--ochre)" stroke-width="3"/>
+    <text x="24" y="276" font-size="14" font-weight="700" fill="var(--ochre)" font-family="Georgia,serif">PUNTO DE INSERCIÓN — la pregunta textual del organizador</text>
+    <g font-size="12" fill="var(--ink-soft)" font-family="Helvetica,Arial,sans-serif">
+      <text x="24" y="296">«Candidatos preliminares diseñados por el equipo del EPILAB» → <tspan font-weight="700" fill="var(--ink)">¿cuáles merecen validación y por qué?</tspan></text>
+      <text x="24" y="316">El aporte no es generar candidatos —ya los tienen— sino ordenar un conjunto existente con criterio explicitable y auditable.</text>
+    </g>
+
+    <!-- tramo humedo -->
+    <path d="M440,334 L440,356" stroke="var(--ink-faint)" stroke-width="2" color="var(--ink-faint)" marker-end="url(#ar)"/>
+    <rect x="8" y="360" width="864" height="252" fill="var(--paper-alt)" stroke="var(--crimson)" stroke-width="2"/>
+    <text x="24" y="384" font-size="13" font-weight="700" fill="var(--crimson)" font-family="Georgia,serif">TRAMO HÚMEDO — banco, invernáculo, parcela y capital. No es nuestro.</text>
+
+    <g font-family="Helvetica,Arial,sans-serif" font-size="11">
+      <rect x="24" y="396" width="266" height="34" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="34" y="411" font-weight="700" font-size="11.5" fill="var(--ink)">4 · Producción del ARN</text>
+      <text x="34" y="424" fill="var(--ink-soft)">Método no publicado. Decide el encaje regulatorio</text>
+
+      <rect x="300" y="396" width="266" height="34" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="310" y="411" font-weight="700" font-size="11.5" fill="var(--ink)">5 · Tamizaje in vitro / ex vivo</text>
+      <text x="310" y="424" fill="var(--ink-soft)">En D. maidis: dsRNA muy inestable en homogenato</text>
+
+      <rect x="576" y="396" width="272" height="34" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="586" y="411" font-weight="700" font-size="11.5" fill="var(--ink)">6 · Bioensayo</text>
+      <text x="586" y="424" fill="var(--ink-soft)">Medir endpoints no letales y de ciclo de vida</text>
+
+      <rect x="24" y="442" width="542" height="48" fill="var(--paper)" stroke="var(--crimson)" stroke-width="2"/>
+      <text x="34" y="459" font-weight="700" font-size="12" fill="var(--crimson)">7 · Formulación y vía de entrega — EL CUELLO DE BOTELLA DECLARADO</text>
+      <text x="34" y="473" fill="var(--ink-soft)">«Las RNasas limitan la entrega oral del ARN». En D. maidis la barrera tiene nombre:</text>
+      <text x="34" y="485" fill="var(--ink-soft)">tres dsRNasas, y Dmai-dsRNase-2 en intestino medio y glándulas salivales.</text>
+
+      <rect x="576" y="442" width="272" height="48" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="586" y="459" font-weight="700" font-size="11.5" fill="var(--ink)">8 · Invernáculo</text>
+      <text x="586" y="473" fill="var(--ink-soft)">Planta entera, condiciones</text>
+      <text x="586" y="485" fill="var(--ink-soft)">controladas</text>
+
+      <rect x="24" y="502" width="406" height="48" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="34" y="519" font-weight="700" font-size="11.5" fill="var(--ink)">9 · Ensayo a campo</text>
+      <text x="34" y="533" fill="var(--ink-soft)">Norma SENASA: tres zonas agroecológicas × dos campañas.</text>
+      <text x="34" y="545" fill="var(--ink-soft)">Son dos años irreductibles por cómputo.</text>
+
+      <rect x="440" y="502" width="408" height="48" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="450" y="519" font-weight="700" font-size="11.5" fill="var(--ink)">10 · Organismos no objetivo y toxicología</text>
+      <text x="450" y="533" fill="var(--ink-soft)">Fase I por norma: aves, peces de agua dulce, abejas,</text>
+      <text x="450" y="545" fill="var(--ink-soft)">lombrices y artrópodos benéficos. Lista corta y concreta.</text>
+
+      <rect x="24" y="562" width="406" height="38" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="34" y="578" font-weight="700" font-size="11.5" fill="var(--ink)">11 · Trámite regulatorio</text>
+      <text x="34" y="592" fill="var(--ink-soft)">Vacío argentino: ninguna categoría nombra ácidos nucleicos</text>
+
+      <rect x="440" y="562" width="408" height="38" fill="var(--paper)" stroke="var(--rule)"/>
+      <text x="450" y="578" font-weight="700" font-size="11.5" fill="var(--ink)">12 · Escalado y costo por hectárea</text>
+      <text x="450" y="592" fill="var(--ink-soft)">Decide qué cultivos son viables. El maíz es el más difícil</text>
+    </g>
+  </svg>
+  <figcaption>Tres etapas enteras y dos parciales son accesibles a un equipo sin laboratorio. Es menos de lo que suele prometerse, y es suficiente para un aporte real si se entrega en el formato que la etapa 4 consume y con las incertidumbres declaradas.</figcaption>
+  </figure>
+
+  <h2 id="s5">5. Chicharrita y complejo de achaparramiento</h2>
+
+  <div class="callout key">
+    <span class="tag">Resultado de la búsqueda</span>
+    <p><strong>No se encontró nada de APOLO Biotech sobre la chicharrita del maíz ni sobre el complejo de achaparramiento.</strong> Ni producto, ni ensayo, ni anuncio, ni patente, ni congreso, ni mención en la prensa agropecuaria argentina, ni en el sitio de la empresa. Se buscó en español e inglés, en modo extendido. El dato es que no hay dato.</p>
+  </div>
+
+  <p>Es consistente con tres hechos documentados: el pipeline declarado es de hongos y virus en cultivos <strong>intensivos</strong>; los extensivos estaban previstos para 2027; y el laboratorio académico del fundador no registra en su página ninguna línea de insectos, maíz ni vectores.</p>
+
+  <p><strong>Patentes: cero resultados.</strong> Las consultas a Google Patents por «apolo biotech» y por Federico Ariel como inventor con «exogenous RNA» devolvieron cero <i class="m mR">R</i>. No se pudo consultar PATENTSCOPE ni el INPI, y Justia devolvió HTTP 403. La afirmación correcta es <em>no aparecen patentes en una consulta abierta a Google Patents</em>, no <em>no existen patentes</em>.</p>
+
+  <h3>Lo que sí existe, y de quién es</h3>
+
+  <p>La línea argentina de RNAi en <i>Dalbulus maidis</i> <strong>no es de APOLO ni del EPILAB</strong>: es del grupo de <strong>María Inés Catalano</strong> (CONICET, CIT NOBA; Laboratorio de Insectos de Interés Agronómico del CEBIO, UNNOBA) <i class="m mR">R</i>. Las referencias se tomaron de la nota institucional del CONICET, no de los papers: el intento de abrir el preprint con los métodos fue rechazado por el filtro de la herramienta y no se reformuló.</p>
+
+  <ul class="tight">
+    <li><strong>Silenciamiento de un gen de ovogénesis</strong> (2022, <i>Pest Management Science</i>). Gen identificado a partir del transcriptoma de todos los estadios. Las hembras tratadas depositaron menos huevos, con defectos estructurales en ovarios. Sin cifras, sin mortalidad, sin método de administración. <i class="m mR">R</i></li>
+    <li><strong>La barrera de las nucleasas, con nombre propio</strong> (2023, <i>Pesticide Biochemistry and Physiology</i>). Tres dsRNasas identificadas; <strong>Dmai-dsRNase-2</strong> muy expresada en intestino medio y glándulas salivales; el dsRNA es muy inestable frente a homogenatos de tejido; y silenciar esa nucleasa <strong>mejoró</strong> la respuesta al dsRNA del blanco. Los autores proponen <strong>co-entregar</strong> dsRNA anti-dsRNasa junto con el del blanco. <i class="m mR">R</i></li>
+  </ul>
+
+  <div class="callout">
+    <span class="tag">Esto reordena el eje del desafío</span>
+    <p>La barrera que el organizador declara no es genérica del campo: <strong>está caracterizada molecularmente en esta especie, con tres genes identificados, uno nominado como culpable principal, y una estrategia de solución ya publicada en 2023 por un grupo argentino.</strong> Si el equipo pensaba proponer «resolver la barrera de las nucleasas», la propuesta mínima ya existe. Lo que queda abierto es si la co-entrega funciona por una vía aplicable a campo —la pregunta textual del organizador— y eso vuelve a ser experimental.</p>
+  </div>
+
+  <p><strong>Un punto biológico que hay que tener claro.</strong> El complejo son cuatro agentes: dos virus (MRFV, MSMV), un fitoplasma y <i>Spiroplasma kunkelii</i>. Los dos últimos son <strong>molicutes, bacterias sin pared celular</strong>, y las bacterias no tienen maquinaria de interferencia de ARN <i class="m mE">E</i>. Eso deja tres rutas plausibles para un ARN exógeno: silenciar al <strong>vector</strong>, silenciar los <strong>virus</strong>, o <strong>modular la defensa de la planta</strong>. No hay que asumir una vía directa contra el molicute.</p>
+
+  <h2 id="s6">6. Huecos</h2>
+
+  <h3>Lo que ya está hecho y no hay que proponer como novedad</h3>
+  <ol class="tight">
+    <li><strong>Una plataforma para diseñar ARN específicos con chequeo de off-targets.</strong> Existe: Apolo Rocket, en la nube, +140 organismos a la vez, reportes automáticos, construida con el IABIMO y la Fundación Sadosky. <i class="m mR">R</i></li>
+    <li><strong>Encapsular el ARN para protegerlo de nucleasas y UV.</strong> Publicado desde 2017, con al menos seis químicas distintas. <i class="m mE">E</i></li>
+    <li><strong>Co-entregar dsRNA anti-dsRNasa</strong> para vencer la barrera en <i>D. maidis</i>. Publicado en 2023. <i class="m mR">R</i></li>
+    <li><strong>Pulverización foliar con efecto sistémico.</strong> Es el estándar del campo. <i class="m mE">E</i></li>
+    <li><strong>Nanoportadores para entrega controlada.</strong> Es el objetivo financiado de la cátedra AXA 2025-2029. <i class="m mR">R</i></li>
+  </ol>
+
+  <h3>Dónde el cuello de botella es computacional o de datos</h3>
+  <ul class="tight">
+    <li><strong>Priorizar candidatos existentes con criterio explicitable.</strong> El hueco no es la falta de herramientas de diseño —hay de sobra— sino la <strong>ausencia de una función de decisión escrita</strong>: qué pesa más, la conservación del blanco entre poblaciones, la expresión en el tejido donde el ARN llega, la ausencia de homología con polinizadores y enemigos naturales, o la distancia a secuencias del maíz. Apolo Rocket emite reportes; nadie publicó el criterio de agregación que los convierte en un orden defendible.</li>
+    <li><strong>La incomparabilidad de los datos de entrega.</strong> Los números de persistencia vienen de especies, cultivos, dosis y laboratorios distintos. <strong>No existe una tabla normalizada que permita decir qué portador conviene para un hemíptero de floema.</strong> Construir ese conjunto curado es trabajo de datos puro. Es el hueco más limpio que se encontró.</li>
+    <li><strong>La calidad del genoma como límite declarado de la especificidad.</strong> El genoma de <i>D. maidis</i> es v0.1 actualizable. El aporte honesto no es prometer especificidad: es <strong>cuantificar la incertidumbre que la anotación incompleta introduce</strong> y propagarla hasta la priorización.</li>
+    <li><strong>Tamizaje no objetivo alineado con el requisito regulatorio real.</strong> La norma define una lista corta y concreta de taxones para la fase I. Un tamizaje in silico contra <em>esa</em> lista, y no contra una genérica, tiene destinatario claro y reduce costo experimental aguas abajo.</li>
+    <li><strong>El criterio de off-target no está cerrado en la literatura</strong> <i class="m mE">E</i>: las herramientas marcan homología parcial, los vacíos de conocimiento limitan su exactitud, y la bioinformática no reemplaza el ensayo empírico. Es una limitación a declarar, no un hueco a llenar con una promesa.</li>
+  </ul>
+
+  <h3>Dónde el cuello de botella no es nuestro, y hay que decirlo</h3>
+  <ul class="tight">
+    <li><strong>La entrega a campo es experimental y de capital.</strong> Ningún cómputo decide si un portador catiónico sobrevive a la saliva y al intestino medio de <i>D. maidis</i> en un lote de maíz. Eso se mide.</li>
+    <li><strong>El costo por gramo es ingeniería de procesos.</strong> Es lo que decide si el maíz —extensivo, margen bajo— es viable. La empresa entró por intensivos justamente por esto.</li>
+    <li><strong>El registro es encaje normativo y plata.</strong> Tres zonas agroecológicas por dos campañas son años y parcelas. La literatura cita 4 años y USD 3-7 millones para un dsRNA, frente a 12 años y USD 280 millones para un pesticida convencional <i class="m mR">R</i>.</li>
+    <li><strong>Validar eficacia es imposible para el equipo.</strong> Lo que se entregue es una <strong>hipótesis priorizada</strong>, no un tratamiento. Decirlo así es más fuerte que insinuar lo contrario frente a alguien que conoce el pipeline desde adentro.</li>
+  </ul>
+
+  <h3>La contracara de riesgo, que toda propuesta tiene que traer</h3>
+  <p>Off-targets en el maíz mismo; off-targets en organismos no objetivo, con abejas y artrópodos benéficos en la fase I de la norma y enemigos naturales expuestos por depredación de la plaga tratada <i class="m mE">E</i>; persistencia ambiental aumentada justamente por las formulaciones estabilizadas que resuelven la eficacia <i class="m mE">E</i>; efectos no mediados por RNAi, porque el dsRNA puede disparar respuestas inmunes y también inmunidad vegetal desencadenada por patrones, con independencia del silenciamiento <i class="m mE">E</i>; efectos epigenéticos, con aumento de metilación de citosinas reportado tras dsRNA exógeno <i class="m mE">E</i>; y resistencia, con la advertencia de que los productos de RNAi pueden actuar lentamente, de modo que la evaluación debe incluir endpoints no letales y de ciclo de vida <i class="m mE">E</i>.</p>
+
+  <h2 id="archivos">Archivos y fuentes</h2>
+  <dl class="files">
+    <dt>REPORT.md</dt><dd>Las seis secciones completas, en prosa. Es la fuente de verdad: esta página resume y no afirma nada que no esté allí con su fuente.</dd>
+    <dt>embudo_validacion.md</dt><dd>El embudo paso a paso, con entradas y salidas por etapa y la marca de qué está documentado, qué es normativo y qué es inferencia nuestra.</dd>
+    <dt>panorama_industria.md</dt><dd>Tabla comparativa de empresas, el conjunto de datos de Calantha, los portadores, los costos y el estado regulatorio comparado de cinco jurisdicciones más la OCDE.</dd>
+    <dt>preguntas_abiertas.md</dt><dd>Dieciocho preguntas para el investigador, ordenadas por valor, cada una con su justificación. Más las nueve deudas propias.</dd>
+    <dt>sources.json</dt><dd>Todas las fuentes, cada una marcada según si se abrió o sólo se vio en resultados de búsqueda, con sus advertencias.</dd>
+    <dt>notes/01_rastro_de_fuentes.md</dt><dd>Rastro de búsquedas, contradicciones entre fuentes, los seis rechazos de herramienta y el intento de inyección de prompt detectado en una de las páginas de prensa.</dd>
+  </dl>
+
+  <div class="callout">
+    <span class="tag">Transparencia sobre los límites de esta investigación</span>
+    <p>Seis llamadas a la herramienta web fueron rechazadas por su filtro de seguridad y no se reformularon, por la regla del proyecto. Cuatro de ellas caen sobre el eje de entrega, que es el prioritario: la comparación de métodos de aplicación en vid a cielo abierto, dos búsquedas sobre portadores, y el segundo tramo de la revisión de <i>The Plant Cell</i> donde estarían los criterios de selección de blancos del propio equipo. La cobertura de portadores y persistencia se sostiene por eso sobre una sola revisión abierta y sobre una búsqueda delegada. Está todo anotado en <code>preguntas_abiertas.md</code>.</p>
+  </div>
+</main>
+</div>
+
+<footer>
+  R3 · Investigathón Y-Hat, track chicharrita del maíz y ARN exógeno · documento interno del equipo · fuente abierta, sin información personal más allá de la trayectoria profesional pública.
+</footer>
+</body>
+</html>
