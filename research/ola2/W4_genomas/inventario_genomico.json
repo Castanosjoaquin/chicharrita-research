@@ -1,0 +1,1477 @@
+{
+ "generado": "2026-10-17",
+ "fuente": "NCBI Datasets v2alpha y E-utilities; métricas calculadas localmente con research/ola2/W4_genomas/scripts/04_metricas.py",
+ "advertencia": "Ningún archivo genómico vino con el corpus del Investigathón (YHat-Biotech/). Este inventario es de material traído del NCBI.",
+ "conjuntos": [
+  {
+   "accesion": "GCA_975739785.1",
+   "organismo": "Dalbulus maidis",
+   "taxid": 74065,
+   "rol_en_el_problema": "vector (haplotipo primario)",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "ihDalMaid1.1",
+   "nivel": "Chromosome",
+   "fecha_liberacion": "2025-10-26",
+   "bioproject": "PRJEB97791",
+   "enviado_por": "WELLCOME SANGER INSTITUTE",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 141,
+     "largo_total_bp": 972225736,
+     "largo_min_bp": 1000,
+     "largo_max_bp": 122877750,
+     "largo_mediano_bp": 79000,
+     "N50_bp": 93705284,
+     "L50": 5,
+     "N90_bp": 79099396,
+     "L90": 10,
+     "GC_pct": 35.035,
+     "n_N": 38900,
+     "pct_N": 0.004,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCA_975739785.1/ncbi_dataset/data/GCA_975739785.1/GCA_975739785.1_ihDalMaid1.1_genomic.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "972206121",
+    "n_contigs_ncbi": 499,
+    "n_scaffolds_ncbi": 140,
+    "contig_n50_ncbi": 5293657,
+    "scaffold_n50_ncbi": 93705284,
+    "gc_percent_ncbi": 35
+   },
+   "completitud_estilo_busco_miniprot": {
+    "genoma": "downloads/GCA_975739785.1/ncbi_dataset/data/GCA_975739785.1/GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "linaje": "insecta_odb10",
+    "n_ortologos_linaje": 1367,
+    "conteos": {
+     "completo": 1292,
+     "duplicado": 44,
+     "fragmentado": 4,
+     "ausente": 27
+    },
+    "porcentajes": {
+     "completo": 94.51,
+     "duplicado": 3.22,
+     "fragmentado": 0.29,
+     "ausente": 1.98
+    },
+    "umbral_completo": 0.7,
+    "umbral_fragmentado": 0.3,
+    "herramienta": "miniprot (proxy declarado; no es BUSCO ni compleasm oficial)"
+   },
+   "anotado": "no",
+   "ids_cruzables": [
+    "Accesiones INSDC de secuencia (OZ319704.1 … ), BioProject PRJEB97791. Sin GeneID, sin locus_tag, sin RefSeq."
+   ],
+   "limitaciones": [
+    "Sin anotación de genes: NCBI no ofrece GFF ni conjunto de transcriptos para esta accesión (verificado 2026-10-17).",
+    "No hay registros en la base Gene del NCBI asociados al ensamblado: la especie tiene 37 registros en total, contra 24.179 de Macrosteles quadrilineatus.",
+    "Un solo individuo: no informa variación poblacional argentina."
+   ]
+  },
+  {
+   "accesion": "GCA_975739835.1",
+   "organismo": "Dalbulus maidis",
+   "taxid": 74065,
+   "rol_en_el_problema": "vector (haplotipo alternativo)",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "ihDalMaid1.1 alternate haplotype",
+   "nivel": "Scaffold",
+   "fecha_liberacion": "2025-10-26",
+   "bioproject": "PRJEB97790",
+   "enviado_por": "WELLCOME SANGER INSTITUTE",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 7864,
+     "largo_total_bp": 488450451,
+     "largo_min_bp": 1000,
+     "largo_max_bp": 5754311,
+     "largo_mediano_bp": 21946,
+     "N50_bp": 492899,
+     "L50": 184,
+     "N90_bp": 20166,
+     "L90": 4511,
+     "GC_pct": 34.682,
+     "n_N": 106400,
+     "pct_N": 0.0218,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCA_975739835.1/ncbi_dataset/data/GCA_975739835.1/GCA_975739835.1_ihDalMaid1.1_alternate_haplotype_genomic.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "488450451",
+    "n_contigs_ncbi": 8928,
+    "n_scaffolds_ncbi": 7864,
+    "contig_n50_ncbi": 328147,
+    "scaffold_n50_ncbi": 492899,
+    "gc_percent_ncbi": 34.5
+   },
+   "completitud_estilo_busco_miniprot": {
+    "genoma": "downloads/GCA_975739835.1/ncbi_dataset/data/GCA_975739835.1/GCA_975739835.1_ihDalMaid1.1_alternate_haplotype_genomic.fna",
+    "linaje": "insecta_odb10",
+    "n_ortologos_linaje": 1367,
+    "conteos": {
+     "completo": 442,
+     "duplicado": 43,
+     "fragmentado": 118,
+     "ausente": 764
+    },
+    "porcentajes": {
+     "completo": 32.33,
+     "duplicado": 3.15,
+     "fragmentado": 8.63,
+     "ausente": 55.89
+    },
+    "umbral_completo": 0.7,
+    "umbral_fragmentado": 0.3,
+    "herramienta": "miniprot (proxy declarado; no es BUSCO ni compleasm oficial)"
+   },
+   "anotado": "no",
+   "ids_cruzables": [
+    "Accesiones INSDC de secuencia, BioProject PRJEB97790. Sin identificadores de gen."
+   ],
+   "limitaciones": [
+    "Sin anotación.",
+    "Haplotipo alternativo parcial: completitud estilo BUSCO de 35,5 % (completo+duplicado) contra 97,7 % del primario; no sirve como referencia única.",
+    "Útil sólo para heterocigosis y para verificar si una región blanco cae en zona divergente entre haplotipos."
+   ]
+  },
+  {
+   "accesion": "GCA_054756405.1",
+   "organismo": "Dalbulus maidis",
+   "taxid": 74065,
+   "rol_en_el_problema": "vector (borrador CIAP-INTA)",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "CIAP v1",
+   "nivel": "Contig",
+   "fecha_liberacion": "2026-01-26",
+   "bioproject": "PRJNA1120083",
+   "enviado_por": "Instituto de Patologia Vegetal CIAP-INTA",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 22334,
+     "largo_total_bp": 585230275,
+     "largo_min_bp": 201,
+     "largo_max_bp": 813345,
+     "largo_mediano_bp": 14265,
+     "N50_bp": 50514,
+     "L50": 3255,
+     "N90_bp": 11614,
+     "L90": 12746,
+     "GC_pct": 34.749,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCA_054756405.1/ncbi_dataset/data/GCA_054756405.1/GCA_054756405.1_CIAP_v1_genomic.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "585210080",
+    "n_contigs_ncbi": 22333,
+    "n_scaffolds_ncbi": 22333,
+    "contig_n50_ncbi": 50514,
+    "scaffold_n50_ncbi": 50514,
+    "gc_percent_ncbi": 34.5
+   },
+   "completitud_estilo_busco_miniprot": {
+    "genoma": "downloads/GCA_054756405.1/ncbi_dataset/data/GCA_054756405.1/GCA_054756405.1_CIAP_v1_genomic.fna",
+    "linaje": "insecta_odb10",
+    "n_ortologos_linaje": 1367,
+    "conteos": {
+     "completo": 895,
+     "duplicado": 45,
+     "fragmentado": 225,
+     "ausente": 202
+    },
+    "porcentajes": {
+     "completo": 65.47,
+     "duplicado": 3.29,
+     "fragmentado": 16.46,
+     "ausente": 14.78
+    },
+    "umbral_completo": 0.7,
+    "umbral_fragmentado": 0.3,
+    "herramienta": "miniprot (proxy declarado; no es BUSCO ni compleasm oficial)"
+   },
+   "anotado": "no",
+   "ids_cruzables": [
+    "Accesiones INSDC de contig (CM139083.1 para la mitocondria), BioProject PRJNA1120083. Sin identificadores de gen."
+   ],
+   "limitaciones": [
+    "Sin anotación.",
+    "Fragmentado: 22.334 contigs, N50 de 50.514 bp, un gen mediano de insecto no entra entero en un contig típico.",
+    "Completitud estilo BUSCO de 68,8 %: casi un tercio de los ortólogos de insecta_odb10 falta o está partido."
+   ]
+  },
+  {
+   "accesion": "GCF_902167145.1",
+   "organismo": "Zea mays",
+   "taxid": 4577,
+   "rol_en_el_problema": "cultivo a proteger",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA",
+    "GFF3"
+   ],
+   "version_ensamblado": "Zm-B73-REFERENCE-NAM-5.0",
+   "nivel": "Chromosome",
+   "fecha_liberacion": "2020-03-21",
+   "bioproject": "PRJEB32225",
+   "enviado_por": "MaizeGDB",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 687,
+     "largo_total_bp": 2182786008,
+     "largo_min_bp": 30084,
+     "largo_max_bp": 308452471,
+     "largo_mediano_bp": 64265,
+     "N50_bp": 226353449,
+     "L50": 5,
+     "N90_bp": 163004744,
+     "L90": 9,
+     "GC_pct": 46.769,
+     "n_N": 3807886,
+     "pct_N": 0.1745,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_902167145.1/ncbi_dataset/data/GCF_902167145.1/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_genomic.fna"
+    },
+    "cds": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 57345,
+     "largo_total_bp": 78791488,
+     "largo_min_bp": 72,
+     "largo_max_bp": 16278,
+     "largo_mediano_bp": 1128,
+     "N50_bp": 1707,
+     "L50": 14682,
+     "N90_bp": 741,
+     "L90": 41561,
+     "GC_pct": 52.26,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_902167145.1/ncbi_dataset/data/GCF_902167145.1/cds_from_genomic.fna"
+    },
+    "anotacion_gff": {
+     "n_regiones": 687,
+     "fuentes": {
+      "Gnomon": 691724,
+      "BestRefSeq": 269791,
+      "cmsearch": 10660,
+      "RefSeq": 8120,
+      "BestRefSeq%2CGnomon": 6424
+     },
+     "features_por_tipo": {
+      "exon": 509115,
+      "CDS": 346676,
+      "mRNA": 57345,
+      "gene": 44680,
+      "transcript": 8186,
+      "lnc_RNA": 7804,
+      "cDNA_match": 5565,
+      "pseudogene": 5222,
+      "rRNA": 2439,
+      "tRNA": 1374,
+      "region": 687,
+      "snoRNA": 655,
+      "miRNA": 310,
+      "snRNA": 241,
+      "primary_transcript": 164,
+      "sequence_feature": 115,
+      "match": 101,
+      "sequence_difference": 79,
+      "intron": 21,
+      "sequence_conflict": 2,
+      "antisense_RNA": 1
+     },
+     "genes_por_biotipo": {
+      "protein_coding": 34327,
+      "lncRNA": 5348,
+      "pseudogene": 3887,
+      "rRNA": 2439,
+      "tRNA": 1366,
+      "transcribed_pseudogene": 1323,
+      "snoRNA": 655,
+      "snRNA": 241,
+      "miRNA": 164,
+      "misc_RNA": 139,
+      "tRNA_pseudogene": 8,
+      "ncRNA_pseudogene": 4,
+      "antisense_RNA": 1
+     },
+     "n_genes": 44680,
+     "n_mRNA": 57345,
+     "n_CDS": 346676,
+     "n_exon": 509115,
+     "largo_mediano_gen_bp": 2399,
+     "transcriptos_por_gen_medio": 1.717,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_902167145.1/ncbi_dataset/data/GCF_902167145.1/genomic.gff"
+    },
+    "transcriptos": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 76549,
+     "largo_total_bp": 162712215,
+     "largo_min_bp": 58,
+     "largo_max_bp": 71388,
+     "largo_mediano_bp": 1761,
+     "N50_bp": 2660,
+     "L50": 19185,
+     "N90_bp": 1229,
+     "L90": 54501,
+     "GC_pct": 49.522,
+     "n_N": 194,
+     "pct_N": 0.0001,
+     "n_ambiguas_iupac": 169,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_902167145.1/ncbi_dataset/data/GCF_902167145.1/rna.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "2182075994",
+    "n_contigs_ncbi": 1393,
+    "n_scaffolds_ncbi": 685,
+    "contig_n50_ncbi": 47037903,
+    "scaffold_n50_ncbi": 226353449,
+    "gc_percent_ncbi": 47
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / GCF_902167145.1-RS_2025_02",
+   "ids_cruzables": [
+    "GeneID (ej. GeneID:103644366), accesiones RefSeq XM_/XP_/NM_, miRBase (ej. MI0013239). Cruzan con NCBI Gene y con BLAST del W3."
+   ],
+   "limitaciones": [
+    "B73 no es el germoplasma comercial argentino: la variación entre B73 y los híbridos locales no está cuantificada y afecta al tamizaje de off-target en el cultivo.",
+    "La anotación mezcla evidencia (BestRefSeq) con predicción (Gnomon): 691.724 features de Gnomon contra 269.791 de BestRefSeq en nuestro conteo."
+   ]
+  },
+  {
+   "accesion": "GCF_001274875.1",
+   "organismo": "Spiroplasma kunkelii CR2-3x",
+   "taxid": 273035,
+   "rol_en_el_problema": "patógeno 1 (espiroplasma)",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA",
+    "GFF3"
+   ],
+   "version_ensamblado": "ASM127487v1",
+   "nivel": "Complete Genome",
+   "fecha_liberacion": "2015-08-26",
+   "bioproject": "PRJNA270865",
+   "enviado_por": "Beltsville Agricultural Research Center",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 4,
+     "largo_total_bp": 1514561,
+     "largo_min_bp": 7576,
+     "largo_max_bp": 1463926,
+     "largo_mediano_bp": 21529,
+     "N50_bp": 1463926,
+     "L50": 1,
+     "N90_bp": 1463926,
+     "L90": 1,
+     "GC_pct": 24.983,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_001274875.1/ncbi_dataset/data/GCF_001274875.1/GCF_001274875.1_ASM127487v1_genomic.fna"
+    },
+    "cds": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 1912,
+     "largo_total_bp": 1188048,
+     "largo_min_bp": 51,
+     "largo_max_bp": 4362,
+     "largo_mediano_bp": 393,
+     "N50_bp": 993,
+     "L50": 368,
+     "N90_bp": 261,
+     "L90": 1269,
+     "GC_pct": 25.936,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_001274875.1/ncbi_dataset/data/GCF_001274875.1/cds_from_genomic.fna"
+    },
+    "anotacion_gff": {
+     "n_regiones": 4,
+     "fuentes": {
+      "RefSeq": 1955,
+      "Protein Homology": 1137,
+      "GeneMarkS-2+": 775,
+      "tRNAscan-SE": 66,
+      "cmsearch": 19
+     },
+     "features_por_tipo": {
+      "CDS": 1912,
+      "gene": 1814,
+      "pseudogene": 137,
+      "exon": 39,
+      "tRNA": 33,
+      "riboswitch": 6,
+      "region": 4,
+      "rRNA": 3,
+      "SRP_RNA": 1,
+      "sequence_feature": 1,
+      "tmRNA": 1,
+      "RNase_P_RNA": 1
+     },
+     "genes_por_biotipo": {
+      "protein_coding": 1775,
+      "pseudogene": 137,
+      "tRNA": 33,
+      "rRNA": 3,
+      "SRP_RNA": 1,
+      "tmRNA": 1,
+      "RNase_P_RNA": 1
+     },
+     "n_genes": 1814,
+     "n_mRNA": 0,
+     "n_CDS": 1912,
+     "n_exon": 39,
+     "largo_mediano_gen_bp": 381,
+     "transcriptos_por_gen_medio": 1.0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_001274875.1/ncbi_dataset/data/GCF_001274875.1/genomic.gff"
+    },
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 1715,
+     "largo_total_aa": 361113,
+     "largo_min_aa": 16,
+     "largo_max_aa": 1453,
+     "largo_mediano_aa": 132,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_001274875.1/ncbi_dataset/data/GCF_001274875.1/protein.faa"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "1514561",
+    "n_contigs_ncbi": 4,
+    "n_scaffolds_ncbi": 4,
+    "contig_n50_ncbi": 1463926,
+    "scaffold_n50_ncbi": 1463926,
+    "gc_percent_ncbi": 25
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / GCF_001274875.1-RS_2025_12_13",
+   "ids_cruzables": [
+    "locus_tag SKUN_RS#####, proteínas WP_ de RefSeq. Cruzan con NCBI Gene/Protein."
+   ],
+   "limitaciones": [
+    "Un solo aislamiento (CR2-3x, Costa Rica); no hay genoma de aislamientos argentinos.",
+    "Sin maquinaria de RNAi: el silenciamiento directo del mollicute no tiene mecanismo conocido (R1, sección 4)."
+   ]
+  },
+  {
+   "accesion": "GCF_001712875.1",
+   "organismo": "Candidatus Phytoplasma zeae (nombre común: maize bushy stunt phytoplasma)",
+   "taxid": "202462",
+   "rol_en_el_problema": "patógeno 2 (fitoplasma del achaparramiento rojo) — el agente real, no un subrogante",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA",
+    "GFF3"
+   ],
+   "version_ensamblado": "ASM171287v1",
+   "nivel": "Complete Genome",
+   "fecha_liberacion": "2016-08-25",
+   "bioproject": "PRJNA317711",
+   "enviado_por": "Academia Sinica",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 1,
+     "largo_total_bp": 576118,
+     "largo_min_bp": 576118,
+     "largo_max_bp": 576118,
+     "largo_mediano_bp": 576118,
+     "N50_bp": 576118,
+     "L50": 1,
+     "N90_bp": 576118,
+     "L90": 1,
+     "GC_pct": 28.462,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "work/W4/downloads/GCF_001712875.1/ncbi_dataset/data/GCF_001712875.1/GCF_001712875.1_ASM171287v1_genomic.fna",
+     "secuencia": "NZ_CP015149.1, cepa M3, cromosoma completo"
+    },
+    "cds": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 540,
+     "largo_total_bp": 452829,
+     "largo_min_bp": 60,
+     "largo_max_bp": 4716,
+     "largo_mediano_bp": 651,
+     "N50_bp": 1197,
+     "L50": 127,
+     "GC_pct": 29.884,
+     "archivo_local": "work/W4/downloads/GCF_001712875.1/ncbi_dataset/data/GCF_001712875.1/cds_from_genomic.fna"
+    },
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 522,
+     "largo_total_aa": 146422,
+     "largo_min_aa": 25,
+     "largo_max_aa": 1571,
+     "largo_mediano_aa": 220,
+     "archivo_local": "work/W4/downloads/GCF_001712875.1/ncbi_dataset/data/GCF_001712875.1/protein.faa"
+    },
+    "anotacion_gff": {
+     "n_regiones": 1,
+     "n_genes": 565,
+     "n_mRNA": 0,
+     "n_CDS": 540,
+     "n_exon": 41,
+     "genes_por_biotipo": {
+      "protein_coding": 524,
+      "tRNA": 32,
+      "pseudogene": 16,
+      "rRNA": 6,
+      "tmRNA": 1,
+      "SRP_RNA": 1,
+      "RNase_P_RNA": 1
+     },
+     "largo_mediano_gen_bp": 615,
+     "transcriptos_por_gen_medio": 1.0,
+     "fuentes": {
+      "RefSeq": 582,
+      "Protein Homology": 434,
+      "GeneMarkS-2+": 106,
+      "tRNAscan-SE": 64,
+      "cmsearch": 19
+     },
+     "archivo_local": "work/W4/downloads/GCF_001712875.1/ncbi_dataset/data/GCF_001712875.1/genomic.gff"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "576118",
+    "gc_percent_ncbi": null,
+    "genes_declarados": {
+     "total": 581,
+     "protein_coding": 524,
+     "non_coding": 41,
+     "pseudogene": 16
+    }
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / GCF_001712875.1-RS_2026_06_07 (7 de junio de 2026)",
+   "ids_cruzables": [
+    "locus_tag y proteínas WP_ de RefSeq; secuencia NZ_CP015149.1; BioProject PRJNA317711. Cruzan con NCBI Gene/Protein y con BLAST del W3."
+   ],
+   "limitaciones": [
+    "Una sola cepa (M3, depositada por Academia Sinica, ensamblado de 2016): no hay aislamientos argentinos secuenciados, de modo que no se puede evaluar variación geográfica.",
+    "Sin maquinaria de RNAi: como todos los mollicutes, no es blanco de silenciamiento (R1, sección 4); el genoma sirve para contexto y para descarte de off-targets.",
+    "El ensamblado tiene un par GenBank equivalente (GCA_001712875.1) con la anotación original de 2016 (544 genes, 485 codificantes); usamos el RefSeq, reanotado en 2026."
+   ]
+  },
+  {
+   "accesion": "GCF_038505995.1",
+   "organismo": "Candidatus Phytoplasma asteris",
+   "taxid": 85620,
+   "rol_en_el_problema": "contexto del grupo 16SrI (NO es el agente del achaparramiento)",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA",
+    "GFF3"
+   ],
+   "version_ensamblado": "ASM3850599v1",
+   "nivel": "Complete Genome",
+   "fecha_liberacion": "2024-04-26",
+   "bioproject": "PRJNA975436",
+   "enviado_por": "University of Hohenheim",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 2,
+     "largo_total_bp": 778308,
+     "largo_min_bp": 5617,
+     "largo_max_bp": 772691,
+     "largo_mediano_bp": 389154,
+     "N50_bp": 772691,
+     "L50": 1,
+     "N90_bp": 772691,
+     "L90": 1,
+     "GC_pct": 27.835,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_038505995.1/ncbi_dataset/data/GCF_038505995.1/GCF_038505995.1_ASM3850599v1_genomic.fna"
+    },
+    "cds": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 785,
+     "largo_total_bp": 622806,
+     "largo_min_bp": 57,
+     "largo_max_bp": 4716,
+     "largo_mediano_bp": 627,
+     "N50_bp": 1068,
+     "L50": 182,
+     "N90_bp": 393,
+     "L90": 545,
+     "GC_pct": 29.084,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_038505995.1/ncbi_dataset/data/GCF_038505995.1/cds_from_genomic.fna"
+    },
+    "anotacion_gff": {
+     "n_regiones": 2,
+     "fuentes": {
+      "RefSeq": 828,
+      "Protein Homology": 645,
+      "GeneMarkS-2+": 140,
+      "tRNAscan-SE": 64,
+      "cmsearch": 19
+     },
+     "features_por_tipo": {
+      "CDS": 785,
+      "gene": 781,
+      "pseudogene": 45,
+      "exon": 41,
+      "tRNA": 32,
+      "rRNA": 6,
+      "region": 2,
+      "RNase_P_RNA": 1,
+      "SRP_RNA": 1,
+      "riboswitch": 1,
+      "tmRNA": 1
+     },
+     "genes_por_biotipo": {
+      "protein_coding": 740,
+      "pseudogene": 45,
+      "tRNA": 32,
+      "rRNA": 6,
+      "RNase_P_RNA": 1,
+      "SRP_RNA": 1,
+      "tmRNA": 1
+     },
+     "n_genes": 781,
+     "n_mRNA": 0,
+     "n_CDS": 785,
+     "n_exon": 41,
+     "largo_mediano_gen_bp": 613,
+     "transcriptos_por_gen_medio": 1.0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_038505995.1/ncbi_dataset/data/GCF_038505995.1/genomic.gff"
+    },
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 728,
+     "largo_total_aa": 195985,
+     "largo_min_aa": 18,
+     "largo_max_aa": 1571,
+     "largo_mediano_aa": 209,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_038505995.1/ncbi_dataset/data/GCF_038505995.1/protein.faa"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "778308",
+    "n_contigs_ncbi": 2,
+    "n_scaffolds_ncbi": 2,
+    "contig_n50_ncbi": 772691,
+    "scaffold_n50_ncbi": 772691,
+    "gc_percent_ncbi": 28
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / GCF_038505995.1-RS_2025_04_27",
+   "ids_cruzables": [
+    "locus_tag QN326_RS#####, proteínas WP_."
+   ],
+   "limitaciones": [
+    "No es el agente del achaparramiento del maíz: ese es 'Candidatus Phytoplasma zeae' (taxid 202462, GCF_001712875.1), que sí tiene genoma completo y anotado. Este ensamblado es de otra especie del grupo 16SrI y sirve como contexto comparativo."
+   ]
+  },
+  {
+   "accesion": "GCF_038396745.1",
+   "organismo": "Candidatus Phytoplasma asteris",
+   "taxid": 85620,
+   "rol_en_el_problema": "contexto del grupo 16SrI, aislamiento alternativo",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA",
+    "GFF3"
+   ],
+   "version_ensamblado": "ASM3839674v1",
+   "nivel": "Complete Genome",
+   "fecha_liberacion": "2024-04-20",
+   "bioproject": "PRJNA975459",
+   "enviado_por": "University of Hohenheim",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 2,
+     "largo_total_bp": 662369,
+     "largo_min_bp": 5045,
+     "largo_max_bp": 657324,
+     "largo_mediano_bp": 331184,
+     "N50_bp": 657324,
+     "L50": 1,
+     "N90_bp": 657324,
+     "L90": 1,
+     "GC_pct": 26.772,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_038396745.1/ncbi_dataset/data/GCF_038396745.1/GCF_038396745.1_ASM3839674v1_genomic.fna"
+    },
+    "cds": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 605,
+     "largo_total_bp": 500624,
+     "largo_min_bp": 45,
+     "largo_max_bp": 4707,
+     "largo_mediano_bp": 648,
+     "N50_bp": 1161,
+     "L50": 136,
+     "N90_bp": 408,
+     "L90": 408,
+     "GC_pct": 28.301,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_038396745.1/ncbi_dataset/data/GCF_038396745.1/cds_from_genomic.fna"
+    },
+    "anotacion_gff": {
+     "n_regiones": 2,
+     "fuentes": {
+      "RefSeq": 648,
+      "Protein Homology": 528,
+      "GeneMarkS-2+": 77,
+      "tRNAscan-SE": 64,
+      "cmsearch": 19
+     },
+     "features_por_tipo": {
+      "CDS": 605,
+      "gene": 591,
+      "pseudogene": 55,
+      "exon": 41,
+      "tRNA": 32,
+      "rRNA": 6,
+      "region": 2,
+      "tmRNA": 1,
+      "riboswitch": 1,
+      "SRP_RNA": 1,
+      "RNase_P_RNA": 1
+     },
+     "genes_por_biotipo": {
+      "protein_coding": 550,
+      "pseudogene": 55,
+      "tRNA": 32,
+      "rRNA": 6,
+      "tmRNA": 1,
+      "SRP_RNA": 1,
+      "RNase_P_RNA": 1
+     },
+     "n_genes": 591,
+     "n_mRNA": 0,
+     "n_CDS": 605,
+     "n_exon": 41,
+     "largo_mediano_gen_bp": 624,
+     "transcriptos_por_gen_medio": 1.0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_038396745.1/ncbi_dataset/data/GCF_038396745.1/genomic.gff"
+    },
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 532,
+     "largo_total_aa": 155822,
+     "largo_min_aa": 14,
+     "largo_max_aa": 1568,
+     "largo_mediano_aa": 228,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_038396745.1/ncbi_dataset/data/GCF_038396745.1/protein.faa"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "662369",
+    "n_contigs_ncbi": 2,
+    "n_scaffolds_ncbi": 2,
+    "contig_n50_ncbi": 657324,
+    "scaffold_n50_ncbi": 657324,
+    "gc_percent_ncbi": 27
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / GCF_038396745.1-RS_2025_04_20",
+   "ids_cruzables": [
+    "locus_tag propio, proteínas WP_."
+   ],
+   "limitaciones": [
+    "No es el agente del achaparramiento del maíz: ese es 'Candidatus Phytoplasma zeae' (taxid 202462, GCF_001712875.1), que sí tiene genoma completo y anotado. Este ensamblado es de otra especie del grupo 16SrI y sirve como contexto comparativo.",
+    "Mismo subrogado que el anterior, genoma 116 kb más chico y 150 genes menos: la variación intraespecífica del grupo es grande."
+   ]
+  },
+  {
+   "accesion": "GCF_000862485.2",
+   "organismo": "Maize rayado fino virus",
+   "taxid": 59749,
+   "rol_en_el_problema": "patógeno 3 (MRFV)",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA",
+    "GFF3"
+   ],
+   "version_ensamblado": "ViralProj15381",
+   "nivel": "Complete Genome",
+   "fecha_liberacion": "2019-07-12",
+   "bioproject": null,
+   "enviado_por": "Molecular Plant Pathology Laboratory, U.S. Department of Agriculture",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 1,
+     "largo_total_bp": 6366,
+     "largo_min_bp": 6366,
+     "largo_max_bp": 6366,
+     "largo_mediano_bp": 6366,
+     "N50_bp": 6366,
+     "L50": 1,
+     "N90_bp": 6366,
+     "L90": 1,
+     "GC_pct": 61.734,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_000862485.2/ncbi_dataset/data/GCF_000862485.2/GCF_000862485.2_ViralProj15381_genomic.fna"
+    },
+    "cds": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 2,
+     "largo_total_bp": 7350,
+     "largo_min_bp": 1263,
+     "largo_max_bp": 6087,
+     "largo_mediano_bp": 3675,
+     "N50_bp": 6087,
+     "L50": 1,
+     "N90_bp": 1263,
+     "L90": 2,
+     "GC_pct": 62.463,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_000862485.2/ncbi_dataset/data/GCF_000862485.2/cds_from_genomic.fna"
+    },
+    "anotacion_gff": {
+     "n_regiones": 1,
+     "fuentes": {
+      "RefSeq": 5
+     },
+     "features_por_tipo": {
+      "gene": 2,
+      "CDS": 2,
+      "region": 1
+     },
+     "genes_por_biotipo": {
+      "protein_coding": 2
+     },
+     "n_genes": 2,
+     "n_mRNA": 0,
+     "n_CDS": 2,
+     "n_exon": 0,
+     "largo_mediano_gen_bp": 3675,
+     "transcriptos_por_gen_medio": null,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_000862485.2/ncbi_dataset/data/GCF_000862485.2/genomic.gff"
+    },
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 2,
+     "largo_total_aa": 2448,
+     "largo_min_aa": 420,
+     "largo_max_aa": 2028,
+     "largo_mediano_aa": 1224,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_000862485.2/ncbi_dataset/data/GCF_000862485.2/protein.faa"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "6366",
+    "n_contigs_ncbi": 1,
+    "n_scaffolds_ncbi": 1,
+    "contig_n50_ncbi": 6366,
+    "scaffold_n50_ncbi": 6366,
+    "gc_percent_ncbi": 61.5
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / Annotation submitted by NCBI RefSeq",
+   "ids_cruzables": [
+    "GeneID:921087 y GeneID del segundo CDS, locus_tag IM012_gp#, proteínas NP_."
+   ],
+   "limitaciones": [
+    "Un único aislamiento de referencia; la diversidad de aislamientos sudamericanos no está en el ensamblado.",
+    "Genoma de 6.366 nt con sólo 2 CDS anotados: el espacio de diseño es chico y está casi todo en una poliproteína."
+   ]
+  },
+  {
+   "accesion": "GCF_004788335.1",
+   "organismo": "maize striate mosaic virus",
+   "taxid": 2025388,
+   "rol_en_el_problema": "patógeno 4 (MSMV)",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA",
+    "GFF3"
+   ],
+   "version_ensamblado": "ASM478833v1",
+   "nivel": "Complete Genome",
+   "fecha_liberacion": "2017-08-09",
+   "bioproject": null,
+   "enviado_por": "The Biodesign Center of Fundamental and Applied Microbiomics, Arizona State University",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 1,
+     "largo_total_bp": 2746,
+     "largo_min_bp": 2746,
+     "largo_max_bp": 2746,
+     "largo_mediano_bp": 2746,
+     "N50_bp": 2746,
+     "L50": 1,
+     "N90_bp": 2746,
+     "L90": 1,
+     "GC_pct": 51.384,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_004788335.1/ncbi_dataset/data/GCF_004788335.1/GCF_004788335.1_ASM478833v1_genomic.fna"
+    },
+    "cds": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 4,
+     "largo_total_bp": 3006,
+     "largo_min_bp": 363,
+     "largo_max_bp": 1032,
+     "largo_mediano_bp": 805,
+     "N50_bp": 867,
+     "L50": 2,
+     "N90_bp": 363,
+     "L90": 4,
+     "GC_pct": 51.497,
+     "n_N": 0,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_004788335.1/ncbi_dataset/data/GCF_004788335.1/cds_from_genomic.fna"
+    },
+    "anotacion_gff": {
+     "n_regiones": 1,
+     "fuentes": {
+      "RefSeq": 10
+     },
+     "features_por_tipo": {
+      "CDS": 5,
+      "gene": 4,
+      "region": 1
+     },
+     "genes_por_biotipo": {
+      "protein_coding": 4
+     },
+     "n_genes": 4,
+     "n_mRNA": 0,
+     "n_CDS": 5,
+     "n_exon": 0,
+     "largo_mediano_gen_bp": 805,
+     "transcriptos_por_gen_medio": null,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_004788335.1/ncbi_dataset/data/GCF_004788335.1/genomic.gff"
+    },
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 4,
+     "largo_total_aa": 998,
+     "largo_min_aa": 120,
+     "largo_max_aa": 343,
+     "largo_mediano_aa": 267,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_004788335.1/ncbi_dataset/data/GCF_004788335.1/protein.faa"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "2746",
+    "n_contigs_ncbi": 1,
+    "n_scaffolds_ncbi": 1,
+    "contig_n50_ncbi": 2746,
+    "scaffold_n50_ncbi": 2746,
+    "gc_percent_ncbi": 51.5
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / Annotation submitted by NCBI RefSeq",
+   "ids_cruzables": [
+    "GeneID:80527857 y siguientes, locus_tag QKD23_gp#, proteínas YP_."
+   ],
+   "limitaciones": [
+    "Virus de ADN: el ARNm que se podría silenciar es el transcripto viral, no el genoma; la estrategia de RNAi contra un mastrevirus no es equivalente a la de un virus de ARN.",
+    "Dos ensamblados RefSeq distintos (GCF_004788335.1 y GCF_004130985.1) de 2.746 nt cada uno; no verificamos cuál corresponde al aislamiento argentino."
+   ]
+  },
+  {
+   "accesion": "GCF_003254395.2",
+   "organismo": "Apis mellifera",
+   "taxid": 7460,
+   "rol_en_el_problema": "no objetivo: polinizador",
+   "tipo": "ensamblado genómico",
+   "formato": [
+    "FASTA",
+    "GFF3"
+   ],
+   "version_ensamblado": "Amel_HAv3.1",
+   "nivel": "Chromosome",
+   "fecha_liberacion": "2018-09-10",
+   "bioproject": "PRJNA471592",
+   "enviado_por": "Uppsala University",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "genoma": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 177,
+     "largo_total_bp": 225250884,
+     "largo_min_bp": 2302,
+     "largo_max_bp": 27754200,
+     "largo_mediano_bp": 19344,
+     "N50_bp": 13619445,
+     "L50": 7,
+     "N90_bp": 10670842,
+     "L90": 14,
+     "GC_pct": 32.526,
+     "n_N": 1313614,
+     "pct_N": 0.5832,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_003254395.2/ncbi_dataset/data/GCF_003254395.2/GCF_003254395.2_Amel_HAv3.1_genomic.fna"
+    },
+    "anotacion_gff": {
+     "n_regiones": 177,
+     "fuentes": {
+      "Gnomon": 525197,
+      "BestRefSeq": 8727,
+      "RefSeq": 1973,
+      "tRNAscan-SE": 597,
+      "cmsearch": 296
+     },
+     "features_por_tipo": {
+      "exon": 267977,
+      "CDS": 226465,
+      "mRNA": 23471,
+      "gene": 12356,
+      "lnc_RNA": 3146,
+      "cDNA_match": 1671,
+      "transcript": 949,
+      "miRNA": 248,
+      "primary_transcript": 238,
+      "tRNA": 218,
+      "region": 177,
+      "rRNA": 57,
+      "pseudogene": 42,
+      "snRNA": 26,
+      "snoRNA": 14,
+      "guide_RNA": 1,
+      "sequence_feature": 1
+     },
+     "genes_por_biotipo": {
+      "protein_coding": 9935,
+      "lncRNA": 1858,
+      "miRNA": 238,
+      "tRNA": 218,
+      "rRNA": 57,
+      "pseudogene": 42,
+      "snRNA": 26,
+      "snoRNA": 14,
+      "misc_RNA": 9,
+      "guide_RNA": 1
+     },
+     "n_genes": 12356,
+     "n_mRNA": 23471,
+     "n_CDS": 226465,
+     "n_exon": 267977,
+     "largo_mediano_gen_bp": 3602,
+     "transcriptos_por_gen_medio": 2.305,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_003254395.2/ncbi_dataset/data/GCF_003254395.2/genomic.gff"
+    },
+    "transcriptos": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 27887,
+     "largo_total_bp": 98645700,
+     "largo_min_bp": 62,
+     "largo_max_bp": 76350,
+     "largo_mediano_bp": 2541,
+     "N50_bp": 4883,
+     "L50": 5868,
+     "N90_bp": 1756,
+     "L90": 19011,
+     "GC_pct": 40.078,
+     "n_N": 46,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 81,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_003254395.2/ncbi_dataset/data/GCF_003254395.2/rna.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "225234541",
+    "n_contigs_ncbi": 227,
+    "n_scaffolds_ncbi": 176,
+    "contig_n50_ncbi": 5382476,
+    "scaffold_n50_ncbi": 13619445,
+    "gc_percent_ncbi": 32.5
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / NCBI Apis mellifera Annotation Release 104",
+   "ids_cruzables": [
+    "GeneID, accesiones XM_/XP_, BEEBASE (ej. BEEBASE:GB42195), miRBase."
+   ],
+   "limitaciones": [
+    "Anotación de 2018 (Release 104), la más vieja del panel.",
+    "Apis mellifera es el polinizador de referencia, no un polinizador de maíz: el maíz es anemófilo y la exposición real es por polen y deriva."
+   ]
+  },
+  {
+   "accesion": "GCF_907165205.1",
+   "organismo": "Coccinella septempunctata",
+   "taxid": 41139,
+   "rol_en_el_problema": "no objetivo: enemigo natural",
+   "tipo": "transcriptos y proteínas RefSeq",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "icCocSept1.1",
+   "nivel": "Chromosome",
+   "fecha_liberacion": "2021-05-17",
+   "bioproject": "PRJEB44629",
+   "enviado_por": "WELLCOME SANGER INSTITUTE",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "transcriptos": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 25480,
+     "largo_total_bp": 60783413,
+     "largo_min_bp": 68,
+     "largo_max_bp": 64422,
+     "largo_mediano_bp": 1759,
+     "N50_bp": 3244,
+     "L50": 5531,
+     "N90_bp": 1209,
+     "L90": 17633,
+     "GC_pct": 40.09,
+     "n_N": 6,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_907165205.1/ncbi_dataset/data/GCF_907165205.1/rna.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "398849173",
+    "n_contigs_ncbi": 109,
+    "n_scaffolds_ncbi": 24,
+    "contig_n50_ncbi": 16512651,
+    "scaffold_n50_ncbi": 41442133,
+    "gc_percent_ncbi": 36.5
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / NCBI Coccinella septempunctata Annotation Release 100",
+   "ids_cruzables": [
+    "Accesiones RefSeq XM_/XR_ en el FASTA de transcriptos; GeneID disponible si se baja el GFF."
+   ],
+   "limitaciones": [
+    "Sólo bajamos los transcriptos; no hay evaluación de si Coccinella septempunctata es el coccinélido relevante en maíz argentino."
+   ]
+  },
+  {
+   "accesion": "GCF_905475395.1",
+   "organismo": "Chrysoperla carnea",
+   "taxid": 189513,
+   "rol_en_el_problema": "no objetivo: enemigo natural",
+   "tipo": "transcriptos y proteínas RefSeq",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "inChrCarn1.1",
+   "nivel": "Chromosome",
+   "fecha_liberacion": "2021-04-15",
+   "bioproject": "PRJEB44056",
+   "enviado_por": "WELLCOME SANGER INSTITUTE",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "transcriptos": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 19671,
+     "largo_total_bp": 42058792,
+     "largo_min_bp": 67,
+     "largo_max_bp": 74959,
+     "largo_mediano_bp": 1640,
+     "N50_bp": 2865,
+     "L50": 4249,
+     "N90_bp": 1160,
+     "L90": 13286,
+     "GC_pct": 34.659,
+     "n_N": 9,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_905475395.1/ncbi_dataset/data/GCF_905475395.1/rna.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "560232532",
+    "n_contigs_ncbi": 399,
+    "n_scaffolds_ncbi": 337,
+    "contig_n50_ncbi": 67795596,
+    "scaffold_n50_ncbi": 94407144,
+    "gc_percent_ncbi": 29
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / NCBI Chrysoperla carnea Annotation Release 100",
+   "ids_cruzables": [
+    "Idem."
+   ],
+   "limitaciones": [
+    "Mismo caso: Chrysoperla carnea es subrogante de los crisópidos locales."
+   ]
+  },
+  {
+   "accesion": "GCF_002217175.1",
+   "organismo": "Folsomia candida",
+   "taxid": 158441,
+   "rol_en_el_problema": "no objetivo: fauna del suelo",
+   "tipo": "transcriptos y proteínas RefSeq",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "ASM221717v1",
+   "nivel": "Scaffold",
+   "fecha_liberacion": "2017-07-12",
+   "bioproject": "PRJNA299291",
+   "enviado_por": "VU Amsterdam",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "transcriptos": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 42425,
+     "largo_total_bp": 108211853,
+     "largo_min_bp": 41,
+     "largo_max_bp": 37513,
+     "largo_mediano_bp": 1971,
+     "N50_bp": 3261,
+     "L50": 10064,
+     "N90_bp": 1333,
+     "L90": 30434,
+     "GC_pct": 41.634,
+     "n_N": 58,
+     "pct_N": 0.0001,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_002217175.1/ncbi_dataset/data/GCF_002217175.1/rna.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "221702752",
+    "n_contigs_ncbi": 228,
+    "n_scaffolds_ncbi": 162,
+    "contig_n50_ncbi": 4885648,
+    "scaffold_n50_ncbi": 6519406,
+    "gc_percent_ncbi": 37.5
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / NCBI Folsomia candida Annotation Release 101",
+   "ids_cruzables": [
+    "Idem."
+   ],
+   "limitaciones": [
+    "Folsomia candida es el colémbolo modelo de ecotoxicología, no necesariamente la fauna edáfica del maíz argentino.",
+    "Ensamblado a nivel scaffold de 2017."
+   ]
+  },
+  {
+   "accesion": "GCF_028750875.1",
+   "organismo": "Macrosteles quadrilineatus",
+   "taxid": 74068,
+   "rol_en_el_problema": "cicadélido anotado (transferencia de anotación)",
+   "tipo": "transcriptos y proteínas RefSeq",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "UCM_ALF_1.0",
+   "nivel": "Scaffold",
+   "fecha_liberacion": "2023-02-17",
+   "bioproject": "PRJNA928792",
+   "enviado_por": "University of California Merced",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 34269,
+     "largo_total_aa": 21374519,
+     "largo_min_aa": 37,
+     "largo_max_aa": 18025,
+     "largo_mediano_aa": 450,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_028750875.1/ncbi_dataset/data/GCF_028750875.1/protein.faa"
+    },
+    "transcriptos": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 36629,
+     "largo_total_bp": 102705550,
+     "largo_min_bp": 61,
+     "largo_max_bp": 55199,
+     "largo_mediano_bp": 2070,
+     "N50_bp": 4082,
+     "L50": 8000,
+     "N90_bp": 1404,
+     "L90": 24601,
+     "GC_pct": 41.754,
+     "n_N": 24,
+     "pct_N": 0.0,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_028750875.1/ncbi_dataset/data/GCF_028750875.1/rna.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "1317891973",
+    "n_contigs_ncbi": 2177,
+    "n_scaffolds_ncbi": 1164,
+    "contig_n50_ncbi": 3405181,
+    "scaffold_n50_ncbi": 116548684,
+    "gc_percent_ncbi": 34
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / GCF_028750875.1-RS_2023_03",
+   "ids_cruzables": [
+    "Accesiones XM_/XP_ de RefSeq y GeneID; 24.179 registros en la base Gene."
+   ],
+   "limitaciones": [
+    "Cicadélido de la misma subfamilia (Deltocephalinae) pero de otro género; la distancia filogenética a Dalbulus maidis no la medimos.",
+    "No tiene proteína anotada con nombre de hormona disparadora de la ecdisis (ETH)."
+   ]
+  },
+  {
+   "accesion": "GCF_021130785.1",
+   "organismo": "Homalodisca vitripennis",
+   "taxid": 197043,
+   "rol_en_el_problema": "cicadélido anotado (transferencia de anotación)",
+   "tipo": "transcriptos y proteínas RefSeq",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "UT_GWSS_2.1",
+   "nivel": "Chromosome",
+   "fecha_liberacion": "2022-01-26",
+   "bioproject": "PRJNA776266",
+   "enviado_por": "University of Texas at Austin",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 31163,
+     "largo_total_aa": 16827513,
+     "largo_min_aa": 36,
+     "largo_max_aa": 16595,
+     "largo_mediano_aa": 387,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_021130785.1/ncbi_dataset/data/GCF_021130785.1/protein.faa"
+    },
+    "transcriptos": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 33294,
+     "largo_total_bp": 91125523,
+     "largo_min_bp": 50,
+     "largo_max_bp": 50439,
+     "largo_mediano_bp": 1832,
+     "N50_bp": 4227,
+     "L50": 6409,
+     "N90_bp": 1294,
+     "L90": 21757,
+     "GC_pct": 40.513,
+     "n_N": 220,
+     "pct_N": 0.0002,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_021130785.1/ncbi_dataset/data/GCF_021130785.1/rna.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "2304988238",
+    "n_contigs_ncbi": 14903,
+    "n_scaffolds_ncbi": 14903,
+    "contig_n50_ncbi": 168834166,
+    "scaffold_n50_ncbi": 168834166,
+    "gc_percent_ncbi": 33
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / NCBI Homalodisca vitripennis Annotation Release 100",
+   "ids_cruzables": [
+    "Accesiones XM_/XP_ de RefSeq y GeneID."
+   ],
+   "limitaciones": [
+    "Cicadellidae pero de otra subfamilia (Cicadellinae); más lejano que Macrosteles."
+   ]
+  },
+  {
+   "accesion": "GCF_014356525.2",
+   "organismo": "Nilaparvata lugens",
+   "taxid": 108931,
+   "rol_en_el_problema": "hemíptero de referencia en RNAi",
+   "tipo": "transcriptos y proteínas RefSeq",
+   "formato": [
+    "FASTA"
+   ],
+   "version_ensamblado": "ASM1435652v1",
+   "nivel": "Chromosome",
+   "fecha_liberacion": "2020-09-09",
+   "bioproject": "PRJNA591478",
+   "enviado_por": "Huazhong Agricultural University",
+   "origen": "NCBI Datasets v2alpha, descargado 2026-10-17 con scripts/02_descarga_ncbi.py",
+   "metricas": {
+    "proteinas": {
+     "alfabeto": "aminoacidos",
+     "n_secuencias": 32453,
+     "largo_total_aa": 17372669,
+     "largo_min_aa": 32,
+     "largo_max_aa": 19401,
+     "largo_mediano_aa": 403,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_014356525.2/ncbi_dataset/data/GCF_014356525.2/protein.faa"
+    },
+    "transcriptos": {
+     "alfabeto": "nucleotidos",
+     "n_secuencias": 36412,
+     "largo_total_bp": 105612311,
+     "largo_min_bp": 62,
+     "largo_max_bp": 59458,
+     "largo_mediano_bp": 2177,
+     "N50_bp": 4118,
+     "L50": 8012,
+     "N90_bp": 1473,
+     "L90": 24437,
+     "GC_pct": 39.931,
+     "n_N": 861,
+     "pct_N": 0.0008,
+     "n_ambiguas_iupac": 0,
+     "archivo_local": "../../../.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/a2b8029a-e6c2-444d-9f5c-63620d67c0a2/downloads/GCF_014356525.2/ncbi_dataset/data/GCF_014356525.2/rna.fna"
+    }
+   },
+   "metricas_declaradas_por_ncbi": {
+    "largo_total_ncbi": "1085539448",
+    "n_contigs_ncbi": 11403,
+    "n_scaffolds_ncbi": 6874,
+    "contig_n50_ncbi": 585858,
+    "scaffold_n50_ncbi": 77631935,
+    "gc_percent_ncbi": 34.5
+   },
+   "completitud_estilo_busco_miniprot": null,
+   "anotado": "sí — NCBI RefSeq / NCBI Nilaparvata lugens Annotation Release 101",
+   "ids_cruzables": [
+    "Accesiones XM_/XP_ de RefSeq y GeneID."
+   ],
+   "limitaciones": [
+    "Delphacidae, no Cicadellidae: sirve como referencia de RNAi en hemípteros, no como sustituto del vector."
+   ]
+  }
+ ],
+ "nota_correccion_2026-10-17": "Corregido el mismo día: la primera versión afirmaba que el taxid 202462 no tenía ensamblados, por haber consultado por el nombre común 'maize bushy stunt phytoplasma'. El taxón es 'Candidatus Phytoplasma zeae' y tiene dos ensamblados (GCA_001712875.1 y GCF_001712875.1); el RefSeq fue descargado y medido con los scripts de W4."
+}

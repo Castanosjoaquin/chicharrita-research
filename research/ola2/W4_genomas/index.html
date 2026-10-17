@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>W4 — Genomas y transcriptomas</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigathón Y-Hat &middot; ola 2 &middot; W4</p>
+    <h1>Qué material genómico tenemos, en qué estado, y qué análisis habilita</h1>
+    <p class="sub">Inventario de los genomas y transcriptomas del sistema chicharrita–maíz,
+    con todas las métricas recalculadas localmente el 17 de octubre de 2026. Ningún archivo
+    genómico vino con el corpus: este inventario es de material traído del NCBI.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">El titular</h2>
+    <p class="lead"><strong>El corpus oficial no trae ni un archivo genómico, y el vector
+    <em>Dalbulus maidis</em> tiene tres ensamblados públicos sin una sola anotación de
+    genes.</strong></p>
+    <p>La sección 5 del manifiesto lo declara: ni FASTA, ni GFF, ni GTF, ni FASTQ. El único
+    recurso es un enlace a NCBI Datasets dentro de <em>Links de interes.docx</em>. Bajamos el
+    material nosotros: 17 conjuntos de datos del NCBI, 43 archivos medidos, 7,0 GB en disco.</p>
+    <p>La consulta a NCBI Datasets del 17 de octubre de 2026 devuelve tres ensamblados del
+    vector y <strong>ninguno con anotación</strong>. No hay registros TSA de la especie (la
+    búsqueda devuelve 0) y la base Gene tiene <strong>37 registros</strong> para
+    <em>D. maidis</em> contra 24.179 de <em>Macrosteles quadrilineatus</em>. El insumo más
+    básico de cualquier diseño de ARNdc —la lista de transcriptos del blanco— hay que
+    construirlo desde las 23 corridas públicas de RNA-seq.</p>
+    <p>Lo que la falta de anotación <strong>no</strong> bloquea: ubicar genes. Alineando el
+    proteoma de un cicadélido anotado contra el ensamblado del vector,
+    <strong>64 de 64</strong> proteínas consultadas —Dicer, Argonauta-2, bicaudal C,
+    dieciséis subunidades de V-ATPasa, bursicona— alinearon con cobertura 1,00.</p>
+  </section>
+
+  <div class="calls">
+    <div class="call stop">
+      <p class="k">Anotación del vector</p>
+      <p class="v">0 de 3 ensamblados</p>
+      <p class="n">Y 0 registros TSA. Confirmado contra el NCBI el 17-10-2026 <span class="tag e">E</span></p>
+    </div>
+    <div class="call ok">
+      <p class="k">Completitud del ensamblado de Sanger</p>
+      <p class="v">97,7 %</p>
+      <p class="n">94,51 % completos + 3,22 % duplicados sobre 1.367 ortólogos de insecta_odb10 <span class="tag r">R</span></p>
+    </div>
+    <div class="call warn">
+      <p class="k">Borrador CIAP-INTA</p>
+      <p class="v">68,8 %</p>
+      <p class="n">Nuestro proxy; el preprint del mismo ensamblado reporta 68,6 % de BUSCO <span class="tag r">R</span></p>
+    </div>
+    <div class="call ok">
+      <p class="k">Fitoplasma del achaparramiento</p>
+      <p class="v">576.118 bp, 565 genes</p>
+      <p class="n"><em>Ca.</em> Phytoplasma zeae (taxid 202462), cepa M3, completo y anotado; bajado y medido <span class="tag e">E</span></p>
+    </div>
+    <div class="call ok">
+      <p class="k">Tamizaje de off-target</p>
+      <p class="v">27,6 s</p>
+      <p class="n">6.067 21-meros contra 575,1 Mb de transcriptos, local, sin índice <span class="tag e">E</span></p>
+    </div>
+    <div class="call warn">
+      <p class="k">Material para el transcriptoma que falta</p>
+      <p class="v">110,1 Gbases</p>
+      <p class="n">23 corridas de RNA-seq en 6 BioProjects; hay que ensamblarlas <span class="tag e">E</span></p>
+    </div>
+  </div>
+
+  <h2>Los tres ensamblados del vector</h2>
+  <p>Métricas calculadas por nosotros sobre el FASTA descargado, con
+  <code>scripts/04_metricas.py</code>. La diferencia con el largo que declara el NCBI es,
+  en los dos casos en que aparece, exactamente el genoma mitocondrial incluido en el
+  archivo.</p>
+  <div class="tw">
+  <table>
+    <caption>Ensamblados de <em>Dalbulus maidis</em> en NCBI, al 17 de octubre de 2026. Ninguno anotado.</caption>
+    <thead><tr><th>Métrica</th><th>GCA_975739785.1<br>ihDalMaid1.1 (Sanger)</th><th>GCA_975739835.1<br>haplotipo alternativo</th><th>GCA_054756405.1<br>CIAP v1 (INTA)</th></tr></thead>
+    <tbody>
+      <tr><td>Nivel</td><td>cromosoma</td><td>scaffold</td><td>contig</td></tr>
+      <tr><td>Secuencias en el FASTA</td><td class="num">141</td><td class="num">7.864</td><td class="num">22.334</td></tr>
+      <tr><td>Largo total medido</td><td class="num">972.225.736 bp</td><td class="num">488.450.451 bp</td><td class="num">585.230.275 bp</td></tr>
+      <tr><td>N50 / L50</td><td class="num">93.705.284 bp / 5</td><td class="num">492.899 bp / 184</td><td class="num">50.514 bp / 3.255</td></tr>
+      <tr><td>GC</td><td class="num">35,035 %</td><td class="num">34,682 %</td><td class="num">34,749 %</td></tr>
+      <tr><td>Huecos (N)</td><td class="num">38.900 (0,004 %)</td><td class="num">106.400 (0,022 %)</td><td class="num">0</td></tr>
+      <tr><td>Completitud (proxy miniprot)</td><td class="num"><strong>94,51 % + 3,22 % dup.</strong></td><td class="num">32,33 % + 3,15 %</td><td class="num">65,47 % + 3,29 %</td></tr>
+      <tr><td>Ortólogos ausentes</td><td class="num">1,98 %</td><td class="num">55,89 %</td><td class="num">14,78 %</td></tr>
+      <tr><td>Anotación de genes</td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td></tr>
+      <tr><td>Mitocondria incluida</td><td class="num">OZ319714.1, 19.615 bp</td><td>—</td><td class="num">CM139083.1, 20.195 bp</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p class="t">La completitud no es BUSCO oficial, y conviene saber por qué</p>
+    <p><code>compleasm</code> de Bioconda no resuelve en este equipo (conflicto de
+    <code>dendropy</code> entre <code>compleasm</code> y <code>sepp</code>) y no está en PyPI.
+    Implementamos el mismo esquema con <code>miniprot</code> 0.18-r281 y umbrales declarados
+    (completo ≥ 0,70 de cobertura de la proteína de referencia). La calibración disponible es
+    buena: sobre el borrador del CIAP-INTA nuestro proxy da 68,76 % y el preprint del mismo
+    ensamblado reporta 68,6 % con BUSCO sobre el mismo linaje <em>insecta_odb10</em>
+    (bioRxiv 10.1101/2024.06.25.600652) <span class="tag r">R</span>.</p>
+  </div>
+
+  <h2>El resto del inventario</h2>
+  <div class="tw">
+  <table>
+    <caption>Conjuntos descargados y medidos. Detalle completo en <code>inventario_genomico.json</code>.</caption>
+    <thead><tr><th>Organismo</th><th>Accesión</th><th>Rol</th><th>Qué bajamos</th><th>Medido</th><th>Anotado</th></tr></thead>
+    <tbody>
+      <tr><td><em>Zea mays</em> B73</td><td class="num">GCF_902167145.1</td><td>cultivo a proteger</td><td>genoma, transcriptos, CDS, GFF3</td><td class="num">687 secuencias, 2.182.786.008 bp, GC 46,8 %; 76.549 transcriptos; 44.680 genes + 5.222 pseudogenes</td><td>sí, RefSeq RS_2025_02</td></tr>
+      <tr><td><em>Spiroplasma kunkelii</em></td><td class="num">GCF_001274875.1</td><td>patógeno 1</td><td>genoma, CDS, proteínas, GFF3</td><td class="num">4 secuencias (cromosoma 1.463.926 bp + 3 plásmidos), GC 24,98 %; 1.814 genes</td><td>sí, RefSeq 13-12-2025</td></tr>
+      <tr><td><em>Ca.</em> Phytoplasma zeae</td><td class="num">GCF_001712875.1</td><td>patógeno 2: el agente del achaparramiento rojo</td><td>genoma, CDS, proteínas, GFF3</td><td class="num">576.118 bp (NZ_CP015149.1, cepa M3), GC 28,46 %, 565 genes, 524 codificantes</td><td>sí, RefSeq RS_2026_06_07</td></tr>
+      <tr><td><em>Ca.</em> Phytoplasma asteris</td><td class="num">GCF_038505995.1</td><td>contexto del grupo 16SrI</td><td>genoma, CDS, proteínas, GFF3</td><td class="num">778.308 bp, GC 27,8 %, 781 genes</td><td>sí, RefSeq</td></tr>
+      <tr><td><em>Ca.</em> Phytoplasma asteris</td><td class="num">GCF_038396745.1</td><td>contexto del grupo 16SrI</td><td>genoma, CDS, proteínas, GFF3</td><td class="num">662.369 bp, GC 26,8 %, 591 genes</td><td>sí, RefSeq</td></tr>
+      <tr><td>Maize rayado fino virus</td><td class="num">GCF_000862485.2</td><td>patógeno 3</td><td>genoma, CDS, proteínas, GFF3</td><td class="num">6.366 nt, GC 61,7 %, 2 genes</td><td>sí, RefSeq</td></tr>
+      <tr><td>Maize striate mosaic virus</td><td class="num">GCF_004788335.1</td><td>patógeno 4</td><td>genoma, CDS, proteínas, GFF3</td><td class="num">2.746 nt, GC 51,4 %, 4 genes, 5 CDS</td><td>sí, RefSeq</td></tr>
+      <tr><td><em>Apis mellifera</em></td><td class="num">GCF_003254395.2</td><td>no objetivo: polinizador</td><td>genoma, transcriptos, GFF3</td><td class="num">225.250.884 bp, GC 32,5 %; 27.887 transcriptos; 12.356 genes</td><td>sí, Release 104 (2018)</td></tr>
+      <tr><td><em>Coccinella septempunctata</em></td><td class="num">GCF_907165205.1</td><td>no objetivo: enemigo natural</td><td>transcriptos</td><td class="num">25.480 transcriptos, 60.783.413 bp</td><td>sí (RefSeq)</td></tr>
+      <tr><td><em>Chrysoperla carnea</em></td><td class="num">GCF_905475395.1</td><td>no objetivo: enemigo natural</td><td>transcriptos</td><td class="num">19.671 transcriptos, 42.058.792 bp</td><td>sí (RefSeq)</td></tr>
+      <tr><td><em>Folsomia candida</em></td><td class="num">GCF_002217175.1</td><td>no objetivo: fauna del suelo</td><td>transcriptos</td><td class="num">42.425 transcriptos, 108.211.853 bp</td><td>sí (RefSeq)</td></tr>
+      <tr><td><em>Macrosteles quadrilineatus</em></td><td class="num">GCF_028750875.1</td><td>cicadélido anotado</td><td>transcriptos, proteínas</td><td class="num">36.629 transcriptos; 34.269 proteínas</td><td>sí, RefSeq 2023</td></tr>
+      <tr><td><em>Homalodisca vitripennis</em></td><td class="num">GCF_021130785.1</td><td>cicadélido anotado</td><td>transcriptos, proteínas</td><td class="num">33.294 transcriptos; 31.163 proteínas</td><td>sí, Release 100</td></tr>
+      <tr><td><em>Nilaparvata lugens</em></td><td class="num">GCF_014356525.2</td><td>hemíptero de referencia en RNAi</td><td>transcriptos, proteínas</td><td class="num">36.412 transcriptos; 32.453 proteínas</td><td>sí, Release 101</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Dos pruebas que corrimos</h2>
+  <h3>Se pueden ubicar genes blanco en un genoma sin anotar</h3>
+  <p>Seleccionamos del proteoma de <em>M. quadrilineatus</em> (34.269 proteínas) las que llevan
+  en el nombre la maquinaria de RNAi o las familias de los genes blanco, y las alineamos con
+  <code>miniprot</code> contra el ensamblado del vector. <strong>64 de 64 alinearon con
+  cobertura 1,00</strong>: Dicer en OZ319710.1:6.916.199-6.976.983, Argonauta-2 en dos loci,
+  exportina-5, bicaudal C —la familia del <code>BicC_Dm</code> de EPILAB—, bursicona y su
+  <em>partner</em>, y dieciséis subunidades distintas de la ATPasa de protones tipo V. Una
+  segunda corrida sumó 8 de 8 transportadores de la familia SID1 con cobertura ≥ 0,98.</p>
+  <p>El límite: la selección es por nombre en el proteoma de referencia. No hay ninguna
+  proteína llamada <em>ecdysis triggering hormone</em> en los proteomas de
+  <em>M. quadrilineatus</em>, <em>H. vitripennis</em> ni <em>N. lugens</em>, y sin embargo
+  <em>eth</em> es uno de los dos genes validados por microinyección en la especie blanco. Para
+  ese gen el camino es la accesión de GenBank PZ371507, no la ortología.</p>
+
+  <h3>El tamizaje de off-target corre en segundos</h3>
+  <p>Con una secuencia <strong>pública</strong> —los dos CDS del MRFV, nunca las de la planilla
+  de EPILAB— derivamos 6.067 21-meros y contamos coincidencias exactas 21/21 en las dos hebras.</p>
+  <div class="tw">
+  <table>
+    <caption>Factibilidad del tamizaje, <code>scripts/08_tamizaje_factibilidad.py</code>. 575,1 Mb en 27,6 s.</caption>
+    <thead><tr><th>Transcriptoma</th><th>Bases escaneadas</th><th>21-meros con coincidencia exacta</th><th>Segundos</th></tr></thead>
+    <tbody>
+      <tr><td><em>Zea mays</em></td><td class="num">162.712.215</td><td class="num"><strong>0</strong></td><td class="num">9,6</td></tr>
+      <tr><td><em>Apis mellifera</em></td><td class="num">98.645.700</td><td class="num"><strong>0</strong></td><td class="num">4,5</td></tr>
+      <tr><td><em>Coccinella septempunctata</em></td><td class="num">60.783.413</td><td class="num">3</td><td class="num">2,6</td></tr>
+      <tr><td><em>Chrysoperla carnea</em></td><td class="num">42.058.792</td><td class="num">0</td><td class="num">1,8</td></tr>
+      <tr><td><em>Folsomia candida</em></td><td class="num">108.211.853</td><td class="num">0</td><td class="num">4,7</td></tr>
+      <tr><td><em>Macrosteles quadrilineatus</em></td><td class="num">102.705.550</td><td class="num">1</td><td class="num">4,4</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Los tres 21-meros de <em>C. septempunctata</em> son solapados: una sola ventana de 23 nt de
+  identidad exacta entre un virus de maíz y el transcriptoma de una vaquita. Con el criterio
+  binario de «coincidencia perfecta = riesgo», un diseño sobre esta secuencia pública quedaría
+  marcado en dos de seis organismos sin que haya ninguna consecuencia conocida: es el argumento
+  de L3, medido <span class="tag q">?</span>.</p>
+
+  <h2>Viabilidad de las cuatro líneas de ataque</h2>
+  <div class="tw">
+  <table>
+    <caption>Cruce con <code>research/R4_frontier_ml_rna/lineas_de_ataque.md</code>. Detalle en <code>viabilidad_lineas.md</code>.</caption>
+    <thead><tr><th>Línea</th><th>Veredicto</th><th>El dato que lo decide</th></tr></thead>
+    <tbody>
+      <tr><td><strong>L1</strong> Tamizaje multiobjetivo con incertidumbre</td><td><strong>Viable con lo que hay</strong></td><td>Transcriptoma de maíz y genoma del vector descargados y medidos; los candidatos del EPILAB llegaron con el corpus. El off-target dentro del vector corre contra genoma, no contra transcriptos</td></tr>
+      <tr><td><strong>L2</strong> Validación retrospectiva en hemípteros</td><td><strong>Viable con lo que hay</strong></td><td>No depende de genomas; PZ371507–PZ371510 verificadas y vigentes al 13-06-2026</td></tr>
+      <tr><td><strong>L3</strong> Riesgo fuera de blanco ponderado</td><td><strong>Viable sumando iBeetle-Base y un mapeo de ortología</strong></td><td>El panel de seis transcriptomas corre en 27,6 s; lo que falta son etiquetas de esencialidad, que no son datos de secuencia</td></tr>
+      <tr><td><strong>L4</strong> Ajuste fino de un modelo fundacional</td><td><strong>Inviable</strong></td><td>Ahora hay más secuencia que en la ola 1 y exactamente las mismas etiquetas de eficacia: ninguna</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Qué cambió respecto de la ola 1</h2>
+  <ul>
+    <li>Las corridas públicas de <em>D. maidis</em> en SRA no son 20 sino <strong>37</strong>: 23 de RNA-seq (110,1 Gbases) y 10 de WGS (129,8 Gbases) <span class="tag e">E</span>.</li>
+    <li>El cuarto agente del complejo quedó resuelto: <em>Mastrevirus striatis</em> tiene <strong>cuatro ensamblados</strong>, dos RefSeq de 2.746 nt; la ola 1 lo tenía como no verificado <span class="tag e">E</span>.</li>
+    <li>El fitoplasma del achaparramiento sí tiene genoma: el taxid 202462 es «<em>Candidatus</em> Phytoplasma zeae» y su cromosoma está completo y anotado desde 2016 (576.118 bp, 565 genes en nuestro conteo). Nuestra primera consulta usó el nombre común y devolvió cero: <strong>las búsquedas por nombre común pueden devolver cero sin que eso signifique ausencia</strong> <span class="tag e">E</span>.</li>
+    <li>Los tres ensamblados del vector no son equivalentes: <strong>97,7 % contra 68,8 %</strong> de completitud separa al de Sanger del borrador argentino <span class="tag r">R</span>.</li>
+    <li>Aparece <em>Dalbulus elimatus</em> (GCA_976225285.1, nivel cromosoma, 1.015.357.212 bp, sin anotación): el congénere para controlar especificidad <span class="tag e">E</span>.</li>
+    <li>La anotación de <em>S. kunkelii</em> se renovó el 13-12-2025 <span class="tag e">E</span>.</li>
+  </ul>
+
+  <div class="note">
+    <p class="t">Lo que no se ejecutó</p>
+    <p>No se corrió BUSCO ni compleasm oficiales (conflicto de dependencias, documentado). No se
+    descargó el genoma de <em>D. elimatus</em>, ni los 190 ensamblados restantes de maíz, ni los
+    55 de Cicadellidae fuera del panel. No se ensambló el transcriptoma del vector: W4 lo
+    identifica como camino crítico, no lo ejecuta. No se evaluó contaminación por simbiontes en
+    los ensamblados del vector. Y ninguna secuencia del corpus de EPILAB entró en ninguna
+    corrida: el ejemplo de tamizaje usa los CDS públicos del MRFV.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>W4 — ola 2 del Investigathón Y-Hat. Todas las consultas y corridas del 17 de octubre de 2026.</p>
+    <p>Fuentes: NCBI Datasets v2alpha y E-utilities; métricas propias con los scripts de
+    <code>research/ola2/W4_genomas/scripts/</code>. Nada afirmado acá que no esté en
+    <code>REPORT.md</code> con su fuente.</p>
+    <p>Marcadores: <span class="tag e">E</span> establecido &middot; <span class="tag r">R</span> reportado &middot; <span class="tag q">?</span> incierto.</p>
+  </div>
+</footer>
+</body>
+</html>
