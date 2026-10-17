@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>W1 — Triaje del corpus de papers</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  .filters{display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end;
+           background:var(--surface); border:1px solid var(--line); padding:16px 18px; margin:22px 0 0}
+  .fg{display:flex; flex-direction:column; gap:5px; min-width:180px; flex:1 1 180px}
+  .fg label{font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--text-dim)}
+  .fg select{font:inherit; font-size:.92rem; color:var(--text); background:var(--bg);
+             border:1px solid var(--line); padding:7px 9px; width:100%}
+  .fg select:focus{outline:2px solid var(--accent); outline-offset:1px}
+  .count{font-size:.88rem; color:var(--text-dim); margin:10px 0 0}
+  .pid{font-weight:650; color:var(--accent)}
+  .ruta{font-size:.84rem; color:var(--text-dim); display:block; margin-top:4px; word-break:break-word}
+  .temas{font-size:.84rem; color:var(--text-dim); display:block; margin-top:6px}
+  tr.hide{display:none}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  ol{margin:0 0 14px; padding-left:22px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  .note.stop{border-left-color:var(--stop)}
+  .note.ok{border-left-color:var(--accent)}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigath&oacute;n Y-Hat &middot; ola 2 &middot; l&iacute;nea W1</p>
+    <h1>Triaje y lectura del corpus de papers</h1>
+    <p class="sub">Siete art&iacute;culos, todos abiertos y le&iacute;dos a fondo. Qu&eacute; hay,
+    qu&eacute; sirve para qu&eacute;, y d&oacute;nde el material oficial corrige lo que
+    hab&iacute;amos escrito sin &eacute;l.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">Lo que hay que saber antes de abrir nada</h2>
+    <p class="lead"><strong>El corpus es experimental y metodol&oacute;gico: cero
+    aprendizaje autom&aacute;tico, cero modelado, cero c&oacute;digo.</strong> Todo su
+    c&oacute;mputo de dise&ntilde;o son dos llamadas a BLAST.</p>
+    <p>Ning&uacute;n paper propone, intenta ni discute silenciar un gen de un fitoplasma
+    o de un espiroplasma. Dos de ellos trabajan con vectores de proca&shy;riotas limitados
+    al floema &mdash;fitoplasma y <em>Liberibacter</em>&mdash; y los seis ARNdc que
+    dise&ntilde;an apuntan a genes <strong>del insecto</strong>. No es una prueba de
+    imposibilidad: es la segunda confirmaci&oacute;n independiente de lo que la
+    verificaci&oacute;n propia de la ola 1 ya predec&iacute;a.</p>
+    <p>El hallazgo transversal que no est&aacute; enunciado en ning&uacute;n paper
+    individual: <strong>el ARN ex&oacute;geno entra al apoplasto y al xilema, y no hay
+    evidencia de que entre al floema</strong>. Lo muestran tres sistemas distintos con tres
+    t&eacute;cnicas distintas. Como <em>Dalbulus maidis</em> se alimenta de floema, la
+    hip&oacute;tesis de entrega que el corpus habilita no es el transporte floem&aacute;tico
+    sino la adquisici&oacute;n durante el sondeo de xilema, documentado por
+    electropenetrograf&iacute;a.</p>
+  </section>
+
+  <div class="calls">
+    <div class="call ok">
+      <p class="k">Entrega mediada por planta</p>
+      <p class="v">Funciona en cicad&eacute;lidos</p>
+      <p class="n">Hoja cortada sumergida en ARNdc silencia tres genes en dos vectores de
+      fitoplasma. Sube la eficiencia de 40&nbsp;% a cerca de 80&nbsp;% frente a la planta
+      entera. <span class="tag e">E</span></p>
+    </div>
+    <div class="call stop">
+      <p class="k">Inmersi&oacute;n de ninfas</p>
+      <p class="v">Fall&oacute; en un cicad&eacute;lido</p>
+      <p class="n">Con lipofectamina al 13&nbsp;%, la expresi&oacute;n del blanco qued&oacute;
+      <em>por encima</em> del control. La misma t&eacute;cnica funciona en otros
+      hem&iacute;pteros. <span class="tag e">E</span></p>
+    </div>
+    <div class="call warn">
+      <p class="k">Dosis y desenlace</p>
+      <p class="v">Mortalidad y <em>knockdown</em> se desacoplan</p>
+      <p class="n">En entrega oral la mortalidad escala con la dosis y el <em>knockdown</em>
+      no; y el ARNdc control tambi&eacute;n mata a dosis alta.
+      <span class="tag e">E</span></p>
+    </div>
+    <div class="call warn">
+      <p class="k">Organismos no objetivo</p>
+      <p class="v">Cero evaluaciones</p>
+      <p class="n">Ninguno de los siete eval&uacute;a un no objetivo. El &uacute;nico control
+      de especificidad del corpus es intraespec&iacute;fico, con BLASTn.
+      <span class="tag e">E</span></p>
+    </div>
+  </div>
+
+  <h2>Los siete papers</h2>
+  <p>Filtrable por tema y por relevancia. La ruta es relativa a la ra&iacute;z del
+  repositorio. La columna &laquo;toca&raquo; indica qu&eacute; reportes de la ola 1 se ven
+  afectados.</p>
+
+  <div class="filters">
+    <div class="fg">
+      <label for="f-tema">Tema</label>
+      <select id="f-tema">
+        <option value="">Todos los temas</option>
+        <option value="entrega">Entrega y v&iacute;as de aplicaci&oacute;n</option>
+        <option value="insecto">RNAi en el insecto</option>
+        <option value="planta">ARN ex&oacute;geno en la planta</option>
+        <option value="maiz">Ma&iacute;z</option>
+        <option value="formulacion">Formulaci&oacute;n y persistencia</option>
+        <option value="virus">Virus de planta</option>
+        <option value="mrfv">MRFV</option>
+        <option value="diseno">Criterios de dise&ntilde;o</option>
+        <option value="vector">Especie vectora</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label for="f-rel">Relevancia</label>
+      <select id="f-rel">
+        <option value="">Toda relevancia</option>
+        <option value="alta">Alta</option>
+        <option value="media">Media</option>
+        <option value="baja">Baja</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label for="f-lect">Lectura</label>
+      <select id="f-lect">
+        <option value="">Todos</option>
+        <option value="si">S&oacute;lo lectura obligatoria</option>
+        <option value="no">Fuera de la obligatoria</option>
+      </select>
+    </div>
+  </div>
+  <p class="count" id="count" aria-live="polite"></p>
+
+  <div class="tw">
+    <table id="tabla">
+      <caption>Siete papers, siete le&iacute;dos a fondo, cero descartados. Relevancia
+      &laquo;media&raquo; no significa triaje: significa que el aporte es de
+      formulaci&oacute;n y no toca ni al ma&iacute;z ni a un insecto.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Paper</th>
+          <th scope="col">A&ntilde;o y tipo</th>
+          <th scope="col">Qu&eacute; aporta</th>
+          <th scope="col">Relev.</th>
+          <th scope="col">Toca</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-temas="entrega insecto vector planta" data-rel="alta" data-lect="si">
+          <td><span class="pid">P6</span> Rossi, Ottati, Bucci, Fusco, Abb&agrave;, Bosco,
+            Marzach&igrave; y Galetto. <em>Lab-scale method for plant-mediated delivery of
+            dsRNAs to phloem-feeding leafhoppers</em>. J. Pest Sci. 97:455-467.
+            <span class="ruta">YHat-Biotech/Papers/s10340-023-01670-0.pdf</span>
+            <span class="temas">entrega mediada por planta &middot; xilema y apoplasto &middot;
+            inmersi&oacute;n fallida &middot; ATP sintasa beta &middot; legumaína &middot;
+            naterina</span></td>
+          <td class="num">2024<br>metodol&oacute;gico</td>
+          <td><strong>El paper m&aacute;s cercano a nuestro problema.</strong> Dos
+            cicad&eacute;lidos vectores de fitoplasma; silenciamiento significativo a 17 y 24
+            d&iacute;as post-alimentaci&oacute;n, no a 13. La inmersi&oacute;n de ninfas
+            fall&oacute;. Ninguno de los tres genes afect&oacute; la supervivencia.</td>
+          <td class="num"><span class="tag e">alta</span></td>
+          <td class="num">R1 R2 R3 R5</td>
+        </tr>
+        <tr data-temas="insecto vector diseno" data-rel="alta" data-lect="si">
+          <td><span class="pid">P3</span> Andrada, Crespo, Baricalla, Dalais&oacute;n-Fuentes,
+            Sterkel y Catalano. <em>ETH and Burs-&alpha; are necessary for the normal molting
+            in Dalbulus maidis and Delphacodes kuscheli</em>. Front. Insect Sci. 6:1811933.
+            <span class="ruta">YHat-Biotech/Papers/finsc-6-1811933.pdf</span>
+            <span class="temas">especie blanco &middot; microinyecci&oacute;n &middot; genes de
+            la ecdisis &middot; tamizaje con BLASTn</span></td>
+          <td class="num">2026<br>experimental</td>
+          <td><strong>El &uacute;nico dato en la especie blanco.</strong> ~95&nbsp;% y
+            ~90&nbsp;% de <em>knockdown</em>, 10&nbsp;% de supervivencia en los dos genes, con
+            125&nbsp;ng por insecto y n=40. Los porcentajes descansan sobre tres
+            r&eacute;plicas biol&oacute;gicas de tres ninfas. Es tambi&eacute;n el &uacute;nico
+            lugar donde se ve el criterio de dise&ntilde;o real del grupo.</td>
+          <td class="num"><span class="tag e">alta</span></td>
+          <td class="num">R1 R2 R3 R5</td>
+        </tr>
+        <tr data-temas="entrega insecto diseno" data-rel="alta" data-lect="si">
+          <td><span class="pid">P1</span> Galdeano, Breton, Spotti Lopes, Falk y Machado.
+            <em>Oral delivery of double-stranded RNAs induces mortality in nymphs and adults of
+            the Asian citrus psyllid, Diaphorina citri</em>. PLoS ONE 12(3):e0171847.
+            <span class="ruta">YHat-Biotech/Papers/Dcitri.pdf</span>
+            <span class="temas">entrega oral &middot; dieta artificial &middot; hoja cortada
+            &middot; dosis-respuesta &middot; toxicidad inespec&iacute;fica</span></td>
+          <td class="num">2017<br>experimental</td>
+          <td><strong>El mejor an&aacute;logo de entrega oral que existe</strong>: hem&iacute;ptero
+            de floema, vector de un proca&shy;riota limitado al floema, dos v&iacute;as orales
+            probadas. Y el resultado que impide prometer de m&aacute;s: el control de GFP
+            tambi&eacute;n mata a 500 y 1000&nbsp;ng/&micro;L, y el <em>knockdown</em> no
+            escala con la dosis aunque la mortalidad s&iacute;.</td>
+          <td class="num"><span class="tag e">alta</span></td>
+          <td class="num">R1 R2 R3</td>
+        </tr>
+        <tr data-temas="planta maiz virus" data-rel="alta" data-lect="si">
+          <td><span class="pid">P7</span> Balassa, Balassa, Alm&aacute;si, Visnovitz y
+            Rudn&oacute;y. <em>Detection of exogenous siRNA inside sweet corn bundle sheath
+            cells and the RNAi dynamics in the early stage of Maize dwarf mosaic virus
+            infection</em>. Physiol. Mol. Biol. Plants 30(8):1265-1276.
+            <span class="ruta">YHat-Biotech/Papers/s12298-024-01500-2.pdf</span>
+            <span class="temas">siRNA de 21 nt &middot; vaina del haz &middot; ausencia en
+            floema &middot; cebado &middot; AGO18a</span></td>
+          <td class="num">2024<br>experimental</td>
+          <td><strong>La prueba f&iacute;sica de que ARN ex&oacute;geno entra a
+            c&eacute;lulas de ma&iacute;z</strong>, y de d&oacute;nde entra y d&oacute;nde no:
+            en la vaina del haz a 3&nbsp;mm del sitio de aplicaci&oacute;n, nunca en
+            tr&aacute;quea ni floema. 300&nbsp;ng por planta cebaron 13 de 16 genes de RNAi y
+            corrieron una semana el pico de c&aacute;pside viral.</td>
+          <td class="num"><span class="tag e">alta</span></td>
+          <td class="num">R1 R2 R5</td>
+        </tr>
+        <tr data-temas="planta maiz virus entrega" data-rel="alta" data-lect="si">
+          <td><span class="pid">P5</span> Gan, Zhang, Jiang, Jiang, Zhu y Cheng.
+            <em>Bacterially expressed dsRNA protects maize against SCMV infection</em>.
+            Plant Cell Rep. 29:1261-1268.
+            <span class="ruta">YHat-Biotech/Papers/s00299-010-0911-z.pdf</span>
+            <span class="temas">producci&oacute;n en bacteria &middot; lisado crudo &middot;
+            ventana preventiva &middot; lavado por lluvia</span></td>
+          <td class="num">2010<br>experimental</td>
+          <td><strong>El precedente de ma&iacute;z m&aacute;s directo y la ruta de
+            producci&oacute;n m&aacute;s barata</strong>: horquillas de ~140-147&nbsp;pb en
+            <em>E.&nbsp;coli</em> HT115, lisado sonicado sin purificar. Protecci&oacute;n
+            preventiva que se pierde m&aacute;s all&aacute; de unos cinco d&iacute;as y que una
+            lluvia anula. La regi&oacute;n 5&prime; del gen funcion&oacute; mejor que la
+            3&prime;. Sus tablas tienen una incoherencia en los controles
+            <span class="tag q">?</span></td>
+          <td class="num"><span class="tag e">alta</span></td>
+          <td class="num">R1 R2 R3</td>
+        </tr>
+        <tr data-temas="mrfv virus maiz diseno" data-rel="alta" data-lect="no">
+          <td><span class="pid">P2</span> Mlotshwa, Xu, Willie, Khatri, Marty y Stewart.
+            <em>Engineering Maize rayado fino virus for virus-induced gene silencing</em>.
+            Plant Direct 4:e00224.
+            <span class="ruta">YHat-Biotech/Papers/PLD3-4-e00224.pdf</span>
+            <span class="temas">arquitectura del genoma del MRFV &middot; VIGS en ma&iacute;z
+            &middot; transmisi&oacute;n por <em>D. maidis</em> &middot; tolerancia a
+            inserciones</span></td>
+          <td class="num">2020<br>metodol&oacute;gico</td>
+          <td><strong>Convierte al MRFV en herramienta para silenciar genes del ma&iacute;z;
+            no demuestra silenciamiento del MRFV.</strong> Aporta el genoma de 6.337&nbsp;nt
+            con sus dos c&aacute;psides, el &uacute;nico sitio que tolera inserciones
+            &mdash;la uni&oacute;n HEL/POL&mdash; y el primer n&uacute;mero de
+            transmisi&oacute;n por nuestra especie de fuente primaria: 19/49 plantas,
+            39&nbsp;%.</td>
+          <td class="num"><span class="tag e">alta</span></td>
+          <td class="num">R1 R2 R5</td>
+        </tr>
+        <tr data-temas="formulacion entrega virus" data-rel="media" data-lect="si">
+          <td><span class="pid">P4</span> Mitter, Worrall, Robinson, Li, Jain, Taochy,
+            Fletcher, Carroll, Lu y Xu. <em>Clay nanosheets for topical delivery of RNAi for
+            sustained protection against plant viruses</em>. Nature Plants 3:16207.
+            <span class="ruta">YHat-Biotech/Papers/nplants2016207 (1).pdf</span>
+            <span class="temas">BioClay &middot; LDH &middot; persistencia &middot; nucleasas
+            &middot; resistencia al lavado</span></td>
+          <td class="num">2017<br>experimental</td>
+          <td><strong>La vara de la formulaci&oacute;n</strong>: al menos 20 d&iacute;as de
+            protecci&oacute;n y ARNdc detectable a 30, contra 5-7 d&iacute;as del desnudo.
+            Mide protecci&oacute;n frente a RNasa&nbsp;A y al lavado; <strong>no</strong> mide
+            UV. Y protege sin que se detecten siRNA derivados del ARNdc aplicado
+            <span class="tag q">?</span>. Media porque no hay ma&iacute;z, ni insecto, ni
+            vector.</td>
+          <td class="num"><span class="tag r">media</span></td>
+          <td class="num">R1 R3 R5</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Qu&eacute; contesta el corpus a las preguntas que ten&iacute;amos abiertas</h2>
+
+  <h3>&iquest;Hay RNAi funcional sobre mollicutes y sobre virus de planta?</h3>
+  <p>Sobre <strong>mollicutes el corpus no dice nada, y ese silencio es informativo</strong>.
+  Ning&uacute;n paper lo propone siquiera. P6 tiene el fitoplasma en el sistema y dirige sus
+  tres ARNdc a genes del insecto; P1 tiene <em>Liberibacter</em> en el sistema y hace lo
+  mismo. Lo que el corpus s&iacute; aporta es la alternativa con un gen concreto: P6
+  eligi&oacute; la ATP sintasa beta <em>por estar implicada en la transmisi&oacute;n del
+  fitoplasma</em> y la silenci&oacute; por v&iacute;a de planta en las dos especies. Es
+  respaldo directo para la v&iacute;a de &laquo;desarmar la transmisi&oacute;n&raquo;
+  <span class="tag e">E</span>.</p>
+  <p>Sobre <strong>virus el corpus dice bastante y nada sobre los nuestros</strong>. Hay dos
+  papers de ARN ex&oacute;geno contra un virus de ma&iacute;z y los dos funcionan, pero el
+  SCMV y el MDMV son potyvirus transmitidos por pulgones y no pertenecen al complejo del
+  achaparramiento. El hueco que la ola 1 document&oacute; &mdash;cero trabajos contra MRFV y
+  contra MSMV&mdash; <strong>el corpus no lo llena</strong> <span class="tag q">?</span>. Lo
+  que s&iacute; demuestra es que el ma&iacute;z es un hospedador competente para esta
+  tecnolog&iacute;a, que es un prerrequisito distinto y necesario.</p>
+
+  <h3>&iquest;Qu&eacute; criterios de dise&ntilde;o usan, y con qu&eacute; herramientas?</h3>
+  <p>Muchos menos de los que esper&aacute;bamos. <strong>Ning&uacute;n paper del corpus usa
+  asimetr&iacute;a termodin&aacute;mica, accesibilidad estructural, selecci&oacute;n de hebra
+  gu&iacute;a ni tamizaje contra organismos no objetivo.</strong> El tratamiento m&aacute;s
+  completo es el de P3: tBLASTn para hallar el ortólogo y BLASTn contra el transcriptoma de
+  la propia especie para verificar especificidad. Eso es todo
+  <span class="tag e">E</span>. No es una cr&iacute;tica: es la medida exacta del hueco que
+  nuestra propuesta puede llenar.</p>
+
+  <div class="note">
+    <p class="t">El largo del disparador no tiene una banda &uacute;nica</p>
+    <p>En el insecto, P3 us&oacute; 578 y 544&nbsp;pb, por encima de los 200-500&nbsp;pb que la
+    ola 1 recogi&oacute; como t&iacute;picos. En la planta, P5 us&oacute; tallos de 147 y
+    140&nbsp;pb, P7 un solo siRNA de 21&nbsp;nt, y P2 reporta que subir de 120 a 231&nbsp;nt
+    <em>no dio ganancias fenot&iacute;picas de silenciamiento</em>. La restricci&oacute;n
+    &laquo;200 a 500&nbsp;pb&raquo; de nuestra propuesta es defendible para un candidato
+    dirigido al insecto y no lo es para uno dirigido a la planta &mdash;y dos de los cuatro
+    candidatos del EPILAB apuntan al MRFV v&iacute;a planta.</p>
+  </div>
+
+  <h3>&iquest;Qu&eacute; modos de aplicaci&oacute;n se eval&uacute;an, y con qu&eacute;
+  resultado?</h3>
+  <div class="tw">
+    <table>
+      <caption>Seis modos probados en el corpus, con su resultado real.</caption>
+      <thead><tr><th scope="col">Modo</th><th scope="col">Resultado</th><th scope="col">Fuente</th></tr></thead>
+      <tbody>
+        <tr><td>Microinyecci&oacute;n</td><td>~90-95&nbsp;% de <em>knockdown</em>; ~100&nbsp;% de eficiencia de entrega. No aplicable a campo y los autores lo dicen</td><td class="num">P3, P6</td></tr>
+        <tr><td>Dieta artificial</td><td>Mortalidad dosis-dependiente en adultos; ARNdc estable a 5 d&iacute;as. Ineficiente para ninfas porque la dieta ya las mata</td><td class="num">P1</td></tr>
+        <tr><td>Hoja u hojuela cortada</td><td><strong>La v&iacute;a elegida.</strong> Sube la entrega de 40&nbsp;% a cerca de 80&nbsp;% frente a planta entera</td><td class="num">P1, P6</td></tr>
+        <tr><td>Peciolo en planta entera</td><td>Entrega, pero diluido: dsGFP detectado en 2 de 5 insectos y con se&ntilde;al d&eacute;bil</td><td class="num">P6</td></tr>
+        <tr><td>Inmersi&oacute;n de ninfas</td><td><strong>No funcion&oacute;.</strong> Expresi&oacute;n del blanco por encima del control; v&iacute;a abandonada</td><td class="num">P6</td></tr>
+        <tr><td>Pulverizaci&oacute;n de lisado crudo</td><td>Protege ma&iacute;z contra un virus, de manera preventiva y por unos cinco d&iacute;as</td><td class="num">P5</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>&iquest;Hay algo de aprendizaje autom&aacute;tico o modelado?</h3>
+  <p>No hay. El c&oacute;mputo total del corpus es BLAST para homolog&iacute;a, Primer3 y
+  Primer-BLAST para cebadores, MAFFT y BEAST para alineamiento y filogenia, ImageJ y LAS&nbsp;X
+  para imagen, GraphPad y R para estad&iacute;stica, y el alineador SCRAM para siRNA-seq en
+  P4. <strong>En este problema no hay competencia metodol&oacute;gica del lado del
+  modelado</strong> &mdash;pero el laboratorio que publica en nuestra especie usa BLASTn, as&iacute;
+  que una propuesta que salte de ah&iacute; a un modelo de lenguaje de ARN se va a leer como
+  dos escalones de m&aacute;s.</p>
+
+  <h2>D&oacute;nde el corpus nos corrige</h2>
+  <p>El detalle completo, con la fuerza de la evidencia de cada punto, est&aacute; en
+  <code>contradicciones.md</code>. Los tres que m&aacute;s cambian una decisi&oacute;n:</p>
+  <div class="tw">
+    <table>
+      <caption>Ocho puntos en total; aqu&iacute; los tres primeros por impacto.</caption>
+      <thead><tr><th scope="col">Qu&eacute; dec&iacute;amos</th><th scope="col">Qu&eacute; dice el corpus</th><th scope="col">Fuerza</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>&laquo;Ninguna fuente abierta atribuye a BioClay protecci&oacute;n medida frente
+          a UV ni frente a nucleasas&raquo; <span class="tag q">?</span></td>
+          <td>Medio corregido, medio confirmado. <strong>S&iacute;</strong> mide
+          protecci&oacute;n frente a RNasa&nbsp;A, con cuatro r&eacute;plicas y figura
+          dedicada. <strong>No</strong> mide UV: la palabra aparece una sola vez, en la frase
+          que enuncia el desider&aacute;tum</td>
+          <td class="num">alta en ambas direcciones</td>
+        </tr>
+        <tr>
+          <td>&laquo;dsRNA bacteriano a 3&nbsp;&micro;g/L logr&oacute; inhibici&oacute;n total
+          a 30 d&iacute;as&raquo; en ma&iacute;z, citado de segunda mano
+          <span class="tag r">R</span></td>
+          <td>Tres errores. La unidad era 3&nbsp;&micro;g por <strong>&micro;L</strong>, seis
+          &oacute;rdenes de magnitud; la dosis aplicada fue 1&nbsp;mL de una diluci&oacute;n al
+          medio; y no fue total: 4/20 y 6/20 plantas quedaron susceptibles</td>
+          <td class="num">alta</td>
+        </tr>
+        <tr>
+          <td>&laquo;M&aacute;s dsRNA no siempre es m&aacute;s silenciamiento&raquo;, con
+          saturaci&oacute;n del RISC hacia 100&nbsp;ng/&micro;L
+          <span class="tag r">R</span></td>
+          <td>M&aacute;s fuerte que eso: la mortalidad escala hasta 1000&nbsp;ng/&micro;L, el
+          <em>knockdown</em> no correlaciona con la dosis, y el ARNdc control ya mata
+          significativamente a 500. <strong>Mortalidad y <em>knockdown</em> no son
+          sustitutos uno del otro</strong></td>
+          <td class="num">alta</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note stop">
+    <p class="t">Una advertencia metodol&oacute;gica sobre los n&uacute;meros del corpus</p>
+    <p>Los <em>n</em> de las mediciones moleculares son muy chicos. El ~95&nbsp;% de
+    <em>knockdown</em> en <em>D. maidis</em> descansa sobre tres r&eacute;plicas
+    biol&oacute;gicas de tres ninfas cada una; los de P7, sobre tres r&eacute;plicas. Y P6
+    excluye del an&aacute;lisis estad&iacute;stico entre el 17&nbsp;% y el 33&nbsp;% de cada
+    grupo &mdash;los insectos cuya expresi&oacute;n qued&oacute; por encima del control&mdash;
+    atribuy&eacute;ndolo a captaci&oacute;n nula. Lo declaran con transparencia y lo
+    justifican, pero la consecuencia hay que decirla: <strong>el silenciamiento reportado es
+    el del subconjunto que efectivamente recibi&oacute; el ARNdc, no el de la poblaci&oacute;n
+    tratada</strong>. Para una decisi&oacute;n de campo, que es poblacional, la magnitud
+    relevante es la otra.</p>
+  </div>
+
+  <h2>Lectura obligatoria</h2>
+  <p>Seis papers, en este orden. El resto se puede consultar.</p>
+  <ol>
+    <li><strong>P6, Rossi et al. 2024</strong> &mdash; el paper m&aacute;s cercano a nuestro
+    problema que existe. Si alguien lee uno solo, es &eacute;ste.</li>
+    <li><strong>P3, Andrada et al. 2026</strong> &mdash; la especie blanco y el grupo con el
+    que probablemente se hable. Leer la secci&oacute;n de m&eacute;todos: ah&iacute;
+    est&aacute; el tama&ntilde;o de muestra verdadero detr&aacute;s del 95&nbsp;%.</li>
+    <li><strong>P1, Galdeano et al. 2017</strong> &mdash; por la curva de dosis y los dos
+    resultados inc&oacute;modos. Es el paper que impide prometer de m&aacute;s.</li>
+    <li><strong>P7, Balassa et al. 2024</strong> &mdash; la prueba f&iacute;sica de entrada de
+    ARN ex&oacute;geno a c&eacute;lulas de ma&iacute;z, y el concepto de cebado.</li>
+    <li><strong>P5, Gan et al. 2010</strong> &mdash; el precedente de ma&iacute;z m&aacute;s
+    directo y los dos l&iacute;mites que definen la econom&iacute;a: la protecci&oacute;n es
+    preventiva y una lluvia la anula.</li>
+    <li><strong>P4, Mitter et al. 2017</strong> &mdash; para saber qu&eacute; hay que superar y
+    qu&eacute; no est&aacute; demostrado.</li>
+  </ol>
+  <p><strong>Queda fuera de la obligatoria P2</strong>, no por poco relevante sino porque su
+  utilidad es puntual: lo tiene que leer quien trabaje sobre los candidatos de MRFV del
+  EPILAB. Para el resto del equipo alcanza con saber que <strong>no</strong> demuestra
+  silenciamiento del MRFV.</p>
+
+  <div class="note ok">
+    <p class="t">Un dato que W5 necesita</p>
+    <p>El esquema gen&oacute;mico del MRFV de P2 no nombra ninguna prote&iacute;na de
+    movimiento: la poliprote&iacute;na se procesa en metiltransferasa, proteasa, helicasa y
+    polimerasa, m&aacute;s las dos c&aacute;psides, y el &uacute;nico ORF accesorio es la P43,
+    declarada <em>no requerida</em> para el movimiento sist&eacute;mico ni para la
+    transmisi&oacute;n por cicad&eacute;lidos. De ah&iacute; una pregunta concreta para el
+    investigador: <strong>&iquest;a qu&eacute; regi&oacute;n del genoma corresponde el
+    candidato <span class="pid">MP_MRFV</span> de 1.263&nbsp;nt, si el genoma anotado no
+    declara una prote&iacute;na de movimiento?</strong> <span class="tag q">?</span></p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>W1 &middot; triaje y lectura del corpus de papers, 17 de octubre de 2026. Los siete PDF
+    fueron abiertos y le&iacute;dos completos; el trabajo se hizo sobre copias en
+    <code>work/W1_papers/</code> y los originales no se modificaron.</p>
+    <p>Marcadores de evidencia: <span class="tag e">E</span> establecido &middot;
+    <span class="tag r">R</span> reportado &middot; <span class="tag q">?</span> incierto o con
+    contradicci&oacute;n. Nada afirmado aqu&iacute; que no est&eacute; en
+    <code>REPORT.md</code> con su archivo y secci&oacute;n de origen.</p>
+    <p>Documentos de este paquete: <code>REPORT.md</code>, <code>papers.json</code>,
+    <code>contradicciones.md</code>, <code>glosario_parcial.md</code>.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tema = document.getElementById('f-tema');
+  var rel  = document.getElementById('f-rel');
+  var lect = document.getElementById('f-lect');
+  var rows = Array.prototype.slice.call(
+      document.querySelectorAll('#tabla tbody tr'));
+  var count = document.getElementById('count');
+
+  function apply(){
+    var t = tema.value, r = rel.value, l = lect.value, shown = 0;
+    rows.forEach(function(tr){
+      var okT = !t || (' ' + tr.getAttribute('data-temas') + ' ').indexOf(' ' + t + ' ') !== -1;
+      var okR = !r || tr.getAttribute('data-rel') === r;
+      var okL = !l || tr.getAttribute('data-lect') === l;
+      var ok = okT && okR && okL;
+      tr.classList.toggle('hide', !ok);
+      if (ok) shown++;
+    });
+    count.textContent = shown === rows.length
+      ? 'Mostrando los ' + rows.length + ' papers del corpus.'
+      : 'Mostrando ' + shown + ' de ' + rows.length + ' papers.';
+  }
+  tema.addEventListener('change', apply);
+  rel.addEventListener('change', apply);
+  lect.addEventListener('change', apply);
+  apply();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+{
+  "corpus": "YHat-Biotech/Papers",
+  "fecha_de_triaje": "2026-10-17",
+  "total_papers_en_el_manifiesto": 7,
+  "total_en_este_archivo": 7,
+  "descartados_por_irrelevancia": 0,
+  "nota": "Los siete papers del manifiesto fueron abiertos y leidos a fondo; ninguno quedo en lectura de triaje y ninguno se descarto. La relevancia 'media' de P4 no significa triaje: significa que su aporte es de formulacion y no toca ni al maiz ni a un insecto.",
+  "papers": [
+    {
+      "id": "P1",
+      "archivo": "YHat-Biotech/Papers/Dcitri.pdf",
+      "titulo": "Oral delivery of double-stranded RNAs induces mortality in nymphs and adults of the Asian citrus psyllid, Diaphorina citri",
+      "autores": [
+        "Galdeano, Diogo Manzano",
+        "Breton, Michèle Claire",
+        "Spotti Lopes, João Roberto",
+        "Falk, Bryce W.",
+        "Machado, Marcos Antonio"
+      ],
+      "anio": 2017,
+      "venue": "PLoS ONE 12(3):e0171847",
+      "doi": "10.1371/journal.pone.0171847",
+      "tipo": "experimental",
+      "temas": [
+        "entrega oral",
+        "dieta artificial",
+        "hoja cortada",
+        "hemíptero de floema",
+        "vector de bacteria limitada al floema",
+        "dosis-respuesta",
+        "toxicidad inespecífica del ARNdc",
+        "estabilidad del ARNdc"
+      ],
+      "relevancia": "alta",
+      "profundidad_de_lectura": "profunda",
+      "resumen": "Entrega oral de ARNdc contra cathepsin D, chitin synthase e inhibitor of apoptosis en Diaphorina citri, por dieta artificial de sacarosa al 15 % (adultos, 200/500/1000 ng/µL, n=30 por réplica, 3 réplicas) y por foliolo cortado de Murraya paniculata sumergido en ARNdc (ninfas, 500 ng/µL, 5 réplicas). La mortalidad sube con la dosis hasta 64 % a 120 h, pero el knockdown NO correlaciona con la dosis y el control de ARNdc-GFP a 500 y 1000 ng/µL ya mata significativamente más que el control de sacarosa.",
+      "toca": [
+        "R1",
+        "R2",
+        "R3"
+      ]
+    },
+    {
+      "id": "P2",
+      "archivo": "YHat-Biotech/Papers/PLD3-4-e00224.pdf",
+      "titulo": "Engineering Maize rayado fino virus for virus-induced gene silencing",
+      "autores": [
+        "Mlotshwa, Sizolwenkosi",
+        "Xu, Junhuan",
+        "Willie, Kristen",
+        "Khatri, Nitika",
+        "Marty, DeeMarie",
+        "Stewart, Lucy R."
+      ],
+      "anio": 2020,
+      "venue": "Plant Direct 4:e00224",
+      "doi": "10.1002/pld3.224",
+      "tipo": "metodológico",
+      "temas": [
+        "MRFV",
+        "arquitectura genómica del marafivirus",
+        "VIGS en maíz",
+        "transmisión por Dalbulus maidis",
+        "inoculación por punción vascular",
+        "tolerancia a inserciones",
+        "largo del inserto"
+      ],
+      "relevancia": "alta",
+      "profundidad_de_lectura": "profunda",
+      "resumen": "Ingeniería del MRFV (genoma monopartito de 6.337 nt) como vector de VIGS para silenciar genes del MAÍZ, no para silenciar al virus. Sólo la unión helicasa/polimerasa (nt 3709/3710) tolera inserciones; el 3'UTR tras el codón de parada de CP2, la unión POL/CP1 y el inicio de la poliproteína resultaron letales. El inserto de 120 nt silenció mejor que el de 231 nt, y sobrevivió a cuatro pasajes y a la fase propagativa dentro de D. maidis.",
+      "toca": [
+        "R1",
+        "R2",
+        "R5"
+      ]
+    },
+    {
+      "id": "P3",
+      "archivo": "YHat-Biotech/Papers/finsc-6-1811933.pdf",
+      "titulo": "ETH and Burs-α are necessary for the normal molting in Dalbulus maidis and Delphacodes kuscheli",
+      "autores": [
+        "Andrada, Nicolás Luján",
+        "Crespo, Mariana",
+        "Baricalla, Agustín Ariel",
+        "Dalaisón-Fuentes, Lucía Inés",
+        "Sterkel, Marcos",
+        "Catalano, María Inés"
+      ],
+      "anio": 2026,
+      "venue": "Frontiers in Insect Science 6:1811933",
+      "doi": "10.3389/finsc.2026.1811933",
+      "tipo": "experimental",
+      "temas": [
+        "especie blanco",
+        "RNAi por microinyección",
+        "genes de la ecdisis",
+        "burs-a",
+        "eth",
+        "diseño de ARNdc",
+        "tamizaje de off-target con BLASTn",
+        "neuropéptidos de Hemiptera"
+      ],
+      "relevancia": "alta",
+      "profundidad_de_lectura": "profunda",
+      "resumen": "RNAi por microinyección en ninfas de quinto estadio recién mudadas de Dalbulus maidis y Delphacodes kuscheli (n=40 por tratamiento, 0,25 µL a 500 ng/µL = 125 ng por insecto, control de b-lactamasa). En D. maidis el knockdown fue de ~95 % para burs-a y ~90 % para eth, con supervivencia del 10 % a día 4 en ambos casos contra >95 % del control. Los ARNdc miden 578 pb (burs-a) y 544 pb (eth) y su especificidad se verificó sólo con BLASTn contra el transcriptoma de la propia especie.",
+      "toca": [
+        "R1",
+        "R2",
+        "R3",
+        "R5"
+      ]
+    },
+    {
+      "id": "P4",
+      "archivo": "YHat-Biotech/Papers/nplants2016207 (1).pdf",
+      "titulo": "Clay nanosheets for topical delivery of RNAi for sustained protection against plant viruses",
+      "autores": [
+        "Mitter, Neena",
+        "Worrall, Elizabeth A.",
+        "Robinson, Karl E.",
+        "Li, Peng",
+        "Jain, Ritesh G.",
+        "Taochy, Christelle",
+        "Fletcher, Stephen J.",
+        "Carroll, Bernard J.",
+        "Lu, G. Q. (Max)",
+        "Xu, Zhi Ping"
+      ],
+      "anio": 2017,
+      "venue": "Nature Plants 3:16207",
+      "doi": "10.1038/nplants.2016.207",
+      "tipo": "experimental",
+      "temas": [
+        "BioClay",
+        "nanoláminas de hidróxido doble laminar",
+        "formulación",
+        "persistencia",
+        "protección frente a nucleasas",
+        "resistencia al lavado",
+        "captación en xilema",
+        "ausencia de siRNA detectables"
+      ],
+      "relevancia": "media",
+      "profundidad_de_lectura": "profunda",
+      "resumen": "Trabajo original de BioClay: ARNdc cargado sobre nanoláminas de LDH (carga completa a razón másica 1:4; se usó 1:3 para dejar ARNdc libre) contra PMMoV y CMV en tabaco, Xanthi, caupí y Arabidopsis. Una sola pulverización protegió al menos 20 días y el ARNdc se detectó a 30 días, contra 5-7 días del ARNdc desnudo. Mide protección frente a RNasa A y frente al lavado; NO mide protección frente a UV. No se detectaron por encima del ruido siRNA de 21-24 nt derivados del ARNdc aplicado.",
+      "toca": [
+        "R1",
+        "R3",
+        "R5"
+      ]
+    },
+    {
+      "id": "P5",
+      "archivo": "YHat-Biotech/Papers/s00299-010-0911-z.pdf",
+      "titulo": "Bacterially expressed dsRNA protects maize against SCMV infection",
+      "autores": [
+        "Gan, Defang",
+        "Zhang, Jiao",
+        "Jiang, Haibo",
+        "Jiang, Tong",
+        "Zhu, Suwen",
+        "Cheng, Beijiu"
+      ],
+      "anio": 2010,
+      "venue": "Plant Cell Reports 29:1261-1268",
+      "doi": "10.1007/s00299-010-0911-z",
+      "tipo": "experimental",
+      "temas": [
+        "maíz",
+        "virus de planta",
+        "producción bacteriana de ARNdc",
+        "Escherichia coli HT115",
+        "lisado crudo",
+        "pulverización preventiva",
+        "ventana de persistencia",
+        "lavado por lluvia",
+        "efecto de la región del gen"
+      ],
+      "relevancia": "alta",
+      "profundidad_de_lectura": "profunda",
+      "resumen": "Horquillas de ARNdc de ~147 pb (CP1) y ~140 pb (CP2) derivadas de la cápside del SCMV, producidas en E. coli HT115 deficiente en RNasa III e inducidas con IPTG, aplicadas a maíz como lisado crudo sonicado sin purificar. La protección es preventiva y se pierde con el tiempo: buena si se inocula hasta 5 días después de pulverizar, 43,3 % de plantas con síntomas a 7 días, y nula tras una lluvia. La región corriente arriba del gen funcionó mejor que la corriente abajo.",
+      "toca": [
+        "R1",
+        "R2",
+        "R3"
+      ]
+    },
+    {
+      "id": "P6",
+      "archivo": "YHat-Biotech/Papers/s10340-023-01670-0.pdf",
+      "titulo": "Lab-scale method for plant-mediated delivery of dsRNAs to phloem-feeding leafhoppers",
+      "autores": [
+        "Rossi, Marika",
+        "Ottati, Sara",
+        "Bucci, Luca",
+        "Fusco, Alessia",
+        "Abbà, Simona",
+        "Bosco, Domenico",
+        "Marzachì, Cristina",
+        "Galetto, Luciana"
+      ],
+      "anio": 2024,
+      "venue": "Journal of Pest Science 97:455-467",
+      "doi": "10.1007/s10340-023-01670-0",
+      "tipo": "metodológico",
+      "temas": [
+        "cicadélidos vectores de fitoplasma",
+        "entrega mediada por planta",
+        "absorción por peciolo y hoja cortada",
+        "xilema y apoplasto",
+        "inmersión de ninfas fallida",
+        "ATP sintasa beta",
+        "legumaína",
+        "naterina",
+        "silenciamiento sin mortalidad",
+        "retraso temporal del RNAi"
+      ],
+      "relevancia": "alta",
+      "profundidad_de_lectura": "profunda",
+      "resumen": "Hoja cortada sumergida en solución de ARNdc (7 µg por tubo) como vía de entrega a Euscelidius variegatus y Scaphoideus titanus: silencia significativamente legumaína y naterina a 17 y 24 días post-alimentación, y ATP sintasa beta en ambas especies a 14 días. La inmersión de ninfas en ARNdc con lipofectamina al 13 % NO silenció. El ARNdc absorbido llega al xilema, no al floema, y los cicadélidos lo adquieren porque también sondean xilema. Ninguno de los tres genes afectó la supervivencia.",
+      "toca": [
+        "R1",
+        "R2",
+        "R3",
+        "R5"
+      ]
+    },
+    {
+      "id": "P7",
+      "archivo": "YHat-Biotech/Papers/s12298-024-01500-2.pdf",
+      "titulo": "Detection of exogenous siRNA inside sweet corn bundle sheath cells and the RNAi dynamics in the early stage of Maize dwarf mosaic virus infection",
+      "autores": [
+        "Balassa, Kinga",
+        "Balassa, György",
+        "Almási, Asztéria",
+        "Visnovitz, Tamás",
+        "Rudnóy, Szabolcs"
+      ],
+      "anio": 2024,
+      "venue": "Physiology and Molecular Biology of Plants 30(8):1265-1276",
+      "doi": "10.1007/s12298-024-01500-2",
+      "tipo": "experimental",
+      "temas": [
+        "maíz dulce",
+        "siRNA exógeno de 21 nt",
+        "captación en células de la vaina del haz",
+        "ausencia de señal en floema",
+        "cebado de la vía de RNAi",
+        "AGO18a",
+        "DCL",
+        "RDR",
+        "carga viral"
+      ],
+      "relevancia": "alta",
+      "profundidad_de_lectura": "profunda",
+      "resumen": "siRNA de 21 nt derivado de la cápside del MDMV, 10 µL a 30 ng/µL pipeteados en la vaina foliar abierta de maíz dulce de 10 días, 24 h antes de inocular. El siRNA marcado con ALEXA488 se detectó dentro de células de la vaina del haz a 3 mm del sitio de aplicación, pero no en tráquea ni floema. El pretratamiento indujo 13 de 16 genes de RNAi y retrasó una semana el pico de cápside viral, con ARN viral significativamente menor a 5, 7, 14 y 21 dpi.",
+      "toca": [
+        "R1",
+        "R2",
+        "R5"
+      ]
+    }
+  ]
+}
