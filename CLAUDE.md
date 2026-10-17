@@ -53,3 +53,36 @@ computacional e innovación abierta.
 - Nombres científicos en itálica y completos la primera vez.
 - Español. Términos técnicos en inglés entre paréntesis la primera vez que
   aparecen.
+
+## Corpus oficial del Investigathon (ola 2)
+
+El material que nos dieron vive en la carpeta YHAT-biotech: papers, un .docx con
+links a bases de datos, herramientas de diseño y verificación de off-targets,
+genomas y transcriptomas, y las secuencias provistas por EPILAB.
+
+### Manejo del material
+- Los archivos originales no se modifican, no se renombran y no se mueven.
+  Todo trabajo se hace sobre copias dentro de `work/`.
+- Todo lo que se derive del corpus (tablas, extractos, índices) se guarda en
+  `research/ola2/` y apunta al archivo original por su ruta relativa exacta.
+- Si un archivo no se puede abrir o está corrupto, se anota en el manifiesto con
+  el motivo. No se adivina su contenido por el nombre.
+
+### Confidencialidad de las secuencias
+- Las secuencias de EPILAB y cualquier dato no publicado del corpus no se suben
+  a servicios web de terceros: ni al BLAST web del NCBI, ni a servidores de
+  plegado online, ni a ninguna herramienta que procese del lado del servidor.
+  Todo análisis de esas secuencias se corre con herramientas locales.
+- Si una herramienta del corpus solo funciona como servicio web, se documenta la
+  limitación y se busca el equivalente local; no se sube el dato igual.
+- Buscar en la web información *sobre* las herramientas, los genes o los
+  organismos está bien. Lo que no se hace es pegar las secuencias en un
+  buscador o en un formulario.
+
+### Uso de los papers
+- Se parafrasea. No se copian párrafos ni secciones completas a nuestros
+  documentos. Citas textuales solo cuando la formulación exacta importa, breves
+  y entrecomilladas, con referencia.
+- Cada paper leído entra en `research/ola2/W1_papers/papers.json`, aunque se
+  haya descartado por irrelevante: saber qué se descartó y por qué es parte del
+  resultado.
