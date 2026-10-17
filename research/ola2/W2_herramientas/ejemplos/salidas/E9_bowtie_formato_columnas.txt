@@ -1,0 +1,27 @@
+## E9 — Qué es la novena columna de los archivos .bwt de dsRNAEngineer
+## Verificación con Bowtie 1 local, 17-oct-2026
+
+/Users/joaquin/.claude-science/conda/envs/w2tools/bin/bowtie-align-s version 1.3.1
+64-bit
+
+### (a) Salida por defecto de Bowtie 1 con -v 0 (apareamiento perfecto), ventanas de 16 nt
+eth_16mer_550|-|NM_001346803.1|1121|TTTTGTAAAACACTAA|IIIIIIIIIIIIIIII|0|
+   campos por línea (awk NF): 8 
+
+### (b) La misma corrida con -v 2 (hasta 2 desapareamientos): aparece el campo 8
+eth_16mer_10|+|NM_001011584.1|850|TACACTCTTTTGCTGG|IIIIIIIIIIIIIIII|0|2:G>C,4:T>C
+eth_16mer_54|+|NM_001112328.2|1192|CATCAGTGAGTCCAGT|IIIIIIIIIIIIIIII|0|11:T>C,12:T>C
+eth_16mer_55|+|NM_001112328.2|1193|ATCAGTGAGTCCAGTC|IIIIIIIIIIIIIIII|0|10:T>C,11:T>C
+   campos por línea: 8 
+
+### (c) Las mismas líneas del servicio, para comparar el orden de columnas
+PZ371507_1_sliding|143|158|+|NM_001349846.1|641|GGGACATAGTCAAGAA|IIIIIIIIIIIIIIII|0
+PZ371507_1_sliding|215|230|-|XR_555713.4|83|CTGCGGCCAATCCTGG|IIIIIIIIIIIIIIII|0
+
+### Lectura
+Bowtie 1 emite 8 campos: nombre, hebra, referencia, offset, secuencia, calidades,
+el entero de 'otras instancias' (campo 7) y la lista de descriptores de desapareamiento
+(campo 8), que es una cadena del tipo '2:G>C,4:T>C' y queda vacía cuando no hay ninguno.
+Los archivos del servicio tienen 9 columnas porque parten el nombre de la lectura en
+nombre + inicio + fin de la ventana; su columna final es entera y nunca trae descriptores,
+de modo que corresponde al campo 7 de Bowtie, no al 8.

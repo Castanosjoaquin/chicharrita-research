@@ -1,0 +1,31 @@
+
+
+Building a new DB, current time: 10/17/2026 13:51:17
+New DB name:   /Users/joaquin/Documents/investigaton/chicharrita-research/research/ola2/W2_herramientas/ejemplos/salidas/db_demo
+New DB title:  demo_offtarget_W2
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Adding sequences from FASTA; added 81 sequences in 0.0711939 seconds.
+
+
+Database: demo_offtarget_W2
+	81 sequences; 138,269 total bases
+
+Date: Oct 17, 2026  1:51 PM	Longest sequence: 8,662 bases
+
+BLASTDB Version: 5
+
+Volumes:
+	/Users/joaquin/Documents/investigaton/chicharrita-research/research/ola2/W2_herramientas/ejemplos/salidas/db_demo
+
+
+Building a new DB, current time: 10/17/2026 13:51:46
+New DB name:   /Users/joaquin/Documents/investigaton/chicharrita-research/research/ola2/W2_herramientas/ejemplos/salidas/db_dmaidis
+New DB title:  dmaidis_publico
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Adding sequences from FASTA; added 2 sequences in 0.0654738 seconds.
+
+

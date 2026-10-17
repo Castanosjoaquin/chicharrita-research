@@ -1,0 +1,83 @@
+{
+ "uid": "17922560380764",
+ "name": "W2-ejemplo-secuencia-publica",
+ "sequence": ">PZ371507.1 Dalbulus maidis voucher CeBio_01_1 ecdysis triggering hormone (eth) mRNA, complete cds\nATGGCTTGCTACACTCTTTTGCTGGAATGTGTCGTGGTCTGCAGTCTTCTGACCATCAGTGAGTCCAGTCCACAATCCCAGTTTGACGACCAATTTGATCCGTTTGACGATAGTTTTTACGAGCCTGGACCCCCTTACCTTGGGGACATAGTCAAGAATGTACCCAGGGTAGGACGCAGAAATGACTTCTTTCTCAAGGCAGCCAAGTCCGTTCCCAGGATTGGCCGCAGAGATGGTGACGATGTAAAGCCGTCTCAGATTAACAAGAACTTTCCAAGGGTAGAAAGAAGAAACGATTTCTTCTTGAAGGCAGCCAAATCCGTCCCAAGAATTGGAAGAAGGAATGATTTCTTCCTCAAAGCTGCCAAGTCTGTGCCCCGGATTGGCCGTAGACAGGATAGACTTGATAAACGAGGAGCTCTAACAAACGCTATGGAGGGAGGAGAAATGGCAGCATGGCCTTGGTTTCGAAACCCTGAACTAATGCCACAAGCATTCAAGAGGAGTGCACCTTTTCAAGGACCAGATCAAGAAGAGAGTGACCATGGTTTAGTGTTTTACAAAATCAACTTACATAGAGAAGTAGAGGAGCCCAGATTGCAAGCCGAAGTATGA",
+ "conserved_list": [
+  {
+   "id": "1312-1-1",
+   "species_id": 1312,
+   "species": "Dalbulus maidis",
+   "upload_file": "",
+   "match_id": 1,
+   "match_name": "Model I",
+   "match_length": 21,
+   "match_mismatch": 0,
+   "match_desc": [
+    "Major match conditions: 21bp (perfectly matched)",
+    "Additional  match conditions: 16bp (perfectly matched), 26bp (almost perfectly matched)"
+   ],
+   "option": [
+    {
+     "length": 16,
+     "mismatch": 0
+    },
+    {
+     "length": 26,
+     "mismatch": 2
+    }
+   ]
+  }
+ ],
+ "off_target_list": [
+  {
+   "id": "28-1-1",
+   "species_id": 28,
+   "species": "Zea mays",
+   "upload_file": "",
+   "match_id": 1,
+   "match_name": "Model I",
+   "match_length": 21,
+   "match_mismatch": 0,
+   "match_desc": [
+    "Major match conditions: 21bp (perfectly matched)",
+    "Additional  match conditions: 16bp (perfectly matched), 26bp (almost perfectly matched)"
+   ],
+   "option": [
+    {
+     "length": 16,
+     "mismatch": 0
+    },
+    {
+     "length": 26,
+     "mismatch": 2
+    }
+   ]
+  },
+  {
+   "id": "33-2-1",
+   "species_id": 33,
+   "species": "Apis mellifera",
+   "upload_file": "",
+   "match_id": 2,
+   "match_name": "Model II",
+   "match_length": 22,
+   "match_mismatch": 0,
+   "match_desc": [
+    "Major match conditions: 21bp (perfectly matched)",
+    "Additional  match conditions: 16bp (perfectly matched), 26bp (almost perfectly matched)"
+   ],
+   "option": [
+    {
+     "length": 16,
+     "mismatch": 0
+    },
+    {
+     "length": 26,
+     "mismatch": 2
+    }
+   ]
+  }
+ ],
+ "email": "",
+ "parent_id": 0
+}

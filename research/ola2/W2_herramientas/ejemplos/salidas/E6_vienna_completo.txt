@@ -1,0 +1,17 @@
+## RNAfold -p sobre el mRNA completo eth PZ371507.1
+>PZ371507.1 Dalbulus maidis voucher CeBio_01_1 ecdysis triggering hormone (eth) mRNA, complete cds
+AUGGCUUGCUACACUCUUUUGCUGGAAUGUGUCGUGGUCUGCAGUCUUCUGACCAUCAGUGAGUCCAGUCCACAAUCCCAGUUUGACGACCAAUUUGAUCCGUUUGACGAUAGUUUUUACGAGCCUGGACCCCCUUACCUUGGGGACAUAGUCAAGAAUGUACCCAGGGUAGGACGCAGAAAUGACUUCUUUCUCAAGGCAGCCAAGUCCGUUCCCAGGAUUGGCCGCAGAGAUGGUGACGAUGUAAAGCCGUCUCAGAUUAACAAGAACUUUCCAAGGGUAGAAAGAAGAAACGAUUUCUUCUUGAAGGCAGCCAAAUCCGUCCCAAGAAUUGGAAGAAGGAAUGAUUUCUUCCUCAAAGCUGCCAAGUCUGUGCCCCGGAUUGGCCGUAGACAGGAUAGACUUGAUAAACGAGGAGCUCUAACAAACGCUAUGGAGGGAGGAGAAAUGGCAGCAUGGCCUUGGUUUCGAAACCCUGAACUAAUGCCACAAGCAUUCAAGAGGAGUGCACCUUUUCAAGGACCAGAUCAAGAAGAGAGUGACCAUGGUUUAGUGUUUUACAAAAUCAACUUACAUAGAGAAGUAGAGGAGCCCAGAUUGCAAGCCGAAGUAUGA
+..(((((((....((((((((((....(((((.((((.(((.(.((..((((...)))).)).).))).)))).......(((.((((............)))).)))....(((((...(((((((((((..(((((((((((.((((........)))).)))))))))))............(((((((((....((.(((((.(((.......)))))))).)).((((((((...........))))))))............(((((...))))))))))))))...((.(((((((((((..((.((((..(((.((((.......((((((((......))))))))........(((((.((((.....)))))))))(((((....(.(((((((..........))).)))).).....)))))..)))).).))..)))).)).((((.(((((((.(.....).))))))).))))...((((((.....)))))).((((...))))......))))))))))).)).....))))))).))))...)))))......)))))....))))))))))........)))))))......... (-186.90)
+.,(((((((....((((((((((....(((((.((((.(((.{.((..((((...}))).)).}.))).)))).....,,({(,({{{..|},.,}}...|||}.|}},...|||,..,,|{{{{{||{{{..(((((((((((.{(((........)))}.)))))))))))...,,....,,.(((((((((....((.(((({{(((.......)))))))).)).((((((((...........))))))))............,(({,...,})),)))))))))...,..{((((((((((..((.((((..(((.((((..,....((((((((......)))))))).....,{,{((({{((((,.,..|}}}}}}}|{(({{...,{.|{{{(((|.....,,,},}}.)))}.,.....)))))}.))))})}}}..)))).)).((((.(((((((,(.....,.))))))).))))...((((((.....)))))).((({...})))......))))))))))},})....,)||||}|,|}},.,,.})}},.....)))))....))))))))))........))))))),........ [-198.17]
+..(((((((....((((((((((....(((((.((((.(((.(.((..((((...)))).)).).))).))))...................................................(((((((..(((((((((((.((((........)))).)))))))))))............(((((((((....((.((((.((((.......)))))))).)).((((((((...........)))))))).........................)))))))))......(((((((((((..((.((((......((((.......((((((((......)))))))).........((...((((.....))))..)).(((((......((((.................)))).......)))))..)))).......)))).)).((((.((((((...........)))))).))))...((((((.....)))))).(((.....)))......)))))))))))........)))))))...................)))))....))))))))))........)))))))......... {-159.50 d=83.78}
+ frequency of mfe structure in ensemble 1.13845e-08; ensemble diversity 125.58
+
+## RNAduplex: guía antisentido del 21-mero 550 contra su sitio blanco
+.((((((((((((((((((((&)))))))))))))))))))).   1,21  :   1,21  (-26.00)
+
+## versión y modelo de energía
+RNAfold 2.7.2
+  -P, --paramFile=paramfile    Read energy parameters from paramfile, instead
+                                 of using the default parameter set.
+
+  Different sets of energy parameters for RNA and DNA should accompany your

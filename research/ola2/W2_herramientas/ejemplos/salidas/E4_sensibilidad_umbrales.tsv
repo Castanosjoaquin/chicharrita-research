@@ -1,0 +1,11 @@
+perc_identity=100	word_size=21	hits=0
+perc_identity=100	word_size=11	hits=578
+perc_identity=100	word_size=7	hits=139004
+perc_identity=95	word_size=21	hits=0
+perc_identity=95	word_size=11	hits=578
+perc_identity=95	word_size=7	hits=139004
+perc_identity=90	word_size=21	hits=0
+perc_identity=90	word_size=11	hits=578
+perc_identity=90	word_size=7	hits=139720
+task=megablast(default)	word_size=28(default)	hits=0
+task=blastn(default ws=11, evalue=10)	word_size=11	hits=578

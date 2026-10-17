@@ -1,0 +1,91 @@
+{
+ "data": [
+  {
+   "sample_id": "d716c8fd80baf9fc",
+   "section_data": [
+    {
+     "id": "6da4808e8cd17848",
+     "section_length": 51,
+     "position": 95,
+     "match_times": 1,
+     "target_gene": "Dalbulus maidis TRINITY_DN39121_c0_g1_i1 (1 on-targets)",
+     "off_target_gene": "Apis mellifera NR_127342.1 (1 off-targets)"
+    },
+    {
+     "id": "9dbcce126e512d99",
+     "section_length": 61,
+     "position": 95,
+     "match_times": 1,
+     "target_gene": "Dalbulus maidis TRINITY_DN39121_c0_g1_i1 (1 on-targets)",
+     "off_target_gene": "Apis mellifera NR_127342.1 (1 off-targets)"
+    },
+    {
+     "id": "200708df5dedda56",
+     "section_length": 51,
+     "position": 223,
+     "match_times": 1,
+     "target_gene": "Dalbulus maidis TRINITY_DN64958_c0_g1_i1 (31 on-targets)",
+     "off_target_gene": "Zea mays NM_001196301.1 (1 off-targets)"
+    },
+    {
+     "id": "43009e343e2340e2",
+     "section_length": 61,
+     "position": 47,
+     "match_times": 2,
+     "target_gene": "",
+     "off_target_gene": "Apis mellifera XM_026445139.1 (1 off-targets)"
+    },
+    {
+     "id": "1128dbfd2aa01077",
+     "section_length": 71,
+     "position": 95,
+     "match_times": 1,
+     "target_gene": "Dalbulus maidis TRINITY_DN39121_c0_g1_i1 (1 on-targets)",
+     "off_target_gene": "Zea mays NM_001349846.1 (1 off-targets)"
+    },
+    {
+     "id": "4ecb7c0e9758917e",
+     "section_length": 81,
+     "position": 95,
+     "match_times": 1,
+     "target_gene": "Dalbulus maidis TRINITY_DN39121_c0_g1_i1 (1 on-targets)",
+     "off_target_gene": "Zea mays NM_001349846.1 (1 off-targets)"
+    },
+    {
+     "id": "aa20433d3a38101c",
+     "section_length": 91,
+     "position": 95,
+     "match_times": 1,
+     "target_gene": "Dalbulus maidis TRINITY_DN39121_c0_g1_i1 (1 on-targets)",
+     "off_target_gene": "Zea mays NM_001349846.1 (1 off-targets)"
+    },
+    {
+     "id": "c91489a61e434fc4",
+     "section_length": 71,
+     "position": 47,
+     "match_times": 2,
+     "target_gene": "",
+     "off_target_gene": "Apis mellifera NR_127342.1 (1 off-targets)"
+    },
+    {
+     "id": "97b107f291b09002",
+     "section_length": 81,
+     "position": 47,
+     "match_times": 2,
+     "target_gene": "Dalbulus maidis TRINITY_DN39121_c0_g1_i1 (1 on-targets)",
+     "off_target_gene": "Apis mellifera NR_127342.1 (1 off-targets)"
+    },
+    {
+     "id": "354f78dcb555fa24",
+     "section_length": 91,
+     "position": 47,
+     "match_times": 2,
+     "target_gene": "Dalbulus maidis TRINITY_DN39121_c0_g1_i1 (1 on-targets)",
+     "off_target_gene": "Apis mellifera NR_127342.1 (1 off-targets)"
+    }
+   ]
+  }
+ ],
+ "code": 0,
+ "message": "success"
+}

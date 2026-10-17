@@ -1,0 +1,9 @@
+buscado,species_id,modelo_match_id,seleccionable_on_target,seleccionable_off_target,nombre_en_el_servicio
+Dalbulus maidis,1312,1,si,si,Dalbulus maidis (Maize leafhopper) SRR15166998
+Zea mays,28,1,no,si,Zea mays (Maize) GCF_902167145.1
+Apis mellifera,33,2,no,si,Apis mellifera (Honey bee ) GCF_003254395.2
+Macrosteles,1157,1,si,si,Macrosteles quadrilineatus  (Aster leafhopper) GCF_028750875.1
+Homalodisca vitripennis,1151,1,si,si,Homalodisca vitripennis (Glassy-winged sharpshooter) GCF_021130785.1
+Peregrinus maidis,1478,2,si,si,Peregrinus maidis (Corn hopper) SRR22197767
+Nephotettix,1454,1,si,si,Nephotettix cincticeps (Green rice leafhopper) SRR23175014
+Diaphorina,1104,2,si,si,Diaphorina citri  (Asian citrus psyllid) GCF_000475195.1

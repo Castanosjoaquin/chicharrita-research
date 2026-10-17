@@ -1,0 +1,18 @@
+>eth_21mer_550
+UUAGUGUUUUACAAAAUCAAC
+..................... (  0.00)
+..................... [ -0.32]
+..................... {  0.00 d=1.23}
+ frequency of mfe structure in ensemble 0.591209; ensemble diversity 2.27  
+>eth_21mer_1
+AUGGCUUGCUACACUCUUUUG
+..................... (  0.00)
+..,.................. [ -0.31]
+..................... {  0.00 d=0.80}
+ frequency of mfe structure in ensemble 0.601067; ensemble diversity 1.39  
+>eth_16mer_550
+UUAGUGUUUUACAAAA
+................ (  0.00)
+................ [ -0.25]
+................ {  0.00 d=0.90}
+ frequency of mfe structure in ensemble 0.671968; ensemble diversity 1.59  

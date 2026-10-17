@@ -1,0 +1,65 @@
+{
+ "data": {
+  "name": "W2-ejemplo-secuencia-publica",
+  "submit_time": "2026-10-18 00:53",
+  "design_list": [
+   {
+    "category": "Target Gene Sequence",
+    "info": "(1 samples)",
+    "detail_list": [
+     ">PZ371507.1 Dalbulus maidis voucher CeBio_01_1 ecdysis triggering hormone (eth) mRNA, complete cds",
+     "ATGGCTTGCTACACTCTTTTGCTGGAATGTGTCGTGGTCTGCAGTCTTCTGACCATCAGTGAGTCCAGTCCACAATCCCAGTTTGACGACCAATTTGATCCGTTTGACGATAGTTTTTACGAGCCTGGACCCCCTTACCTTGGGGACATAGTCAAGAATGTACCCAGGGTAGGACGCAGAAATGACTTCTTTCTCAAGGCAGCCAAGTCCGTTCCCAGGATTGGCCGCAGAGATGGTGACGATGTAAAGCCGTCTCAGATTAACAAGAACTTTCCAAGGGTAGAAAGAAGAAACGATTTCTTCTTGAAGGCAGCCAAATCCGTCCCAAGAATTGGAAGAAGGAATGATTTCTTCCTCAAAGCTGCCAAGTCTGTGCCCCGGATTGGCCGTAGACAGGATAGACTTGATAAACGAGGAGCTCTAACAAACGCTATGGAGGGAGGAGAAATGGCAGCATGGCCTTGGTTTCGAAACCCTGAACTAATGCCACAAGCATTCAAGAGGAGTGCACCTTTTCAAGGACCAGATCAAGAAGAGAGTGACCATGGTTTAGTGTTTTACAAAATCAACTTACATAGAGAAGTAGAGGAGCCCAGATTGCAAGCCGAAGTATGA"
+    ]
+   },
+   {
+    "category": "On-target Species",
+    "info": "(1 species)",
+    "detail_list": [
+     "Dalbulus maidis (Model I) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Major match conditions: 21bp (perfectly matched), Additional  match conditions: 16bp (perfectly matched), 26bp (almost perfectly matched)"
+    ]
+   },
+   {
+    "category": "Off-target Speices",
+    "info": "(2 species)",
+    "detail_list": [
+     "Zea mays (Model I) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Major match conditions: 21bp (perfectly matched), Additional  match conditions: 16bp (perfectly matched), 26bp (almost perfectly matched)",
+     "Apis mellifera (Model II) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Major match conditions: 21bp (perfectly matched), Additional  match conditions: 16bp (perfectly matched), 26bp (almost perfectly matched)"
+    ]
+   }
+  ],
+  "conversed_list": [
+   {
+    "match_id": "99697c3507054ea3",
+    "title": "Dalbulus maidis (Model I, 237 on-targets)"
+   }
+  ],
+  "off_target_list": [
+   {
+    "match_id": "36fbc6c7d5b38576",
+    "title": "Zea mays (Model I, 70 off-targets)"
+   },
+   {
+    "match_id": "56c475d7656ce3ad",
+    "title": "Apis mellifera (Model II, 67 off-targets)"
+   },
+   {
+    "match_id": "000",
+    "title": "All Off-target Species"
+   }
+  ],
+  "state": "completed",
+  "sample_num": 1,
+  "sample_list": [
+   {
+    "sample_id": "d716c8fd80baf9fc",
+    "name": "PZ371507_1",
+    "length": "(615 bp)",
+    "sequence": "ATGGCTTGCTACACTCTTTTGCTGGAATGTGTCGTGGTCTGCAGTCTTCTGACCATCAGTGAGTCCAGTCCACAATCCCAGTTTGACGACCAATTTGATCCGTTTGACGATAGTTTTTACGAGCCTGGACCCCCTTACCTTGGGGACATAGTCAAGAATGTACCCAGGGTAGGACGCAGAAATGACTTCTTTCTCAAGGCAGCCAAGTCCGTTCCCAGGATTGGCCGCAGAGATGGTGACGATGTAAAGCCGTCTCAGATTAACAAGAACTTTCCAAGGGTAGAAAGAAGAAACGATTTCTTCTTGAAGGCAGCCAAATCCGTCCCAAGAATTGGAAGAAGGAATGATTTCTTCCTCAAAGCTGCCAAGTCTGTGCCCCGGATTGGCCGTAGACAGGATAGACTTGATAAACGAGGAGCTCTAACAAACGCTATGGAGGGAGGAGAAATGGCAGCATGGCCTTGGTTTCGAAACCCTGAACTAATGCCACAAGCATTCAAGAGGAGTGCACCTTTTCAAGGACCAGATCAAGAAGAGAGTGACCATGGTTTAGTGTTTTACAAAATCAACTTACATAGAGAAGTAGAGGAGCCCAGATTGCAAGCCGAAGTATGA"
+   }
+  ],
+  "summary_list": [],
+  "optimal_status": 0
+ },
+ "code": 0,
+ "message": "success"
+}
