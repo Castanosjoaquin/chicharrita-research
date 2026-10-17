@@ -205,6 +205,58 @@ laboratorio.
 | **L3 · Mapa de riesgo fuera de blanco ponderado por consecuencia** | Qué candidato es inaceptable y por qué | Parciales: la esencialidad génica sólo existe para *Tribolium* | Mide riesgo potencial, no efecto medido | Medio-alto: 2 personas, 5-7 días |
 | **L4 · Ajuste fino de un modelo fundacional** | Ninguna que se pueda defender hoy | **No** | Reproducir el error de los negativos barajados | Alto y mal invertido |
 
+### La matriz: impacto × factibilidad × diferenciación × riesgo
+
+Cada línea se puntúa de 1 a 5 en cuatro ejes. En **riesgo**, 5 es el peor caso, así
+que entra invertido al total: *total = impacto + factibilidad + diferenciación + (6 − riesgo)*,
+con un rango de 4 a 20. Los puntajes son juicio del equipo `[H]`, no una medición:
+por eso cada celda lleva su justificación y su fuente, para poder discutirla.
+
+| Línea | Impacto | Factibilidad | Diferenciación | Riesgo | **Total** |
+| --- | :---: | :---: | :---: | :---: | :---: |
+| **L1** Priorización auditable con incertidumbre | 5 | 4 | 4 | 3 | **16** |
+| **L3** Mapa de riesgo fuera de blanco ponderado por consecuencia | 4 | 3 | 4 | 3 | **14** |
+| **L2** Validación retrospectiva | 3 | 4 | 3 | 3 | **13** |
+| **L4** Ajuste fino de un modelo fundacional | 1 | 1 | 2 | 5 | **5** |
+
+**Por qué cada número.**
+
+*L1.* **Impacto 5:** es, palabra por palabra, la pregunta que el organizador declara
+abierta —tiene candidatos preliminares y pregunta cuáles merecen validación y por qué—.
+**Factibilidad 4:** los datos públicos existen y son dos personas durante 3 a 5 días; no
+llega a 5 porque no hay anotación génica pública de *D. maidis* y el transcriptoma hay que
+construirlo desde las 20 corridas de RNA-seq (R2, sección 4). **Diferenciación 4:** dsRIP ya
+puntúa una secuencia y trae un deslizador entre eficacia y seguridad, y APOLO Rocket emite
+reportes sobre más de 140 organismos; lo que nadie publicó es el criterio de agregación ni
+la incertidumbre sobre el orden, que la revisión del campo llama «the most critical gap»
+(R2, sección 3.3; R3, sección 6.2). **Riesgo 3:** la transferencia de coleóptero a hemíptero
+es la incertidumbre dominante y ningún experimento computacional la resuelve (R2, sección 5).
+
+*L3.* **Impacto 4:** la contracara de riesgo es obligación del proyecto y la Resolución
+SENASA 1004/2023 define una lista corta de organismos no objetivo en su fase I (R3, sección
+6.2d). **Factibilidad 3:** son dos personas durante 5 a 7 días, el panel de no objetivo hay que
+curarlo y está incompleto, y la esencialidad génica sólo existe para *Tribolium*.
+**Diferenciación 4:** un tamizaje alineado con la lista de la norma y ponderado por consecuencia
+no está publicado para este sistema. **Riesgo 3:** mide riesgo potencial, no efecto medido.
+
+*L2.* **Impacto 3:** no decide nada por sí sola, mide a L1. **Factibilidad 4:** los 29 ARNdc
+de Cedden et al. con hazard ratio medido están bajo CC BY 4.0. **Diferenciación 3:** la
+ablación con y sin accesibilidad del sitio blanco es un resultado reportable, pero replica un
+hallazgo previo. **Riesgo 3:** n = 29 y sesgo de publicación, porque casi todo lo publicado
+funcionó.
+
+*L4.* **Impacto 1:** no produce ninguna decisión defendible hoy. **Factibilidad 1:** el
+conjunto honesto de entrenamiento son 31 siRNA de un coleóptero y no hay nada en Hemiptera.
+**Diferenciación 2:** la arquitectura está publicada al menos cuatro veces. **Riesgo 5:**
+reproducir el error de los negativos barajados.
+
+**Qué tan firme es el orden.** Ningún cambio de ±1 en una sola celda mueve al primero ni al
+último: L1 sigue arriba y L4 sigue abajo con una diferencia de once puntos. En cambio L3 y L2
+quedan a un punto, que es un empate dentro del error de nuestra propia estimación, y no hay que
+leerlo como que L3 «vale más» que L2. **L2 se ejecuta igual, y junto con L1,** porque no es
+una alternativa sino su condición de validez: un ranking sin medir cuánto discrimina es una
+opinión.
+
 **L1 y L2 son una sola decisión en dos tiempos:** L1 produce el ranking y L2 lo
 mide. L1 sin L2 es una opinión. L3 es independiente y cubre la obligación de
 contracara de riesgo del proyecto.

@@ -88,6 +88,9 @@
   th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
   tbody tr:last-child td{border-bottom:none}
   td.num{white-space:nowrap}
+  table.matriz{min-width:840px}
+  table.matriz th:not(:first-child):not(:last-child), table.matriz td.num{padding-left:8px; padding-right:8px; text-align:center}
+  table.matriz td:last-child{min-width:300px}
 
   .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
        border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
@@ -208,7 +211,7 @@ pregunta para el investigador.</p>
       <div class="card">
         <p class="id">R1 · Fundamentos</p>
         <p class="t">La biología, desde ADN hasta el complejo de achaparramiento</p>
-        <p class="d">Escrito para gente de IA sin biología. Incluye la pregunta que define la estrategia: sobre qué actores del sistema funciona realmente el RNAi. 11.166 palabras, 51 fuentes abiertas.</p>
+        <p class="d">Escrito para gente de IA sin biología. Incluye la pregunta que define la estrategia: sobre qué actores del sistema funciona realmente el RNAi. 11.166 palabras, 51 fuentes (26 leídas a texto completo, 3 en parte y 22 hasta el resumen) y una consulta propia a UniProtKB.</p>
         <p class="f"><a href="research/R1_fundamentos/index.html">Leer</a> · <a href="research/R1_fundamentos/REPORT.md">REPORT.md</a> · <a href="research/R1_fundamentos/glosario_parcial.md">Glosario</a></p>
       </div>
       <div class="card">
@@ -233,7 +236,7 @@ pregunta para el investigador.</p>
         <p class="id">R5 · Metodologías y plan</p>
         <p class="t">Cómo se trabaja en cada eje, la rúbrica y el reparto</p>
         <p class="d">La rúbrica de priorización es la respuesta directa a la palabra «priorizar» de la pregunta del track, y está lista para aplicar sin agregarle criterios.</p>
-        <p class="f"><a href="research/R5_metodologias_ejes/index.html">Leer</a> · <a href="research/R5_metodologias_ejes/RUBRICA.md">RUBRICA.md</a> · <a href="research/R5_metodologias_ejes/PLAN_EQUIPO.md">PLAN_EQUIPO.md</a></p>
+        <p class="f"><a href="research/R5_metodologias_ejes/index.html">Leer</a> · <a href="research/R5_metodologias_ejes/REPORT.md">REPORT.md</a> · <a href="research/R5_metodologias_ejes/RUBRICA.md">RUBRICA.md</a> · <a href="research/R5_metodologias_ejes/PLAN_EQUIPO.md">PLAN_EQUIPO.md</a></p>
       </div>
 </div>
 
@@ -267,6 +270,28 @@ pregunta para el investigador.</p>
   </tbody>
 </table>
 </div>
+<p><strong>La matriz.</strong> Cada línea se puntúa de 1 a 5 en cuatro ejes; en riesgo, 5 es el peor caso
+y entra invertido: total = impacto + factibilidad + diferenciación + (6 − riesgo). Son puntajes de
+juicio del equipo, no una medición; la justificación de cada celda, con su fuente, está en
+<a href="SINTESIS.md">SINTESIS.md</a>.</p>
+<div class="tw">
+<table class="matriz">
+  <caption>Impacto esperado, factibilidad para cuatro personas sin laboratorio, diferenciación frente a lo que ya hace la industria, y riesgo.</caption>
+  <thead><tr><th>Línea</th><th>Impacto</th><th>Factibilidad</th><th>Diferenciación</th><th>Riesgo</th><th>Total</th><th>El puntaje se apoya en</th></tr></thead>
+  <tbody>
+    <tr><td><strong>L1</strong> Priorización auditable</td><td class="num">5</td><td class="num">4</td><td class="num">4</td><td class="num">3</td><td class="num"><strong>16</strong></td>
+        <td>Es la pregunta abierta del organizador. Falta anotación génica de <em>D. maidis</em>. Nadie publicó el criterio de agregación ni la incertidumbre del orden.</td></tr>
+    <tr><td><strong>L3</strong> Riesgo fuera de blanco</td><td class="num">4</td><td class="num">3</td><td class="num">4</td><td class="num">3</td><td class="num"><strong>14</strong></td>
+        <td>La lista de no objetivo de SENASA 1004/2023 es corta y concreta. El panel está incompleto.</td></tr>
+    <tr><td><strong>L2</strong> Validación retrospectiva</td><td class="num">3</td><td class="num">4</td><td class="num">3</td><td class="num">3</td><td class="num"><strong>13</strong></td>
+        <td>Mide a L1 y no decide por sí sola. Datos CC BY, pero n = 29.</td></tr>
+    <tr><td><strong>L4</strong> Ajuste fino de un modelo fundacional</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num">5</td><td class="num"><strong>5</strong></td>
+        <td>31 siRNA de un coleóptero y nada en Hemiptera. Arquitectura publicada al menos cuatro veces.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Ningún cambio de ±1 en una sola celda mueve al primero ni al último. L3 y L2 quedan a un punto, que es
+un empate dentro del error de la estimación. L2 se ejecuta igual, junto con L1: es su condición de validez.</p>
 <p>L1 y L2 son una sola decisión en dos tiempos: L1 produce el ranking y L2 lo mide; L1 sin L2 es
 una opinión. L4 queda documentada como descarte, y el orden es el aporte: el conjunto de
 entrenamiento honesto que existe en este subcampo son 31 siRNA probados en un coleóptero, y en la
