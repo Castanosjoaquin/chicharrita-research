@@ -3,3 +3,9 @@
 
 # Ruido de macOS
 .DS_Store
+
+# Corpus oficial: secuencias no publicadas de EPILAB y PDF con derechos de autor
+YHat-Biotech/
+
+# Copias de trabajo
+work/
