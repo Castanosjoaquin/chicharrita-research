@@ -1,0 +1,33 @@
+Coincidencias exactas de 21 nt (criterio estricto de apareamiento perfecto) entre los siRNA
+derivados de la región elegida y cada registro público de MRFV. Cálculo local por búsqueda de
+subcadena exacta en el registro y su complemento reverso; 180 ventanas posibles por región.
+
+== MP_MRFV: 4 de 71 registros con al menos un siRNA idéntico ==
+   máximo 180/180 ; mediana 180/180 ; mínimo 6/180
+   NC_002786.2     180/180   (6366 nt)
+   AF265566.2      180/180   (6366 nt)
+   KM523134.1       54/180   (6337 nt)
+   OM964808.1        6/180   (217 nt)
+   ...
+   NC_002786.2     180/180   (6366 nt)
+   AF265566.2      180/180   (6366 nt)
+   KM523134.1       54/180   (6337 nt)
+   OM964808.1        6/180   (217 nt)
+
+== CP_MRFV: 65 de 71 registros con al menos un siRNA idéntico ==
+   máximo 180/180 ; mediana 44/180 ; mínimo 10/180
+   NC_002786.2     180/180   (6366 nt)
+   JN966985.1      180/180   (639 nt)
+   AF265566.2      180/180   (6366 nt)
+   U97722.1        158/180   (633 nt)
+   U97721.1        151/180   (633 nt)
+   U97723.1        113/180   (633 nt)
+   U97724.1         96/180   (633 nt)
+   U97725.1         77/180   (633 nt)
+   ...
+   U97730.1         16/180   (633 nt)
+   U97728.1         15/180   (633 nt)
+   U97720.1         12/180   (633 nt)
+   U97719.1         12/180   (633 nt)
+   U97727.1         10/180   (633 nt)
+

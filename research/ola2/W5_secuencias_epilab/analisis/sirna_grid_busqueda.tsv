@@ -1,0 +1,33 @@
+# Búsqueda en rejilla: 2.132 combinaciones de (rango de GC) x (regla de nucleótido terminal) x (asimetría) x (umbral de accesibilidad)
+# Ninguna reproduce los cuatro conteos declarados. Se listan las 30 de menor error relativo máximo.
+error_rel_max	dif_abs_max	GC_min	GC_max	regla_terminal	asimetria	medida_accesibilidad	umbral	MP_MRFV	CP_MRFV	BicC_Dm	ATPaseD_Dm
+0.061	5	35	70	0	0	lap_3p	0.3	116	34	194	31
+0.075	15	35	75	1	1	lap_mean	0.05	115	35	214	32
+0.086	5	35	75	1	0	lap_3p	0.1	111	38	194	34
+0.086	14	35	75	1	1	lap_3p	0.05	106	38	213	33
+0.114	7	35	70	0	1	lap_3p	0.2	120	39	192	30
+0.121	23	45	65	1	0	lap_mean	0.05	121	31	222	29
+0.123	24	30	75	1	0	lap_max	0.3	128	34	223	29
+0.131	26	45	65	1	1	lap_max	0.05	101	34	225	33
+0.136	27	40	70	1	1	lap_max	0.1	124	31	226	37
+0.14	16	45	70	1	0	lap_3p	0.05	130	38	201	30
+0.151	30	20	75	1	0	lap_max	0.3	128	34	229	34
+0.151	30	25	75	1	0	lap_max	0.3	128	34	229	34
+0.152	15	45	60	0	1	lap_3p	0.1	99	36	203	28
+0.171	11	35	75	1	0	lap_mean	0.1	125	29	193	30
+0.182	11	30	75	1	0	lap_mean	0.1	125	29	202	39
+0.182	16	45	70	1	1	lap_max	0.1	122	31	183	27
+0.2	7	20	75	1	1	lap_max	0.2	109	28	200	36
+0.2	7	25	75	1	1	lap_max	0.2	109	28	200	36
+0.2	7	30	75	1	1	lap_max	0.2	109	28	196	32
+0.2	11	35	70	1	1	lap_mean	0.05	104	28	210	32
+0.2	19	35	70	1	1	lap_3p	0.05	95	28	209	33
+0.212	19	30	70	1	1	lap_3p	0.05	95	28	215	40
+0.212	20	30	75	1	1	lap_3p	0.05	106	38	219	40
+0.228	26	35	65	0	1	lap_3p	0.2	88	31	191	30
+0.229	11	35	70	1	0	lap_3p	0.1	103	27	191	34
+0.229	20	35	75	0	0	lap_3p	0.3	134	43	194	31
+0.229	24	45	75	1	1	lap_max	0.1	138	43	191	27
+0.229	35	40	75	1	1	lap_max	0.1	140	43	234	37
+0.242	11	40	75	1	1	lap_3p	0.05	105	38	188	25
+0.242	20	40	70	1	1	lap_3p	0.05	94	28	184	25

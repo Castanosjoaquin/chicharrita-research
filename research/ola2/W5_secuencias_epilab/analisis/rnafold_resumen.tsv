@@ -1,0 +1,10 @@
+# RNAfold 2.7.2, opciones: -p --noPS --noDP -T 25 ; secuencias convertidas T->U ; corrida LOCAL
+id	largo_nt	MFE_kcal_mol	MFE_por_nt	G_ensamble_kcal_mol	G_centroide	frec_MFE	diversidad_ensamble
+MP_MRFV_full	1263	-509.3	-0.4032	-529.26	-458.89	2.358e-15	220.93
+CP_MRFV_full	528	-237.35	-0.4495	-244.16	-231.08	1.014e-05	70.62
+BicC_Dm_full	2520	-1024.44	-0.4065	-1061.15	-786.23	1.228e-27	606.41
+ATPaseD_Dm_full	491	-181.5	-0.3697	-189.18	-121.35	2.340e-06	138.03
+MP_MRFV_sel_1-200	200	-54.74	-0.2737	-59.42	-52.46	3.733e-04	24.42
+CP_MRFV_sel_200-400	200	-80.18	-0.4009	-83.44	-78.76	4.055e-03	29.73
+BicC_Dm_sel_264-563	300	-103.69	-0.3456	-107.97	-100.18	7.290e-04	30.28
+ATPaseD_Dm_sel_151-450	300	-108.21	-0.3607	-112.68	-92.02	5.248e-04	37.15

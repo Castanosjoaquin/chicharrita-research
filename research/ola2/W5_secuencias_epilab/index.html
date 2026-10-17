@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secuencias de EPILAB: inventario y caracterización</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigath&oacute;n Y-Hat &middot; ola 2 &middot; l&iacute;nea W5</p>
+    <h1>Las secuencias de EPILAB: qu&eacute; son, qu&eacute; tocan y c&oacute;mo las aprovechamos</h1>
+    <p class="sub">Cuatro candidatos, ocho secuencias, una planilla de 11.617 bytes. Identificaci&oacute;n
+    por alineamiento local, caracterizaci&oacute;n de estructura y tamizaje de off-targets contra seis
+    conjuntos de referencia, sin que ninguna secuencia saliera de la m&aacute;quina.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">Lo que hay que saber</h2>
+    <p class="lead"><strong>Los cuatro candidatos quedaron identificados con confianza alta, y el
+    tamizaje local produjo un hallazgo que cambia la priorizaci&oacute;n: los dos candidatos virales
+    est&aacute;n dise&ntilde;ados sobre un aislado de MRFV de Costa Rica y divergen 6,5-8,5&nbsp;% de los
+    aislados brasile&ntilde;os, mientras que de Argentina no existe ninguna secuencia p&uacute;blica de
+    MRFV.</strong></p>
+    <p><strong>Qu&eacute; son.</strong> <code>MP_MRFV</code> es el CDS anotado de la prote&iacute;na de
+    movimiento putativa de <em>Maize rayado fino virus</em>, copiado de extremo a extremo
+    (posiciones 332..1594 de <code>NC_002786.2</code>, 1.263/1.263&nbsp;nt al 100&nbsp;%).
+    <code>CP_MRFV</code> es la regi&oacute;n codificante de la c&aacute;pside dentro de la poliprote&iacute;na
+    (5.674..6.201, 528/528&nbsp;nt al 100&nbsp;%). <code>BicC_Dm</code> es el transcrito de Bicaudal&nbsp;C
+    de <em>Dalbulus maidis</em>, 17 exones en el cromosoma&nbsp;3. <code>ATPaseD_Dm</code> es un
+    fragmento parcial del CDS de la subunidad&nbsp;D de la ATPasa vacuolar de protones, tres exones en
+    el cromosoma&nbsp;8. <span class="tag e">E</span></p>
+    <p><strong>Ning&uacute;n candidato apunta al fitoplasma ni al espiroplasma</strong>: dos van al virus y
+    dos al vector, que es exactamente lo que la ola&nbsp;1 predijo por la ausencia de maquinaria de
+    RNAi en mollicutes. Confirmaci&oacute;n fuerte del razonamiento mecanicista. <span class="tag e">E</span></p>
+    <p><strong>D&oacute;nde est&aacute; el riesgo.</strong> No en el ma&iacute;z ni en los polinizadores: contra
+    <em>Homalodisca vitripennis</em>, un cicad&eacute;lido no objetivo usado como proxy, la regi&oacute;n de
+    <code>BicC_Dm</code> tiene 30 siRNA con coincidencia perfecta &mdash;22 de ellos de los 21&nbsp;nt
+    completos&mdash; y la de <code>ATPaseD_Dm</code> tiene 7. En abeja, vaquita y col&eacute;mbolo, cero. <span class="tag e">E</span></p>
+    <p><strong>Lo que no se pudo cerrar.</strong> La columna &laquo;Nro de eficientes por gen&raquo;
+    (114, 35, 199, 33) implica un tamizaje previo cuyo criterio <strong>no logramos
+    reproducir</strong>: nuestra reimplementaci&oacute;n local de los criterios publicados queda corta
+    (87, 21, 136, 26) y la variante de doble hebra se pasa (179, 43, 259, 62). Es una pregunta de
+    una l&iacute;nea para el investigador. <span class="tag q">?</span></p>
+  </section>
+
+  <div class="calls">
+    <div class="call ok">
+      <p class="k">Identificaci&oacute;n</p>
+      <p class="v">4 de 4 con confianza alta</p>
+      <p class="n">blastn y tblastn locales contra referencias p&uacute;blicas del NCBI; los cuatro
+      coinciden con lo que declara la planilla.</p>
+    </div>
+    <div class="call warn">
+      <p class="k">Cobertura viral</p>
+      <p class="v">mediana 44 de 180 siRNA</p>
+      <p class="n">Apareamiento perfecto de la regi&oacute;n de <code>CP_MRFV</code> contra aislados de
+      MRFV distintos del de referencia.</p>
+    </div>
+    <div class="call stop">
+      <p class="k">No objetivo</p>
+      <p class="v">30 + 7 siRNA en un cicad&eacute;lido</p>
+      <p class="n">Coincidencias perfectas con los ort&oacute;logos de <em>H. vitripennis</em>; cero en
+      <em>Apis</em>, <em>Harmonia</em> y <em>Folsomia</em>.</p>
+    </div>
+    <div class="call warn">
+      <p class="k">Criterio de eficiencia</p>
+      <p class="v">no identificable</p>
+      <p class="n">2.132 combinaciones de filtros probadas; ninguna reproduce los cuatro conteos
+      declarados.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <p class="t">Confidencialidad</p>
+    <p>Estas secuencias son material no publicado. Todo el an&aacute;lisis se corri&oacute; <strong>local</strong>
+    sobre copias en <code>work/W5/</code>: BLAST+ 2.17.0, ViennaRNA 2.7.2 y c&oacute;digo propio. No se
+    us&oacute; el BLAST web del NCBI, ni dsRNA-Engineer, ni ning&uacute;n servidor de plegado. Lo &uacute;nico que
+    us&oacute; la red fue la descarga de referencias p&uacute;blicas. Las secuencias no se reproducen en este
+    documento ni en el REPORT: est&aacute;n en el archivo original del corpus,
+    <code>YHat-Biotech/Sequences_EPILAB.xlsx</code>.</p>
+  </div>
+
+  <h2>1. Inventario</h2>
+  <p>Una hoja, ocho columnas, cuatro filas de datos, tres rangos combinados
+  (<code>G1:H1</code>, <code>A2:A3</code>, <code>A4:A5</code>). Los metadatos del documento declaran
+  a Johan Rodr&iacute;guez como creador, con creaci&oacute;n el 17-oct-2026 15:03:07&nbsp;UTC. Los nombres
+  siguen el esquema <strong>gen_organismo</strong>; no hay versi&oacute;n, ni acceso de base de datos, ni
+  autor del dise&ntilde;o: los metadatos describen el blanco, no el producto. <span class="tag e">E</span></p>
+
+  <div class="tw">
+  <table>
+    <caption>Las ocho secuencias. Largos y GC calculados por nosotros sobre la planilla; cada
+    regi&oacute;n elegida es subcadena exacta de su secuencia completa (verificado).</caption>
+    <thead><tr><th>Candidato</th><th>Funci&oacute;n declarada</th><th class="num">Completa</th>
+    <th class="num">GC</th><th class="num">Regi&oacute;n</th><th class="num">GC</th>
+    <th class="num">Posici&oacute;n</th><th class="num">&laquo;Eficientes&raquo;</th></tr></thead>
+    <tbody>
+      <tr><td><code>MP_MRFV</code></td><td>Movement Protein</td><td class="num">1.263 nt</td><td class="num">63,10 %</td><td class="num">200 nt</td><td class="num">61,50 %</td><td class="num">1-200</td><td class="num">114</td></tr>
+      <tr><td><code>CP_MRFV</code></td><td>Capsid Protein</td><td class="num">528 nt</td><td class="num">65,91 %</td><td class="num">200 nt</td><td class="num">65,00 %</td><td class="num">200-400</td><td class="num">35</td></tr>
+      <tr><td><code>BicC_Dm</code></td><td>Bicaudal Protein</td><td class="num">2.520 nt</td><td class="num">51,90 %</td><td class="num">300 nt</td><td class="num">49,33 %</td><td class="num">264-563</td><td class="num">199</td></tr>
+      <tr><td><code>ATPaseD_Dm</code></td><td>ATPase</td><td class="num">491 nt</td><td class="num">46,03 %</td><td class="num">300 nt</td><td class="num">47,00 %</td><td class="num">151-450</td><td class="num">33</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Una inconsistencia menor y real: la convenci&oacute;n de coordenadas no es uniforme. Tres
+  candidatos usan base&nbsp;1 inclusiva, pero la regi&oacute;n de <code>CP_MRFV</code>, declarada
+  &laquo;200-400&raquo;, empieza en la posici&oacute;n 201. Quien reconstruya las regiones por
+  coordenada en vez de por b&uacute;squeda de subcadena introduce un corrimiento de un nucle&oacute;tido. <span class="tag q">?</span></p>
+
+  <h2>2. Qu&eacute; son</h2>
+  <div class="tw">
+  <table>
+    <caption>Identificaci&oacute;n por alineamiento local. Todas las corridas con BLAST+ 2.17.0 sobre
+    bases construidas en disco con referencias descargadas del NCBI.</caption>
+    <thead><tr><th>Candidato</th><th>Organismo y gen</th><th>M&eacute;todo y evidencia</th><th>Confianza</th></tr></thead>
+    <tbody>
+      <tr><td><code>MP_MRFV</code></td>
+        <td><em>Maize rayado fino virus</em>, aislado Costa Rican; gen de la prote&iacute;na de
+        movimiento putativa p43 (<code>NP_115455.2</code>)</td>
+        <td>1.263/1.263&nbsp;nt al 100,000&nbsp;% en 332..1594 de <code>NC_002786.2</code>, que son
+        exactamente los l&iacute;mites del CDS anotado. tblastn confirma dos marcos superpuestos: la
+        prote&iacute;na de movimiento en +1 y la poliprote&iacute;na en +3.</td><td>alta <span class="tag e">E</span></td></tr>
+      <tr><td><code>CP_MRFV</code></td>
+        <td>mismo virus; regi&oacute;n codificante de c&aacute;pside en el extremo 3&prime; de la
+        poliprote&iacute;na (residuos 1.850-2.025 de <code>NP_115454.2</code>)</td>
+        <td>528/528&nbsp;nt al 100,000&nbsp;% en 5.674..6.201; marco exacto; 97-99&nbsp;% de identidad
+        con los registros <code>U97721</code>-<code>U97725</code>, depositados como
+        &laquo;coat protein mRNA&raquo;.</td><td>alta <span class="tag e">E</span></td></tr>
+      <tr><td><code>BicC_Dm</code></td>
+        <td><em>Dalbulus maidis</em>; Bicaudal&nbsp;C, locus multiex&oacute;nico del cromosoma&nbsp;3
+        (<code>OZ319706.1</code>, ~38,45-38,51&nbsp;Mb)</td>
+        <td>17 bloques ex&oacute;nicos al 97,6-100&nbsp;% contra el ensamblado <code>GCA_975739785.1</code>;
+        tblastn: 72,6&nbsp;% de identidad de amino&aacute;cidos en 809 residuos con el ort&oacute;logo de
+        <em>H. vitripennis</em>, 50,8&nbsp;% con <em>Drosophila</em>; ORF de 794 codones en el marco +2.</td>
+        <td>alta <span class="tag e">E</span></td></tr>
+      <tr><td><code>ATPaseD_Dm</code></td>
+        <td><em>Dalbulus maidis</em>; subunidad&nbsp;D de la ATPasa vacuolar de protones, tres exones
+        del cromosoma&nbsp;8 (<code>OZ319711.1</code>), hebra menos</td>
+        <td>3 bloques al 99,3-100&nbsp;%; tblastn: 99,4&nbsp;% en 163 residuos con la subunidad&nbsp;D de
+        <em>H. vitripennis</em> y 95,1&nbsp;% con la de <em>Drosophila</em>; fragmento parcial, sin los
+        primeros 36 codones y sin cod&oacute;n de terminaci&oacute;n.</td><td>alta <span class="tag e">E</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Procedencia.</strong> Contra los tres transcriptomas TSA p&uacute;blicos de la especie
+  (137.065 contigs descargados y alineados localmente), <code>ATPaseD_Dm</code> es
+  <strong>100,000&nbsp;% id&eacute;ntica en sus 491&nbsp;nt</strong> a un tramo interno del contig
+  <code>GCWP01010867.1</code>; <code>BicC_Dm</code> no tiene equivalente exacto, su mejor
+  coincidencia es 99,72&nbsp;% (7 desajustes) contra <code>GITV01000968.1</code>. Probable origen
+  p&uacute;blico para la primera <span class="tag">H</span>; indecidible para la segunda <span class="tag q">?</span>.</p>
+
+  <h2>3. Caracterizaci&oacute;n</h2>
+  <div class="tw">
+  <table>
+    <caption>RNAfold 2.7.2 local, <code>-p --noPS --noDP -T 25</code>, secuencias convertidas a ARN.
+    dustmasker de BLAST+ para baja complejidad.</caption>
+    <thead><tr><th>Secuencia</th><th class="num">Largo</th><th class="num">&Delta;G MFE</th>
+    <th class="num">&Delta;G por nt</th><th class="num">&Delta;G ensamble</th>
+    <th class="num">Frec. MFE</th></tr></thead>
+    <tbody>
+      <tr><td><code>MP_MRFV</code> completa</td><td class="num">1.263</td><td class="num">&minus;509,30</td><td class="num">&minus;0,403</td><td class="num">&minus;529,26</td><td class="num">2,4&times;10<sup>&minus;15</sup></td></tr>
+      <tr><td><code>MP_MRFV</code> regi&oacute;n</td><td class="num">200</td><td class="num">&minus;54,74</td><td class="num"><strong>&minus;0,274</strong></td><td class="num">&minus;59,42</td><td class="num">3,7&times;10<sup>&minus;4</sup></td></tr>
+      <tr><td><code>CP_MRFV</code> completa</td><td class="num">528</td><td class="num">&minus;237,35</td><td class="num">&minus;0,450</td><td class="num">&minus;244,16</td><td class="num">1,0&times;10<sup>&minus;5</sup></td></tr>
+      <tr><td><code>CP_MRFV</code> regi&oacute;n</td><td class="num">200</td><td class="num">&minus;80,18</td><td class="num">&minus;0,401</td><td class="num">&minus;83,44</td><td class="num">4,1&times;10<sup>&minus;3</sup></td></tr>
+      <tr><td><code>BicC_Dm</code> completa</td><td class="num">2.520</td><td class="num">&minus;1.024,44</td><td class="num">&minus;0,407</td><td class="num">&minus;1.061,15</td><td class="num">1,2&times;10<sup>&minus;27</sup></td></tr>
+      <tr><td><code>BicC_Dm</code> regi&oacute;n</td><td class="num">300</td><td class="num">&minus;103,69</td><td class="num">&minus;0,346</td><td class="num">&minus;107,97</td><td class="num">7,3&times;10<sup>&minus;4</sup></td></tr>
+      <tr><td><code>ATPaseD_Dm</code> completa</td><td class="num">491</td><td class="num">&minus;181,50</td><td class="num">&minus;0,370</td><td class="num">&minus;189,18</td><td class="num">2,3&times;10<sup>&minus;6</sup></td></tr>
+      <tr><td><code>ATPaseD_Dm</code> regi&oacute;n</td><td class="num">300</td><td class="num">&minus;108,21</td><td class="num">&minus;0,361</td><td class="num">&minus;112,68</td><td class="num">5,2&times;10<sup>&minus;4</sup></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Los dos candidatos virales son ricos en C (519 C contra 177 A en los 1.263&nbsp;nt de
+  <code>MP_MRFV</code>); el genoma de referencia completo tiene la misma firma, 2.432 C (38,2&nbsp;%)
+  contra 987 A (15,5&nbsp;%) en sus 6.366&nbsp;nt, medido por nosotros sobre <code>NC_002786.2</code>.
+  <span class="tag e">E</span> El GC de
+  cada regi&oacute;n elegida casi no se aparta del de su gen completo, as&iacute; que la regi&oacute;n no se
+  eligi&oacute; por contenido GC. <span class="tag">H</span> dustmasker encuentra un &uacute;nico intervalo de baja complejidad en las
+  ocho secuencias: siete nucle&oacute;tidos en <code>BicC_Dm</code>. La frecuencia de la estructura de
+  m&iacute;nima energ&iacute;a en el ensamble, de 10<sup>&minus;4</sup> a 10<sup>&minus;27</sup>, dice que a
+  estos largos la estructura puntual no significa casi nada: lo utilizable son las probabilidades
+  de apareamiento por posici&oacute;n. <span class="tag e">E</span></p>
+
+  <h2>4. Funci&oacute;n</h2>
+  <p>Los dos candidatos virales atacan las dos prote&iacute;nas estructurales indispensables del ciclo:
+  la de movimiento, que permite el tr&aacute;nsito entre c&eacute;lulas por los plasmodesmos, y la c&aacute;pside,
+  que encapsida y hace transmisible al virus. <span class="tag e">E</span> Como MRFV se replica tanto en la planta como en el
+  insecto &mdash;transmisi&oacute;n persistente propagativa&mdash;, el ARNdc puede actuar en dos lugares, y la
+  v&iacute;a documentada es la de la planta. Para MRFV en particular, la ola&nbsp;1 registr&oacute; que no existe
+  ning&uacute;n trabajo publicado de ARNdc, SIGS o HIGS. <span class="tag q">?</span></p>
+  <p>Los dos candidatos del vector son, exactamente, <strong>los dos &uacute;nicos blancos con
+  antecedente experimental publicado en la especie</strong>: Bicaudal&nbsp;C, con reducci&oacute;n de
+  transcritos de hasta 170 veces y menos oviposturas por inyecci&oacute;n e ingesti&oacute;n <span class="tag e">E</span>, y la
+  V-ATPasa, con mortalidad y deformaci&oacute;n de alas por v&iacute;a oral en un preprint no revisado. <span class="tag r">R</span>
+  Uno baja la descendencia, el otro mata. La elecci&oacute;n se explica mejor por la experiencia del
+  laboratorio que por cualquier criterio bioinform&aacute;tico. <span class="tag">H</span></p>
+  <p>La cr&iacute;tica de conjunto, y es nuestra: <strong>ning&uacute;n candidato ataca la transmisi&oacute;n en
+  s&iacute;</strong> &mdash;ni la clatrina ni los otros genes del vector que el pat&oacute;geno necesita para
+  colonizarlo&mdash;, que es justamente la v&iacute;a con evidencia en el sistema de la flavescencia dorada.
+  Ah&iacute; hay espacio para una propuesta propia que no compita con lo que el laboratorio ya tiene. <span class="tag">H</span></p>
+
+  <h2>5. Tamizaje de off-targets</h2>
+  <p>920 ventanas de 21&nbsp;nt derivadas de las cuatro regiones elegidas, alineadas con
+  <code>blastn -task blastn-short</code> contra seis conjuntos de referencia locales. Criterio:
+  coincidencia perfecta de al menos 19&nbsp;nt contiguos.</p>
+  <div class="tw">
+  <table>
+    <caption>N&uacute;mero de siRNA con coincidencia perfecta &ge;19&nbsp;nt. Para los dos candidatos del
+    insecto, la columna del genoma de <em>D. maidis</em> es el <strong>blanco</strong>, no un off-target.</caption>
+    <thead><tr><th>Conjunto de referencia</th><th class="num"><code>MP_MRFV</code></th>
+    <th class="num"><code>CP_MRFV</code></th><th class="num"><code>BicC_Dm</code></th>
+    <th class="num"><code>ATPaseD_Dm</code></th></tr></thead>
+    <tbody>
+      <tr><td><em>Zea mays</em>, 76.549 transcritos RefSeq</td><td class="num">3</td><td class="num">0</td><td class="num">3</td><td class="num">0</td></tr>
+      <tr><td><em>Dalbulus maidis</em>, genoma cromos&oacute;mico</td><td class="num">3</td><td class="num">0</td><td class="num">220 / 280</td><td class="num">222 / 280</td></tr>
+      <tr><td><em>Homalodisca vitripennis</em>, 33.294 transcritos</td><td class="num">0</td><td class="num">0</td><td class="num">30</td><td class="num">7</td></tr>
+      <tr><td><em>Apis mellifera</em>, 27.887 transcritos</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td><em>Harmonia axyridis</em>, 28.108 transcritos</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td><em>Folsomia candida</em>, 42.425 transcritos</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>El pipeline se valida solo en el blanco.</strong> Los 60 siRNA de
+  <code>BicC_Dm</code> que no aparecen en el genoma se explican exactamente por las tres uniones
+  ex&oacute;n-ex&oacute;n que atraviesa la regi&oacute;n elegida (3&nbsp;&times;&nbsp;20&nbsp;=&nbsp;60), y los 58 de
+  <code>ATPaseD_Dm</code> por dos uniones m&aacute;s dos desajustes puntuales (~57 esperados). Que las
+  cuentas cierren con esa precisi&oacute;n es la mejor evidencia de que sabemos correr el tamizaje. <span class="tag e">E</span></p>
+  <p><strong>En ma&iacute;z, riesgo bajo y localizado:</strong> un bloque de 19&nbsp;nt exactos de tres siRNA
+  de <code>BicC_Dm</code> sobre <code>LOC100281777</code> (serine esterase family protein) y otro de
+  tres siRNA de <code>MP_MRFV</code> sobre <code>XM_008647293.4</code> (rop guanine nucleotide
+  exchange factor 10). Ninguno llega a 21/21. <span class="tag e">E</span></p>
+  <p><strong>Homolog&iacute;a no es riesgo de RNAi.</strong> La regi&oacute;n de <code>ATPaseD_Dm</code> tiene
+  71-85&nbsp;% de identidad de nucle&oacute;tidos con los ort&oacute;logos de las cinco especies del panel y aun
+  as&iacute; da cero coincidencias perfectas en cuatro de ellas: el RNAi se rige por tramos perfectos, no
+  por identidad promedio. <span class="tag e">E</span> Pero el margen es delgado, y para los cicad&eacute;lidos nativos no plaga
+  &mdash;los que m&aacute;s importan&mdash; no hay transcriptoma p&uacute;blico contra el cual tamizar. <span class="tag q">?</span></p>
+
+  <h3>El hallazgo no pedido: divergencia entre aislados de MRFV</h3>
+  <div class="tw">
+  <table>
+    <caption>Ventanas de 21&nbsp;nt con apareamiento perfecto, de 180 posibles por regi&oacute;n, contra
+    cada registro p&uacute;blico de MRFV. Calculado dos veces por m&eacute;todos independientes, con resultados
+    id&eacute;nticos.</caption>
+    <thead><tr><th>Regi&oacute;n</th><th>Registros alineados</th><th class="num">Referencia Costa Rican</th>
+    <th class="num">Mediana del resto</th><th class="num">M&iacute;nimo</th></tr></thead>
+    <tbody>
+      <tr><td><code>CP_MRFV</code></td><td>65 de 71</td><td class="num">180 / 180</td><td class="num"><strong>44 / 180</strong></td><td class="num">10 / 180</td></tr>
+      <tr><td><code>MP_MRFV</code></td><td>3 de 71 (casi no hay genomas completos)</td><td class="num">180 / 180</td><td class="num">54 / 180 (aislado de EE.&nbsp;UU.)</td><td class="num">6 / 180</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Los 71 registros p&uacute;blicos de MRFV se reparten en 45 de Brasil, 4 de Estados Unidos, 2 de
+  Ecuador, 1 de Costa Rica y 19 sin pa&iacute;s declarado: <strong>ninguno de Argentina</strong>. <span class="tag e">E</span>
+  Los dos candidatos virales est&aacute;n dise&ntilde;ados sobre la referencia centroamericana de 2001 y, contra
+  la poblaci&oacute;n m&aacute;s parecida a la argentina para la que hay secuencia, tres cuartas partes de sus
+  siRNA dejar&iacute;an de aparear perfecto. <span class="tag">H</span> No es un defecto del dise&ntilde;o &mdash;no hab&iacute;a otra
+  referencia&mdash;, pero es el argumento m&aacute;s fuerte que tenemos para la pregunta del organizador.</p>
+
+  <h2>6. C&oacute;mo las aprovechamos</h2>
+  <div class="tw">
+  <table>
+    <caption>Las cinco opciones, desarrolladas en <code>aprovechamiento.md</code>. El orden es el
+    recomendado.</caption>
+    <thead><tr><th>Opci&oacute;n</th><th>Qu&eacute; requiere</th><th>Qu&eacute; demuestra</th><th>Riesgo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1. Conjunto de validaci&oacute;n</strong> del m&eacute;todo de priorizaci&oacute;n</td>
+        <td>Nada nuevo: lo ya corrido m&aacute;s definir la funci&oacute;n de puntaje. Media jornada.</td>
+        <td>Que el m&eacute;todo ordena casos reales con justificaci&oacute;n trazable, y contesta la pregunta
+        del organizador.</td>
+        <td>Cuatro casos no validan nada estad&iacute;sticamente; y sobreajuste narrativo si el puntaje
+        se define despu&eacute;s de ver el resultado.</td></tr>
+      <tr><td><strong>2. Ingenier&iacute;a inversa</strong> del criterio de eficiencia</td>
+        <td>Lo ya corrido m&aacute;s una pregunta de una l&iacute;nea al investigador.</td>
+        <td>Capacidad de auditor&iacute;a: reproducir un n&uacute;mero ajeno y decir con precisi&oacute;n hasta
+        d&oacute;nde se logr&oacute;.</td>
+        <td>Presentar un ajuste de rejilla como hallazgo: con 2.132 combinaciones, un error de
+        6&nbsp;% es esperable por azar.</td></tr>
+      <tr><td><strong>3. Caso de estudio</strong> de criterios de dise&ntilde;o</td>
+        <td>Est&aacute; escrito; media jornada para presentarlo.</td>
+        <td>Que entendemos el material a nivel de decisi&oacute;n, no de descripci&oacute;n.</td>
+        <td>De tono: leer decisiones ajenas como errores.</td></tr>
+      <tr><td><strong>4. Punto de partida</strong> para optimizar</td>
+        <td>Funci&oacute;n objetivo y barrido de ventanas, un d&iacute;a; y una decisi&oacute;n del equipo, porque
+        esta ola no pide dise&ntilde;ar.</td>
+        <td>Que el tamizaje no es decorativo: cambia d&oacute;nde pondr&iacute;amos la ventana.</td>
+        <td>De alcance: optimizar es reducir riesgo y mejorar cobertura, nunca aumentar potencia
+        sobre no objetivo. Y falsa seguridad por las especies que no tienen transcriptoma.</td></tr>
+      <tr><td><strong>5. Ejemplos positivos</strong> para un modelo</td>
+        <td>Mucho m&aacute;s de lo que hay: no vienen con medici&oacute;n de eficacia.</td>
+        <td>Poco, hoy. Como semilla de un conjunto mayor, s&iacute;.</td>
+        <td>El m&aacute;s alto: entrenar con cuatro ejemplos y presentarlo como predicci&oacute;n desacredita
+        la propuesta.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Qu&eacute; cambia respecto de la ola 1</h2>
+  <ul>
+    <li>Los &laquo;candidatos preliminares del EPILAB&raquo;, que la ola&nbsp;1 anot&oacute; como su primera
+    pregunta abierta, ya est&aacute;n: son cuatro, con regi&oacute;n elegida y posici&oacute;n, e identificados con
+    confianza alta.</li>
+    <li>La predicci&oacute;n de que no habr&iacute;a candidatos contra fitoplasma ni espiroplasma se cumple
+    exactamente: cero de cuatro. Confirmaci&oacute;n fuerte del razonamiento mecanicista.</li>
+    <li>Correcci&oacute;n de nomenclatura: donde la ola&nbsp;1 dice &laquo;ATP sintasa vacuolar&raquo;, el
+    tblastn local identifica <strong>ATPasa vacuolar de protones (V-ATPasa)</strong>, que es otro
+    complejo. Conviene unificarlo en el glosario.</li>
+  </ul>
+  <p>No encontramos contradicciones entre el corpus y la literatura p&uacute;blica en lo que toca a estas
+  secuencias: las cuatro identificaciones coinciden con lo que declara la planilla.</p>
+
+  <h2>Huecos y preguntas</h2>
+  <ul>
+    <li><strong>Con qu&eacute; criterio se contaron los siRNA &laquo;eficientes&raquo;.</strong> Sin eso no
+    se puede auditar ni extender el tamizaje de EPILAB. <span class="tag q">?</span></li>
+    <li><strong>No hay secuencia p&uacute;blica de MRFV de Argentina.</strong> La cobertura real de los
+    candidatos virales sobre el virus local es indecidible con material p&uacute;blico. <span class="tag q">?</span></li>
+    <li><strong>No hay transcriptoma de cicad&eacute;lidos nativos no plaga</strong>, que es el tamizaje
+    de no objetivo m&aacute;s relevante. <span class="tag q">?</span></li>
+    <li><strong>No sabemos si estas secuencias ya fueron sintetizadas o ensayadas</strong>, ni si
+    corresponden a construcciones con regiones flanqueantes. <span class="tag q">?</span></li>
+    <li><strong>No abrimos</strong> la literatura sobre cu&aacute;l forma de c&aacute;pside de MRFV es necesaria
+    para la transmisi&oacute;n por el cicad&eacute;lido, que afectar&iacute;a la priorizaci&oacute;n entre los dos
+    candidatos virales. <span class="tag q">?</span></li>
+  </ul>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>W5 &middot; ola&nbsp;2 del Investigath&oacute;n Y-Hat &middot; 17 de octubre de 2026. Documento derivado de
+    <code>research/ola2/W5_secuencias_epilab/REPORT.md</code>; nada afirmado ac&aacute; est&aacute; fuera de
+    ese reporte y de sus fuentes.</p>
+    <p>Marcadores de evidencia: <span class="tag e">E</span> establecido &middot; <span class="tag r">R</span> reportado por una o pocas fuentes &middot;
+    <span class="tag">H</span> hip&oacute;tesis nuestra &middot; <span class="tag q">?</span> incierto o con fuentes en conflicto.</p>
+    <p>Herramientas corridas localmente: BLAST+ 2.17.0 (blastn, blastn-short, tblastn, makeblastdb,
+    dustmasker), ViennaRNA 2.7.2 (RNAfold, RNAplfold), Biopython 1.88, Python 3.11. Ninguna
+    secuencia del corpus se envi&oacute; a un servicio web.</p>
+  </div>
+</footer>
+</body>
+</html>

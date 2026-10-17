@@ -1,0 +1,79 @@
+Conservación de las regiones elegidas de MRFV en los registros públicos de GenBank
+(blastn local; btop; 'siRNA perfectos' = ventanas de 21 nt sin desajuste dentro del tramo alineado)
+
+== CP_MRFV_sel_200-400 (65 registros con alineamiento) ==
+acceso        país                   ident% cubierto  desaj  siRNA21_perfectos
+AF265566.2    ?                       100.0      200      0                180
+JN966985.1    Costa Rica              100.0      200      0                180
+NC_002786.2   ?                       100.0      200      0                180
+U97722.1      ?                        99.0      200      2                158
+U97721.1      ?                        98.5      200      3                151
+U97723.1      ?                        97.0      200      6                113
+U97724.1      ?                        97.0      200      6                 96
+U97725.1      ?                        97.0      200      6                 77
+U97729.1      ?                        93.0      199     13                 59
+KM523134.1    USA                      94.5      199     11                 46
+AF186177.1    ?                        93.0      200     14                 44
+AF186178.1    ?                        93.0      200     14                 44
+AF186179.1    ?                        92.5      200     15                 44
+OM763710.1    Brazil                   92.5      200     15                 44
+ON730782.1    Brazil                   93.5      200     13                 44
+ON730783.1    Brazil                   93.0      200     14                 44
+ON730785.1    Brazil                   92.5      200     15                 44
+ON730786.1    Brazil                   92.0      200     16                 44
+ON730787.1    Brazil                   92.5      200     15                 44
+ON730788.1    Brazil                   93.5      200     13                 44
+ON730789.1    Brazil                   92.5      200     15                 44
+ON730790.1    Brazil                   93.0      200     14                 44
+ON730792.1    Brazil                   93.0      200     14                 44
+ON730794.1    Brazil                   92.5      200     15                 44
+ON730795.1    Brazil                   92.5      200     15                 44
+ON730796.1    Brazil                   93.0      200     14                 44
+ON730798.1    Brazil                   92.5      200     15                 44
+ON730801.1    Brazil                   93.0      200     14                 44
+ON730802.1    Brazil                   93.5      200     13                 44
+ON730804.1    Brazil                   92.5      200     15                 44
+OP559511.1    Brazil                   93.5      200     13                 44
+OP559512.1    Brazil                   93.0      200     14                 44
+OP559513.1    Brazil                   93.0      200     14                 44
+OP559515.1    Brazil                   93.0      200     14                 44
+OP584701.1    Brazil: Bela Vista do    93.0      200     14                 44
+OP584702.1    Brazil: Bela Vista do    93.0      200     14                 44
+OP584703.1    Brazil: Bela Vista do    93.0      200     14                 44
+OP585535.1    Brazil                   93.5      200     13                 44
+OP585536.1    Brazil                   93.5      200     13                 44
+OP585538.1    Brazil                   91.5      200     17                 44
+OP585539.1    Brazil                   92.5      200     15                 44
+OP585540.1    Brazil                   92.5      200     15                 44
+ON730784.1    Brazil                   93.0      200     14                 40
+ON730799.1    Brazil                   92.5      200     15                 38
+ON730803.1    Brazil                   92.5      200     15                 38
+ON730806.1    Brazil                   93.0      200     14                 38
+ON730805.1    Brazil                   91.5      200     17                 34
+OM763708.1    Brazil                   92.0      200     16                 32
+OM763709.1    Brazil                   92.0      200     16                 32
+ON730791.1    Brazil                   92.5      200     15                 32
+OP585537.1    Brazil                   92.5      200     15                 32
+ON730793.1    Brazil                   92.0      200     16                 30
+OP559514.1    Brazil                   92.5      200     15                 29
+DQ196348.1    Ecuador                  91.5      200     17                 27
+DQ196349.1    Ecuador                  91.5      200     17                 27
+U97726.1      ?                        92.5      199     15                 26
+ON730800.1    Brazil                   92.5      200     15                 24
+U97717.1      ?                        92.5      200     15                 23
+U97718.1      ?                        91.5      200     17                 23
+ON730797.1    Brazil                   91.5      200     17                 18
+U97730.1      ?                        90.5      200     19                 16
+U97728.1      ?                        90.5      200     18                 15
+U97719.1      ?                        92.5      199     15                 12
+U97720.1      ?                        90.9      197     18                 12
+U97727.1      ?                        90.5      199     19                 10
+  mediana de siRNA de 21 nt con apareamiento perfecto: 44 de 180 posibles
+
+== MP_MRFV_sel_1-200 (3 registros con alineamiento) ==
+acceso        país                   ident% cubierto  desaj  siRNA21_perfectos
+AF265566.2    ?                       100.0      200      0                180
+NC_002786.2   ?                       100.0      200      0                180
+KM523134.1    USA                      94.0      200     12                 54
+  mediana de siRNA de 21 nt con apareamiento perfecto: 180 de 180 posibles
+

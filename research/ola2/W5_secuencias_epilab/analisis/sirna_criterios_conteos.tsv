@@ -1,0 +1,8 @@
+# Ingeniería inversa de la columna «Nro de eficientes por gen» de Sequences_EPILAB.xlsx
+# Conteos calculados LOCALMENTE sobre las secuencias completas: ventanas de 21 nt (sentido), reglas reimplementadas en Python 3.11
+# Accesibilidad: RNAplfold 2.7.2 local (-u 8 -L 40 -W 80); LAP = media de las probabilidades de tramo desapareado de 8 nt dentro del sitio
+gen	declarado	total	siFi_nt_terminal	asimetria	siFi_nt+asim	UiTei	Reynolds>=6	Reynolds>=5	GC30_52	GC30_60	GC35_55	Tuschl_AA_GC30_70	LAP_mean>=0.1	siFi_completo_mean	siFi_completo_max	siFi_completo_3p	siFi_completo_cualquier_hebra
+MP_MRFV	114	1243	304	624	190	81	0	1	96	432	222	25	527	87	150	89	179
+CP_MRFV	35	508	112	252	74	26	0	0	8	136	50	6	167	21	48	31	43
+BicC_Dm	199	2500	647	1233	402	379	0	20	1018	1875	1383	162	817	136	277	145	259
+ATPaseD_Dm	33	471	123	224	78	79	0	1	271	388	291	29	170	26	61	33	62

@@ -1,0 +1,63 @@
+--- TSA_GITV01
+BicC_Dm_full	GITV01000968.1	99.722	2520	7	0	1	2520	16	2535	0.0
+BicC_Dm_full	GITV01002238.1	79.723	2382	432	7	47	2386	4902	2530	0.0
+ATPaseD_Dm_full	GITV01001458.1	99.796	491	1	0	1	491	4196	4686	0.0
+ATPaseD_Dm_full	GITV01002133.1	84.265	483	64	7	1	471	826	1308	3.86e-176
+--- TSA_GHCC01
+BicC_Dm_full	GHCC01002326.1	98.474	2556	3	1	1	2520	2663	108	0.0
+ATPaseD_Dm_full	GHCC01051703.1	99.796	491	1	0	1	491	195	685	0.0
+--- TSA_GCWP01
+BicC_Dm_full	GCWP01003535.1	96.487	427	11	2	2044	2467	1	426	0.0
+BicC_Dm_full	GCWP01003534.1	96.487	427	11	2	2044	2467	1	426	0.0
+BicC_Dm_full	GCWP01004693.1	100.000	185	0	0	249	433	185	1	1.05e-90
+BicC_Dm_full	GCWP01004692.1	100.000	185	0	0	249	433	185	1	1.05e-90
+ATPaseD_Dm_full	GCWP01010867.1	100.000	491	0	0	1	491	190	680	0.0
+GCWP01000000 error HTTP Error 400: Bad Request
+GHCC01000000 error HTTP Error 400: Bad Request
+GITV01000000 error HTTP Error 400: Bad Request
+##### GCWP01010867.1
+LOCUS       GCWP01010867            1917 bp    RNA     linear   TSA 30-NOV-2018
+DEFINITION  TSA: Dalbulus maidis breed wildtype i10832_g_ig04512_l_1917_nC_1,
+ACCESSION   GCWP01010867
+  ORGANISM  Dalbulus maidis
+REFERENCE   1  (bases 1 to 1917)
+  AUTHORS   Johnson,K.P., Dietrich,C.H., Friedrich,F., Beutel,R.G., Wipfler,B.,
+  TITLE     Phylogenomics and the evolution of hemipteroid insects
+  JOURNAL   Proc. Natl. Acad. Sci. U.S.A. (2018) In press
+REFERENCE   2  (bases 1 to 1917)
+  AUTHORS   Johnson,K.P., Walden,K.K., Robertson,H.M. and Dietrich,C.H.
+  TITLE     Hemipteroid Insect Assembling the Tree of Life
+  JOURNAL   Unpublished
+REFERENCE   3  (bases 1 to 1917)
+  AUTHORS   Johnson,K.P., Walden,K.K., Robertson,H.M. and Dietrich,C.H.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (24-NOV-2015) Illinois Natural History Survey, University
+COMMENT     ##Assembly-Data-START##
+            Assembly Method       :: Newbler v2.3
+            Assembly Name         :: Damai
+            Sequencing Technology :: 454
+                     /organism="Dalbulus maidis"
+                     /mol_type="transcribed RNA"
+
+##### GITV01000968.1
+LOCUS       GITV01000968            6066 bp    RNA     linear   TSA 17-JUN-2021
+DEFINITION  TSA: Dalbulus maidis Contig00968, transcribed RNA sequence.
+ACCESSION   GITV01000968
+  ORGANISM  Dalbulus maidis
+REFERENCE   1  (bases 1 to 6066)
+  AUTHORS   Xu,J., Todd,J., Redinbaugh,M.G., Kim,K.-H. and Stewart,L.R.
+  TITLE     Transcriptome of the maize leafhopper (Dalbulus maidis) and its
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 6066)
+  AUTHORS   Xu,J. and Stewart,L.R.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (13-AUG-2020) Department of Plant Pathology, Ohio State
+COMMENT     The Illumina raw data were trimmed of adapter indexes, primers, and
+            Assembly Method       :: GS De Novo Assembler CLC Genomics
+            Assembly Name         :: Daubulus maidis transcriptome
+            Sequencing Technology :: Illumina HiSeq
+                     /organism="Dalbulus maidis"
+                     /mol_type="transcribed RNA"
+                     /submitter_seqid="Contig00968"
+                     /db_xref="taxon:74065"
+

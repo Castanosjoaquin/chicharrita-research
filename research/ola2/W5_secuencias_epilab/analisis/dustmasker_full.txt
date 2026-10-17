@@ -1,0 +1,2 @@
+>BicC_Dm_full len=2520	354	360
+>BicC_Dm_sel_264-563 len=300	91	97
