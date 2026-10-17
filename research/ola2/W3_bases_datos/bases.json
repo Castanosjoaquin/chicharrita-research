@@ -1,0 +1,807 @@
+{
+ "generado": "2026-10-17",
+ "fuente_del_inventario": "YHat-Biotech/Links de interes.docx (2 enlaces de bases de datos) + recursos agregados por nosotros, marcados con en_el_docx=false",
+ "bases": [
+  {
+   "nombre": "NCBI (portal Entrez)",
+   "url": "https://www.ncbi.nlm.nih.gov/",
+   "en_el_docx": true,
+   "rotulo_en_el_docx": "Database general de genes",
+   "mantenedor": "NCBI, National Library of Medicine, NIH (EE.UU.)",
+   "cobertura": "Portal que expone 38 bases Entrez (verificado con einfo el 2026-10-17): secuencias, genes, proyectos, muestras, lecturas crudas, literatura y taxonomía.",
+   "actualizacion": "Diaria en las bases de secuencia; einfo declara la fecha exacta por base.",
+   "entidades": [
+    "38 bases Entrez interconectadas por elink"
+   ],
+   "identificadores": [
+    "UID numérico por base",
+    "accesiones propias de cada base"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp",
+    "bulk"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/ (einfo, esearch, esummary, efetch, elink, epost)",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto",
+    "FASTA",
+    "GFF3",
+    "CSV"
+   ],
+   "limites": "3 peticiones/s sin clave de API, 10 con clave; se piden los parámetros tool y email.",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae",
+    "Maize rayado fino virus",
+    "Maize striate mosaic virus",
+    "Macrosteles quadrilineatus",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Chrysoperla carnea",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "secuencias de referencia",
+    "tamizaje de off-targets",
+    "índice de qué datos existen"
+   ],
+   "no_sirve_para": [
+    "anotación funcional curada",
+    "expresión del vector por tejido"
+   ],
+   "ejemplo_ejecutado": "consultas/01_eutilities_einfo.md"
+  },
+  {
+   "nombre": "NCBI Datasets (genomas y transcriptomas)",
+   "url": "https://www.ncbi.nlm.nih.gov/datasets/genome/",
+   "en_el_docx": true,
+   "rotulo_en_el_docx": "Genomas y transcriptomas disponibles",
+   "mantenedor": "NCBI",
+   "cobertura": "Ensamblados genómicos GenBank (GCA) y RefSeq (GCF) de todos los taxones, con sus métricas, su anotación cuando existe y sus archivos de descarga. Reemplaza al recurso web Assembly, retirado por el NCBI.",
+   "actualizacion": "Continua; la base Entrez assembly declaraba 3.959.472 registros al 2026-10-16. Versión del servicio en la corrida: 18.39.0.",
+   "entidades": [
+    "ensamblado",
+    "organismo",
+    "anotación",
+    "archivo descargable"
+   ],
+   "identificadores": [
+    "GCA_*/GCF_*",
+    "BioProject",
+    "BioSample",
+    "TaxID"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "bulk",
+    "ftp"
+   ],
+   "api": "https://api.ncbi.nlm.nih.gov/datasets/v2alpha/ (genome/taxon/{taxid}/dataset_report, genome/accession/{acc}/dataset_report, download_summary, download)",
+   "formato": [
+    "JSON",
+    "ZIP con FASTA, GFF3, GTF, GBFF y JSONL"
+   ],
+   "limites": "Sin autenticación para los endpoints usados; la página HTML no entrega datos sin JavaScript.",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae",
+    "Maize rayado fino virus",
+    "Maize striate mosaic virus",
+    "Macrosteles quadrilineatus",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Chrysoperla carnea",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "secuencias de referencia",
+    "genomas y proteomas de patógenos",
+    "transcriptoma y proteoma de maíz y de Macrosteles"
+   ],
+   "no_sirve_para": [
+    "genes anotados de Dalbulus maidis: sus tres ensamblados no tienen anotación"
+   ],
+   "ejemplo_ejecutado": "consultas/03_datasets_api_genomas.md, consultas/04_descarga_real_mrfv.md"
+  },
+  {
+   "nombre": "NCBI Gene",
+   "url": "https://www.ncbi.nlm.nih.gov/gene/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Loci con identificador estable, poblados a partir de la anotación de RefSeq. Sin anotación RefSeq no hay registros para el organismo.",
+   "actualizacion": "einfo declara 100.909.498 registros y última actualización 2026/10/17 08:08",
+   "entidades": [
+    "gen",
+    "locus"
+   ],
+   "identificadores": [
+    "GeneID",
+    "símbolo",
+    "TaxID"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Spiroplasma kunkelii",
+    "Maize rayado fino virus",
+    "Maize striate mosaic virus",
+    "Macrosteles quadrilineatus",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Chrysoperla carnea",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "nombre y descripción de genes de maíz y de Macrosteles"
+   ],
+   "no_sirve_para": [
+    "Dalbulus maidis: sus 37 registros son todos mitocondriales",
+    "Candidatus Phytoplasma zeae: cero registros pese a tener genoma anotado"
+   ],
+   "ejemplo_ejecutado": "consultas/02_cobertura_por_organismo.md"
+  },
+  {
+   "nombre": "NCBI Nucleotide (nuccore)",
+   "url": "https://www.ncbi.nlm.nih.gov/nuccore/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "GenBank, RefSeq, WGS y TSA en una sola base; los subconjuntos se separan con filtros de Properties.",
+   "actualizacion": "einfo declara 743.915.950 registros y última actualización 2026/10/16 08:02",
+   "entidades": [
+    "secuencia nucleotídica",
+    "registro maestro de TSA/WGS"
+   ],
+   "identificadores": [
+    "accesión con versión",
+    "GI",
+    "TaxID",
+    "BioProject"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae",
+    "Maize rayado fino virus",
+    "Maize striate mosaic virus",
+    "Macrosteles quadrilineatus",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Chrysoperla carnea",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "bases locales de tamizaje",
+    "los tres transcriptomas TSA del vector",
+    "secuencias de referencia"
+   ],
+   "no_sirve_para": [
+    "anotación funcional"
+   ],
+   "ejemplo_ejecutado": "consultas/05_tsa_y_ftp.md"
+  },
+  {
+   "nombre": "NCBI Protein",
+   "url": "https://www.ncbi.nlm.nih.gov/protein/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Secuencias proteicas de GenBank, RefSeq y PDB.",
+   "actualizacion": "einfo declara 1.657.446.902 registros y última actualización 2026/10/17 03:17",
+   "entidades": [
+    "proteína"
+   ],
+   "identificadores": [
+    "accesión WP_/NP_/XP_/traducciones",
+    "TaxID"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae",
+    "Maize rayado fino virus",
+    "Maize striate mosaic virus",
+    "Macrosteles quadrilineatus",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Chrysoperla carnea",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "proteomas de los patógenos",
+    "ortología hacia Macrosteles"
+   ],
+   "no_sirve_para": [
+    "no distingue por sí sola proteínas esenciales"
+   ],
+   "ejemplo_ejecutado": "consultas/07_mapeo_ids_ejecutado.md"
+  },
+  {
+   "nombre": "Identical Protein Groups (IPG)",
+   "url": "https://www.ncbi.nlm.nih.gov/ipg/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Agrupa proteínas idénticas de distintas fuentes; es el puente entre accesiones de GenBank y de RefSeq.",
+   "actualizacion": "einfo declara 1.236.696.225 registros y última actualización 2026/10/17 03:13",
+   "entidades": [
+    "grupo de proteínas idénticas"
+   ],
+   "identificadores": [
+    "IPG id",
+    "accesión de proteína",
+    "accesión de nucleótido",
+    "ensamblado"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=ipg",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "cruzar identificadores entre la versión GCA y la GCF de un mismo genoma"
+   ],
+   "no_sirve_para": [
+    "buscar por función"
+   ],
+   "ejemplo_ejecutado": "consultas/07_mapeo_ids_ejecutado.md"
+  },
+  {
+   "nombre": "NCBI BioProject",
+   "url": "https://www.ncbi.nlm.nih.gov/bioproject/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Descripción de proyectos de secuenciación.",
+   "actualizacion": "einfo declara 1.104.628 registros y última actualización 2026/10/14 15:32",
+   "entidades": [
+    "proyecto"
+   ],
+   "identificadores": [
+    "PRJNA/PRJEB/PRJDB"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae",
+    "Macrosteles quadrilineatus",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Chrysoperla carnea",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "saber qué experimentos existen sobre el vector"
+   ],
+   "no_sirve_para": [
+    "datos: sólo describe"
+   ],
+   "ejemplo_ejecutado": "consultas/02_cobertura_por_organismo.md"
+  },
+  {
+   "nombre": "NCBI BioSample",
+   "url": "https://www.ncbi.nlm.nih.gov/biosample/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Descripción de las muestras biológicas.",
+   "actualizacion": "einfo declara 60.414.006 registros y última actualización 2026/10/17 00:43",
+   "entidades": [
+    "muestra"
+   ],
+   "identificadores": [
+    "SAMN/SAMEA",
+    "BioProject"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae",
+    "Macrosteles quadrilineatus",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Chrysoperla carnea",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "metadatos de las muestras del vector"
+   ],
+   "no_sirve_para": [
+    "datos de secuencia"
+   ],
+   "ejemplo_ejecutado": "consultas/02_cobertura_por_organismo.md"
+  },
+  {
+   "nombre": "NCBI SRA",
+   "url": "https://www.ncbi.nlm.nih.gov/sra/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Lecturas crudas. Única fuente pública de expresión del vector.",
+   "actualizacion": "einfo declara 47.243.078 registros y última actualización 2026/10/17 09:06",
+   "entidades": [
+    "corrida",
+    "experimento",
+    "estudio"
+   ],
+   "identificadores": [
+    "SRR/ERR",
+    "SRX",
+    "SRP",
+    "BioProject",
+    "BioSample"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae",
+    "Macrosteles quadrilineatus",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Chrysoperla carnea",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "datos de expresión del vector (PRJNA631706: 16 corridas, 42.305 MB)",
+    "lecturas para ensamblar o cuantificar"
+   ],
+   "no_sirve_para": [
+    "resultados procesados: hay que correr la cadena de análisis"
+   ],
+   "ejemplo_ejecutado": "consultas/06_edirect_cli.md"
+  },
+  {
+   "nombre": "NCBI GEO DataSets",
+   "url": "https://www.ncbi.nlm.nih.gov/gds/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Series y muestras de expresión curadas.",
+   "actualizacion": "einfo declara 9.121.639 registros y última actualización 2026/10/16 19:51",
+   "entidades": [
+    "serie",
+    "muestra",
+    "plataforma"
+   ],
+   "identificadores": [
+    "GSE",
+    "GSM",
+    "GPL"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Zea mays",
+    "Apis mellifera",
+    "Bombus terrestris",
+    "Coccinella septempunctata",
+    "Daphnia magna",
+    "Eisenia fetida",
+    "Tribolium castaneum",
+    "Diaphorina citri",
+    "Nilaparvata lugens"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "expresión en maíz (24.701 conjuntos)"
+   ],
+   "no_sirve_para": [
+    "expresión en Dalbulus maidis, Spiroplasma kunkelii, el fitoplasma o los virus: cero registros"
+   ],
+   "ejemplo_ejecutado": "consultas/02_cobertura_por_organismo.md"
+  },
+  {
+   "nombre": "NCBI Taxonomy",
+   "url": "https://www.ncbi.nlm.nih.gov/taxonomy/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Un registro por taxón, con linaje completo.",
+   "actualizacion": "einfo declara 3.156.786 registros y última actualización 2026/10/13 20:58",
+   "entidades": [
+    "taxón"
+   ],
+   "identificadores": [
+    "TaxID"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "delimitar el universo de cada consulta y del tamizaje"
+   ],
+   "no_sirve_para": [
+    "secuencias"
+   ],
+   "ejemplo_ejecutado": "consultas/02_cobertura_por_organismo.md"
+  },
+  {
+   "nombre": "NCBI Annotinfo",
+   "url": "https://www.ncbi.nlm.nih.gov/annotinfo/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Registro de las corridas de anotación del NCBI.",
+   "actualizacion": "einfo declara 2.751 registros y última actualización 2026/10/16 15:10",
+   "entidades": [
+    "corrida de anotación"
+   ],
+   "identificadores": [
+    "nombre de anotación",
+    "accesión de ensamblado"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=annotinfo",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "verificar si un ensamblado tiene anotación"
+   ],
+   "no_sirve_para": [
+    "secuencias"
+   ],
+   "ejemplo_ejecutado": "consultas/02_cobertura_por_organismo.md"
+  },
+  {
+   "nombre": "NCBI Conserved Domain Database",
+   "url": "https://www.ncbi.nlm.nih.gov/cdd/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Modelos de dominios conservados.",
+   "actualizacion": "einfo declara 67.160 registros y última actualización 2025/07/02 19:21",
+   "entidades": [
+    "dominio",
+    "familia"
+   ],
+   "identificadores": [
+    "CDD id",
+    "PSSM id"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "ftp"
+   ],
+   "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=cdd",
+   "formato": [
+    "JSON",
+    "XML",
+    "texto"
+   ],
+   "limites": "3 peticiones/s sin clave de API",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "anotación funcional de proteínas sin ortólogo evidente"
+   ],
+   "no_sirve_para": [
+    "expresión",
+    "secuencias completas"
+   ],
+   "ejemplo_ejecutado": "consultas/09_cdd_dominios.md"
+  },
+  {
+   "nombre": "NCBI FTP",
+   "url": "https://ftp.ncbi.nlm.nih.gov/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "NCBI",
+   "cobertura": "Volcados masivos: genomes/all/GC{A,F}/..., genbank/tsa/<inicial>/, gene/DATA/, blast/db/.",
+   "actualizacion": "Continua; cada archivo declara Last-Modified.",
+   "entidades": [
+    "archivo"
+   ],
+   "identificadores": [
+    "ruta derivada de la accesión"
+   ],
+   "acceso": [
+    "ftp",
+    "bulk"
+   ],
+   "api": "HTTP sobre el mismo árbol; HEAD devuelve Content-Length",
+   "formato": [
+    "FASTA.gz",
+    "GBFF.gz",
+    "GFF3.gz",
+    "texto"
+   ],
+   "limites": "Sin autenticación.",
+   "licencia": "Dominio público para los datos generados por el gobierno de EE.UU.; GenBank declara que el NCBI no impone restricciones de uso ni redistribución, con la advertencia de que algunos depositantes pueden reclamar derechos sobre lo que depositaron.",
+   "tiene_datos_de": [
+    "Dalbulus maidis",
+    "Zea mays",
+    "Macrosteles quadrilineatus",
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "descarga masiva con tamaño conocido de antemano"
+   ],
+   "no_sirve_para": [
+    "consultas selectivas"
+   ],
+   "ejemplo_ejecutado": "consultas/05_tsa_y_ftp.md"
+  },
+  {
+   "nombre": "UniProtKB",
+   "url": "https://rest.uniprot.org/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "Consorcio UniProt (EMBL-EBI, SIB, PIR)",
+   "cobertura": "Proteínas revisadas (Swiss-Prot) y no revisadas (TrEMBL), con anotación funcional y mapeo de identificadores.",
+   "actualizacion": "Lanzamientos periódicos; la entrada consultada declara última actualización de anotación 2026-09-02.",
+   "entidades": [
+    "proteína",
+    "proteoma"
+   ],
+   "identificadores": [
+    "accesión UniProt",
+    "UniParc UPI",
+    "proteoma UP*",
+    "cruza con RefSeq, EMBL y KEGG"
+   ],
+   "acceso": [
+    "web",
+    "api",
+    "bulk"
+   ],
+   "api": "https://rest.uniprot.org/idmapping/run y /uniprotkb/",
+   "formato": [
+    "JSON",
+    "TSV",
+    "FASTA"
+   ],
+   "limites": "Sin autenticación; trabajo asincrónico para el mapeo.",
+   "licencia": "CC BY 4.0 según el consorcio (no verificado en esta corrida: no abrimos la página de licencia)",
+   "tiene_datos_de": [
+    "Spiroplasma kunkelii",
+    "Zea mays",
+    "Macrosteles quadrilineatus"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "anotación funcional",
+    "cruce RefSeq ↔ UniProt"
+   ],
+   "no_sirve_para": [
+    "proteínas de MRFV: NP_115454.2 no tiene entrada en UniProtKB, sólo UniParc"
+   ],
+   "ejemplo_ejecutado": "consultas/07_mapeo_ids_ejecutado.md"
+  },
+  {
+   "nombre": "KEGG",
+   "url": "https://rest.kegg.jp/",
+   "en_el_docx": false,
+   "rotulo_en_el_docx": null,
+   "mantenedor": "Kanehisa Laboratories, Universidad de Kioto",
+   "cobertura": "Vías metabólicas, ortología KO y genomas anotados. Incluye los dos patógenos: skn (T04056, Spiroplasma kunkelii CR2-3x) y mbp (T04456, Candidatus Phytoplasma zeae M3).",
+   "actualizacion": "rest.kegg.jp/info/kegg declara fechas por base (pathway 2026/10/15, brite 2026/10/16).",
+   "entidades": [
+    "gen de organismo",
+    "ortología KO",
+    "vía",
+    "módulo"
+   ],
+   "identificadores": [
+    "org:gen (mbp:MBSPM3_v1c0010)",
+    "KO",
+    "mapea a ncbi-proteinid y a uniprot"
+   ],
+   "acceso": [
+    "web",
+    "api"
+   ],
+   "api": "https://rest.kegg.jp/{info,list,find,conv,link}/...",
+   "formato": [
+    "texto tabulado"
+   ],
+   "limites": "Uso académico por la web; el volcado masivo por FTP es por suscripción.",
+   "licencia": "Restringida: libre para uso académico vía web, con licencia paga para el acceso masivo (no verificamos los términos exactos en esta corrida)",
+   "tiene_datos_de": [
+    "Spiroplasma kunkelii",
+    "Ca. Phytoplasma zeae",
+    "Zea mays"
+   ],
+   "estado_del_link": "ok",
+   "sirve_para": [
+    "argumentar esencialidad de un gen blanco",
+    "cruce KEGG ↔ NCBI ↔ UniProt"
+   ],
+   "no_sirve_para": [
+    "Dalbulus maidis: no tiene organismo en KEGG",
+    "conv/ncbi-geneid/mbp devuelve HTTP 400"
+   ],
+   "ejemplo_ejecutado": "consultas/07_mapeo_ids_ejecutado.md"
+  }
+ ]
+}

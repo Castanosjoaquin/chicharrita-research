@@ -1,0 +1,410 @@
+tag,url,status,bytes,secs,ts
+einfo lista de bases,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?retmode=json,200,462.0,0.53,2026-10-17T16:40:17+00:00
+einfo gene,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=gene&retmode=json,200,11209.0,0.47,2026-10-17T16:40:27+00:00
+einfo nuccore,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=nuccore&retmode=json,200,11700.0,0.53,2026-10-17T16:40:28+00:00
+einfo protein,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=protein&retmode=json,200,11562.0,0.51,2026-10-17T16:40:29+00:00
+einfo assembly,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=assembly&retmode=json,200,11467.0,0.47,2026-10-17T16:40:30+00:00
+einfo sra,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=sra&retmode=json,200,5075.0,0.45,2026-10-17T16:40:30+00:00
+einfo bioproject,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=bioproject&retmode=json,200,8672.0,0.4,2026-10-17T16:40:31+00:00
+einfo biosample,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=biosample&retmode=json,200,3999.0,0.43,2026-10-17T16:40:32+00:00
+einfo taxonomy,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=taxonomy&retmode=json,200,7157.0,0.52,2026-10-17T16:40:33+00:00
+einfo gds,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=gds&retmode=json,200,7005.0,0.19,2026-10-17T16:40:34+00:00
+einfo geoprofiles,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=geoprofiles&retmode=json,200,6308.0,0.53,2026-10-17T16:40:34+00:00
+einfo pubmed,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=pubmed&retmode=json,200,15005.0,0.42,2026-10-17T16:40:35+00:00
+einfo ipg,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=ipg&retmode=json,200,4311.0,0.51,2026-10-17T16:40:36+00:00
+einfo cdd,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=cdd&retmode=json,200,4982.0,0.52,2026-10-17T16:40:37+00:00
+einfo genome,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=genome&retmode=json,200,6600.0,0.52,2026-10-17T16:40:38+00:00
+einfo annotinfo,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=annotinfo&retmode=json,200,2774.0,0.51,2026-10-17T16:40:39+00:00
+einfo structure,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=structure&retmode=json,200,12748.0,0.42,2026-10-17T16:40:40+00:00
+taxonomy Dalbulus maidis,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Dalbulus+maidis%22%5BScientific+Name%5D&retmode=json,200,330.0,0.48,2026-10-17T16:41:01+00:00
+taxonomy Dalbulus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Dalbulus%22%5BScientific+Name%5D&retmode=json,200,316.0,0.46,2026-10-17T16:41:02+00:00
+taxonomy Zea mays,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Zea+mays%22%5BScientific+Name%5D&retmode=json,200,315.0,0.95,2026-10-17T16:41:03+00:00
+taxonomy Spiroplasma kunkelii,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Spiroplasma+kunkelii%22%5BScientific+Name%5D&retmode=json,200,340.0,0.51,2026-10-17T16:41:04+00:00
+taxonomy Candidatus Phytoplasma zeae,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Candidatus+Phytoplasma+zeae%22%5BScientific+Name%5D&retmode=json,200,355.0,0.41,2026-10-17T16:41:05+00:00
+taxonomy Maize rayado fino virus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Maize+rayado+fino+virus%22%5BScientific+Name%5D&retmode=json,200,346.0,0.41,2026-10-17T16:41:06+00:00
+taxonomy maize striate mosaic virus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22maize+striate+mosaic+virus%22%5BScientific+Name%5D&retmode=json,200,354.0,0.41,2026-10-17T16:41:07+00:00
+taxonomy Maize stripe virus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Maize+stripe+virus%22%5BScientific+Name%5D&retmode=json,200,340.0,0.41,2026-10-17T16:41:08+00:00
+taxonomy libre Maize stripe virus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=Maize+stripe+virus&retmode=json,200,312.0,0.52,2026-10-17T16:41:08+00:00
+taxonomy Diaphorina citri,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Diaphorina+citri%22%5BScientific+Name%5D&retmode=json,200,333.0,0.45,2026-10-17T16:41:09+00:00
+taxonomy Nephotettix cincticeps,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Nephotettix+cincticeps%22%5BScientific+Name%5D&retmode=json,200,344.0,0.45,2026-10-17T16:41:10+00:00
+taxonomy Macrosteles quadrilineatus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Macrosteles+quadrilineatus%22%5BScientific+Name%5D&retmode=json,200,352.0,0.45,2026-10-17T16:41:11+00:00
+taxonomy Graminella nigrifrons,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Graminella+nigrifrons%22%5BScientific+Name%5D&retmode=json,200,342.0,0.45,2026-10-17T16:41:12+00:00
+taxonomy Euscelidius variegatus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Euscelidius+variegatus%22%5BScientific+Name%5D&retmode=json,200,344.0,0.46,2026-10-17T16:41:13+00:00
+taxonomy Nilaparvata lugens,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Nilaparvata+lugens%22%5BScientific+Name%5D&retmode=json,200,337.0,0.41,2026-10-17T16:41:14+00:00
+taxonomy Tribolium castaneum,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Tribolium+castaneum%22%5BScientific+Name%5D&retmode=json,200,337.0,0.45,2026-10-17T16:41:14+00:00
+taxonomy Apis mellifera,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Apis+mellifera%22%5BScientific+Name%5D&retmode=json,200,327.0,0.48,2026-10-17T16:41:15+00:00
+taxonomy Bombus terrestris,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Bombus+terrestris%22%5BScientific+Name%5D&retmode=json,200,334.0,0.51,2026-10-17T16:41:16+00:00
+taxonomy Chrysoperla carnea,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Chrysoperla+carnea%22%5BScientific+Name%5D&retmode=json,200,337.0,0.51,2026-10-17T16:41:17+00:00
+taxonomy Coccinella septempunctata,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Coccinella+septempunctata%22%5BScientific+Name%5D&retmode=json,200,350.0,0.52,2026-10-17T16:41:18+00:00
+taxonomy Daphnia magna,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Daphnia+magna%22%5BScientific+Name%5D&retmode=json,200,326.0,0.51,2026-10-17T16:41:19+00:00
+taxonomy Homo sapiens,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Homo+sapiens%22%5BScientific+Name%5D&retmode=json,200,323.0,0.39,2026-10-17T16:41:20+00:00
+taxonomy Cicadellidae,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Cicadellidae%22%5BScientific+Name%5D&retmode=json,200,324.0,0.4,2026-10-17T16:41:21+00:00
+taxonomy Mollicutes,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Mollicutes%22%5BScientific+Name%5D&retmode=json,200,320.0,0.55,2026-10-17T16:41:22+00:00
+taxonomy Eisenia fetida,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy&term=%22Eisenia+fetida%22%5BScientific+Name%5D&retmode=json,200,327.0,0.52,2026-10-17T16:41:22+00:00
+count gene txid74065,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.48,2026-10-17T16:41:50+00:00
+count nuccore txid74065,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.46,2026-10-17T16:41:51+00:00
+count protein txid74065,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.43,2026-10-17T16:41:52+00:00
+count assembly txid74065,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.4,2026-10-17T16:41:52+00:00
+count sra txid74065,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.49,2026-10-17T16:41:53+00:00
+count biosample txid74065,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.58,2026-10-17T16:41:54+00:00
+count bioproject txid74065,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.51,2026-10-17T16:41:55+00:00
+count gds txid74065,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.52,2026-10-17T16:41:56+00:00
+count gene txid74053,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74053%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:41:57+00:00
+count nuccore txid74053,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid74053%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.45,2026-10-17T16:41:57+00:00
+count protein txid74053,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid74053%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:41:58+00:00
+count assembly txid74053,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid74053%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,1.16,2026-10-17T16:42:00+00:00
+count sra txid74053,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid74053%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.46,2026-10-17T16:42:00+00:00
+count biosample txid74053,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid74053%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.77,2026-10-17T16:42:02+00:00
+count bioproject txid74053,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid74053%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.42,2026-10-17T16:42:02+00:00
+count gds txid74053,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid74053%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.4,2026-10-17T16:42:03+00:00
+count gene txid30102,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid30102%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.48,2026-10-17T16:42:04+00:00
+count nuccore txid30102,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid30102%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.47,2026-10-17T16:42:05+00:00
+count protein txid30102,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid30102%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.46,2026-10-17T16:42:06+00:00
+count assembly txid30102,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid30102%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.39,2026-10-17T16:42:06+00:00
+count sra txid30102,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid30102%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.47,2026-10-17T16:42:07+00:00
+count biosample txid30102,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid30102%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.42,2026-10-17T16:42:08+00:00
+count bioproject txid30102,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid30102%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.46,2026-10-17T16:42:09+00:00
+count gds txid30102,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid30102%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.46,2026-10-17T16:42:09+00:00
+count gene txid4577,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.47,2026-10-17T16:42:10+00:00
+count nuccore txid4577,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,82.0,0.41,2026-10-17T16:42:11+00:00
+count protein txid4577,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.45,2026-10-17T16:42:12+00:00
+count assembly txid4577,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.44,2026-10-17T16:42:13+00:00
+count sra txid4577,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.4,2026-10-17T16:42:13+00:00
+count biosample txid4577,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.46,2026-10-17T16:42:14+00:00
+count bioproject txid4577,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.42,2026-10-17T16:42:15+00:00
+count gds txid4577,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.43,2026-10-17T16:42:16+00:00
+count gene txid47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:42:16+00:00
+count nuccore txid47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.45,2026-10-17T16:42:17+00:00
+count protein txid47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.4,2026-10-17T16:42:18+00:00
+count assembly txid47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.5,2026-10-17T16:42:19+00:00
+count sra txid47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.4,2026-10-17T16:42:20+00:00
+count biosample txid47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,1.24,2026-10-17T16:42:21+00:00
+count bioproject txid47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:42:22+00:00
+count gds txid47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.39,2026-10-17T16:42:23+00:00
+count gene txid202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.39,2026-10-17T16:42:23+00:00
+count nuccore txid202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.41,2026-10-17T16:42:24+00:00
+count protein txid202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.67,2026-10-17T16:42:25+00:00
+count assembly txid202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.16,2026-10-17T16:42:26+00:00
+count sra txid202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.17,2026-10-17T16:42:26+00:00
+count biosample txid202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.17,2026-10-17T16:42:27+00:00
+count bioproject txid202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.16,2026-10-17T16:42:27+00:00
+count gds txid202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.16,2026-10-17T16:42:28+00:00
+count gene txid31969,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid31969%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.17,2026-10-17T16:42:28+00:00
+count nuccore txid31969,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid31969%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.19,2026-10-17T16:42:29+00:00
+count protein txid31969,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid31969%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.46,2026-10-17T16:42:30+00:00
+count assembly txid31969,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid31969%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.45,2026-10-17T16:42:30+00:00
+count sra txid31969,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid31969%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.16,2026-10-17T16:42:31+00:00
+count biosample txid31969,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid31969%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.68,2026-10-17T16:42:32+00:00
+count bioproject txid31969,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid31969%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.81,2026-10-17T16:42:33+00:00
+count gds txid31969,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid31969%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.59,2026-10-17T16:42:34+00:00
+count gene txid59749,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.44,2026-10-17T16:42:35+00:00
+count nuccore txid59749,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.48,2026-10-17T16:42:36+00:00
+count protein txid59749,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:42:36+00:00
+count assembly txid59749,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:42:37+00:00
+count sra txid59749,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.44,2026-10-17T16:42:38+00:00
+count biosample txid59749,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:42:39+00:00
+count bioproject txid59749,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:42:40+00:00
+count gds txid59749,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.4,2026-10-17T16:42:40+00:00
+count gene txid2025388,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid2025388%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:42:41+00:00
+count nuccore txid2025388,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid2025388%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.44,2026-10-17T16:42:42+00:00
+count protein txid2025388,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid2025388%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:42:43+00:00
+count assembly txid2025388,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid2025388%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.51,2026-10-17T16:42:44+00:00
+count sra txid2025388,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid2025388%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.5,2026-10-17T16:42:44+00:00
+count biosample txid2025388,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid2025388%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.41,2026-10-17T16:42:45+00:00
+count bioproject txid2025388,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid2025388%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.5,2026-10-17T16:42:46+00:00
+count gds txid2025388,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid2025388%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:42:47+00:00
+count gene txid3052767,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid3052767%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:42:48+00:00
+count nuccore txid3052767,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid3052767%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.46,2026-10-17T16:42:48+00:00
+count protein txid3052767,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid3052767%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.51,2026-10-17T16:42:49+00:00
+count assembly txid3052767,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid3052767%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.42,2026-10-17T16:42:50+00:00
+count sra txid3052767,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid3052767%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:42:51+00:00
+count biosample txid3052767,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid3052767%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.47,2026-10-17T16:42:52+00:00
+count bioproject txid3052767,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid3052767%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.21,2026-10-17T16:42:52+00:00
+count gds txid3052767,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid3052767%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.46,2026-10-17T16:42:53+00:00
+count gene txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.44,2026-10-17T16:42:54+00:00
+count nuccore txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.46,2026-10-17T16:42:55+00:00
+count protein txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.2,2026-10-17T16:42:55+00:00
+count assembly txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.51,2026-10-17T16:42:56+00:00
+count sra txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.44,2026-10-17T16:42:57+00:00
+count biosample txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.45,2026-10-17T16:42:58+00:00
+count bioproject txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:42:58+00:00
+count gds txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,429,88.0,0.44,2026-10-17T16:42:59+00:00
+count gene txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.45,2026-10-17T16:43:08+00:00
+count nuccore txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.47,2026-10-17T16:43:09+00:00
+count protein txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.48,2026-10-17T16:43:10+00:00
+count assembly txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.52,2026-10-17T16:43:11+00:00
+count sra txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.46,2026-10-17T16:43:12+00:00
+count biosample txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.49,2026-10-17T16:43:13+00:00
+count bioproject txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.4,2026-10-17T16:43:13+00:00
+count gds txid121845,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid121845%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.4,2026-10-17T16:43:14+00:00
+count gene txid94400,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.4,2026-10-17T16:43:15+00:00
+count nuccore txid94400,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.47,2026-10-17T16:43:16+00:00
+count protein txid94400,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.51,2026-10-17T16:43:17+00:00
+count assembly txid94400,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.51,2026-10-17T16:43:18+00:00
+count sra txid94400,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.42,2026-10-17T16:43:19+00:00
+count biosample txid94400,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.4,2026-10-17T16:43:20+00:00
+count bioproject txid94400,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:43:21+00:00
+count gds txid94400,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:43:21+00:00
+count gene txid74068,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.4,2026-10-17T16:43:22+00:00
+count nuccore txid74068,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.49,2026-10-17T16:43:23+00:00
+count protein txid74068,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.53,2026-10-17T16:43:24+00:00
+count assembly txid74068,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.47,2026-10-17T16:43:25+00:00
+count sra txid74068,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.42,2026-10-17T16:43:26+00:00
+count biosample txid74068,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.44,2026-10-17T16:43:27+00:00
+count bioproject txid74068,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.59,2026-10-17T16:43:28+00:00
+count gds txid74068,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.46,2026-10-17T16:43:29+00:00
+count gene txid30127,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid30127%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.44,2026-10-17T16:43:30+00:00
+count nuccore txid30127,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid30127%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.41,2026-10-17T16:43:31+00:00
+count protein txid30127,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid30127%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.46,2026-10-17T16:43:32+00:00
+count assembly txid30127,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid30127%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.5,2026-10-17T16:43:33+00:00
+count sra txid30127,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid30127%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.48,2026-10-17T16:43:33+00:00
+count biosample txid30127,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid30127%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:43:34+00:00
+count bioproject txid30127,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid30127%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.49,2026-10-17T16:43:35+00:00
+count gds txid30127,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid30127%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.5,2026-10-17T16:43:36+00:00
+count gene txid13064,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid13064%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:43:37+00:00
+count nuccore txid13064,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid13064%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.41,2026-10-17T16:43:38+00:00
+count protein txid13064,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid13064%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.41,2026-10-17T16:43:39+00:00
+count assembly txid13064,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid13064%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.4,2026-10-17T16:43:40+00:00
+count sra txid13064,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid13064%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.47,2026-10-17T16:43:41+00:00
+count biosample txid13064,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid13064%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.48,2026-10-17T16:43:42+00:00
+count bioproject txid13064,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid13064%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.51,2026-10-17T16:43:43+00:00
+count gds txid13064,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid13064%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.44,2026-10-17T16:43:43+00:00
+count gene txid108931,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid108931%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.45,2026-10-17T16:43:44+00:00
+count nuccore txid108931,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid108931%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.49,2026-10-17T16:43:45+00:00
+count protein txid108931,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid108931%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.26,2026-10-17T16:43:46+00:00
+count assembly txid108931,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid108931%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.39,2026-10-17T16:43:47+00:00
+count sra txid108931,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid108931%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.48,2026-10-17T16:43:48+00:00
+count biosample txid108931,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid108931%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.46,2026-10-17T16:43:49+00:00
+count bioproject txid108931,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid108931%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.52,2026-10-17T16:43:50+00:00
+count gds txid108931,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid108931%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.39,2026-10-17T16:43:51+00:00
+count gene txid7070,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid7070%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.43,2026-10-17T16:43:51+00:00
+count nuccore txid7070,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid7070%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.52,2026-10-17T16:43:52+00:00
+count protein txid7070,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid7070%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.5,2026-10-17T16:43:53+00:00
+count assembly txid7070,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid7070%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:43:54+00:00
+count sra txid7070,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid7070%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.4,2026-10-17T16:43:55+00:00
+count biosample txid7070,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid7070%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.44,2026-10-17T16:43:56+00:00
+count bioproject txid7070,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid7070%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.39,2026-10-17T16:43:57+00:00
+count gds txid7070,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid7070%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.44,2026-10-17T16:43:58+00:00
+count gene txid7460,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid7460%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.47,2026-10-17T16:43:59+00:00
+count nuccore txid7460,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid7460%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.41,2026-10-17T16:44:00+00:00
+count protein txid7460,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid7460%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.49,2026-10-17T16:44:01+00:00
+count assembly txid7460,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid7460%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.51,2026-10-17T16:44:01+00:00
+count sra txid7460,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid7460%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.45,2026-10-17T16:44:02+00:00
+count biosample txid7460,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid7460%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.49,2026-10-17T16:44:03+00:00
+count bioproject txid7460,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid7460%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.41,2026-10-17T16:44:04+00:00
+count gds txid7460,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid7460%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.51,2026-10-17T16:44:05+00:00
+count gene txid30195,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid30195%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.45,2026-10-17T16:44:06+00:00
+count nuccore txid30195,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid30195%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.4,2026-10-17T16:44:07+00:00
+count protein txid30195,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid30195%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.49,2026-10-17T16:44:08+00:00
+count assembly txid30195,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid30195%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.51,2026-10-17T16:44:09+00:00
+count sra txid30195,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid30195%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.44,2026-10-17T16:44:10+00:00
+count biosample txid30195,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid30195%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.45,2026-10-17T16:44:11+00:00
+count bioproject txid30195,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid30195%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.45,2026-10-17T16:44:12+00:00
+count gds txid30195,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid30195%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.47,2026-10-17T16:44:12+00:00
+count gene txid189513,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid189513%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.38,2026-10-17T16:44:13+00:00
+count nuccore txid189513,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid189513%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.41,2026-10-17T16:44:14+00:00
+count protein txid189513,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid189513%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.46,2026-10-17T16:44:15+00:00
+count assembly txid189513,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid189513%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.44,2026-10-17T16:44:16+00:00
+count sra txid189513,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid189513%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.44,2026-10-17T16:44:17+00:00
+count biosample txid189513,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid189513%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.5,2026-10-17T16:44:18+00:00
+count bioproject txid189513,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid189513%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.47,2026-10-17T16:44:19+00:00
+count gds txid189513,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid189513%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.44,2026-10-17T16:44:20+00:00
+count gene txid41139,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid41139%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.45,2026-10-17T16:44:21+00:00
+count nuccore txid41139,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid41139%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.5,2026-10-17T16:44:21+00:00
+count protein txid41139,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid41139%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.52,2026-10-17T16:44:22+00:00
+count assembly txid41139,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid41139%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.39,2026-10-17T16:44:23+00:00
+count sra txid41139,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid41139%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.46,2026-10-17T16:44:24+00:00
+count biosample txid41139,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid41139%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.49,2026-10-17T16:44:25+00:00
+count bioproject txid41139,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid41139%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.51,2026-10-17T16:44:26+00:00
+count gds txid41139,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid41139%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.43,2026-10-17T16:44:27+00:00
+count gene txid35525,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid35525%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.53,2026-10-17T16:44:28+00:00
+count nuccore txid35525,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid35525%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.51,2026-10-17T16:44:29+00:00
+count protein txid35525,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid35525%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.46,2026-10-17T16:44:30+00:00
+count assembly txid35525,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid35525%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:44:31+00:00
+count sra txid35525,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid35525%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.45,2026-10-17T16:44:32+00:00
+count biosample txid35525,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid35525%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.51,2026-10-17T16:44:33+00:00
+count bioproject txid35525,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid35525%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.44,2026-10-17T16:44:34+00:00
+count gds txid35525,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid35525%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.51,2026-10-17T16:44:35+00:00
+count gene txid6396,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid6396%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T16:44:35+00:00
+count nuccore txid6396,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid6396%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.46,2026-10-17T16:44:36+00:00
+count protein txid6396,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid6396%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.43,2026-10-17T16:44:37+00:00
+count assembly txid6396,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid6396%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:44:38+00:00
+count sra txid6396,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid6396%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.46,2026-10-17T16:44:39+00:00
+count biosample txid6396,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid6396%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.46,2026-10-17T16:44:40+00:00
+count bioproject txid6396,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid6396%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.48,2026-10-17T16:44:41+00:00
+count gds txid6396,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid6396%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,78.0,0.51,2026-10-17T16:44:42+00:00
+count gene txid9606,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid9606%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.45,2026-10-17T16:44:43+00:00
+count nuccore txid9606,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid9606%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,83.0,0.47,2026-10-17T16:44:44+00:00
+count protein txid9606,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid9606%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,82.0,0.41,2026-10-17T16:44:45+00:00
+count assembly txid9606,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=txid9606%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.51,2026-10-17T16:44:46+00:00
+count sra txid9606,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid9606%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,82.0,1.29,2026-10-17T16:44:47+00:00
+count biosample txid9606,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term=txid9606%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,83.0,0.45,2026-10-17T16:44:48+00:00
+count bioproject txid9606,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid9606%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,81.0,0.44,2026-10-17T16:44:49+00:00
+count gds txid9606,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=txid9606%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,82.0,0.41,2026-10-17T16:44:50+00:00
+esearch gene D. maidis,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&retmax=100,200,699.0,0.73,2026-10-17T16:45:11+00:00
+esummary gene D. maidis,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gene&id=77617909%2C77617906%2C77617903%2C77617902%2C77617900%2C77617899%2C77617893%2C77617892%2C77617890%2C77617889%2C77617888%2C77617883%2C77617882%2C77617878%2C77617876%2C77617911%2C77617910%2C77617908%2C77617907%2C77617905%2C77617904%2C77617901%2C77617898%2C77617897%2C77617896%2C77617895%2C77617894%2C77617891%2C77617887%2C77617886%2C77617885%2C77617884%2C77617881%2C77617880%2C77617879%2C77617877%2C77617875&retmode=json,200,22382.0,0.57,2026-10-17T16:45:12+00:00
+gene Dalbulus maidis,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.4,2026-10-17T16:45:24+00:00
+gene MT Dalbulus maidis,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74065%5BOrganism%3Aexp%5D+AND+mitochondrion%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.44,2026-10-17T16:45:25+00:00
+gene coding Dalbulus maidis,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74065%5BOrganism%3Aexp%5D+AND+%22protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.51,2026-10-17T16:45:26+00:00
+gene Macrosteles quadrilineatus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.39,2026-10-17T16:45:27+00:00
+gene MT Macrosteles quadrilineatus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74068%5BOrganism%3Aexp%5D+AND+mitochondrion%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.48,2026-10-17T16:45:28+00:00
+gene coding Macrosteles quadrilineatus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74068%5BOrganism%3Aexp%5D+AND+%22protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.48,2026-10-17T16:45:29+00:00
+gene Nephotettix cincticeps,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid94400%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.46,2026-10-17T16:45:29+00:00
+gene MT Nephotettix cincticeps,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid94400%5BOrganism%3Aexp%5D+AND+mitochondrion%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:45:30+00:00
+gene coding Nephotettix cincticeps,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid94400%5BOrganism%3Aexp%5D+AND+%22protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.22,2026-10-17T16:45:31+00:00
+gene Spiroplasma kunkelii,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.44,2026-10-17T16:45:32+00:00
+gene MT Spiroplasma kunkelii,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid47834%5BOrganism%3Aexp%5D+AND+mitochondrion%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.39,2026-10-17T16:45:33+00:00
+gene coding Spiroplasma kunkelii,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid47834%5BOrganism%3Aexp%5D+AND+%22protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.2,2026-10-17T16:45:33+00:00
+gene Ca. Phytoplasma zeae,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:45:34+00:00
+gene MT Ca. Phytoplasma zeae,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid202462%5BOrganism%3Aexp%5D+AND+mitochondrion%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.5,2026-10-17T16:45:35+00:00
+gene coding Ca. Phytoplasma zeae,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid202462%5BOrganism%3Aexp%5D+AND+%22protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,76.0,1.2,2026-10-17T16:45:37+00:00
+gene Maize rayado fino virus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid59749%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:45:38+00:00
+gene MT Maize rayado fino virus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid59749%5BOrganism%3Aexp%5D+AND+mitochondrion%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.39,2026-10-17T16:45:39+00:00
+gene coding Maize rayado fino virus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid59749%5BOrganism%3Aexp%5D+AND+%22protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:45:40+00:00
+gene Zea mays,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.42,2026-10-17T16:45:41+00:00
+gene MT Zea mays,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid4577%5BOrganism%3Aexp%5D+AND+mitochondrion%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:45:41+00:00
+gene coding Zea mays,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid4577%5BOrganism%3Aexp%5D+AND+%22protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.5,2026-10-17T16:45:42+00:00
+gene tot Dalbulus maidis,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.4,2026-10-17T16:45:55+00:00
+gene pc Dalbulus maidis,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74065%5BOrganism%3Aexp%5D+AND+%22genetype+protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,77.0,0.4,2026-10-17T16:45:55+00:00
+gene tot Macrosteles quadrilineatus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.22,2026-10-17T16:45:56+00:00
+gene pc Macrosteles quadrilineatus,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74068%5BOrganism%3Aexp%5D+AND+%22genetype+protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,80.0,0.59,2026-10-17T16:45:57+00:00
+gene tot Spiroplasma kunkelii,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.44,2026-10-17T16:45:58+00:00
+gene pc Spiroplasma kunkelii,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid47834%5BOrganism%3Aexp%5D+AND+%22genetype+protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,77.0,0.56,2026-10-17T16:45:59+00:00
+gene tot Ca. Phytoplasma zeae,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.46,2026-10-17T16:46:00+00:00
+gene pc Ca. Phytoplasma zeae,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid202462%5BOrganism%3Aexp%5D+AND+%22genetype+protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.42,2026-10-17T16:46:01+00:00
+gene tot Zea mays,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,80.0,0.4,2026-10-17T16:46:02+00:00
+gene pc Zea mays,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid4577%5BOrganism%3Aexp%5D+AND+%22genetype+protein+coding%22%5BProperties%5D&retmode=json&rettype=count,200,80.0,0.57,2026-10-17T16:46:03+00:00
+esearch gene Macrosteles,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&retmax=5,200,357.0,0.52,2026-10-17T16:46:04+00:00
+esummary gene Macrosteles,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gene&id=129005992%2C129005913%2C129005887%2C129005779%2C129005673&retmode=json,200,4026.0,0.46,2026-10-17T16:46:04+00:00
+datasets genome Dalbulus maidis,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/74065/dataset_report?filters.assembly_version=all_assemblies&page_size=100,200,13503.0,0.74,2026-10-17T16:46:21+00:00
+datasets genome Spiroplasma kunkelii,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/47834/dataset_report?filters.assembly_version=all_assemblies&page_size=100,200,7220.0,0.54,2026-10-17T16:46:22+00:00
+datasets genome Ca. Phytoplasma zeae,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/202462/dataset_report?filters.assembly_version=all_assemblies&page_size=100,200,7627.0,0.52,2026-10-17T16:46:22+00:00
+datasets genome Maize rayado fino virus,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/59749/dataset_report?filters.assembly_version=all_assemblies&page_size=100,200,4465.0,0.51,2026-10-17T16:46:23+00:00
+datasets genome Macrosteles quadrilineatus,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/74068/dataset_report?filters.assembly_version=all_assemblies&page_size=100,200,16815.0,0.57,2026-10-17T16:46:24+00:00
+datasets report GCA_975739785.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCA_975739785.1/dataset_report,200,5054.0,0.49,2026-10-17T16:46:39+00:00
+datasets report GCA_975739785.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCA_975739785.1/dataset_report,200,5054.0,0.54,2026-10-17T16:46:48+00:00
+datasets report GCA_054756405.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCA_054756405.1/dataset_report,200,3692.0,0.69,2026-10-17T16:46:49+00:00
+datasets report GCF_001274875.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_001274875.1/dataset_report,200,3775.0,0.5,2026-10-17T16:46:49+00:00
+datasets report GCF_001712875.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_001712875.1/dataset_report,200,3990.0,0.49,2026-10-17T16:46:50+00:00
+datasets report GCF_000862485.2,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000862485.2/dataset_report,200,1196.0,0.48,2026-10-17T16:46:51+00:00
+datasets report GCF_028750875.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_028750875.1/dataset_report,200,4172.0,0.49,2026-10-17T16:46:52+00:00
+datasets report GCF_902167145.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_902167145.1/dataset_report,200,5113.0,0.51,2026-10-17T16:46:53+00:00
+datasets taxid GCF_001274875.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_001274875.1/dataset_report,200,3775.0,0.61,2026-10-17T16:47:05+00:00
+datasets taxid GCF_001712875.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_001712875.1/dataset_report,200,3990.0,0.52,2026-10-17T16:47:05+00:00
+datasets taxid GCF_028750875.1,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_028750875.1/dataset_report,200,4172.0,0.54,2026-10-17T16:47:06+00:00
+gene 273035,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid273035%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.48,2026-10-17T16:47:07+00:00
+prot 273035,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid273035%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.46,2026-10-17T16:47:08+00:00
+prot refseq 273035,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid273035%5BOrganism%3Aexp%5D+AND+srcdb_refseq%5BProperties%5D&retmode=json&rettype=count,200,79.0,0.5,2026-10-17T16:47:09+00:00
+gene 47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.5,2026-10-17T16:47:10+00:00
+prot 47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid47834%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.48,2026-10-17T16:47:11+00:00
+prot refseq 47834,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid47834%5BOrganism%3Aexp%5D+AND+srcdb_refseq%5BProperties%5D&retmode=json&rettype=count,200,79.0,0.51,2026-10-17T16:47:12+00:00
+gene 202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:47:13+00:00
+prot 202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid202462%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,79.0,0.49,2026-10-17T16:47:14+00:00
+prot refseq 202462,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid202462%5BOrganism%3Aexp%5D+AND+srcdb_refseq%5BProperties%5D&retmode=json&rettype=count,200,78.0,0.24,2026-10-17T16:47:14+00:00
+nuccore Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.47,2026-10-17T16:47:33+00:00
+nuccore TSA master Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid74065%5BOrganism%3Aexp%5D+AND+tsa_master%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.47,2026-10-17T16:47:34+00:00
+nuccore refseq Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid74065%5BOrganism%3Aexp%5D+AND+srcdb_refseq%5BProperties%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:47:35+00:00
+sra Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,77.0,0.39,2026-10-17T16:47:36+00:00
+sra rnaseq Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid74065%5BOrganism%3Aexp%5D+AND+%22rna+seq%22%5BStrategy%5D&retmode=json&rettype=count,200,77.0,1.09,2026-10-17T16:47:38+00:00
+sra wgs Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid74065%5BOrganism%3Aexp%5D+AND+%22wgs%22%5BStrategy%5D&retmode=json&rettype=count,200,77.0,0.73,2026-10-17T16:47:39+00:00
+sra transcriptomic Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=txid74065%5BOrganism%3Aexp%5D+AND+%22transcriptomic%22%5BSource%5D&retmode=json&rettype=count,200,77.0,0.49,2026-10-17T16:47:40+00:00
+TSA master ids,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=txid74065%5BOrganism%3Aexp%5D+AND+tsa_master%5BProperties%5D&retmode=json,200,439.0,0.41,2026-10-17T16:47:41+00:00
+esummary TSA,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=nuccore&id=2054345881%2C1789777666%2C1524754193&retmode=json,200,2438.0,0.4,2026-10-17T16:47:41+00:00
+download_summary GCA_975739785.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCA_975739785.1/download_summary?include_annotation_type=GENOME_FASTA,200,982.0,1.08,2026-10-17T16:47:58+00:00
+download_summary GCA_054756405.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCA_054756405.1/download_summary?include_annotation_type=GENOME_FASTA,200,980.0,0.72,2026-10-17T16:47:59+00:00
+download_summary GCF_902167145.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_902167145.1/download_summary?include_annotation_type=GENOME_FASTA,200,1150.0,0.86,2026-10-17T16:48:00+00:00
+download_summary GCF_902167145.1 RNA_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_902167145.1/download_summary?include_annotation_type=RNA_FASTA,200,1137.0,1.3,2026-10-17T16:48:02+00:00
+download_summary GCF_902167145.1 PROT_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_902167145.1/download_summary?include_annotation_type=PROT_FASTA,200,1147.0,1.64,2026-10-17T16:48:04+00:00
+download_summary GCF_902167145.1 GENOME_GFF,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_902167145.1/download_summary?include_annotation_type=GENOME_GFF,200,1141.0,1.02,2026-10-17T16:48:05+00:00
+download_summary GCF_028750875.1 RNA_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_028750875.1/download_summary?include_annotation_type=RNA_FASTA,200,1135.0,1.03,2026-10-17T16:48:07+00:00
+download_summary GCF_028750875.1 PROT_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_028750875.1/download_summary?include_annotation_type=PROT_FASTA,200,1144.0,0.99,2026-10-17T16:48:08+00:00
+download_summary GCF_001274875.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_001274875.1/download_summary?include_annotation_type=GENOME_FASTA,200,1095.0,1.33,2026-10-17T16:48:10+00:00
+download_summary GCF_001712875.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_001712875.1/download_summary?include_annotation_type=GENOME_FASTA,200,1098.0,0.84,2026-10-17T16:48:11+00:00
+download_summary GCF_000862485.2 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000862485.2/download_summary?include_annotation_type=GENOME_FASTA,200,1107.0,0.91,2026-10-17T16:48:12+00:00
+datasets download MRFV,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000862485.2/download?include_annotation_type=GENOME_FASTA&include_annotation_type=GENOME_GFF&include_annotation_type=PROT_FASTA&include_annotation_type=CDS_FASTA,200,10394.0,,2026-10-17T16:48:27+00:00
+HEAD ftp TSA GITV01 D. maidis,https://ftp.ncbi.nlm.nih.gov/sra/wgs_aux/GI/TV/GITV01/GITV01.1.fsa_nt.gz,404,,,2026-10-17T16:48:40+00:00
+HEAD ftp TSA GHCC01 D. maidis,https://ftp.ncbi.nlm.nih.gov/sra/wgs_aux/GH/CC/GHCC01/GHCC01.1.fsa_nt.gz,404,,,2026-10-17T16:48:40+00:00
+HEAD ftp TSA GCWP01 D. maidis,https://ftp.ncbi.nlm.nih.gov/sra/wgs_aux/GC/WP/GCWP01/GCWP01.1.fsa_nt.gz,404,,,2026-10-17T16:48:40+00:00
+HEAD ftp RNA Macrosteles,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/750/875/GCF_028750875.1_UCM_ALF_1.0/GCF_028750875.1_UCM_ALF_1.0_rna.fna.gz,200,21379166.0,,2026-10-17T16:48:40+00:00
+HEAD ftp RNA maiz B73,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna.fna.gz,200,37775861.0,,2026-10-17T16:48:40+00:00
+HEAD ftp dir blast db,https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/,200,,,2026-10-17T16:48:41+00:00
+HEAD TSA GITV fasta,https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/tsa.GITV.1.fsa_nt.gz,200,31435495.0,,2026-10-17T16:49:14+00:00
+HEAD TSA GHCC fasta,https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/tsa.GHCC.1.fsa_nt.gz,200,10735955.0,,2026-10-17T16:49:14+00:00
+HEAD TSA GCWP fasta,https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/tsa.GCWP.1.fsa_nt.gz,200,7204779.0,,2026-10-17T16:49:14+00:00
+HEAD TSA GITV gbff,https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/tsa.GITV.1.gbff.gz,200,45891893.0,,2026-10-17T16:49:14+00:00
+GET stats.tsa.GITV,https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/stats.tsa.GITV,200,96.0,,2026-10-17T16:49:15+00:00
+GET stats.tsa.GHCC,https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/stats.tsa.GHCC,200,94.0,,2026-10-17T16:49:34+00:00
+GET stats.tsa.GCWP,https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/stats.tsa.GCWP,200,94.0,,2026-10-17T16:49:34+00:00
+elink gene->nuccore 921087,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=gene&db=nuccore&id=921087&retmode=json,200,188.0,0.55,2026-10-17T16:49:35+00:00
+elink gene->protein 921087,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=gene&db=protein&id=921087&retmode=json,200,263.0,0.65,2026-10-17T16:49:36+00:00
+elink gene->taxonomy 921087,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=gene&db=taxonomy&id=921087&retmode=json,200,172.0,0.49,2026-10-17T16:49:37+00:00
+elink gene->pubmed 921087,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=gene&db=pubmed&id=921087&retmode=json,200,171.0,0.5,2026-10-17T16:49:38+00:00
+esearch assembly GCF_028750875.1,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=assembly&term=GCF_028750875.1&retmode=json,200,310.0,0.45,2026-10-17T16:49:57+00:00
+elink assembly->biosample 15950891,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=assembly&db=biosample&id=15950891&retmode=json,429,88.0,0.38,2026-10-17T16:49:58+00:00
+elink assembly->biosample,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=assembly&db=biosample&id=15950891&retmode=json,200,187.0,0.54,2026-10-17T16:50:07+00:00
+elink assembly->bioproject,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=assembly&db=bioproject&id=15950891&retmode=json,200,283.0,0.52,2026-10-17T16:50:08+00:00
+elink biosample->sra,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=biosample&db=sra&id=32944381&retmode=json,200,177.0,0.54,2026-10-17T16:50:09+00:00
+efetch NC_002786.2 1-120,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_002786.2&rettype=fasta&retmode=text&seq_start=1&seq_stop=120,200,203.0,0.31,2026-10-17T16:50:10+00:00
+uniprot idmapping NP_115454.2,https://rest.uniprot.org/idmapping/run (POST),200,93.0,,2026-10-17T16:50:45+00:00
+kegg list organism,https://rest.kegg.jp/list/organism,400,0.0,,2026-10-17T16:50:47+00:00
+esearch protein refseq Sk,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=protein&term=txid47834%5BOrganism%3Aexp%5D+AND+srcdb_refseq%5BProperties%5D&retmode=json&retmax=3,200,450.0,0.46,2026-10-17T16:51:03+00:00
+esummary protein Sk,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=protein&id=922983852%2C922983833%2C1179913786&retmode=json,200,1820.0,0.76,2026-10-17T16:51:04+00:00
+uniprot idmapping proteinas RefSeq de S. kunkelii,POST https://rest.uniprot.org/idmapping/run + status/lUi8DFUgE2,200,11436.0,,2026-10-17T16:51:18+00:00
+kegg list/genome,https://rest.kegg.jp/list/genome,200,481092.0,,2026-10-17T16:51:40+00:00
+kegg find/genome/kunkelii,https://rest.kegg.jp/find/genome/kunkelii,200,40.0,,2026-10-17T16:51:41+00:00
+kegg find/genome/zeae,https://rest.kegg.jp/find/genome/zeae,200,315.0,,2026-10-17T16:51:41+00:00
+datasets version,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/version,200,51.0,,2026-10-17T16:51:42+00:00
+kegg conv/ncbi-proteinid/mbp,https://rest.kegg.jp/conv/ncbi-proteinid/mbp,200,20855.0,,2026-10-17T16:51:52+00:00
+kegg conv/ncbi-geneid/mbp,https://rest.kegg.jp/conv/ncbi-geneid/mbp,400,0.0,,2026-10-17T16:51:53+00:00
+kegg conv/uniprot/skn,https://rest.kegg.jp/conv/uniprot/skn,200,49466.0,,2026-10-17T16:51:56+00:00
+efetch ipg AOF54549,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=AOF54549&rettype=ipg&retmode=text,200,381.0,0.98,2026-10-17T16:52:04+00:00
+politicas NCBI,https://www.ncbi.nlm.nih.gov/home/about/policies/,200,38936.0,,2026-10-17T16:52:27+00:00
+politicas Datasets,https://www.ncbi.nlm.nih.gov/datasets/docs/v2/policies/,404,135070.0,,2026-10-17T16:52:28+00:00
+GenBank home,https://www.ncbi.nlm.nih.gov/genbank/,200,37829.0,,2026-10-17T16:52:29+00:00
+pagina datasets/genome,https://www.ncbi.nlm.nih.gov/datasets/genome/,200,26954.0,,2026-10-17T16:52:43+00:00
+bioproject Pellegrinetti,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=PRJNA1294367&retmode=json&rettype=count,200,76.0,0.4,2026-10-17T16:52:44+00:00
+bioproject Pellegrinetti ids,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=PRJNA1294367&retmode=json,200,303.0,0.4,2026-10-17T16:52:45+00:00
+bioproject Pellegrinetti esummary,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=bioproject&id=1294367&retmode=json,200,1645.0,0.39,2026-10-17T16:52:45+00:00
+elink bioproject->assembly,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=bioproject&db=assembly&id=1294367&retmode=json,200,99.0,0.59,2026-10-17T16:52:46+00:00
+elink bioproject->biosample,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=bioproject&db=biosample&id=1294367&retmode=json,200,745.0,0.54,2026-10-17T16:52:48+00:00
+elink bioproject->sra,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=bioproject&db=sra&id=1294367&retmode=json,200,99.0,0.54,2026-10-17T16:52:49+00:00
+elink bioproject->nuccore,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=bioproject&db=nuccore&id=1294367&retmode=json,200,274.0,0.34,2026-10-17T16:52:49+00:00
+elink bioproject->nuccore PRJNA1294367,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=bioproject&db=nuccore&id=1294367&retmode=json,200,274.0,0.59,2026-10-17T16:53:03+00:00
+esummary nuccore PRJNA1294367,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=nuccore&id=3284288254&retmode=json,200,886.0,0.48,2026-10-17T16:53:04+00:00
+esearch bioproject Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&retmax=30,200,451.0,0.45,2026-10-17T16:53:05+00:00
+esummary bioproject Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=bioproject&id=1352340%2C1352339%2C1351401%2C1351400%2C1282137%2C1120083%2C927516%2C852223%2C780295%2C631706%2C609979%2C579843%2C562189%2C505619%2C505618%2C318849%2C272239&retmode=json,200,25415.0,0.5,2026-10-17T16:53:06+00:00
+sra PRJNA631706,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=PRJNA631706%5BBioProject%5D&retmode=json&rettype=count,200,77.0,0.57,2026-10-17T16:53:17+00:00
+sra PRJNA579843,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=PRJNA579843%5BBioProject%5D&retmode=json&rettype=count,200,76.0,0.41,2026-10-17T16:53:18+00:00
+sra PRJNA505619,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=PRJNA505619%5BBioProject%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:53:19+00:00
+sra PRJNA318849,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=PRJNA318849%5BBioProject%5D&retmode=json&rettype=count,200,76.0,0.4,2026-10-17T16:53:20+00:00
+sra PRJNA609979,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=PRJNA609979%5BBioProject%5D&retmode=json&rettype=count,200,76.0,0.48,2026-10-17T16:53:21+00:00
+sra PRJEB96547,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=PRJEB96547%5BBioProject%5D&retmode=json&rettype=count,200,76.0,0.52,2026-10-17T16:53:21+00:00
+sra PRJNA1282137,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=PRJNA1282137%5BBioProject%5D&retmode=json&rettype=count,200,76.0,0.51,2026-10-17T16:53:22+00:00
+annotinfo Dm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=annotinfo&term=txid74065%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.45,2026-10-17T16:53:23+00:00
+annotinfo Mq,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=annotinfo&term=txid74068%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.52,2026-10-17T16:53:24+00:00
+annotinfo Zm,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=annotinfo&term=txid4577%5BOrganism%3Aexp%5D&retmode=json&rettype=count,200,76.0,0.39,2026-10-17T16:53:25+00:00
+download_summary GCA_975739785.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCA_975739785.1/download_summary?include_annotation_type=GENOME_FASTA,200,982.0,0.98,2026-10-17T18:28:45+00:00
+download_summary GCA_054756405.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCA_054756405.1/download_summary?include_annotation_type=GENOME_FASTA,200,980.0,0.91,2026-10-17T18:28:46+00:00
+download_summary GCF_902167145.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_902167145.1/download_summary?include_annotation_type=GENOME_FASTA,200,1150.0,0.82,2026-10-17T18:28:47+00:00
+download_summary GCF_028750875.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_028750875.1/download_summary?include_annotation_type=GENOME_FASTA,200,1148.0,0.9,2026-10-17T18:28:49+00:00
+download_summary GCF_001274875.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_001274875.1/download_summary?include_annotation_type=GENOME_FASTA,200,1095.0,0.84,2026-10-17T18:28:50+00:00
+download_summary GCF_001712875.1 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_001712875.1/download_summary?include_annotation_type=GENOME_FASTA,200,1098.0,1.03,2026-10-17T18:28:51+00:00
+download_summary GCF_000862485.2 GENOME_FASTA,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000862485.2/download_summary?include_annotation_type=GENOME_FASTA,200,1107.0,0.92,2026-10-17T18:28:52+00:00
+efetch ipg AOF54549 (bis),https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=AOF54549&rettype=ipg&retmode=text,200,381.0,1.36,2026-10-17T18:33:29+00:00
+verificacion de enlace,https://www.ncbi.nlm.nih.gov/,200,39223.0,,2026-10-17T18:34:16+00:00
+verificacion de enlace,https://www.ncbi.nlm.nih.gov/datasets/genome/,200,26954.0,,2026-10-17T18:34:16+00:00
+verificacion de enlace,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?retmode=json,200,462.0,,2026-10-17T18:34:17+00:00
+verificacion de enlace,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/version,200,51.0,,2026-10-17T18:34:17+00:00
+verificacion de enlace,https://ftp.ncbi.nlm.nih.gov/genomes/,200,1915.0,,2026-10-17T18:34:18+00:00
+verificacion de enlace,https://www.ncbi.nlm.nih.gov/datasets/docs/v2/policies/,404,135070.0,,2026-10-17T18:34:18+00:00
+GenBank home (bis),https://www.ncbi.nlm.nih.gov/genbank/,200,37829.0,,2026-10-17T18:34:19+00:00
+efetch taxonomy varios,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=taxonomy&id=2025388%2C3052767%2C59749%2C202462%2C47834%2C74065&retmode=xml,200,18013.0,0.7,2026-10-17T18:35:13+00:00
+datasets genome maize striate mosaic virus,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/2025388/dataset_report?filters.assembly_version=all_assemblies&page_size=100,200,4731.0,0.5,2026-10-17T18:35:29+00:00
+datasets genome Tenuivirus zeae / Maize stripe virus,https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/3052767/dataset_report?filters.assembly_version=all_assemblies&page_size=100,200,2647.0,0.49,2026-10-17T18:35:30+00:00
+cdd PIWI,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=cdd&term=PIWI&retmode=json&rettype=count,200,77.0,0.22,2026-10-17T18:44:01+00:00
+cdd dicer,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=cdd&term=dicer&retmode=json&rettype=count,200,77.0,0.45,2026-10-17T18:44:02+00:00
+cdd RNaseIII,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=cdd&term=RNase+III&retmode=json&rettype=count,200,77.0,0.46,2026-10-17T18:44:03+00:00
+esearch cdd PIWI ids,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=cdd&term=PIWI&retmode=json&retmax=3,200,306.0,0.57,2026-10-17T18:44:04+00:00
+esummary cdd PIWI,https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=cdd&id=475127%2C475120%2C472832&retmode=json,200,3575.0,0.31,2026-10-17T18:44:05+00:00
+esearch cdd PIWI[Title],https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=cdd&term=PIWI%5BTitle%5D&retmode=json&retmax=5,200,298.0,0.34,2026-10-17T18:44:19+00:00
+esummary cdd PIWI[Title],https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=cdd&id=441040%2C412485%2C396649%2C214930&retmode=json,200,3957.0,0.22,2026-10-17T18:44:20+00:00

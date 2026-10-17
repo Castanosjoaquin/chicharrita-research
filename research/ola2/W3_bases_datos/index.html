@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>W3 — Bases de datos del corpus</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .controls{display:flex; flex-wrap:wrap; gap:14px; margin:18px 0 6px; align-items:flex-end}
+  .controls label{display:block; font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin-bottom:5px}
+  .controls select{font:inherit; font-size:.92rem; padding:7px 10px; background:var(--surface); color:var(--text);
+    border:1px solid var(--line); border-radius:0; min-width:210px}
+  .controls .count{font-size:.88rem; color:var(--text-dim); padding-bottom:9px}
+  .muted{color:var(--text-dim); font-size:.84rem; word-break:break-all}
+  @media (max-width:640px){ table{min-width:560px} }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigathón Y-Hat &middot; ola 2 &middot; línea W3</p>
+    <h1>Las bases de datos del corpus: qué contienen y cómo se consultan</h1>
+    <p class="sub">Los dos enlaces del documento oficial no son dos bases de datos: son un portal
+    con 38 bases Entrez y una interfaz de descarga sobre el mismo acervo. Esta página resume qué
+    hay en cada una para nuestro problema, con 409 consultas ejecutadas el 17 de octubre de 2026.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">Lo que hay que saber antes de buscar</h2>
+    <p class="lead"><strong>El portal que el organizador rotula «database general de genes» no
+    tiene los genes de la chicharrita.</strong> La base <em>Gene</em> del NCBI se puebla desde la
+    anotación de RefSeq, y los tres ensamblados de <em>Dalbulus maidis</em> no están anotados. Sus
+    37 registros son los 13 genes codificantes del mitogenoma, 2 ARN ribosomales y 22 ARN de
+    transferencia. Ni un gen nuclear.</p>
+    <p>Lo mismo, por otro motivo, con los patógenos: '<em>Candidatus</em> Phytoplasma zeae' tiene
+    un genoma completo y reanotado en junio de 2026 con 524 genes codificantes, y <strong>cero</strong>
+    registros en la base <em>Gene</em>. La anotación existe, pero vive en el GFF3 del ensamblado y en
+    la base <em>Protein</em>.</p>
+    <p>Lo que sí hay, y es con lo que se trabaja: tres transcriptomas ensamblados del vector
+    —56.117, 55.286 y 25.662 secuencias—, el proteoma anotado de un cicadélido pariente,
+    <em>Macrosteles quadrilineatus</em>, con 21.979 proteínas, los dos genomas de los patógenos con
+    su anotación, y 16 corridas de RNA-Seq del vector expuesto a MRFV. Todo junto, 117,8 MB.</p>
+  </section>
+
+  <div class="calls">
+    <div class="call stop">
+      <p class="k">El vacío central</p>
+      <p class="v">Cero genes nucleares del vector</p>
+      <p class="n">Tres ensamblados, ninguno anotado; <code>annotinfo</code> lo confirma con 0 registros.</p>
+    </div>
+    <div class="call warn">
+      <p class="k">La trampa de la base Gene</p>
+      <p class="v">Genoma anotado ≠ genes indexados</p>
+      <p class="n">El fitoplasma tiene 524 genes codificantes y 0 registros en <code>gene</code>.</p>
+    </div>
+    <div class="call ok">
+      <p class="k">El hallazgo aprovechable</p>
+      <p class="v"><em>Macrosteles quadrilineatus</em></p>
+      <p class="n">Cicadélido de la misma familia, con anotación RefSeq y 21.979 proteínas.</p>
+    </div>
+    <div class="call ok">
+      <p class="k">Expresión que no sabíamos que existía</p>
+      <p class="v">PRJNA631706</p>
+      <p class="n">16 RNA-Seq del vector, expuesto a MRFV contra naíf, 4 h y 7 días. 42.305 MB.</p>
+    </div>
+  </div>
+
+  <h2>Las bases, filtrables</h2>
+  <p>El filtro de tipo de dato responde «¿para qué sirve?» y el de organismo, «¿tiene lo que me
+  importa?». Las marcadas <span class="tag e">en el .docx</span> son las dos que nombra el documento
+  oficial; el resto son bases del mismo portal o recursos externos que agregamos nosotros.</p>
+
+  <div class="controls">
+    <div>
+      <label for="ftipo">Tipo de dato</label>
+      <select id="ftipo">
+        <option value="">Todos</option>
+        <option value="blancos">Encontrar genes blanco</option>
+        <option value="off-target">Tamizar off-targets</option>
+        <option value="secuencias">Secuencias de referencia</option>
+        <option value="expresion">Datos de expresión</option>
+        <option value="anotacion">Anotación funcional</option>
+        <option value="indice">Índice de qué existe</option>
+      </select>
+    </div>
+    <div>
+      <label for="forg">Organismo cubierto</label>
+      <select id="forg">
+        <option value="">Todos</option>
+        <option value="vector">Dalbulus maidis</option>
+        <option value="patogeno">Patógenos del complejo</option>
+        <option value="maiz">Zea mays</option>
+        <option value="pariente">Insectos emparentados</option>
+        <option value="noobjetivo">Organismos no objetivo</option>
+      </select>
+    </div>
+    <p class="count" id="cuenta"></p>
+  </div>
+
+  <div class="tw">
+  <table id="tbases">
+    <caption>Dieciséis recursos, con lo que responden y lo que no. Estado del enlace verificado el 17 de octubre de 2026.</caption>
+    <thead><tr><th>Recurso</th><th>Qué cubre</th><th>Acceso</th><th>Responde</th><th>No responde</th><th>Enlace</th></tr></thead>
+    <tbody>
+    <tr data-tipos="secuencias off-target indice" data-orgs="maiz noobjetivo pariente patogeno vector">
+      <td><strong>NCBI (portal Entrez)</strong> <span class="tag e">en el .docx</span><br><span class="muted">https://www.ncbi.nlm.nih.gov/</span></td>
+      <td>Portal que expone 38 bases Entrez (verificado con einfo el 2026-10-17): secuencias, genes, proyectos, muestras, lecturas crudas, literatura y taxonomía.</td>
+      <td>web, api, ftp, bulk</td>
+      <td>secuencias de referencia; tamizaje de off-targets; índice de qué datos existen</td>
+      <td>anotación funcional curada; expresión del vector por tejido</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="secuencias off-target anotacion" data-orgs="maiz noobjetivo pariente patogeno vector">
+      <td><strong>NCBI Datasets (genomas y transcriptomas)</strong> <span class="tag e">en el .docx</span><br><span class="muted">https://www.ncbi.nlm.nih.gov/datasets/genome/</span></td>
+      <td>Ensamblados genómicos GenBank (GCA) y RefSeq (GCF) de todos los taxones, con sus métricas, su anotación cuando existe y sus archivos de descarga. Reemplaza al recurso web Assembly, retirado por el NCBI.</td>
+      <td>web, api, bulk, ftp</td>
+      <td>secuencias de referencia; genomas y proteomas de patógenos; transcriptoma y proteoma de maíz y de Macrosteles</td>
+      <td>genes anotados de Dalbulus maidis: sus tres ensamblados no tienen anotación</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="blancos anotacion" data-orgs="maiz noobjetivo pariente patogeno vector">
+      <td><strong>NCBI Gene</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/gene/</span></td>
+      <td>Loci con identificador estable, poblados a partir de la anotación de RefSeq. Sin anotación RefSeq no hay registros para el organismo.</td>
+      <td>web, api, ftp</td>
+      <td>nombre y descripción de genes de maíz y de Macrosteles</td>
+      <td>Dalbulus maidis: sus 37 registros son todos mitocondriales; Candidatus Phytoplasma zeae: cero registros pese a tener genoma anotado</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="secuencias off-target blancos" data-orgs="maiz noobjetivo pariente patogeno vector">
+      <td><strong>NCBI Nucleotide (nuccore)</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/nuccore/</span></td>
+      <td>GenBank, RefSeq, WGS y TSA en una sola base; los subconjuntos se separan con filtros de Properties.</td>
+      <td>web, api, ftp</td>
+      <td>bases locales de tamizaje; los tres transcriptomas TSA del vector; secuencias de referencia</td>
+      <td>anotación funcional</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="secuencias blancos anotacion" data-orgs="maiz noobjetivo pariente patogeno vector">
+      <td><strong>NCBI Protein</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/protein/</span></td>
+      <td>Secuencias proteicas de GenBank, RefSeq y PDB.</td>
+      <td>web, api, ftp</td>
+      <td>proteomas de los patógenos; ortología hacia Macrosteles</td>
+      <td>no distingue por sí sola proteínas esenciales</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="anotacion" data-orgs="ninguno">
+      <td><strong>Identical Protein Groups (IPG)</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/ipg/</span></td>
+      <td>Agrupa proteínas idénticas de distintas fuentes; es el puente entre accesiones de GenBank y de RefSeq.</td>
+      <td>web, api, ftp</td>
+      <td>cruzar identificadores entre la versión GCA y la GCF de un mismo genoma</td>
+      <td>buscar por función</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="indice" data-orgs="maiz noobjetivo pariente patogeno vector">
+      <td><strong>NCBI BioProject</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/bioproject/</span></td>
+      <td>Descripción de proyectos de secuenciación.</td>
+      <td>web, api, ftp</td>
+      <td>saber qué experimentos existen sobre el vector</td>
+      <td>datos: sólo describe</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="indice" data-orgs="maiz noobjetivo pariente patogeno vector">
+      <td><strong>NCBI BioSample</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/biosample/</span></td>
+      <td>Descripción de las muestras biológicas.</td>
+      <td>web, api, ftp</td>
+      <td>metadatos de las muestras del vector</td>
+      <td>datos de secuencia</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="expresion" data-orgs="maiz noobjetivo pariente patogeno vector">
+      <td><strong>NCBI SRA</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/sra/</span></td>
+      <td>Lecturas crudas. Única fuente pública de expresión del vector.</td>
+      <td>web, api, ftp</td>
+      <td>datos de expresión del vector (PRJNA631706: 16 corridas, 42.305 MB); lecturas para ensamblar o cuantificar</td>
+      <td>resultados procesados: hay que correr la cadena de análisis</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="expresion" data-orgs="maiz noobjetivo pariente">
+      <td><strong>NCBI GEO DataSets</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/gds/</span></td>
+      <td>Series y muestras de expresión curadas.</td>
+      <td>web, api, ftp</td>
+      <td>expresión en maíz (24.701 conjuntos)</td>
+      <td>expresión en Dalbulus maidis, Spiroplasma kunkelii, el fitoplasma o los virus: cero registros</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="indice" data-orgs="ninguno">
+      <td><strong>NCBI Taxonomy</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/taxonomy/</span></td>
+      <td>Un registro por taxón, con linaje completo.</td>
+      <td>web, api, ftp</td>
+      <td>delimitar el universo de cada consulta y del tamizaje</td>
+      <td>secuencias</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="indice anotacion" data-orgs="ninguno">
+      <td><strong>NCBI Annotinfo</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/annotinfo/</span></td>
+      <td>Registro de las corridas de anotación del NCBI.</td>
+      <td>web, api, ftp</td>
+      <td>verificar si un ensamblado tiene anotación</td>
+      <td>secuencias</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="anotacion" data-orgs="ninguno">
+      <td><strong>NCBI Conserved Domain Database</strong><br><span class="muted">https://www.ncbi.nlm.nih.gov/cdd/</span></td>
+      <td>Modelos de dominios conservados.</td>
+      <td>web, api, ftp</td>
+      <td>anotación funcional de proteínas sin ortólogo evidente</td>
+      <td>expresión; secuencias completas</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="secuencias off-target" data-orgs="maiz pariente patogeno vector">
+      <td><strong>NCBI FTP</strong><br><span class="muted">https://ftp.ncbi.nlm.nih.gov/</span></td>
+      <td>Volcados masivos: genomes/all/GC{A,F}/..., genbank/tsa/<inicial>/, gene/DATA/, blast/db/.</td>
+      <td>ftp, bulk</td>
+      <td>descarga masiva con tamaño conocido de antemano</td>
+      <td>consultas selectivas</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="anotacion blancos" data-orgs="maiz pariente patogeno">
+      <td><strong>UniProtKB</strong><br><span class="muted">https://rest.uniprot.org/</span></td>
+      <td>Proteínas revisadas (Swiss-Prot) y no revisadas (TrEMBL), con anotación funcional y mapeo de identificadores.</td>
+      <td>web, api, bulk</td>
+      <td>anotación funcional; cruce RefSeq ↔ UniProt</td>
+      <td>proteínas de MRFV: NP_115454.2 no tiene entrada en UniProtKB, sólo UniParc</td>
+      <td>ok</td>
+    </tr>
+    <tr data-tipos="anotacion blancos" data-orgs="maiz patogeno">
+      <td><strong>KEGG</strong><br><span class="muted">https://rest.kegg.jp/</span></td>
+      <td>Vías metabólicas, ortología KO y genomas anotados. Incluye los dos patógenos: skn (T04056, Spiroplasma kunkelii CR2-3x) y mbp (T04456, Candidatus Phytoplasma zeae M3).</td>
+      <td>web, api</td>
+      <td>argumentar esencialidad de un gen blanco; cruce KEGG ↔ NCBI ↔ UniProt</td>
+      <td>Dalbulus maidis: no tiene organismo en KEGG; conv/ncbi-geneid/mbp devuelve HTTP 400</td>
+      <td>ok</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Cobertura medida, organismo por organismo</h2>
+  <p>Una consulta por celda: <code>esearch</code> con <code>txid&lt;TAXID&gt;[Organism:exp]</code>.
+  Las cifras son del 17 de octubre de 2026.</p>
+  <div class="tw">
+  <table>
+    <caption>Registros por organismo en ocho bases Entrez.</caption>
+    <thead><tr><th>Organismo</th><th>TaxID</th><th>gene</th><th>nuccore</th><th>protein</th><th>assembly</th><th>sra</th><th>biosample</th><th>bioproject</th><th>gds</th></tr></thead>
+    <tbody>
+    <tr><td>Dalbulus maidis</td><td class="num">74065</td><td class="num">37</td><td class="num">92</td><td class="num">87</td><td class="num">3</td><td class="num">37</td><td class="num">45</td><td class="num">17</td><td class="num">0</td></tr>
+    <tr><td>Cicadellidae (familia)</td><td class="num">30102</td><td class="num">56.026</td><td class="num">347.492</td><td class="num">333.699</td><td class="num">59</td><td class="num">2.930</td><td class="num">3.930</td><td class="num">636</td><td class="num">25</td></tr>
+    <tr><td>Zea mays</td><td class="num">4577</td><td class="num">72.398</td><td class="num">4.890.322</td><td class="num">377.650</td><td class="num">204</td><td class="num">186.342</td><td class="num">167.801</td><td class="num">6.499</td><td class="num">24.701</td></tr>
+    <tr><td>Spiroplasma kunkelii</td><td class="num">47834</td><td class="num">20</td><td class="num">507</td><td class="num">3.647</td><td class="num">1</td><td class="num">1</td><td class="num">6</td><td class="num">3</td><td class="num">0</td></tr>
+    <tr><td>Ca. Phytoplasma zeae</td><td class="num">202462</td><td class="num">0</td><td class="num">78</td><td class="num">1.066</td><td class="num">1</td><td class="num">6</td><td class="num">6</td><td class="num">4</td><td class="num">0</td></tr>
+    <tr><td>Maize rayado fino virus</td><td class="num">59749</td><td class="num">3</td><td class="num">71</td><td class="num">67</td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td>Maize striate mosaic virus</td><td class="num">2025388</td><td class="num">9</td><td class="num">19</td><td class="num">73</td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td>Diaphorina citri</td><td class="num">121845</td><td class="num">31.912</td><td class="num">252.391</td><td class="num">95.854</td><td class="num">10</td><td class="num">808</td><td class="num">1.248</td><td class="num">86</td><td class="num">14</td></tr>
+    <tr><td>Macrosteles quadrilineatus</td><td class="num">74068</td><td class="num">24.179</td><td class="num">38.771</td><td class="num">35.221</td><td class="num">3</td><td class="num">34</td><td class="num">41</td><td class="num">15</td><td class="num">0</td></tr>
+    <tr><td>Nilaparvata lugens</td><td class="num">108931</td><td class="num">29.502</td><td class="num">338.438</td><td class="num">35.943</td><td class="num">4</td><td class="num">2.187</td><td class="num">2.261</td><td class="num">200</td><td class="num">36</td></tr>
+    <tr><td>Tribolium castaneum</td><td class="num">7070</td><td class="num">19.371</td><td class="num">129.093</td><td class="num">42.666</td><td class="num">7</td><td class="num">2.636</td><td class="num">2.579</td><td class="num">149</td><td class="num">793</td></tr>
+    <tr><td>Apis mellifera</td><td class="num">7460</td><td class="num">21.375</td><td class="num">398.812</td><td class="num">62.955</td><td class="num">17</td><td class="num">26.520</td><td class="num">35.878</td><td class="num">728</td><td class="num">3.272</td></tr>
+    <tr><td>Bombus terrestris</td><td class="num">30195</td><td class="num">15.804</td><td class="num">303.519</td><td class="num">28.096</td><td class="num">5</td><td class="num">4.860</td><td class="num">5.665</td><td class="num">101</td><td class="num">224</td></tr>
+    <tr><td>Chrysoperla carnea</td><td class="num">189513</td><td class="num">15.868</td><td class="num">20.224</td><td class="num">17.827</td><td class="num">5</td><td class="num">23</td><td class="num">20</td><td class="num">13</td><td class="num">0</td></tr>
+    <tr><td>Coccinella septempunctata</td><td class="num">41139</td><td class="num">16.934</td><td class="num">26.554</td><td class="num">24.091</td><td class="num">3</td><td class="num">293</td><td class="num">297</td><td class="num">30</td><td class="num">5</td></tr>
+    <tr><td>Daphnia magna</td><td class="num">35525</td><td class="num">33.021</td><td class="num">601.688</td><td class="num">622.453</td><td class="num">14</td><td class="num">6.791</td><td class="num">6.856</td><td class="num">184</td><td class="num">3.037</td></tr>
+    <tr><td>Eisenia fetida</td><td class="num">6396</td><td class="num">37</td><td class="num">5.544</td><td class="num">764</td><td class="num">2</td><td class="num">582</td><td class="num">704</td><td class="num">68</td><td class="num">586</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p class="t">Lo que no corrió</p>
+    <p>El cliente de línea de comandos <code>datasets</code> 18.39.0 se instaló desde Bioconda y
+    responde <code>--version</code>, pero toda llamada de red falla con un error de verificación de
+    certificado contra el proxy del entorno, también forzando <code>SSL_CERT_FILE</code>. Las mismas
+    consultas se resolvieron por REST contra la misma API y la misma versión del servicio. EDirect
+    sí funcionó y es la vía de línea de comandos que documentamos.</p>
+  </div>
+
+  <h2>Qué cambia respecto de la ola 1</h2>
+  <p>La lista que el equipo armó a ciegas acertó los recursos y los usos. Esta ola agrega tres
+  cosas que faltaban —los otros dos transcriptomas TSA del vector, el proteoma anotado de
+  <em>Macrosteles</em> y el proyecto PRJNA631706— y corrige dos: el recurso web <em>Assembly</em>
+  fue retirado en favor de Datasets <span class="tag r">R</span>, y el conteo de transcriptos de
+  <code>GITV00000000</code> es 56.117 según el NCBI, no 56.116 como figura en el artículo
+  <span class="tag q">?</span>.</p>
+
+  <h2>Y lo que sigue sin saberse</h2>
+  <ul>
+    <li><strong>Cuál es el cuarto patógeno.</strong> «MSMV» corresponde en el NCBI a dos virus de
+    familias distintas: un <em>Mastrevirus</em> de Geminiviridae y <em>Tenuivirus zeae</em> de
+    Phenuiviridae. <span class="tag q">?</span></li>
+    <li><strong>De dónde salen los nombres de gen de la planilla de EPILAB</strong>, si en la base
+    <em>Gene</em> no hay genes nucleares del vector. <span class="tag q">?</span></li>
+    <li><strong>Qué es <code>PRJNA927516</code></strong>, registrado en 2023 como «Dalbulus maidis
+    RefSeq Genome», si no existe anotación RefSeq del vector. <span class="tag q">?</span></li>
+    <li><strong>Si hay expresión por tejido</strong>: lo público es por tratamiento y tiempo, no por
+    intestino o glándula salival. <span class="tag q">?</span></li>
+  </ul>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>W3 · ola 2 del Investigathón Y-Hat · 17 de octubre de 2026.</p>
+    <p>Detalle, fuentes y consultas ejecutadas: <code>REPORT.md</code>, <code>bases.json</code>,
+    <code>mapeo_identificadores.md</code>, <code>plan_ingesta.md</code> y la carpeta
+    <code>consultas/</code>, en esta misma carpeta.</p>
+    <p>Marcadores: <span class="tag e">E</span> establecido · <span class="tag r">R</span> reportado ·
+    <span class="tag q">?</span> incierto.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var t=document.getElementById('ftipo'), o=document.getElementById('forg'),
+      c=document.getElementById('cuenta'),
+      rows=Array.prototype.slice.call(document.querySelectorAll('#tbases tbody tr'));
+  function aplica(){
+    var vt=t.value, vo=o.value, n=0;
+    rows.forEach(function(r){
+      var ok=(!vt||(' '+r.dataset.tipos+' ').indexOf(' '+vt+' ')>=0) &&
+             (!vo||(' '+r.dataset.orgs+' ').indexOf(' '+vo+' ')>=0);
+      r.style.display= ok?'':'none'; if(ok) n++;
+    });
+    c.textContent = n + (n===1?' recurso':' recursos');
+  }
+  t.addEventListener('change',aplica); o.addEventListener('change',aplica); aplica();
+})();
+</script>
+</body>
+</html>
