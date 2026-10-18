@@ -1,0 +1,58 @@
+== 1. IC de Fisher (95 %) para una r de Spearman observada igual a rho (caso típico) ==
+n   | rho=0.3: IC95 (¿excluye 0?) | rho=0.5: IC95 (¿excluye 0?) | rho=0.7: IC95 (¿excluye 0?)
+5   | [-0.81, +0.94] (no) | [-0.71, +0.96] (no) | [-0.51, +0.98] (no)
+6   | [-0.69, +0.90] (no) | [-0.55, +0.94] (no) | [-0.29, +0.97] (no)
+7   | [-0.60, +0.87] (no) | [-0.43, +0.92] (no) | [-0.14, +0.95] (no)
+8   | [-0.53, +0.84] (no) | [-0.34, +0.90] (no) | [-0.04, +0.94] (no)
+9   | [-0.47, +0.81] (no) | [-0.27, +0.88] (no) | [+0.04, +0.93] (sí)
+10  | [-0.42, +0.79] (no) | [-0.21, +0.86] (no) | [+0.10, +0.93] (sí)
+15  | [-0.27, +0.71] (no) | [-0.03, +0.81] (no) | [+0.28, +0.90] (sí)
+20  | [-0.18, +0.66] (no) | [+0.06, +0.78] (sí) | [+0.36, +0.88] (sí)
+28  | [-0.09, +0.61] (no) | [+0.14, +0.74] (sí) | [+0.43, +0.85] (sí)
+
+== 2. Potencia para rechazar rho=0 (bilateral, alfa=0,05): Fisher-Fieller vs simulación con valor crítico por permutación ==
+n   | crit|rho_s| (perm) | rho=0.3: Fisher / sim | rho=0.5: Fisher / sim | rho=0.7: Fisher / sim
+5   | 1.000               | 0.07 / 0.02 | 0.12 / 0.04 | 0.22 / 0.08
+6   | 0.886               | 0.08 / 0.06 | 0.15 / 0.10 | 0.31 / 0.21
+7   | 0.786               | 0.09 / 0.08 | 0.19 / 0.17 | 0.39 / 0.34
+8   | 0.738               | 0.10 / 0.09 | 0.22 / 0.19 | 0.47 / 0.41
+9   | 0.700               | 0.11 / 0.09 | 0.26 / 0.22 | 0.54 / 0.47
+10  | 0.648               | 0.13 / 0.12 | 0.29 / 0.26 | 0.61 / 0.56
+15  | 0.521               | 0.18 / 0.17 | 0.46 / 0.43 | 0.83 / 0.80
+20  | 0.448               | 0.24 / 0.22 | 0.59 / 0.57 | 0.93 / 0.91
+28  | 0.376               | 0.32 / 0.31 | 0.76 / 0.74 | 0.99 / 0.98
+(valor crítico = menor |rho_s| con P nula exacta <= 0,05 bilateral; para n=5 ningún |rho_s|<1 alcanza ese nivel y n=5 con rho_s=1 tiene P=2/120=0,017)
+
+== 3. n necesario para 80 % de potencia (Fisher-Fieller, bilateral, alfa=0,05) ==
+rho=0.3: n = 90  (Pearson, sin Fieller: n = 85)
+rho=0.5: n = 31  (Pearson, sin Fieller: n = 30)
+rho=0.7: n = 15  (Pearson, sin Fieller: n = 14)
+
+== 4. Atenuación por error de medición del desenlace (potencia simulada, n=10, valor crítico de n=10) ==
+fiabilidad=1.0: rho=0.3: 0.11 (rho_obs esperado 0.30) | rho=0.5: 0.26 (rho_obs esperado 0.50) | rho=0.7: 0.55 (rho_obs esperado 0.70)
+fiabilidad=0.8: rho=0.3: 0.10 (rho_obs esperado 0.27) | rho=0.5: 0.21 (rho_obs esperado 0.45) | rho=0.7: 0.43 (rho_obs esperado 0.63)
+fiabilidad=0.5: rho=0.3: 0.08 (rho_obs esperado 0.21) | rho=0.5: 0.15 (rho_obs esperado 0.35) | rho=0.7: 0.26 (rho_obs esperado 0.49)
+
+== 5. Discriminar entre dos proxies con n genes (diferencia entre correlaciones dependientes, aproximación independiente, SE de la diferencia de z) ==
+n=5: potencia para distinguir rho=0,7 de rho=0,3 = 0.08
+n=8: potencia para distinguir rho=0,7 de rho=0,3 = 0.14
+n=10: potencia para distinguir rho=0,7 de rho=0,3 = 0.17
+n=15: potencia para distinguir rho=0,7 de rho=0,3 = 0.26
+n=20: potencia para distinguir rho=0,7 de rho=0,3 = 0.35
+n=28: potencia para distinguir rho=0,7 de rho=0,3 = 0.48
+
+== 6. Aplicación a datos reales ya abiertos (Cedden et al. 2025, Tabla S1; 28 dsRNA, 8 genes, T. castaneum) ==
+Spearman score siRNA vs HR, n=28: r=0.430  IC95 Fisher [+0.06, +0.70]
+Correlación intra-gen (Pearson, gen controlado): r=0.415  IC95 Fisher [-0.02, +0.72]
+Spearman Tribolium vs Diabrotica (Knorr 2018, 50 genes preseleccionados): r=0.428  IC95 Fisher [+0.16, +0.64]
+
+== 7. Prueba de enriquecimiento con clase única (sin negativos): potencia según n y AUC verdadera del proxy ==
+n   | k mínimo (P0<=0,05) | P0 exacta | potencia con AUC=0,6 | 0,7 | 0,8 | 0,9
+5   | 5                   | 0.031     | 0.11 | 0.27 | 0.54 | 0.84
+6   | 6                   | 0.016     | 0.07 | 0.21 | 0.47 | 0.81
+7   | 7                   | 0.008     | 0.04 | 0.16 | 0.42 | 0.78
+8   | 7                   | 0.035     | 0.15 | 0.42 | 0.76 | 0.97
+10  | 9                   | 0.011     | 0.08 | 0.29 | 0.67 | 0.95
+15  | 12                  | 0.018     | 0.15 | 0.54 | 0.91 | 1.00
+(Advertencia de circularidad: los genes de D. maidis con RNAi publicado (BicC, V-ATPasa B/D, burs-a, eth) fueron elegidos por los autores a partir
+ de conocimiento previo de esencialidad en otros insectos; un proxy basado en ortología de genes esenciales los 'predeciría' por construcción.)

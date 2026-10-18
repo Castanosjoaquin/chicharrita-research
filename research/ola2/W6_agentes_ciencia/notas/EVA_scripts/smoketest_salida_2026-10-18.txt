@@ -1,0 +1,12 @@
+tipo   id                             existe  esperado  jaccard_titulo
+doi    10.1038/s41592-025-02748-6     True    True                1.00
+doi    10.1038/s41592-025-99999-9     False   False               0.00
+pmid   38898292                       True    True                1.00
+pmid   38898292                       True    True                0.06
+pmid   99999999                       False   False               0.00
+arxiv  2503.00096                     True    True                1.00
+arxiv  2503.99999                     False   False               0.00
+cita[literal real] encontrada=True esperado=True
+cita[literal alterada] encontrada=False esperado=False
+cita[parafrasis (no es cita literal)] encontrada=False esperado=False
+TODO COINCIDE CON LO ESPERADO

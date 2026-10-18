@@ -1,0 +1,52 @@
+siRNA con features (usados por los autores en el Cox): 29 | palindromicos excluidos: 2
+siRNA con HR=0 (sin efecto detectable, P no sig.): 5 de 29
+
+Spearman feature vs HR (n=29, en muestra), IC95% bootstrap
+  asym_pct       rho=+0.67 [+0.35,+0.87] p=0.000
+  selffold_pct   rho=+0.59 [+0.29,+0.78] p=0.001
+  anti_9_14_GC   rho=+0.09 [-0.34,+0.49] p=0.653
+  anti_10th_A    rho=+0.30 [-0.13,+0.63] p=0.119
+  access_pct     rho=+0.00 [-0.37,+0.34] p=0.988
+  bind_pct       rho=-0.26 [-0.59,+0.12] p=0.169
+  anti_GC        rho=-0.27 [-0.60,+0.12] p=0.152
+
+Score compuesto (4 features, coef. de Fig.1c) vs HR: rho=+0.76 [+0.57,+0.86] p=0.0000 (EN MUESTRA: los coef. se ajustaron con estos mismos 29)
+AUC score -> activo(HR>0) vs inactivo(HR=0): 0.80 [0.62,0.95] (n+=24, n-=5)
+LOO (OLS 4 features, sustituto del Cox): Spearman pred vs HR = +0.62 [+0.33,+0.81] p=0.0003
+
+OLS HR ~ 4 features a nivel siRNA (n=29, gl=24): R2=0.59, R2 ajustado=0.53
+  intercepto     coef=-3.715 t=-0.84 p=0.407
+  anti_9_14_GC   coef=+0.142 t=+1.99 p=0.058
+  anti_10th_A    coef=+4.843 t=+1.48 p=0.151
+  asym_pct       coef=+0.162 t=+2.78 p=0.010
+  selffold_pct   coef=+0.109 t=+1.70 p=0.102
+
+Enriquecimiento top-k (score vs HR medido), n=29
+  top- 5 score compuesto : 1/5 en el top-5 medido (azar esperado 0.9; p perm=0.643)
+  top- 5 LOO             : 1/5 en el top-5 medido (azar esperado 0.9; p perm=0.640)
+  top- 5 asimetria sola  : 2/5 en el top-5 medido (azar esperado 0.9; p perm=0.196)
+  top-10 score compuesto : 6/10 en el top-10 medido (azar esperado 3.4; p perm=0.045)
+  top-10 LOO             : 6/10 en el top-10 medido (azar esperado 3.4; p perm=0.045)
+  top-10 asimetria sola  : 6/10 en el top-10 medido (azar esperado 3.4; p perm=0.046)
+
+Potentes = tercio superior de HR (HR >= 24.6), n=10
+  filtro asimetria_pct>=50                             : retiene 18/29; recall potentes 9/10 (FN=1); precision 0.50; inactivos(HR=0) retenidos 2/5
+  filtro asimetria_pct>=50 y selffold_pct>=50          : retiene 13/29; recall potentes 7/10 (FN=3); precision 0.54; inactivos(HR=0) retenidos 1/5
+  filtro score >= mediana (EN MUESTRA)                 : retiene 15/29; recall potentes 10/10 (FN=0); precision 0.67; inactivos(HR=0) retenidos 0/5
+  filtro prediccion LOO >= mediana (fuera de muestra)  : retiene 15/29; recall potentes 8/10 (FN=2); precision 0.53; inactivos(HR=0) retenidos 1/5
+
+dsRNA: n= 28 genes: 8 | ORF: 21 UTR: 7
+Spearman global siRNA_score vs HR: +0.43 [+0.05,+0.71] p=0.023 (mezcla de genes y regiones)
+Spearman global accesibilidad vs HR: +0.22 p=0.252
+Spearman INTRA-gen (centrado por gen) score vs HR: +0.43 p=0.021; accesibilidad vs HR: +0.24 p=0.215
+Pares intra-gen: concordantes 28, discordantes 8 (empates 0); fraccion concordante 0.78 IC95 Wilson [0.62,0.88]; p binomial vs 0,5 = 0.001
+Gen a gen: el dsRNA de mayor score fue el de mayor HR en 3/8 genes (todas las regiones) y en 7/8 (solo ORF)
+LOGO (leave-one-gene-out) orden intra-gen: concordantes 28, discordantes 8; fraccion 0.78  [NOTA: coincide con el analisis en muestra porque el signo de la pendiente es el mismo en todos los pliegues; no aporta informacion adicional]
+Varianza de HR dentro de gen / total = 0.68 (el resto es entre genes)
+  global top-5: 1/5 en el top-5 medido (azar 0.9; p perm=0.661)
+  global top-9: 4/9 en el top-9 medido (azar 2.9; p perm=0.300)
+Solo ORF (n=21): Spearman INTRA-gen score vs HR = +0.82 p=0.000
+Rango del score medio por dsRNA: 65.1-78.4 (n=28); rango de HR: 1.55-36.80
+Por region: HR medio ORF = 10.7 ; UTR = 8.9 ; score medio ORF = 72.0 ; UTR = 77.1
+
+Modelo publicado (hoja S2): R2=0,6247; R2 ajustado=0,4039; 28 filas / 11 parametros = 2,5 casos por parametro (copiado de la hoja)

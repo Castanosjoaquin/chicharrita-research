@@ -1,0 +1,97 @@
+== (1) Normal bivariado: top-1 por proxy en un pool de N candidatos ==
+-- N=29; E[max de N normales estandar] ~ 2.032
+ rho=0.3: E_z_top1=0.611, E_pct_top1=0.676, P_best_in_top1=0.102, E_z_bestofk_assayed1=0.611, P_best_in_top3=0.247, E_z_bestofk_assayed3=1.309, P_best_in_top5=0.365, E_z_bestofk_assayed5=1.548, P_best_in_top10=0.593, E_z_bestofk_assayed10=1.804
+ rho=0.4: E_z_top1=0.817, E_pct_top1=0.732, P_best_in_top1=0.138, E_z_bestofk_assayed1=0.817, P_best_in_top3=0.319, E_z_bestofk_assayed3=1.456, P_best_in_top5=0.446, E_z_bestofk_assayed5=1.661, P_best_in_top10=0.674, E_z_bestofk_assayed10=1.870
+ rho=0.5: E_z_top1=1.020, E_pct_top1=0.786, P_best_in_top1=0.185, E_z_bestofk_assayed1=1.020, P_best_in_top3=0.398, E_z_bestofk_assayed3=1.586, P_best_in_top5=0.538, E_z_bestofk_assayed5=1.758, P_best_in_top10=0.756, E_z_bestofk_assayed10=1.921
+ rho=0.7: E_z_top1=1.415, E_pct_top1=0.881, P_best_in_top1=0.310, E_z_bestofk_assayed1=1.415, P_best_in_top3=0.590, E_z_bestofk_assayed3=1.817, P_best_in_top5=0.736, E_z_bestofk_assayed5=1.923, P_best_in_top10=0.907, E_z_bestofk_assayed10=2.002
+ rho=0.8: E_z_top1=1.623, E_pct_top1=0.925, P_best_in_top1=0.412, E_z_bestofk_assayed1=1.623, P_best_in_top3=0.717, E_z_bestofk_assayed3=1.913, P_best_in_top5=0.844, E_z_bestofk_assayed5=1.975, P_best_in_top10=0.961, E_z_bestofk_assayed10=2.015
+-- N=100; E[max de N normales estandar] ~ 2.512
+ rho=0.3: E_z_top1=0.770, E_pct_top1=0.713, P_best_in_top1=0.050, E_z_bestofk_assayed1=0.770, P_best_in_top3=0.119, E_z_bestofk_assayed3=1.478, P_best_in_top5=0.177, E_z_bestofk_assayed5=1.729, P_best_in_top10=0.288, E_z_bestofk_assayed10=2.000
+ rho=0.4: E_z_top1=1.004, E_pct_top1=0.771, P_best_in_top1=0.073, E_z_bestofk_assayed1=1.004, P_best_in_top3=0.168, E_z_bestofk_assayed3=1.666, P_best_in_top5=0.241, E_z_bestofk_assayed5=1.889, P_best_in_top10=0.378, E_z_bestofk_assayed10=2.125
+ rho=0.5: E_z_top1=1.262, E_pct_top1=0.831, P_best_in_top1=0.108, E_z_bestofk_assayed1=1.262, P_best_in_top3=0.235, E_z_bestofk_assayed3=1.847, P_best_in_top5=0.326, E_z_bestofk_assayed5=2.041, P_best_in_top10=0.482, E_z_bestofk_assayed10=2.240
+ rho=0.7: E_z_top1=1.749, E_pct_top1=0.921, P_best_in_top1=0.222, E_z_bestofk_assayed1=1.749, P_best_in_top3=0.437, E_z_bestofk_assayed3=2.178, P_best_in_top5=0.559, E_z_bestofk_assayed5=2.302, P_best_in_top10=0.730, E_z_bestofk_assayed10=2.412
+ rho=0.8: E_z_top1=2.015, E_pct_top1=0.957, P_best_in_top1=0.323, E_z_bestofk_assayed1=2.015, P_best_in_top3=0.576, E_z_bestofk_assayed3=2.327, P_best_in_top5=0.706, E_z_bestofk_assayed5=2.409, P_best_in_top10=0.857, E_z_bestofk_assayed10=2.473
+-- N=595; E[max de N normales estandar] ~ 3.089
+ rho=0.3: E_z_top1=0.927, E_pct_top1=0.748, P_best_in_top1=0.017, E_z_bestofk_assayed1=0.927, P_best_in_top3=0.044, E_z_bestofk_assayed3=1.664, P_best_in_top5=0.065, E_z_bestofk_assayed5=1.925, P_best_in_top10=0.107, E_z_bestofk_assayed10=2.216
+ rho=0.4: E_z_top1=1.242, E_pct_top1=0.818, P_best_in_top1=0.032, E_z_bestofk_assayed1=1.242, P_best_in_top3=0.076, E_z_bestofk_assayed3=1.924, P_best_in_top5=0.109, E_z_bestofk_assayed5=2.157, P_best_in_top10=0.173, E_z_bestofk_assayed10=2.416
+ rho=0.5: E_z_top1=1.550, E_pct_top1=0.877, P_best_in_top1=0.054, E_z_bestofk_assayed1=1.550, P_best_in_top3=0.122, E_z_bestofk_assayed3=2.168, P_best_in_top5=0.168, E_z_bestofk_assayed5=2.372, P_best_in_top10=0.256, E_z_bestofk_assayed10=2.592
+ rho=0.7: E_z_top1=2.156, E_pct_top1=0.958, P_best_in_top1=0.146, E_z_bestofk_assayed1=2.156, P_best_in_top3=0.293, E_z_bestofk_assayed3=2.613, P_best_in_top5=0.382, E_z_bestofk_assayed5=2.754, P_best_in_top10=0.520, E_z_bestofk_assayed10=2.890
+ rho=0.8: E_z_top1=2.475, E_pct_top1=0.981, P_best_in_top1=0.235, E_z_bestofk_assayed1=2.475, P_best_in_top3=0.437, E_z_bestofk_assayed3=2.818, P_best_in_top5=0.549, E_z_bestofk_assayed5=2.913, P_best_in_top10=0.698, E_z_bestofk_assayed10=3.000
+
+== Verificacion contra Haeussler 2016 (zebrafish: 104 guias/11 loci, top-2 por locus; observado: 9/11 loci con una de las 2 mejores) ==
+ rho=0.3: P(>=1 de top2-proxy in top2-verdad), N=9: 0.607; N=10: 0.573; esperado en 11 loci ~ 6.7-6.3; observado 9
+ rho=0.4: P(>=1 de top2-proxy in top2-verdad), N=9: 0.674; N=10: 0.642; esperado en 11 loci ~ 7.4-7.1; observado 9
+ rho=0.5: P(>=1 de top2-proxy in top2-verdad), N=9: 0.739; N=10: 0.710; esperado en 11 loci ~ 8.1-7.8; observado 9
+ fraccion de ensayos: 2/9.45 = 0.212 -> 104->22 inyecciones = factor 4.73
+
+== (2) Binormal: factor de reduccion de ensayos por acierto = precision/b ==
+ b=0.003, AUC=0.6, top-f=0.01: precision=0.007 (EF=2.4x), recall=0.024
+ b=0.003, AUC=0.6, top-f=0.1: precision=0.005 (EF=1.8x), recall=0.178
+ b=0.003, AUC=0.7, top-f=0.01: precision=0.017 (EF=5.6x), recall=0.056
+ b=0.003, AUC=0.7, top-f=0.1: precision=0.009 (EF=2.9x), recall=0.293
+ b=0.003, AUC=0.8, top-f=0.01: precision=0.038 (EF=12.5x), recall=0.125
+ b=0.003, AUC=0.8, top-f=0.1: precision=0.014 (EF=4.6x), recall=0.461
+ b=0.003, AUC=0.9, top-f=0.01: precision=0.088 (EF=29.2x), recall=0.292
+ b=0.003, AUC=0.9, top-f=0.1: precision=0.021 (EF=7.0x), recall=0.699
+ b=0.03, AUC=0.6, top-f=0.1: precision=0.052 (EF=1.7x), recall=0.175
+ b=0.03, AUC=0.7, top-f=0.1: precision=0.085 (EF=2.8x), recall=0.283
+ b=0.03, AUC=0.8, top-f=0.1: precision=0.132 (EF=4.4x), recall=0.439
+ b=0.03, AUC=0.9, top-f=0.1: precision=0.199 (EF=6.6x), recall=0.664
+
+== Verificaciones numericas de fuente (calculo propio sobre numeros citados) ==
+ Lyu D4: b = 0.00328 (0.00136-0.00750); EF con p=0.24: 73x (32-176x); ensayos por acierto: 4.2 vs 305
+ Hie 2023 beta-lactamasa: 0.07->0.40 EF=5.7x; ensayos por acierto 14.3->2.5
+ Hie 2023 HA: 0.07->0.31 EF=4.4x; ensayos por acierto 14.3->3.2
+ Hie 2023 PafA: 0.03->0.20 EF=6.7x; ensayos por acierto 33.3->5.0
+ Overath: azar con b=0.12 y 10 ensayos: P(>=1)=0.721; esperado en 15 targets 10.8; observado 15 (b por target no abierta -> aproximacion)
+ Adaptyv: 0.0001->0.025 = 250x; R1->R2 5.2x
+ CCLMoff GUIDE-seq: b=0.000259; AUPRC 0.52 => lift ~2009x (AUPRC no es precision@k)
+
+== (3) KL de best-of-n (Gao et al.): KL = ln n - (n-1)/n; d = sqrt(KL) ==
+ n=5: KL=0.81 nats, d=0.90
+ n=29: KL=2.40 nats, d=1.55
+ n=100: KL=3.62 nats, d=1.90
+ n=595: KL=5.39 nats, d=2.32
+ n=1000: KL=5.91 nats, d=2.43
+ n=60000: KL=10.00 nats, d=3.16
+
+== (4) Potencia e IC con n pequeno ==
+ n=22: potencia p/detectar rho=0.4: 0.45; rho=0.5: 0.67; rho=0.75: 0.99
+ n=29: potencia p/detectar rho=0.4: 0.58; rho=0.5: 0.80; rho=0.75: 1.00
+ n=31: potencia p/detectar rho=0.4: 0.61; rho=0.5: 0.83; rho=0.75: 1.00
+ n=52: potencia p/detectar rho=0.4: 0.84; rho=0.5: 0.97; rho=0.75: 1.00
+ n=100: potencia p/detectar rho=0.4: 0.99; rho=0.5: 1.00; rho=0.75: 1.00
+ n para 80% potencia con rho=0.3: 85
+ n para 80% potencia con rho=0.4: 47
+ n para 80% potencia con rho=0.5: 30
+ n para 80% potencia con rho=0.7: 14
+ IC95% (Fisher) de r=0.5 con n=29: [0.16, 0.73]
+ IC95% (Fisher) de r=0.5 con n=31: [0.18, 0.73]
+ IC95% (Fisher) de r=0.4 con n=29: [0.04, 0.67]
+ IC95% (Fisher) de r=0.7 con n=29: [0.45, 0.85]
+ IC95% (Fisher) de r=0.5 con n=100: [0.34, 0.63]
+
+== (5) Pool enumerado de N=595 ventanas: P(>=1 de los k mejores por proxy cae en el q% superior verdadero) ==
+ rho=0.3, q=1% (6 ventanas): k=1: 0.07 (azar 0.01), k=3: 0.18 (azar 0.03), k=5: 0.26 (azar 0.05), k=10: 0.41 (azar 0.10)
+ rho=0.3, q=5% (30 ventanas): k=1: 0.22 (azar 0.05), k=3: 0.50 (azar 0.14), k=5: 0.66 (azar 0.23), k=10: 0.86 (azar 0.41)
+ rho=0.3, q=10% (60 ventanas): k=1: 0.35 (azar 0.10), k=3: 0.70 (azar 0.27), k=5: 0.86 (azar 0.41), k=10: 0.96 (azar 0.66)
+ rho=0.4, q=1% (6 ventanas): k=1: 0.13 (azar 0.01), k=3: 0.26 (azar 0.03), k=5: 0.38 (azar 0.05), k=10: 0.55 (azar 0.10)
+ rho=0.4, q=5% (30 ventanas): k=1: 0.34 (azar 0.05), k=3: 0.65 (azar 0.14), k=5: 0.80 (azar 0.23), k=10: 0.94 (azar 0.41)
+ rho=0.4, q=10% (60 ventanas): k=1: 0.47 (azar 0.10), k=3: 0.82 (azar 0.27), k=5: 0.93 (azar 0.41), k=10: 0.99 (azar 0.66)
+ rho=0.5, q=1% (6 ventanas): k=1: 0.19 (azar 0.01), k=3: 0.39 (azar 0.03), k=5: 0.51 (azar 0.05), k=10: 0.70 (azar 0.10)
+ rho=0.5, q=5% (30 ventanas): k=1: 0.45 (azar 0.05), k=3: 0.78 (azar 0.14), k=5: 0.90 (azar 0.23), k=10: 0.98 (azar 0.41)
+ rho=0.5, q=10% (60 ventanas): k=1: 0.62 (azar 0.10), k=3: 0.92 (azar 0.27), k=5: 0.98 (azar 0.41), k=10: 1.00 (azar 0.66)
+ rho=0.7, q=1% (6 ventanas): k=1: 0.42 (azar 0.01), k=3: 0.71 (azar 0.03), k=5: 0.83 (azar 0.05), k=10: 0.93 (azar 0.10)
+ rho=0.7, q=5% (30 ventanas): k=1: 0.75 (azar 0.05), k=3: 0.96 (azar 0.14), k=5: 0.99 (azar 0.23), k=10: 1.00 (azar 0.41)
+ rho=0.7, q=10% (60 ventanas): k=1: 0.87 (azar 0.10), k=3: 0.99 (azar 0.27), k=5: 1.00 (azar 0.41), k=10: 1.00 (azar 0.66)
+
+== Mapeo ingenuo C de Harrell -> rho bajo normal bivariada sin censura (solo orientativo; tau = 2C-1; rho = sin(pi*tau/2)) ==
+ C=0.6: tau=0.20, rho~0.31
+ C=0.65: tau=0.30, rho~0.45
+ C=0.7: tau=0.40, rho~0.59
+ C=0.73: tau=0.46, rho~0.66
+ C=0.76: tau=0.52, rho~0.73
+ C=0.79: tau=0.58, rho~0.79
+
+== (6) Haeussler: filtro CFD>=0.023 sobre 26,034 candidatos con 143 validados (supuesto: los 143 estan dentro de los 26,034) ==
+ b=0.0055; retenidos=11273 de 26034 (43.30%); precision=0.0124; EF=2.26; reduccion de sitios a revisar=2.31x con recall 98%

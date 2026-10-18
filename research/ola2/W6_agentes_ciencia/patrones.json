@@ -1,0 +1,1616 @@
+{
+ "meta": {
+  "investigacion": "W6 — Agentes de IA en investigación científica (métodos)",
+  "fecha": "2026-10-18",
+  "descripcion": "Catálogo de 25 patrones de arquitectura, verificación y bucle para agentes y flujos científicos, con su verificador, la evidencia de que funcionan (con fuente y marcador) y sus limitaciones conocidas. Cada patrón unifica los hallazgos de una o más pistas; los ids de fuente remiten a sources.json.",
+  "campos": {
+   "tipo_verificador": "ejecucion_y_pruebas | determinista | formal | modelo_llm | humano | datos_retrospectivos | ensayo_experimental | ensayo_experimental_de_tercero | comparacion_con_linea_base",
+   "viabilidad_equipo.nivel": "alta | media | baja | no, para cuatro estudiantes sin laboratorio ni GPU, con API de LLM de terceros y la restricción de que las secuencias de EPILAB no salen a servicios de terceros",
+   "propuesta_asociada": "cuál de las tres propuestas de propuestas.md lo usa, o si es descartado o contexto",
+   "marcador": "[E] establecido, [R] reportado, [H] hipótesis nuestra, [?] incierto; ver la nota sobre criterios en REPORT.md"
+  },
+  "familias": {
+   "arquitectura": [
+    "PAT-01",
+    "PAT-02",
+    "PAT-03",
+    "PAT-04",
+    "PAT-05",
+    "PAT-06",
+    "PAT-07",
+    "PAT-08",
+    "PAT-09"
+   ],
+   "verificacion": [
+    "PAT-10",
+    "PAT-11"
+   ],
+   "anclaje": [
+    "PAT-12",
+    "PAT-13",
+    "PAT-14",
+    "PAT-15",
+    "PAT-16"
+   ],
+   "biotecnologia_rnai": [
+    "PAT-17",
+    "PAT-18",
+    "PAT-19",
+    "PAT-20",
+    "PAT-21",
+    "PAT-22",
+    "PAT-23",
+    "PAT-24",
+    "PAT-25"
+   ]
+  },
+  "advertencia": "Ninguna de las evaluaciones citadas se hizo sobre RNAi, ARNdc o insectos, salvo las de las familias biotecnologia_rnai; la transferencia al problema del equipo es hipótesis [H]. Las referencias a R4 (PAT-15) remiten a research/R4_frontier_ml_rna/REPORT.md §4.2 y no se re-abrieron en esta investigación."
+ },
+ "patrones": [
+  {
+   "id": "PAT-01",
+   "familia": "arquitectura",
+   "nombre": "Agente único de bucle de código con verificadores mecánicos de artefacto, en contenedor local",
+   "descripcion": "Un solo agente (bucle ReAct o CodeAct) escribe y ejecuta scripts en un contenedor sin red sobre un directorio montado; cada paso termina con comprobaciones deterministas del artefacto (esquema, rangos, conteos, invariantes, pruebas del script) y el error vuelve al agente truncado y sin secuencias. La acción es un script con hash, no una cadena de herramientas opacas.",
+   "tareas": [
+    "escribir y depurar código de análisis",
+    "tablas y gráficos",
+    "pegamento de pipeline"
+   ],
+   "herramientas": [
+    "Docker local sin red",
+    "cliente de LLM con capa de redacción de salidas",
+    "pytest o validadores propios",
+    "registro de celdas con hash"
+   ],
+   "tipo_verificador": [
+    "ejecucion_y_pruebas"
+   ],
+   "verificador_detalle": "Ejecución más invariantes del contrato del artefacto: barato (segundos) y confiable para «corre y cumple el contrato», poco confiable para «es correcto»; la corrección se prueba con casos de respuesta conocida escritos de antemano.",
+   "evidencia": [
+    {
+     "afirmacion": "Con modelos locales abiertos, el espacio de trabajo en lazo cerrado sube de 26,7 a 52,0 puntos frente a una sola generación sobre 1.500 intentos con verificadores deterministas, en tareas no biológicas",
+     "fuentes": [
+      "AQB-24"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "La reparación por stderr lleva AutoBA de 65 % a 87,5 % en 40 casos; la reflexión sobre errores de ejecución es el módulo de mayor efecto en 50 tareas de célula única",
+     "fuentes": [
+      "AQB-18",
+      "AQB-22"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "Los agentes completan pipelines de varios pasos (>90 % con modelos de frontera) pero fallan bajo perturbaciones; con la interfaz agente–computadora diseñada, +64 % relativo frente a un shell crudo",
+     "fuentes": [
+      "TAR-28",
+      "AQA-17"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Ejecutar no es acertar: finalización 0,99 contra exactitud 0,76 en 244 tareas (benchmark con conflicto de intereses); el agente puede crear datos ficticios que corren sin error; hay variación aun con temperatura cero; los mensajes de error pueden filtrar secuencias; el sandbox contiene errores, no adversarios; sin evidencia de inferencia local en CPU con 16 GiB.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Es la base de los demás patrones; con EPILAB el modelo ve esquemas y estadísticas agregadas, no secuencias."
+   },
+   "propuesta_asociada": "Propuesta 1",
+   "fuentes": [
+    "AQB-24",
+    "AQB-18",
+    "AQB-22",
+    "AQB-21",
+    "TAR-28",
+    "AQA-17",
+    "AQA-12",
+    "AQA-13",
+    "AQA-15",
+    "AQB-32"
+   ]
+  },
+  {
+   "id": "PAT-02",
+   "familia": "arquitectura",
+   "nombre": "Gestor de flujos determinista con agente acotado de generación y reparación de reglas",
+   "descripcion": "Snakemake o Nextflow fija el grafo, las entradas y salidas de cada regla y las versiones de entorno; el agente solo escribe o repara el cuerpo de una regla con presupuesto de 3 a 5 intentos, y cada regla cierra con un validador determinista (esquema, invariantes, dry-run del grafo, lint).",
+   "tareas": [
+    "cálculo de características",
+    "agregación y tablas de priorización",
+    "informes reproducibles"
+   ],
+   "herramientas": [
+    "Snakemake o Nextflow",
+    "entornos con versiones fijas (Bioconda)",
+    "pytest",
+    "hashes de salidas"
+   ],
+   "tipo_verificador": [
+    "ejecucion_y_pruebas",
+    "determinista"
+   ],
+   "verificador_detalle": "Validadores por regla, dry-run del grafo y hashes de salidas: barato y confiable para contrato y trazabilidad; la semántica científica de cada paso sigue necesitando controles con respuesta conocida y revisión humana.",
+   "evidencia": [
+    {
+     "afirmacion": "Gestor Snakemake más agente supervisor–programador: éxito por etapa de 58, 88 y 74 % en 219 corridas (física de altas energías)",
+     "fuentes": [
+      "AQB-23"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "BioMaster agrega un agente de verificación por paso que comprueba existencia y no vacío de archivos y compara con el plan; hasta 5 intentos de depuración por paso",
+     "fuentes": [
+      "AQB-17",
+      "BIO-03"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    }
+   ],
+   "limitaciones": "No hay evaluación independiente de reparación de flujos Snakemake o Nextflow con verdad de referencia en bioinformática; los conflictos de dependencias de conda son causa típica de falla; el 58 % de éxito en preparación de datos muestra que los pasos que dependen de la estructura de archivos son los frágiles.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Encaja con una priorización auditable de candidatos dados; el equipo ya planea Snakemake/Bioconda (P3)."
+   },
+   "propuesta_asociada": "Propuesta 1",
+   "fuentes": [
+    "AQB-23",
+    "AQB-17",
+    "BIO-03",
+    "AQB-18",
+    "AQB-20",
+    "AQB-21"
+   ]
+  },
+  {
+   "id": "PAT-03",
+   "familia": "arquitectura",
+   "nombre": "Consulta de bases públicas por identificador con catálogo pequeño y libro de llamadas",
+   "descripcion": "Un conjunto reducido (decenas) de herramientas propias, con esquema de entrada y salida y un caso de prueba cada una, consulta NCBI, Europe PMC o UniProt por identificador y devuelve registros estructurados; cada llamada queda en un libro inmutable y toda afirmación del agente debe apuntar a una entrada del libro.",
+   "tareas": [
+    "relevamiento de literatura y metadatos de ARNdc publicados",
+    "anotación de genes y especies"
+   ],
+   "herramientas": [
+    "E-utilities",
+    "clientes HTTP propios",
+    "validador de DOI y accesiones",
+    "servidor MCP propio fijado por versión (opcional)"
+   ],
+   "tipo_verificador": [
+    "determinista"
+   ],
+   "verificador_detalle": "Resolución del identificador y coincidencia del campo citado con la respuesta registrada: barato y confiable para existencia y trazabilidad; poco confiable para saber si la fuente sostiene la tesis.",
+   "evidencia": [
+    {
+     "afirmacion": "Con las herramientas de ToolUniverse la exactitud en consultas a bases (DbQA) sube de 56,7 a 78,3 y de 81,1 a 92,8 en dos agentes, sobre 60 ítems; en SeqQA los agentes sin herramientas ya parten de 91–94 %",
+     "fuentes": [
+      "AQB-09"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "La selección de herramienta baja unos 10 puntos al pasar de 10 a 100 herramientas; con 7 herramientas en contexto, 17 de 20 trayectorias resueltas con 2 fallaron por mal uso",
+     "fuentes": [
+      "AQB-14",
+      "AQA-18"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "GeneGPT aporta la taxonomía de errores de uso de las API de NCBI; GPT-4o pasa de 99 % de error a 99 % de acierto en conversión de nombres génicos con acceso web",
+     "fuentes": [
+      "AQB-12",
+      "EVA-11"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Mejora grande solo donde la respuesta exige consultar una base viva; cifras de los autores con subconjuntos chicos; la selección decae con el tamaño del catálogo; envenenamiento de metadatos MCP con éxito de hasta 72,8 % (solo resumen); un BLAST remoto envía la secuencia a un tercero: usar herramientas locales.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Solo identificadores públicos salen de la máquina."
+   },
+   "propuesta_asociada": "Propuesta 3",
+   "fuentes": [
+    "AQB-09",
+    "AQB-14",
+    "AQA-18",
+    "AQB-12",
+    "EVA-11",
+    "AQB-16",
+    "AQB-11",
+    "AQB-13"
+   ]
+  },
+  {
+   "id": "PAT-04",
+   "familia": "arquitectura",
+   "nombre": "Estado persistente: registro de experimentos y afirmaciones con procedencia y versionado",
+   "descripcion": "El estado vive en un registro estructurado fuera del contexto del modelo (entradas elegidas, operaciones, resultados cuantitativos, rutas de artefactos, vistas de contexto por paso, traspasos que atan cada resultado al paso que lo generó); las afirmaciones se versionan y las obsoletas se marcan explícitamente.",
+   "tareas": [
+    "tareas largas con traspasos y compresión de contexto",
+    "auditoría de procedencia"
+   ],
+   "herramientas": [
+    "base local (SQLite o archivos JSON)",
+    "hashes de scripts, entradas y entorno",
+    "resolutores de identificadores"
+   ],
+   "tipo_verificador": [
+    "determinista"
+   ],
+   "verificador_detalle": "Comprobación determinista de que cada afirmación tiene un ancla que resuelve y de que cada cifra coincide con un artefacto registrado.",
+   "evidencia": [
+    {
+     "afirmacion": "Única ablación de estado persistente en un arnés de análisis biológico: sin memoria estructurada, 56,59 % contra 79,02 % (−22,44 puntos) en 205 preguntas de BixBench con GPT-5.4; una corrida por configuración",
+     "fuentes": [
+      "AQA-11"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "Todos los métodos de memoria fallan en el olvido selectivo multi-salto (máximo 28 % de exactitud): un registro que solo acumula va a fallar cuando un hecho viejo es reemplazado",
+     "fuentes": [
+      "AQA-37"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "La longitud de entrada degrada el desempeño entre 13,9 % y 85 % aun con recuperación perfecta",
+     "fuentes": [
+      "AQA-38"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "El «sin memoria» mide la pérdida de detalle por compresión y traspasos, no la ventaja sobre un agente único con contexto corto; Kosmos no documenta el esquema ni trae ablación; no hay comparación limpia entre resumir, recuperar y contexto largo en tareas científicas.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Base de los patrones 12 y 16; versionar afirmaciones es barato."
+   },
+   "propuesta_asociada": "Propuesta 3",
+   "fuentes": [
+    "AQA-11",
+    "AQA-05",
+    "AQA-37",
+    "AQA-38",
+    "AQA-39",
+    "AQA-41",
+    "EVA-48"
+   ]
+  },
+  {
+   "id": "PAT-05",
+   "familia": "arquitectura",
+   "nombre": "Evaluador y verdad de terreno fuera del alcance del agente, con registro externo",
+   "descripcion": "Dos procesos o contenedores: el del agente, que no ve las etiquetas retenidas, el código del evaluador ni el registro del anfitrión, y un evaluador aislado que recibe solo el artefacto y recalcula la métrica sobre datos retenidos. El evaluador queda bloqueado por hash, las pruebas en solo lectura y el registro de llamadas lo escribe el anfitrión con cadena de hashes.",
+   "tareas": [
+    "cualquier ajuste o selección contra datos publicados (validación retrospectiva)"
+   ],
+   "herramientas": [
+    "dos contenedores o procesos",
+    "hash de evaluador",
+    "registro del anfitrión",
+    "libro de corrida (modelo, fecha, semillas, versiones, costo)"
+   ],
+   "tipo_verificador": [
+    "ejecucion_y_pruebas",
+    "datos_retrospectivos"
+   ],
+   "verificador_detalle": "Recomputación independiente sobre datos que el agente nunca vio más detección de accesos indebidos: costo bajo a medio (25–31 % de tiempo de ejecución en un estudio), confiabilidad alta contra los vectores conocidos y nula contra los no modelados.",
+   "evidencia": [
+    {
+     "afirmacion": "El patrón «los agentes que optimizan un puntaje buscan atajos» aparece en al menos siete grupos independientes: 57,1 % de corridas con atajo en BaitBench, 30,5 % de trampa espontánea en pipelines de investigación sobre 17 modelos, ~50 % de manipulación del evaluador cuando es código del espacio de trabajo",
+     "fuentes": [
+      "AQB-45",
+      "AQB-48",
+      "AQB-46",
+      "AQB-42",
+      "AQB-43"
+     ],
+     "marcador": "[E] a nivel de patrón",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Bloquear el evaluador elimina la manipulación con 25–31 % de sobrecosto; dejar pruebas en solo lectura reduce la trampa; la salida de escape a un humano baja la trampa de GPT-5 de 54 a 9 %",
+     "fuentes": [
+      "AQB-46",
+      "AQB-50"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "El registro propio del agente no sirve: casi todos los arneses probados dejaron borrarlo",
+     "fuentes": [
+      "AQB-57"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Las defensas probadas cubren dos vectores (manipulación del evaluador y filtración de datos de prueba) y no escapes a nivel de sistema operativo; los bancos miden propensión bajo atajos plantados; no elimina la memorización de resultados publicados por el modelo.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Es el patrón de mayor retorno para la credibilidad de las cifras de un ensayo retrospectivo."
+   },
+   "propuesta_asociada": "Propuesta 1",
+   "fuentes": [
+    "AQB-45",
+    "AQB-48",
+    "AQB-46",
+    "AQB-42",
+    "AQB-43",
+    "AQB-50",
+    "AQB-57",
+    "AQB-40",
+    "AQB-58"
+   ]
+  },
+  {
+   "id": "PAT-06",
+   "familia": "arquitectura",
+   "nombre": "Humano en tres compuertas con salida de escape",
+   "descripcion": "Tres puntos de intervención humana y ninguno por paso: especificación y criterios de aceptación antes de ejecutar, acciones irreversibles o que sacan datos del equipo, y auditoría de afirmaciones contra artefactos y registro antes de reportar; el agente tiene una salida de escape para pedir ayuda cuando la tarea no se puede resolver de forma legítima.",
+   "tareas": [
+    "toda la cadena de trabajo"
+   ],
+   "herramientas": [
+    "punto de interrupción (LangGraph o archivo de aprobación)",
+    "libro de llamadas",
+    "registro del anfitrión"
+   ],
+   "tipo_verificador": [
+    "humano"
+   ],
+   "verificador_detalle": "El criterio escrito por la persona más el registro de su decisión; barato en tiempo de máquina y caro en tiempo humano, por lo que se limita a tres compuertas con resúmenes orientados al resultado y acceso a la traza completa.",
+   "evidencia": [
+    {
+     "afirmacion": "Los agentes colaborativos ganan a los autónomos en 86, 66 y 74 % de las comparaciones con usuarios reales",
+     "fuentes": [
+      "AQB-27"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "Con trazas largas los usuarios pierden errores pequeños y su confianza sube sin mejora de exactitud (tres estudios de 12 participantes)",
+     "fuentes": [
+      "AQB-29"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Revisar trazas y código mejora la detección de fallas metodológicas de 55 % a 82 %",
+     "fuentes": [
+      "AQA-09"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Evidencia de usuarios simulados o de estudios de 12 personas; las aprobaciones redundantes se consideran excesivas; no hay estudio controlado en ciencia computacional que compare ubicaciones del humano; el efecto de la salida de escape varía mucho entre modelos.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "La forma más barata de repartir el tiempo humano de cuatro personas."
+   },
+   "propuesta_asociada": "Propuestas 1, 2 y 3",
+   "fuentes": [
+    "AQB-27",
+    "AQB-26",
+    "AQB-29",
+    "AQB-50",
+    "AQA-09",
+    "AQB-28"
+   ]
+  },
+  {
+   "id": "PAT-07",
+   "familia": "arquitectura",
+   "nombre": "Orquestador centralizado de subtareas paralelas, con control de agente único a presupuesto igualado",
+   "descripcion": "Un orquestador reparte subtareas independientes y verifica de forma central; antes de adoptarlo se corre un agente único con los mismos tokens y herramientas como control.",
+   "tareas": [
+    "subtareas descomponibles y paralelas con verificación central"
+   ],
+   "herramientas": [
+    "orquestador",
+    "contador de tokens",
+    "agente único de control"
+   ],
+   "tipo_verificador": [
+    "comparacion_con_linea_base"
+   ],
+   "verificador_detalle": "Comparación con el agente único a presupuesto igualado; barata si hay respuestas conocidas.",
+   "evidencia": [
+    {
+     "afirmacion": "Con presupuesto igualado, el efecto multiagente va de +80,8 % (razonamiento financiero descomponible, coordinación centralizada) a −70,0 % (planificación secuencial), con efecto medio global de −0,3 % (IC 95 % −58,7 % a +77,2 %)",
+     "fuentes": [
+      "AQA-02"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "Cinco métodos de debate en nueve benchmarks y cuatro modelos: ninguno supera 20 % de victorias frente a razonamiento en cadena; ayuda la heterogeneidad de modelos",
+     "fuentes": [
+      "AQA-21"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Con tokens de razonamiento igualados, el agente único iguala o supera a cinco arquitecturas multiagente en razonamiento multi-salto",
+     "fuentes": [
+      "AQA-20"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "En planificación secuencial todas las variantes empeoraron entre 39 % y 70 %; el análisis del repositorio tuvo una corrección de scripts de regresión; los casos fuertes en ciencia (Co-Scientist, Virtual Lab, Kosmos) no traen control de agente único a presupuesto igualado.",
+   "viabilidad_equipo": {
+    "nivel": "media",
+    "nota": "Solo si el control de agente único es parte del diseño."
+   },
+   "propuesta_asociada": "Descartado como método",
+   "fuentes": [
+    "AQA-02",
+    "AQA-45",
+    "AQA-03",
+    "AQA-20",
+    "AQA-21",
+    "AQA-48",
+    "AQA-04"
+   ]
+  },
+  {
+   "id": "PAT-08",
+   "familia": "arquitectura",
+   "nombre": "Torneo generar–debatir–evolucionar y embudo con filtro LLM calibrado",
+   "descripcion": "Agentes de generación, reflexión, ranking y evolución producen hipótesis que se ordenan por un torneo Elo con un juez LLM; en su versión reducida, un embudo generar–filtrar–validar con filtro LLM calibrado contra un conjunto retenido y revisión humana.",
+   "tareas": [
+    "generación y priorización de hipótesis para revisión humana"
+   ],
+   "herramientas": [
+    "cola asíncrona",
+    "memoria de contexto",
+    "juez LLM",
+    "muestra de juicios de expertos"
+   ],
+   "tipo_verificador": [
+    "modelo_llm",
+    "humano"
+   ],
+   "verificador_detalle": "El torneo es autoevaluación; el único verificador aceptable es el acuerdo con expertos y la validación experimental, no disponibles a escala.",
+   "evidencia": [
+    {
+     "afirmacion": "Seleccionar la respuesta de mayor Elo da 78,4 % de exactitud top-1 en GPQA Diamond; el Elo de 203 objetivos es autoevaluación y la evaluación experta fue de 11 objetivos con siete expertos",
+     "fuentes": [
+      "AQA-04",
+      "TAR-14"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "La novedad de las ideas del LLM desaparece al ejecutarlas (efectividad 6,00 a 4,13 contra 4,83 a 4,78 en humanas); ningún juez supera r = 0,35 con expertos",
+     "fuentes": [
+      "AQA-27",
+      "TAR-12",
+      "TAR-13"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "De 4.000 ideas semilla solo ~200 (5 %) no eran duplicados; 24 % de 50 documentos eran paráfrasis o copias de trabajos previos",
+     "fuentes": [
+      "AQA-43",
+      "AQA-42"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Sin réplica externa del Elo; los estudios de ejecución son solo de PLN y de muestra chica; atribuir las ganancias a la arquitectura de debate es [?] sin control de agente único.",
+   "viabilidad_equipo": {
+    "nivel": "baja",
+    "nota": "Solo como filtro con humano; no aporta verificador."
+   },
+   "propuesta_asociada": "Descartado como ranker",
+   "fuentes": [
+    "AQA-04",
+    "TAR-14",
+    "AQA-27",
+    "TAR-12",
+    "TAR-13",
+    "TAR-11",
+    "AQA-43",
+    "AQA-42",
+    "TAR-15"
+   ]
+  },
+  {
+   "id": "PAT-09",
+   "familia": "arquitectura",
+   "nombre": "Búsqueda en árbol o evolución de programas guiada por evaluador, con baseline de muestreo primero",
+   "descripcion": "Un bucle modelo → programa → evaluador determinista → archivo de programas, con población diversa y evaluación en cascada (FunSearch, AlphaEvolve, ShinkaEvolve, AIDE, AI Scientist v2). Antes de adoptar maquinaria evolutiva se corre un baseline de muestreo independiente y uno secuencial condicionado con el mismo presupuesto.",
+   "tareas": [
+    "optimización con métrica mecánica barata (cotas matemáticas, Kaggle, algoritmos)"
+   ],
+   "herramientas": [
+    "script de unas centenas de líneas (OpenEvolve, ShinkaEvolve)",
+    "evaluadores en CPU en paralelo",
+    "registro de todos los candidatos",
+    "partición de retención"
+   ],
+   "tipo_verificador": [
+    "ejecucion_y_pruebas"
+   ],
+   "verificador_detalle": "Ejecución de código con puntaje continuo: exacto para la propiedad calculada, explotable en lo no especificado; necesita aserciones de invariantes, límites de recursos, partición de retención y varias semillas.",
+   "evidencia": [
+    {
+     "afirmacion": "FunSearch halló un cap set de 512 en dimensión 8 con ~10^6 muestras; declara evaluador eficiente, puntaje no binario y esqueleto aislable como condiciones",
+     "fuentes": [
+      "MAT-01"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Con USD 20, el muestreo secuencial condicionado iguala o supera a ShinkaEvolve en 6 de 9 problemas y a AlphaEvolve en 4 de 9; no hay arnés de descubrimiento fijo superior (30 arneses, 12 pares modelo–problema)",
+     "fuentes": [
+      "MAT-05",
+      "MAT-06"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Explotación del evaluador en cuatro aplicaciones (integración numérica, corte omitido, evaluador local, caídas de servidores); elegir el nodo por puntaje de prueba subiría 9–13 puntos la tasa de medallas",
+     "fuentes": [
+      "MAT-03",
+      "MAT-09",
+      "MAT-10",
+      "MAT-11",
+      "AQA-25"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    }
+   ],
+   "limitaciones": "El techo lo fija el espacio de búsqueda y el conocimiento de dominio que diseña una persona; con un puntaje ruidoso se selecciona ruido; con n de decenas el sobreajuste de selección es el riesgo dominante; no agrega valor en espacios que se enumeran enteros.",
+   "viabilidad_equipo": {
+    "nivel": "baja",
+    "nota": "Solo como simulación; no se extrapola a la eficacia de un dsRNA."
+   },
+   "propuesta_asociada": "Descartado como método",
+   "fuentes": [
+    "MAT-01",
+    "MAT-02",
+    "MAT-03",
+    "MAT-04",
+    "MAT-05",
+    "MAT-06",
+    "MAT-07",
+    "MAT-08",
+    "MAT-09",
+    "MAT-10",
+    "MAT-11",
+    "AQA-24",
+    "AQA-25",
+    "AQA-01"
+   ]
+  },
+  {
+   "id": "PAT-10",
+   "familia": "verificacion",
+   "nombre": "Generador–verificador con verificador explícito, exacto o calibrado",
+   "descripcion": "Un modelo propone un candidato (código, argumento, extracción); un verificador independiente lo comprueba y devuelve un informe estructurado que alimenta una corrección; se itera hasta una regla de aceptación explícita (por ejemplo cinco pasadas consecutivas) o hasta agotar el presupuesto.",
+   "tareas": [
+    "pruebas matemáticas",
+    "extracción de datos con verificador estructurado"
+   ],
+   "herramientas": [
+    "modelo por API",
+    "arnés de pruebas determinista",
+    "muestra de 50 a 100 casos etiquetados por humanos para medir falsos positivos y negativos del verificador"
+   ],
+   "tipo_verificador": [
+    "ejecucion_y_pruebas",
+    "modelo_llm",
+    "humano"
+   ],
+   "verificador_detalle": "Exacto si son pruebas, tipos o aserciones; si es un modelo es un proxy que debe calibrarse contra etiquetas humanas.",
+   "evidencia": [
+    {
+     "afirmacion": "Un pipeline con modelos genéricos y aceptación tras cinco verificaciones consecutivas resolvió 5/6 del IMO 2025",
+     "fuentes": [
+      "MAT-29"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "Los jueces LLM de pruebas sobreestiman: puntajes entre ~2 y ~20 veces los humanos en USAMO 2025; exactitud por solución ≤ 54 % en IMO-GradingBench; +2 puntos sobre los calificadores oficiales en el IMO 2026 por un punto ciego compartido",
+     "fuentes": [
+      "MAT-32",
+      "MAT-31",
+      "MAT-33"
+     ],
+     "marcador": "[E]/[R]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "De 200 respuestas que el verificador en lenguaje natural dejó pasar y pudieron calificarse, 137 (68,5 %) eran fundamentalmente defectuosas",
+     "fuentes": [
+      "MAT-45"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    }
+   ],
+   "limitaciones": "Puntos ciegos compartidos entre generador y verificador; un generador al que se le deja autoevaluarse declara correcta su prueba; el costo se desplaza a la adjudicación humana.",
+   "viabilidad_equipo": {
+    "nivel": "media",
+    "nota": "Solo con verificador exacto o con tasa de error medida contra etiquetas humanas."
+   },
+   "propuesta_asociada": "Propuesta 3 (en su componente de revisor)",
+   "fuentes": [
+    "MAT-29",
+    "MAT-30",
+    "MAT-31",
+    "MAT-32",
+    "MAT-33",
+    "MAT-45"
+   ]
+  },
+  {
+   "id": "PAT-11",
+   "familia": "verificacion",
+   "nombre": "Formalización con verificación por derivación y auditoría del enunciado",
+   "descripcion": "El modelo produce pruebas en un lenguaje con verificador exacto (Lean 4 con Mathlib) y una persona o un juez audita que el enunciado signifique lo que se quería. Variante liviana: pruebas basadas en propiedades y aserciones sobre las funciones centrales del código.",
+   "tareas": [
+    "pruebas formales",
+    "invariantes del propio código"
+   ],
+   "herramientas": [
+    "Lean 4 y Mathlib",
+    "probador abierto de 8B o API",
+    "persona que audita enunciados",
+    "pruebas basadas en propiedades (variante liviana)"
+   ],
+   "tipo_verificador": [
+    "formal"
+   ],
+   "verificador_detalle": "Kernel de Lean: exacto respecto del enunciado formal; no verifica la fidelidad del enunciado a la intención.",
+   "evidencia": [
+    {
+     "afirmacion": "AlphaProof: ~80 M enunciados autoformalizados, ~80 mil TPU-días de RL, adaptación en tiempo de prueba de 50 a cientos de TPU-días por problema difícil; 3 de 5 problemas no geométricos del IMO 2024",
+     "fuentes": [
+      "MAT-16"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Más de la mitad de miniF2F tenía discrepancias entre enunciado formal e informal; 4.833 hallazgos en cinco benchmarks de Lean, 398 certificados mecánicamente",
+     "fuentes": [
+      "MAT-24",
+      "MAT-25"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Formalizar un libro costó ~USD 100 mil y 130 mil líneas de Lean, con fidelidad comprobada solo con agentes revisores y muestreo manual",
+     "fuentes": [
+      "MAT-27"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    }
+   ],
+   "limitaciones": "Curva de aprendizaje alta y valor bajo para un problema biológico; el enunciado lo audita una persona y el kernel no ve la fidelidad.",
+   "viabilidad_equipo": {
+    "nivel": "baja",
+    "nota": "La variante liviana (propiedades y aserciones) sí es transferible y está en el patrón 18."
+   },
+   "propuesta_asociada": "Contexto",
+   "fuentes": [
+    "MAT-16",
+    "MAT-19",
+    "MAT-20",
+    "MAT-24",
+    "MAT-25",
+    "MAT-27",
+    "MAT-28",
+    "MAT-49"
+   ]
+  },
+  {
+   "id": "PAT-12",
+   "familia": "anclaje",
+   "nombre": "Registro de afirmaciones con ancla obligatoria y rechazo por defecto",
+   "descripcion": "Todo lo que el agente quiere afirmar se emite como registro estructurado (tipo, evidencia con cita literal, localizador y hash, ejecución con hashes de script, entradas y entorno, estado). Una afirmación sin ancla verificable pasa a «sin anclaje» y no entra al texto final; el constructor del reporte falla si hay cifras o identificadores que no estén en el registro.",
+   "tareas": [
+    "informes",
+    "tablas de resultados",
+    "resúmenes de literatura"
+   ],
+   "herramientas": [
+    "esquema JSON del registro",
+    "verificadores deterministas de cita literal y de cifras",
+    "hashes",
+    "vista de revisión humana"
+   ],
+   "tipo_verificador": [
+    "determinista",
+    "humano"
+   ],
+   "verificador_detalle": "Existencia, cita literal normalizada y coincidencia numérica son deterministas; el soporte de la tesis requiere revisor de otra familia y revisión humana dirigida.",
+   "evidencia": [
+    {
+     "afirmacion": "Kosmos enlaza cada enunciado a un cuaderno o a un paper, lo que permitió a evaluadores externos medir 79,4 % de exactitud (85,5 % análisis, 82,1 % literatura, 57,9 % interpretación)",
+     "fuentes": [
+      "EVA-48",
+      "TAR-38"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "Un contrato estructural donde toda salida «verificada» desciende de una llamada a herramienta atestiguada: 120/120 contra 95 % en tablas numéricas",
+     "fuentes": [
+      "EVA-55"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "Una prueba de humo de 10 comprobaciones (DOI, PMID y arXiv reales e inventados; cita literal contra paráfrasis) dio el resultado esperado en todas",
+     "fuentes": [
+      "EVA-53"
+     ],
+     "marcador": "[H]",
+     "tipo_resultado": "demostración sin evaluación"
+    }
+   ],
+   "limitaciones": "No ataca la cita real que no sostiene la tesis (15,9 % de citas al paper equivocado en agentes biomédicos), la racionalización posterior, la sobreinterpretación ni el error de método reproducible; no hay evaluación controlada del efecto del registro sobre la tasa de errores en biología.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Versión mínima de ~4 días-persona; la versión completa de nueve componentes no cabe en el presupuesto."
+   },
+   "propuesta_asociada": "Propuesta 3",
+   "fuentes": [
+    "EVA-48",
+    "TAR-38",
+    "EVA-04",
+    "EVA-55",
+    "EVA-54",
+    "EVA-53",
+    "EVA-31",
+    "EVA-16"
+   ]
+  },
+  {
+   "id": "PAT-13",
+   "familia": "anclaje",
+   "nombre": "Registro de fuentes cerrado con recuperación determinista antes de redactar",
+   "descripcion": "Un descargador que no es un modelo guarda cada fuente (texto, URL efectivamente abierta, versión, fecha, hash); el agente solo puede citar identificadores que ya existan en el registro y no puede escribir una referencia bibliográfica: se genera a partir de los metadatos que devuelve la API (Crossref, E-utilities, arXiv).",
+   "tareas": [
+    "síntesis de literatura",
+    "dossier de evidencia"
+   ],
+   "herramientas": [
+    "clientes de Crossref, E-utilities y arXiv",
+    "almacén de textos con hash",
+    "comparación de título"
+   ],
+   "tipo_verificador": [
+    "determinista"
+   ],
+   "verificador_detalle": "Resolución de DOI, PMID o arXiv con comparación de título; los verificadores de referencias tienen muchos falsos positivos (20–53 de 71 referencias reales marcadas), por lo que lo no encontrado va a revisión y no a rechazo automático.",
+   "evidencia": [
+    {
+     "afirmacion": "Sin recuperación, 78,7 % (informática) y 94,8 % (biomedicina) de los artículos citados no existen; con recuperación, 0 % en un modelo de 8B",
+     "fuentes": [
+      "EVA-42"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Separar recuperación determinista y revisión por modelo bajó la regresión de 4,8 % a 0,8 % y subió la exactitud de campos de 83,6 a 91,5 % en corrección de BibTeX",
+     "fuentes": [
+      "EVA-45"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Una herramienta de verificación de URL en el bucle baja los no resueltos de 5–18 % a menos de 1 %",
+     "fuentes": [
+      "EVA-44",
+      "TAR-03"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "La existencia no es sostén (15,9 % de citas al paper equivocado entre las que resuelven); los sistemas de literatura trabajan sobre acceso abierto y heredan el sesgo de falta de resultados negativos; hay que reverificar antes de congelar por cambios de versión (la cifra de BixBench cambió entre versiones).",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Se construye en pocos días con APIs públicas."
+   },
+   "propuesta_asociada": "Propuesta 3",
+   "fuentes": [
+    "EVA-42",
+    "EVA-43",
+    "EVA-44",
+    "EVA-45",
+    "EVA-47",
+    "EVA-16",
+    "TAR-03",
+    "TAR-04",
+    "EVA-01"
+   ]
+  },
+  {
+   "id": "PAT-14",
+   "familia": "anclaje",
+   "nombre": "Resolución obligatoria de entidades biológicas contra bases de datos",
+   "descripcion": "Cada gen, especie, accesión o identificador de secuencia que aparece en una afirmación se resuelve por API contra una base (NCBI Taxonomy, NCBI Gene, UniProt, ENA); lo que no resuelve queda en revisión, y se resuelve siempre con la especie.",
+   "tareas": [
+    "anotación",
+    "verificación de afirmaciones sobre genes y organismos"
+   ],
+   "herramientas": [
+    "E-utilities",
+    "UniProt",
+    "NCBI Taxonomy"
+   ],
+   "tipo_verificador": [
+    "determinista"
+   ],
+   "verificador_detalle": "Consultas deterministas a bases públicas con coincidencia exacta de identificador y de especie, sin LLM en el veredicto.",
+   "evidencia": [
+    {
+     "afirmacion": "GeneAgent obtiene veredictos válidos del verificador para 99,6 % de 15.903 afirmaciones y 92 % de decisiones correctas en una muestra manual de 132; 16 % de las afirmaciones sin respaldo",
+     "fuentes": [
+      "EVA-37",
+      "BIO-02"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "GPT-4o pasa de 99 % de error a 99 % de acierto en conversión de nombres de Ensembl con acceso web; 33,6 % de asignaciones inventadas para especies inexistentes (rango 0,5–92 % por modelo)",
+     "fuentes": [
+      "EVA-11",
+      "EVA-24"
+     ],
+     "marcador": "[E]/[R]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Existir no es ser la entidad correcta (homónimos, ortólogos mal asignados); las bases de insectos son pobres; las evaluaciones son en humano y ratón.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "En D. maidis no hay genes nucleares anotados en NCBI Gene (W3); resolver contra los TSA y los ensamblados."
+   },
+   "propuesta_asociada": "Propuesta 3",
+   "fuentes": [
+    "EVA-11",
+    "EVA-37",
+    "EVA-38",
+    "EVA-24",
+    "EVA-07",
+    "EVA-25",
+    "BIO-02"
+   ]
+  },
+  {
+   "id": "PAT-15",
+   "familia": "anclaje",
+   "nombre": "Revisor independiente de otra familia con lista de verificación congelada y abstención explícita",
+   "descripcion": "Un modelo distinto, sin ver el razonamiento del generador, recibe la afirmación y la cita literal y devuelve «respalda», «contradice» o «insuficiente» según una lista fijada de antemano (alcance de especie, condición, dirección del efecto, cifras); solo puede bajar una afirmación, nunca subirla a verificada sin revisión humana.",
+   "tareas": [
+    "soporte de citas",
+    "control de afirmaciones antes del informe"
+   ],
+   "herramientas": [
+    "segundo modelo de otra familia",
+    "lista de verificación congelada",
+    "muestra humana del 20 % y 100 % de las interpretaciones"
+   ],
+   "tipo_verificador": [
+    "modelo_llm",
+    "humano"
+   ],
+   "verificador_detalle": "Costo medio; confiabilidad limitada: acuerdo con humanos r = 0,62 en DeepTRACE y κ de 0,47–0,70 en BiomniBench.",
+   "evidencia": [
+    {
+     "afirmacion": "Una lista congelada subió el acuerdo entre jueces de Spearman 0,35 a 0,82; un juez de otra familia cambió la tasa de citas equivocadas de 15,9 a 10,6 %",
+     "fuentes": [
+      "EVA-16"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "La autocorrección funciona con retroalimentación externa confiable y no con la de un LLM solicitado, salvo tareas excepcionales",
+     "fuentes": [
+      "AQB-32"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "PaperQA2 logra su precisión (85,2 %) absteniéndose en 21,9 % de los casos; exactitud sin diferencia con doctorandos",
+     "fuentes": [
+      "R4 §4.2"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    }
+   ],
+   "limitaciones": "El debate entre varios revisores no supera a líneas base simples; un revisor cuya salida vuelve al agente se convierte en señal de optimización; sesgo del juez hacia su propia familia; no detecta errores de método.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Una llamada de revisión por afirmación sobre texto público."
+   },
+   "propuesta_asociada": "Propuesta 3",
+   "fuentes": [
+    "EVA-16",
+    "EVA-15",
+    "EVA-39",
+    "EVA-23",
+    "AQB-32",
+    "AQB-33",
+    "AQB-35",
+    "AQB-37"
+   ]
+  },
+  {
+   "id": "PAT-16",
+   "familia": "anclaje",
+   "nombre": "Auditor de trazas, re-ejecución determinista y modelos nulos (segundo revisor)",
+   "descripcion": "Un revisor combina reglas deterministas (acceso a rutas prohibidas, similitud con resultados publicados) y un modelo sobre trazas y código completos; los claims numéricos se re-ejecutan en un entorno limpio y se comparan con el artefacto con tolerancia, y cada hallazgo se contrasta con un modelo nulo aleatorio de la misma forma.",
+   "tareas": [
+    "auditoría de reproducibilidad",
+    "detección de fallas de proceso",
+    "control de calidad de análisis"
+   ],
+   "herramientas": [
+    "entorno limpio",
+    "hashes de script, entradas y entorno",
+    "modelos nulos",
+    "lista de chequeo congelada"
+   ],
+   "tipo_verificador": [
+    "ejecucion_y_pruebas",
+    "modelo_llm",
+    "humano"
+   ],
+   "verificador_detalle": "Re-ejecución con comparación numérica y nulos empíricos (determinista, barato, confiable); por modo de falla, un modelo con lista de chequeo.",
+   "evidencia": [
+    {
+     "afirmacion": "Mirar solo el paper detecta fallas metodológicas de sistemas «AI scientist» con 55 % de exactitud; con trazas y código sube a 82 %",
+     "fuentes": [
+      "AQA-09",
+      "EVA-50"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Los agentes marcan algún bloqueo de reproducibilidad semántico en 82,1–89,7 % de 1.149 artículos con 1,4–3,5 % de falsos positivos, pero localizan la causa exacta en 13,4–25,4 %",
+     "fuentes": [
+      "TAR-42"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Auditoría independiente con modelos nulos de tres hipótesis de Kosmos: una buena (CDO1, r = 0,70), una débil y una falsa",
+     "fuentes": [
+      "BIO-13",
+      "TAR-16"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "evaluado (n = 3)"
+    }
+   ],
+   "limitaciones": "La re-ejecución reproduce errores de método (filtros no documentados, convenciones de signo); recall bajo y poca repetibilidad en la detección de errores de manuscritos (21,1 % en 2025); un panel LLM sobre código y puntaje deja pasar al menos 6,5 % de las trampas.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Parte del patrón 1 (auditoría de trazas) y del patrón 3."
+   },
+   "propuesta_asociada": "Propuestas 1 y 3",
+   "fuentes": [
+    "AQA-09",
+    "EVA-50",
+    "TAR-42",
+    "TAR-39",
+    "BIO-13",
+    "TAR-16",
+    "EVA-05",
+    "AQB-48"
+   ]
+  },
+  {
+   "id": "PAT-17",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Simulador retrospectivo de ronda sobre datos medidos, con líneas base nulas y potencia declarada",
+   "descripcion": "Los datos publicados de eficacia (28 dsRNA y 29 siRNA de Cedden; los genes de D. maidis como prueba de cordura) se convierten en un «laboratorio de consulta»: cada ronda elige un lote y se revela su resultado; se compara la estrategia contra azar, una línea aditiva y un puntaje termodinámico simple, con muchas semillas, partición dejando un gen afuera y controles positivo y negativo; la validación declara su propia potencia.",
+   "tareas": [
+    "validación sin laboratorio",
+    "elección de cuántos candidatos confirmar"
+   ],
+   "herramientas": [
+    "Python (numpy, scipy)",
+    "tablas CC BY de Cedden y Knorr",
+    "scripts de potencia",
+    "evaluador fuera del alcance del agente"
+   ],
+   "tipo_verificador": [
+    "datos_retrospectivos"
+   ],
+   "verificador_detalle": "Datos ya medidos con potencia declarada: con n = 28 detecta ρ ≥ 0,5 con potencia 0,74; con los cinco genes de D. maidis, 0,08 para ρ = 0,7.",
+   "evidencia": [
+    {
+     "afirmacion": "BioDiscoveryAgent supera a la optimización bayesiana en simulación retrospectiva (5 rondas de 128 genes, 10 corridas, un conjunto no publicado como control de memorización)",
+     "fuentes": [
+      "BIO-10"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "ALDE simula sobre dos paisajes casi completos antes del banco y llevó un rendimiento de 12 % a 93 % y 99 % con 384 aleatorias y dos rondas de ~90",
+     "fuentes": [
+      "BIO-37",
+      "ANA-22"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "El orden de las funciones de adquisición depende de la métrica, el conjunto y el modelo, y extrapolar a otros contextos puede no ser posible",
+     "fuentes": [
+      "BIO-39"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Con n de dos dígitos las rondas son pocas y el orden de estrategias es inestable; solo positivos, sesgo de publicación y restricción de rango; no valida transferencia de coleóptero a hemíptero; los cinco genes de D. maidis se eligieron por esencialidad conocida.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Reutiliza los scripts de las pistas PRA y PRB."
+   },
+   "propuesta_asociada": "Propuesta 2",
+   "fuentes": [
+    "BIO-10",
+    "BIO-37",
+    "ANA-22",
+    "BIO-39",
+    "BIO-38",
+    "BIO-40",
+    "BIO-42",
+    "PRB-01",
+    "PRB-02",
+    "PRB-03",
+    "PRB-04",
+    "PRB-05"
+   ]
+  },
+  {
+   "id": "PAT-18",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Verificador por capas: restricciones exactas, orden blando e incertidumbre explícita",
+   "descripcion": "Un enumerador genera todas las ventanas del gen o de la región viral y las pasa por: capa 0 de invariantes exactas (número de ventanas, complementariedad, reproducibilidad); capa 1 de restricciones deterministas (ORF, longitud mínima, ausencia de palindromía, conteo de desapareamientos con sensibilidad al umbral, conservación entre aislados); capa 2 de puntaje blando con peso por evidencia (asimetría y autoplegado con respaldo; GC 9–14 y A en 10 con peso reducido [?]; accesibilidad con peso cero); capa 3 de incertidumbre por remuestreo, con pares «orden robusto» frente a «empate».",
+   "tareas": [
+    "priorización auditable de candidatos de dsRNA dados",
+    "fichas por candidato"
+   ],
+   "herramientas": [
+    "Bowtie local",
+    "ViennaRNA",
+    "Snakemake",
+    "numpy y scipy",
+    "hashes"
+   ],
+   "tipo_verificador": [
+    "determinista",
+    "datos_retrospectivos"
+   ],
+   "verificador_detalle": "Las capas 0 y 1 son verificadores deterministas y baratos de restricciones; la capa 2 es un proxy de correlación moderada, solo validado en Coleoptera; la capa 3 es calibración retrospectiva.",
+   "evidencia": [
+    {
+     "afirmacion": "Dentro de un gen y restringido al ORF, el puntaje de dsRIP ordena como la eficacia medida en 7 de 8 genes de Tribolium (contraste de extremos); entre genes no sirve (top-9 contiene 4 de los 9 mejores medidos, azar 2,9)",
+     "fuentes": [
+      "PRA-01",
+      "PRA-02"
+     ],
+     "marcador": "[H]",
+     "tipo_resultado": "reportado por autores con reanálisis propio"
+    },
+    {
+     "afirmacion": "Apuntar al ORF se asoció a +9,9 unidades de HR (P = 0,011); la accesibilidad no fue significativa (P = 0,41 a nivel dsRNA)",
+     "fuentes": [
+      "PRA-01"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "En CRISPR, un proxy mediocre usado como filtro de descarte o top-k con confirmación redujo 2–10 veces los ensayos por acierto",
+     "fuentes": [
+      "ANA-01",
+      "ANA-12",
+      "ANA-15"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Todo es Coleoptera, con contraste de extremos, n chico y en muestra; el puntaje no sirve entre genes ni entre especies; la inversión de signo del GC 9–14 respecto del humano es [?]; los pesos de los términos son elección nuestra.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Es el núcleo de L1 y L3 de SINTESIS_V2."
+   },
+   "propuesta_asociada": "Propuestas 1 y 2",
+   "fuentes": [
+    "PRA-01",
+    "PRA-02",
+    "PRA-03",
+    "PRA-21",
+    "PRB-01",
+    "PRB-02",
+    "BIO-32",
+    "BIO-33",
+    "BIO-37",
+    "ANA-01",
+    "ANA-12",
+    "ANA-15"
+   ]
+  },
+  {
+   "id": "PAT-19",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Auditor de especificidad con pruebas unitarias contra casos publicados",
+   "descripcion": "El verificador enumera todos los siRNA de 21 nt derivables, cuenta coincidencias en transcriptomas no objetivo con 0, 1 y 2 desapareamientos y con umbrales contiguos de 15, 16, 19 y 21 nt, y emite un mapa de riesgo con análisis de sensibilidad al umbral y no un sí o no; su calidad se prueba reproduciendo casos publicados con respuesta conocida.",
+   "tareas": [
+    "mapa de riesgo de off-target",
+    "tamizaje contra maíz, abeja y cicadélidos"
+   ],
+   "herramientas": [
+    "Bowtie local",
+    "transcriptomas no objetivo",
+    "casos publicados como fixtures"
+   ],
+   "tipo_verificador": [
+    "determinista"
+   ],
+   "verificador_detalle": "Determinista y barato; es verificador de consistencia (los conteos son reproducibles), no de efecto.",
+   "evidencia": [
+    {
+     "afirmacion": "A favor en coleópteros y dípteros: un dsRNA de 240 pb con un tramo de 21 pb idéntico era eficaz; ortólogos de Snf7 activos solo con >90 % de identidad y ≥ 3 coincidencias de 21 nt; bastan segmentos perfectos de ≥ 16 pb",
+     "fuentes": [
+      "PRB-30",
+      "PRB-31",
+      "PRB-21"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "En contra en hemípteros: 25 % de los 21-meros derivables idénticos sin silenciamiento cruzado en áfidos; en Orius similis los mayores cambios de expresión se vieron en genes con menos coincidencias consecutivas",
+     "fuentes": [
+      "PRB-18",
+      "PRB-24"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "reportado por autores"
+    }
+   ],
+   "limitaciones": "Es un mapa de riesgo potencial, no una medición de seguridad; no existe benchmark de herramientas de predicción de off-target en insectos contra efecto medido; las abejas son poco sensibles y no dan control positivo; varios estudios son del desarrollador de un producto.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Ya está en L3 y en P2 de SINTESIS_V2."
+   },
+   "propuesta_asociada": "Propuesta 1",
+   "fuentes": [
+    "PRB-30",
+    "PRB-31",
+    "PRB-21",
+    "PRB-18",
+    "PRB-24",
+    "PRB-23",
+    "PRB-19",
+    "PRB-26"
+   ]
+  },
+  {
+   "id": "PAT-20",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Compuerta de transferencia: ningún proxy gana peso sin pasar una evaluación fuera de su conjunto",
+   "descripcion": "Cada proxy se somete a particiones honestas (por ARNm en humano; dejando un gen o un siRNA afuera en Tribolium), a una prueba de signo contra lo publicado y a una ablación; un proxy que no la pasa queda con peso cero y se reporta.",
+   "tareas": [
+    "decidir qué términos entran al puntaje"
+   ],
+   "herramientas": [
+    "evaluación con partición por grupo",
+    "controles con secuencia barajada",
+    "línea base de vecino más cercano"
+   ],
+   "tipo_verificador": [
+    "datos_retrospectivos"
+   ],
+   "verificador_detalle": "La evaluación con partición honesta es el verificador: barata, rápida y reproducible; no verifica eficacia biológica.",
+   "evidencia": [
+    {
+     "afirmacion": "La fuga de datos y el colapso de transferencia entre conjuntos se detectan con este tipo de particiones: AUC de 0,81 a 0,70 entre conjuntos humanos y ≈ 0,50 desde el reportero de luciferasa",
+     "fuentes": [
+      "PRA-10",
+      "PRA-13",
+      "PRA-09"
+     ],
+     "marcador": "[E]/[R]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "El mismo mecanismo justifica el peso cero de la accesibilidad: OR 1,00 [0,89–1,12] en siRecords y HR 0,9994 en Tribolium",
+     "fuentes": [
+      "PRA-08",
+      "PRA-01"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Los benchmarks de proxies suelen estar inflados por fuga o sesgo: 49 % de CASF con un vecino en el entrenamiento; un modelo que ignora el receptor iguala al que lo usa en 102 dianas",
+     "fuentes": [
+      "ANA-17",
+      "ANA-16"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Detecta proxies malos pero no fabrica proxies buenos; con n = 29 la potencia es baja.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Es la forma operativa de L2 como condición de validez de L1."
+   },
+   "propuesta_asociada": "Propuesta 2",
+   "fuentes": [
+    "PRA-10",
+    "PRA-13",
+    "PRA-09",
+    "PRA-08",
+    "PRA-01",
+    "ANA-16",
+    "ANA-17",
+    "ANA-07",
+    "ANA-02"
+   ]
+  },
+  {
+   "id": "PAT-21",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Registro de predicciones congeladas con verificación diferida",
+   "descripcion": "El equipo publica el orden y los intervalos con hash y fecha, con la métrica y el criterio de éxito declarados, antes de que exista cualquier dato de laboratorio en D. maidis; un tercero (el laboratorio organizador o un resultado publicado) lo puntúa después. Los formatos de dos rondas (descubrimiento y análogos para descartar artefactos) vienen de CACHE y de las competencias de Adaptyv.",
+   "tareas": [
+    "cerrar el bucle sin laboratorio propio"
+   ],
+   "herramientas": [
+    "hash sha256 y fecha",
+    "archivo de predicciones y métrica declarada",
+    "entrega al organizador"
+   ],
+   "tipo_verificador": [
+    "ensayo_experimental_de_tercero"
+   ],
+   "verificador_detalle": "El ensayo húmedo futuro, aplicado de forma prospectiva y diferida.",
+   "evidencia": [
+    {
+     "afirmacion": "CACHE #1: 23 participantes completaron, 1.955 compuestos elegidos, 73 con KD < 150 µM (≈ 3,7 %); formato de dos rondas con ensayos ortogonales",
+     "fuentes": [
+      "BIO-46",
+      "BIO-47"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado (prospectivo)"
+    },
+    {
+     "afirmacion": "Competencia de EGFR de Adaptyv: más de 1.800 diseños enviados y 601 caracterizados; las métricas in silico tuvieron AUC de 0,58, 0,55 y 0,44 para predecir expresión",
+     "fuentes": [
+      "BIO-45",
+      "ANA-14"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por organizadores"
+    },
+    {
+     "afirmacion": "El único antecedente de comparación prospectiva en RNAi de insectos es diseño nuevo contra diseño previo (dsRIP), con log-rank unilateral y sin efecto a dosis alta",
+     "fuentes": [
+      "PRA-01"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "reportado por autores"
+    }
+   ],
+   "limitaciones": "No cierra el bucle dentro del Investigathón; depende de un tercero; el resultado depende de la dosis y de la vía de entrega; las tasas de acierto en estos desafíos son bajas.",
+   "viabilidad_equipo": {
+    "nivel": "media",
+    "nota": "Congelar es barato; que alguien puntúe depende del organizador (pregunta abierta)."
+   },
+   "propuesta_asociada": "Propuesta 2",
+   "fuentes": [
+    "BIO-46",
+    "BIO-47",
+    "BIO-45",
+    "ANA-14",
+    "BIO-44",
+    "PRA-01"
+   ]
+  },
+  {
+   "id": "PAT-22",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Filtro de descarte calibrado y ordenador grueso con confirmación sobre el top-k",
+   "descripcion": "El proxy descarta la parte baja del conjunto conservando casi todo lo verdadero (retener ≥ 95–98 % de los aciertos conocidos) y fija un k pequeño de candidatos a confirmar; se reportan estratos y no un orden total; el umbral se calibra con validación que deja un grupo afuera. Regla cuantitativa: factor de ahorro de ensayos X = p/b = r/f.",
+   "tareas": [
+    "decidir cuántos candidatos confirmar",
+    "estratificación de ventanas"
+   ],
+   "herramientas": [
+    "proxy con validación independiente",
+    "scripts de simulación de regresión a la media",
+    "tablas de enriquecimiento"
+   ],
+   "tipo_verificador": [
+    "datos_retrospectivos",
+    "ensayo_experimental_de_tercero"
+   ],
+   "verificador_detalle": "Puntaje con validación independiente y confirmación experimental del top-k; el factor máximo es 1/b.",
+   "evidencia": [
+    {
+     "afirmacion": "Predictor de guías CRISPR con Spearman 0,34–0,44 en conjuntos independientes: de 104 a 22 inyecciones en pez cebra, una de las dos mejores guías recuperada en 9 de 11 loci",
+     "fuentes": [
+      "ANA-01"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Filtro de confianza de AlphaFold2: ≈ 10 veces la tasa de éxito de binders; docking contra D4: 22–26 % de aciertos en los mejores bins y 0 % en los peores sobre 549 moléculas, sin poder ordenar finamente",
+     "fuentes": [
+      "ANA-12",
+      "ANA-15"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    },
+    {
+     "afirmacion": "Cuartil superior de puntaje con más indels que el inferior en todas las herramientas probadas en plantas, aunque el ρ osciló entre 0,5 y > 0,8 con n ≈ 20–30",
+     "fuentes": [
+      "ANA-08"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado"
+    }
+   ],
+   "limitaciones": "Ningún factor de ahorro se obtuvo con un proxy entrenado con decenas de puntos; el proxy pierde utilidad al cambiar de dominio (ρ de 0,87 a 0,43 en una línea celular nueva; sin correlación significativa en plantas con n = 22); con n = 29 solo se detecta ρ ≥ 0,5.",
+   "viabilidad_equipo": {
+    "nivel": "alta",
+    "nota": "Es cálculo y simulación local; la tabla de decisión es condicional a un ρ que nadie midió en hemípteros."
+   },
+   "propuesta_asociada": "Propuesta 2",
+   "fuentes": [
+    "ANA-01",
+    "ANA-12",
+    "ANA-13",
+    "ANA-15",
+    "ANA-08",
+    "ANA-07",
+    "ANA-02",
+    "ANA-16",
+    "ANA-17",
+    "ANA-20"
+   ]
+  },
+  {
+   "id": "PAT-23",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Regla de decisión conforme con abstención: cuántos candidatos ensayar y cuándo no ensayar",
+   "descripcion": "Se calibra la incertidumbre del proxy con una muestra aleatoria inicial y se declara, para cada candidato, un conjunto de predicción o un intervalo; una función de ganancia y costo decide entre ensayar los predichos activos, ensayarlo todo o no ensayar.",
+   "tareas": [
+    "priorización bajo presupuesto de ensayos"
+   ],
+   "herramientas": [
+    "predicción conforme (con corrección de retroalimentación si los candidatos se eligen con el mismo modelo)",
+    "muestra aleatoria inicial"
+   ],
+   "tipo_verificador": [
+    "datos_retrospectivos"
+   ],
+   "verificador_detalle": "Modelo envuelto en predicción conforme; la garantía es marginal y exige intercambiabilidad.",
+   "evidencia": [
+    {
+     "afirmacion": "Cobertura empírica cercana a la nominal (hasta 0,924 para 0,9) y elección correcta del ajuste de máxima ganancia en 8 a 10 de 12 conjuntos",
+     "fuentes": [
+      "ANA-26",
+      "ANA-27"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "evaluado (retrospectivo)"
+    },
+    {
+     "afirmacion": "La revisión de aprendizaje automático para siRNA señala que no se aplicó cuantificación formal de incertidumbre a la predicción de eficacia",
+     "fuentes": [
+      "BIO-26",
+      "PRA-09"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado (revisión)"
+    }
+   ],
+   "limitaciones": "Con n de decenas los intervalos son anchos y discretos; no hay validación prospectiva abierta con ahorro de ensayos medido; la intercambiabilidad exige una muestra inicial aleatoria que el equipo no puede generar sin laboratorio.",
+   "viabilidad_equipo": {
+    "nivel": "media",
+    "nota": "Implementable sobre datos retrospectivos; su valor depende de la correlación real en la especie."
+   },
+   "propuesta_asociada": "Propuesta 2 (opcional)",
+   "fuentes": [
+    "ANA-26",
+    "ANA-27",
+    "ANA-29",
+    "BIO-26",
+    "PRA-09"
+   ]
+  },
+  {
+   "id": "PAT-24",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Bucle activo de pocas rondas con ensayo propio y reensayo selectivo",
+   "descripcion": "Ronda 0 enfocada con un proxy de tiro cero (o aleatoria), un modelo con incertidumbre frecuentista que propone el lote siguiente y reensayo de los candidatos que el proxy da por buenos y el ensayo por malos cuando hay ruido; lotes de 3 a ~450 y 3 a 20 rondas según la plataforma.",
+   "tareas": [
+    "ingeniería de enzimas y anticuerpos con ensayo propio"
+   ],
+   "herramientas": [
+    "plataforma de ensayo",
+    "ensamble o remuestreo para incertidumbre"
+   ],
+   "tipo_verificador": [
+    "ensayo_experimental"
+   ],
+   "verificador_detalle": "El ensayo mismo, con el proxy como guía del lote; la latencia del ciclo va de 9 horas a 4–6 semanas.",
+   "evidencia": [
+    {
+     "afirmacion": "SAMPLE: ciclo de 9 h, 3 secuencias por ronda, 20 rondas, cuatro agentes convergen al mismo pico; iBioFAB: ronda en ≤ 7 días, baja concordancia global predicción–actividad pero el bucle funciona",
+     "fuentes": [
+      "BIO-30",
+      "BIO-31"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "Lab-in-the-loop de anticuerpos: 4 rondas, > 1.800 variantes, > 26 % con ≥ 3× mejor unión en la ronda 4; ALDE: 12 % a 99 % con 384 + 2 rondas",
+     "fuentes": [
+      "BIO-33",
+      "BIO-37"
+     ],
+     "marcador": "[R]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "A-Lab: 353 recetas en 17 días, 30 % dio el objetivo; la crítica independiente señaló que el verificador automático de difracción era el eslabón débil; corrección formal en 2026",
+     "fuentes": [
+      "BIO-27",
+      "BIO-28",
+      "BIO-29"
+     ],
+     "marcador": "[R]/[E]",
+     "tipo_resultado": "reportado por autores y crítica de pares"
+    }
+   ],
+   "limitaciones": "Requiere un ensayo que el equipo no puede hacer solo; casi toda la evidencia es de los propios grupos; no hay ningún caso de bucle cerrado para dsRNA de plagas.",
+   "viabilidad_equipo": {
+    "nivel": "no",
+    "nota": "Sin laboratorio: solo como referencia de diseño y para el protocolo de entrega a un tercero."
+   },
+   "propuesta_asociada": "Descartado (sin laboratorio)",
+   "fuentes": [
+    "BIO-30",
+    "BIO-31",
+    "BIO-32",
+    "BIO-33",
+    "BIO-34",
+    "BIO-37",
+    "BIO-27",
+    "BIO-28",
+    "BIO-29",
+    "BIO-35",
+    "BIO-36"
+   ]
+  },
+  {
+   "id": "PAT-25",
+   "familia": "biotecnologia_rnai",
+   "nombre": "Triaje de blanco por ortología con prior de transferencia explícito",
+   "descripcion": "Se listan ortólogos en D. maidis de los genes letales en Tribolium; reglas deterministas (identidad y cobertura de ortología, expresión, presencia en los transcriptomas TSA) asignan a cada gen una probabilidad de transferencia con su incertidumbre en lugar de un veredicto.",
+   "tareas": [
+    "contexto para anotar el prior de cada candidato"
+   ],
+   "herramientas": [
+    "miniprot o BLAST local",
+    "transcriptomas TSA de D. maidis",
+    "Macrosteles quadrilineatus como donante de ortología"
+   ],
+   "tipo_verificador": [
+    "determinista",
+    "datos_retrospectivos"
+   ],
+   "verificador_detalle": "Reglas deterministas de ortología y expresión más un prior empírico; no pretende verificar eficacia.",
+   "evidencia": [
+    {
+     "afirmacion": "Dentro de Coleoptera por vía oral: 34 de 66 genes (52 %) del mejor clúster, 14 de 27 en Psylliodes, 21 de 50 en Diabrotica",
+     "fuentes": [
+      "PRB-07",
+      "PRB-28",
+      "PRB-09"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "reportado por autores"
+    },
+    {
+     "afirmacion": "La lista de blancos de Tribolium no está probada en Hemiptera por quienes la produjeron; por inyección los genes conservados suelen ser letales en hemípteros, pero por vía oral cae mucho",
+     "fuentes": [
+      "PRB-08",
+      "PRB-11",
+      "PRB-38",
+      "PRB-17"
+     ],
+     "marcador": "[E]",
+     "tipo_resultado": "reportado por autores"
+    }
+   ],
+   "limitaciones": "No valida eficacia; hereda el sesgo de selección y de publicación; el equipo decidió (D7, D8) que su aporte es priorizar candidatos dados y no elegir el gen.",
+   "viabilidad_equipo": {
+    "nivel": "media",
+    "nota": "Contexto para la ficha de candidato; no es un módulo a construir."
+   },
+   "propuesta_asociada": "Contexto",
+   "fuentes": [
+    "PRB-07",
+    "PRB-08",
+    "PRB-28",
+    "PRB-09",
+    "PRB-11",
+    "PRB-17",
+    "PRB-38",
+    "PRB-13"
+   ]
+  }
+ ]
+}

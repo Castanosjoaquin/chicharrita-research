@@ -1,0 +1,21 @@
+== Cedden 2025, Tabla S1: n=28 dsRNA, 8 genes ==
+Modelo completo (score siRNA + accesibilidad + región + gen): R2=0.625, R múltiple=0.790, gl residuales=17  (autores: R=0,79, gl=17)
+solo gen                                   R2=0.323  R2 ajustado=0.086
+solo score siRNA                           R2=0.095  R2 ajustado=0.060
+gen + score                                R2=0.440  R2 ajustado=0.204
+score + accesibilidad + región (sin gen)   R2=0.213  R2 ajustado=0.115
+Contribución única (caída de R2 al quitar el término del modelo completo):
+  quitar gen            : caída de R2 = 0.412
+  quitar score siRNA    : caída de R2 = 0.255
+  quitar región ORF/UTR : caída de R2 = 0.178
+  quitar accesibilidad  : caída de R2 = 0.016
+Spearman score siRNA vs HR (todas): rho=0.430, P=0.023
+Spearman score siRNA vs HR (solo ORF, n=21): rho=0.531, P=0.013
+Intra-gen (centrado por gen): Pearson=0.415 (P=0.028), Spearman=0.433 (P=0.021)
+HR medio por gen: Tc-cyp4g15=12.4; Tc-eIF3a=5.3; Tc-gawky=18.9; Tc-hr3=7.4; Tc-klp61F=9.4; Tc-nito=12.8; Tc-rpn7=8.2; Tc-rpt1=5.2
+Rango de HR dentro de gen (máx/mín): Tc-cyp4g15=1.1x; Tc-eIF3a=1.6x; Tc-gawky=6.4x; Tc-hr3=7.6x; Tc-klp61F=2.5x; Tc-nito=9.8x; Tc-rpn7=1.7x; Tc-rpt1=1.3x
+
+== Knorr 2018, Tabla 1: 50 genes preseleccionados por letalidad en T. castaneum ==
+Genes con mortalidad significativa en Diabrotica (asterisco): 21 de 50
+Spearman mortalidad Tribolium (250 ng/uL, 14 d) vs mortalidad Diabrotica (dieta): rho=0.428, P=0.0019
+Mortalidad en Tribolium: min=47.2, mediana=100.0, genes en 100%=28 (techo: rango restringido)

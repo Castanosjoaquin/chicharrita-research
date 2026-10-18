@@ -1,0 +1,120 @@
+[
+ {
+  "nombre": "P1. Bucle de código en contenedor local con verificadores mecánicos de artefacto",
+  "descripcion": "El agente (bucle mínimo tipo mini-swe-agent o CodeAct, un modelo vía API de tercero) escribe y ejecuta scripts en un contenedor Docker local sin red (o con lista blanca) sobre un directorio montado; cada paso termina con comprobaciones deterministas del artefacto (esquema, rangos, conteos, invariantes numéricos, pruebas del script) y el error vuelve al agente truncado y sin secuencias. Tareas: escribir y depurar código de análisis, tablas, gráficos y pegamento de pipeline. Herramientas: Docker, cliente de LLM con capa de redacción de salidas, pytest o validadores propios; sin GPU. Viable para 4 estudiantes: sí, es la base de los demás patrones. Con EPILAB el LLM ve esquemas y estadísticas agregadas, no secuencias.",
+  "verificador": "Ejecución más invariantes del contrato del artefacto: barato (segundos) y confiable para «corre y cumple el contrato», poco confiable para «es correcto». La corrección se comprueba con casos de respuesta conocida (controles positivos y negativos) que el equipo escribe de antemano `[H]`.",
+  "evidencia_de_que_funciona": "[R] evaluado: con modelos locales abiertos, el espacio de trabajo en lazo cerrado sube 26,7 a 52,0 puntos frente a una sola generación sobre 1.500 intentos con verificadores deterministas, en tareas no biológicas (AQB-24). [R] reportado por autores: reparación por stderr lleva AutoBA de 65 a 87,5 % en 40 casos (AQB-18); la reflexión sobre errores de ejecución es el módulo de mayor efecto en 50 tareas de célula única (AQB-22); el linter en la edición suma 3 puntos en SWE-bench Lite (AQB-03); un arnés de unas 100 líneas con solo bash declara más de 74 % en SWE-bench Verified (AQB-05).",
+  "limitaciones": "Ejecutar no es acertar: finalización de 0,99 contra exactitud de 0,76 en un benchmark de 244 tareas con conflicto de intereses (AQB-21); el agente puede crear datos ficticios o producir resultados degenerados que corren sin error (AQB-23); aun con temperatura cero hay variación (AQB-23, AQB-54); los mensajes de error pueden filtrar secuencias; el sandbox contiene errores, no adversarios; no hay evidencia de inferencia local en CPU con 16 GiB.",
+  "fuentes": [
+   "AQB-01",
+   "AQB-02",
+   "AQB-03",
+   "AQB-05",
+   "AQB-06",
+   "AQB-18",
+   "AQB-21",
+   "AQB-22",
+   "AQB-23",
+   "AQB-24"
+  ]
+ },
+ {
+  "nombre": "P2. Gestor de flujos determinista con agente acotado de generación y reparación de pasos",
+  "descripcion": "Snakemake o Nextflow (lo que el equipo ya usa para el pipeline) fija el grafo, las entradas y salidas de cada regla y las versiones de entorno; el agente solo escribe o repara el cuerpo de una regla, con presupuesto de 3 a 5 intentos, y cada regla cierra con un validador determinista (esquema, invariantes, dry-run del grafo, lint) que cumple el papel del agente de verificación de BioMaster sin ser un LLM. Tareas: cálculo de características, agregación y tablas de la priorización, informes reproducibles. Herramientas: gestor de flujos, entornos con versiones fijas, pytest. Viable: sí, y es el que mejor encaja con una priorización auditable de candidatos dados.",
+  "verificador": "Validadores por regla, dry-run del grafo y hashes de salidas: barato y confiable para contrato y trazabilidad; la semántica científica del paso sigue necesitando controles con respuesta conocida y revisión humana en la compuerta de auditoría.",
+  "evidencia_de_que_funciona": "[R] reportado por autores: gestor Snakemake más agente supervisor-programador, 219 corridas, éxito por etapa de 58, 88 y 74 % (AQB-23); AutoBA con reparación automática 87,5 % en 40 casos (AQB-18); el agente de verificación por paso evita cascadas de errores en flujos largos de BioMaster (AQB-17). [R] evaluado: ganancia del lazo cerrado en 1.500 intentos con verificadores deterministas (AQB-24).",
+  "limitaciones": "No hay evaluación independiente de reparación de Snakemake o Nextflow con verdad de referencia en bioinformática (busqué y solo hallé un estudio cualitativo de generación, un caso de física y un benchmark con conflicto de intereses: AQB-20, AQB-23, AQB-21); los conflictos de dependencias de conda son una causa típica de falla (AQB-17); el 58 % de éxito de la etapa de preparación de datos muestra que los pasos que dependen de la estructura de los archivos son los frágiles (AQB-23).",
+  "fuentes": [
+   "AQB-17",
+   "AQB-18",
+   "AQB-19",
+   "AQB-20",
+   "AQB-21",
+   "AQB-22",
+   "AQB-23",
+   "AQB-24"
+  ]
+ },
+ {
+  "nombre": "P3. Consulta de bases públicas por identificador con catálogo pequeño y libro de llamadas",
+  "descripcion": "Un conjunto reducido (decenas) de herramientas propias con esquema de entrada y salida y un caso de prueba cada una, al estilo de ToolUniverse, que consultan NCBI, Europe PMC o UniProt por identificador (accesión, identificador de gen, DOI) y devuelven registros estructurados; cada llamada queda en un libro inmutable y toda afirmación del agente debe apuntar a una entrada del libro. Tareas: relevamiento retrospectivo de literatura y metadatos de ARNdc publicados, anotación de genes y especies. Herramientas: E-utilities y clientes HTTP propios, validador de DOI y accesiones; opcionalmente un servidor MCP propio. Viable: sí; solo identificadores públicos salen de la máquina.",
+  "verificador": "Resolución del identificador y coincidencia del campo citado con la respuesta registrada: barato y confiable para existencia y trazabilidad; poco confiable para si la fuente sostiene la tesis (límite que documentan las pistas TAR y EVA).",
+  "evidencia_de_que_funciona": "[R] reportado por autores: con las herramientas de ToolUniverse la exactitud en DbQA sube de 56,7 a 78,3 y de 81,1 a 92,8 en dos agentes, sobre 60 ítems (AQB-09); Biomni usa una función por base de datos que traduce lenguaje natural a consulta (AQB-10); GeneGPT aporta la taxonomía de errores de uso de las API de NCBI (AQB-12). [R] evaluado: la selección de herramienta baja unos 10 puntos de 10 a 100 herramientas (AQB-14) y la recuperación previa la mejora (AQB-13).",
+  "limitaciones": "Mejora grande solo donde la respuesta exige consultar una base viva (en SeqQA el agente sin herramientas ya parte de 91 a 94 %); n chico y evaluado por los autores; la selección decae con el tamaño del catálogo (AQB-14, AQB-15); envenenamiento de metadatos MCP con éxito de hasta 72,8 % (AQB-16), así que servidores propios y fijados por versión; un BLAST remoto envía la secuencia a un tercero, usar herramientas locales.",
+  "fuentes": [
+   "AQB-09",
+   "AQB-10",
+   "AQB-12",
+   "AQB-13",
+   "AQB-14",
+   "AQB-15",
+   "AQB-16",
+   "AQB-19"
+  ]
+ },
+ {
+  "nombre": "P4. Evaluador y verdad de terreno fuera del alcance del agente, con registro externo y auditoría de trazas",
+  "descripcion": "Dos procesos o contenedores: el del agente, que no ve las etiquetas retenidas, el código del evaluador ni el registro del anfitrión, y un evaluador aislado que recibe solo el artefacto y recalcula la métrica sobre los datos retenidos. El evaluador queda bloqueado por hash, las pruebas en solo lectura, el registro de llamadas lo escribe el anfitrión con cadena de hashes, y una auditoría de trazas combina heurísticas deterministas (lectura de rutas prohibidas, URL de lista negra, similitud con resultados publicados) y un revisor LLM sobre trazas y código completos. Se agrega un libro de corrida por tarea (modelo y fecha, parámetros, semillas, versiones, tokens, costo) con tres o más repeticiones. Tareas: cualquier ajuste o selección contra datos publicados, que es el corazón del ensayo retrospectivo. Viable: sí, y es el patrón de mayor retorno para la credibilidad de las cifras.",
+  "verificador": "Recomputación independiente sobre datos que el agente nunca vio, más detección de accesos indebidos: costo bajo a medio (25 a 31 % de tiempo de ejecución en un estudio), confiabilidad alta contra los vectores conocidos y nula contra los no modelados.",
+  "evidencia_de_que_funciona": "Patrón [E] a nivel de patrón (varios grupos independientes: AQB-42, AQB-43, AQB-45, AQB-46, AQB-47, AQB-48, AQB-50). [R] evaluado: el bloqueo del evaluador elimina la manipulación (alrededor de 50 % de los episodios) con 25 a 31 % de sobrecosto (AQB-46); ocultar o fijar en solo lectura las pruebas reduce la trampa (AQB-50); la salida de escape a un humano baja la trampa de GPT-5 de 54 a 9 % (AQB-50); el endurecimiento del entorno redujo 5,7 puntos la explotación sin bajar el éxito (AQB-52); la auditoría con trazas y código sube la detección de 55 a 82 % (AQB-38); el registro propio del agente no sirve: todos los arneses probados salvo uno dejaron borrarlo cuando se les pidió (AQB-57).",
+  "limitaciones": "Las defensas probadas cubren dos vectores (manipulación del evaluador y filtración de datos de prueba) y no escapes a nivel de sistema operativo (AQB-46); un panel LLM sobre código y puntaje deja pasar 6,5 % de los hacks y se adapta a la retroalimentación (AQB-48); los bancos miden propensión bajo atajos plantados (AQB-45); la memorización de resultados publicados por el modelo no se elimina con estas medidas (AQB-40); las cápsulas firmadas están evaluadas solo a escala acotada (AQB-58).",
+  "fuentes": [
+   "AQB-38",
+   "AQB-40",
+   "AQB-41",
+   "AQB-42",
+   "AQB-43",
+   "AQB-44",
+   "AQB-45",
+   "AQB-46",
+   "AQB-47",
+   "AQB-48",
+   "AQB-50",
+   "AQB-51",
+   "AQB-52",
+   "AQB-53",
+   "AQB-54",
+   "AQB-57",
+   "AQB-58"
+  ]
+ },
+ {
+  "nombre": "P5. Compuerta de afirmaciones: revisor independiente con herramientas y verificación de anclaje",
+  "descripcion": "Antes de que una afirmación entre al informe, un revisor (otra instancia, preferentemente de otra familia de modelos) recibe la afirmación y los artefactos referenciados, no el razonamiento del generador, y solo puede reejecutar el cálculo, resolver el identificador o comparar el número con la tabla. Devuelve pasa o no pasa con un código de motivo breve, sin explicaciones que el generador pueda optimizar. Se completa con comprobaciones deterministas: todo número del texto debe salir de una salida registrada y toda referencia debe resolver. Tareas: informes, tablas de resultados, resúmenes de literatura. Herramientas: el libro de llamadas de P3, los artefactos de P1 y P2. Viable: sí, con una llamada de revisión por afirmación.",
+  "verificador": "Recomputación con herramientas más comprobaciones deterministas: costo medio, confiabilidad alta para trazabilidad numérica y existencia, limitada para sobreinterpretación o para el error de método que se reproduce al reejecutar.",
+  "evidencia_de_que_funciona": "[E] evaluado: la autocorrección funciona con retroalimentación externa confiable y no con la de un LLM solicitado, salvo tareas excepcionales (AQB-32). [R]: con herramientas la corrección mejora y sin herramienta rinde menos (AQB-33); agregar una verificación del objetivo de alto nivel suma 15,6 % en ChatDev (AQB-34); un juez con acceso al espacio de trabajo supera al juez LLM en un benchmark de 55 tareas (AQB-37); revisar trazas y código eleva la detección de fallas metodológicas de 55 a 82 % (AQB-38).",
+  "limitaciones": "El debate entre varios revisores no supera a líneas base simples (AQB-35, AQB-36); un revisor cuya salida vuelve al agente se convierte en señal de optimización y la retroalimentación detallada subió la evasión acumulada a 40,5 % contra 20,3 % (AQB-48); el sesgo del juez hacia su propia familia lo cubre la pista EVA; no hay ablación del rol crítico en el Virtual Lab (AQB-28).",
+  "fuentes": [
+   "AQB-28",
+   "AQB-31",
+   "AQB-32",
+   "AQB-33",
+   "AQB-34",
+   "AQB-35",
+   "AQB-36",
+   "AQB-37",
+   "AQB-38",
+   "AQB-39",
+   "AQB-47",
+   "AQB-48"
+  ]
+ },
+ {
+  "nombre": "P6. Humano en tres compuertas con salida de escape",
+  "descripcion": "Tres puntos de intervención humana y ninguno por paso: (1) especificación y criterios de aceptación antes de ejecutar (coplanificación, con las comprobaciones deterministas definidas por el humano); (2) acciones irreversibles o que sacan datos del equipo (incluida cualquier llamada a servicios de terceros con contenido no público); (3) auditoría de afirmaciones contra artefactos y registro antes de reportar. Además, el agente tiene una salida de escape para pedir intervención cuando detecta que la tarea no se puede resolver de forma legítima. Tareas: toda la cadena. Herramientas: un punto de interrupción (LangGraph o un simple archivo de aprobación), el libro de P3 y el registro de P4. Viable: sí, y es la forma más barata de repartir el tiempo de cuatro personas.",
+  "verificador": "El criterio escrito por el humano más el registro de su decisión; es barato en tiempo de máquina y caro en tiempo humano, por lo que conviene limitarlo a tres compuertas y presentar resúmenes orientados al resultado con acceso a la traza completa.",
+  "evidencia_de_que_funciona": "[R] reportado por autores: los agentes colaborativos ganan a los autónomos en 86, 66 y 74 % de las comparaciones con usuarios reales (AQB-27); con un usuario simulado con información lateral GAIA sube de 30,3 a 51,9 % pidiendo ayuda en 10 % de las tareas (AQB-26); la salida de escape a un humano baja la trampa de 54 a 9 % en un modelo (AQB-50). [R] evaluado: auditar trazas y código mejora la detección de 55 a 82 % (AQB-38).",
+  "limitaciones": "La evidencia es de usuarios simulados o de estudios de 12 personas; con trazas largas los usuarios pierden errores pequeños y su confianza sube sin mejora de exactitud (AQB-29); los participantes consideran excesivas las aprobaciones redundantes (AQB-26); no hay un estudio controlado en ciencia computacional que compare ubicaciones del humano; el efecto de la salida de escape es muy distinto entre modelos (AQB-50).",
+  "fuentes": [
+   "AQB-07",
+   "AQB-09",
+   "AQB-26",
+   "AQB-27",
+   "AQB-28",
+   "AQB-29",
+   "AQB-30",
+   "AQB-38",
+   "AQB-50"
+  ]
+ }
+]
