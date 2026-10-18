@@ -1,0 +1,10 @@
+qseqid	sseqid	pident	alnlen	qlen	evalue	bitscore
+Q7WTU1|PGK_S_citri_reviewed	WP_053390413.1	93.689	412	412	0.0	782
+Q9EV58|P89_putative_adhesin_S_citri	WP_144416799.1	61.720	593	798	0.0	614
+Q9EV58|P89_putative_adhesin_S_citri	WP_144416800.1	73.362	229	798	1.55e-107	324
+Q9EV58|P89_putative_adhesin_S_citri	WP_053391595.1	80.000	85	798	8.44e-31	112
+Q9EV58|P89_putative_adhesin_S_citri	WP_053391595.1	55.000	60	798	9.45e-15	66.6
+Q9EV58|P89_putative_adhesin_S_citri	WP_053391595.1	65.116	43	798	8.33e-10	52.4
+P19215|spiralin_S_citri_reviewed	WP_053390819.1	61.088	239	241	2.06e-88	257
+P19215|spiralin_S_citri_reviewed	WP_053391061.1	42.857	63	241	5.87e-07	43.5
+P19215|spiralin_S_citri_reviewed	WP_053390921.1	57.576	33	241	1.68e-06	40.4

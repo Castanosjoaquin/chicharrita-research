@@ -1,0 +1,17 @@
+objetivo	n_secuencias	pfam	perfil	n_hits_GA
+Ca_P_zeae_M3_GCF_001712875.1	522	PF00636.32	Ribonuclease_3	1
+Ca_P_zeae_M3_GCF_001712875.1	522	PF02170.29	PAZ	0
+Ca_P_zeae_M3_GCF_001712875.1	522	PF02171.24	Piwi	0
+Ca_P_zeae_M3_GCF_001712875.1	522	PF03368.20	Dicer_dimer	0
+S_kunkelii_CR2-3x_GCF_001274875.1	1715	PF00636.32	Ribonuclease_3	1
+S_kunkelii_CR2-3x_GCF_001274875.1	1715	PF02170.29	PAZ	0
+S_kunkelii_CR2-3x_GCF_001274875.1	1715	PF02171.24	Piwi	0
+S_kunkelii_CR2-3x_GCF_001274875.1	1715	PF03368.20	Dicer_dimer	0
+S_kunkelii_pSKU146_NC_006400.1	13	PF00636.32	Ribonuclease_3	0
+S_kunkelii_pSKU146_NC_006400.1	13	PF02170.29	PAZ	0
+S_kunkelii_pSKU146_NC_006400.1	13	PF02171.24	Piwi	0
+S_kunkelii_pSKU146_NC_006400.1	13	PF03368.20	Dicer_dimer	0
+controles_positivos	3	PF00636.32	Ribonuclease_3	1
+controles_positivos	3	PF02170.29	PAZ	2
+controles_positivos	3	PF02171.24	Piwi	2
+controles_positivos	3	PF03368.20	Dicer_dimer	1

@@ -341,3 +341,32 @@ devuelve dos ensamblados del genoma completo de 576.118 pb.
 consulta; el script de consulta del repositorio ya lo hace así.
 **La lección, que vale más que el caso:** un cero devuelto por una consulta por
 nombre no es una ausencia.
+
+
+---
+
+## Nivel corpus — lo que R6 deja cerrado (2026-10-17)
+
+### Tomar S44 como prueba de que ninguna estrategia apunta al patógeno
+**Qué se intentó:** usar la revisión de Balog et al. (2026) como respaldo de que todas las estrategias contra fitoplasmas apuntan al vector o a la planta.
+**Qué pasó:** en el texto completo es una revisión de manejo de vectores y no menciona antibióticos ni tetraciclinas; esos sí actúan sobre el fitoplasma dentro de la planta (aunque no sean aplicables a campo). Lo que S44 respalda es que *en la literatura de manejo de vectores* ninguna estrategia apunta al patógeno.
+**Estado:** descartado como respaldo de la frase general. **Qué lo reabriría:** una revisión de alcance más amplio que diga lo mismo.
+
+### Dar por correcta la corrección B5 sin mirar la figura
+**Qué se intentó:** aceptar que en *D. maidis* los dos genes dejaron 10 % de supervivientes.
+**Qué pasó:** la figura 5A mide ≈17,5 % para *eth* (día 4); el texto dice 10 % (día 5). Se confirma el resto de B5.
+**Estado:** descartado como cifra única; queda con rango 10 a 17,5 % hasta que el autor aclare. **Qué lo reabriría:** respuesta del autor (pregunta 3 de R6).
+
+### Leer valores de figuras desde una descripción automática de un buscador
+**Qué pasó:** la descripción devuelta por un buscador para la figura 5 no coincidía con las barras reales medidas en píxeles. Las cifras de figuras se leen del PDF.
+**Estado:** descartado como método.
+
+### Predictores locales de péptido señal y transmembrana en este entorno
+**Qué se intentó:** SignalP, TMHMM, Phobius (licencia y registro) y DeepSig 0.9 (instalado desde PyPI sin modelos; los modelos están en GitHub, no alcanzable).
+**Qué pasó:** ninguno corrió. Ver `research/R6_estrategias_molicutes/datos/COMANDOS.md` §7.
+**Estado:** descartado por ahora. **Qué lo reabriría:** acceso a GitHub o una licencia académica.
+
+### Diseñar o variar efectores (SAP11, SAP54) para aumentar su función
+**Qué se intentó:** nada; entra acá antes de que alguien lo haga.
+**Qué pasó:** queda fuera de alcance, sin excepción: aumentaría la virulencia, la transmisibilidad o el rango de hospedadores. El trabajo sobre efectores sólo es válido en modo defensivo (inventario y candidatos a inhibición).
+**Estado:** descartado de forma permanente. No es una limitación técnica: es una condición del trabajo.

@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "db_M3",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "/Users/joaquin/Documents/investigaton/chicharrita-research/research/R6_estrategias_molicutes/datos/GCF_001712875.1/ncbi_dataset/data/GCF_001712875.1/protein.faa",
+  "number-of-letters": 146422,
+  "number-of-sequences": 522,
+  "last-updated": "2026-10-17T20:22:00",
+  "number-of-volumes": 1,
+  "bytes-total": 380084,
+  "bytes-to-cache": 151361,
+  "files": [
+    "db_M3.pdb",
+    "db_M3.phr",
+    "db_M3.pin",
+    "db_M3.pot",
+    "db_M3.psq",
+    "db_M3.ptf",
+    "db_M3.pto"
+  ]
+}

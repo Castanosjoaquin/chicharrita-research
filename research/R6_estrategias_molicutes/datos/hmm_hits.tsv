@@ -1,0 +1,9 @@
+objetivo	pfam	perfil	proteina	bitscore	evalue
+Ca_P_zeae_M3_GCF_001712875.1	PF00636.32	Ribonuclease_3	WP_069028106.1	82.1	1.14e-24
+S_kunkelii_CR2-3x_GCF_001274875.1	PF00636.32	Ribonuclease_3	WP_053391309.1	79.2	2.98e-23
+controles_positivos	PF00636.32	Ribonuclease_3	Q9UPY3|human_DICER1	142.0	1.54e-45
+controles_positivos	PF02170.29	PAZ	Q9UKV8|human_AGO2	111.0	5.62e-36
+controles_positivos	PF02170.29	PAZ	Q9UPY3|human_DICER1	66.4	3.65e-22
+controles_positivos	PF02171.24	Piwi	Q9UKV8|human_AGO2	392.7	1.68e-121
+controles_positivos	PF02171.24	Piwi	Q746M7|Thermus_thermophilus_TtAgo	32.1	1.12e-11
+controles_positivos	PF03368.20	Dicer_dimer	Q9UPY3|human_DICER1	83.1	1.80e-27

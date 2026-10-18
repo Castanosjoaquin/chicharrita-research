@@ -1,0 +1,16 @@
+Ca_P_zeae_M3	PF00636.32	Ribonuclease_3	27.0	WP_069028106.1	82.1	1.1e-24
+Ca_P_zeae_M3	PF02170.29	PAZ	28.8	-	-	-
+Ca_P_zeae_M3	PF02171.24	Piwi	28.9	-	-	-
+Ca_P_zeae_M3	PF03368.20	Dicer_dimer	23.7	-	-	-
+S_kunkelii_CR2-3x	PF00636.32	Ribonuclease_3	27.0	WP_053391309.1	79.2	3.0e-23
+S_kunkelii_CR2-3x	PF02170.29	PAZ	28.8	-	-	-
+S_kunkelii_CR2-3x	PF02171.24	Piwi	28.9	-	-	-
+S_kunkelii_CR2-3x	PF03368.20	Dicer_dimer	23.7	-	-	-
+S_kunkelii_pSKU146	PF00636.32	Ribonuclease_3	27.0	-	-	-
+S_kunkelii_pSKU146	PF02170.29	PAZ	28.8	-	-	-
+S_kunkelii_pSKU146	PF02171.24	Piwi	28.9	-	-	-
+S_kunkelii_pSKU146	PF03368.20	Dicer_dimer	23.7	-	-	-
+controles	PF00636.32	Ribonuclease_3	27.0	Q9UPY3|human_DICER1	142.0	1.5e-45
+controles	PF02170.29	PAZ	28.8	Q9UKV8|human_AGO2	111.0	5.6e-36
+controles	PF02171.24	Piwi	28.9	Q9UKV8|human_AGO2	392.7	1.7e-121
+controles	PF03368.20	Dicer_dimer	23.7	Q9UPY3|human_DICER1	83.1	1.8e-27

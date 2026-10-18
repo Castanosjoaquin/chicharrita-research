@@ -1,0 +1,712 @@
+{
+ "Ca. P. zeae": {
+  "reports": [
+   {
+    "accession": "GCA_001712875.1",
+    "current_accession": "GCA_001712875.1",
+    "paired_accession": "GCF_001712875.1",
+    "source_database": "SOURCE_DATABASE_GENBANK",
+    "organism": {
+     "tax_id": 202462,
+     "organism_name": "Candidatus Phytoplasma zeae",
+     "infraspecific_names": {
+      "strain": "M3"
+     }
+    },
+    "assembly_info": {
+     "assembly_level": "Complete Genome",
+     "assembly_status": "current",
+     "paired_assembly": {
+      "accession": "GCF_001712875.1",
+      "status": "current",
+      "annotation_name": "GCF_001712875.1-RS_2026_06_07"
+     },
+     "assembly_name": "ASM171287v1",
+     "assembly_type": "haploid",
+     "bioproject_lineage": [
+      {
+       "bioprojects": [
+        {
+         "accession": "PRJNA317711",
+         "title": "Maize bushy stunt phytoplasma strain M3 genome sequencing and assembly"
+        }
+       ]
+      }
+     ],
+     "bioproject_accession": "PRJNA317711",
+     "release_date": "2016-08-25",
+     "submitter": "Academia Sinica",
+     "refseq_category": "reference genome",
+     "sequencing_tech": "Illumina MiSeq",
+     "assembly_method": "Velvet v. 1.2.10",
+     "biosample": {
+      "accession": "SAMN04623572",
+      "last_updated": "2026-08-30T03:43:59.751",
+      "publication_date": "2016-04-08T00:00:00.000",
+      "submission_date": "2016-04-08T04:17:02.000",
+      "sample_ids": [
+       {
+        "label": "Sample name",
+        "value": "phyto19"
+       },
+       {
+        "db": "SRA",
+        "value": "SRS1381870"
+       }
+      ],
+      "description": {
+       "title": "MIGS Cultured Bacterial/Archaeal sample from Maize bushy stunt phytoplasma M3",
+       "organism": {
+        "tax_id": 202462,
+        "organism_name": "Candidatus Phytoplasma zeae"
+       },
+       "comment": "Keywords: GSC:MIxS;MIGS:6.0"
+      },
+      "owner": {
+       "name": "Academia Sinica",
+       "contacts": [
+        {}
+       ]
+      },
+      "models": [
+       "MIGS.ba",
+       "MIGS/MIMS/MIMARKS.host-associated"
+      ],
+      "package": "MIGS.ba.host-associated.6.0",
+      "attributes": [
+       {
+        "name": "collection_date",
+        "value": "2013-05-29"
+       },
+       {
+        "name": "env_broad_scale",
+        "value": "maize field"
+       },
+       {
+        "name": "env_local_scale",
+        "value": "farmland"
+       },
+       {
+        "name": "env_medium",
+        "value": "host"
+       },
+       {
+        "name": "geo_loc_name",
+        "value": "Brazil: Piracicaba, Sao Paulo"
+       },
+       {
+        "name": "host",
+        "value": "Dalbulus maidis"
+       },
+       {
+        "name": "lat_lon",
+        "value": "not applicable"
+       },
+       {
+        "name": "ref_biomaterial",
+        "value": "not applicable"
+       },
+       {
+        "name": "strain",
+        "value": "M3"
+       },
+       {
+        "name": "isol_growth_condt",
+        "value": "not applicable"
+       },
+       {
+        "name": "num_replicons",
+        "value": "1"
+       }
+      ],
+      "status": {
+       "status": "live",
+       "when": "2016-04-08T04:17:02.761"
+      },
+      "collection_date": "2013-05-29",
+      "geo_loc_name": "Brazil: Piracicaba, Sao Paulo",
+      "host": "Dalbulus maidis",
+      "lat_lon": "not applicable",
+      "strain": "M3"
+     },
+     "comments": "Source DNA is available from Saskia Hogenhout Department of Cell and Developmental Biology, John Innes Centre, Norwich, United Kingdom"
+    },
+    "assembly_stats": {
+     "total_number_of_chromosomes": 1,
+     "total_sequence_length": "576118",
+     "total_ungapped_length": "576118",
+     "number_of_contigs": 1,
+     "contig_n50": 576118,
+     "contig_l50": 1,
+     "number_of_scaffolds": 1,
+     "scaffold_n50": 576118,
+     "scaffold_l50": 1,
+     "number_of_component_sequences": 1,
+     "atgc_count": "576118",
+     "gc_count": "163975",
+     "gc_percent": 28.5,
+     "genome_coverage": "42"
+    },
+    "annotation_info": {
+     "name": "Annotation submitted by Academia Sinica",
+     "provider": "Academia Sinica",
+     "release_date": "2016-08-25",
+     "stats": {
+      "gene_counts": {
+       "total": 544,
+       "protein_coding": 485,
+       "non_coding": 38,
+       "pseudogene": 21
+      }
+     }
+    },
+    "checkm_info": {
+     "checkm_marker_set": "Candidatus Phytoplasma",
+     "checkm_species_tax_id": 202462,
+     "checkm_marker_set_rank": "genus",
+     "checkm_version": "v1.2.5",
+     "completeness": 99.08
+    },
+    "average_nucleotide_identity": {
+     "taxonomy_check_status": "Inconclusive",
+     "match_status": "low_coverage",
+     "submitted_organism": "Candidatus Phytoplasma zeae",
+     "submitted_species": "Candidatus Phytoplasma zeae",
+     "category": "category_na",
+     "submitted_ani_match": {
+      "assembly": "no-type",
+      "organism_name": "na",
+      "category": "no_type"
+     },
+     "best_ani_match": {
+      "assembly": "GCA_032884955.1",
+      "organism_name": "Candidatus Phytoplasma vignae",
+      "category": "suspected_type",
+      "ani": 90.46,
+      "assembly_coverage": 1.47,
+      "type_assembly_coverage": 1.49
+     },
+     "comment": "na"
+    }
+   },
+   {
+    "accession": "GCF_001712875.1",
+    "current_accession": "GCF_001712875.1",
+    "paired_accession": "GCA_001712875.1",
+    "source_database": "SOURCE_DATABASE_REFSEQ",
+    "organism": {
+     "tax_id": 202462,
+     "organism_name": "Candidatus Phytoplasma zeae",
+     "infraspecific_names": {
+      "strain": "M3"
+     }
+    },
+    "assembly_info": {
+     "assembly_level": "Complete Genome",
+     "assembly_status": "current",
+     "paired_assembly": {
+      "accession": "GCA_001712875.1",
+      "status": "current",
+      "annotation_name": "Annotation submitted by Academia Sinica"
+     },
+     "assembly_name": "ASM171287v1",
+     "assembly_type": "haploid",
+     "bioproject_lineage": [
+      {
+       "bioprojects": [
+        {
+         "accession": "PRJNA317711",
+         "title": "Maize bushy stunt phytoplasma strain M3 genome sequencing and assembly"
+        }
+       ]
+      }
+     ],
+     "bioproject_accession": "PRJNA317711",
+     "release_date": "2016-08-25",
+     "submitter": "Academia Sinica",
+     "refseq_category": "reference genome",
+     "sequencing_tech": "Illumina MiSeq",
+     "assembly_method": "Velvet v. 1.2.10",
+     "biosample": {
+      "accession": "SAMN04623572",
+      "last_updated": "2026-08-30T03:43:59.751",
+      "publication_date": "2016-04-08T00:00:00.000",
+      "submission_date": "2016-04-08T04:17:02.000",
+      "sample_ids": [
+       {
+        "label": "Sample name",
+        "value": "phyto19"
+       },
+       {
+        "db": "SRA",
+        "value": "SRS1381870"
+       }
+      ],
+      "description": {
+       "title": "MIGS Cultured Bacterial/Archaeal sample from Maize bushy stunt phytoplasma M3",
+       "organism": {
+        "tax_id": 202462,
+        "organism_name": "Candidatus Phytoplasma zeae"
+       },
+       "comment": "Keywords: GSC:MIxS;MIGS:6.0"
+      },
+      "owner": {
+       "name": "Academia Sinica",
+       "contacts": [
+        {}
+       ]
+      },
+      "models": [
+       "MIGS.ba",
+       "MIGS/MIMS/MIMARKS.host-associated"
+      ],
+      "package": "MIGS.ba.host-associated.6.0",
+      "attributes": [
+       {
+        "name": "collection_date",
+        "value": "2013-05-29"
+       },
+       {
+        "name": "env_broad_scale",
+        "value": "maize field"
+       },
+       {
+        "name": "env_local_scale",
+        "value": "farmland"
+       },
+       {
+        "name": "env_medium",
+        "value": "host"
+       },
+       {
+        "name": "geo_loc_name",
+        "value": "Brazil: Piracicaba, Sao Paulo"
+       },
+       {
+        "name": "host",
+        "value": "Dalbulus maidis"
+       },
+       {
+        "name": "lat_lon",
+        "value": "not applicable"
+       },
+       {
+        "name": "ref_biomaterial",
+        "value": "not applicable"
+       },
+       {
+        "name": "strain",
+        "value": "M3"
+       },
+       {
+        "name": "isol_growth_condt",
+        "value": "not applicable"
+       },
+       {
+        "name": "num_replicons",
+        "value": "1"
+       }
+      ],
+      "status": {
+       "status": "live",
+       "when": "2016-04-08T04:17:02.761"
+      },
+      "collection_date": "2013-05-29",
+      "geo_loc_name": "Brazil: Piracicaba, Sao Paulo",
+      "host": "Dalbulus maidis",
+      "lat_lon": "not applicable",
+      "strain": "M3"
+     },
+     "comments": "Source DNA is available from Saskia Hogenhout Department of Cell and Developmental Biology, John Innes Centre, Norwich, United Kingdom\nThe annotation was added by the NCBI Prokaryotic Genome Annotation Pipeline (PGAP). Information about PGAP can be found here: https://www.ncbi.nlm.nih.gov/genome/annotation_prok/"
+    },
+    "assembly_stats": {
+     "total_number_of_chromosomes": 1,
+     "total_sequence_length": "576118",
+     "total_ungapped_length": "576118",
+     "number_of_contigs": 1,
+     "contig_n50": 576118,
+     "contig_l50": 1,
+     "number_of_scaffolds": 1,
+     "scaffold_n50": 576118,
+     "scaffold_l50": 1,
+     "number_of_component_sequences": 1,
+     "atgc_count": "576118",
+     "gc_count": "163975",
+     "gc_percent": 28.5,
+     "genome_coverage": "42"
+    },
+    "annotation_info": {
+     "name": "GCF_001712875.1-RS_2026_06_07",
+     "provider": "NCBI RefSeq",
+     "release_date": "2026-06-07",
+     "stats": {
+      "gene_counts": {
+       "total": 581,
+       "protein_coding": 524,
+       "non_coding": 41,
+       "pseudogene": 16
+      }
+     },
+     "method": "Best-placed reference protein set; GeneMarkS-2+",
+     "pipeline": "NCBI Prokaryotic Genome Annotation Pipeline (PGAP)",
+     "software_version": "6.11"
+    },
+    "checkm_info": {
+     "checkm_marker_set": "Candidatus Phytoplasma",
+     "checkm_species_tax_id": 202462,
+     "checkm_marker_set_rank": "genus",
+     "checkm_version": "v1.2.5",
+     "completeness": 99.08
+    },
+    "average_nucleotide_identity": {
+     "taxonomy_check_status": "Inconclusive",
+     "match_status": "low_coverage",
+     "submitted_organism": "Candidatus Phytoplasma zeae",
+     "submitted_species": "Candidatus Phytoplasma zeae",
+     "category": "category_na",
+     "submitted_ani_match": {
+      "assembly": "no-type",
+      "organism_name": "na",
+      "category": "no_type"
+     },
+     "best_ani_match": {
+      "assembly": "GCA_032884955.1",
+      "organism_name": "Candidatus Phytoplasma vignae",
+      "category": "suspected_type",
+      "ani": 90.46,
+      "assembly_coverage": 1.47,
+      "type_assembly_coverage": 1.49
+     },
+     "comment": "na"
+    }
+   }
+  ],
+  "total_count": 2
+ },
+ "S. kunkelii": {
+  "reports": [
+   {
+    "accession": "GCA_001274875.1",
+    "current_accession": "GCA_001274875.1",
+    "paired_accession": "GCF_001274875.1",
+    "source_database": "SOURCE_DATABASE_GENBANK",
+    "organism": {
+     "tax_id": 273035,
+     "organism_name": "Spiroplasma kunkelii CR2-3x",
+     "infraspecific_names": {
+      "strain": "CR2-3x"
+     }
+    },
+    "assembly_info": {
+     "assembly_level": "Complete Genome",
+     "assembly_status": "current",
+     "paired_assembly": {
+      "accession": "GCF_001274875.1",
+      "status": "current",
+      "annotation_name": "GCF_001274875.1-RS_2025_12_13"
+     },
+     "assembly_name": "ASM127487v1",
+     "assembly_type": "haploid",
+     "bioproject_lineage": [
+      {
+       "bioprojects": [
+        {
+         "accession": "PRJNA270865",
+         "title": "Spiroplasma kunkelii CR2-3x Genome sequencing"
+        }
+       ]
+      }
+     ],
+     "bioproject_accession": "PRJNA270865",
+     "release_date": "2015-08-26",
+     "submitter": "Beltsville Agricultural Research Center",
+     "refseq_category": "reference genome",
+     "sequencing_tech": "PacBio",
+     "assembly_method": "SMRT v. smrtanalysis_2.3.0.140936.p0.0",
+     "biosample": {
+      "accession": "SAMN03269975",
+      "last_updated": "2019-06-20T17:10:28.087",
+      "publication_date": "2015-08-29T00:00:00.000",
+      "submission_date": "2014-12-19T13:51:33.880",
+      "sample_ids": [
+       {
+        "label": "Sample name",
+        "value": "spiroplasmakunkellii_CR2-3X"
+       }
+      ],
+      "description": {
+       "title": "Microbe sample from Spiroplasma kunkelii CR2-3x",
+       "organism": {
+        "tax_id": 273035,
+        "organism_name": "Spiroplasma kunkelii CR2-3x"
+       },
+       "comment": "Pathogen causing corn stunt disease; helical and motile cell, transmitted from plant-to-plant by a plant phloem-feeding leafhopper insect."
+      },
+      "owner": {
+       "name": "Beltsville Agricultural Research Center",
+       "contacts": [
+        {}
+       ]
+      },
+      "models": [
+       "Microbe, viral or environmental"
+      ],
+      "package": "Microbe.1.0",
+      "attributes": [
+       {
+        "name": "strain",
+        "value": "CR2-3x"
+       },
+       {
+        "name": "host",
+        "value": "Zea mays L."
+       },
+       {
+        "name": "collection_date",
+        "value": "2004"
+       },
+       {
+        "name": "geo_loc_name",
+        "value": "Costa Rica"
+       },
+       {
+        "name": "sample_type",
+        "value": "whole organism"
+       }
+      ],
+      "status": {
+       "status": "live",
+       "when": "2015-08-29T06:44:39.220"
+      },
+      "collection_date": "2004",
+      "geo_loc_name": "Costa Rica",
+      "host": "Zea mays L.",
+      "strain": "CR2-3x"
+     },
+     "comments": "Source bacteria from Jacqueline Fletcher, Entomology and Plant Pathology, Oklahoma State University, 127 Noble Research Center, Stillwater, OK 74078."
+    },
+    "assembly_stats": {
+     "total_number_of_chromosomes": 4,
+     "total_sequence_length": "1514561",
+     "total_ungapped_length": "1514561",
+     "number_of_contigs": 4,
+     "contig_n50": 1463926,
+     "contig_l50": 1,
+     "number_of_scaffolds": 4,
+     "scaffold_n50": 1463926,
+     "scaffold_l50": 1,
+     "number_of_component_sequences": 4,
+     "atgc_count": "1514561",
+     "gc_count": "378388",
+     "gc_percent": 25,
+     "genome_coverage": "97.35"
+    },
+    "annotation_info": {
+     "name": "Annotation submitted by Beltsville Agricultural Research Center",
+     "provider": "Beltsville Agricultural Research Center",
+     "release_date": "2015-11-05",
+     "stats": {
+      "gene_counts": {
+       "total": 1760,
+       "protein_coding": 1685,
+       "non_coding": 36,
+       "pseudogene": 39
+      }
+     }
+    },
+    "checkm_info": {
+     "checkm_marker_set": "Entomoplasmatales",
+     "checkm_species_tax_id": 47834,
+     "checkm_marker_set_rank": "order",
+     "checkm_version": "v1.2.4",
+     "completeness": 93.42,
+     "contamination": 2.21
+    },
+    "average_nucleotide_identity": {
+     "taxonomy_check_status": "Inconclusive",
+     "match_status": "below_threshold_mismatch",
+     "submitted_organism": "Spiroplasma kunkelii CR2-3x",
+     "submitted_species": "Spiroplasma kunkelii",
+     "category": "category_na",
+     "submitted_ani_match": {
+      "assembly": "no-type",
+      "organism_name": "na",
+      "category": "no_type"
+     },
+     "best_ani_match": {
+      "assembly": "GCA_003339775.1",
+      "organism_name": "Spiroplasma phoeniceum",
+      "category": "type",
+      "ani": 95.63,
+      "assembly_coverage": 75.59,
+      "type_assembly_coverage": 59.99
+     },
+     "comment": "na"
+    }
+   },
+   {
+    "accession": "GCF_001274875.1",
+    "current_accession": "GCF_001274875.1",
+    "paired_accession": "GCA_001274875.1",
+    "source_database": "SOURCE_DATABASE_REFSEQ",
+    "organism": {
+     "tax_id": 273035,
+     "organism_name": "Spiroplasma kunkelii CR2-3x",
+     "infraspecific_names": {
+      "strain": "CR2-3x"
+     }
+    },
+    "assembly_info": {
+     "assembly_level": "Complete Genome",
+     "assembly_status": "current",
+     "paired_assembly": {
+      "accession": "GCA_001274875.1",
+      "status": "current",
+      "annotation_name": "Annotation submitted by Beltsville Agricultural Research Center"
+     },
+     "assembly_name": "ASM127487v1",
+     "assembly_type": "haploid",
+     "bioproject_lineage": [
+      {
+       "bioprojects": [
+        {
+         "accession": "PRJNA270865",
+         "title": "Spiroplasma kunkelii CR2-3x Genome sequencing"
+        }
+       ]
+      }
+     ],
+     "bioproject_accession": "PRJNA270865",
+     "release_date": "2015-08-26",
+     "submitter": "Beltsville Agricultural Research Center",
+     "refseq_category": "reference genome",
+     "sequencing_tech": "PacBio",
+     "assembly_method": "SMRT v. smrtanalysis_2.3.0.140936.p0.0",
+     "biosample": {
+      "accession": "SAMN03269975",
+      "last_updated": "2019-06-20T17:10:28.087",
+      "publication_date": "2015-08-29T00:00:00.000",
+      "submission_date": "2014-12-19T13:51:33.880",
+      "sample_ids": [
+       {
+        "label": "Sample name",
+        "value": "spiroplasmakunkellii_CR2-3X"
+       }
+      ],
+      "description": {
+       "title": "Microbe sample from Spiroplasma kunkelii CR2-3x",
+       "organism": {
+        "tax_id": 273035,
+        "organism_name": "Spiroplasma kunkelii CR2-3x"
+       },
+       "comment": "Pathogen causing corn stunt disease; helical and motile cell, transmitted from plant-to-plant by a plant phloem-feeding leafhopper insect."
+      },
+      "owner": {
+       "name": "Beltsville Agricultural Research Center",
+       "contacts": [
+        {}
+       ]
+      },
+      "models": [
+       "Microbe, viral or environmental"
+      ],
+      "package": "Microbe.1.0",
+      "attributes": [
+       {
+        "name": "strain",
+        "value": "CR2-3x"
+       },
+       {
+        "name": "host",
+        "value": "Zea mays L."
+       },
+       {
+        "name": "collection_date",
+        "value": "2004"
+       },
+       {
+        "name": "geo_loc_name",
+        "value": "Costa Rica"
+       },
+       {
+        "name": "sample_type",
+        "value": "whole organism"
+       }
+      ],
+      "status": {
+       "status": "live",
+       "when": "2015-08-29T06:44:39.220"
+      },
+      "collection_date": "2004",
+      "geo_loc_name": "Costa Rica",
+      "host": "Zea mays L.",
+      "strain": "CR2-3x"
+     },
+     "comments": "Source bacteria from Jacqueline Fletcher, Entomology and Plant Pathology, Oklahoma State University, 127 Noble Research Center, Stillwater, OK 74078.\nThe annotation was added by the NCBI Prokaryotic Genome Annotation Pipeline (PGAP). Information about PGAP can be found here: https://www.ncbi.nlm.nih.gov/genome/annotation_prok/"
+    },
+    "assembly_stats": {
+     "total_number_of_chromosomes": 4,
+     "total_sequence_length": "1514561",
+     "total_ungapped_length": "1514561",
+     "number_of_contigs": 4,
+     "contig_n50": 1463926,
+     "contig_l50": 1,
+     "number_of_scaffolds": 4,
+     "scaffold_n50": 1463926,
+     "scaffold_l50": 1,
+     "number_of_component_sequences": 4,
+     "atgc_count": "1514561",
+     "gc_count": "378388",
+     "gc_percent": 25,
+     "genome_coverage": "97.35"
+    },
+    "annotation_info": {
+     "name": "GCF_001274875.1-RS_2025_12_13",
+     "provider": "NCBI RefSeq",
+     "release_date": "2025-12-13",
+     "stats": {
+      "gene_counts": {
+       "total": 1951,
+       "protein_coding": 1775,
+       "non_coding": 39,
+       "pseudogene": 137
+      }
+     },
+     "method": "Best-placed reference protein set; GeneMarkS-2+",
+     "pipeline": "NCBI Prokaryotic Genome Annotation Pipeline (PGAP)",
+     "software_version": "6.10"
+    },
+    "checkm_info": {
+     "checkm_marker_set": "Entomoplasmatales",
+     "checkm_species_tax_id": 47834,
+     "checkm_marker_set_rank": "order",
+     "checkm_version": "v1.2.4",
+     "completeness": 93.42,
+     "contamination": 2.21
+    },
+    "average_nucleotide_identity": {
+     "taxonomy_check_status": "Inconclusive",
+     "match_status": "below_threshold_mismatch",
+     "submitted_organism": "Spiroplasma kunkelii CR2-3x",
+     "submitted_species": "Spiroplasma kunkelii",
+     "category": "category_na",
+     "submitted_ani_match": {
+      "assembly": "no-type",
+      "organism_name": "na",
+      "category": "no_type"
+     },
+     "best_ani_match": {
+      "assembly": "GCA_003339775.1",
+      "organism_name": "Spiroplasma phoeniceum",
+      "category": "type",
+      "ani": 95.63,
+      "assembly_coverage": 75.59,
+      "type_assembly_coverage": 59.99
+     },
+     "comment": "na"
+    }
+   }
+  ],
+  "total_count": 2
+ }
+}

@@ -1,0 +1,366 @@
+{
+ "fecha_consulta": "2026-10-17",
+ "criterio_nivel_lectura": "'texto completo' = el texto se descargó y se consultó por búsqueda dirigida de pasajes y cifras; no equivale a lectura lineal. 'parcial' = texto completo descargado pero con menos pasajes leídos, o página abierta sólo en parte. 'solo resumen' = abstract. 'solo fragmentos' = lo que devolvió un buscador.",
+ "fuentes": [
+  {
+   "id": "R6-01",
+   "url": "https://doi.org/10.3390/plants15111664",
+   "titulo": "Balog, Hevér & Csorba 2026, Innovative Pest Management Strategies in Phytoplasma Insect Vectors Control, Plants 15(11):1664",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "Alcance de la revisión = manejo de vectores; dice que los fitoplasmas no son directamente atacables por su vida en el floema y que la nanotecnología puede reducir la enfermedad de forma indirecta; menciona agentes antimicrobianos nano-entregados a nivel de planta; cero menciones de antibióticos/tetraciclinas (0 coincidencias). No sostiene por sí sola que 'ninguna estrategia apunta al patógeno'.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-02",
+   "url": "https://doi.org/10.3389/finsc.2026.1811933",
+   "titulo": "Andrada et al. 2026, ETH and Burs-α are necessary for normal molting in D. maidis and D. kuscheli, Front Insect Sci",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "Leyenda y texto de la fig. 5 (n = 40, día 4), porcentajes de supervivencia, 3 réplicas x 3 ninfas para RT-qPCR; imagen de la fig. 5 extraída del PDF y medida en píxeles. Hallazgo: texto y figura discrepan para eth en D. maidis.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-03",
+   "url": "https://doi.org/10.1101/2021.09.29.462424",
+   "titulo": "Preprint 2021, Assessing the Functionality of RNAi in D. maidis (V-ATPase B y D; Texas A&M)",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "Dieta artificial, ninfas de 3.er estadio, 500 ng/µL, 720 insectos y 6 réplicas; supervivencia a 4 d ≈52 % sin dsRNA, ≈37 % GFP, ≈18 % V-ATPase D, ≈16 % V-ATPase B. Preprint no revisado.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-04",
+   "url": "https://doi.org/10.1101/2022.01.17.476645",
+   "titulo": "Preprint 2022, Development of efficient RNAi methods in D. maidis (Bicaudal C)",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "Inyección 3,2x (d1) y >170x (d7); ingestión 2,6x (d1) y 3,7x (d7); dosis 100/200 ng/µL; supervivencia de hembras sin efecto (inyección p=0,9475; ingestión p=0,1406); menos oviposturas. Preprint no revisado.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-05",
+   "url": "https://doi.org/10.3390/antibiotics10111398",
+   "titulo": "Bertaccini 2021, Containment of Phytoplasma-Associated Plant Diseases by Antibiotics and Other Antimicrobial Molecules, Antibiotics 10:1398",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "Solo tetraciclinas suprimen síntomas y multiplicación; erradicación completa difícil; uso agrícola prohibido en muchos países; cultivo axénico no logrado para muchas cepas; 0 menciones de maíz o Dalbulus; moléculas alternativas probadas en brotes in vitro.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-06",
+   "url": "https://doi.org/10.1371/journal.ppat.1008035",
+   "titulo": "Pecher et al. 2019, Phytoplasma SAP11 effector destabilization of TCP transcription factors ... Arabidopsis versus maize, PLoS Pathog 15:e1008035",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "SAP11 de MBSP desestabiliza TCP clase II de tipo TB1/CYC; impide la inflorescencia femenina del maíz (fenocopia tb1); ningún SAP11 aumenta la fecundidad del vector en maíz; SAP11_MBSP idéntico entre aislados de México y Brasil. No da accesión.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-07",
+   "url": "https://doi.org/10.1371/journal.pgen.1011946",
+   "titulo": "Effector innovation in genome-reduced phytoplasmas and other host-dependent mollicutes, PLoS Genet 2025",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "239 genomas, SignalP 3.0 (modo Gram+) + TMHMM 2.0, 7.162 PhAMEs; AF2 vs estructuras cristalinas RMSD 0,74 Å (SAP05) y 0,70 Å (SAP54/Phyl1), n = 2; mollicutes 'en gran parte no cultivables' incluidos los fitoplasmas.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-08",
+   "url": "https://doi.org/10.3390/biomimetics8070550",
+   "titulo": "PhyEffector 2023, algoritmo de predicción de efectores en fitoplasmas, Biomimetics 8:550",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "Positivos: 10 de 21 efectores validados + palabras clave de UniProt (226 potenciales, ~50 % de identidad con el positivo); negativos: 64 proteínas centrales de KEGG; F1 0,56–1,0 por pipeline y 0,9761 en genomas; sin evaluación de terceros hallada.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-09",
+   "url": "https://doi.org/10.1093/jee/toag166",
+   "titulo": "Can the leafhopper microbiome unlock new strategies for its control? J Econ Entomol 2026",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "Caso de estudio con 41 metagenomas/metatranscriptomas públicos de D. maidis (Kraken2, SparCC, SuperFocus), declarado exploratorio y correlativo, requiere validación experimental; precedentes de RNAi mediado por simbiontes en pulgón y abeja; usa el nombre 'Ca. P. zeae'.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-10",
+   "url": "https://doi.org/10.1371/journal.pone.0017357",
+   "titulo": "Labroussaa et al. 2011, Minimal actin-binding region of S. citri PGK in transmission by its leafhopper vector, PLoS ONE 6:e17357",
+   "nivel_lectura": "texto completo (descargado; lectura dirigida de pasajes, no lectura lineal)",
+   "usado_para": "Tabla 2: lotes de 3 cicadélidos con cultivo positivo: tampón 149/257 (58 %), PGK 52/176 (30 %), PGK-FL5 38/112 (34 %), PGK-FL4 58 %; p<0,0001; 0,2 µg inyectados a día 4 post-infección; Circulifer haematoceps.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-11",
+   "url": "https://doi.org/10.1371/journal.pone.0048606",
+   "titulo": "Béven et al. 2012, Repetitive domain of ScARP3d triggers entry of S. citri into leafhopper cells, PLoS ONE 7:e48606",
+   "nivel_lectura": "parcial (texto completo descargado; leídos el resumen y dos pasajes)",
+   "usado_para": "ScARP conservadas en S. citri, S. kunkelii y S. phoeniceum; mutante G/6 sin pSci1-5: 82 % menos adhesión y 84 % menos internalización; anticuerpos anti-Rep3d y Rep3d recombinante reducen la invasión de células Ciha-1.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-12",
+   "url": "https://doi.org/10.3390/plants9060747",
+   "titulo": "Corn Stunt Disease: an ideal insect–microbial–plant pathosystem, Plants 9:747 (2020)",
+   "nivel_lectura": "parcial (texto completo descargado; lectura dirigida)",
+   "usado_para": "S. kunkelii: cromosoma 1.463.926 pb y cuatro plásmidos; proteínas candidatas (ScARP, espiralina que une glicoproteínas del cicadélido; genes P123, P58, P54, P18); declara que faltan estudios moleculares de la interfaz S. kunkelii–D. maidis.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-13",
+   "url": "https://doi.org/10.1016/j.pestbp.2023.105618",
+   "titulo": "Dalaisón-Fuentes et al. 2023, Knockdown of dsRNases enhances oral RNAi in D. maidis, Pestic Biochem Physiol 196:105618",
+   "nivel_lectura": "solo resumen (acceso cerrado)",
+   "usado_para": "Tres dsRNasas; Dmai-dsRNase-2 muy expresada en intestino medio y glándulas salivales; silenciarla mejora la respuesta oral al dsRNA; propone co-administración.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-14",
+   "url": "https://doi.org/10.1099/mic.0.000681",
+   "titulo": "Comprehensive screening of antimicrobials ... in vitro plant–phytoplasma co-culture system, Microbiology",
+   "nivel_lectura": "solo resumen (acceso cerrado)",
+   "usado_para": "40 antimicrobianos además de tetraciclina; 4 redujeron la acumulación de Ca. P. asteris (doxiciclina, cloranfenicol, tiampenicol, rifampicina); tetraciclina y rifampicina eliminaron el fitoplasma de las plantas; secuencias blanco conservadas entre especies de fitoplasma. No es MBSP ni maíz.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-15",
+   "url": "https://doi.org/10.1128/aem.02384-09",
+   "titulo": "Labroussaa et al. 2010, Entry of S. citri into C. haematoceps cells involves PGK–actin interaction, Appl Environ Microbiol",
+   "nivel_lectura": "solo resumen (la herramienta devolvió sólo el resumen)",
+   "usado_para": "PGK de S. citri se une a actina del vector; PGK exógena no afecta la adhesión pero inhibe la internalización de forma dosis-dependiente en células Ciha-1.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-16",
+   "url": "https://www.sciencedirect.com/science/article/pii/S0944501325003751",
+   "titulo": "Arricau-Bouvery et al., uk1_LRR or clathrin silencing in E. variegatus, flavescencia dorada (Microbiol Res 305:128416)",
+   "nivel_lectura": "solo resumen (resumen e introducción vistos como fragmento; acceso cerrado)",
+   "usado_para": "Entrada de perlas con VmpA depende de Uk1_LRR y clatrina; silenciar uk1_LRR aumentó la colonización sin efecto en la transmisión; silenciar clatrina redujo colonización y transmisión a haba. Fitoplasma de la flavescencia dorada, no MBSP. Un listado de ResearchGate la fecha en dic-2025 y R1 la registra como 2026: año sin reconciliar.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-17",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10662966/",
+   "titulo": "Knockdown approach identifies uk1_LRR as receptor for VmpA adhesin of flavescence dorée phytoplasma",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "13 proteínas candidatas, uk1_LRR más expresada en tubos digestivos que en glándulas salivales.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-18",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8775575/",
+   "titulo": "Silencing of ATP synthase β impairs egg development in S. titanus (PMC8775575)",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Su silenciamiento en E. variegatus disminuye la supervivencia, reduce la multiplicación del fitoplasma e induce esterilidad de hembras: la reducción de patógeno está confundida con daño al vector.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-19",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7571704/",
+   "titulo": "Characterization of components of resistance to Corn Stunt disease, PLoS ONE 2020",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Cuatro híbridos en Argentina: DK72-10 antixenosis y antibiosis; DK79-10 retraso de síntomas; DKB390 antixenosis y resistencia a S. kunkelii; severidad asociada a rendimiento, no a acumulación del patógeno. Solo fenotipos.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-20",
+   "url": "https://www.researchgate.net/publication/271350425_Genetic_control_of_maize_resistance_to_corn_stunt_spiroplasma",
+   "titulo": "Genetic control of maize resistance to corn stunt spiroplasma (resumen en ResearchGate)",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Dialelo de 4 líneas: efectos aditivos y de dominancia o epistasia; herencia compleja. No es un mapeo de QTL.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-21",
+   "url": "https://www.biorxiv.org/content/10.1101/2025.08.28.671991.full.pdf",
+   "titulo": "Ca. Phytoplasma zeae: delimitación de especie del fitoplasma del achaparramiento (preprint 2025)",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Nombre del taxón; R6-09 (J Econ Entomol 2026) ya lo usa.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-22",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11287381",
+   "titulo": "LEAPH y EffectorComb: efectores en 13 proteomas de fitoplasmas",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Precisión 95,3 % autoinformada; 11 efectores clásicos validados recuperados y 4 de 6 no clásicos.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-23",
+   "url": "https://www.biorxiv.org/content/10.64898/2026.04.21.719732v1.full.pdf",
+   "titulo": "SPIN: cribado de interacciones huésped–patógeno con AlphaFold 3 (preprint 2026)",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Existe un pipeline AF3 para proteínas secretadas de Liberibacter y Ca. Phytoplasma; no evaluado aquí.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-24",
+   "url": "https://www.science.org/doi/10.1126/science.aad6253",
+   "titulo": "Hutchison et al. 2016, Design and synthesis of a minimal bacterial genome (JCVI-syn3.0)",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Mutagénesis global con Tn5 clasificó genes en esenciales, cuasi-esenciales y no esenciales; 473 genes.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-25",
+   "url": "https://elifesciences.org/articles/36842",
+   "titulo": "Essential metabolism for a minimal cell (JCVI-syn3A), eLife",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Modelo metabólico vs transposones: coeficiente de Matthews 0,59; 92 % de los genes de la reconstrucción son esenciales o cuasi-esenciales in vivo.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-26",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5893858/",
+   "titulo": "Inferring the minimal genome of Mesoplasma florum by comparative genomics and transposon mutagenesis",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Segundo conjunto público de esencialidad por transposones, en un entomoplasma.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-27",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9765797",
+   "titulo": "Effect of natural amphipathic peptides on mollicutes (1998)",
+   "nivel_lectura": "solo resumen",
+   "usado_para": "Diez péptidos en seis especies de mollicutes (Acholeplasma, Mycoplasma, Spiroplasma); gramicidina S CMI 2–50 nM; globomicina inhibe la peptidasa de señal II, el crecimiento de espiroplasmas y el procesamiento de espiralina en S. citri y S. melliferum.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-28",
+   "url": "https://journals.asm.org/doi/10.1128/aem.68.5.2113-2119.2002",
+   "titulo": "Malembic et al. 2002, antibodies on growth of S. citri, Appl Environ Microbiol 68:2113",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Anticuerpos scFv anti-espiralina inhiben el crecimiento de S. citri en medio líquido (no el metabolismo de glucosa); propuesta 'plantibody'.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-29",
+   "url": "https://www.researchgate.net/publication/10775656_Spiroplasma_citri_A_Plant_Pathogenic_Mollicute_Relationships_with_Its_Two_Hosts_the_Plant_and_the_Leafhopper_Vector",
+   "titulo": "Listado de ResearchGate que muestra el resumen de 'Growth inhibition of phytopathogenic spiroplasmas by membrane-interactive AMPs Novispirin T7 and Caerin 1.1' (Ann Appl Biol 2021)",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda (fuente secundaria: el resumen aparece dentro de la página de otro artículo; el original no se abrió)",
+   "usado_para": "Cuatro péptidos probados; Novispirin T7 y Caerin 1.1 inhibieron S. kunkelii y S. citri con eficacia comparable a tetraciclina; CMI determinadas.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-30",
+   "url": "https://oajournals.fupress.net/index.php/pm/article/view/5513",
+   "titulo": "Contaldo et al. 2012, Axenic culture of plant pathogenic phytoplasmas, Phytopathol Mediterr 51:607",
+   "nivel_lectura": "solo resumen",
+   "usado_para": "Primera afirmación de cultivo axénico de fitoplasmas en medios comerciales definidos. Revisiones posteriores (R6-05, R6-07) los siguen describiendo como en gran parte no cultivables; no hay reporte para Ca. P. zeae.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-31",
+   "url": "https://link.springer.com/article/10.1007/s10340-024-01823-9",
+   "titulo": "Susceptibility of D. maidis to insect-pathogenic fungi: brochosomes and self-cleaning, J Pest Sci 2024",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "La aplicación directa de conidios no aumentó la mortalidad frente a superficies contaminadas; brochosomas y autolimpieza reducen la infección.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-32",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13126053/",
+   "titulo": "Entomopathogenic nematodes against D. maidis under laboratory conditions",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Todos los aislados causaron >50 % de mortalidad en adultos, en laboratorio.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-33",
+   "url": "https://link.springer.com/article/10.1007/s13313-026-01115-z",
+   "titulo": "Limited persistence of MBSP and survival of D. maidis in forage grasses, Australas Plant Pathol 2026",
+   "nivel_lectura": "parcial",
+   "usado_para": "Las pasturas evaluadas son hospedantes transitorios o sin salida.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-34",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7565095/",
+   "titulo": "Ramos et al. 2020, MBSP favors its spread by changing host preference of the vector, Insects 11:600",
+   "nivel_lectura": "parcial",
+   "usado_para": "Ensayos de elección con 40 adultos; efecto pull–push según la fase de la infección.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-35",
+   "url": "https://ipm.ucanr.edu/agriculture/corn/corn-stunt/",
+   "titulo": "UC IPM, Corn Stunt",
+   "nivel_lectura": "parcial",
+   "usado_para": "No hay tratamiento químico contra el espiroplasma; control químico del vector poco efectivo.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-36",
+   "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0070243",
+   "titulo": "Development of RNAi methods for Peregrinus maidis (PLoS ONE)",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Planthopper afín: reducción de ≈10x por inyección y ≈2x por ingestión.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-37",
+   "url": "https://journals.asm.org/doi/10.1128/genomea.01216-15",
+   "titulo": "Genome announcement S. kunkelii CR2-3x, Genome Announc 2015",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Cromosoma de 1.463.926 pb, 1.646 CDS; cuatro plásmidos (22.558, 14.615, 20.501, 7.576 pb); accesiones CP010899.1, CP012423.1, CP012424.1, AY528560.1 (NC_006400.1), CP012425.1.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-38",
+   "url": "https://link.springer.com/chapter/10.1007/978-1-4612-3808-9_7",
+   "titulo": "New developments in the culture of S. kunkelii (capítulo)",
+   "nivel_lectura": "solo resumen",
+   "usado_para": "S. kunkelii cultivable in vitro, el espiroplasma fitopatógeno más exigente; sensible a inhibidores derivados del tejido.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-39",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5379588/",
+   "titulo": "Polimorfismos entre aislados de MBSP asociados a proliferación de órganos",
+   "nivel_lectura": "solo fragmentos de resultados de búsqueda",
+   "usado_para": "Contexto de SAP11 y SAP54 como efectores que degradan factores de transcripción de la planta.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-D1",
+   "url": "https://api.ncbi.nlm.nih.gov/datasets/v2",
+   "titulo": "NCBI Datasets API v2 (taxonomía, dataset_report, sequence_reports, descarga de ensamblados)",
+   "nivel_lectura": "base de datos consultada 2026-10-17",
+   "usado_para": "Taxid, accesiones vigentes, estadísticas de anotación, proteomas y GFF.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-D2",
+   "url": "https://rest.uniprot.org",
+   "titulo": "UniProt REST (búsqueda, FASTA, conteo de referencias cruzadas)",
+   "nivel_lectura": "base de datos consultada 2026-10-17",
+   "usado_para": "Secuencias de controles y de consultas; cobertura AlphaFold DB por taxón.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-D3",
+   "url": "https://alphafold.ebi.ac.uk/api/prediction",
+   "titulo": "AlphaFold DB API",
+   "nivel_lectura": "base de datos consultada 2026-10-17",
+   "usado_para": "Existencia y pLDDT medio de modelos.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-D4",
+   "url": "https://www.ebi.ac.uk/interpro/api",
+   "titulo": "InterPro API (perfiles HMM de Pfam)",
+   "nivel_lectura": "base de datos consultada 2026-10-17",
+   "usado_para": "PF02171.24, PF02170.29, PF03368.20, PF00636.32.",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-D5",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+   "titulo": "NCBI E-utilities (efetch del plásmido NC_006400.1)",
+   "nivel_lectura": "base de datos consultada 2026-10-17",
+   "usado_para": "13 CDS de pSKU146; sin clave de API ni correo (3 pedidos/s).",
+   "fecha_acceso": "2026-10-17"
+  },
+  {
+   "id": "R6-L1",
+   "url": "research/R1_fundamentos/REPORT.md; research/ola2/CORRECCIONES.md; SINTESIS_V2.md; 00_meta/*",
+   "titulo": "Archivos locales del repositorio (sin URL)",
+   "nivel_lectura": "leídos en esta sesión; R1 §4.2 y §4.4–4.6 completos, CORRECCIONES B5-B8, matriz de SINTESIS_V2, CAMINOS_PROBADOS y DECISIONS (D1–D8)",
+   "usado_para": "Punto de partida a verificar. R1 §5, W1, W3, W4, R4 y R5 no se reabrieron completos.",
+   "fecha_acceso": "2026-10-17"
+  }
+ ]
+}

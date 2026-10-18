@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "db_CR2-3x",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "/Users/joaquin/Documents/investigaton/chicharrita-research/research/R6_estrategias_molicutes/datos/GCF_001274875.1/ncbi_dataset/data/GCF_001274875.1/protein.faa",
+  "number-of-letters": 361113,
+  "number-of-sequences": 1715,
+  "last-updated": "2026-10-17T20:22:00",
+  "number-of-volumes": 1,
+  "bytes-total": 770607,
+  "bytes-to-cache": 376797,
+  "files": [
+    "db_CR2-3x.pdb",
+    "db_CR2-3x.phr",
+    "db_CR2-3x.pin",
+    "db_CR2-3x.pot",
+    "db_CR2-3x.psq",
+    "db_CR2-3x.ptf",
+    "db_CR2-3x.pto"
+  ]
+}

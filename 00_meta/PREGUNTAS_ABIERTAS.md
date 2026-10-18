@@ -438,3 +438,19 @@ hacer sí o sí.
   páginas de términos.
 - **Sin resolver de la ola 1:** el trabajo de dsRNasas en *D. maidis* (PubMed
   37945254) no está en el corpus y sigue sin abrirse.
+
+## R6 (2026-10-17) — pendientes y vacíos
+
+Todo lo de abajo viene de `research/R6_estrategias_molicutes/`. Los pendientes ya resueltos se tachan en el texto del reporte, no acá.
+
+- **ETH y Burs-α, *eth* en *D. maidis* (abierta).** El texto de `finsc-6-1811933.pdf` dice 10 % de supervivencia a los cinco días; la barra de la figura 5A mide ≈17,5 % y la leyenda fija el día 4. `CORRECCIONES.md` B5 siguió el texto. Pregunta 3 de `preguntas_investigador.md`. (La asignación de especie a cada panel quedó resuelta: A = *D. maidis*, B = *D. kuscheli*.)
+- **Puntero de R1 §4.4 (resuelta en parte).** Tiene fuentes primarias, en *S. citri* (ver REPORT.md §2.2); sigue sin haber ninguna en *S. kunkelii* ni *D. maidis*.
+- **Cultivabilidad de fitoplasmas, y de *Ca.* P. zeae en particular (abierta, `[?]`).** Hay una afirmación de cultivo axénico (2012) y revisiones de 2021 y 2025 que los llaman en gran parte no cultivables. No se halló reporte para *Ca.* P. zeae.
+- **Vacíos de búsqueda, sin resultado abierto:** QTL o GWAS de achaparramiento en maíz (dos búsquedas); cribado moderno de moléculas pequeñas contra *S. kunkelii*; evaluación de terceros de predictores de efectores de fitoplasma; ensayo de adhesión de *S. kunkelii* a *D. maidis*; ninguna fuente para SAP54 en MBSP.
+- **No buscadas en R6:** evaluación independiente de cribado virtual y de diseño de péptidos; microbioma de la planta.
+- **Lecturas parciales:** de las 39 fuentes bibliográficas externas de R6, 10 se leyeron en texto completo por pasajes, 5 parcial, 7 sólo resumen (dsRNasa 2023 y el cribado de antimicrobianos son de pago) y 17 sólo fragmentos. Ver `sources.json`.
+- **Bloqueo de red (registrado, no esquivado):** `git clone https://github.com/BioComputingUP/DeepSig` pide credenciales y falla desde este entorno. No se pidió acceso (no era fatal) y no se usó ningún espejo. Con ese acceso se podría correr DeepSig; los predictores de uso común (SignalP, TMHMM, Phobius) requieren licencia.
+- **ORF sin anotar:** la búsqueda por perfiles cubre sólo proteínas anotadas. Falta un tblastn de las Argonautas y Dicer de control contra los genomas completos.
+- **Año de S27 en R1 (abierta).** R1 lo registra como 2026; un listado de ResearchGate lo fecha en diciembre de 2025.
+- **Transcriptomas y ensamblado de *D. maidis* en la Línea 2:** accesiones tomadas de W3 y de nombres de archivo de W5, no re-verificadas en R6.
+- **Rechazo de una herramienta (registrado, no esquivado).** Al cerrar R6, una escritura en la memoria persistente del agente (resumen de siete hallazgos de R6) fue rechazada por un clasificador de seguridad («posible inyección de prompt») y no se guardó. No se reformuló ni se reintentó. Los hallazgos están completos en `research/R6_estrategias_molicutes/` (REPORT.md, `datos/COMANDOS.md`); lo único que no quedó es el resumen en la memoria del agente. Decidir si se quiere guardarlo a mano.
