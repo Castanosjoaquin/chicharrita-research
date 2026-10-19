@@ -34,6 +34,14 @@
   nav{display:flex; flex-wrap:wrap; gap:6px 18px; font-size:.92rem}
   nav a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line)}
   nav a:hover{border-bottom-color:var(--accent)}
+  .paso{display:flex; gap:10px; flex-wrap:wrap; margin:20px 0 0}
+  .paso a{font-size:.84rem; border:1px solid var(--line); background:var(--surface);
+          padding:6px 11px; text-decoration:none; color:var(--text-dim)}
+  .paso a:hover{border-color:var(--accent); color:var(--accent)}
+  .paso a.no{opacity:.45}
+  .paso .sep{flex-basis:100%; height:0; margin:0}
+  .paso .rotulo{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase;
+                color:var(--text-dim); align-self:center; margin:0}
   h2{font-size:1.3rem; font-weight:650; margin:46px 0 14px; letter-spacing:-.01em;
      padding-top:18px; border-top:1px solid var(--line)}
   h3{font-size:1.02rem; font-weight:650; margin:26px 0 8px}
@@ -133,6 +141,25 @@
     <a href="#conexion">Cómo se conectan</a>
     <a href="#glosario">Glosario</a>
   </nav>
+  <div class="paso">
+    <p class="rotulo">Lo hecho</p>
+    <a href="plan/paso-01.html">1. Acordar reglas</a>
+    <a href="plan/paso-02.html">2. Fijar los datos</a>
+    <a href="plan/paso-03.html">3. Entender cada candidato</a>
+    <a href="plan/paso-04.html">4. Chequear contra la realidad</a>
+    <a href="plan/paso-05.html">5. Estimar potencia</a>
+    <a href="plan/paso-06.html">6. Combinar y decidir</a>
+    <a href="plan/paso-07.html">7. Comprobar el método</a>
+    <a href="plan/paso-08.html">8. Ficha por candidato</a>
+    <a href="plan/paso-09.html">9. Reproducible y abierto</a>
+    <a class="no" href="#no-hacemos" title="Sin página propia: está en este documento">10. Presentar con honestidad</a>
+    <a href="plan/variante-a.html">A · modelos de ARN</a>
+    <a href="plan/variante-b.html">B · lectura asistida</a>
+    <span class="sep"></span>
+    <p class="rotulo">Ir a</p>
+    <a href="index.html">Portada del repositorio</a>
+    <a href="tablero/index.html">Tablero del equipo</a>
+  </div>
 </header>
 
 <main>
