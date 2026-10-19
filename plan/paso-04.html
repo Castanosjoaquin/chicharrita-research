@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paso 4 · Chequear cada candidato contra la realidad — Investigathón Y-Hat</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+  table.matriz{min-width:840px}
+  table.matriz th:not(:first-child):not(:last-child), table.matriz td.num{padding-left:8px; padding-right:8px; text-align:center}
+  table.matriz td:last-child{min-width:300px}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .toc{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); margin:26px 0 10px}
+  .card{border:1px solid var(--line); background:var(--surface); padding:18px 20px; display:block;
+        color:inherit; text-decoration:none}
+  .card:hover{border-color:var(--accent)}
+  .card .id{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+  .card .t{font-weight:650; margin:0 0 7px; line-height:1.3}
+  .card .d{font-size:.91rem; color:var(--text-dim); margin:0 0 10px}
+  .card .f{font-size:.82rem; color:var(--text-dim); margin:0}
+  .card .f a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line)}
+  .mem{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:18px 0}
+  .mem a{border:1px solid var(--line); background:var(--surface); padding:12px 14px; text-decoration:none; color:inherit}
+  .mem a:hover{border-color:var(--accent)}
+  .mem .n{font-weight:650; font-size:.95rem}
+  .mem .s{font-size:.84rem; color:var(--text-dim)}
+  .tag.h{background:var(--surface-2); color:var(--text-dim)}
+  .q{border:1px solid var(--line); background:var(--surface); padding:16px 18px; margin:0 0 12px}
+  .q .p{font-weight:650; margin:0 0 7px}
+  .q .d{font-size:.9rem; color:var(--text-dim); margin:0}
+  .q.nueva{border-left:3px solid var(--accent)}
+  .paso{display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 10px}
+  .paso a{font-size:.84rem; border:1px solid var(--line); background:var(--surface);
+          padding:6px 11px; text-decoration:none; color:var(--text-dim)}
+  .paso a:hover{border-color:var(--accent); color:var(--accent)}
+  .paso a.yo{background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650}
+  .paso a.no{opacity:.45}
+
+  .pestanas{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 0}
+  .pestanas a{font-size:.84rem; border:1px solid var(--line);
+              background:var(--surface); padding:6px 11px; text-decoration:none;
+              color:var(--text-dim)}
+  .pestanas a:hover{border-color:var(--accent); color:var(--accent)}
+  .pestanas a.yo{background:var(--accent-soft); color:var(--accent);
+                 border-color:transparent; font-weight:650}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Plan de entregable · Paso 4 de 10 · Núcleo</p>
+  <h1>Chequear cada candidato contra la realidad</h1>
+  <p class="sub">Especificidad: a qué otro organismo le pega cada candidato, y cuánto de esa respuesta depende del umbral que elijamos.</p>
+  <nav class="pestanas" aria-label="Páginas"><a href="../propuesta_entregable.html">La propuesta</a><a href="../plan/paso-01.html">1. Acordar reglas</a><a href="../plan/paso-02.html">2. Fijar los datos</a><a href="../plan/paso-03.html">3. Entender cada candidato</a><a href="../plan/paso-04.html" class="yo">4. Chequear contra la realidad</a><a href="../plan/paso-05.html">5. Estimar potencia</a><a href="../plan/paso-06.html">6. Combinar y decidir</a><a href="../plan/paso-07.html">7. Comprobar el método</a><a href="../plan/paso-08.html">8. Ficha por candidato</a><a href="../plan/paso-09.html">9. Reproducible y abierto</a><a href="../plan/variante-a.html">A · modelos de ARN</a><a href="../plan/variante-b.html">B · lectura asistida</a></nav>
+</header>
+
+
+<div class="verdict">
+  <h2>Qué sale de este paso</h2>
+  <p>Un diagnóstico de especificidad por candidato, desagregado por organismo y por posición
+  dentro de la secuencia, en vez de un único número de riesgo.</p>
+  <p style="margin-bottom:0"><strong>Lo que ya sabemos:</strong> el umbral de identidad decide
+  más que cualquier otro parámetro del método, y el riesgo no está donde se lo busca
+  habitualmente.</p>
+</div>
+
+<div class="note">
+  <p class="t">Qué parte de este paso es nuestra</p>
+  <p>El paso 4 tiene tres chequeos: conservación, especificidad y entrega. La
+  <strong>conservación</strong> de los candidatos virales entre aislados y la revisión de la
+  <strong>vía de entrega</strong> ya están hechas en <a href="../research/ola2/W5_secuencias_epilab/REPORT.md">W5</a>
+  y <a href="../research/ola2/W1_papers/REPORT.md">W1</a>. Esta página cubre la
+  <strong>especificidad</strong>, que es la que faltaba medir.</p>
+</div>
+
+<h2>Qué preguntábamos</h2>
+
+<p class="lead">Si aplicamos este ARN contra la chicharrita, ¿a qué otro ser vivo le puede pegar,
+y cuánto de esa respuesta depende de dónde pongamos el corte?</p>
+<p>Un ARN pequeño silencia un gen cuando coincide con un tramo de ese gen. Así que la pregunta
+se vuelve concreta: tomamos cada ventana de 21 nucleótidos del candidato y buscamos esa misma
+secuencia, exacta, en los transcriptomas de los organismos que no queremos tocar.</p>
+
+<h2>Qué hicimos</h2>
+
+<p>Enumeramos <strong>10.950 ventanas</strong> de 21 nucleótidos sobre 438 genes candidatos y
+las buscamos contra un catálogo de <strong>30 organismos no objetivo</strong>, de los cuales 25
+tienen transcriptoma anotado en RefSeq. El catálogo tiene una razón escrita por especie y cubre
+seis grupos: el cultivo, polinizadores, enemigos naturales, hemípteros no objetivo, fauna del
+suelo y fauna acuática, más humano y ganado.</p>
+<p>La búsqueda es por <strong>coincidencia exacta de k-meros en las dos hebras</strong>, no por
+alineamiento local. Esto importa: usar BLAST con un umbral de identidad no filtra sobre la
+consulta completa sino sobre el fragmento que encuentra, y sobreestima el riesgo por un factor
+grande. Es el mismo motivo por el que las herramientas del campo usan Bowtie. <span class="tag e">E</span></p>
+<p>Y en vez de guardar un solo número de riesgo por ventana, guardamos <strong>cuatro columnas</strong>:
+el máximo, en cuántas especies pega, cuál es la peor, y el detalle completo. Pegarle a dos
+organismos a la vez es señal de región conservada, no de mala suerte.</p>
+
+<h2>Qué salió</h2>
+
+<h3>1. El umbral es la palanca más grande del método, y nadie lo justificó</h3>
+<p>Bajar el corte de 21 a 15 nucleótidos idénticos no es un ajuste fino: cambia el espacio de
+diseño por completo. Y el salto no es gradual, está concentrado entre 17 y 15.</p>
+<div class="tw"><table><caption>Porcentaje de ventanas que sobreviven al filtro, según el corte de identidad y el panel de organismos. Sobre 10.950 ventanas de 438 genes. [H] cálculo propio.</caption><thead><tr><th>Corte</th><th>Maíz + abeja</th><th>4 hemípteros</th><th>Catálogo de 25</th></tr></thead><tbody><tr><td>15 nt</td><td class="num">33,5 %</td><td class="num">14,6 %</td><td class="num">0,3 %</td></tr><tr><td>16 nt</td><td class="num">72,3 %</td><td class="num">47,1 %</td><td class="num">7,4 %</td></tr><tr><td>17 nt</td><td class="num">91,1 %</td><td class="num">70,8 %</td><td class="num">36,2 %</td></tr><tr><td>18 nt</td><td class="num">97,3 %</td><td class="num">83,5 %</td><td class="num">66,7 %</td></tr><tr><td>19 nt</td><td class="num">99,0 %</td><td class="num">87,9 %</td><td class="num">81,4 %</td></tr><tr><td>20 nt</td><td class="num">99,5 %</td><td class="num">90,1 %</td><td class="num">86,8 %</td></tr><tr><td>21 nt</td><td class="num">99,8 %</td><td class="num">92,4 %</td><td class="num">90,7 %</td></tr></tbody></table></div>
+<p>De 18 para arriba la curva es casi plana. Eso simplifica la pregunta al investigador: no hace
+falta que elija un número exacto, alcanza con que diga si el corte va por arriba o por debajo
+de 17.</p>
+
+<h3>2. El riesgo no está en el maíz ni en los polinizadores</h3>
+<p>Es el resultado que más nos sorprendió. Ordenando las 25 especies por cuántas ventanas
+descarta cada una:</p>
+<div class="tw"><table><caption>Las cinco especies que más descartan, y las dos que chequeábamos antes. «Solo ella» son los descartes que ninguna otra especie del catálogo detecta. Sobre 10.950 ventanas. [H]</caption><thead><tr><th>Especie</th><th>Descarta</th><th>Solo ella</th></tr></thead><tbody><tr><td><em>Macrosteles quadrilineatus</em> (cicadélido)</td><td class="num">700</td><td class="num">613</td></tr><tr><td><em>Homalodisca vitripennis</em> (cicadélido)</td><td class="num">128</td><td class="num">64</td></tr><tr><td><em>Nilaparvata lugens</em> (hemíptero)</td><td class="num">65</td><td class="num">30</td></tr><tr><td><em>Trichogramma</em> (parasitoide)</td><td class="num">36</td><td class="num">18</td></tr><tr><td><em>Bos taurus</em></td><td class="num">35</td><td class="num">12</td></tr><tr><td><em>Apis mellifera</em> (abeja)</td><td class="num">11</td><td class="num">2</td></tr><tr><td><em>Zea mays</em> (maíz)</td><td class="num">10</td><td class="num">3</td></tr></tbody></table></div>
+<p><em>Macrosteles quadrilineatus</em> sola descarta <strong>70 veces más que el maíz</strong>, y
+613 de sus 700 descartes no los ve ninguna otra especie: explica el <strong>60 % de los 1.021
+descartes totales</strong>. El maíz y la abeja juntos explican <strong>18, el 1,8 %</strong>.</p>
+<p>El orden sigue el <strong>parentesco</strong>, no la importancia ecológica. Y eso tiene una
+consecuencia incómoda: el panel que piden las normas —cultivo más polinizadores— mira
+justamente donde no está el problema.</p>
+<p class="note" style="display:block">Cuatro hemípteros bien elegidos
+(<em>Macrosteles quadrilineatus</em>, <em>Homalodisca vitripennis</em>, <em>Nilaparvata lugens</em>
+y <em>Acyrthosiphon pisum</em>) encuentran <strong>829 de los 1.021 descartes, el 81,2 %</strong>,
+con el <strong>9,6 % del cómputo</strong> del catálogo completo. Sirven para iterar diseño; el
+catálogo de 25 queda para el dossier regulatorio.</p>
+
+<h3>3. Ser estricto casi no cuesta candidatos</h3>
+<p>El filtro completo descarta el <strong>63,8 % de las ventanas</strong>, pero deja sin ninguna
+ventana limpia a solo <strong>2 genes de 438</strong>: <code>Arf1</code> y la calmodulina
+(<code>Cam</code>). Es decir, <strong>436 de 438 genes siguen siendo usables</strong>. El
+argumento de que un filtro duro deja al proyecto sin material no se sostiene. <span class="tag h">H</span></p>
+
+<h3>4. Tres ventanas eran idénticas al maíz</h3>
+<p>Al correr el chequeo sobre blancos publicados, tres ventanas resultaron <strong>idénticas en
+21 nucleótidos a la bomba de protones vacuolar del maíz</strong> (<code>NM_001319777.2</code>),
+que es el cultivo que queremos proteger. No es casualidad: apuntar a lo más esencial y
+conservado maximiza la letalidad y el riesgo no objetivo <em>por la misma razón</em>. El chequeo
+de especificidad no puede ser un paso opcional al final. <span class="tag e">E</span></p>
+
+<h3>5. El hueco que no podemos tapar</h3>
+<p>Los enemigos naturales de la chicharrita <strong>no tienen genoma anotado. Ninguno.</strong>
+Las familias de los parasitoides de huevos —Mymaridae, Dryinidae, Halictophagidae— tienen cero
+ensamblados anotados en RefSeq. Y no es un detalle menor: el parasitismo de huevos de
+<em>Dalbulus maidis</em> en el noroeste argentino promedia <strong>16,4 % y llega a 56,7 %</strong>
+en algunos sitios. <span class="tag e">E</span></p>
+<p>Es control biológico que hoy funciona gratis, y el riesgo sobre él es exactamente el que no
+podemos medir. Quedan en el catálogo marcados como «sin RefSeq anotado»; con genoma crudo sin
+anotar se detectan 49 descartes más, de los cuales <strong>25 no los ve ninguna de las 25
+especies con transcriptoma</strong>.</p>
+
+<h2>Qué les preguntamos</h2>
+<div class="q nueva"><p class="p">¿Dónde ponen el corte de identidad? Alcanza con que nos digan si va por arriba o por debajo de 17 nucleótidos.</p><p class="d"><strong>Cambia:</strong> cuántos candidatos sobreviven. Es la decisión más grande de todo el método.</p></div><div class="q nueva"><p class="p"><em>Macrosteles quadrilineatus</em> explica el 60 % de los descartes, pero es a su vez plaga y vector de fitoplasmas. ¿Cuenta como organismo no objetivo?</p><p class="d"><strong>Cambia:</strong> si el panel se arma por parentesco o por valor ecológico. Son listas muy distintas.</p></div><div class="q nueva"><p class="p">Cuando una ventana resulta idéntica al maíz, ¿se descarta la ventana o el gen entero?</p><p class="d"><strong>Cambia:</strong> si el filtro opera sobre la ventana o sobre el blanco.</p></div><div class="q nueva"><p class="p">Los enemigos naturales no tienen genoma anotado. ¿Declaramos el vacío, o usamos genoma crudo y sobre-marcamos el riesgo?</p><p class="d"><strong>Cambia:</strong> qué se puede afirmar sobre seguridad para organismos no objetivo locales.</p></div>
+
+
+<footer>
+  <p><span class="tag e">E</span> establecido · <span class="tag r">R</span> reportado
+  · <span class="tag h">H</span> hipótesis nuestra · <span class="tag q">?</span> incierto.
+  Cada afirmación técnica lleva su marcador y su fuente.</p>
+  <p>Números de cálculo propio sobre 10.950 ventanas de 438 genes y un catálogo de 30 organismos no objetivo. El detalle del método está en <em>pipeline/no_objetivo_*.py</em>.</p>
+</footer>
+
+</div>
+</body></html>

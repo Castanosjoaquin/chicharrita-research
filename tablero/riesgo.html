@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dónde está el riesgo — Tablero del equipo</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+  table.matriz{min-width:840px}
+  table.matriz th:not(:first-child):not(:last-child), table.matriz td.num{padding-left:8px; padding-right:8px; text-align:center}
+  table.matriz td:last-child{min-width:300px}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .toc{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); margin:26px 0 10px}
+  .card{border:1px solid var(--line); background:var(--surface); padding:18px 20px; display:block;
+        color:inherit; text-decoration:none}
+  .card:hover{border-color:var(--accent)}
+  .card .id{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+  .card .t{font-weight:650; margin:0 0 7px; line-height:1.3}
+  .card .d{font-size:.91rem; color:var(--text-dim); margin:0 0 10px}
+  .card .f{font-size:.82rem; color:var(--text-dim); margin:0}
+  .card .f a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line)}
+  .mem{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:18px 0}
+  .mem a{border:1px solid var(--line); background:var(--surface); padding:12px 14px; text-decoration:none; color:inherit}
+  .mem a:hover{border-color:var(--accent)}
+  .mem .n{font-weight:650; font-size:.95rem}
+  .mem .s{font-size:.84rem; color:var(--text-dim)}
+  .tag.h{background:var(--surface-2); color:var(--text-dim)}
+  .q{border:1px solid var(--line); background:var(--surface); padding:16px 18px; margin:0 0 12px}
+  .q .p{font-weight:650; margin:0 0 7px}
+  .q .d{font-size:.9rem; color:var(--text-dim); margin:0}
+  .q.nueva{border-left:3px solid var(--accent)}
+  .paso{display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 10px}
+  .paso a{font-size:.84rem; border:1px solid var(--line); background:var(--surface);
+          padding:6px 11px; text-decoration:none; color:var(--text-dim)}
+  .paso a:hover{border-color:var(--accent); color:var(--accent)}
+  .paso a.yo{background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650}
+  .paso a.no{opacity:.45}
+
+  .pestanas{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 0}
+  .pestanas a{font-size:.84rem; border:1px solid var(--line);
+              background:var(--surface); padding:6px 11px; text-decoration:none;
+              color:var(--text-dim)}
+  .pestanas a:hover{border-color:var(--accent); color:var(--accent)}
+  .pestanas a.yo{background:var(--accent-soft); color:var(--accent);
+                 border-color:transparent; font-weight:650}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Tablero del equipo · lectura rápida</p>
+  <h1>Dónde está el riesgo</h1>
+  <p class="sub">Especificidad: el umbral, las especies que de verdad descartan, y el hueco que no se puede medir.</p>
+  <nav class="pestanas" aria-label="Páginas"><a href="../index.html">Portada</a><a href="../tablero/index.html">Qué tenemos corriendo</a><a href="../tablero/riesgo.html" class="yo">Dónde está el riesgo</a><a href="../tablero/orden.html">Qué tan firme es el orden</a><a href="../tablero/limites.html">Qué sabemos que no sabemos</a></nav>
+</header>
+
+
+<div class="verdict">
+  <h2>En una frase</h2>
+  <p style="margin-bottom:0">El riesgo de off-target no está donde lo busca la norma. Está en los
+  cicadélidos emparentados, y el umbral que elijamos decide más que cualquier otro parámetro
+  del método.</p>
+</div>
+
+<h2>El umbral decide todo</h2>
+<div class="tw"><table><caption>Ventanas que sobreviven al filtro, según el corte y el panel. Sobre 10.950 ventanas de 438 genes. [H]</caption><thead><tr><th>Corte</th><th>Maíz + abeja</th><th>4 hemípteros</th><th>Catálogo de 25</th></tr></thead><tbody><tr><td>15 nt</td><td class="num">33,5 %</td><td class="num">14,6 %</td><td class="num"><strong>0,3 %</strong></td></tr><tr><td>17 nt</td><td class="num">91,1 %</td><td class="num">70,8 %</td><td class="num">36,2 %</td></tr><tr><td>19 nt</td><td class="num">99,0 %</td><td class="num">87,9 %</td><td class="num">81,4 %</td></tr><tr><td>21 nt</td><td class="num">99,8 %</td><td class="num">92,4 %</td><td class="num">90,7 %</td></tr></tbody></table></div>
+<p><strong>De 18 para arriba la curva es casi plana.</strong> Por eso la pregunta al investigador
+no es «qué número», es «¿por arriba o por debajo de 17?».</p>
+
+<h2>Las tres cosas que hay que poder decir</h2>
+<div class="calls"><div class="call warn"><p class="k">Macrosteles sola</p><p class="v">60 % de los descartes</p><p class="n"><em>Macrosteles quadrilineatus</em> descarta 70 veces más que el maíz, y 613 de sus 700 descartes no los ve ninguna otra especie. Pero es plaga: ¿cuenta como no objetivo?</p></div><div class="call ok"><p class="k">Ser estricto no cuesta</p><p class="v">436 de 438 genes</p><p class="n">El filtro completo tira el 63,8 % de las ventanas y solo deja sin salida a <code>Arf1</code> y la calmodulina.</p></div><div class="call stop"><p class="k">El maíz aparece igual</p><p class="v">3 ventanas idénticas</p><p class="n">Idénticas en 21 nt a la bomba de protones vacuolar del maíz. Lo más esencial y conservado maximiza letalidad y riesgo por la misma razón.</p></div></div>
+
+<h2>El hueco que no se puede tapar</h2>
+<p>Los enemigos naturales de la chicharrita <strong>no tienen genoma anotado. Ninguno.</strong>
+Las familias de los parasitoides de huevos tienen cero ensamblados anotados en RefSeq. Y el
+parasitismo de huevos en el noroeste argentino promedia 16,4 %, con picos de 56,7 %: es control
+biológico que funciona gratis hoy y es exactamente el riesgo que no podemos medir.</p>
+<p>No lo borramos del catálogo para que el panel se vea más completo. Quedan marcados.
+Ver <a href="../plan/paso-04.html">paso 4</a>.</p>
+
+
+<footer>
+  <p><span class="tag e">E</span> establecido · <span class="tag r">R</span> reportado
+  · <span class="tag h">H</span> hipótesis nuestra · <span class="tag q">?</span> incierto.
+  Cada afirmación técnica lleva su marcador y su fuente.</p>
+  <p>Resumen. El desarrollo completo de cada número está en <em>plan/</em>, y el método en <em>pipeline/</em>.</p>
+</footer>
+
+</div>
+</body></html>

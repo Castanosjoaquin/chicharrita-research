@@ -1,0 +1,38 @@
+{
+ "fijo_300pb_onlyORF=True": {
+  "start_siRNA": "vatpaseA_cds_616_635",
+  "end_siRNA": "vatpaseA_cds_896_915",
+  "window_size": 281,
+  "selected_dsRNA_total_score": 78.91601423487535,
+  "average_gene_total_score": 76.3656798245614,
+  "selected_dsRNA_efficiency_score": 78.91601423487545,
+  "selected_dsRNA_safety_score": 0
+ },
+ "fijo_300pb_onlyORF=False": {
+  "start_siRNA": "vatpaseA_cds_616_635",
+  "end_siRNA": "vatpaseA_cds_896_915",
+  "window_size": 281,
+  "selected_dsRNA_total_score": 78.91601423487535,
+  "average_gene_total_score": 76.36487671232877,
+  "selected_dsRNA_efficiency_score": 78.91601423487545,
+  "selected_dsRNA_safety_score": 0
+ },
+ "rango_defecto_300_800_onlyORF=True": {
+  "start_siRNA": "vatpaseA_cds_616_635",
+  "end_siRNA": "vatpaseA_cds_898_917",
+  "window_size": 283,
+  "selected_dsRNA_total_score": 78.94487632508826,
+  "average_gene_total_score": 76.3656798245614,
+  "selected_dsRNA_efficiency_score": 78.94487632508834,
+  "selected_dsRNA_safety_score": 0
+ },
+ "rango_defecto_300_800_onlyORF=False": {
+  "start_siRNA": "vatpaseA_cds_616_635",
+  "end_siRNA": "vatpaseA_cds_898_917",
+  "window_size": 283,
+  "selected_dsRNA_total_score": 78.94487632508825,
+  "average_gene_total_score": 76.36487671232877,
+  "selected_dsRNA_efficiency_score": 78.94487632508834,
+  "selected_dsRNA_safety_score": 0
+ }
+}

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paso 7 · Comprobar que el método no se engaña — Investigathón Y-Hat</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+  table.matriz{min-width:840px}
+  table.matriz th:not(:first-child):not(:last-child), table.matriz td.num{padding-left:8px; padding-right:8px; text-align:center}
+  table.matriz td:last-child{min-width:300px}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .toc{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); margin:26px 0 10px}
+  .card{border:1px solid var(--line); background:var(--surface); padding:18px 20px; display:block;
+        color:inherit; text-decoration:none}
+  .card:hover{border-color:var(--accent)}
+  .card .id{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+  .card .t{font-weight:650; margin:0 0 7px; line-height:1.3}
+  .card .d{font-size:.91rem; color:var(--text-dim); margin:0 0 10px}
+  .card .f{font-size:.82rem; color:var(--text-dim); margin:0}
+  .card .f a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line)}
+  .mem{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:18px 0}
+  .mem a{border:1px solid var(--line); background:var(--surface); padding:12px 14px; text-decoration:none; color:inherit}
+  .mem a:hover{border-color:var(--accent)}
+  .mem .n{font-weight:650; font-size:.95rem}
+  .mem .s{font-size:.84rem; color:var(--text-dim)}
+  .tag.h{background:var(--surface-2); color:var(--text-dim)}
+  .q{border:1px solid var(--line); background:var(--surface); padding:16px 18px; margin:0 0 12px}
+  .q .p{font-weight:650; margin:0 0 7px}
+  .q .d{font-size:.9rem; color:var(--text-dim); margin:0}
+  .q.nueva{border-left:3px solid var(--accent)}
+  .paso{display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 10px}
+  .paso a{font-size:.84rem; border:1px solid var(--line); background:var(--surface);
+          padding:6px 11px; text-decoration:none; color:var(--text-dim)}
+  .paso a:hover{border-color:var(--accent); color:var(--accent)}
+  .paso a.yo{background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650}
+  .paso a.no{opacity:.45}
+
+  .pestanas{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 0}
+  .pestanas a{font-size:.84rem; border:1px solid var(--line);
+              background:var(--surface); padding:6px 11px; text-decoration:none;
+              color:var(--text-dim)}
+  .pestanas a:hover{border-color:var(--accent); color:var(--accent)}
+  .pestanas a.yo{background:var(--accent-soft); color:var(--accent);
+                 border-color:transparent; font-weight:650}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Plan de entregable · Paso 7 de 10 · Núcleo</p>
+  <h1>Comprobar que el método no se engaña</h1>
+  <p class="sub">Probar el ranking contra genes que otros laboratorios ya eligieron a mano y validaron experimentalmente.</p>
+  <nav class="pestanas" aria-label="Páginas"><a href="../propuesta_entregable.html">La propuesta</a><a href="../plan/paso-01.html">1. Acordar reglas</a><a href="../plan/paso-02.html">2. Fijar los datos</a><a href="../plan/paso-03.html">3. Entender cada candidato</a><a href="../plan/paso-04.html">4. Chequear contra la realidad</a><a href="../plan/paso-05.html">5. Estimar potencia</a><a href="../plan/paso-06.html">6. Combinar y decidir</a><a href="../plan/paso-07.html" class="yo">7. Comprobar el método</a><a href="../plan/paso-08.html">8. Ficha por candidato</a><a href="../plan/paso-09.html">9. Reproducible y abierto</a><a href="../plan/variante-a.html">A · modelos de ARN</a><a href="../plan/variante-b.html">B · lectura asistida</a></nav>
+</header>
+
+
+<div class="verdict">
+  <h2>Qué sale de este paso</h2>
+  <p>Una declaración de qué sostiene el método y qué no. Incluye los resultados negativos:
+  «con estos datos no se puede distinguir» también se reporta.</p>
+  <p style="margin-bottom:0"><strong>Lo que ya sabemos:</strong> el ranking recupera los blancos
+  que dos laboratorios eligieron leyendo literatura, sin haber leído esa literatura.</p>
+</div>
+
+<h2>Qué preguntábamos</h2>
+
+<p class="lead">¿El método discrimina, o solo produce un orden con aspecto de resultado?</p>
+<p>No tenemos laboratorio, así que no podemos probarlo con candidatos nuevos. Pero sí podemos
+probarlo con genes que <strong>alguien ya eligió a mano y después validó</strong> en el banco.
+Si el ranking automático los encuentra, algo está midiendo.</p>
+
+<h2>Qué hicimos</h2>
+
+<p>Cuatro controles, de menor a mayor exigencia.</p>
+<p><strong>Control de recuperación.</strong> Siete proteínas elegidas porque los dos trabajos
+publicados sobre la chicharrita ya confirmaron, cada uno por su cuenta, que esos genes existen
+en la especie. Si el método sirve, tiene que encontrarlos todos.</p>
+<p><strong>Control negativo.</strong> Si los loci que encontramos fueran artefactos, se
+amontonarían en regiones repetitivas. Miramos cómo se reparten por cromosoma.</p>
+<p><strong>Validación retrospectiva.</strong> Dónde caen, en nuestro ranking, los tres blancos
+que ya se probaron experimentalmente en esta especie.</p>
+<p><strong>Objetivo de control como parámetro.</strong> El mismo ranking, pero preguntando
+explícitamente para qué se quiere silenciar: matar, esterilizar, o provocar un defecto de
+desarrollo.</p>
+
+<h2>Qué salió</h2>
+
+<h3>1. Control de recuperación: 7 de 7</h3>
+<p>Las siete proteínas se encontraron, <strong>cada una con un solo locus</strong>. Incluidos los
+dos genes que los papers silenciaron de verdad en el laboratorio.</p>
+<div class="tw"><table><caption>Identidad del alineamiento proteína-genoma para las siete proteínas de control. [H] cálculo propio sobre el ensamblado público ihDalMaid1.1.</caption><thead><tr><th>Proteína</th><th>Identidad</th><th>Exones</th></tr></thead><tbody><tr><td>V-ATPasa B (<code>Vha55</code>)</td><td class="num">0,978</td><td class="num">10</td></tr><tr><td>V-ATPasa A</td><td class="num">0,881</td><td class="num">11</td></tr><tr><td>V-ATPasa D (<code>Vha36-1</code>)</td><td class="num">0,858</td><td class="num">6</td></tr><tr><td>V-ATPasa E</td><td class="num">0,743</td><td class="num">5</td></tr><tr><td>Bicaudal C (<code>BicC</code>)</td><td class="num">0,380</td><td class="num">13</td></tr><tr><td>Argonauta-2</td><td class="num">0,354</td><td class="num">18</td></tr><tr><td>Dicer-2</td><td class="num">0,297</td><td class="num">28</td></tr></tbody></table></div>
+<p>Los tres de identidad baja son justamente los que se sabe que evolucionan rápido, y aun así
+el alineamiento recupera la estructura de exones completa.</p>
+
+<h3>2. Control negativo: los loci siguen el tamaño de los cromosomas</h3>
+<p>El reparto por cromosoma es 340, 331, 330, 306, 303, 277, 263, 234, 227 y 186 loci. Sigue el
+tamaño de cada cromosoma en vez de amontonarse. Es la señal de que estamos mirando un conjunto
+de genes real y no ruido. <span class="tag h">H</span></p>
+
+<h3>3. Cada blanco publicado puntúa alto en el objetivo para el que fue elegido</h3>
+<p>Este es el resultado central de la página, y es el que conecta con los candidatos de ustedes.</p>
+<div class="tw"><table><caption>Puesto de cada blanco publicado en nuestro ranking, según para qué se pida silenciar. [H] cálculo propio.</caption><thead><tr><th>Blanco publicado</th><th>Elegido por, y para qué</th><th>Objetivo «matar»</th><th>Objetivo «esterilizar»</th></tr></thead><tbody><tr><td><code>Vha55</code> · V-ATPasa B</td><td class="num">Texas A&amp;M, para matar</td><td class="num"><strong>1 de 4.929</strong></td><td class="num">no entra</td></tr><tr><td><code>Vha36-1</code> · V-ATPasa D</td><td class="num">Texas A&amp;M, para matar</td><td class="num">81 (1,6 %)</td><td class="num">2.050 (58 %)</td></tr><tr><td><code>BicC</code> · Bicaudal C</td><td class="num">Catalano, para esterilizar</td><td class="num">4.385 (último 11 %)</td><td class="num"><strong>621 (17,6 %)</strong></td></tr></tbody></table></div>
+<p>Se lee en diagonal. Cada gen sube en el objetivo para el que su grupo lo eligió y baja en el
+otro. Y hay una consecuencia de método: un ranking con «que mate» cableado en el código habría
+descartado <code>BicC</code>, el único blanco validado por un grupo argentino, y no por un error
+de cálculo sino por tener un solo objetivo escondido.</p>
+<div class="note">
+  <p class="t">Por qué esto importa ahora</p>
+  <p><strong><code>BicC</code> y la ATPasa D son dos de los cuatro candidatos preliminares del
+  laboratorio.</strong> O sea que esto deja de ser un ejercicio histórico: es poder decir dónde
+  caen las elecciones de ustedes en una priorización construida sin conocerlas, y por qué.</p>
+</div>
+
+<h3>4. Lo que el método todavía no sostiene</h3>
+<p><strong>La referencia importa, y está medido.</strong> Mapeando con una especie del mismo
+orden (<em>Nilaparvata lugens</em>) en vez de con <em>Drosophila melanogaster</em>, las cuatro
+métricas mejoran a la vez: recuperación 77,6 % contra 72,1 %, identidad mediana 0,634 contra
+0,545. La evidencia hay que ponderarla por distancia filogenética.</p>
+<p><strong>La cobertura con doble respaldo es chica.</strong> De los 7.416 loci, solo
+<strong>62</strong> tienen a la vez fenotipo de cribado y un blanco de ARN de interferencia ya
+probado en un hemíptero; 44 de esos son letales. Los otros 7.354 se apoyan en un cribado hecho
+en otro orden de insectos, que es la incertidumbre dominante del proyecto.</p>
+<p><strong>Y hay un sesgo que hay que declarar:</strong> de las 917 proteínas de hemípteros que
+bajamos, <strong>456 son V-ATPasa</strong>. Concluir «la V-ATPasa es el mejor blanco» a partir de
+ese catálogo sería circular. <code>Vha55</code> aparece primero por tres caminos que no son
+independientes entre sí. <span class="tag q">?</span></p>
+
+<h2>Qué les preguntamos</h2>
+<div class="q nueva"><p class="p">¿Tienen candidatos que <strong>no</strong> funcionaron? Casi todo lo publicado funcionó, así que sin casos negativos no se puede medir si un método discrimina.</p><p class="d"><strong>Cambia:</strong> si la validación mide algo o es una ilustración.</p></div><div class="q nueva"><p class="p">¿Les sirve que dejemos el orden congelado y fechado antes de que existan ensayos, para contrastarlo después?</p><p class="d"><strong>Cambia:</strong> convierte el entregable en algo verificable a futuro.</p></div><div class="q nueva"><p class="p">Cuando eligieron <code>BicC</code> y la ATPasa D, ¿buscaban efectos distintos? Nuestro ranking los separa en objetivos opuestos.</p><p class="d"><strong>Cambia:</strong> si el objetivo de control tiene que ser un parámetro declarado del entregable.</p></div>
+
+
+<footer>
+  <p><span class="tag e">E</span> establecido · <span class="tag r">R</span> reportado
+  · <span class="tag h">H</span> hipótesis nuestra · <span class="tag q">?</span> incierto.
+  Cada afirmación técnica lleva su marcador y su fuente.</p>
+  <p>Validación sobre los tres blancos publicados en <em>Dalbulus maidis</em>. El ranking se reproduce con <em>pipeline/objetivo_candidatos.py</em>.</p>
+</footer>
+
+</div>
+</body></html>
