@@ -513,3 +513,82 @@ Todo lo de abajo viene de `tools/sifi21_port/` y de
 - **Licencia del original en conflicto:** el artículo dice CC BY-SA 4.0 y
   SourceForge dice CC BY-NC 2.0. Para uso académico no cambia nada; si algo de esto
   se publicara, hay que resolverlo. `[?]`
+
+## Con la planilla en mano (2026-10-19) — qué se cerró y qué se abrió
+
+La planilla `Sequences_EPILAB.xlsx` llegó y permitió correr los cuatro genes. Esto
+actualiza la sección anterior.
+
+### Cerradas
+
+- **«¿La región se eligió por off-targets?»** Contestada por nuestra cuenta, y la
+  respuesta es no. Ver `CAMINOS_PROBADOS.md`. Deja de ser pregunta para el
+  investigador y pasa a ser un resultado a mostrarle.
+- **Los dos genes que faltaban** (`BicC_Dm` y `ATPaseD_Dm`) ya están medidos. El
+  barrido con los cuatro a la vez sigue sin reproducir los conteos declarados, con
+  un error mínimo de 8 sobre ~381 siRNA.
+- **El «130» que mencionó el investigador no existe en la planilla.** Las cuatro
+  filas declaran 114, 35, 199 y 33. La columna 9, «Nro de eficientes por región?»,
+  está vacía. Probablemente fue un recuerdo impreciso de la columna que falta
+  llenar, no un dato que no tengamos.
+
+### Abiertas, y la primera sigue siendo la misma
+
+1. **¿Qué parámetros químicos cambió?** Sigue siendo la pregunta de mayor
+   rendimiento. Con los cuatro genes el barrido de 15.120 configuraciones no
+   reproduce nada, así que la versión que corrió el laboratorio no es la que se
+   distribuye. Dato que puede ayudarlo a recordar: las configuraciones que más se
+   acercan usan **umbral de estabilidad de extremos 2,0 kcal/mol**, no el 1,0 por
+   defecto, y 25 °C en vez de 22.
+2. **¿Contra qué base de datos corrió el modo diseño?** Sin eso el conteo no es
+   reproducible aunque el criterio sea idéntico, porque el original suma un
+   registro por hit de Bowtie.
+3. **¿Con qué procedimiento quiere la columna 9?** Recortar la región y correrla
+   sola da 16, 14, 17 y 16; contar las mismas ventanas dentro del gen entero da 30,
+   17, 20 y 18. La diferencia llega al 47 %. Entregamos la primera porque es la que
+   él describió, pero conviene confirmarlo.
+4. **¿Hay un criterio que no medimos detrás de la elección de regiones?**
+   Conservación entre aislados virales, restricciones de clonado, accesibilidad para
+   la construcción. Es la única salida que le queda a la elección de `BicC_Dm`.
+
+### Riesgos que el cruce puso arriba de la mesa
+
+- **`BicC_Dm` tiene 40 ventanas con coincidencia perfecta de 21/21 en
+  *Homalodisca vitripennis*** y 3 en *Harmonia axyridis*. La primera es una
+  chicharrita no objetivo; la segunda es una vaquita predadora, o sea un enemigo
+  natural del propio blanco. Bicaudal C está conservado entre cicadélidos, así que
+  esto es esperable y hay que tratarlo como restricción de diseño, no como
+  sorpresa. La región 2123-2422 reduce la exposición de 33 a 3 ventanas sin perder
+  eficiencia: es una recomendación concreta que podemos llevar.
+- **Cero coincidencias en *Apis mellifera*** para los cuatro genes, en las seis
+  referencias. Es el dato más tranquilizador del cuadro y conviene decirlo con el
+  alcance correcto: es ausencia de homología de secuencia en un transcriptoma de
+  referencia, no un ensayo de toxicidad.
+- **El panel sigue siendo de especies modelo.** Ya estaba anotado y sigue valiendo:
+  la ausencia de riesgo en cicadélidos nativos y parasitoides **no está medida**
+  porque no hay transcriptomas. Seis referencias no son el ambiente. `[?]`
+
+### Pendientes internos
+
+- **El corpus quedó suelto en la raíz del repositorio.** `Sequences_EPILAB.xlsx`
+  estaba sin ignorar y un `git add .` lo habría subido. Se agregó al `.gitignore`
+  sin moverlo (la regla prohíbe mover originales). **Conviene moverlo a
+  `YHat-Biotech/`**, que es donde el `CLAUDE.md` dice que vive el corpus y que ya
+  está ignorado. Lo tiene que hacer una persona, no el agente.
+- **El md5 difiere del que registró W5, y está explicado.** El original era
+  `048833f606d9aba2a1220a7dc280d9a9`; esta copia es
+  `dcf234e1ba6d5584f1c9c1e4db59c34b`. No es otro documento: el `dc:creator`
+  («Johan Rodríguez») y la fecha de creación (2026-10-17T15:03:07Z) coinciden
+  exacto con lo que registró W5, pero **todas las entradas del ZIP tienen fecha de
+  hoy** y desaparecieron los campos de modificación que W5 sí había visto
+  (`modified 15:10:01Z`, `lastModifiedBy`). Es una reexportación del mismo
+  documento, probablemente por el camino de subida y bajada.
+  Dos verificaciones independientes confirman que el **contenido** es el mismo: las
+  secuencias virales coinciden byte a byte con la reconstrucción desde
+  `NC_002786.2`, y nuestro tamizaje de off-targets reproduce los conteos de bloque
+  perfecto de W5 en las 20 celdas. `[E]` El análisis no está afectado.
+- **Las referencias pesan 379 MB** en `work/offtarget_db/`, fuera del control de
+  versiones. Si alguien reproduce desde cero, se vuelven a bajar.
+- **Falta el criterio de un desajuste sobre los genes completos.** Se corrió exacto
+  solo sobre las regiones elegidas (920 ventanas); sobre los cuatro genes completos
+  se corrió solo bloque perfecto, para no inflar el autómata a 600.000 patrones.

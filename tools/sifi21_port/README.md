@@ -81,8 +81,36 @@ Con `python -I` también funciona: los scripts agregan su propio directorio al p
 | `sifi_core.py` | El criterio de eficiencia, los dos modos, los dos backends de accesibilidad, y la búsqueda de región más densa. |
 | `run_sifi.py` | Línea de comandos. |
 | `barrido.py` | Barre configuraciones y busca cuáles reproducen conteos declarados. Vectorizado. |
+| `offtarget_21nt.py` | Tamizaje de off-targets de 21 nt por siRNA, por coincidencia exacta con Aho-Corasick. No necesita BLAST. |
+| `cruce.py` | Cruza el perfil de eficiencia con el de off-targets y compara regiones. |
 | `test_sifi.py` | Verificaciones, incluida la equivalencia de tablas y la coherencia entre el motor y el barrido. |
 | `CAMBIOS.md` | Qué se cambió respecto del original y por qué. |
+
+## Tamizaje de off-targets
+
+`offtarget_21nt.py` busca coincidencias **exactas** de cada ventana de 21 nt contra
+referencias locales, en las dos hebras, en una sola pasada por base. Criterios:
+bloque contiguo perfecto de ≥19 nt, 21/21 perfecto y, con `--mm1`, 21 nt con
+exactamente un desajuste.
+
+No usa BLAST a propósito: para bloques perfectos la coincidencia exacta es la
+respuesta correcta y no una heurística. Verificado contra la corrida con BLAST+ de
+W5: los criterios de bloque perfecto coinciden en las 20 celdas. El de un desajuste
+**no** coincide, y el exacto encuentra más, porque `blastn-short` con `word_size 11`
+no puede sembrar un 21-mero cuyo desajuste cae en la posición 11.
+
+```bash
+# bajar referencias a work/offtarget_db/ (publicas, del NCBI) y tamizar
+python offtarget_21nt.py --consulta work/sifi_check/*_full.fasta \
+    --db work/offtarget_db/*.fna.gz --salida work/sifi_check/offtarget_full
+
+# cruzar con la eficiencia; el genoma del propio blanco va como on-target
+python cruce.py --gen BicC_Dm --region 264 563 \
+    --ontarget GCA_975739785.1_ihDalMaid1.1_genomic \
+    --dir work/sifi_check --offtarget work/sifi_check/offtarget_full
+```
+
+Dependencia extra: `pyahocorasick`.
 
 ## Advertencias
 

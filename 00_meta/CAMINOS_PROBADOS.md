@@ -454,3 +454,48 @@ conteos de dos o tres cifras, los aciertos aislados son esperables.
 solo si reproduce **todos** los conteos a la vez, y si además cae cerca de los
 valores por defecto. Casi-aciertos dispersos en parámetros mutuamente
 incompatibles son firma de casualidad, no de hallazgo.
+
+### Explicar la elección de regiones de EPILAB por el perfil de off-targets
+**Qué se intentó:** la hipótesis del propio investigador. Dijo que en teoría debió
+elegir las regiones con más siRNA eficientes, que tal vez no lo hizo y que quizá
+fue por off-targets, pero que no lo recordaba.
+**Qué pasó:** descartada, y en un gen refutada. Con el tamizaje exacto de 21 nt
+contra seis referencias: en `CP_MRFV` el gen entero tiene **cero** off-targets, así
+que no había nada que optimizar; en `MP_MRFV` y `ATPaseD_Dm` la exposición de la
+región elegida es **idéntica** a la de la mejor región (6 y 6; 7 y 7); y en
+`BicC_Dm` la región elegida es a la vez **menos eficiente y once veces más
+expuesta** —20 eficientes y 33 ventanas con off-target, contra 37 y 3 de la región
+2123-2422—, o sea que la alternativa domina en los dos ejes y no hay compromiso que
+justifique la elección.
+**Estado:** descartada como explicación. Las cuatro regiones están entre un 19 % y
+un 46 % por debajo del óptimo por densidad y eso no se explica por seguridad.
+**Qué lo reabriría:** un criterio que no hayamos medido —conservación entre
+aislados virales, accesibilidad para la construcción, restricciones de clonado— o
+que el investigador recuerde el motivo. Medición en
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md` §4.
+
+### Usar BLAST para contar coincidencias de 21 nt con un desajuste
+**Qué se intentó:** reutilizar los conteos de «21 nt con 1 desajuste» que W5 produjo
+con `blastn -task blastn-short -word_size 11`.
+**Qué pasó:** descartado como completo. Son subestimaciones, por hasta un factor de
+tres: 5 contra 16 reales en `BicC_Dm`, 9 contra 17 en `ATPaseD_Dm`. La causa es
+identificable y no es un error de parámetros: un 21-mero cuyo único desajuste cae
+en la posición 11 deja dos bloques exactos de 10 nt, y con `word_size 11` BLAST no
+tiene semilla con la que encontrarlo.
+**Estado:** descartado para el criterio de un desajuste; **en pie** para los
+criterios de bloque perfecto, donde coincide exacto con la enumeración en las 20
+celdas comparadas. Para un desajuste se enumeran las 63 variantes por ventana.
+**Lección de método:** un umbral de identidad no sustituye al tamaño de semilla.
+BLAST no puede encontrar lo que no puede sembrar.
+
+### Comparar conteos de eficientes por región entre procedimientos distintos
+**Qué se intentó:** nada todavía, y por eso entra acá antes de que alguien lo haga.
+**Qué pasó:** hay dos procedimientos y **no son comparables**. Recortar la región y
+correrla sola —que es lo que describió el investigador— da 16 eficientes en la
+región 1-200 de `MP_MRFV`; contar las mismas ventanas dentro de la corrida del gen
+entero da 30. Una diferencia del 47 % sobre el mismo tramo de secuencia. La causa
+es el término de accesibilidad: RNAplfold evalúa plegado local y un fragmento
+recortado pierde el contexto de sus extremos.
+**Estado:** descartado comparar números de procedimientos distintos. Hay que fijar
+uno y declararlo. Para llenar la planilla se usa el aislado, que es el que el
+investigador describió.

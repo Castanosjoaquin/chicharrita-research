@@ -1,147 +1,224 @@
-# ¿Salen de si-Fi21 los conteos de siRNA eficientes de la planilla?
+# si-Fi21 contra la planilla de EPILAB: conteos, regiones y off-targets
 
-Fecha: 2026-10-19. Herramienta: `tools/sifi21_port/` (port propio de si-Fi21 a
-Python 3, sin interfaz; ver su `CAMBIOS.md`).
+Fecha: 2026-10-19. Herramientas: `tools/sifi21_port/` (port propio de si-Fi21 a
+Python 3 sin interfaz; ver su `CAMBIOS.md`) y `tools/sifi21_port/offtarget_21nt.py`
+(tamizaje exacto de 21 nt). Fuente de las secuencias: `Sequences_EPILAB.xlsx`,
+hoja `Hoja1`, las cuatro filas de datos. Todo local; nada salió de la máquina.
 
-**Respuesta corta: no.** Ninguna de las 15.120 configuraciones de si-Fi21 barridas
-reproduce a la vez los conteos declarados para los dos genes verificables. El
-número de EPILAB, tal como está en la planilla, no es reproducible con si-Fi21 en
-su espacio de parámetros documentado.
+Tres resultados:
+
+1. **Ninguna configuración de si-Fi21 reproduce los cuatro conteos declarados.**
+2. **Las cuatro regiones elegidas por EPILAB están por debajo del óptimo** por
+   densidad de siRNA eficientes, entre un 25 % y un 46 %.
+3. **Los off-targets no explican esas elecciones.** En `BicC_Dm` la contradicen
+   de frente: la región elegida es a la vez menos eficiente y once veces más
+   expuesta que la mejor alternativa.
 
 ---
 
-## Qué se pudo verificar y qué no
+## Corrección a la versión anterior de este informe
 
-La planilla declara cuatro conteos de «número de siRNA eficientes» sobre el gen
-entero: 114 para `MP_MRFV_full`, 35 para `CP_MRFV_full`, 199 para `BicC_Dm_full` y
-33 para `ATPaseD_Dm_full`.
+La primera versión se escribió sin la planilla, reconstruyendo dos secuencias desde
+`NC_002786.2`, y tomó de `secuencias.json` que la región elegida de `CP_MRFV` era
+la 1-200. **Es la 201-400.** El hallazgo sobre esa región estaba mal dimensionado:
+decía 8-9 eficientes contra 21, y con la región correcta son 17 contra 21.
 
-Las copias de trabajo de las secuencias no están en esta máquina —`work/` está
-fuera del control de versiones y el corpus se manejó en otro equipo—, así que hubo
-que reconstruirlas. Dos se pudieron, dos no:
+Lo que sí se validó al llegar la planilla: las dos secuencias virales que se habían
+reconstruido desde el NCBI son **idénticas byte a byte** a las de EPILAB, así que la
+medición anterior sobre ellas era correcta.
 
-| Gen | Reconstruible | Cómo |
-|---|---|---|
-| `MP_MRFV_full` | **sí** | `NC_002786.2`, posiciones 332-1594. Identidad 100 % según W5. |
-| `CP_MRFV_full` | **sí** | `NC_002786.2`, posiciones 5674-6201. Identidad 100 % según W5. |
-| `BicC_Dm_full` | no | transcrito de 17 bloques exónicos con 97,6-100 % de identidad contra el ensamblado. Reconstruirlo daría una secuencia distinta. |
-| `ATPaseD_Dm_full` | no | 3 bloques con 99,3-100 % de identidad. Idem. |
+## Los datos
 
-**Verificación de la reconstrucción** `[E]`: las dos secuencias recuperadas
-coinciden con lo que W5 registró del archivo original en largo exacto (1.263 y 528
-nt) **y** en contenido GC exacto (63,1 % y 65,9 % contra los 63,1 y 65,91
-registrados). Son los dos genes virales, que son públicos; no hubo que tocar dato
-confidencial y nada salió de la máquina.
+| Gen | Función | Largo | Región elegida | Declarado |
+|---|---|---|---|---|
+| `MP_MRFV` | proteína de movimiento | 1.263 | 1-200 | 114 |
+| `CP_MRFV` | proteína de cápside | 528 | 201-400 | 35 |
+| `BicC_Dm` | Bicaudal C | 2.520 | 264-563 | 199 |
+| `ATPaseD_Dm` | subunidad D de V-ATPasa | 491 | 151-450 | 33 |
 
-Los dos genes de *Dalbulus maidis* quedan pendientes de que alguien con el corpus
-corra el mismo comando.
+Las columnas 7 y 8 de la planilla dicen «200-400» para `CP_MRFV`, que son 201
+posiciones para una secuencia de 200 nt. Se resolvió localizando la subcadena
+exacta: es **201-400**. Las otras tres coinciden exacto con lo declarado.
 
-## El barrido
+La **columna 9 de la planilla se llama «Nro de eficientes por región?»**, con signo
+de pregunta, y **está vacía en las cuatro filas**. Es la que el investigador pidió
+llenar en el checkpoint. Está más abajo.
 
-Se barrieron, para los dos genes a la vez: temperatura (22, 25, 37 °C), motor de
-plegado (RNAplfold 2.1.5 del instalador de si-Fi contra ViennaRNA 2.7.2), modo
-(fiel y corregido), ventana de accesibilidad u (1 a 21), umbral de estabilidad de
-extremos (0 a 2 kcal/mol) y umbral de accesibilidad (0,01 a 0,3), con y sin regla
-terminal. Son 15.120 configuraciones por gen.
+## 1. El conteo declarado no es reproducible con si-Fi21
 
-El criterio es **simultáneo**: una configuración solo cuenta si reproduce los dos
-conteos. Un acierto en un gen aislado no prueba nada, y de hecho aparece: el modo
-corregido con el RNAplfold de si-Fi da exactamente 114 en `MP_MRFV_full`, pero esa
-misma configuración da 25 en `CP_MRFV_full` contra 35 declarados. Era casualidad.
+Se barrieron 15.120 configuraciones por gen, exigiendo que una sola configuración
+reprodujera **los cuatro** conteos: temperatura (22, 25, 37 °C), motor de plegado
+(RNAplfold 2.1.5 del instalador de si-Fi contra ViennaRNA 2.7.2), modo (fiel y
+corregido), ventana de accesibilidad u (1 a 21), umbral de estabilidad de extremos
+(0 a 2 kcal/mol), umbral de accesibilidad (0,01 a 0,3) y regla terminal sí/no.
 
-**Resultado: ninguna configuración reproduce los dos.** El mejor error acumulado
-es 1, y lo alcanzan configuraciones mutuamente incompatibles — una con u=7, 22 °C y
-umbral 2,0; otra con u=9, 37 °C y umbral 0,5. Esa dispersión es la firma de la
-coincidencia numérica, no de una configuración real: si los 114 y los 35 salieran
-de una corrida de si-Fi, habría una configuración única que acertara las dos y
-estaría cerca de los valores por defecto.
+**Ninguna lo logra.** El mejor error acumulado es 8 sobre ~381 siRNA declarados, y
+lo alcanzan dos configuraciones a 25 °C con umbral de extremos 2,0 —no el 1,0 por
+defecto— que aciertan `BicC_Dm` exacto y fallan los otros tres.
 
-Resultados con los valores por defecto del programa:
+Con los valores por defecto del programa:
 
 | Gen | Declarado | Fiel + 2.1.5 | Fiel + 2.7.2 | Corregido + 2.1.5 | Corregido + 2.7.2 |
 |---|---|---|---|---|---|
-| `MP_MRFV_full` (1.243 ventanas) | 114 | 133 | 142 | 114 | 123 |
-| `CP_MRFV_full` (508 ventanas) | 35 | 32 | 39 | 25 | 30 |
+| `MP_MRFV` | 114 | 133 | 142 | 114 | 123 |
+| `CP_MRFV` | 35 | 32 | 39 | 25 | 30 |
+| `BicC_Dm` | 199 | 212 | 223 | 162 | 171 |
+| `ATPaseD_Dm` | 33 | 42 | 35 | 34 | 29 |
 
-Los órdenes de magnitud sí son los correctos: entre 5,9 % y 11,4 % de ventanas
-eficientes, contra 9,2 % y 6,9 % declarados. El criterio es el de si-Fi; el número
-exacto no.
+El orden de magnitud es correcto —entre 5,9 % y 11,4 % de ventanas eficientes,
+contra 6,7 % a 9,2 % declarados—, pero el número exacto no sale. `[E]`
 
-## Qué queda como explicación
+Una advertencia de método que vale registrar: en la primera pasada, con solo dos
+genes, el modo corregido con RNAplfold 2.1.5 dio **exactamente 114** en `MP_MRFV` y
+pareció la respuesta. Esa misma configuración da 25 en `CP_MRFV` contra 35. Con
+15.120 configuraciones y conteos de dos o tres cifras, los aciertos aislados son
+esperables. Agregar los otros dos genes subió el error de esa configuración a 25.
 
-`[H]` Las tres hipótesis que sobreviven, en orden de verosimilitud:
+`[H]` Las explicaciones que sobreviven: que el laboratorio corriera una versión
+modificada —el investigador dijo en el checkpoint que cambió parámetros químicos—;
+que el conteo sume un registro por hit de Bowtie y no un siRNA único
+(`general_helpers.py:113`), lo que lo haría dependiente de la base de datos usada;
+o que el número venga de la plataforma propia que están construyendo encima.
 
-1. **El laboratorio corrió una versión modificada.** Es lo que el investigador dijo
-   en el checkpoint: que tuvo que cambiar parámetros químicos desactualizados. Si
-   los cambió, el número no tiene por qué reproducirse con si-Fi tal como se
-   distribuye. Esta es la hipótesis que mejor explica el fracaso del barrido.
-2. **El conteo cuenta registros de Bowtie, no siRNA únicos.** En el original el
-   bloque de eficiencia está dentro de un `if strand == '+'`, y
-   `general_helpers.py:113` cuenta un registro por cada hit. Un siRNA con varios
-   hits en el blanco principal se cuenta varias veces. Eso dependería de la base de
-   datos usada, que no tenemos, y podría inflar el conteo de forma no reproducible
-   sin ella.
-3. **El número no viene de si-Fi.** Puede venir de la plataforma propia que están
-   construyendo encima, que el investigador mencionó.
+## 2. La columna 9: eficientes por región
 
-Lo que **queda descartado** `[E]`: que los 114 y los 35 salgan de si-Fi21 sin
-modificar, con cualquier combinación de sus parámetros documentados, con
-cualquiera de las dos versiones de ViennaRNA y a cualquiera de las tres
-temperaturas probadas. Eso refuerza, con una herramienta distinta, lo que
-`CAMINOS_PROBADOS.md` ya registraba como camino fallido: antes falló nuestra
-reimplementación de los criterios publicados, ahora falla un port fiel del
-programa mismo.
+El investigador describió el procedimiento: recortar la región, subirla como
+archivo nuevo y calcular sobre ella. Eso da la columna «aislada». Se agrega la
+columna «en contexto» —las mismas ventanas, pero tomadas de la corrida del gen
+entero— porque **no dan lo mismo**, y la diferencia es grande:
 
-## Dos hallazgos que no buscábamos
-
-### La regla terminal del original infla el conteo
-
-`[E]` Medido: en modo fiel, de los 133 siRNA que si-Fi declararía eficientes en
-`MP_MRFV_full`, **solo 122 pasan los filtros termodinámicos**. Once entran por la
-rama de `sifi_pipeline.py:535-541`, que cuando el nucleótido 19 es A/T y el 2 no lo
-es devuelve «eficiente» mirando solo la accesibilidad y salteando la selección de
-hebra y la estabilidad de extremos. En `CP_MRFV_full` son 3 de 32.
-
-O sea que entre el 8 y el 9 % de los «eficientes» que reporta si-Fi son eficientes
-**solo porque la regla terminal se saltea la física**. No es un caso de borde, y es
-el motivo por el que el modo corregido existe.
-
-### La región que eligió EPILAB no es la más densa
-
-`[E]` El investigador planteó esto él mismo en el checkpoint —«probate dos, tres
-más a ver si, en teoría, debería haber elegido los que más tienen eficientes, pero
-tal vez no»— y dijo que no recordaba el criterio. Medido:
-
-| Gen | Región elegida | Eficientes en 1-200 | Región de 200 nt más densa | Eficientes |
+| Gen | Región | Aislada | En contexto | Gen entero |
 |---|---|---|---|---|
-| `MP_MRFV_full` | 1-200 | 30 | 490-689 (fiel) / 72-271 (corregido) | 39 / 38 |
-| `CP_MRFV_full` | 1-200 | 8-9 | 195-394 (fiel) / 99-298 (corregido) | 21 / 21 |
+| `MP_MRFV` | 1-200 | 16 | 30 | 123 |
+| `CP_MRFV` | 201-400 | 14 | 17 | 30 |
+| `BicC_Dm` | 264-563 | 17 | 20 | 171 |
+| `ATPaseD_Dm` | 151-450 | 16 | 18 | 29 |
 
-En `MP_MRFV_full` la región elegida está entre un 23 y un 30 % por debajo del
-óptimo por densidad. En `CP_MRFV_full` está **a menos de la mitad**: 8 o 9
-eficientes contra 21.
+Modo corregido con ViennaRNA 2.7.2. En modo fiel con RNAplfold 2.1.5 las aisladas
+son 18, 12, 15 y 22.
 
-Esto es consistente con la propia duda del investigador, y con su sospecha de que
-quizá eligió por off-targets y no por densidad. W5 ya tiene el dato de off-targets
-de las regiones elegidas, así que la pregunta se puede cerrar cruzando las dos
-cosas: si la región 1-200 de `CP_MRFV_full` es limpia de off-targets y la 195-394
-no lo es, la elección se explica. Es el próximo paso, no está hecho.
+`[E]` **El número depende de si la región se plega sola o dentro del gen**, y la
+diferencia llega al 47 % en `MP_MRFV` (16 contra 30). La causa es el término de
+accesibilidad: RNAplfold evalúa el plegado local, y un fragmento recortado pierde
+el contexto que apareaba o liberaba su extremo. Dos efectos se suman: las primeras
+20 posiciones del fragmento aislado no tienen contexto aguas arriba, y la corrida
+aislada produce 180 o 280 ventanas mientras que el conteo en contexto abarca las
+200 o 300 posiciones de inicio.
+
+Consecuencia práctica: **si se va a comparar regiones, hay que fijar el
+procedimiento**, porque las dos variantes no son comparables entre sí. Para llenar
+la planilla con el procedimiento que describió el investigador, la columna correcta
+es la aislada: **16, 14, 17 y 16**.
+
+## 3. Las regiones elegidas no son las más densas
+
+| Gen | Región elegida | Eficientes | Mejor región del mismo largo | Eficientes | Brecha |
+|---|---|---|---|---|---|
+| `MP_MRFV` | 1-200 | 30 | 72-271 | 38 | −21 % |
+| `CP_MRFV` | 201-400 | 17 | 99-298 | 21 | −19 % |
+| `BicC_Dm` | 264-563 | 20 | 2123-2422 | 37 | **−46 %** |
+| `ATPaseD_Dm` | 151-450 | 18 | 136-435 | 24 | −25 % |
+
+Conteo en contexto, modo corregido. En las cuatro hay una región mejor por
+densidad. `[E]`
+
+Esto responde lo que el investigador planteó él mismo: dijo que en teoría debería
+haber elegido las regiones con más eficientes, que tal vez no lo hizo, y que quizá
+fue por off-targets, pero que no lo recordaba —«fue hace dos años».
+
+## 4. El cruce con off-targets a 21 nt
+
+### Método
+
+Tamizaje exacto, no heurístico: para cada ventana de 21 nt del gen entero se busca
+coincidencia perfecta contra seis referencias públicas descargadas a disco, en las
+dos hebras, con un autómata de Aho-Corasick en una sola pasada por base. Criterio
+de riesgo: **bloque contiguo perfecto de 19 nt o más**, que es el umbral que usa la
+revisión de Cedden 2026 ya registrada en `FUENTES.md`. Referencias: maíz
+(`GCF_902167145.1`), *Homalodisca vitripennis* (`GCF_021130785.1`), *Apis mellifera*
+(`GCF_003254395.2`), *Harmonia axyridis* (`GCF_914767665.1`), *Folsomia candida*
+(`GCF_002217175.1`) y el genoma de *Dalbulus maidis* (`GCA_975739785.1`).
+
+Para `BicC_Dm` y `ATPaseD_Dm` el genoma de *D. maidis* se excluye del cómputo: ahí
+los hits son **on-target**, y de hecho lo confirman (2.170 de 2.500 ventanas de
+`BicC_Dm` tienen coincidencia perfecta de 21/21 en su propio genoma).
+
+**Validación del método** `[E]`: las columnas de bloque perfecto ≥19 nt y 21/21
+reproducen **exactamente, en las 20 celdas**, los conteos que W5 obtuvo en octubre
+con BLAST+ local sobre las regiones elegidas. Dos implementaciones independientes
+—coincidencia exacta contra heurística de semillas— dan el mismo número.
+
+**Discrepancia encontrada en el criterio de 1 desajuste** `[E]`: ahí no coinciden, y
+el exacto encuentra más — 16 contra 5 en `BicC_Dm`, 17 contra 9 en `ATPaseD_Dm`.
+La causa es identificable: `blastn-short` con `word_size 11` no puede sembrar un
+21-mero cuyo único desajuste cae en la posición 11, porque deja dos bloques de 10.
+**Los conteos de 1 desajuste de W5 son subestimaciones**, por hasta un factor de
+tres. El criterio de bloque perfecto no está afectado.
+
+### Resultado
+
+| Gen | Región | Eficientes | Ventanas con off-target | Mejor región | Eficientes | Con off-target |
+|---|---|---|---|---|---|---|
+| `MP_MRFV` | 1-200 | 30 | 6 | 72-271 | 38 | 6 |
+| `CP_MRFV` | 201-400 | 17 | **0** | 99-298 | 21 | **0** |
+| `BicC_Dm` | 264-563 | 20 | **33** | 2123-2422 | 37 | **3** |
+| `ATPaseD_Dm` | 151-450 | 18 | 7 | 136-435 | 24 | 7 |
+
+`[E]` **La hipótesis de los off-targets no se sostiene en ningún gen, y en
+`BicC_Dm` queda refutada.** Ahí la región elegida tiene 20 siRNA eficientes y 33
+ventanas con off-target, mientras que la región 2123-2422 tiene 37 eficientes y
+solo 3: **domina en los dos ejes a la vez**, casi el doble de eficientes con un
+onceavo de la exposición. No hay compromiso que justifique la elección.
+
+En `CP_MRFV` el gen entero tiene **cero** off-targets en las seis referencias, así
+que no había nada que optimizar por ese lado. En `MP_MRFV` la exposición es idéntica
+en las dos regiones (6 ventanas), y de las 22 ventanas con off-target del gen
+entero solo 2 son eficientes. En `ATPaseD_Dm` también es idéntica (7 y 7).
+
+### Dónde está el riesgo
+
+Por base, ventanas afectadas en el gen entero y cuántas de esas son eficientes:
+
+| Base no objetivo | `MP_MRFV` | `CP_MRFV` | `BicC_Dm` | `ATPaseD_Dm` |
+|---|---|---|---|---|
+| *H. vitripennis* (chicharrita no objetivo) | 3 / 0 | 0 | **56 / 1** | 7 / 2 |
+| Maíz (el cultivo) | 3 / 0 | 0 | 6 / 0 | 3 / 0 |
+| *H. axyridis* (enemigo natural) | 0 | 0 | 7 / 0 | 0 |
+| *F. candida* (fauna del suelo) | 7 / 0 | 0 | 4 / 0 | 0 |
+| *A. mellifera* (polinizador) | **0** | **0** | **0** | **0** |
+| *D. maidis* (on-target de los genes del insecto) | 9 / 2 | 0 | 2.245 | — |
+
+Tres lecturas. `[E]` **Cero coincidencias en *Apis mellifera*** para los cuatro
+genes, que es la mejor noticia del cuadro. **El riesgo está concentrado en
+*H. vitripennis***: 56 ventanas de `BicC_Dm`, de las cuales 40 con coincidencia
+perfecta de 21/21, lo que es esperable porque Bicaudal C está conservado entre
+cicadélidos. Y aparecen **3 ventanas de `BicC_Dm` con 21/21 perfecto en
+*H. axyridis***, una vaquita predadora, o sea un enemigo natural del propio
+objetivo.
+
+`[?]` Advertencia de alcance, ya registrada en `PREGUNTAS_ABIERTAS.md`: el panel
+sigue siendo de especies modelo. Los ceros de *Apis* son reales, pero la ausencia
+de riesgo en cicadélidos nativos y parasitoides **no está medida**, porque no hay
+transcriptomas. Y seis referencias no son el ambiente.
 
 ## Cómo reproducirlo
 
 ```bash
-# reconstruir las dos secuencias verificables (descarga pública del NCBI)
-#   NC_002786.2 -> 332-1594 (MP) y 5674-6201 (CP)
-
+# 1. conteo y barrido de configuraciones
 python tools/sifi21_port/barrido.py \
-    work/sifi_check/MP_MRFV_full.fasta=114 \
-    work/sifi_check/CP_MRFV_full.fasta=35
+    work/sifi_check/MP_MRFV_full.fasta=114  work/sifi_check/CP_MRFV_full.fasta=35 \
+    work/sifi_check/BicC_Dm_full.fasta=199  work/sifi_check/ATPaseD_Dm_full.fasta=33
 
-python tools/sifi21_port/run_sifi.py \
-    work/sifi_check/MP_MRFV_full.fasta work/sifi_check/CP_MRFV_full.fasta \
-    --modo fiel --backend exe --salida work/sifi_check/salida
+# 2. tamizaje de off-targets de 21 nt (las referencias se bajan a work/offtarget_db/)
+python tools/sifi21_port/offtarget_21nt.py \
+    --consulta work/sifi_check/*_full.fasta \
+    --db work/offtarget_db/*.fna.gz --salida work/sifi_check/offtarget_full
+
+# 3. cruce
+python tools/sifi21_port/cruce.py --gen BicC_Dm --region 264 563 \
+    --ontarget GCA_975739785.1_ihDalMaid1.1_genomic \
+    --dir work/sifi_check --offtarget work/sifi_check/offtarget_full
 ```
 
-Las secuencias y los TSV por ventana quedan en `work/sifi_check/`, fuera del
-control de versiones. El generador está en el repositorio; el dato derivado del
-corpus, no.
+Las secuencias, las referencias y los TSV por ventana quedan en `work/`, fuera del
+control de versiones. Se publica el generador, no el dato derivado del corpus.
