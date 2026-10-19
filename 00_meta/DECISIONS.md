@@ -292,3 +292,33 @@ Ese número es un entregable, y no habría existido con ninguna de las
 alternativas. Queda en `tools/sifi21_port/CAMBIOS.md` C1.
 **Nota de alcance:** el modo fiel es fiel al fuente de GitHub, que no es idéntico
 al binario de 2017 de SourceForge. `[?]`
+
+---
+
+## D14 — El gráfico por gen tiene un solo eje, y la curva se indexa por el centro de la región
+**Fecha:** 2026-10-19
+**Decisión:** las tres capas del gráfico de cada gen —la curva de densidad, las
+bandas de región y las tiras de marcas por ventana— comparten un único eje
+horizontal en coordenadas del gen. La curva se indexa por el **centro** de la región
+candidata, no por su inicio, y se dibuja sólo en el tramo donde cabe una región
+completa.
+**Alternativas consideradas:** (a) indexar la curva por el inicio de la región, que
+es la variable que el código ya barría; (b) dos ejes, uno para la curva y otro para
+las tiras; (c) extender la curva a todo el gen contando regiones truncadas en los
+bordes.
+**Criterio:** la primera versión hizo (a) y (b) a la vez sin darse cuenta: la curva
+iba de 1 a *n−L+1* y las tiras de 1 a *n*, así que **las capas estaban desalineadas
+y las bandas no coincidían con las marcas**. Con 300 nt de región en un gen de 491
+—el caso de `ATPaseD_Dm`— el desfasaje era de más de dos tercios del ancho. Indexar
+por el centro arregla el eje sin cambiar un solo número: el máximo de la curva
+corresponde a la misma región que devuelve `best_region`, sólo reindexada. La
+opción (c) se descartó porque un conteo sobre una región truncada no es comparable
+con los demás y produciría una caída artificial en los bordes.
+**Consecuencia:** el gráfico es legible de una pasada y la curva arranca y termina
+donde deja de haber opciones, lo que comunica gratis algo que importa: en
+`ATPaseD_Dm` hay apenas 172 regiones posibles y en `BicC_Dm` hay 2.201. Además salió
+a la luz un bug latente en `best_region`, que consideraba regiones pasadas del final
+del gen; con los cuatro genes del corpus el máximo caía dentro del dominio válido,
+así que acotarlo no movió ningún número publicado.
+**Nota:** las decisiones de color están en `CAMINOS_PROBADOS.md`, porque se tomaron
+descartando alternativas con el validador de paleta.

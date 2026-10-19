@@ -370,7 +370,11 @@ def best_region(windows, length: int = 200):
     if not eff:
         return None
     best, best_n = None, -1
-    last_start = max(w.pos for w in windows)
+    # Solo regiones completas: una que se pase del final del gen tendria menos
+    # ventanas y competiria en desigualdad. Con los cuatro genes del corpus el
+    # argmax cae dentro de este dominio, asi que acotarlo no cambia ningun numero
+    # ya publicado; lo que evita es un artefacto en genes donde si caiga al final.
+    last_start = max(1, max(w.pos for w in windows) - length + 1)
     for start in range(1, last_start + 1):
         end = start + length - 1
         k = sum(1 for p in eff if start <= p <= end)

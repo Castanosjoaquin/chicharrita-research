@@ -499,3 +499,56 @@ recortado pierde el contexto de sus extremos.
 **Estado:** descartado comparar números de procedimientos distintos. Hay que fijar
 uno y declararlo. Para llenar la planilla se usa el aislado, que es el que el
 investigador describió.
+
+## Nivel herramienta — el criterio de un desajuste y los gráficos (2026-10-19)
+
+### Dar por cerrado el riesgo en polinizadores con el criterio de bloque perfecto
+**Qué se intentó:** concluir «cero coincidencias en *Apis mellifera* en los cuatro
+genes», que es cierto con el criterio de bloque contiguo perfecto de ≥19 nt.
+**Qué pasó:** descartado como formulación. Al correr el criterio de un desajuste
+sobre los genes completos, *Apis* **no** da cero: `MP_MRFV` tiene 7 ventanas,
+`BicC_Dm` 7, `CP_MRFV` 2 y `ATPaseD_Dm` 1. Son coincidencias más débiles, pero
+existen.
+**Estado:** la frase defendible es **«sin homología perfecta en abeja»**, no «sin
+riesgo en abeja». Y en ningún caso es un ensayo de toxicidad: es ausencia de
+homología de secuencia en un transcriptoma de referencia.
+**Lección de método:** un cero siempre lleva pegado el criterio con el que se midió.
+
+### Decir que `CP_MRFV` no tiene off-targets
+**Qué se intentó:** la conclusión de la versión anterior del informe, basada sólo en
+el criterio de bloque perfecto.
+**Qué pasó:** descartado. Con bloque perfecto el gen entero da cero, que sigue
+siendo cierto y lo vuelve el más limpio de los cuatro. Con un desajuste tiene 14
+ventanas, 6 de ellas en maíz.
+**Estado:** corregido en el informe y en la página del gen. **Lo que sí se sostiene**
+es la conclusión sobre la elección de región: con el criterio principal no hay nada
+que esquivar en ningún tramo, así que acá la región no pudo elegirse por off-targets.
+
+### Usar dos colores distintos para los dos niveles de riesgo en los gráficos
+**Qué se intentó:** una lane roja para el bloque perfecto y otra naranja o amarilla
+para el desajuste, que es la lectura intuitiva de severidad.
+**Qué pasó:** descartado por el validador de paleta del skill de dataviz, corrido
+contra las superficies reales de estas páginas. Rojo contra naranja da ΔE 10,8 en
+visión normal y amarillo contra naranja 13,6, los dos bajo el piso de 15, que es
+falla dura y no se excusa con codificación secundaria.
+**Estado:** reemplazado por codificación **ordinal**, que además es la correcta:
+los dos niveles están ordenados (perfecto > un desajuste), así que es un solo hue en
+dos pasos —rojo pleno y el mismo rojo atenuado—, no dos hues. La paleta final
+(azul para eficiencia, rojo para riesgo) pasa los seis chequeos en los dos modos y
+con todos los pares.
+**Lección de método:** cuando dos categorías están ordenadas, dos hues no son sólo
+arriesgados: son el trabajo de color equivocado.
+
+### Verificar los gráficos visualmente en este entorno
+**Qué se intentó:** abrir los HTML en Chrome para mirarlos, y después rasterizar los
+SVG para poder verlos como imagen.
+**Qué pasó:** las dos vías fallaron. La extensión de Chrome no respondió en dos
+intentos, en dos momentos distintos de la sesión. `cairosvg` no carga porque faltan
+las DLL de cairo, y los rasterizadores en Python puro no aplican el CSS externo del
+que dependen estos SVG, así que su salida no sería fiel.
+**Estado:** verificado **numéricamente** en su lugar: overflow del viewBox, colisión
+de etiquetas de banda, cobertura de clases CSS, variables CSS definidas y parseo del
+JSON embebido. Los cuatro pasan. **Lo que no está hecho es mirarlos**, y eso queda
+anotado como pendiente en `PREGUNTAS_ABIERTAS.md`.
+**Qué lo reabriría:** que la extensión de Chrome responda, o instalar las DLL de
+cairo.

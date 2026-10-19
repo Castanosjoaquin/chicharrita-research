@@ -363,3 +363,26 @@ los entregables de cada una; el resumen:
 - Los papers de BLAST+, ViennaRNA, Primer-BLAST y Altschul 1990 se nombran como
   referencia habitual y **no se abrieron** en esta ola.
 - El panel de organismos no objetivo son especies modelo sustitutas.
+
+### Referencias de genoma y transcriptoma del tamizaje de off-targets (2026-10-19)
+
+Descargadas del FTP del NCBI a `work/offtarget_db/` (379 MB, fuera del control de
+versiones; se vuelven a bajar con los comandos de
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md`). Son las mismas seis que
+usó W5 en octubre, de modo que los conteos son comparables. Sólo entró tráfico: las
+secuencias de EPILAB nunca salieron de la máquina.
+
+| id | Accesión | Organismo | Rol en el tamizaje | Marcador |
+| --- | --- | --- | --- | --- |
+| `ref_zmays` | [GCF_902167145.1 Zm-B73-REFERENCE-NAM-5.0, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/) | *Zea mays* | El cultivo. Es el no objetivo que más importa. | `[E]` |
+| `ref_gwss` | [GCF_021130785.1 UT_GWSS_2.1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/130/785/GCF_021130785.1_UT_GWSS_2.1/) | *Homalodisca vitripennis* | Cicadélido no objetivo. **Donde está concentrado todo el riesgo**: 40 ventanas de `BicC_Dm` con 21/21 perfecto. | `[E]` |
+| `ref_apis` | [GCF_003254395.2 Amel_HAv3.1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/254/395/GCF_003254395.2_Amel_HAv3.1/) | *Apis mellifera* | Polinizador. Cero coincidencias con bloque perfecto en los cuatro genes; con un desajuste **no** es cero. | `[E]` |
+| `ref_harmonia` | [GCF_914767665.1 icHarAxyr1.1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/914/767/665/GCF_914767665.1_icHarAxyr1.1/) | *Harmonia axyridis* | Enemigo natural. 3 ventanas de `BicC_Dm` con 21/21 perfecto. | `[E]` |
+| `ref_folsomia` | [GCF_002217175.1 ASM221717v1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/217/175/GCF_002217175.1_ASM221717v1/) | *Folsomia candida* | Fauna del suelo. | `[E]` |
+| `ref_dmaidis_gen` | [GCA_975739785.1 ihDalMaid1.1, genoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/975/739/785/GCA_975739785.1_ihDalMaid1.1/) | *Dalbulus maidis* | **On-target** para `BicC_Dm` y `ATPaseD_Dm`, y se excluye de su cómputo; off-target para los dos genes virales. | `[E]` |
+
+### Fuente de las secuencias del corpus
+
+| id | Fuente | Tipo | Marcador | Acceso | Para qué se usó |
+| --- | --- | --- | --- | --- | --- |
+| `epilab_xlsx` | `Sequences_EPILAB.xlsx`, hoja `Hoja1`, 4 filas de datos, 9 columnas con contenido | planilla no publicada del corpus | `[R]` | local, fuera de git | Las cuatro secuencias completas, los cuatro conteos declarados (114, 35, 199, 33) y las coordenadas de las regiones elegidas. La columna 9, «Nro de eficientes por región?», está **vacía**: es la que el investigador pidió llenar. md5 `dcf234e1ba6d5584f1c9c1e4db59c34b`, que difiere del que registró W5 por reempaquetado del ZIP, con el contenido verificado idéntico por dos vías. `[?]` en el md5, `[E]` en el contenido. |

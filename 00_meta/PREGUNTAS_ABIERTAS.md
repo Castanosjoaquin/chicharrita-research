@@ -592,3 +592,29 @@ actualiza la sección anterior.
 - **Falta el criterio de un desajuste sobre los genes completos.** Se corrió exacto
   solo sobre las regiones elegidas (920 ventanas); sobre los cuatro genes completos
   se corrió solo bloque perfecto, para no inflar el autómata a 600.000 patrones.
+
+## Cierre del criterio de un desajuste (2026-10-19)
+
+- **Cerrado:** el criterio de un desajuste ya está corrido sobre **los cuatro genes
+  completos**, no sólo sobre las regiones elegidas. Se resolvió el límite de memoria
+  corriendo un gen por vez (entre 61.000 y 324.000 patrones cada uno en lugar de
+  600.000 juntos). **La comparación de regiones no se da vuelta en ningún gen**: en
+  `BicC_Dm` la región elegida pasa de 33 a 44 ventanas comprometidas y la
+  alternativa de 3 a 6, así que la conclusión se refuerza. En `MP_MRFV` queda 11
+  contra 9 y en `CP_MRFV` y `ATPaseD_Dm` empatan.
+- **Abierto, nuevo:** **los gráficos no se miraron.** Se verificaron numéricamente
+  (overflow, colisión de etiquetas, cobertura de CSS, parseo del JSON) y los cuatro
+  pasan, pero nadie los abrió en un navegador: la extensión de Chrome no respondió y
+  los rasterizadores disponibles no aplican el CSS externo. **Hace falta que una
+  persona abra `research/ola2/W5_secuencias_epilab/genes/index.html` y confirme que
+  no hay nada roto**, sobre todo el escalonado de etiquetas en `ATPaseD_Dm`, donde
+  quedan a 28 px, y el gráfico de `BicC_Dm`, que dibuja 2.500 marcas.
+- **Abierto:** el salto más grande al agregar el criterio de un desajuste está en
+  **maíz contra `MP_MRFV`: de 3 a 18 ventanas**. El cultivo es el no objetivo que más
+  importa, así que esas 18 merecen revisarse una por una antes de construir nada.
+  No está hecho.
+- **Abierto:** falta cruzar el perfil de `CP_MRFV` con la conservación entre aislados
+  que W5 ya midió. La región elegida es 100 % idéntica sólo al aislado de Costa Rica
+  y cae a 91,5-93,5 % contra los 45 registros brasileños. Una región más densa que
+  funcione sólo en un aislado no sirve, y es la única explicación que le queda a la
+  elección de ese gen.
