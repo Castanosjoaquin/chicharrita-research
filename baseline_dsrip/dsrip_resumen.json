@@ -1,0 +1,646 @@
+{
+ "L01084": {
+  "cds": 1311,
+  "orf_info": [
+   "76",
+   "1312",
+   "+"
+  ],
+  "etiquetas": {
+   "5_UTR": 55,
+   "partial_ORF": 21,
+   "ORF": 1215
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L01084_184_203",
+    "end_siRNA": "L01084_464_483",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 79.12775800711738,
+    "average_gene_total_score": 77.16329218106995,
+    "selected_dsRNA_efficiency_score": 79.12775800711745,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L01084_184_203",
+    "end_siRNA": "L01084_464_483",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 79.12775800711736,
+    "average_gene_total_score": 76.93485670023237,
+    "selected_dsRNA_efficiency_score": 79.12775800711745,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L01213": {
+  "cds": 1317,
+  "orf_info": [
+   "214",
+   "1318",
+   "+"
+  ],
+  "etiquetas": {
+   "5_UTR": 193,
+   "partial_ORF": 21,
+   "ORF": 1083
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L01213_1017_1036",
+    "end_siRNA": "L01213_1297_1316",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 77.89715302491096,
+    "average_gene_total_score": 75.86648199445983,
+    "selected_dsRNA_efficiency_score": 77.89715302491102,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L01213_1017_1036",
+    "end_siRNA": "L01213_1297_1316",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 77.89715302491106,
+    "average_gene_total_score": 76.098766383963,
+    "selected_dsRNA_efficiency_score": 77.89715302491102,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L01300": {
+  "cds": 1488,
+  "orf_info": [
+   "1",
+   "1488",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 2,
+   "ORF": 1466
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L01300_1142_1161",
+    "end_siRNA": "L01300_1422_1441",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.8829181494662,
+    "average_gene_total_score": 75.17053206002728,
+    "selected_dsRNA_efficiency_score": 76.88291814946619,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L01300_1142_1161",
+    "end_siRNA": "L01300_1422_1441",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.8829181494662,
+    "average_gene_total_score": 75.1983651226158,
+    "selected_dsRNA_efficiency_score": 76.88291814946619,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L01321": {
+  "cds": 3528,
+  "orf_info": [
+   "1",
+   "3529",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 3507
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L01321_1126_1145",
+    "end_siRNA": "L01321_1406_1425",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 79.52704626334518,
+    "average_gene_total_score": 75.83826632449387,
+    "selected_dsRNA_efficiency_score": 79.52704626334518,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L01321_1126_1145",
+    "end_siRNA": "L01321_1406_1425",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 79.52704626334518,
+    "average_gene_total_score": 75.83968072976054,
+    "selected_dsRNA_efficiency_score": 79.52704626334518,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L01910": {
+  "cds": 639,
+  "orf_info": [
+   "10",
+   "640",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 10,
+   "ORF": 609
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L01910_297_316",
+    "end_siRNA": "L01910_577_596",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.97864768683255,
+    "average_gene_total_score": 76.1623973727422,
+    "selected_dsRNA_efficiency_score": 76.97864768683274,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L01910_297_316",
+    "end_siRNA": "L01910_577_596",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.97864768683256,
+    "average_gene_total_score": 76.13327948303716,
+    "selected_dsRNA_efficiency_score": 76.97864768683274,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L01939": {
+  "cds": 795,
+  "orf_info": [
+   "1",
+   "795",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 2,
+   "ORF": 773
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L01939_4_23",
+    "end_siRNA": "L01939_284_303",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.72135231316726,
+    "average_gene_total_score": 74.38369987063389,
+    "selected_dsRNA_efficiency_score": 76.72135231316726,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L01939_4_23",
+    "end_siRNA": "L01939_284_303",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.72135231316726,
+    "average_gene_total_score": 74.33083870967742,
+    "selected_dsRNA_efficiency_score": 76.72135231316726,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L01982": {
+  "cds": 936,
+  "orf_info": [
+   "1",
+   "937",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 915
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L01982_626_645",
+    "end_siRNA": "L01982_906_925",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 77.85444839857642,
+    "average_gene_total_score": 76.3344262295082,
+    "selected_dsRNA_efficiency_score": 77.85444839857651,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L01982_626_645",
+    "end_siRNA": "L01982_906_925",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 77.85444839857642,
+    "average_gene_total_score": 76.35480349344978,
+    "selected_dsRNA_efficiency_score": 77.85444839857651,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L02294": {
+  "cds": 930,
+  "orf_info": [
+   "196",
+   "931",
+   "+"
+  ],
+  "etiquetas": {
+   "5_UTR": 175,
+   "partial_ORF": 21,
+   "ORF": 714
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L02294_214_233",
+    "end_siRNA": "L02294_494_513",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.13985765124555,
+    "average_gene_total_score": 76.45560224089637,
+    "selected_dsRNA_efficiency_score": 78.13985765124555,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L02294_146_165",
+    "end_siRNA": "L02294_426_445",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.52846975088967,
+    "average_gene_total_score": 76.69747252747253,
+    "selected_dsRNA_efficiency_score": 78.52846975088968,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L02468": {
+  "cds": 1023,
+  "orf_info": [
+   "1",
+   "1024",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 1002
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L02468_200_219",
+    "end_siRNA": "L02468_480_499",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 77.07330960854087,
+    "average_gene_total_score": 74.76017964071856,
+    "selected_dsRNA_efficiency_score": 77.07330960854092,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L02468_200_219",
+    "end_siRNA": "L02468_480_499",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 77.07330960854085,
+    "average_gene_total_score": 74.7703888334995,
+    "selected_dsRNA_efficiency_score": 77.07330960854092,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L02533": {
+  "cds": 1269,
+  "orf_info": [
+   "94",
+   "1270",
+   "+"
+  ],
+  "etiquetas": {
+   "5_UTR": 73,
+   "partial_ORF": 21,
+   "ORF": 1155
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L02533_652_671",
+    "end_siRNA": "L02533_932_951",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.5113879003558,
+    "average_gene_total_score": 74.87948051948052,
+    "selected_dsRNA_efficiency_score": 76.51138790035587,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L02533_652_671",
+    "end_siRNA": "L02533_932_951",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.51138790035583,
+    "average_gene_total_score": 75.16188951160929,
+    "selected_dsRNA_efficiency_score": 76.51138790035587,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L02638": {
+  "cds": 933,
+  "orf_info": [
+   "4",
+   "934",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 4,
+   "ORF": 909
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L02638_31_50",
+    "end_siRNA": "L02638_311_330",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.4740213523132,
+    "average_gene_total_score": 75.87568756875687,
+    "selected_dsRNA_efficiency_score": 78.47402135231317,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L02638_31_50",
+    "end_siRNA": "L02638_311_330",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.47402135231319,
+    "average_gene_total_score": 75.88598028477546,
+    "selected_dsRNA_efficiency_score": 78.47402135231317,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L02671": {
+  "cds": 768,
+  "orf_info": [
+   "1",
+   "769",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 747
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L02671_12_31",
+    "end_siRNA": "L02671_292_311",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 79.92491103202846,
+    "average_gene_total_score": 77.92570281124497,
+    "selected_dsRNA_efficiency_score": 79.92491103202848,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L02671_12_31",
+    "end_siRNA": "L02671_292_311",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 79.92491103202846,
+    "average_gene_total_score": 77.94344919786096,
+    "selected_dsRNA_efficiency_score": 79.92491103202848,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L03069": {
+  "cds": 1131,
+  "orf_info": [
+   "1",
+   "1132",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 1110
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L03069_385_404",
+    "end_siRNA": "L03069_665_684",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 77.84946619217081,
+    "average_gene_total_score": 74.74036036036037,
+    "selected_dsRNA_efficiency_score": 77.84946619217082,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L03069_385_404",
+    "end_siRNA": "L03069_665_684",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 77.84946619217081,
+    "average_gene_total_score": 74.74644464446445,
+    "selected_dsRNA_efficiency_score": 77.84946619217082,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L04081": {
+  "cds": 1200,
+  "orf_info": [
+   "1",
+   "1201",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 1179
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L04081_2_21",
+    "end_siRNA": "L04081_282_301",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.32989323843417,
+    "average_gene_total_score": 75.03104325699746,
+    "selected_dsRNA_efficiency_score": 76.32989323843417,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L04081_1_20",
+    "end_siRNA": "L04081_281_300",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.41316725978648,
+    "average_gene_total_score": 75.05186440677966,
+    "selected_dsRNA_efficiency_score": 76.41316725978648,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L04857": {
+  "cds": 1059,
+  "orf_info": [
+   "1",
+   "1060",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 1038
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L04857_114_133",
+    "end_siRNA": "L04857_394_413",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.99786476868327,
+    "average_gene_total_score": 77.27504816955684,
+    "selected_dsRNA_efficiency_score": 78.99786476868329,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L04857_114_133",
+    "end_siRNA": "L04857_394_413",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.99786476868329,
+    "average_gene_total_score": 77.25755534167469,
+    "selected_dsRNA_efficiency_score": 78.99786476868329,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L05430": {
+  "cds": 1389,
+  "orf_info": [
+   "1",
+   "1390",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 1368
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L05430_80_99",
+    "end_siRNA": "L05430_360_379",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.6316725978648,
+    "average_gene_total_score": 75.32945906432748,
+    "selected_dsRNA_efficiency_score": 76.63167259786476,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L05430_80_99",
+    "end_siRNA": "L05430_360_379",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 76.6316725978648,
+    "average_gene_total_score": 75.33396639883127,
+    "selected_dsRNA_efficiency_score": 76.63167259786476,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L06103": {
+  "cds": 975,
+  "orf_info": [
+   "1",
+   "975",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 2,
+   "ORF": 953
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L06103_628_647",
+    "end_siRNA": "L06103_908_927",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.08861209964407,
+    "average_gene_total_score": 76.04165792235047,
+    "selected_dsRNA_efficiency_score": 78.08861209964414,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L06103_628_647",
+    "end_siRNA": "L06103_908_927",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.08861209964407,
+    "average_gene_total_score": 76.07821989528796,
+    "selected_dsRNA_efficiency_score": 78.08861209964414,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L06678": {
+  "cds": 1065,
+  "orf_info": [
+   "1",
+   "1066",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 1044
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L06678_540_559",
+    "end_siRNA": "L06678_820_839",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.2836298932384,
+    "average_gene_total_score": 75.9757662835249,
+    "selected_dsRNA_efficiency_score": 78.28362989323844,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L06678_540_559",
+    "end_siRNA": "L06678_820_839",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.2836298932384,
+    "average_gene_total_score": 75.98918660287082,
+    "selected_dsRNA_efficiency_score": 78.28362989323844,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L06686": {
+  "cds": 1269,
+  "orf_info": [
+   "1",
+   "1270",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 1,
+   "ORF": 1248
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L06686_636_655",
+    "end_siRNA": "L06686_916_935",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.28576512455525,
+    "average_gene_total_score": 76.2516826923077,
+    "selected_dsRNA_efficiency_score": 78.28576512455516,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L06686_636_655",
+    "end_siRNA": "L06686_916_935",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.28576512455524,
+    "average_gene_total_score": 76.25420336269015,
+    "selected_dsRNA_efficiency_score": 78.28576512455516,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ },
+ "L07177": {
+  "cds": 987,
+  "orf_info": [
+   "1",
+   "987",
+   "+"
+  ],
+  "etiquetas": {
+   "partial_ORF": 2,
+   "ORF": 965
+  },
+  "regiones": {
+   "only_ORF=True": {
+    "start_siRNA": "L07177_257_276",
+    "end_siRNA": "L07177_537_556",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.06085409252663,
+    "average_gene_total_score": 76.84673575129534,
+    "selected_dsRNA_efficiency_score": 78.06085409252668,
+    "selected_dsRNA_safety_score": 0
+   },
+   "only_ORF=False": {
+    "start_siRNA": "L07177_257_276",
+    "end_siRNA": "L07177_537_556",
+    "window_size": 281,
+    "selected_dsRNA_total_score": 78.06085409252661,
+    "average_gene_total_score": 76.88345398138573,
+    "selected_dsRNA_efficiency_score": 78.06085409252668,
+    "selected_dsRNA_safety_score": 0
+   }
+  }
+ }
+}

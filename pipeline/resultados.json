@@ -1,0 +1,213 @@
+{
+  "descripcion": "Cada numero medido por el pipeline, con el conjunto sobre el que se midio, el script que lo reproduce y su marcador de evidencia. Es la fuente que citan plan/ y tablero/.",
+  "fecha": "2026-10-18",
+  "ensamblado_de_referencia": "GCA_975739785.1 (ihDalMaid1.1), 972 Mb, nivel cromosoma",
+  "resultados": [
+    {
+      "id": "mapeo-tiempo",
+      "afirmacion": "El mapeo de proteinas de referencia al genoma corre en ~66 s",
+      "detalle": "18 s indexar 972 Mb + 48 s alinear 3.904 proteinas, en una notebook con WSL",
+      "conjunto": "3.904 proteinas de Drosophila melanogaster (Swiss-Prot)",
+      "script": "hemip_mapear.py, resumir_miniprot.py",
+      "marcador": "H"
+    },
+    {
+      "id": "mapeo-cobertura",
+      "afirmacion": "2.814 de 3.904 proteinas encontraron locus (72,1 %); 87,8 % de los loci sin frameshift ni stop interno",
+      "conjunto": "3.904 proteinas",
+      "script": "resumir_miniprot.py",
+      "marcador": "H"
+    },
+    {
+      "id": "control-7-de-7",
+      "afirmacion": "Las 7 proteinas confirmadas por los dos papers publicados se recuperan, cada una con un solo locus",
+      "detalle": "Identidades: Vha55 0,978 | Vha68-1 0,881 | Vha36-1 0,858 | Vha26 0,743 | BicC 0,380 | AGO2 0,354 | Dcr-2 0,297",
+      "conjunto": "7 proteinas de control",
+      "script": "hemip_mapear.py",
+      "marcador": "H"
+    },
+    {
+      "id": "control-negativo-cromosomas",
+      "afirmacion": "Los loci se reparten por cromosoma siguiendo el tamano: 340, 331, 330, 306, 303, 277, 263, 234, 227, 186",
+      "conjunto": "10 cromosomas",
+      "script": "resumir_miniprot.py",
+      "marcador": "H"
+    },
+    {
+      "id": "especie-referencia",
+      "afirmacion": "Una referencia del mismo orden mejora las cuatro metricas a la vez",
+      "detalle": "Nilaparvata lugens 77,6 % recuperacion / 0,634 identidad mediana / 20,6 % con ident >= 0,8 / 93,8 % loci limpios, contra Drosophila melanogaster 72,1 % / 0,545 / 10,9 % / 87,8 %",
+      "script": "hemip_mapear.py",
+      "marcador": "H"
+    },
+    {
+      "id": "tabla-unificada",
+      "afirmacion": "6.295 de 7.416 loci tienen fenotipo asociado (84,9 %)",
+      "detalle": "Cruce con 68.909 anotaciones de iBeetle-Base sobre 13.009 genes de Tribolium castaneum",
+      "script": "tabla_unificada.py",
+      "marcador": "H",
+      "licencia": "los fenotipos vienen de iBeetle-Base, sin licencia abierta: se publica el generador, no la tabla"
+    },
+    {
+      "id": "validacion-retrospectiva",
+      "afirmacion": "Cada blanco publicado puntua alto en el objetivo para el que su grupo lo eligio",
+      "detalle": "Vha55: 1 de 4.929 en letal, no entra en esteril. Vha36-1: 81 (1,6 %) en letal, 2.050 (58 %) en esteril. BicC: 4.385 (ultimo 11 %) en letal, 621 (17,6 %) en esteril",
+      "conjunto": "7.416 loci; 4.929 con evidencia a favor en el objetivo letal",
+      "script": "objetivo_candidatos.py",
+      "marcador": "H"
+    },
+    {
+      "id": "candidatos-epilab-mapeados",
+      "afirmacion": "Dos de los cuatro candidatos del laboratorio caen en loci de este mapeo",
+      "detalle": "BicC_Dm en el cromosoma 3 coincide con el locus de BicC; ATPaseD_Dm en el cromosoma 8 coincide con Vha36-1. Mismo ensamblado que usa W5",
+      "script": "tabla_unificada.py",
+      "marcador": "H"
+    },
+    {
+      "id": "curva-umbral",
+      "afirmacion": "El umbral de identidad decide mas que cualquier otro parametro del metodo",
+      "detalle": "Supervivencia por corte (maiz+abeja / 4 hemipteros / 25 especies): 15 nt 33,5/14,6/0,3 % | 16 nt 72,3/47,1/7,4 % | 17 nt 91,1/70,8/36,2 % | 18 nt 97,3/83,5/66,7 % | 19 nt 99,0/87,9/81,4 % | 20 nt 99,5/90,1/86,8 % | 21 nt 99,8/92,4/90,7 %",
+      "conjunto": "10.950 ventanas de 21 nt sobre 438 genes",
+      "script": "no_objetivo_correr.py, sirna_offtarget.py",
+      "marcador": "H",
+      "nota": "sobre un conjunto anterior de 1.759 ventanas contra maiz y abeja, la supervivencia a 15 nt era 41,0 %; es otro conjunto, no una discrepancia"
+    },
+    {
+      "id": "cobertura-por-especie",
+      "afirmacion": "Cuatro hemipteros encuentran el 81,2 % de los descartes al 9,6 % del computo",
+      "detalle": "829 de 1.021 descartes. Maiz + abeja: 18 (1,8 %). Macrosteles quadrilineatus sola: 700 descartes, 613 exclusivos, el 60 % del total, 70 veces mas que el maiz",
+      "conjunto": "10.950 ventanas, 25 especies con transcriptoma anotado",
+      "script": "no_objetivo_cobertura.py",
+      "marcador": "H"
+    },
+    {
+      "id": "genes-con-salida",
+      "afirmacion": "El filtro descarta el 63,8 % de las ventanas y deja sin salida a solo 2 genes de 438",
+      "detalle": "Los dos sin salida son Arf1 y Cam (calmodulina)",
+      "conjunto": "10.950 ventanas de 438 genes",
+      "script": "no_objetivo_correr.py",
+      "marcador": "H"
+    },
+    {
+      "id": "off-target-maiz",
+      "afirmacion": "Tres ventanas resultaron identicas en 21 nt a la bomba de protones vacuolar del maiz",
+      "detalle": "Contra NM_001319777.2 (Zea mays vacuolar proton pump 3). Cero coincidencias en Apis mellifera en el mismo chequeo",
+      "conjunto": "1.759 ventanas contra 76.549 transcriptos de maiz y 27.887 de abeja",
+      "script": "sirna_offtarget.py",
+      "marcador": "E"
+    },
+    {
+      "id": "riesgo-desagregado",
+      "afirmacion": "De 18 ventanas con coincidencia de 21 nt, 3 pegan en mas de un organismo a la vez",
+      "detalle": "Una de ellas es el locus de Act5C (actina). Por eso el riesgo se guarda por especie y no agregado",
+      "conjunto": "10.950 ventanas de 438 genes",
+      "script": "sirna_offtarget.py",
+      "marcador": "H"
+    },
+    {
+      "id": "sensibilidad-pesos",
+      "afirmacion": "124 candidatos distintos pasan por el top-10 segun los pesos; solo 5 aguantan mas de la mitad",
+      "detalle": "Posiciones robustas y su frecuencia: 1404 (67,5 %), 1340 (62,3 %), 1339 (54,9 %), 1053 (53,7 %), 182 (52,2 %)",
+      "conjunto": "1.825 ventanas del CDS de V-ATPase A; 2.000 juegos de pesos Dirichlet uniformes",
+      "script": "motor.py",
+      "marcador": "H"
+    },
+    {
+      "id": "media-geometrica",
+      "afirmacion": "La media geometrica ponderada descarta sola a los candidatos con un criterio cerca de cero",
+      "detalle": "Top-10 por suma ponderada y por media geometrica coinciden en 8 de 10. La posicion 1053 entra tercera por suma con accesibilidad 0,0388 compensada por asimetria 6,4, y no entra por media geometrica",
+      "conjunto": "1.825 ventanas",
+      "script": "motor.py",
+      "marcador": "H"
+    },
+    {
+      "id": "cascada-mediana",
+      "afirmacion": "La descomposicion contra la mediana explica el orden; la absoluta no",
+      "detalle": "Primero del ranking: mediana 0,5770 + asimetria 0,1591 + accesibilidad 0,0976 - GC 0,0023 = 0,8314",
+      "script": "motor.py",
+      "marcador": "H",
+      "nota": "decision de diseno nuestra, sin validar con usuarios"
+    },
+    {
+      "id": "region-no-discrimina",
+      "afirmacion": "Elegir la mejor region dentro de un gen no se distingue del azar",
+      "detalle": "Mejora ~7,2 % sobre el promedio del gen; no significativo en 0 de 20 genes contra modelo nulo",
+      "conjunto": "20 genes",
+      "script": "region_scoring.py",
+      "marcador": "H"
+    },
+    {
+      "id": "techo-reproducibilidad",
+      "afirmacion": "Dos dsRNA contra el mismo gen correlacionan 0,245 en datos publicados",
+      "detalle": "Spearman 0,245 dentro de la misma fase experimental, 0,076 mezclando fases; acuerdo binario 61 % contra 52 % por azar",
+      "conjunto": "410 genes",
+      "script": "techo_reproducibilidad.py",
+      "marcador": "H"
+    },
+    {
+      "id": "acuerdo-dsrip",
+      "afirmacion": "Coincidimos con dsRIP en lo grueso y no en lo fino",
+      "detalle": "Spearman 0,62 ventana a ventana; 0 candidatos en comun en el top-10; solape de region mediana 31-57 % sobre 20 genes, con 4 genes en 0 %",
+      "conjunto": "20 genes",
+      "script": "../baseline_dsrip/compare.py, region_multigen.py",
+      "marcador": "H",
+      "nota": "el 88 % de solape era de un solo gen (V-ATPase A) y no se usa"
+    },
+    {
+      "id": "dsrip-defectos",
+      "afirmacion": "El codigo de dsRIP tiene tres defectos a tener en cuenta como linea de base",
+      "detalle": "Pesos fijos no ajustados con los datos que el propio trabajo reporta; accesibilidad con peso cero; posible error en el calculo de asimetria que da la misma bonificacion al 83 % de las ventanas",
+      "script": "lectura de codigo, ver ../baseline_dsrip/",
+      "marcador": "?"
+    },
+    {
+      "id": "esencialidad-auc",
+      "afirmacion": "El modelo de esencialidad con datos abiertos da AUC 0,604",
+      "detalle": "Con validacion cruzada agrupada por gen. Con division al azar daba 0,685, inflado por fuga de datos",
+      "script": "esencialidad_modelo.py",
+      "marcador": "H"
+    },
+    {
+      "id": "aprendizaje-activo",
+      "afirmacion": "El aprendizaje activo reduce ~25 % de los ensayos, no un factor de ocho",
+      "detalle": "Y medir primero los mejores candidatos resulta peor que medir al azar: 0,541 contra 0,574",
+      "script": "que_experimento_primero.py",
+      "marcador": "H"
+    },
+    {
+      "id": "agente-evidencia",
+      "afirmacion": "El lector automatico con verificacion de citas tiene 6,3 % a 10,0 % de citas no verificables",
+      "detalle": "Modelo chico 6,3 % y 0,06 USD; modelo grande 10,0 % y 1,12 USD (19 veces mas). ~20 % de las citas textuales no respaldan la afirmacion que acompanan",
+      "conjunto": "21 genes",
+      "script": "agente_evidencia.py",
+      "marcador": "H"
+    },
+    {
+      "id": "doble-respaldo",
+      "afirmacion": "Solo 62 de 7.416 loci tienen fenotipo de cribado Y blanco probado en un hemiptero",
+      "detalle": "44 de esos 62 son letales. Los otros 7.354 se apoyan en un cribado hecho en otro orden de insectos",
+      "script": "cruzar_hemipteros.py",
+      "marcador": "H"
+    },
+    {
+      "id": "sesgo-catalogo-hemipteros",
+      "afirmacion": "456 de las 917 proteinas de hemipteros descargadas son V-ATPase",
+      "detalle": "Concluir que la V-ATPase es el mejor blanco desde ese catalogo seria circular",
+      "script": "bajar_proteinas_hemipteros.py",
+      "marcador": "?"
+    },
+    {
+      "id": "enemigos-naturales-sin-genoma",
+      "afirmacion": "Los enemigos naturales de la chicharrita no tienen genoma anotado",
+      "detalle": "Mymaridae, Dryinidae y Halictophagidae tienen cero ensamblados anotados en RefSeq. Con genoma crudo aparecen 49 descartes mas, 25 de ellos invisibles para las 25 especies con transcriptoma",
+      "fuente": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13105290/",
+      "marcador": "E"
+    },
+    {
+      "id": "parasitismo-huevos",
+      "afirmacion": "El parasitismo de huevos de D. maidis en el noroeste argentino promedia 16,4 % y llega a 56,7 %",
+      "fuente": "Luft Albarracin et al. 2017, Neotropical Entomology, PMID 28643143",
+      "marcador": "E"
+    }
+  ]
+}

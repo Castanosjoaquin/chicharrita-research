@@ -9,3 +9,9 @@ YHat-Biotech/
 
 # Copias de trabajo
 work/
+
+# Salidas del pipeline: se regeneran con pipeline/correr_todo.py.
+# tabla_unificada.csv y sus derivados llevan fenotipos de iBeetle-Base, que no
+# tiene licencia abierta: se publica el generador, no el dato.
+pipeline/salida/
+pipeline/datos/

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fijar los datos de entrada — Investigathón Y-Hat</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+  table.matriz{min-width:840px}
+  table.matriz th:not(:first-child):not(:last-child), table.matriz td.num{padding-left:8px; padding-right:8px; text-align:center}
+  table.matriz td:last-child{min-width:300px}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .toc{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); margin:26px 0 10px}
+  .card{border:1px solid var(--line); background:var(--surface); padding:18px 20px; display:block;
+        color:inherit; text-decoration:none}
+  .card:hover{border-color:var(--accent)}
+  .card .id{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+  .card .t{font-weight:650; margin:0 0 7px; line-height:1.3}
+  .card .d{font-size:.91rem; color:var(--text-dim); margin:0 0 10px}
+  .card .f{font-size:.82rem; color:var(--text-dim); margin:0}
+  .card .f a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line)}
+  .mem{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:18px 0}
+  .mem a{border:1px solid var(--line); background:var(--surface); padding:12px 14px; text-decoration:none; color:inherit}
+  .mem a:hover{border-color:var(--accent)}
+  .mem .n{font-weight:650; font-size:.95rem}
+  .mem .s{font-size:.84rem; color:var(--text-dim)}
+  .tag.h{background:var(--surface-2); color:var(--text-dim)}
+  .q{border:1px solid var(--line); background:var(--surface); padding:16px 18px; margin:0 0 12px}
+  .q .p{font-weight:650; margin:0 0 7px}
+  .q .d{font-size:.9rem; color:var(--text-dim); margin:0}
+  .q.nueva{border-left:3px solid var(--accent)}
+  .paso{display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 10px}
+  .paso a{font-size:.84rem; border:1px solid var(--line); background:var(--surface);
+          padding:6px 11px; text-decoration:none; color:var(--text-dim)}
+  .paso a:hover{border-color:var(--accent); color:var(--accent)}
+  .paso a.yo{background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650}
+  .paso a.no{opacity:.45}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+
+<header>
+  <p class="eyebrow">Plan de entregable · Paso 2 de 10 · Núcleo</p>
+  <h1>Fijar los datos de entrada</h1>
+  <p class="sub">Qué datos entran al análisis, de dónde salen y con qué licencia.</p>
+</header>
+
+<div class="paso"><a href="../index.html">← Portada</a><a href="../propuesta_entregable.html">La propuesta</a><a href="paso-01.html">1. Acordar reglas</a><a href="paso-02.html" class="yo">2. Fijar los datos</a><a href="paso-03.html">3. Entender cada candidato</a><a href="paso-04.html">4. Chequear contra la realidad</a><a href="paso-05.html">5. Estimar potencia</a><a href="paso-06.html">6. Combinar y decidir</a><a href="paso-07.html">7. Comprobar el método</a><a href="paso-08.html">8. Ficha por candidato</a><a href="paso-09.html">9. Reproducible y abierto</a><a class="no" title="Sin página propia: está en la propuesta" href="../propuesta_entregable.html#no-hacemos">10. Presentar con honestidad</a><a href="variante-a.html">Variante A · modelos de ARN</a><a href="variante-b.html">Variante B · lectura asistida</a></div>
+<div class="verdict">
+  <h2>Qué sale de este paso</h2>
+  <p>Un paquete de datos fijo y documentado, con la procedencia y la licencia de cada insumo,
+  para que cualquiera pueda repetir el análisis y obtener lo mismo.</p>
+  <p style="margin-bottom:0"><strong>Lo que ya sabemos:</strong> los datos alcanzan para todo el
+  núcleo, pero uno de los insumos centrales no se puede republicar.</p>
+</div>
+
+<div class="note"><p class="t">Qué parte de este paso es nuestra</p><p>El inventario de bases de datos y de genomas disponibles ya está hecho en <a href="../research/ola2/W3_bases_datos/REPORT.md">W3</a> y <a href="../research/ola2/W4_genomas/REPORT.md">W4</a>. Esta página cubre solo el paquete que consume el pipeline: qué entra, de dónde, y con qué permiso.</p></div>
+
+<h2>Qué preguntábamos</h2>
+
+<p class="lead">¿Con qué datos se puede trabajar hoy, sin pedirle nada a nadie, y qué se puede
+publicar después?</p>
+
+<h2>Qué hicimos</h2>
+
+<p>Fijamos tres insumos y escribimos de dónde sale cada uno.</p>
+<p><strong>El genoma del vector.</strong> Trabajamos sobre el ensamblado público a nivel
+cromosoma <code>ihDalMaid1.1</code>. Es el mismo sobre el que están identificados los candidatos
+del laboratorio, así que las coordenadas son comparables sin traducción. <span class="tag e">E</span></p>
+<p><strong>El catálogo de organismos no objetivo.</strong> Pasamos de dos especies a
+<strong>30</strong>, con una razón escrita por especie dentro del código, agrupadas en cultivo,
+polinizadores, enemigos naturales, hemípteros no objetivo, fauna del suelo, fauna acuática,
+humano y ganado. Hay un representante por cada uno de los siete órdenes de depredadores
+documentados sobre <em>Dalbulus maidis</em>.</p>
+<p><strong>Los fenotipos de silenciamiento.</strong> No existe ningún dato de fenotipo para
+<em>Dalbulus maidis</em> ni para ningún hemíptero del floema. Lo que hay es el cribado de
+<em>Tribolium castaneum</em> en iBeetle-Base, que es otro orden de insectos.</p>
+
+<h2>Qué salió</h2>
+
+<h3>1. El paquete alcanza</h3>
+<div class="tw"><table><caption>Insumos del pipeline, con su estado. [E] verificado contra la fuente.</caption><thead><tr><th>Insumo</th><th>Tamaño</th><th>Estado</th></tr></thead><tbody><tr><td>Genoma <code>ihDalMaid1.1</code></td><td class="num">972 Mb</td><td class="num">público, sin anotar</td></tr><tr><td>Transcriptomas de 25 especies no objetivo</td><td class="num">752 MB</td><td class="num">RefSeq anotado</td></tr><tr><td>Otras 5 especies del catálogo</td><td class="num">—</td><td class="num"><strong>sin RefSeq anotado</strong></td></tr><tr><td>Cribado de <em>Tribolium</em></td><td class="num">68.909 anotaciones · 13.009 genes</td><td class="num">licencia cerrada</td></tr></tbody></table></div>
+<p>El cruce da <strong>6.295 de 7.416 loci con fenotipo asociado, el 84,9 %</strong>. Es la base
+de todo el ranking. <span class="tag h">H</span></p>
+
+<h3>2. Un insumo central no se puede republicar</h3>
+<p>iBeetle-Base se baja libremente, pero su aviso legal reserva todos los derechos: reproducir
+ese material en otra publicación electrónica <strong>requiere consentimiento expreso</strong>.
+No hay licencia abierta declarada en ninguna parte del sitio. <span class="tag e">E</span></p>
+<p>Usarlo para decidir internamente qué validar no tiene problema. Publicar una tabla que
+contenga sus fenotipos, sí. Por eso, en este repositorio, <strong>se publica el generador y no
+la tabla</strong>: el script que construye el cruce está versionado, la tabla queda fuera, y
+quien quiera reproducirla baja iBeetle y corre un comando.</p>
+
+<h3>3. El hueco que queda declarado</h3>
+<p>Las cinco especies sin RefSeq anotado son justamente enemigos naturales y fauna del suelo.
+Las familias de los parasitoides de huevos de la chicharrita no tienen <strong>ni un</strong>
+ensamblado anotado. Quedan en el catálogo con estado explícito, no se borran de la lista para
+que el panel parezca más completo de lo que es.</p>
+
+<h2>Qué les preguntamos</h2>
+<div class="q nueva"><p class="p">¿Les sirve que publiquemos el generador y no la tabla, o conviene pedir el permiso a iBeetle-Base de forma institucional?</p><p class="d"><strong>Cambia:</strong> qué sale en el paquete abierto del paso 9.</p></div><div class="q nueva"><p class="p">¿Qué transcriptoma o genoma usan ustedes? Si es otro, hay que recalcular las coordenadas.</p><p class="d"><strong>Cambia:</strong> que nuestras posiciones y las suyas hablen de lo mismo.</p></div>
+
+
+<footer>
+  <p><span class="tag e">E</span> establecido · <span class="tag r">R</span> reportado
+  · <span class="tag h">H</span> hipótesis nuestra · <span class="tag q">?</span> incierto.
+  Cada afirmación técnica lleva su marcador y su fuente.</p>
+  <p>El inventario completo de bases y genomas está en W3 y W4. El catálogo de no objetivo se construye con <em>pipeline/no_objetivo_catalogo.py</em>.</p>
+</footer>
+
+</div>
+</body></html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entender qué es cada candidato — Investigathón Y-Hat</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+  table.matriz{min-width:840px}
+  table.matriz th:not(:first-child):not(:last-child), table.matriz td.num{padding-left:8px; padding-right:8px; text-align:center}
+  table.matriz td:last-child{min-width:300px}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .toc{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); margin:26px 0 10px}
+  .card{border:1px solid var(--line); background:var(--surface); padding:18px 20px; display:block;
+        color:inherit; text-decoration:none}
+  .card:hover{border-color:var(--accent)}
+  .card .id{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+  .card .t{font-weight:650; margin:0 0 7px; line-height:1.3}
+  .card .d{font-size:.91rem; color:var(--text-dim); margin:0 0 10px}
+  .card .f{font-size:.82rem; color:var(--text-dim); margin:0}
+  .card .f a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line)}
+  .mem{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:18px 0}
+  .mem a{border:1px solid var(--line); background:var(--surface); padding:12px 14px; text-decoration:none; color:inherit}
+  .mem a:hover{border-color:var(--accent)}
+  .mem .n{font-weight:650; font-size:.95rem}
+  .mem .s{font-size:.84rem; color:var(--text-dim)}
+  .tag.h{background:var(--surface-2); color:var(--text-dim)}
+  .q{border:1px solid var(--line); background:var(--surface); padding:16px 18px; margin:0 0 12px}
+  .q .p{font-weight:650; margin:0 0 7px}
+  .q .d{font-size:.9rem; color:var(--text-dim); margin:0}
+  .q.nueva{border-left:3px solid var(--accent)}
+  .paso{display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 10px}
+  .paso a{font-size:.84rem; border:1px solid var(--line); background:var(--surface);
+          padding:6px 11px; text-decoration:none; color:var(--text-dim)}
+  .paso a:hover{border-color:var(--accent); color:var(--accent)}
+  .paso a.yo{background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650}
+  .paso a.no{opacity:.45}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+
+<header>
+  <p class="eyebrow">Plan de entregable · Paso 3 de 10 · Núcleo</p>
+  <h1>Entender qué es cada candidato</h1>
+  <p class="sub">Cómo se ubica un gen en un genoma sin anotación, y dónde caen los candidatos del laboratorio en ese mapa.</p>
+</header>
+
+<div class="paso"><a href="../index.html">← Portada</a><a href="../propuesta_entregable.html">La propuesta</a><a href="paso-01.html">1. Acordar reglas</a><a href="paso-02.html">2. Fijar los datos</a><a href="paso-03.html" class="yo">3. Entender cada candidato</a><a href="paso-04.html">4. Chequear contra la realidad</a><a href="paso-05.html">5. Estimar potencia</a><a href="paso-06.html">6. Combinar y decidir</a><a href="paso-07.html">7. Comprobar el método</a><a href="paso-08.html">8. Ficha por candidato</a><a href="paso-09.html">9. Reproducible y abierto</a><a class="no" title="Sin página propia: está en la propuesta" href="../propuesta_entregable.html#no-hacemos">10. Presentar con honestidad</a><a href="variante-a.html">Variante A · modelos de ARN</a><a href="variante-b.html">Variante B · lectura asistida</a></div>
+<div class="verdict">
+  <h2>Qué sale de este paso</h2>
+  <p>Saber dónde cae cada candidato en el genoma del insecto, y poder compararlo contra
+  cualquier otro gen del mismo genoma.</p>
+  <p style="margin-bottom:0"><strong>Lo que ya sabemos:</strong> los dos candidatos dirigidos al
+  vector caen en loci que ya teníamos mapeados, en el mismo ensamblado.</p>
+</div>
+
+<div class="note"><p class="t">Qué parte de este paso es nuestra</p><p>La identificación de los cuatro candidatos —contra qué gen apunta cada uno, en qué organismo y en qué coordenadas— ya está hecha en <a href="../research/ola2/W5_secuencias_epilab/REPORT.md">W5</a>, con alineamiento local y 100 % de identidad en los cuatro. Esta página cubre otra cosa: cómo se ubica <em>cualquier</em> gen en un genoma que no tiene anotación, que es lo que permite comparar los candidatos contra el resto.</p></div>
+
+<h2>Qué preguntábamos</h2>
+
+<p class="lead">El genoma de la chicharrita no tiene anotación pública: la base de genes del NCBI
+tiene 37 registros de la especie y los 37 son mitocondriales. Entonces, ¿cómo se sabe dónde está
+un gen?</p>
+
+<h2>Qué hicimos</h2>
+
+<p>En vez de anotar el genoma entero, que es un proyecto en sí mismo, alineamos directamente
+<strong>proteínas de referencia de otras especies</strong> contra el genoma y nos quedamos con
+dónde cae cada una. Es un atajo: no produce una anotación completa, produce exactamente lo que
+hace falta, que son los loci de los genes que ya tienen fenotipo conocido en otro insecto.</p>
+
+<h2>Qué salió</h2>
+
+<h3>1. Es rápido y es verificable</h3>
+<div class="tw"><table><caption>Corrida completa sobre una notebook con WSL. [H] medición propia.</caption><thead><tr><th>Etapa</th><th>Tiempo</th></tr></thead><tbody><tr><td>Indexar el genoma de 972 Mb</td><td class="num">18 s</td></tr><tr><td>Mapear 3.904 proteínas de referencia</td><td class="num">48 s</td></tr><tr><td>Total de punta a punta</td><td class="num"><strong>~66 s</strong></td></tr></tbody></table></div>
+<p>De las 3.904 proteínas, <strong>2.814 encontraron locus (72,1 %)</strong> y el 87,8 % de esos
+loci no tiene errores de marco de lectura ni codones de parada internos.</p>
+<p>El control está en el <a href="paso-07.html">paso 7</a>: las siete proteínas que los dos
+trabajos publicados confirmaron en esta especie se recuperan <strong>las siete</strong>, cada
+una con un solo locus.</p>
+
+<h3>2. Los candidatos del laboratorio caen en loci que ya teníamos</h3>
+<p>Es el punto que conecta todo lo demás. Los dos candidatos dirigidos al vector coinciden con
+loci de nuestro mapeo, en el mismo ensamblado y en el mismo cromosoma.</p>
+<div class="tw"><table><caption>Correspondencia entre los candidatos del laboratorio y nuestro mapeo independiente. [H]</caption><thead><tr><th>Candidato</th><th>Cromosoma</th><th>Nuestro locus</th></tr></thead><tbody><tr><td><code>BicC_Dm</code></td><td class="num">3</td><td class="num"><code>BicC</code> · Bicaudal C</td></tr><tr><td><code>ATPaseD_Dm</code></td><td class="num">8</td><td class="num"><code>Vha36-1</code> · V-ATPasa D</td></tr></tbody></table></div>
+<p>Que coincidan no es un resultado en sí mismo; lo valioso es la consecuencia: podemos puntuar
+sus candidatos contra los otros 7.414 loci sin pedirles nada.</p>
+
+<h3>3. Tres cosas de la planilla que conviene aclarar</h3>
+<p>El candidato de la ATPasa D es un marco de lectura <strong>parcial</strong>: le faltan los
+primeros 36 codones. El de cápside declara la posición 200-400 pero empieza en la 201, lo que
+mete un nucleótido de corrimiento si se reconstruye por coordenada. Y el de proteína de
+movimiento tiene <strong>dos marcos de lectura largos solapados</strong>, así que el ARN de
+doble cadena atacaría dos productos virales a la vez. <span class="tag q">?</span></p>
+
+<h2>Qué les preguntamos</h2>
+<div class="q nueva"><p class="p">El candidato de la ATPasa D es un marco parcial, le faltan los primeros 36 codones. ¿Es intencional, o es un recorte de lo que nos pasaron?</p><p class="d"><strong>Cambia:</strong> si la región que evaluamos es la que ustedes diseñaron.</p></div><div class="q nueva"><p class="p">Las coordenadas de la planilla, ¿están en base 0 o el extremo es abierto?</p><p class="d"><strong>Cambia:</strong> un nucleótido de corrimiento en todo lo que se reconstruya por coordenada.</p></div><div class="q nueva"><p class="p">El candidato de proteína de movimiento tiene dos marcos largos solapados. ¿Estaba contemplado que apunte a dos productos a la vez?</p><p class="d"><strong>Cambia:</strong> si eso cuenta como ventaja o como efecto no previsto.</p></div>
+
+
+<footer>
+  <p><span class="tag e">E</span> establecido · <span class="tag r">R</span> reportado
+  · <span class="tag h">H</span> hipótesis nuestra · <span class="tag q">?</span> incierto.
+  Cada afirmación técnica lleva su marcador y su fuente.</p>
+  <p>La identificación de los cuatro candidatos es de W5. El mapeo se reproduce con <em>pipeline/hemip_mapear.py</em> y <em>pipeline/resumir_miniprot.py</em>.</p>
+</footer>
+
+</div>
+</body></html>

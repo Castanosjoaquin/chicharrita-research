@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paso 1 · Acordar las reglas — Investigathón Y-Hat</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+  table.matriz{min-width:840px}
+  table.matriz th:not(:first-child):not(:last-child), table.matriz td.num{padding-left:8px; padding-right:8px; text-align:center}
+  table.matriz td:last-child{min-width:300px}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .toc{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); margin:26px 0 10px}
+  .card{border:1px solid var(--line); background:var(--surface); padding:18px 20px; display:block;
+        color:inherit; text-decoration:none}
+  .card:hover{border-color:var(--accent)}
+  .card .id{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+  .card .t{font-weight:650; margin:0 0 7px; line-height:1.3}
+  .card .d{font-size:.91rem; color:var(--text-dim); margin:0 0 10px}
+  .card .f{font-size:.82rem; color:var(--text-dim); margin:0}
+  .card .f a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line)}
+  .mem{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:18px 0}
+  .mem a{border:1px solid var(--line); background:var(--surface); padding:12px 14px; text-decoration:none; color:inherit}
+  .mem a:hover{border-color:var(--accent)}
+  .mem .n{font-weight:650; font-size:.95rem}
+  .mem .s{font-size:.84rem; color:var(--text-dim)}
+  .tag.h{background:var(--surface-2); color:var(--text-dim)}
+  .q{border:1px solid var(--line); background:var(--surface); padding:16px 18px; margin:0 0 12px}
+  .q .p{font-weight:650; margin:0 0 7px}
+  .q .d{font-size:.9rem; color:var(--text-dim); margin:0}
+  .q.nueva{border-left:3px solid var(--accent)}
+  .paso{display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 10px}
+  .paso a{font-size:.84rem; border:1px solid var(--line); background:var(--surface);
+          padding:6px 11px; text-decoration:none; color:var(--text-dim)}
+  .paso a:hover{border-color:var(--accent); color:var(--accent)}
+  .paso a.yo{background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650}
+  .paso a.no{opacity:.45}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+
+<header>
+  <p class="eyebrow">Plan de entregable · Paso 1 de 10 · Núcleo</p>
+  <h1>Acordar las reglas con el investigador</h1>
+  <p class="sub">Las preguntas que hay que hacer antes de seguir. Primero las que destraban el plan, después las que abrió haber corrido el método sobre candidatos públicos.</p>
+</header>
+
+<div class="paso"><a href="../index.html">← Portada</a><a href="../propuesta_entregable.html">La propuesta</a><a href="paso-01.html" class="yo">1. Acordar reglas</a><a href="paso-02.html">2. Fijar los datos</a><a href="paso-03.html">3. Entender cada candidato</a><a href="paso-04.html">4. Chequear contra la realidad</a><a href="paso-05.html">5. Estimar potencia</a><a href="paso-06.html">6. Combinar y decidir</a><a href="paso-07.html">7. Comprobar el método</a><a href="paso-08.html">8. Ficha por candidato</a><a href="paso-09.html">9. Reproducible y abierto</a><a class="no" title="Sin página propia: está en la propuesta" href="../propuesta_entregable.html#no-hacemos">10. Presentar con honestidad</a><a href="variante-a.html">Variante A · modelos de ARN</a><a href="variante-b.html">Variante B · lectura asistida</a></div>
+<div class="verdict">
+  <h2>Qué sale de este paso</h2>
+  <p>Un alcance acordado y reglas claras sobre el uso de las secuencias del laboratorio.
+  Es el único paso que no podemos adelantar solos: <strong>todo lo demás depende de estas
+  respuestas</strong>, y por eso es lo primero del checkpoint.</p>
+  <p style="margin-bottom:0">Son 37 preguntas en total.
+  Si el tiempo no alcanza, el bloque 1 es el que hay que hacer sí o sí; el bloque 2 puede
+  pasar al segundo checkpoint.</p>
+</div>
+
+<h2>Bloque 1 · Las que destraban el plan</h2>
+<p class="lead">Son las 15 de la propuesta, sin recortar. Cada una dice qué decisión
+nuestra cambia según la respuesta.</p>
+<h3>Alcance y reglas del juego</h3>
+<div class="q"><p class="p">Cuando el esquema oficial habla de «inhibición del crecimiento del patógeno», ¿incluye una vía indirecta, actuando sobre el insecto o sobre la planta?</p><p class="d"><strong>Cambia:</strong> si sumamos un eje sobre genes del insecto que el patógeno necesita para transmitirse.</p></div>
+<div class="q"><p class="p">¿Aceptan propuestas complementarias que no usen ARN de interferencia de forma directa?</p><p class="d"><strong>Cambia:</strong> si vale la pena explorar otras estrategias contra las bacterias del complejo.</p></div>
+<div class="q"><p class="p">¿Cuál es el formato esperado de la entrega, cómo se evalúa y cuánto pesa cada criterio?</p><p class="d"><strong>Cambia:</strong> cómo armamos la ficha por candidato y el informe general.</p></div>
+<h3>Los candidatos</h3>
+<div class="q"><p class="p">¿Con qué herramienta y con qué criterio clasificaron los fragmentos como «eficientes» en la planilla?</p><p class="d"><strong>Cambia:</strong> si podemos auditar y extender su filtro. Hoy no podemos reproducir esos cuatro números.</p></div>
+<div class="q"><p class="p">¿Sobre qué variante del virus se diseñaron los candidatos virales? ¿Tienen secuencias de variantes locales?</p><p class="d"><strong>Cambia:</strong> si el chequeo de conservación puede ser concluyente o queda como advertencia.</p></div>
+<div class="q"><p class="p">¿A qué región del genoma del virus corresponde el candidato rotulado como «proteína de movimiento»?</p><p class="d"><strong>Cambia:</strong> que no identifiquemos mal el blanco.</p></div>
+<div class="q"><p class="p">¿Alguno ya se sintetizó o se ensayó? ¿Por qué eligieron esas regiones y esos tamaños?</p><p class="d"><strong>Cambia:</strong> qué criterios ya aplicaron, y qué no hace falta que repitamos.</p></div>
+<h3>Datos del laboratorio</h3>
+<div class="q"><p class="p">¿Qué transcriptoma o genoma del insecto usan? ¿Pueden compartir el propio?</p><p class="d"><strong>Cambia:</strong> que nuestras posiciones coincidan con las suyas. Hoy trabajamos sobre un ensamblado público y las coordenadas no son intercambiables.</p></div>
+<div class="q"><p class="p">¿Tienen resultados previos en el insecto, incluidos los casos que no funcionaron?</p><p class="d"><strong>Cambia:</strong> es la única verdad de terreno que podría existir para medir si el método discrimina.</p></div>
+<h3>Biología y entrega</h3>
+<div class="q"><p class="p">¿El ARN llega al floema, o el insecto lo toma al probar el xilema? ¿Qué vía de entrega asumen?</p><p class="d"><strong>Cambia:</strong> el parámetro de entrega de toda la decisión.</p></div>
+<div class="q"><p class="p">¿Qué consideran éxito: bajar la expresión del gen, la mortalidad, o la transmisión del patógeno?</p><p class="d"><strong>Cambia:</strong> qué desenlace medimos. Son distintos y no se pueden intercambiar.</p></div>
+<div class="q"><p class="p">¿Cuál es exactamente el virus abreviado como «MSMV»?</p><p class="d"><strong>Cambia:</strong> la sigla corresponde a más de un virus y no se puede diseñar contra un blanco indefinido.</p></div>
+<div class="q"><p class="p">¿Qué organismos no objetivo les importa más cuidar, sobre todo entre los nativos?</p><p class="d"><strong>Cambia:</strong> el panel de especificidad entero. Hoy faltan datos de especies nativas.</p></div>
+<h3>Uso y publicación</h3>
+<div class="q"><p class="p">¿Podemos usar herramientas de terceros en línea con las secuencias del laboratorio, o solo en nuestras máquinas?</p><p class="d"><strong>Cambia:</strong> cómo se arma todo el análisis. La herramienta oficial de off-targets procesa del lado del servidor, así que por defecto no la usamos con sus secuencias.</p></div>
+<div class="q"><p class="p">¿Qué podemos publicar: código, datos curados, resultados derivados de los candidatos?</p><p class="d"><strong>Cambia:</strong> el alcance del paquete abierto.</p></div>
+
+<h2>Bloque 2 · Las que abrió haber corrido el método</h2>
+<p class="lead">Estas 16 surgieron de probar el método sobre blancos publicados y sobre
+los candidatos de ustedes, antes de tener estas respuestas. Son más finas y más técnicas:
+van después, y si no hay tiempo pasan al segundo checkpoint.</p>
+<h3>Paso 2 · Los datos</h3>
+<div class="q nueva"><p class="p">Los fenotipos de ARN de interferencia que usamos vienen de iBeetle-Base (<em>Tribolium castaneum</em>), que no tiene licencia abierta: se baja libre pero republicarlo requiere permiso expreso. ¿Les sirve que publiquemos el generador y no la tabla, o conviene pedir el permiso de forma institucional?</p><p class="d"><strong>Cambia:</strong> qué sale en el paquete abierto del paso 9.</p></div>
+<div class="q nueva"><p class="p">No hay transcriptoma anotado de cicadélidos nativos no plaga ni de parasitoides de <em>Dalbulus maidis</em>. El parasitismo de huevos en el noroeste argentino promedia 16,4 % y llega a 56,7 % en algunos sitios, así que es control biológico que hoy funciona gratis y no podemos evaluar. ¿Declaramos el vacío, o usamos genoma crudo sin anotar y sobre-marcamos el riesgo?</p><p class="d"><strong>Cambia:</strong> cómo se construye el panel de organismos no objetivo y qué se puede afirmar sobre él.</p></div>
+<h3>Paso 3 · Los candidatos</h3>
+<div class="q nueva"><p class="p">El candidato de la ATPasa D es un marco de lectura <strong>parcial</strong>: le faltan los primeros 36 codones. ¿Es intencional, o es un recorte de la secuencia que nos pasaron?</p><p class="d"><strong>Cambia:</strong> si la región que evaluamos es la que ustedes diseñaron.</p></div>
+<div class="q nueva"><p class="p">El candidato de cápside declara la posición 200-400 pero la región empieza en la 201. ¿Las coordenadas están en base 0, o el extremo es abierto?</p><p class="d"><strong>Cambia:</strong> un nucleótido de corrimiento al reconstruir cualquier posición por coordenada.</p></div>
+<div class="q nueva"><p class="p">El candidato de proteína de movimiento tiene dos marcos de lectura largos solapados, así que el ARN de doble cadena atacaría dos productos virales a la vez. ¿Estaba contemplado?</p><p class="d"><strong>Cambia:</strong> si eso se cuenta como ventaja o como efecto no previsto.</p></div>
+<h3>Paso 4 · Especificidad</h3>
+<div class="q nueva"><p class="p">¿Dónde ponen el corte de identidad para considerar que una coincidencia es riesgo? Medimos la curva completa: entre 17 y 15 nucleótidos idénticos se pierde más de la mitad del espacio de diseño, y de 18 para arriba la curva es casi plana. Alcanza con que nos digan si el corte va por arriba o por debajo de 17.</p><p class="d"><strong>Cambia:</strong> cuántos candidatos sobreviven al filtro. Es la palanca más grande de todo el método.</p></div>
+<div class="q nueva"><p class="p">El riesgo medido no está donde lo buscábamos. <em>Macrosteles quadrilineatus</em>, un cicadélido emparentado, explica sola el 60 % de los descartes, 70 veces más que el maíz. Pero <em>Macrosteles</em> es a su vez plaga y vector de fitoplasmas. ¿Cuenta como organismo no objetivo, o no?</p><p class="d"><strong>Cambia:</strong> si el panel se arma por parentesco o por valor ecológico. Son listas muy distintas.</p></div>
+<div class="q nueva"><p class="p">Cuando probamos con blancos publicados, tres ventanas resultaron idénticas a la bomba de protones vacuolar del <strong>maíz</strong>. ¿Qué hacen ustedes en ese caso: se descarta la ventana, o se descarta el gen entero?</p><p class="d"><strong>Cambia:</strong> si el filtro de especificidad opera sobre la ventana o sobre el blanco.</p></div>
+<h3>Paso 5 · Potencia</h3>
+<div class="q nueva"><p class="p">Elegir la mejor región dentro de un gen, en vez de tomar el promedio de ese gen, nos dio una mejora de alrededor del 7 % y no fue estadísticamente significativa en <strong>0 de 20 genes</strong>. ¿Ustedes observaron lo mismo, o la elección de región responde a otro criterio que no es el puntaje?</p><p class="d"><strong>Cambia:</strong> cuánto esfuerzo tiene sentido poner en afinar la región.</p></div>
+<div class="q nueva"><p class="p">¿Con qué criterio eligieron 200 nucleótidos para los candidatos virales y 300 para los del insecto?</p><p class="d"><strong>Cambia:</strong> si el largo es un parámetro de diseño o una restricción de síntesis.</p></div>
+<h3>Paso 6 · La decisión</h3>
+<div class="q nueva"><p class="p">Con 2.000 juegos de pesos tomados al azar, <strong>124 candidatos distintos</strong> pasan por el top-10 y solo <strong>5</strong> están ahí en más de la mitad de los casos. ¿Prefieren que entreguemos un orden total, o que declaremos explícitamente qué pares están empatados?</p><p class="d"><strong>Cambia:</strong> la forma del entregable. Un orden total es más cómodo y menos honesto.</p></div>
+<div class="q nueva"><p class="p">¿Qué peso le darían ustedes a cada criterio? Es la única parte del método que no se puede sacar de los datos.</p><p class="d"><strong>Cambia:</strong> el orden final. Hoy los pesos los elegimos nosotros y eso hay que decirlo.</p></div>
+<h3>Paso 7 · Validación</h3>
+<div class="q nueva"><p class="p">¿Tienen candidatos que <strong>no</strong> funcionaron? Casi todo lo publicado funcionó, así que sin casos negativos no se puede medir si un método discrimina o solo repite lo que ya se sabía.</p><p class="d"><strong>Cambia:</strong> si la validación retrospectiva mide algo o es una ilustración.</p></div>
+<div class="q nueva"><p class="p">¿Les sirve que dejemos el orden de prioridad congelado y fechado antes de que existan ensayos, para contrastarlo después?</p><p class="d"><strong>Cambia:</strong> convierte el entregable en algo verificable a futuro, no solo en un informe.</p></div>
+<h3>Pasos 8 y 9 · Entrega</h3>
+<div class="q nueva"><p class="p">¿Qué campos quieren en la ficha de cada candidato, y en qué formato la quieren recibir?</p><p class="d"><strong>Cambia:</strong> cómo se arma el entregable principal.</p></div>
+<div class="q nueva"><p class="p">Si usamos un lector automático para extraer datos de los papers, medimos que entre 6,3 % y 10,0 % de las citas que produce no se pueden verificar, y que cerca del 20 % de las citas textuales no respaldan lo que dicen respaldar. ¿Les sirve ese número como criterio de aceptación, o quieren otro umbral?</p><p class="d"><strong>Cambia:</strong> si la línea paralela de lectura asistida entra al entregable o queda como apoyo interno.</p></div>
+
+<h2>Bloque 3 · Sobre la línea paralela</h2>
+<p class="lead">Solo si sobra tiempo. La línea paralela no se hace si el núcleo no está
+cerrado, así que estas preguntas no bloquean nada.</p>
+<div class="q"><p class="p">¿Tienen datos propios de eficacia en el insecto, incluidos los casos que no funcionaron?</p><p class="d"><strong>Cambia:</strong> lo único que cambiaría si vale la pena entrenar algo con datos del insecto.</p></div><div class="q"><p class="p">¿Se pueden usar modelos de lenguaje alojados por terceros con las secuencias del laboratorio, o solo herramientas locales?</p><p class="d"><strong>Cambia:</strong> dónde puede correr cada variante y qué puede ver el modelo.</p></div><div class="q"><p class="p">¿Les interesa un componente de inteligencia artificial como aporte complementario? ¿Cómo lo evaluarían?</p><p class="d"><strong>Cambia:</strong> si invertimos tiempo en esta línea o la dejamos como nota.</p></div><div class="q"><p class="p">¿Qué decisión les resulta hoy más difícil de tomar, y dónde una ayuda computacional les serviría de verdad?</p><p class="d"><strong>Cambia:</strong> orienta la línea hacia algo que ustedes usarían.</p></div><div class="q"><p class="p">¿Qué resultado y qué vía de entrega toman como referencia para saber qué conviene predecir?</p><p class="d"><strong>Cambia:</strong> define qué tiene que ordenar un modelo para ser útil.</p></div><div class="q"><p class="p">¿Hay experimentos publicados o internos en el insecto que podamos usar como prueba, aunque sean pocos?</p><p class="d"><strong>Cambia:</strong> son la única forma de medir si algo de lo aprendido transfiere.</p></div>
+
+<div class="note">
+  <p class="t">Lo que este paso <em>no</em> decide</p>
+  <p>Nada de lo técnico. Las respuestas de acá fijan el alcance y las reglas; los resultados
+  que ya tenemos están en los pasos 4, 6 y 7, y no dependen de estas preguntas salvo en
+  qué umbral y qué pesos usar.</p>
+</div>
+
+
+<footer>
+  <p><span class="tag e">E</span> establecido · <span class="tag r">R</span> reportado
+  · <span class="tag h">H</span> hipótesis nuestra · <span class="tag q">?</span> incierto.
+  Cada afirmación técnica lleva su marcador y su fuente.</p>
+  <p>Las preguntas del bloque 1 salen de <em>propuesta_entregable.html</em>. Las del bloque 2 y 3 salen de los pasos 2 a 9 de este mismo plan.</p>
+</footer>
+
+</div>
+</body></html>
