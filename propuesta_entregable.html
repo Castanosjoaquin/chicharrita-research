@@ -71,6 +71,9 @@
   .step::before{content:""; position:absolute; left:-7px; top:7px; width:12px; height:12px;
                 background:var(--accent); border-radius:50%}
   .step .lbl{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0}
+  .step .row.hecho{margin-top:10px; padding-top:9px; border-top:1px dashed var(--line)}
+  .step .row.hecho .a{color:var(--accent)}
+  .step .row.hecho a{color:var(--accent); font-weight:650}
   .step h3{margin:2px 0 10px; font-size:1.08rem}
   .row{display:grid; grid-template-columns:118px 1fr; gap:4px 14px; font-size:.95rem; margin:0 0 6px}
   .row .a{color:var(--text-dim); font-weight:650}
@@ -195,6 +198,7 @@
     <span class="fb">Fichas</span><span class="ar">→</span>
     <span class="fb">Abrir y presentar</span>
   </div>
+  <p class="dim" style="font-size:.9rem">Cada paso enlaza a su propia página con lo que se hizo y lo que salió. El índice completo está en <a href="plan/paso-01.html">el plan</a>, y el resumen para el equipo en <a href="tablero/index.html">el tablero</a>.</p>
   <p class="dim" style="font-size:.9rem">Los recuadros verdes son el corazón de la propuesta. El resto lo prepara o lo vuelve creíble.</p>
 
   <ol class="steps">
@@ -204,6 +208,7 @@
       <h3>Acordar las reglas con el investigador</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Hacemos las preguntas que cambian el plan (están más abajo), y fijamos qué cuenta como buena entrega, en qué formato y qué se puede usar y publicar.</p></div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Un alcance acordado y reglas claras sobre el uso de las secuencias del laboratorio.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b">Las preguntas, en dos bloques: primero las que destraban el plan. <a href="plan/paso-01.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -211,6 +216,7 @@
       <h3>Fijar los datos de entrada</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Juntamos los datos públicos que hacen falta: genomas y transcriptomas del insecto, del maíz y de especies que no queremos afectar, más secuencias de referencia de los virus. Anotamos de dónde viene cada uno y bajo qué licencia. Las secuencias del laboratorio se tratan aparte y solo en nuestras máquinas.</p></div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Un paquete de datos fijo y documentado, para que cualquiera pueda repetir el análisis y obtener lo mismo.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b">El paquete de datos, y el problema de licencia que trae iBeetle-Base. <a href="plan/paso-02.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -218,6 +224,7 @@
       <h3>Entender qué es cada candidato</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Identificamos contra qué gen o región apunta cada uno, en qué organismo, y qué efecto se busca: reducir la descendencia del insecto, matarlo o frenar un virus.</p></div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Una identidad clara por candidato, con las dudas de rotulado marcadas para preguntar.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b">Cómo se ubica un gen sin anotación. Dos de los cuatro candidatos caen en loci que ya teníamos mapeados. <a href="plan/paso-03.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -233,6 +240,7 @@
         </div>
       </div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Tres diagnósticos por candidato, cada uno con su evidencia y sus límites.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b">El umbral decide más que el método, y el riesgo está en los cicadélidos emparentados, no en el maíz. <a href="plan/paso-04.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -240,6 +248,7 @@
       <h3>Estimar la potencia relativa</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Usamos rasgos de secuencia ya publicados para armar un puntaje de potencia. Sirve para ordenar, no para predecir cuánto silencia. Se acompaña siempre de su incertidumbre.</p></div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Una indicación gruesa de qué regiones y candidatos tienen más chances, con empates declarados donde la evidencia no alcanza.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b">Tres resultados negativos medidos: la región no discrimina, el acuerdo con dsRIP es grueso, y el techo del dato es 0,245. <a href="plan/paso-05.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -247,6 +256,7 @@
       <h3>Combinar y decidir con reglas escritas de antemano</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Declaramos los pesos y criterios antes de ver los resultados. Fijamos condiciones mínimas que no se compensan entre sí (alcance ético, trazabilidad, riesgo inaceptable). Calculamos dos escenarios, uno prudente y uno optimista, y probamos cuánto cambia el orden si se mueven los pesos.</p></div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Un orden de candidatos y, lo más útil, la medición más barata que más lo cambiaría.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b">Con 2.000 juegos de pesos, 124 candidatos pasan por el top-10 y solo 5 aguantan. <a href="plan/paso-06.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -254,6 +264,7 @@
       <h3>Comprobar que el método no se engaña</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Probamos el método sobre experimentos ya publicados en insectos y decimos con honestidad cuánto discrimina y qué no se puede saber con tan pocos datos. Un resultado de "con esto no se puede distinguir" también se reporta.</p></div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Una declaración clara de lo que el método sostiene y lo que no.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b"><code>Vha55</code> sale 1 de 4.929 en «matar». Cada blanco publicado sube en el objetivo para el que lo eligieron. <a href="plan/paso-07.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -261,6 +272,7 @@
       <h3>Armar la ficha de decisión de cada candidato</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Una ficha corta por candidato: qué lo sube, qué lo baja, qué no se pudo evaluar y qué dato falta, con una idea de quién podría medirlo.</p></div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Las fichas y un informe general que cuenta el recorrido completo.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b">La cascada del «por qué quedó ahí» existe y está probada. Falta armarla para los cuatro candidatos reales. <a href="plan/paso-08.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -268,6 +280,7 @@
       <h3>Dejarlo reproducible y abierto</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Todo se regenera con un solo comando, con entornos y versiones fijados y licencias declaradas. Publicamos también los caminos descartados y los resultados negativos, y los datos curados que otros puedan reutilizar.</p></div>
       <div class="row"><span class="a">Qué sale</span><p class="b">Un repositorio abierto que sirve más allá del evento.</p></div>
+      <div class="row hecho"><span class="a">Ya hecho</span><p class="b">Un comando regenera todo, con 17 pruebas y hashes. Qué se publica y qué no. <a href="plan/paso-09.html">Ver el paso →</a></p></div>
     </li>
 
     <li class="step">
@@ -371,7 +384,7 @@
   <p><strong>La idea.</strong> Hay modelos publicados, del tipo "lenguaje", que predicen qué tan bien silencia un fragmento de ARN. Se entrenaron casi solo con datos humanos de cultivos celulares. Nadie midió si lo que aprendieron sirve para insectos. Podemos entrenar o usar una versión chica con datos humanos públicos y medirla sobre los pocos experimentos publicados en insectos, comparándola con el método simple del núcleo.</p>
   <ol class="steps">
     <li class="step"><p class="lbl">A, paso 1</p><h3>Fijar las reglas de antemano</h3>
-      <div class="row"><span class="a">Qué hacemos</span><p class="b">Elegimos el modelo, los datos y la métrica antes de ver ningún resultado, para no ajustarnos a lo que sale.</p></div></li>
+      <div class="row"><span class="a">Qué hacemos</span><p class="b">Elegimos el modelo, los datos y la métrica antes de ver ningún resultado, para no ajustarnos a lo que sale.</p></div><div class="row hecho"><span class="a">Ya hecho</span><p class="b">Ya medido: 0,604 contra 0,598. Con estos datos, lo sofisticado no gana. <a href="plan/variante-a.html">Ver el paso →</a></p></div></li>
     <li class="step"><p class="lbl">A, paso 2</p><h3>Entrenar solo con datos humanos</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">Usamos datos humanos públicos, separando bien lo que se entrena de lo que se evalúa para evitar fugas.</p></div></li>
     <li class="step"><p class="lbl">A, paso 3</p><h3>Probar sobre insectos, sin reentrenar</h3>
@@ -390,7 +403,7 @@
   <p><strong>La idea.</strong> Usar modelos de lenguaje para tareas de lectura y armado: extraer datos de papers, redactar fichas, revisar afirmaciones. Nunca para decidir ni para generar secuencias. Todo lo que importa lo comprueba un control automático que el modelo no controla.</p>
   <ol class="steps">
     <li class="step"><p class="lbl">B, paso 1</p><h3>Definir tareas acotadas</h3>
-      <div class="row"><span class="a">Qué hacemos</span><p class="b">Limitamos el modelo a leer, extraer y redactar sobre texto público.</p></div></li>
+      <div class="row"><span class="a">Qué hacemos</span><p class="b">Limitamos el modelo a leer, extraer y redactar sobre texto público.</p></div><div class="row hecho"><span class="a">Ya hecho</span><p class="b">Ya medido: entre 6,3 % y 10,0 % de citas no verificables, y 19 veces de diferencia de costo entre modelos. <a href="plan/variante-b.html">Ver el paso →</a></p></div></li>
     <li class="step"><p class="lbl">B, paso 2</p><h3>Anclar cada afirmación a una fuente</h3>
       <div class="row"><span class="a">Qué hacemos</span><p class="b">El modelo solo puede apuntar a fuentes ya verificadas, y cada afirmación queda registrada con su cita.</p></div></li>
     <li class="step"><p class="lbl">B, paso 3</p><h3>Controles automáticos</h3>
