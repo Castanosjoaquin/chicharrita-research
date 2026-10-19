@@ -264,3 +264,31 @@ estrictamente más completo.
 produjo, que las aplicó y volvió a medir. Y queda una advertencia de método en el
 repositorio: **un cero devuelto por una consulta por nombre común no es una
 ausencia**; hay que resolver el taxid primero.
+
+---
+
+## D13 — El port de si-Fi21 tiene dos modos, y el fiel conserva los defectos a propósito
+**Fecha:** 2026-10-19
+**Decisión:** `tools/sifi21_port/` expone un modo `fiel`, que reproduce si-Fi21 tal
+como es —incluida la rama que permite declarar eficiente un siRNA que falla los
+filtros termodinámicos—, y un modo `corregido` con los arreglos justificados. El
+modo por defecto del CLI es el corregido; el fiel hay que pedirlo.
+**Alternativas consideradas:** (a) portar y arreglar, sin conservar el
+comportamiento viejo; (b) portar sin arreglar nada y dejar la crítica por escrito;
+(c) dos implementaciones separadas.
+**Criterio:** arreglar sin conservar hace imposible la tarea que el investigador
+pidió primero, que es auditar los números que ya existen. Si el modo fiel no
+existe, no se puede responder «¿de dónde salen los 114?», porque cualquier
+discrepancia se confunde con nuestros propios arreglos. Al revés, portar sin
+arreglar nos deja usando para diseñar una regla que sabemos mal. Dos
+implementaciones separadas duplican el código y se desincronizan; un parámetro de
+modo sobre el mismo código no, y además permite **medir** cuánto cambia cada
+arreglo, que es la parte interesante.
+**Consecuencia:** la diferencia entre los dos modos es un dato, no una molestia.
+Medida sobre el corpus, la rama del original agrega 11 de 133 «eficientes» en
+`MP_MRFV_full` y 3 de 32 en `CP_MRFV_full`: entre el 8 y el 9 % de lo que si-Fi
+reporta como eficiente lo es solo porque la regla terminal se saltea la física.
+Ese número es un entregable, y no habría existido con ninguna de las
+alternativas. Queda en `tools/sifi21_port/CAMBIOS.md` C1.
+**Nota de alcance:** el modo fiel es fiel al fuente de GitHub, que no es idéntico
+al binario de 2017 de SourceForge. `[?]`

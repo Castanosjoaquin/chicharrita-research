@@ -454,3 +454,62 @@ Todo lo de abajo viene de `research/R6_estrategias_molicutes/`. Los pendientes y
 - **Año de S27 en R1 (abierta).** R1 lo registra como 2026; un listado de ResearchGate lo fecha en diciembre de 2025.
 - **Transcriptomas y ensamblado de *D. maidis* en la Línea 2:** accesiones tomadas de W3 y de nombres de archivo de W5, no re-verificadas en R6.
 - **Rechazo de una herramienta (registrado, no esquivado).** Al cerrar R6, una escritura en la memoria persistente del agente (resumen de siete hallazgos de R6) fue rechazada por un clasificador de seguridad («posible inyección de prompt») y no se guardó. No se reformuló ni se reintentó. Los hallazgos están completos en `research/R6_estrategias_molicutes/` (REPORT.md, `datos/COMANDOS.md`); lo único que no quedó es el resumen en la memoria del agente. Decidir si se quiere guardarlo a mano.
+
+## Port de si-Fi21 (2026-10-19) — pendientes y preguntas
+
+Todo lo de abajo viene de `tools/sifi21_port/` y de
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md`.
+
+### Para el investigador
+
+1. **¿Qué parámetros químicos cambió exactamente?** En el checkpoint dijo que tuvo
+   que actualizar parámetros desactualizados. El si-Fi21 que se distribuye **ya**
+   usa las tablas de Chen et al. 2012 y **ya** calcula a 22 °C, así que los dos
+   candidatos obvios no son. La respuesta decide si nuestro modo «fiel» es fiel a
+   lo que ellos corren, y es la que explicaría por qué los conteos no se
+   reproducen. Pregunta de alto rendimiento: barata para él, y nos desbloquea.
+2. **¿Contra qué base de datos corrió el modo diseño?** El conteo de «eficientes»
+   del original suma **un registro por hit de Bowtie en hebra +**, no un siRNA
+   único (`general_helpers.py:113`), así que el número depende de la base. Sin eso
+   no hay forma de reproducirlo aunque el criterio sea idéntico.
+3. **¿La región 1-200 se eligió por off-targets y no por densidad de eficientes?**
+   Él mismo lo sospechó y dijo no recordarlo. Medido: en `CP_MRFV_full` la región
+   1-200 tiene 8-9 siRNA eficientes y la región 195-394 tiene 21, más del doble. Si
+   fue por off-targets, cerramos el punto; si no, la elección es mejorable y eso es
+   un resultado nuestro.
+4. **¿El «130» que mencionó existe?** En el checkpoint citó «114, 130» como
+   ejemplos de la columna. Nuestros cuatro declarados son 114, 35, 199 y 33. No hay
+   ningún 130. Puede ser un recuerdo impreciso o una columna que no tenemos. `[?]`
+
+### Pendientes internos
+
+- **Dos de los cuatro genes no se pudieron verificar.** `BicC_Dm_full` (199
+  declarados) y `ATPaseD_Dm_full` (33) son transcritos multiexónicos con 97,6-100 %
+  y 99,3-100 % de identidad contra el ensamblado, así que reconstruirlos desde
+  coordenadas públicas daría una secuencia distinta. Hace falta que alguien con el
+  corpus corra `barrido.py` sobre los cuatro. El comando está en el informe.
+- **El corpus no está en esta máquina.** `work/` está fuera del control de
+  versiones y `baseline_dsrip/` quedó vacío: ese trabajo se hizo en otro equipo con
+  rutas absolutas. Para repetir cualquier medición sobre las secuencias de EPILAB
+  hay que volver a copiar el corpus.
+- **Tablas de mismatch de ARN.** El original usa tablas de ADN para mismatches
+  dentro de un cálculo de ARN, de modo que un par G-U no se trata como wobble. No
+  se corrigió porque no hay una fuente abierta con los parámetros de ARN
+  equivalentes, y porque se midió que en esta ruta de cálculo esas tablas no se
+  consultan nunca. Si alguna vez se extiende el cálculo a secuencias desapareadas,
+  hay que conseguir esos parámetros de una fuente que se pueda abrir.
+- **Ponderación por posición de los mismatches en off-targets.** Es la única
+  crítica de la lista revisada que resultó correcta y sigue pendiente: `bowtie -v N`
+  cuenta mismatches ciego a la posición, cuando la región semilla (nt 2-8) y las
+  posiciones catalíticas 10-11 no valen lo mismo. Pertenece al módulo de
+  off-targets, no al de eficiencia.
+- **Las dos versiones de ViennaRNA no dan lo mismo** y no está decidido cuál es la
+  nuestra. RNAplfold 2.1.5 (el que trae si-Fi) contra 2.7.2 (las ligaduras de
+  Python) difieren en 9 eficientes sobre 1.243 ventanas en `MP_MRFV_full`. Por
+  ahora se reporta cuál se usó en cada corrida.
+- **El fuente de GitHub no es el binario de 2017.** `Resources/ui_sifi2015.py` mide
+  23.791 bytes en la instalación y 23.787 en el clon. No se investigó en qué
+  difieren. `[?]`
+- **Licencia del original en conflicto:** el artículo dice CC BY-SA 4.0 y
+  SourceForge dice CC BY-NC 2.0. Para uso académico no cambia nada; si algo de esto
+  se publicara, hay que resolverlo. `[?]`

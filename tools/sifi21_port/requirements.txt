@@ -1,0 +1,4 @@
+﻿# Dependencias del port de si-Fi21. Versiones con las que se corrio y verifico.
+biopython==1.88
+ViennaRNA==2.7.2
+numpy

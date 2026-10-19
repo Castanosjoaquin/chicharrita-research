@@ -15,3 +15,7 @@ work/
 # tiene licencia abierta: se publica el generador, no el dato.
 pipeline/salida/
 pipeline/datos/
+
+# Bytecode de Python
+__pycache__/
+*.pyc

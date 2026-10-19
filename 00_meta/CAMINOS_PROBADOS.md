@@ -222,6 +222,11 @@ reproducibilidad. Se reimplementan sus reglas de selección de hebra guía con
 ViennaRNA y Bowtie, que es lo que el propio artículo describe.
 **Estado:** descartado como dependencia; **en pie como línea de base** a la que
 compararse, asumiendo la fricción de hacerlo correr una vez.
+**Actualización 2026-10-19:** la línea de base ya está construida y no requiere la
+herramienta original. El instalador de si-Fi21 trae `bowtie.exe` 0.11.3 y
+`RNAplfold.exe` 2.1.5 como ejecutables de línea de comandos, y el criterio está
+portado a Python 3 en `tools/sifi21_port/`. La decisión de no depender del
+programa original se mantiene; lo que cambia es que ahora hay con qué compararse.
 
 ### Ensamblar el transcriptoma de *Dalbulus maidis* de novo
 **Qué se intentó:** ensamblar desde las corridas públicas de RNA-seq, que R2
@@ -301,6 +306,19 @@ eficientes**, cuenta aciertos.
 **Estado:** descartado por ahora, y convertido en la primera pregunta técnica
 para el investigador.
 **Qué lo reabriría:** que nos digan la herramienta y la versión.
+**Actualización 2026-10-19: el descarte se refuerza, ahora con la herramienta.**
+Ya sabemos la herramienta —el investigador confirmó en el checkpoint que si-Fi21
+es la base— y sigue sin reproducirse. Con un port fiel del programa, **ninguna de
+15.120 configuraciones** (3 temperaturas × 2 versiones de ViennaRNA × 2 modos ×
+21 ventanas de accesibilidad × 5 umbrales de extremos × 6 de accesibilidad × regla
+terminal sí/no) reproduce a la vez los 114 de `MP_MRFV_full` y los 35 de
+`CP_MRFV_full`. Antes falló nuestra reimplementación de los criterios publicados;
+ahora falla el programa mismo. Medición completa en
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md`.
+**Qué lo reabriría:** que nos pasen la versión modificada que usó el laboratorio
+(el investigador dijo que cambió parámetros), o la base de datos de la corrida —el
+conteo del original suma un registro por hit de Bowtie, no un siRNA único, así que
+depende de la base.
 
 ### Correr si-Fi21 para comparar criterios
 **Qué se intentó:** usarlo como línea de base, como preveía la ola 1.
@@ -309,6 +327,16 @@ gráfica y no es ejecutable acá, lo que la ola 1 ya sospechaba y ahora está
 confirmado en la práctica.
 **Estado:** descartado como dependencia; se reimplementan sus reglas, que el
 propio artículo describe.
+**Reabierto y resuelto, 2026-10-19.** El descarte era correcto en cuanto a la
+interfaz gráfica y equivocado en cuanto al cálculo. Dos cosas lo reabrieron: el
+instalador se puede correr en la máquina Windows del equipo, y **trae los dos
+motores de cálculo como ejecutables de línea de comandos** (`bowtie.exe` 0.11.3 y
+`RNAplfold.exe` 2.1.5, en `ToCopy/`), que sí son invocables. Además el fuente está
+en GitHub y es legible. Con eso se armó `tools/sifi21_port/`, que corre el criterio
+sin interfaz, en dos modos: fiel al original y corregido.
+**Lección de método:** «es una aplicación gráfica» no implica «su cálculo es
+inalcanzable». Conviene mirar qué binarios empaqueta un instalador antes de
+descartarlo.
 
 ### Subir las secuencias de EPILAB a dsRNA-Engineer o al BLAST web
 **Qué se intentó:** nada: quedó vedado de entrada por la regla de
@@ -370,3 +398,59 @@ nombre no es una ausencia.
 **Qué se intentó:** nada; entra acá antes de que alguien lo haga.
 **Qué pasó:** queda fuera de alcance, sin excepción: aumentaría la virulencia, la transmisibilidad o el rango de hospedadores. El trabajo sobre efectores sólo es válido en modo defensivo (inventario y candidatos a inhibición).
 **Estado:** descartado de forma permanente. No es una limitación técnica: es una condición del trabajo.
+
+---
+
+## Nivel herramienta — el port de si-Fi21 (2026-10-19)
+
+### Dar por desactualizadas las tablas termodinámicas de si-Fi21
+**Qué se intentó:** aplicar una lista de «parámetros químicos a actualizar» que
+asumía que si-Fi usa las tablas de Freier et al. (1986) y Xia et al. (1998), y que
+calcula a 37 °C como las herramientas de cultivo de mamífero.
+**Qué pasó:** descartado al abrir el fuente. `free_energy.py:278` declara
+`nn_table=RNA_NN3`, que es **Chen et al. 2012**, o sea las tablas modernas. Las
+viejas están definidas en el archivo pero no se usan, y de ahí sale la confusión. Y
+la temperatura está fijada en **22 °C** en dos lugares independientes
+(`free_energy.py:420` y `sifi_pipeline.py:62`), no en 37. Los dos cambios más
+prominentes de la lista ya estaban hechos en el programa.
+**Estado:** descartados los dos. **Lección de método:** un diagnóstico de software
+razonado desde el artículo y la época de la herramienta acierta donde el
+razonamiento general aplica y falla donde hacía falta abrir el archivo. Se abre el
+archivo.
+
+### Cambiar la corrección salina de si-Fi para acercarla al medio intracelular
+**Qué se intentó:** agregar Mg²⁺ y llevar la fuerza iónica a condiciones
+fisiológicas, sobre el supuesto de que el original calcula a 1 M de NaCl.
+**Qué pasó:** descartado por dos razones. El original ya aplica corrección salina a
+~70 mM de monovalentes (`Na=20, K=50, saltcorr=5`). Y cambiarla **no puede mover
+ningún veredicto**: el método 5 es `0.368·(len−1)·ln(mon)`, función solo del largo,
+y si-Fi nunca usa un ΔG absoluto —compara dos ventanas de 3 nt del mismo largo—, así
+que la corrección se cancela exacto en la resta. Verificado como test.
+**Estado:** descartado como cambio con efecto. El parámetro sigue expuesto, con la
+aclaración de que no hace nada en esta ruta de cálculo.
+
+### Sustituir las tablas de mismatch de ADN por equivalentes de ARN
+**Qué se intentó:** arreglar una inconsistencia química real del original, que usa
+`DNA_IMM1` y `DNA_TMM1` (Allawi & SantaLucia 1998, ADN/ADN) dentro de un cálculo
+por lo demás de ARN, de modo que un par G-U no se trata como wobble.
+**Qué pasó:** no se hizo, por dos motivos. Primero, sustituirlas exige parámetros
+de mismatch de ARN publicados y verificados, y no hay ninguno abierto: inventarlos
+o trasladarlos de memoria viola la regla de evidencia. Segundo, se midió si hacía
+falta: se instrumentó el contador de consultas a esas tablas y en los cuatro casos
+corridos dio **cero**. En la ruta que si-Fi usa para la eficiencia, las claves de
+mismatch no se alcanzan nunca.
+**Estado:** no corregido, instrumentado y documentado. El defecto existe y no
+afecta a este uso. **Qué lo reabriría:** extender el cálculo a secuencias
+desapareadas, o conseguir las tablas de ARN de una fuente que se pueda abrir.
+
+### Tomar un acierto numérico en un solo gen como reproducción del criterio
+**Qué se intentó:** nada todavía, y por eso entra acá antes de que alguien lo haga.
+**Qué pasó:** el caso apareció medido. El modo corregido con el RNAplfold del
+instalador da **exactamente 114** en `MP_MRFV_full`, que es el número declarado por
+EPILAB. Parecía la respuesta. Esa misma configuración da 25 en `CP_MRFV_full` contra
+35 declarados: era coincidencia. Con un espacio de 15.120 configuraciones y
+conteos de dos o tres cifras, los aciertos aislados son esperables.
+**Estado:** descartado como criterio. **La regla operativa:** una configuración vale
+solo si reproduce **todos** los conteos a la vez, y si además cae cerca de los
+valores por defecto. Casi-aciertos dispersos en parámetros mutuamente
+incompatibles son firma de casualidad, no de hallazgo.
