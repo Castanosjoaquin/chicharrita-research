@@ -135,42 +135,25 @@
   .paso a.yo{background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650}
   .paso a.no{opacity:.45}
 
-  /* Barra superior fija: titulo, subtitulo y pestanas, siempre a la vista. */
-  .barra{position:sticky; top:0; z-index:60; background:var(--bg);
-         border-bottom:1px solid var(--line); padding:12px 0 10px; margin:0 0 34px}
-  .barra .eyebrow{font-size:.72rem; margin:0 0 3px}
-  .barra h1{font-size:1.16rem; line-height:1.25; margin:0 0 3px; letter-spacing:-.01em}
-  .barra .sub{font-size:.88rem; margin:0; max-width:78ch;
-              overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .pestanas{display:flex; gap:7px; margin:9px 0 0; overflow-x:auto;
-            scrollbar-width:thin; padding-bottom:2px}
-  .pestanas a{flex:0 0 auto; font-size:.8rem; border:1px solid var(--line);
-              background:var(--surface); padding:5px 10px; text-decoration:none;
-              color:var(--text-dim); white-space:nowrap}
+  .pestanas{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 0}
+  .pestanas a{font-size:.84rem; border:1px solid var(--line);
+              background:var(--surface); padding:6px 11px; text-decoration:none;
+              color:var(--text-dim)}
   .pestanas a:hover{border-color:var(--accent); color:var(--accent)}
   .pestanas a.yo{background:var(--accent-soft); color:var(--accent);
                  border-color:transparent; font-weight:650}
-  .pestanas a.vuelta{margin-left:auto; border-style:dashed}
-  [id]{scroll-margin-top:165px}
-  @media (max-width:640px){
-    .barra .sub{display:none}
-    .barra h1{font-size:1.02rem}
-  }
 </style>
 
 </head>
 <body>
-
-<header class="barra">
-  <div class="wrap">
-    <p class="eyebrow">Tablero del equipo · lectura rápida</p>
-    <h1>Dónde está el riesgo</h1>
-    <p class="sub">Especificidad: el umbral, las especies que de verdad descartan, y el hueco que no se puede medir.</p>
-    <nav class="pestanas" aria-label="Páginas"><a href="../index.html">Portada</a><a href="../tablero/index.html">Qué tenemos corriendo</a><a href="../tablero/riesgo.html" class="yo">Dónde está el riesgo</a><a href="../tablero/orden.html">Qué tan firme es el orden</a><a href="../tablero/limites.html">Qué sabemos que no sabemos</a></nav>
-  </div>
-</header>
-
 <div class="wrap">
+
+<header>
+  <p class="eyebrow">Tablero del equipo · lectura rápida</p>
+  <h1>Dónde está el riesgo</h1>
+  <p class="sub">Especificidad: el umbral, las especies que de verdad descartan, y el hueco que no se puede medir.</p>
+  <nav class="pestanas" aria-label="Páginas"><a href="../index.html">Portada</a><a href="../tablero/index.html">Qué tenemos corriendo</a><a href="../tablero/riesgo.html" class="yo">Dónde está el riesgo</a><a href="../tablero/orden.html">Qué tan firme es el orden</a><a href="../tablero/limites.html">Qué sabemos que no sabemos</a></nav>
+</header>
 
 
 <div class="verdict">

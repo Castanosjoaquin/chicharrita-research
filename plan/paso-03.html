@@ -135,42 +135,25 @@
   .paso a.yo{background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:650}
   .paso a.no{opacity:.45}
 
-  /* Barra superior fija: titulo, subtitulo y pestanas, siempre a la vista. */
-  .barra{position:sticky; top:0; z-index:60; background:var(--bg);
-         border-bottom:1px solid var(--line); padding:12px 0 10px; margin:0 0 34px}
-  .barra .eyebrow{font-size:.72rem; margin:0 0 3px}
-  .barra h1{font-size:1.16rem; line-height:1.25; margin:0 0 3px; letter-spacing:-.01em}
-  .barra .sub{font-size:.88rem; margin:0; max-width:78ch;
-              overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .pestanas{display:flex; gap:7px; margin:9px 0 0; overflow-x:auto;
-            scrollbar-width:thin; padding-bottom:2px}
-  .pestanas a{flex:0 0 auto; font-size:.8rem; border:1px solid var(--line);
-              background:var(--surface); padding:5px 10px; text-decoration:none;
-              color:var(--text-dim); white-space:nowrap}
+  .pestanas{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 0}
+  .pestanas a{font-size:.84rem; border:1px solid var(--line);
+              background:var(--surface); padding:6px 11px; text-decoration:none;
+              color:var(--text-dim)}
   .pestanas a:hover{border-color:var(--accent); color:var(--accent)}
   .pestanas a.yo{background:var(--accent-soft); color:var(--accent);
                  border-color:transparent; font-weight:650}
-  .pestanas a.vuelta{margin-left:auto; border-style:dashed}
-  [id]{scroll-margin-top:165px}
-  @media (max-width:640px){
-    .barra .sub{display:none}
-    .barra h1{font-size:1.02rem}
-  }
 </style>
 
 </head>
 <body>
-
-<header class="barra">
-  <div class="wrap">
-    <p class="eyebrow">Plan de entregable · Paso 3 de 10 · Núcleo</p>
-    <h1>Entender qué es cada candidato</h1>
-    <p class="sub">Cómo se ubica un gen en un genoma sin anotación, y dónde caen los candidatos del laboratorio en ese mapa.</p>
-    <nav class="pestanas" aria-label="Páginas"><a href="../propuesta_entregable.html">La propuesta</a><a href="../plan/paso-01.html">1. Acordar reglas</a><a href="../plan/paso-02.html">2. Fijar los datos</a><a href="../plan/paso-03.html" class="yo">3. Entender cada candidato</a><a href="../plan/paso-04.html">4. Chequear contra la realidad</a><a href="../plan/paso-05.html">5. Estimar potencia</a><a href="../plan/paso-06.html">6. Combinar y decidir</a><a href="../plan/paso-07.html">7. Comprobar el método</a><a href="../plan/paso-08.html">8. Ficha por candidato</a><a href="../plan/paso-09.html">9. Reproducible y abierto</a><a href="../plan/variante-a.html">A · modelos de ARN</a><a href="../plan/variante-b.html">B · lectura asistida</a></nav>
-  </div>
-</header>
-
 <div class="wrap">
+
+<header>
+  <p class="eyebrow">Plan de entregable · Paso 3 de 10 · Núcleo</p>
+  <h1>Entender qué es cada candidato</h1>
+  <p class="sub">Cómo se ubica un gen en un genoma sin anotación, y dónde caen los candidatos del laboratorio en ese mapa.</p>
+  <nav class="pestanas" aria-label="Páginas"><a href="../propuesta_entregable.html">La propuesta</a><a href="../plan/paso-01.html">1. Acordar reglas</a><a href="../plan/paso-02.html">2. Fijar los datos</a><a href="../plan/paso-03.html" class="yo">3. Entender cada candidato</a><a href="../plan/paso-04.html">4. Chequear contra la realidad</a><a href="../plan/paso-05.html">5. Estimar potencia</a><a href="../plan/paso-06.html">6. Combinar y decidir</a><a href="../plan/paso-07.html">7. Comprobar el método</a><a href="../plan/paso-08.html">8. Ficha por candidato</a><a href="../plan/paso-09.html">9. Reproducible y abierto</a><a href="../plan/variante-a.html">A · modelos de ARN</a><a href="../plan/variante-b.html">B · lectura asistida</a></nav>
+</header>
 
 
 <div class="verdict">
