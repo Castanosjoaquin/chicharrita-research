@@ -9,7 +9,10 @@ Tres resultados:
 
 1. **Ninguna configuración de si-Fi21 reproduce los cuatro conteos declarados.**
 2. **Las cuatro regiones elegidas por EPILAB están por debajo del óptimo** por
-   densidad de siRNA eficientes, entre un 25 % y un 46 %.
+   densidad de siRNA eficientes, entre un 19 % y un 46 %. (Decía «entre un 25 % y un
+   46 %», que no coincidía con la tabla de §3: las brechas son −21, −19, −46 y −25 %.
+   Corregido el 2026-10-20; era un error de redacción del resumen, no de la tabla.
+   **Y ver la advertencia del final de §3: buena parte de esa brecha es artefacto.**)
 3. **Los off-targets no explican esas elecciones.** En `BicC_Dm` la contradicen
    de frente: la región elegida es a la vez menos eficiente y once veces más
    expuesta que la mejor alternativa.
@@ -248,6 +251,26 @@ densidad. `[E]`
 Esto responde lo que el investigador planteó él mismo: dijo que en teoría debería
 haber elegido las regiones con más eficientes, que tal vez no lo hizo, y que quizá
 fue por off-targets, pero que no lo recordaba —«fue hace dos años».
+
+> **Advertencia agregada el 2026-10-20, y cambia cómo hay que leer esta tabla.** La
+> columna «brecha» compara contra un **máximo sobre cientos de regiones
+> superpuestas**, que está sesgado hacia arriba por construcción. Medido: barajando
+> al azar la etiqueta de eficiente entre las ventanas de cada gen, el máximo queda
+> igual entre un 17 % y un 46 % por encima de la media, **sin que haya ninguna
+> señal**. Entre la mitad y casi toda la brecha de esta tabla es ese artefacto.
+>
+> La cantidad que sí es falsable es el percentil de la región elegida dentro de la
+> distribución completa de su gen: **`MP_MRFV` está en el percentil 91** —o sea que
+> es mejor que nueve de cada diez regiones posibles, no «un 21 % por debajo»— y las
+> otras tres están alrededor de la mediana, indistinguibles de elegir al azar dentro
+> del gen. Y bajo el nulo conservador de bloques de 30 ventanas, el mismo que usó el
+> resultado del 7,2 % del pipeline, el efecto de región **no resiste en ninguno de
+> los cuatro genes**.
+>
+> **Consecuencia práctica:** las recomendaciones de cambiar de región que siguen de
+> acá no se sostienen en la densidad. Se sostienen en el eje de off-targets, que es
+> lo que §4 muestra abajo. Detalle y mediciones en
+> `research/ola2/W7_ranking/REPORT.md` §1, y la decisión en `DECISIONS.md` D15.
 
 ## 4. El cruce con off-targets a 21 nt
 

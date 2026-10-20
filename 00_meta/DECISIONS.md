@@ -354,3 +354,206 @@ van punteados para no darlos por comparables.
 banda, la curva da **exactamente** el conteo de esa región en la tabla. Es una
 propiedad verificable, y está verificada en las ocho combinaciones de gen y región.
 Un gráfico que contradiga su propia tabla es peor que no tener gráfico.
+
+---
+
+## D15 — La contradicción del 7,2 % se adjudica midiendo, y lo que las separa es el nulo
+**Fecha:** 2026-10-20
+**Decisión:** las dos mediciones que parecían contradecirse —`pipeline/REPORT.md` §6,
+que dice que afinar la región no discrimina, y `sifi21_reproduccion.md` §3, que dice
+que las cuatro regiones de EPILAB están 19-46 % por debajo del óptimo— **no se
+contradicen**, y la diferencia se explica entera por el modelo nulo y por el sesgo
+del máximo. El ranking **no** apoya ninguna recomendación de mover una región en la
+ganancia de densidad; la apoya en la exposición a no objetivo.
+**Alternativas consideradas:** (a) declarar que no son comparables porque miden
+cantidades distintas y seguir, que es una explicación y no una adjudicación;
+(b) elegir una de las dos por autoridad del documento más reciente; (c) hacer la
+medición que faltaba, que es construir el nulo del lado de si-Fi21.
+**Criterio:** se hizo (c), con tres resultados. **Primero**, el nulo del 7,2 % sí es
+reproducible: está en `baseline_dsrip/region_nulo_multigen.py`, no en
+`region_scoring.py` como decía el registro, y con las rutas corregidas da la misma
+ganancia mediana de 7,2 % y los mismos 0 de 20 genes. Tiene una asimetría de método
+—paso 5 para el observado y 20 para el nulo— y corregirla no cambia el veredicto.
+**Segundo**, el percentil reemplaza al porcentaje: la región de `MP_MRFV` está en el
+percentil 91 de su propio gen y las otras tres alrededor de la mediana, lo que es
+una afirmación falsable donde «21 % por debajo del óptimo» no lo era, porque el
+óptimo es un máximo sobre cientos de regiones superpuestas y está sesgado hacia
+arriba. Medido: barajando la etiqueta de eficiente, el máximo queda 17-46 % por
+encima de la media sólo por maximizar. **Tercero**, con el mismo estadístico sobre
+los cuatro genes, el nulo que baraja etiquetas da 3 de 4 significativos y el nulo de
+bloques de 30 —el del 7,2 %— da 0 de 4. Las dos mediciones contestan preguntas
+distintas: si las eficientes están agrupadas (sí) y si el mejor grupo es mejor que
+otro grupo (no).
+**Consecuencia:** el ranking recomienda mover región en `BicC_Dm` y `ATPaseD_Dm`
+**por el veto de off-target y no por densidad**, y lo dice así. La correlación entre
+el puntaje biofísico del pipeline y la densidad de si-Fi21 es +0,63 y +0,49 en los
+dos genes donde la comparación tiene poder, así que una es sustituta imperfecta de
+la otra. Detalle en `research/ola2/W7_ranking/REPORT.md` §1.
+**Nota de método que conviene conservar:** el número de regiones independientes es
+el largo del gen dividido el largo de la región —entre 1,6 y 8,3 acá—, no las
+cientos de regiones deslizantes que se promedian. Por eso no se reporta ningún valor
+p sobre esas correlaciones.
+
+---
+
+## D16 — Los dos ejes se combinan con media geométrica, y el veto queda como compuerta aparte
+**Fecha:** 2026-10-20
+**Decisión:** el puntaje es la media geométrica ponderada de eficacia y limpieza, y
+el veto duro por coincidencia perfecta de 21 nt se conserva como compuerta previa,
+no como un término del puntaje. Se reportan además la suma ponderada y la cascada.
+**Alternativas consideradas:** (a) suma ponderada, que dice que una región muy
+eficiente puede comprar su propio riesgo; (b) sólo la cascada de
+`pipeline/region_scoring.py` —`buenos_limpios` más veto—, que trata los ejes como
+filtro y no como puntaje; (c) la media geométrica sola, sin veto.
+**Criterio:** la media geométrica tiene antecedente medido en `pipeline/REPORT.md`
+§5, donde por suma ponderada entraba tercero un candidato con accesibilidad 0,0388
+compensada por una asimetría de 6,4 y por media geométrica no entraba; una región
+expuesta compensada por eficaz es el mismo error con otro nombre. El veto no se
+disuelve en el puntaje porque no es una ponderación: es la afirmación de que cierto
+hecho descalifica, y expresarlo como peso permitiría comprarlo.
+**Consecuencia:** **la decisión no cambia el ranking.** Con suma ponderada `MP_MRFV`
+sigue primero (91 % contra 99 % de los sorteos) y `CP_MRFV` segundo; lo único que se
+mueve es el tercer puesto, que ya era inestable. Que la forma de combinación no
+decida es, con estos cuatro candidatos, un resultado.
+**Lo que se pierde, declarado:** la media geométrica trata los dos ejes como
+igualmente confiables, y no lo son: «eficiente» es una predicción nuestra con umbral
+discutible y «coincidencia perfecta de 21 nt» es un hecho de secuencia.
+
+---
+
+## D17 — Se mantiene la posición conservadora del código: una ventana riesgosa cuenta aunque no sea eficiente
+**Fecha:** 2026-10-20
+**Decisión:** se **mantiene** y no se overridea la posición que
+`pipeline/region_scoring.py` ya había tomado en código: una ventana con coincidencia
+en un no objetivo cuenta como riesgo sea eficiente o no.
+**Alternativas consideradas:** (a) la regla mecanicista, que sólo cuenta como riesgo
+las ventanas que además son eficientes, con el argumento de que una ventana que no
+carga bien en el complejo no silencia nada, y con dato propio a favor —en `MP_MRFV`,
+de 22 ventanas con off-target del gen entero sólo 2 son eficientes—.
+**Criterio:** no es un argumento mecanicista sino de dónde poner la incertidumbre.
+«Eficiente» es una predicción de si-Fi21 con un umbral que no reproduce los conteos
+declarados por el propio laboratorio —ninguna de 15.120 configuraciones lo hace— y
+del que entre el 14 % y el 24 % entra por una rama que se saltea la termodinámica.
+La exposición, en cambio, se mide por coincidencia exacta de secuencia y no depende
+de ningún umbral nuestro. Apostar la seguridad al componente más débil de la cadena
+es la apuesta equivocada.
+**Consecuencia:** se reporta el ranking bajo las dos reglas y **el orden de los dos
+primeros no cambia**. Lo que cambia es la estabilidad del tercer puesto: bajo la
+regla mecanicista con escala absoluta se vuelve determinista y bajo la conservadora
+se reparte 75-25. La decisión no cambia quién gana, cambia cuánta confianza se puede
+tener en el orden de los que pierden.
+**Lo que se pierde:** se descartan regiones que probablemente sean seguras, y se
+penaliza de más a las regiones largas, que por tener más ventanas tienen más chance
+de que alguna pegue.
+
+---
+
+## D18 — Los pesos por referencia se justifican por consecuencia, y el panel es el límite real
+**Fecha:** 2026-10-20
+**Decisión:** pesos base maíz 1,00, *Harmonia axyridis* 0,80, *Apis mellifera* 0,80,
+*Homalodisca vitripennis* 0,60, *Folsomia candida* 0,40, barridos sobre todo el
+símplex. El riesgo de una ventana es su **peor** acierto entre referencias, no la
+suma.
+**Alternativas consideradas:** (a) pesos iguales, que es una posición y no una
+ausencia de posición; (b) sumar los aciertos entre referencias en vez de tomar el
+máximo; (c) ponderar por número de parálogos alcanzados.
+**Criterio:** por consecuencia. Un acierto en maíz es daño al objetivo mismo de la
+intervención; uno en *H. axyridis* es contraproducente en sentido fuerte porque
+ayuda a la plaga; uno en *A. mellifera* tiene costo regulatorio antes que ecológico;
+*H. vitripennis* es riesgo ecológico y además esperable por conservación
+filogenética; *F. candida* es el modelo estándar de ecotoxicología. Se toma el
+máximo y no la suma porque una ventana es peligrosa por su peor coincidencia: si ya
+pega perfecto en maíz hay que sacarla, y sumar haría que seis aciertos leves pesaran
+como uno grave.
+**Consecuencia:** el orden de los dos primeros aguanta todo el símplex. Donde los
+pesos muerden es en el tercer puesto, porque `BicC_Dm` concentra su exposición en
+*H. vitripennis*: subirle el peso a esa referencia lo hunde y bajárselo lo levanta.
+Ésa es la razón honesta de que el tercer puesto sea inestable, y depende de una
+pregunta que no nos corresponde contestar.
+**Dos cosas que hay que escribir aunque no cambien el número:** el criterio de
+genoma contra transcriptoma que el investigador entregó **ya está resuelto por
+construcción**, porque las cinco referencias no objetivo son transcriptomas y la
+única genómica es la del vector, que entra como on-target; no hay nada que
+descontar. Y el límite del panel: la ausencia de riesgo en cicadélidos nativos y
+parasitoides **no está medida**, porque no hay transcriptomas. Un peso sobre una
+referencia que no existe es cero por omisión, no por evidencia.
+
+---
+
+## D19 — Los tres criterios de riesgo se ordenan, no se cuantifican
+**Fecha:** 2026-10-20
+**Decisión:** `perfecto_21` > `perfecto_ge19` > `mm1_21`, con pesos base 1,00, 0,60
+y 0,30 barridos **conservando ese orden**. El veto usa sólo `perfecto_21`.
+**Alternativas consideradas:** (a) tratarlos como equivalentes; (b) fijar pesos de
+la literatura, que no los da para esta combinación; (c) ponderar también por la
+posición del desajuste dentro de la ventana.
+**Criterio:** lo único que la evidencia sostiene es el orden —un bloque perfecto más
+largo no puede ser menos riesgoso que uno más corto—, así que el barrido deja libres
+las magnitudes y fija el orden. (c) no se hizo: no tenemos evidencia para distinguir
+un desajuste en la región semilla de uno en el extremo 3', y se declara `[?]` en vez
+de inventar un peso.
+**Consecuencia:** los pesos de criterio no mueven el orden de los dos primeros. El
+veto es insensible a esta decisión porque usa un solo criterio; y eso es deliberado:
+si el veto se disparara con bloque de 19, `MP_MRFV` y `ATPaseD_Dm` también quedarían
+vetados y la compuerta dejaría de discriminar. **Que el veto use 21/21 y no 19 es lo
+que lo hace informativo.**
+**Nota que corrige un matiz propio:** la frase de `sifi21_reproduccion.md` §4 «cero
+coincidencias en *Apis mellifera* para los cuatro genes» es cierta para los
+criterios de bloque perfecto pero **no para el de un desajuste**: `BicC_Dm` tiene 7
+ventanas con un desajuste contra *Apis*. La conclusión de fondo no cambia; la frase
+hay que decirla con el criterio al lado.
+
+---
+
+## D20 — Dos rankings, uno por estrategia, con el criterio de comparación declarado
+**Fecha:** 2026-10-20
+**Decisión:** se presentan dos rankings separados —genes virales y genes del
+insecto— más un criterio declarado de comparación entre estrategias. No se fuerza un
+orden único.
+**Alternativas consideradas:** (a) un solo ranking de los cuatro, que exige una
+equivalencia entre los dos tipos de candidato; (b) dos rankings sin criterio de
+comparación, que deja la decisión sin cerrar.
+**Criterio:** los off-targets no significan lo mismo en los dos casos, y la
+asimetría es de signo y no de magnitud: para los genes del insecto el genoma de
+*D. maidis* se excluye por ser on-target, y para los virales entra como off-target
+—9 ventanas de `MP_MRFV`, 2 eficientes— pero pegarle al vector mientras se apunta al
+virus no es obviamente un defecto. Un solo ranking obligaría a asignarle un signo a
+ese acierto y no tenemos con qué.
+**El criterio de comparación, que es posición nuestra y no medición:** preferimos la
+vía del insecto, por la recomendación del investigador —es más directa— y por el
+argumento propio de la ventana de latencia de unos 20 días, que él aceptó; a lo que
+se agrega que una intervención sobre el vector corta la transmisión de los cuatro
+agentes del complejo y una sobre `MRFV` corta uno.
+**Consecuencia, y es el punto más atacable del entregable:** por los números ganan
+los dos candidatos virales; por la estrategia preferimos la del insecto. No son
+contradictorios porque el ranking mide calidad de diseño dentro de un gen dado y no
+valor del blanco, pero **si se forzara un orden único los dos virales quedarían
+arriba, y eso sería un artefacto de que el ranking no mide valor del blanco**. Queda
+dicho en el reporte en lugar visible.
+**Verificado:** con el genoma del vector neutralizado para los virales en vez de
+contado como off-target (`--dmaidis-viral neutro`), `MP_MRFV` sigue primero y
+`CP_MRFV` segundo. La decisión refuerza el orden en vez de darlo vuelta.
+
+---
+
+## D21 — Se subieron las dos secuencias virales a dsRNA-Engineer, con la compuerta cumplida en los dos pasos
+**Fecha:** 2026-10-20
+**Decisión:** se subieron `MP_MRFV` y `CP_MRFV` al servicio web dsRNA-Engineer.
+`BicC_Dm` y `ATPaseD_Dm` **no se subieron**.
+**Alternativas consideradas:** (a) no subir nada y dejar el benchmark con dos
+herramientas sobre los cuatro genes y la tercera sobre la secuencia pública que ya
+se había corrido; (b) subir las cuatro, que está prohibido sin excepción.
+**Criterio:** la compuerta tiene dos pasos y los dos se cumplieron **en esta
+corrida**. Paso 1: reverificación byte a byte contra `NC_002786.2` recalculada acá,
+no heredada de otro documento nuestro — `MP_MRFV` es la subcadena exacta 332-1594 y
+`CP_MRFV` la 5674-6201, las dos en hebra +, de modo que son material ya publicado en
+el NCBI y subirlas no revela nada. `BicC_Dm` y `ATPaseD_Dm` no son subcadenas de
+nada publicado. Paso 2: confirmación explícita de la persona, pedida antes de subir
+nada y mostrando qué secuencia iba y a dónde; la autorización fue para las dos
+virales únicamente. Sin cualquiera de los dos pasos la decisión habría sido (a).
+**Consecuencia:** el benchmark de las tres herramientas existe sobre los dos genes
+virales y queda con dos herramientas sobre los dos del insecto. Ese hueco **es** un
+resultado y va a la presentación: la herramienta que el organizador señala como la
+de diseño y verificación de off-targets es la que no se puede usar con el material
+que el organizador entregó. Proyectos `ff5138f6b1e5a91c` y `c816ff87893b36a4`,
+registrados en `research/ola2/W7_ranking/dsrnaengineer_corrida.json`.

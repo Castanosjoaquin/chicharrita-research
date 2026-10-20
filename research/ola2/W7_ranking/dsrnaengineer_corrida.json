@@ -1,0 +1,63 @@
+{
+  "fecha": "2026-10-20",
+  "servicio": "https://dsrna-engineer.cn",
+  "compuerta_de_confidencialidad": {
+    "verificacion_byte_a_byte_en_esta_corrida": {
+      "NC_002786.2": {"largo": 6366, "sha256": "6770e446cbf0a9ab1c72acb45c8fb01c5f3f703be4a47f517350f07543b4d5c9"},
+      "MP_MRFV": {"largo": 1263, "subcadena_exacta": "NC_002786.2:332-1594 hebra +"},
+      "CP_MRFV": {"largo": 528, "subcadena_exacta": "NC_002786.2:5674-6201 hebra +"},
+      "BicC_Dm": {"largo": 2520, "subcadena_exacta": null},
+      "ATPaseD_Dm": {"largo": 491, "subcadena_exacta": null}
+    },
+    "confirmacion_de_la_persona": "explicita, en esta sesion, para MP_MRFV y CP_MRFV unicamente",
+    "subido": ["MP_MRFV", "CP_MRFV"],
+    "no_subido": ["BicC_Dm", "ATPaseD_Dm"],
+    "motivo_de_lo_no_subido": "no son material publicado; la prohibicion no admite excepcion"
+  },
+  "panel": {
+    "nota": "las cinco referencias no objetivo son los MISMOS ensamblados que usa nuestro tamizaje local",
+    "Zea mays": {"species_id": 28, "ensamblado": "GCF_902167145.1", "modelo": "Model I"},
+    "Apis mellifera": {"species_id": 33, "ensamblado": "GCF_003254395.2", "modelo": "Model II"},
+    "Folsomia candida": {"species_id": 10, "ensamblado": "GCF_002217175.1", "modelo": "Model I"},
+    "Harmonia axyridis": {"species_id": 37, "ensamblado": "GCF_914767665.1", "modelo": "Model I"},
+    "Homalodisca vitripennis": {"species_id": 1151, "ensamblado": "GCF_021130785.1", "modelo": "Model I"},
+    "Dalbulus maidis": {"species_id": 1312, "ensamblado": "SRR15166998 (Trinity de novo, NO es nuestro GCA_975739785.1)", "modelo": "Model I"},
+    "Maize rayado fino virus": "AUSENTE del panel; hay otros tres virus de maiz (NC_003627.1, NC_003377.1, NC_077726.1)"
+  },
+  "proyectos": {
+    "MP_MRFV": {
+      "project_id": "ff5138f6b1e5a91c",
+      "nombre": "C1-MP_MRFV-NC_002786.2-332-1594",
+      "enviado": "2026-10-20 22:58",
+      "largo_bp": 1263,
+      "conteos": {
+        "Zea mays": {"modelo": "Model I", "n": 215, "tipo": "off"},
+        "Apis mellifera": {"modelo": "Model II", "n": 56, "tipo": "off"},
+        "Folsomia candida": {"modelo": "Model I", "n": 63, "tipo": "off"},
+        "Harmonia axyridis": {"modelo": "Model I", "n": 9, "tipo": "off"},
+        "Homalodisca vitripennis": {"modelo": "Model I", "n": 50, "tipo": "off"},
+        "Dalbulus maidis": {"modelo": "Model I", "n": 68, "tipo": "on"}
+      },
+      "largos_de_fragmento_recomendados_bp": [51, 51, 61, 61, 71, 71, 81, 91]
+    },
+    "CP_MRFV": {
+      "project_id": "c816ff87893b36a4",
+      "nombre": "C1-CP_MRFV-NC_002786.2-5674-6201",
+      "enviado": "2026-10-20 22:58",
+      "largo_bp": 528,
+      "conteos": {
+        "Zea mays": {"modelo": "Model I", "n": 87, "tipo": "off"},
+        "Apis mellifera": {"modelo": "Model II", "n": 49, "tipo": "off"},
+        "Folsomia candida": {"modelo": "Model I", "n": 31, "tipo": "off"},
+        "Harmonia axyridis": {"modelo": "Model I", "n": 9, "tipo": "off"},
+        "Homalodisca vitripennis": {"modelo": "Model I", "n": 29, "tipo": "off"},
+        "Dalbulus maidis": {"modelo": "Model I", "n": 20, "tipo": "on"}
+      }
+    }
+  },
+  "limitaciones_observadas_en_esta_corrida": [
+    "project/download-file devolvio el texto 'Error!' (6 bytes) para los dos proyectos, con GET y con uid; en octubre el mismo endpoint entrego un .tar.gz de 5.323 bytes. Sin esos archivos no se puede desagregar el conteo por condicion desde el lado de la herramienta.",
+    "El conteo que muestra es una suma sin ponderar de las tres condiciones (21 pb perfecto, 16 pb perfecto, 26 pb con <=2 desajustes) y cuenta lineas de Bowtie, no ventanas distintas.",
+    "No hay referencia de Maize rayado fino virus, asi que para la estrategia viral la herramienta no puede calcular on-target."
+  ]
+}

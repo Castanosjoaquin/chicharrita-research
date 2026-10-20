@@ -386,3 +386,28 @@ secuencias de EPILAB nunca salieron de la máquina.
 | id | Fuente | Tipo | Marcador | Acceso | Para qué se usó |
 | --- | --- | --- | --- | --- | --- |
 | `epilab_xlsx` | `Sequences_EPILAB.xlsx`, hoja `Hoja1`, 4 filas de datos, 9 columnas con contenido | planilla no publicada del corpus | `[R]` | local, fuera de git | Las cuatro secuencias completas, los cuatro conteos declarados (114, 35, 199, 33) y las coordenadas de las regiones elegidas. La columna 9, «Nro de eficientes por región?», está **vacía**: es la que el investigador pidió llenar. md5 `dcf234e1ba6d5584f1c9c1e4db59c34b`, que difiere del que registró W5 por reempaquetado del ZIP, con el contenido verificado idéntico por dos vías. `[?]` en el md5, `[E]` en el contenido. |
+
+### Corridas y artefactos del ranking (2026-10-20)
+
+Ninguna fuente nueva de literatura entró en esta corrida: el ranking se construyó
+sobre mediciones propias y sobre fuentes ya registradas arriba. Lo que sí hay que
+registrar son las corridas externas y los dos datos nuevos que salieron de abrir el
+servicio.
+
+| id | Fuente | Tipo | Marcador | Acceso | Para qué se usó |
+| --- | --- | --- | --- | --- | --- |
+| `dsrnae_run_mp` | dsRNA-Engineer, proyecto `ff5138f6b1e5a91c`, `MP_MRFV` sobre seis especies | corrida propia en servicio de terceros | `[E]` | `https://dsrna-engineer.cn`, 2026-10-20 | Conteos de off-target por especie para el benchmark. **Se subió sólo material publicado** (`NC_002786.2`:332-1594), con la compuerta de D21 cumplida en los dos pasos. |
+| `dsrnae_run_cp` | dsRNA-Engineer, proyecto `c816ff87893b36a4`, `CP_MRFV` sobre seis especies | corrida propia en servicio de terceros | `[E]` | ídem | ídem, con `NC_002786.2`:5674-6201. |
+| `dsrnae_species` | Lista de especies del servicio, `GET /v1/api/info/species-list` | catálogo del servicio | `[E]` | leído 2026-10-20 | Verificar que **las cinco referencias no objetivo son los mismos ensamblados** que usa nuestro tamizaje local, lo que vuelve comparable el cotejo; y constatar que ***Maize rayado fino virus* no está en el panel**, de modo que la herramienta no puede calcular on-target para la estrategia viral. |
+
+**Dato que cierra a medias un `[?]` de W2 §1.1.** La portada del servicio cita hoy la
+versión revisada por pares del trabajo de dsRNA-Engineer como *Trends in
+Biotechnology* 43(4): 969-983 (2025), donde W2 sólo había podido abrir el preprint de
+bioRxiv (`10.1101/2024.07.22.604585`). **La referencia queda registrada; el contenido
+de esa versión sigue sin abrirse**, está detrás de muro de pago, y por lo tanto no se
+cita nada de ella. Si cambió parámetros respecto del preprint, seguimos sin saberlo.
+`[R]` la referencia, `[?]` su contenido.
+
+| id | Fuente | Tipo | Marcador | Acceso | Para qué se usó |
+| --- | --- | --- | --- | --- | --- |
+| `blastn_hsp` | Texto de ayuda de `blastn` 2.17.0, `ejemplos/salidas/blastn_help_2.17.0.txt` | documentación del binario, local | `[E]` | local | Resolver que «HCP» es **HSP** (*high-scoring segment pair*) y que los parámetros que lo usan son `-qcov_hsp_perc` y `-max_hsps`. Cuál de los dos nombró sigue `[?]`. |

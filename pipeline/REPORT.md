@@ -240,6 +240,21 @@ dentro de un gen mejora alrededor del **7,2 %** sobre el promedio de ese mismo g
 modelo nulo la diferencia **no es significativa en 0 de 20 genes** `[H]`. Lo que discrimina es qué
 gen se ataca y el filtro de especificidad.
 
+> **Precisión agregada el 2026-10-20, porque este resultado se usó para adjudicar una
+> contradicción y hay que saber qué mide exactamente.** El nulo está en
+> `baseline_dsrip/region_nulo_multigen.py` —no en `region_scoring.py`, como decía el registro— y
+> es reproducible: con las rutas corregidas da la misma ganancia mediana de 7,2 % y los mismos
+> 0 de 20. Dos cosas lo acotan. Primero, el estadístico es la **media del puntaje** de la región,
+> no un conteo de ventanas que pasan un umbral, y un promedio sobre 280 valores tiene rango
+> dinámico chico por construcción. Segundo, y es lo que importa: el nulo **permuta bloques
+> contiguos de 30 ventanas**, de modo que conserva la estructura local y sólo reordena los grupos;
+> si las ventanas buenas se agrupan en rachas de menos de 30, este nulo las reproduce y no tiene
+> poder para detectarlas. Corrido sobre los cuatro genes de EPILAB con el conteo de eficientes de
+> si-Fi21, el mismo nulo de bloques da 0 de 4 significativos y un nulo que baraja la etiqueta
+> entre todas las ventanas da **3 de 4**. **El resultado negativo es correcto y es una afirmación
+> sobre el nulo tanto como sobre la biología.** Ver `research/ola2/W7_ranking/REPORT.md` §1 y
+> `00_meta/DECISIONS.md` D15.
+
 **El techo del dato es bajo.** Dos dsRNA distintos dirigidos al mismo gen, en datos publicados,
 correlacionan **0,245** (Spearman) dentro de la misma fase experimental y 0,076 mezclando fases,
 sobre 410 genes. El acuerdo binario es del 61 % contra un 52 % esperable por azar `[H]`. Ningún
@@ -328,7 +343,53 @@ de organismos no objetivo— es propio y no tiene esa restricción.
 
 ## 10. Qué falta
 
-La **ficha de decisión por candidato** para los cuatro candidatos del laboratorio. El motor que la
-calcula existe y está probado sobre candidatos públicos; lo que falta antes de armarla son dos
-respuestas del investigador: el umbral de identidad para el filtro de especificidad y los pesos de
-los criterios. Las dos están en `plan/paso-01.html`.
+### 10.1 Resuelto: la ficha por candidato ya no espera ninguna respuesta
+
+Esta sección decía que la **ficha de decisión por candidato** para los cuatro candidatos del
+laboratorio estaba pendiente de dos respuestas del investigador —el umbral de identidad del filtro
+de especificidad y los pesos de los criterios— y que las dos estaban en `plan/paso-01.html`.
+
+**Las dos dejaron de ser bloqueantes, y por el mismo motivo: un parámetro que no se puede
+justificar no se espera, se barre.** La ficha está hecha y vive en
+`research/ola2/W7_ranking/REPORT.md` §4.
+
+**Los pesos.** En vez de pedir un vector se barren 2.000 juegos sobre el símplex completo
+—reparto entre los dos ejes, pesos por referencia no objetivo y pesos por criterio de riesgo— y se
+reporta la frecuencia de cada candidato en cada posición. El resultado es que `MP_MRFV` sale
+primero en entre el 76 % y el 100 % de los sorteos y `CP_MRFV` segundo en entre el 76 % y el
+100 %, mientras que los dos genes del insecto **no se ordenan entre sí** bajo ningún criterio
+defendible. Un vector de pesos del investigador habría producido un orden puntual que no
+distinguiría esas dos situaciones `[E]`.
+
+**El umbral de identidad.** Se trató igual, y la medición que lo reemplaza está en
+`research/ola2/W7_ranking/azar_por_k.md`: se barrió *k* de 15 a 21 y se comparó lo observado
+contra tres nulos. Hay un **cruce entre 17 y 18 nucleótidos** donde lo que se encuentra deja de
+ser menos de lo que predice el azar y pasa a ser más —la razón observado/esperado va de 0,97 en 17
+a 1,53 en 18 y a 41 en 21— y a 20 y 21 nt una referencia barajada con la misma composición produce
+**cero** coincidencias donde la real produce 54 y 46 `[E]`. O sea: por encima de 18 el umbral no
+cambia la decisión porque todo lo que aparece es homología, y por debajo de 17 la ensucia porque
+casi todo es ruido. **El rango sobre el que el orden no cambia es 18-21**, que es donde ya
+estábamos. La pregunta al investigador se vuelve innecesaria: la curva de §4.1 de este mismo
+documento ya decía que de 18 para arriba es casi plana, y ahora se sabe por qué.
+
+### 10.2 Lo que sigue abierto de verdad
+
+**La transferencia de fenotipo entre órdenes de insectos**, que §8 declara como la incertidumbre
+dominante y que ningún experimento computacional resuelve.
+
+**El panel de no objetivo no cubre lo que más importa.** Los parasitoides de huevos de
+*D. maidis* siguen sin ensamblado anotado en RefSeq (§4.5), y el ranking de la ola 2 corre sobre
+seis referencias. Un peso sobre una referencia que no existe es cero por omisión, no por
+evidencia.
+
+**El ranking ordena calidad de diseño, no valor del blanco.** Dice qué tan bien está elegida una
+región dentro de un gen que alguien ya eligió; no dice si ese gen es un buen blanco. Juntar los
+cuatro candidatos en un solo orden exigiría una equivalencia entre «ventanas eficientes por
+nucleótido» y «cuántos patógenos del complejo corta», y esa equivalencia no la tenemos. Está
+registrado como D20 en `00_meta/DECISIONS.md`.
+
+**Las dos regiones alternativas que se recomiendan —`BicC_Dm` 2123-2422 y `ATPaseD_Dm` 72-371— no
+están verificadas contra la conservación dentro de *D. maidis*.** Están elegidas por densidad de
+eficientes y por ausencia de coincidencia perfecta con no objetivo, pero no sabemos si esos tramos
+están conservados entre poblaciones argentinas del vector. Es el mismo problema, con otro
+organismo, que el cruce pendiente de `CP_MRFV` contra los aislados de MRFV.

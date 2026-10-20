@@ -95,9 +95,12 @@ Con `python -I` también funciona: los scripts agregan su propio directorio al p
 | `sifi_core.py` | El criterio de eficiencia, los dos modos, los dos backends de accesibilidad, y la búsqueda de región más densa. |
 | `run_sifi.py` | Línea de comandos. |
 | `barrido.py` | Barre configuraciones y busca cuáles reproducen conteos declarados. Vectorizado. |
-| `offtarget_21nt.py` | Tamizaje de off-targets de 21 nt por siRNA, por coincidencia exacta con Aho-Corasick. No necesita BLAST. |
+| `offtarget_21nt.py` | Tamizaje de off-targets por siRNA, por coincidencia exacta con Aho-Corasick. No necesita BLAST. El tamaño va por `--size`, 21 por defecto. |
 | `cruce.py` | Cruza el perfil de eficiencia con el de off-targets y compara regiones. |
+| `ranking.py` | El ranking de candidatos y el barrido de pesos (`ranking`), y el percentil de la región elegida con sus dos nulos (`nulo`). Consume los mismos TSV que `cruce.py`. |
+| `azar_kmer.py` | Observado contra esperado por k, bajo tres nulos: uniforme, por composición y por barajado de la referencia. |
 | `test_sifi.py` | Verificaciones, incluida la equivalencia de tablas y la coherencia entre el motor y el barrido. |
+| `test_ranking.py` | Verificaciones del ranking: propiedades del criterio, más anclas contra los conteos ya publicados en `sifi21_reproduccion.md` §2, §3 y §4. |
 | `CAMBIOS.md` | Qué se cambió respecto del original y por qué. |
 
 ## Tamizaje de off-targets
@@ -125,6 +128,36 @@ python cruce.py --gen BicC_Dm --region 264 563 \
 ```
 
 Dependencia extra: `pyahocorasick`.
+
+> **El tamaño de ventana está parametrizado y la equivalencia en 21 está
+> verificada.** `--size` cambia *k* y `--min-block` el bloque; con los valores por
+> defecto la salida es **idéntica byte a byte** a la de antes de parametrizar
+> —`md5sum` `a3229e733e4dc70c308c901583b4e4c3` sobre `offtarget_por_sirna.tsv`, los
+> cuatro genes contra las seis referencias—, que es lo que permite seguir citando
+> esos conteos. Los nombres de las columnas no cambian con `--size`: el *k* efectivo
+> va en `offtarget_resumen.json`.
+
+## Ranking y cuenta de azar
+
+```bash
+# el ranking, el barrido de pesos sobre el simplex y las regiones alternativas
+python ranking.py ranking --perfil work/sifi_check/salida \
+    --offtarget work/sifi_check/offtarget_full/offtarget_por_sirna.tsv \
+    --mm1 "work/sifi_check/offtarget_mm1_{gen}/offtarget_por_sirna.tsv" \
+    --muestras 2000 --json research/ola2/W7_ranking/ranking.json
+
+# el percentil de la region elegida, los dos nulos y la correlacion con el pipeline
+python ranking.py nulo --perfil work/sifi_check/salida --reps 2000 --correlacion
+
+# observado contra esperado por azar, por tamano de ventana
+python azar_kmer.py --consulta work/sifi_check/*_full.fasta \
+    --db "work/offtarget_db/*.fna.gz" --k 15 16 17 18 19 20 21 \
+    --salida research/ola2/W7_ranking/azar_por_k.json
+
+python test_ranking.py
+```
+
+Los resultados y su justificación están en `research/ola2/W7_ranking/`.
 
 ## Advertencias
 

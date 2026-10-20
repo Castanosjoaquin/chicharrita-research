@@ -133,8 +133,9 @@
       "afirmacion": "Elegir la mejor region dentro de un gen no se distingue del azar",
       "detalle": "Mejora ~7,2 % sobre el promedio del gen; no significativo en 0 de 20 genes contra modelo nulo",
       "conjunto": "20 genes",
-      "script": "region_scoring.py",
-      "marcador": "H"
+      "script": "../baseline_dsrip/region_nulo_multigen.py (el registro decia region_scoring.py)",
+      "marcador": "H",
+      "nota": "El nulo permuta bloques contiguos de 30 ventanas, asi que conserva la estructura local y solo reordena los grupos; y el estadistico es la media del puntaje, no un conteo por umbral. Con el mismo nulo de bloques sobre los cuatro genes de EPILAB y el conteo de eficientes de si-Fi21: 0 de 4 significativos. Con un nulo que baraja la etiqueta entre todas las ventanas: 3 de 4. El resultado negativo es correcto y es una afirmacion sobre el nulo tanto como sobre la biologia. Ver DECISIONS D15."
     },
     {
       "id": "techo-reproducibilidad",

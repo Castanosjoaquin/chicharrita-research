@@ -1,0 +1,3250 @@
+{
+  "k": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "semilla": 7,
+  "por_gen": [
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "ATPaseD_Dm_full",
+      "k": 15,
+      "ventanas": 477,
+      "posiciones_referencia": 972223762,
+      "observado": 451,
+      "esperado_uniforme": 399.01,
+      "esperado_composicion": 324.13,
+      "nulo_barajado": 337,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "BicC_Dm_full",
+      "k": 15,
+      "ventanas": 2506,
+      "posiciones_referencia": 972223762,
+      "observado": 2422,
+      "esperado_uniforme": 2096.25,
+      "esperado_composicion": 1369.08,
+      "nulo_barajado": 1382,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "CP_MRFV_full",
+      "k": 15,
+      "ventanas": 514,
+      "posiciones_referencia": 972223762,
+      "observado": 122,
+      "esperado_uniforme": 429.96,
+      "esperado_composicion": 123.22,
+      "nulo_barajado": 139,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "MP_MRFV_full",
+      "k": 15,
+      "ventanas": 1249,
+      "posiciones_referencia": 972223762,
+      "observado": 349,
+      "esperado_uniforme": 1044.78,
+      "esperado_composicion": 363.92,
+      "nulo_barajado": 370,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "ATPaseD_Dm_full",
+      "k": 16,
+      "ventanas": 476,
+      "posiciones_referencia": 972223621,
+      "observado": 430,
+      "esperado_uniforme": 173.32,
+      "esperado_composicion": 167.86,
+      "nulo_barajado": 171,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "BicC_Dm_full",
+      "k": 16,
+      "ventanas": 2505,
+      "posiciones_referencia": 972223621,
+      "observado": 2333,
+      "esperado_uniforme": 912.09,
+      "esperado_composicion": 580.44,
+      "nulo_barajado": 604,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "CP_MRFV_full",
+      "k": 16,
+      "ventanas": 513,
+      "posiciones_referencia": 972223621,
+      "observado": 37,
+      "esperado_uniforme": 186.79,
+      "esperado_composicion": 33.11,
+      "nulo_barajado": 49,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "MP_MRFV_full",
+      "k": 16,
+      "ventanas": 1248,
+      "posiciones_referencia": 972223621,
+      "observado": 129,
+      "esperado_uniforme": 454.41,
+      "esperado_composicion": 109.05,
+      "nulo_barajado": 114,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "ATPaseD_Dm_full",
+      "k": 17,
+      "ventanas": 475,
+      "posiciones_referencia": 972223480,
+      "observado": 408,
+      "esperado_uniforme": 50.83,
+      "esperado_composicion": 61.93,
+      "nulo_barajado": 67,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "BicC_Dm_full",
+      "k": 17,
+      "ventanas": 2504,
+      "posiciones_referencia": 972223480,
+      "observado": 2268,
+      "esperado_uniforme": 267.96,
+      "esperado_composicion": 181.64,
+      "nulo_barajado": 197,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "CP_MRFV_full",
+      "k": 17,
+      "ventanas": 512,
+      "posiciones_referencia": 972223480,
+      "observado": 11,
+      "esperado_uniforme": 54.79,
+      "esperado_composicion": 7.7,
+      "nulo_barajado": 15,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "MP_MRFV_full",
+      "k": 17,
+      "ventanas": 1247,
+      "posiciones_referencia": 972223480,
+      "observado": 38,
+      "esperado_uniforme": 133.44,
+      "esperado_composicion": 27.0,
+      "nulo_barajado": 27,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "ATPaseD_Dm_full",
+      "k": 18,
+      "ventanas": 474,
+      "posiciones_referencia": 972223339,
+      "observado": 397,
+      "esperado_uniforme": 13.22,
+      "esperado_composicion": 18.33,
+      "nulo_barajado": 18,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "BicC_Dm_full",
+      "k": 18,
+      "ventanas": 2503,
+      "posiciones_referencia": 972223339,
+      "observado": 2234,
+      "esperado_uniforme": 69.83,
+      "esperado_composicion": 48.44,
+      "nulo_barajado": 53,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "CP_MRFV_full",
+      "k": 18,
+      "ventanas": 511,
+      "posiciones_referencia": 972223339,
+      "observado": 2,
+      "esperado_uniforme": 14.26,
+      "esperado_composicion": 1.71,
+      "nulo_barajado": 2,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "MP_MRFV_full",
+      "k": 18,
+      "ventanas": 1246,
+      "posiciones_referencia": 972223339,
+      "observado": 10,
+      "esperado_uniforme": 34.76,
+      "esperado_composicion": 6.25,
+      "nulo_barajado": 9,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "ATPaseD_Dm_full",
+      "k": 19,
+      "ventanas": 473,
+      "posiciones_referencia": 972223198,
+      "observado": 389,
+      "esperado_uniforme": 3.33,
+      "esperado_composicion": 4.92,
+      "nulo_barajado": 5,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "BicC_Dm_full",
+      "k": 19,
+      "ventanas": 2502,
+      "posiciones_referencia": 972223198,
+      "observado": 2209,
+      "esperado_uniforme": 17.64,
+      "esperado_composicion": 12.28,
+      "nulo_barajado": 16,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "CP_MRFV_full",
+      "k": 19,
+      "ventanas": 510,
+      "posiciones_referencia": 972223198,
+      "observado": 0,
+      "esperado_uniforme": 3.59,
+      "esperado_composicion": 0.38,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "MP_MRFV_full",
+      "k": 19,
+      "ventanas": 1245,
+      "posiciones_referencia": 972223198,
+      "observado": 3,
+      "esperado_uniforme": 8.78,
+      "esperado_composicion": 1.44,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "ATPaseD_Dm_full",
+      "k": 20,
+      "ventanas": 472,
+      "posiciones_referencia": 972223057,
+      "observado": 382,
+      "esperado_uniforme": 0.83,
+      "esperado_composicion": 1.28,
+      "nulo_barajado": 2,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "BicC_Dm_full",
+      "k": 20,
+      "ventanas": 2501,
+      "posiciones_referencia": 972223057,
+      "observado": 2189,
+      "esperado_uniforme": 4.42,
+      "esperado_composicion": 3.08,
+      "nulo_barajado": 4,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "CP_MRFV_full",
+      "k": 20,
+      "ventanas": 509,
+      "posiciones_referencia": 972223057,
+      "observado": 0,
+      "esperado_uniforme": 0.9,
+      "esperado_composicion": 0.08,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "MP_MRFV_full",
+      "k": 20,
+      "ventanas": 1244,
+      "posiciones_referencia": 972223057,
+      "observado": 0,
+      "esperado_uniforme": 2.2,
+      "esperado_composicion": 0.33,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "ATPaseD_Dm_full",
+      "k": 21,
+      "ventanas": 471,
+      "posiciones_referencia": 972222916,
+      "observado": 376,
+      "esperado_uniforme": 0.21,
+      "esperado_composicion": 0.33,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "BicC_Dm_full",
+      "k": 21,
+      "ventanas": 2500,
+      "posiciones_referencia": 972222916,
+      "observado": 2170,
+      "esperado_uniforme": 1.11,
+      "esperado_composicion": 0.76,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "CP_MRFV_full",
+      "k": 21,
+      "ventanas": 508,
+      "posiciones_referencia": 972222916,
+      "observado": 0,
+      "esperado_uniforme": 0.22,
+      "esperado_composicion": 0.02,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "gen": "MP_MRFV_full",
+      "k": 21,
+      "ventanas": 1243,
+      "posiciones_referencia": 972222916,
+      "observado": 0,
+      "esperado_uniforme": 0.55,
+      "esperado_composicion": 0.07,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3252,
+        "C": 0.1755,
+        "G": 0.1749,
+        "T": 0.3245
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 15,
+      "ventanas": 477,
+      "posiciones_referencia": 107617903,
+      "observado": 64,
+      "esperado_uniforme": 86.64,
+      "esperado_composicion": 98.28,
+      "nulo_barajado": 101,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 15,
+      "ventanas": 2506,
+      "posiciones_referencia": 107617903,
+      "observado": 319,
+      "esperado_uniforme": 455.19,
+      "esperado_composicion": 392.18,
+      "nulo_barajado": 390,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 15,
+      "ventanas": 514,
+      "posiciones_referencia": 107617903,
+      "observado": 47,
+      "esperado_uniforme": 93.36,
+      "esperado_composicion": 40.36,
+      "nulo_barajado": 48,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 15,
+      "ventanas": 1249,
+      "posiciones_referencia": 107617903,
+      "observado": 119,
+      "esperado_uniforme": 226.87,
+      "esperado_composicion": 113.64,
+      "nulo_barajado": 115,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 16,
+      "ventanas": 476,
+      "posiciones_referencia": 107575478,
+      "observado": 19,
+      "esperado_uniforme": 23.26,
+      "esperado_composicion": 27.97,
+      "nulo_barajado": 18,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 16,
+      "ventanas": 2505,
+      "posiciones_referencia": 107575478,
+      "observado": 96,
+      "esperado_uniforme": 122.39,
+      "esperado_composicion": 106.16,
+      "nulo_barajado": 107,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 16,
+      "ventanas": 513,
+      "posiciones_referencia": 107575478,
+      "observado": 13,
+      "esperado_uniforme": 25.07,
+      "esperado_composicion": 9.84,
+      "nulo_barajado": 15,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 16,
+      "ventanas": 1248,
+      "posiciones_referencia": 107575478,
+      "observado": 35,
+      "esperado_uniforme": 60.98,
+      "esperado_composicion": 28.36,
+      "nulo_barajado": 27,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 17,
+      "ventanas": 475,
+      "posiciones_referencia": 107533053,
+      "observado": 6,
+      "esperado_uniforme": 5.91,
+      "esperado_composicion": 7.33,
+      "nulo_barajado": 4,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 17,
+      "ventanas": 2504,
+      "posiciones_referencia": 107533053,
+      "observado": 25,
+      "esperado_uniforme": 31.15,
+      "esperado_composicion": 26.99,
+      "nulo_barajado": 23,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 17,
+      "ventanas": 512,
+      "posiciones_referencia": 107533053,
+      "observado": 3,
+      "esperado_uniforme": 6.37,
+      "esperado_composicion": 2.33,
+      "nulo_barajado": 5,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 17,
+      "ventanas": 1247,
+      "posiciones_referencia": 107533053,
+      "observado": 14,
+      "esperado_uniforme": 15.51,
+      "esperado_composicion": 6.83,
+      "nulo_barajado": 9,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 18,
+      "ventanas": 474,
+      "posiciones_referencia": 107490628,
+      "observado": 1,
+      "esperado_uniforme": 1.48,
+      "esperado_composicion": 1.88,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 18,
+      "ventanas": 2503,
+      "posiciones_referencia": 107490628,
+      "observado": 5,
+      "esperado_uniforme": 7.82,
+      "esperado_composicion": 6.74,
+      "nulo_barajado": 5,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 18,
+      "ventanas": 511,
+      "posiciones_referencia": 107490628,
+      "observado": 0,
+      "esperado_uniforme": 1.6,
+      "esperado_composicion": 0.55,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 18,
+      "ventanas": 1246,
+      "posiciones_referencia": 107490628,
+      "observado": 5,
+      "esperado_uniforme": 3.89,
+      "esperado_composicion": 1.63,
+      "nulo_barajado": 3,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 19,
+      "ventanas": 473,
+      "posiciones_referencia": 107448203,
+      "observado": 0,
+      "esperado_uniforme": 0.37,
+      "esperado_composicion": 0.48,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 19,
+      "ventanas": 2502,
+      "posiciones_referencia": 107448203,
+      "observado": 2,
+      "esperado_uniforme": 1.96,
+      "esperado_composicion": 1.68,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 19,
+      "ventanas": 510,
+      "posiciones_referencia": 107448203,
+      "observado": 0,
+      "esperado_uniforme": 0.4,
+      "esperado_composicion": 0.13,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 19,
+      "ventanas": 1245,
+      "posiciones_referencia": 107448203,
+      "observado": 3,
+      "esperado_uniforme": 0.97,
+      "esperado_composicion": 0.39,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 20,
+      "ventanas": 472,
+      "posiciones_referencia": 107405778,
+      "observado": 0,
+      "esperado_uniforme": 0.09,
+      "esperado_composicion": 0.12,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 20,
+      "ventanas": 2501,
+      "posiciones_referencia": 107405778,
+      "observado": 1,
+      "esperado_uniforme": 0.49,
+      "esperado_composicion": 0.42,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 20,
+      "ventanas": 509,
+      "posiciones_referencia": 107405778,
+      "observado": 0,
+      "esperado_uniforme": 0.1,
+      "esperado_composicion": 0.03,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 20,
+      "ventanas": 1244,
+      "posiciones_referencia": 107405778,
+      "observado": 1,
+      "esperado_uniforme": 0.24,
+      "esperado_composicion": 0.09,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 21,
+      "ventanas": 471,
+      "posiciones_referencia": 107363353,
+      "observado": 0,
+      "esperado_uniforme": 0.02,
+      "esperado_composicion": 0.03,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 21,
+      "ventanas": 2500,
+      "posiciones_referencia": 107363353,
+      "observado": 0,
+      "esperado_uniforme": 0.12,
+      "esperado_composicion": 0.1,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 21,
+      "ventanas": 508,
+      "posiciones_referencia": 107363353,
+      "observado": 0,
+      "esperado_uniforme": 0.02,
+      "esperado_composicion": 0.01,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 21,
+      "ventanas": 1243,
+      "posiciones_referencia": 107363353,
+      "observado": 0,
+      "esperado_uniforme": 0.06,
+      "esperado_composicion": 0.02,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3066,
+        "C": 0.2067,
+        "G": 0.2096,
+        "T": 0.2771
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 15,
+      "ventanas": 477,
+      "posiciones_referencia": 98255282,
+      "observado": 39,
+      "esperado_uniforme": 79.78,
+      "esperado_composicion": 92.28,
+      "nulo_barajado": 77,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 15,
+      "ventanas": 2506,
+      "posiciones_referencia": 98255282,
+      "observado": 157,
+      "esperado_uniforme": 419.11,
+      "esperado_composicion": 348.81,
+      "nulo_barajado": 307,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 15,
+      "ventanas": 514,
+      "posiciones_referencia": 98255282,
+      "observado": 24,
+      "esperado_uniforme": 85.96,
+      "esperado_composicion": 31.46,
+      "nulo_barajado": 37,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 15,
+      "ventanas": 1249,
+      "posiciones_referencia": 98255282,
+      "observado": 60,
+      "esperado_uniforme": 208.89,
+      "esperado_composicion": 93.15,
+      "nulo_barajado": 89,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 16,
+      "ventanas": 476,
+      "posiciones_referencia": 98227395,
+      "observado": 14,
+      "esperado_uniforme": 21.28,
+      "esperado_composicion": 26.49,
+      "nulo_barajado": 14,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 16,
+      "ventanas": 2505,
+      "posiciones_referencia": 98227395,
+      "observado": 51,
+      "esperado_uniforme": 112.0,
+      "esperado_composicion": 94.36,
+      "nulo_barajado": 73,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 16,
+      "ventanas": 513,
+      "posiciones_referencia": 98227395,
+      "observado": 11,
+      "esperado_uniforme": 22.94,
+      "esperado_composicion": 7.55,
+      "nulo_barajado": 3,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 16,
+      "ventanas": 1248,
+      "posiciones_referencia": 98227395,
+      "observado": 21,
+      "esperado_uniforme": 55.8,
+      "esperado_composicion": 23.03,
+      "nulo_barajado": 15,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 17,
+      "ventanas": 475,
+      "posiciones_referencia": 98199508,
+      "observado": 2,
+      "esperado_uniforme": 5.4,
+      "esperado_composicion": 6.98,
+      "nulo_barajado": 4,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 17,
+      "ventanas": 2504,
+      "posiciones_referencia": 98199508,
+      "observado": 11,
+      "esperado_uniforme": 28.46,
+      "esperado_composicion": 24.0,
+      "nulo_barajado": 18,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 17,
+      "ventanas": 512,
+      "posiciones_referencia": 98199508,
+      "observado": 4,
+      "esperado_uniforme": 5.82,
+      "esperado_composicion": 1.77,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 17,
+      "ventanas": 1247,
+      "posiciones_referencia": 98199508,
+      "observado": 9,
+      "esperado_uniforme": 14.17,
+      "esperado_composicion": 5.51,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 18,
+      "ventanas": 474,
+      "posiciones_referencia": 98171621,
+      "observado": 0,
+      "esperado_uniforme": 1.35,
+      "esperado_composicion": 1.79,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 18,
+      "ventanas": 2503,
+      "posiciones_referencia": 98171621,
+      "observado": 4,
+      "esperado_uniforme": 7.14,
+      "esperado_composicion": 5.99,
+      "nulo_barajado": 5,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 18,
+      "ventanas": 511,
+      "posiciones_referencia": 98171621,
+      "observado": 1,
+      "esperado_uniforme": 1.46,
+      "esperado_composicion": 0.41,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 18,
+      "ventanas": 1246,
+      "posiciones_referencia": 98171621,
+      "observado": 3,
+      "esperado_uniforme": 3.55,
+      "esperado_composicion": 1.31,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 19,
+      "ventanas": 473,
+      "posiciones_referencia": 98143734,
+      "observado": 0,
+      "esperado_uniforme": 0.34,
+      "esperado_composicion": 0.46,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 19,
+      "ventanas": 2502,
+      "posiciones_referencia": 98143734,
+      "observado": 0,
+      "esperado_uniforme": 1.79,
+      "esperado_composicion": 1.49,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 19,
+      "ventanas": 510,
+      "posiciones_referencia": 98143734,
+      "observado": 0,
+      "esperado_uniforme": 0.36,
+      "esperado_composicion": 0.1,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 19,
+      "ventanas": 1245,
+      "posiciones_referencia": 98143734,
+      "observado": 0,
+      "esperado_uniforme": 0.89,
+      "esperado_composicion": 0.31,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 20,
+      "ventanas": 472,
+      "posiciones_referencia": 98115847,
+      "observado": 0,
+      "esperado_uniforme": 0.08,
+      "esperado_composicion": 0.12,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 20,
+      "ventanas": 2501,
+      "posiciones_referencia": 98115847,
+      "observado": 0,
+      "esperado_uniforme": 0.45,
+      "esperado_composicion": 0.37,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 20,
+      "ventanas": 509,
+      "posiciones_referencia": 98115847,
+      "observado": 0,
+      "esperado_uniforme": 0.09,
+      "esperado_composicion": 0.02,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 20,
+      "ventanas": 1244,
+      "posiciones_referencia": 98115847,
+      "observado": 0,
+      "esperado_uniforme": 0.22,
+      "esperado_composicion": 0.07,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 21,
+      "ventanas": 471,
+      "posiciones_referencia": 98087960,
+      "observado": 0,
+      "esperado_uniforme": 0.02,
+      "esperado_composicion": 0.03,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 21,
+      "ventanas": 2500,
+      "posiciones_referencia": 98087960,
+      "observado": 0,
+      "esperado_uniforme": 0.11,
+      "esperado_composicion": 0.09,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 21,
+      "ventanas": 508,
+      "posiciones_referencia": 98087960,
+      "observado": 0,
+      "esperado_uniforme": 0.02,
+      "esperado_composicion": 0.01,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 21,
+      "ventanas": 1243,
+      "posiciones_referencia": 98087960,
+      "observado": 0,
+      "esperado_uniforme": 0.06,
+      "esperado_composicion": 0.02,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3274,
+        "C": 0.1869,
+        "G": 0.2138,
+        "T": 0.2718
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 15,
+      "ventanas": 477,
+      "posiciones_referencia": 90659407,
+      "observado": 87,
+      "esperado_uniforme": 74.12,
+      "esperado_composicion": 85.3,
+      "nulo_barajado": 79,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 15,
+      "ventanas": 2506,
+      "posiciones_referencia": 90659407,
+      "observado": 363,
+      "esperado_uniforme": 389.38,
+      "esperado_composicion": 325.61,
+      "nulo_barajado": 305,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 15,
+      "ventanas": 514,
+      "posiciones_referencia": 90659407,
+      "observado": 32,
+      "esperado_uniforme": 79.86,
+      "esperado_composicion": 30.08,
+      "nulo_barajado": 41,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 15,
+      "ventanas": 1249,
+      "posiciones_referencia": 90659407,
+      "observado": 89,
+      "esperado_uniforme": 194.07,
+      "esperado_composicion": 86.77,
+      "nulo_barajado": 115,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 16,
+      "ventanas": 476,
+      "posiciones_referencia": 90626113,
+      "observado": 33,
+      "esperado_uniforme": 19.67,
+      "esperado_composicion": 24.12,
+      "nulo_barajado": 18,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 16,
+      "ventanas": 2505,
+      "posiciones_referencia": 90626113,
+      "observado": 145,
+      "esperado_uniforme": 103.51,
+      "esperado_composicion": 87.22,
+      "nulo_barajado": 86,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 16,
+      "ventanas": 513,
+      "posiciones_referencia": 90626113,
+      "observado": 11,
+      "esperado_uniforme": 21.2,
+      "esperado_composicion": 7.21,
+      "nulo_barajado": 6,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 16,
+      "ventanas": 1248,
+      "posiciones_referencia": 90626113,
+      "observado": 25,
+      "esperado_uniforme": 51.57,
+      "esperado_composicion": 21.31,
+      "nulo_barajado": 37,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 17,
+      "ventanas": 475,
+      "posiciones_referencia": 90592819,
+      "observado": 12,
+      "esperado_uniforme": 4.98,
+      "esperado_composicion": 6.32,
+      "nulo_barajado": 2,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 17,
+      "ventanas": 2504,
+      "posiciones_referencia": 90592819,
+      "observado": 80,
+      "esperado_uniforme": 26.27,
+      "esperado_composicion": 22.1,
+      "nulo_barajado": 23,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 17,
+      "ventanas": 512,
+      "posiciones_referencia": 90592819,
+      "observado": 4,
+      "esperado_uniforme": 5.37,
+      "esperado_composicion": 1.69,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 17,
+      "ventanas": 1247,
+      "posiciones_referencia": 90592819,
+      "observado": 8,
+      "esperado_uniforme": 13.08,
+      "esperado_composicion": 5.09,
+      "nulo_barajado": 13,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 18,
+      "ventanas": 474,
+      "posiciones_referencia": 90559525,
+      "observado": 6,
+      "esperado_uniforme": 1.25,
+      "esperado_composicion": 1.62,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 18,
+      "ventanas": 2503,
+      "posiciones_referencia": 90559525,
+      "observado": 55,
+      "esperado_uniforme": 6.59,
+      "esperado_composicion": 5.51,
+      "nulo_barajado": 7,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 18,
+      "ventanas": 511,
+      "posiciones_referencia": 90559525,
+      "observado": 1,
+      "esperado_uniforme": 1.35,
+      "esperado_composicion": 0.39,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 18,
+      "ventanas": 1246,
+      "posiciones_referencia": 90559525,
+      "observado": 2,
+      "esperado_uniforme": 3.28,
+      "esperado_composicion": 1.2,
+      "nulo_barajado": 5,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 19,
+      "ventanas": 473,
+      "posiciones_referencia": 90526231,
+      "observado": 5,
+      "esperado_uniforme": 0.31,
+      "esperado_composicion": 0.41,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 19,
+      "ventanas": 2502,
+      "posiciones_referencia": 90526231,
+      "observado": 48,
+      "esperado_uniforme": 1.65,
+      "esperado_composicion": 1.37,
+      "nulo_barajado": 3,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 19,
+      "ventanas": 510,
+      "posiciones_referencia": 90526231,
+      "observado": 0,
+      "esperado_uniforme": 0.34,
+      "esperado_composicion": 0.09,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 19,
+      "ventanas": 1245,
+      "posiciones_referencia": 90526231,
+      "observado": 1,
+      "esperado_uniforme": 0.82,
+      "esperado_composicion": 0.29,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 20,
+      "ventanas": 472,
+      "posiciones_referencia": 90492937,
+      "observado": 4,
+      "esperado_uniforme": 0.08,
+      "esperado_composicion": 0.1,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 20,
+      "ventanas": 2501,
+      "posiciones_referencia": 90492937,
+      "observado": 44,
+      "esperado_uniforme": 0.41,
+      "esperado_composicion": 0.34,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 20,
+      "ventanas": 509,
+      "posiciones_referencia": 90492937,
+      "observado": 0,
+      "esperado_uniforme": 0.08,
+      "esperado_composicion": 0.02,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 20,
+      "ventanas": 1244,
+      "posiciones_referencia": 90492937,
+      "observado": 0,
+      "esperado_uniforme": 0.2,
+      "esperado_composicion": 0.07,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 21,
+      "ventanas": 471,
+      "posiciones_referencia": 90459643,
+      "observado": 3,
+      "esperado_uniforme": 0.02,
+      "esperado_composicion": 0.03,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 21,
+      "ventanas": 2500,
+      "posiciones_referencia": 90459643,
+      "observado": 40,
+      "esperado_uniforme": 0.1,
+      "esperado_composicion": 0.08,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 21,
+      "ventanas": 508,
+      "posiciones_referencia": 90459643,
+      "observado": 0,
+      "esperado_uniforme": 0.02,
+      "esperado_composicion": 0.0,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 21,
+      "ventanas": 1243,
+      "posiciones_referencia": 90459643,
+      "observado": 0,
+      "esperado_uniforme": 0.05,
+      "esperado_composicion": 0.02,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3061,
+        "C": 0.1971,
+        "G": 0.208,
+        "T": 0.2888
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 15,
+      "ventanas": 477,
+      "posiciones_referencia": 161640529,
+      "observado": 84,
+      "esperado_uniforme": 124.01,
+      "esperado_composicion": 125.24,
+      "nulo_barajado": 123,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "BicC_Dm_full",
+      "k": 15,
+      "ventanas": 2506,
+      "posiciones_referencia": 161640529,
+      "observado": 408,
+      "esperado_uniforme": 651.51,
+      "esperado_composicion": 648.75,
+      "nulo_barajado": 643,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "CP_MRFV_full",
+      "k": 15,
+      "ventanas": 514,
+      "posiciones_referencia": 161640529,
+      "observado": 124,
+      "esperado_uniforme": 133.63,
+      "esperado_composicion": 128.57,
+      "nulo_barajado": 142,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "MP_MRFV_full",
+      "k": 15,
+      "ventanas": 1249,
+      "posiciones_referencia": 161640529,
+      "observado": 269,
+      "esperado_uniforme": 324.72,
+      "esperado_composicion": 314.63,
+      "nulo_barajado": 351,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 16,
+      "ventanas": 476,
+      "posiciones_referencia": 161563980,
+      "observado": 33,
+      "esperado_uniforme": 34.5,
+      "esperado_composicion": 34.91,
+      "nulo_barajado": 35,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "BicC_Dm_full",
+      "k": 16,
+      "ventanas": 2505,
+      "posiciones_referencia": 161563980,
+      "observado": 131,
+      "esperado_uniforme": 181.55,
+      "esperado_composicion": 180.65,
+      "nulo_barajado": 171,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "CP_MRFV_full",
+      "k": 16,
+      "ventanas": 513,
+      "posiciones_referencia": 161563980,
+      "observado": 48,
+      "esperado_uniforme": 37.18,
+      "esperado_composicion": 35.51,
+      "nulo_barajado": 41,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "MP_MRFV_full",
+      "k": 16,
+      "ventanas": 1248,
+      "posiciones_referencia": 161563980,
+      "observado": 97,
+      "esperado_uniforme": 90.45,
+      "esperado_composicion": 87.12,
+      "nulo_barajado": 100,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 17,
+      "ventanas": 475,
+      "posiciones_referencia": 161487431,
+      "observado": 8,
+      "esperado_uniforme": 8.85,
+      "esperado_composicion": 8.96,
+      "nulo_barajado": 9,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "BicC_Dm_full",
+      "k": 17,
+      "ventanas": 2504,
+      "posiciones_referencia": 161487431,
+      "observado": 36,
+      "esperado_uniforme": 46.63,
+      "esperado_composicion": 46.39,
+      "nulo_barajado": 39,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "CP_MRFV_full",
+      "k": 17,
+      "ventanas": 512,
+      "posiciones_referencia": 161487431,
+      "observado": 17,
+      "esperado_uniforme": 9.54,
+      "esperado_composicion": 9.07,
+      "nulo_barajado": 15,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "MP_MRFV_full",
+      "k": 17,
+      "ventanas": 1247,
+      "posiciones_referencia": 161487431,
+      "observado": 29,
+      "esperado_uniforme": 23.22,
+      "esperado_composicion": 22.29,
+      "nulo_barajado": 30,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 18,
+      "ventanas": 474,
+      "posiciones_referencia": 161410882,
+      "observado": 3,
+      "esperado_uniforme": 2.22,
+      "esperado_composicion": 2.25,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "BicC_Dm_full",
+      "k": 18,
+      "ventanas": 2503,
+      "posiciones_referencia": 161410882,
+      "observado": 10,
+      "esperado_uniforme": 11.73,
+      "esperado_composicion": 11.67,
+      "nulo_barajado": 11,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "CP_MRFV_full",
+      "k": 18,
+      "ventanas": 511,
+      "posiciones_referencia": 161410882,
+      "observado": 5,
+      "esperado_uniforme": 2.39,
+      "esperado_composicion": 2.27,
+      "nulo_barajado": 7,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "MP_MRFV_full",
+      "k": 18,
+      "ventanas": 1246,
+      "posiciones_referencia": 161410882,
+      "observado": 5,
+      "esperado_uniforme": 5.84,
+      "esperado_composicion": 5.59,
+      "nulo_barajado": 8,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 19,
+      "ventanas": 473,
+      "posiciones_referencia": 161334333,
+      "observado": 1,
+      "esperado_uniforme": 0.55,
+      "esperado_composicion": 0.56,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "BicC_Dm_full",
+      "k": 19,
+      "ventanas": 2502,
+      "posiciones_referencia": 161334333,
+      "observado": 2,
+      "esperado_uniforme": 2.94,
+      "esperado_composicion": 2.92,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "CP_MRFV_full",
+      "k": 19,
+      "ventanas": 510,
+      "posiciones_referencia": 161334333,
+      "observado": 0,
+      "esperado_uniforme": 0.6,
+      "esperado_composicion": 0.57,
+      "nulo_barajado": 2,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "MP_MRFV_full",
+      "k": 19,
+      "ventanas": 1245,
+      "posiciones_referencia": 161334333,
+      "observado": 1,
+      "esperado_uniforme": 1.46,
+      "esperado_composicion": 1.4,
+      "nulo_barajado": 1,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 20,
+      "ventanas": 472,
+      "posiciones_referencia": 161257784,
+      "observado": 0,
+      "esperado_uniforme": 0.14,
+      "esperado_composicion": 0.14,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "BicC_Dm_full",
+      "k": 20,
+      "ventanas": 2501,
+      "posiciones_referencia": 161257784,
+      "observado": 0,
+      "esperado_uniforme": 0.73,
+      "esperado_composicion": 0.73,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "CP_MRFV_full",
+      "k": 20,
+      "ventanas": 509,
+      "posiciones_referencia": 161257784,
+      "observado": 0,
+      "esperado_uniforme": 0.15,
+      "esperado_composicion": 0.14,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "MP_MRFV_full",
+      "k": 20,
+      "ventanas": 1244,
+      "posiciones_referencia": 161257784,
+      "observado": 0,
+      "esperado_uniforme": 0.36,
+      "esperado_composicion": 0.35,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 21,
+      "ventanas": 471,
+      "posiciones_referencia": 161181235,
+      "observado": 0,
+      "esperado_uniforme": 0.03,
+      "esperado_composicion": 0.04,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "BicC_Dm_full",
+      "k": 21,
+      "ventanas": 2500,
+      "posiciones_referencia": 161181235,
+      "observado": 0,
+      "esperado_uniforme": 0.18,
+      "esperado_composicion": 0.18,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "CP_MRFV_full",
+      "k": 21,
+      "ventanas": 508,
+      "posiciones_referencia": 161181235,
+      "observado": 0,
+      "esperado_uniforme": 0.04,
+      "esperado_composicion": 0.03,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "gen": "MP_MRFV_full",
+      "k": 21,
+      "ventanas": 1243,
+      "posiciones_referencia": 161181235,
+      "observado": 0,
+      "esperado_uniforme": 0.09,
+      "esperado_composicion": 0.09,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.2513,
+        "C": 0.2423,
+        "G": 0.253,
+        "T": 0.2535
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 15,
+      "ventanas": 477,
+      "posiciones_referencia": 73563835,
+      "observado": 51,
+      "esperado_uniforme": 61.08,
+      "esperado_composicion": 72.09,
+      "nulo_barajado": 56,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 15,
+      "ventanas": 2506,
+      "posiciones_referencia": 73563835,
+      "observado": 170,
+      "esperado_uniforme": 320.89,
+      "esperado_composicion": 256.22,
+      "nulo_barajado": 268,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 15,
+      "ventanas": 514,
+      "posiciones_referencia": 73563835,
+      "observado": 12,
+      "esperado_uniforme": 65.82,
+      "esperado_composicion": 19.67,
+      "nulo_barajado": 24,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 15,
+      "ventanas": 1249,
+      "posiciones_referencia": 73563835,
+      "observado": 36,
+      "esperado_uniforme": 159.93,
+      "esperado_composicion": 60.01,
+      "nulo_barajado": 85,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 16,
+      "ventanas": 476,
+      "posiciones_referencia": 73535727,
+      "observado": 17,
+      "esperado_uniforme": 16.02,
+      "esperado_composicion": 20.38,
+      "nulo_barajado": 13,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 16,
+      "ventanas": 2505,
+      "posiciones_referencia": 73535727,
+      "observado": 49,
+      "esperado_uniforme": 84.33,
+      "esperado_composicion": 68.13,
+      "nulo_barajado": 73,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 16,
+      "ventanas": 513,
+      "posiciones_referencia": 73535727,
+      "observado": 5,
+      "esperado_uniforme": 17.27,
+      "esperado_composicion": 4.6,
+      "nulo_barajado": 5,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 16,
+      "ventanas": 1248,
+      "posiciones_referencia": 73535727,
+      "observado": 6,
+      "esperado_uniforme": 42.01,
+      "esperado_composicion": 14.47,
+      "nulo_barajado": 22,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 17,
+      "ventanas": 475,
+      "posiciones_referencia": 73507619,
+      "observado": 4,
+      "esperado_uniforme": 4.05,
+      "esperado_composicion": 5.36,
+      "nulo_barajado": 3,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 17,
+      "ventanas": 2504,
+      "posiciones_referencia": 73507619,
+      "observado": 9,
+      "esperado_uniforme": 21.34,
+      "esperado_composicion": 17.23,
+      "nulo_barajado": 15,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 17,
+      "ventanas": 512,
+      "posiciones_referencia": 73507619,
+      "observado": 2,
+      "esperado_uniforme": 4.36,
+      "esperado_composicion": 1.06,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 17,
+      "ventanas": 1247,
+      "posiciones_referencia": 73507619,
+      "observado": 0,
+      "esperado_uniforme": 10.63,
+      "esperado_composicion": 3.41,
+      "nulo_barajado": 4,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 18,
+      "ventanas": 474,
+      "posiciones_referencia": 73479511,
+      "observado": 0,
+      "esperado_uniforme": 1.01,
+      "esperado_composicion": 1.38,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 18,
+      "ventanas": 2503,
+      "posiciones_referencia": 73479511,
+      "observado": 6,
+      "esperado_uniforme": 5.35,
+      "esperado_composicion": 4.29,
+      "nulo_barajado": 2,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 18,
+      "ventanas": 511,
+      "posiciones_referencia": 73479511,
+      "observado": 0,
+      "esperado_uniforme": 1.09,
+      "esperado_composicion": 0.24,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 18,
+      "ventanas": 1246,
+      "posiciones_referencia": 73479511,
+      "observado": 0,
+      "esperado_uniforme": 2.66,
+      "esperado_composicion": 0.8,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 19,
+      "ventanas": 473,
+      "posiciones_referencia": 73451403,
+      "observado": 0,
+      "esperado_uniforme": 0.25,
+      "esperado_composicion": 0.35,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 19,
+      "ventanas": 2502,
+      "posiciones_referencia": 73451403,
+      "observado": 5,
+      "esperado_uniforme": 1.34,
+      "esperado_composicion": 1.07,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 19,
+      "ventanas": 510,
+      "posiciones_referencia": 73451403,
+      "observado": 0,
+      "esperado_uniforme": 0.27,
+      "esperado_composicion": 0.06,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 19,
+      "ventanas": 1245,
+      "posiciones_referencia": 73451403,
+      "observado": 0,
+      "esperado_uniforme": 0.67,
+      "esperado_composicion": 0.19,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 20,
+      "ventanas": 472,
+      "posiciones_referencia": 73423295,
+      "observado": 0,
+      "esperado_uniforme": 0.06,
+      "esperado_composicion": 0.09,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 20,
+      "ventanas": 2501,
+      "posiciones_referencia": 73423295,
+      "observado": 4,
+      "esperado_uniforme": 0.33,
+      "esperado_composicion": 0.27,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 20,
+      "ventanas": 509,
+      "posiciones_referencia": 73423295,
+      "observado": 0,
+      "esperado_uniforme": 0.07,
+      "esperado_composicion": 0.01,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 20,
+      "ventanas": 1244,
+      "posiciones_referencia": 73423295,
+      "observado": 0,
+      "esperado_uniforme": 0.17,
+      "esperado_composicion": 0.04,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "ATPaseD_Dm_full",
+      "k": 21,
+      "ventanas": 471,
+      "posiciones_referencia": 73395187,
+      "observado": 0,
+      "esperado_uniforme": 0.02,
+      "esperado_composicion": 0.02,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "BicC_Dm_full",
+      "k": 21,
+      "ventanas": 2500,
+      "posiciones_referencia": 73395187,
+      "observado": 3,
+      "esperado_uniforme": 0.08,
+      "esperado_composicion": 0.07,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "CP_MRFV_full",
+      "k": 21,
+      "ventanas": 508,
+      "posiciones_referencia": 73395187,
+      "observado": 0,
+      "esperado_uniforme": 0.02,
+      "esperado_composicion": 0.0,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "gen": "MP_MRFV_full",
+      "k": 21,
+      "ventanas": 1243,
+      "posiciones_referencia": 73395187,
+      "observado": 0,
+      "esperado_uniforme": 0.04,
+      "esperado_composicion": 0.01,
+      "nulo_barajado": 0,
+      "composicion": {
+        "A": 0.3304,
+        "C": 0.1846,
+        "G": 0.2019,
+        "T": 0.2831
+      }
+    }
+  ],
+  "agregado": [
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "k": 15,
+      "ventanas": 4746,
+      "observado": 3344,
+      "esperado_uniforme": 3970.0,
+      "esperado_composicion": 2180.35,
+      "nulo_barajado": 2228
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "k": 16,
+      "ventanas": 4742,
+      "observado": 2929,
+      "esperado_uniforme": 1726.61,
+      "esperado_composicion": 890.46,
+      "nulo_barajado": 938
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "k": 17,
+      "ventanas": 4738,
+      "observado": 2725,
+      "esperado_uniforme": 507.02,
+      "esperado_composicion": 278.27,
+      "nulo_barajado": 306
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "k": 18,
+      "ventanas": 4734,
+      "observado": 2643,
+      "esperado_uniforme": 132.07,
+      "esperado_composicion": 74.73,
+      "nulo_barajado": 82
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "k": 19,
+      "ventanas": 4730,
+      "observado": 2601,
+      "esperado_uniforme": 33.34,
+      "esperado_composicion": 19.02,
+      "nulo_barajado": 22
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "k": 20,
+      "ventanas": 4726,
+      "observado": 2571,
+      "esperado_uniforme": 8.35,
+      "esperado_composicion": 4.77,
+      "nulo_barajado": 6
+    },
+    {
+      "referencia": "GCA_975739785.1_ihDalMaid1.1_genomic",
+      "k": 21,
+      "ventanas": 4722,
+      "observado": 2546,
+      "esperado_uniforme": 2.09,
+      "esperado_composicion": 1.18,
+      "nulo_barajado": 1
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "k": 15,
+      "ventanas": 4746,
+      "observado": 549,
+      "esperado_uniforme": 862.06,
+      "esperado_composicion": 644.46,
+      "nulo_barajado": 654
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "k": 16,
+      "ventanas": 4742,
+      "observado": 163,
+      "esperado_uniforme": 231.7,
+      "esperado_composicion": 172.33,
+      "nulo_barajado": 167
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "k": 17,
+      "ventanas": 4738,
+      "observado": 48,
+      "esperado_uniforme": 58.94,
+      "esperado_composicion": 43.48,
+      "nulo_barajado": 41
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "k": 18,
+      "ventanas": 4734,
+      "observado": 11,
+      "esperado_uniforme": 14.79,
+      "esperado_composicion": 10.8,
+      "nulo_barajado": 9
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "k": 19,
+      "ventanas": 4730,
+      "observado": 5,
+      "esperado_uniforme": 3.7,
+      "esperado_composicion": 2.68,
+      "nulo_barajado": 1
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "k": 20,
+      "ventanas": 4726,
+      "observado": 2,
+      "esperado_uniforme": 0.92,
+      "esperado_composicion": 0.66,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_002217175.1_ASM221717v1_rna",
+      "k": 21,
+      "ventanas": 4722,
+      "observado": 0,
+      "esperado_uniforme": 0.22,
+      "esperado_composicion": 0.16,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "k": 15,
+      "ventanas": 4746,
+      "observado": 280,
+      "esperado_uniforme": 793.74,
+      "esperado_composicion": 565.7,
+      "nulo_barajado": 510
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "k": 16,
+      "ventanas": 4742,
+      "observado": 97,
+      "esperado_uniforme": 212.02,
+      "esperado_composicion": 151.43,
+      "nulo_barajado": 105
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "k": 17,
+      "ventanas": 4738,
+      "observado": 26,
+      "esperado_uniforme": 53.85,
+      "esperado_composicion": 38.26,
+      "nulo_barajado": 23
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "k": 18,
+      "ventanas": 4734,
+      "observado": 8,
+      "esperado_uniforme": 13.5,
+      "esperado_composicion": 9.5,
+      "nulo_barajado": 6
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "k": 19,
+      "ventanas": 4730,
+      "observado": 0,
+      "esperado_uniforme": 3.38,
+      "esperado_composicion": 2.36,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "k": 20,
+      "ventanas": 4726,
+      "observado": 0,
+      "esperado_uniforme": 0.84,
+      "esperado_composicion": 0.58,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_003254395.2_Amel_HAv3.1_rna",
+      "k": 21,
+      "ventanas": 4722,
+      "observado": 0,
+      "esperado_uniforme": 0.21,
+      "esperado_composicion": 0.15,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "k": 15,
+      "ventanas": 4746,
+      "observado": 571,
+      "esperado_uniforme": 737.43,
+      "esperado_composicion": 527.76,
+      "nulo_barajado": 540
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "k": 16,
+      "ventanas": 4742,
+      "observado": 214,
+      "esperado_uniforme": 195.95,
+      "esperado_composicion": 139.86,
+      "nulo_barajado": 147
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "k": 17,
+      "ventanas": 4738,
+      "observado": 104,
+      "esperado_uniforme": 49.7,
+      "esperado_composicion": 35.2,
+      "nulo_barajado": 39
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "k": 18,
+      "ventanas": 4734,
+      "observado": 64,
+      "esperado_uniforme": 12.47,
+      "esperado_composicion": 8.72,
+      "nulo_barajado": 12
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "k": 19,
+      "ventanas": 4730,
+      "observado": 54,
+      "esperado_uniforme": 3.12,
+      "esperado_composicion": 2.16,
+      "nulo_barajado": 4
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "k": 20,
+      "ventanas": 4726,
+      "observado": 48,
+      "esperado_uniforme": 0.77,
+      "esperado_composicion": 0.53,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_021130785.1_UT_GWSS_2.1_rna",
+      "k": 21,
+      "ventanas": 4722,
+      "observado": 43,
+      "esperado_uniforme": 0.19,
+      "esperado_composicion": 0.13,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "k": 15,
+      "ventanas": 4746,
+      "observado": 885,
+      "esperado_uniforme": 1233.87,
+      "esperado_composicion": 1217.19,
+      "nulo_barajado": 1259
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "k": 16,
+      "ventanas": 4742,
+      "observado": 309,
+      "esperado_uniforme": 343.68,
+      "esperado_composicion": 338.19,
+      "nulo_barajado": 347
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "k": 17,
+      "ventanas": 4738,
+      "observado": 90,
+      "esperado_uniforme": 88.24,
+      "esperado_composicion": 86.71,
+      "nulo_barajado": 93
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "k": 18,
+      "ventanas": 4734,
+      "observado": 23,
+      "esperado_uniforme": 22.18,
+      "esperado_composicion": 21.78,
+      "nulo_barajado": 27
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "k": 19,
+      "ventanas": 4730,
+      "observado": 4,
+      "esperado_uniforme": 5.55,
+      "esperado_composicion": 5.45,
+      "nulo_barajado": 4
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "k": 20,
+      "ventanas": 4726,
+      "observado": 0,
+      "esperado_uniforme": 1.38,
+      "esperado_composicion": 1.36,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+      "k": 21,
+      "ventanas": 4722,
+      "observado": 0,
+      "esperado_uniforme": 0.34,
+      "esperado_composicion": 0.34,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "k": 15,
+      "ventanas": 4746,
+      "observado": 269,
+      "esperado_uniforme": 607.72,
+      "esperado_composicion": 407.99,
+      "nulo_barajado": 433
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "k": 16,
+      "ventanas": 4742,
+      "observado": 77,
+      "esperado_uniforme": 159.63,
+      "esperado_composicion": 107.58,
+      "nulo_barajado": 113
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "k": 17,
+      "ventanas": 4738,
+      "observado": 15,
+      "esperado_uniforme": 40.38,
+      "esperado_composicion": 27.06,
+      "nulo_barajado": 22
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "k": 18,
+      "ventanas": 4734,
+      "observado": 6,
+      "esperado_uniforme": 10.11,
+      "esperado_composicion": 6.71,
+      "nulo_barajado": 2
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "k": 19,
+      "ventanas": 4730,
+      "observado": 5,
+      "esperado_uniforme": 2.53,
+      "esperado_composicion": 1.67,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "k": 20,
+      "ventanas": 4726,
+      "observado": 4,
+      "esperado_uniforme": 0.63,
+      "esperado_composicion": 0.41,
+      "nulo_barajado": 0
+    },
+    {
+      "referencia": "GCF_914767665.1_icHarAxyr1.1_rna",
+      "k": 21,
+      "ventanas": 4722,
+      "observado": 3,
+      "esperado_uniforme": 0.16,
+      "esperado_composicion": 0.1,
+      "nulo_barajado": 0
+    }
+  ]
+}
