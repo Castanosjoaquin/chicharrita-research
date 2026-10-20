@@ -610,3 +610,87 @@ Todo lo de abajo viene de `research/R7_microgravedad/`.
 ### Relanzar una pista rechazada por el filtro de seguridad con otra redacción o con otro modelo
 **Qué se intentó:** nada; queda registrado porque pasó (ver `PREGUNTAS_ABIERTAS.md`, sección R7).
 **Estado:** no se reformula ni se reenvía desde la sesión que orquesta para esquivar un rechazo (`CLAUDE.md`). Cómo cubrir ese tema es decisión del equipo.
+
+---
+
+## Ranking de candidatos (2026-10-20)
+
+### Descartado: resolver la contradicción del 7,2 % con un argumento en vez de una medición
+
+La salida fácil estaba a mano y era defendible a medias: `pipeline/REPORT.md` §6 mide
+la media de un puntaje biofísico continuo y `sifi21_reproduccion.md` §3 cuenta
+ventanas que pasan un umbral, así que no son la misma cantidad y no tienen por qué
+coincidir. **Eso explica la discrepancia pero no la adjudica**, y el ranking depende
+de cuál de las dos manda. Se descartó y se construyó el nulo que faltaba.
+
+Valió la pena por algo que el argumento nunca habría dado: al correr los dos nulos
+sobre el mismo dato quedó claro que **la diferencia no está en la cantidad medida
+sino en el nulo**. Con el nulo que baraja etiquetas, el efecto de región resiste en
+3 de 4 genes; con el nulo de bloques de 30 —el que usó el 7,2 %— en 0 de 4. Si nos
+hubiéramos quedado con el argumento, habríamos seguido creyendo que las dos
+mediciones miden cosas incomparables, cuando en realidad miden lo mismo con nulos de
+exigencia muy distinta.
+
+### Descartado: normalizar los dos ejes contra su máximo teórico
+
+La primera versión del ranking normalizaba la exposición dividiendo por el peor caso
+concebible —todas las ventanas pegando en todas las referencias con el criterio más
+fuerte—. El resultado fue que la limpieza de los cuatro candidatos quedaba entre
+0,98 y 1,00, o sea **sin rango dinámico**, y el orden salía determinado enteramente
+por la eficacia. Peor: el barrido de pesos informaba que el orden sobrevivía al
+símplex completo, lo que era cierto y **profundamente engañoso**, porque el eje de
+exposición había sido aplastado hasta volverse una constante. Un barrido que no
+puede mover nada no demuestra robustez: demuestra que el segundo eje no está.
+
+Se reemplazó por dos escalas que se reportan juntas: la **absoluta**, donde los dos
+ejes son tasas sobre las ventanas de la región y son directamente comparables, y la
+**min-max sobre el conjunto**, que es la convención de `pipeline/motor.py` y le da al
+eje de exposición palanca real. La lección, que vale para cualquier ranking que
+hagamos: **antes de celebrar que un orden sobrevive al barrido, hay que mirar si los
+ejes tienen rango dinámico suficiente para darlo vuelta.** Un barrido sobre un eje
+constante es teatro.
+
+### Descartado: leer el 50/50 de los rankings por estrategia como un empate
+
+Con dos candidatos, la normalización min-max manda uno a 0 y el otro a 1 en cada eje,
+de modo que si se ordenan al revés en los dos el resultado es exactamente una moneda,
+cualquiera sea la magnitud de la diferencia. La primera lectura de la salida fue que
+`MP_MRFV` y `CP_MRFV` empataban; no empatan, **la escala borró la diferencia**. Con
+escala absoluta `MP_MRFV` gana entre el 90,7 % y el 100 % de los sorteos.
+
+Quedó fijado como prueba en `test_ranking.py` —`test_minmax_con_dos_candidatos_es_degenerado`—
+para que nadie lo cite como hallazgo, y escrito en el reporte.
+
+### Descartado: ordenar las regiones vetadas entre sí
+
+La primera implementación de la cascada le daba a toda región vetada el mismo puntaje
+y las imprimía ordenadas, lo que las mostraba como un ranking cuando era un empate en
+«descartada»: el orden que se veía era el orden de entrada, que no eligió nadie. Se
+cambió para que las vetadas se reporten como **lista** y no como posiciones, y para
+que el desempate entre puntajes iguales sea por nombre y no por orden de llegada,
+que es la convención de `motor.py:rankear`.
+
+### Descartado: atribuir el conteo de dsRNA-Engineer desde sus propios archivos crudos
+
+El plan era bajar el `.tar.gz` con los archivos Bowtie y contar líneas por condición,
+como se había hecho en octubre con `PZ371507.1`. En esta corrida
+`project/download-file` devolvió el texto `Error!` para los dos proyectos, con GET y
+agregando el `uid`. Se probaron cuatro variantes de endpoint y se paró ahí en vez de
+seguir sondeando la API.
+
+La atribución se hizo **desde nuestro lado y salió mejor**: corriendo el tamizaje
+exacto a k = 16 y a k = 21 sobre las mismas referencias y los mismos ensamblados, el
+conteo a 21 es cero en las doce celdas y el de 16 está en la misma escala que el
+número que informa el servicio. La conclusión —que el 100 % de su riesgo viene de la
+condición de 16 pb— queda demostrada sin depender de que su servicio entregue
+archivos. Es una atribución más robusta que la original, porque no depende de leer
+sus archivos sino de reproducir su criterio.
+
+### Descartado: correr BLAST de nuevo sobre los cuatro genes
+
+No hacía falta. Las dos mediciones que el benchmark necesitaba ya existían y están
+verificadas: el acuerdo exacto en las 20 celdas para los criterios de bloque perfecto
+y el desacuerdo por hasta un factor de tres en el de un desajuste, con causa
+identificada (`blastn-short` con `word_size 11` no puede sembrar un 21-mero cuyo
+desajuste cae en la posición 11). Correr BLAST otra vez habría producido los mismos
+números con más ruido en el repositorio.

@@ -240,9 +240,18 @@ El punto clave que agrega: `[E]` no hay que buscar sólo ventanas de 21
 distinta — y BLAST detecta esos casos. Menciona que BLAST tiene parámetros
 propios para decidir cuán parecidas son dos secuencias.
 
-> **Nota de transcripción:** el parámetro que nombró se transcribió como "HCP"
-> y no corresponde a ningún parámetro conocido de BLAST. Queda como `[?]`:
-> probablemente E-value, bit score o percent identity. Pendiente de confirmar.
+> **Nota de transcripción:** el parámetro que nombró se transcribió como "HCP".
+>
+> **Corregido el 2026-10-20.** La nota anterior decía que no corresponde a ningún
+> parámetro conocido de BLAST, y eso estaba mal: **«HCP» es casi con seguridad
+> HSP**, *high-scoring segment pair*, que es un término central de BLAST. En
+> `blastn` 2.17.0 hay dos parámetros que lo usan, verificados en el texto de ayuda
+> del binario: **`-qcov_hsp_perc`** («percent query coverage per HSP») y
+> **`-max_hsps`**. Cuál de los dos nombró sigue siendo `[?]` y se le pregunta, pero
+> ya no en abstracto. Detalle que importa: `-qcov_hsp_perc` es justamente el
+> parámetro que evita la trampa de `-perc_identity` que W2 §2.4 cuantificó —que no
+> filtra sobre la consulta completa sino sobre el alineamiento encontrado—, así que
+> si era ése, estaba usando el correcto.
 
 ### Nuestro experimento con ventanas más cortas
 
@@ -367,6 +376,15 @@ habían pasado.
 
 > **Nota de transcripción:** la cifra quedó ambigua en el audio, se dijeron las
 > dos. `[?]` A verificar contra nuestros propios resultados.
+>
+> **Resuelto el 2026-10-20: no es ninguna de las dos.** `[E]` Ni 384 ni 684
+> corresponde a una cantidad que hayamos producido. Las cifras reales del mapeo son
+> **2.814 proteínas con locus** de 3.904 alineadas (72,1 %), **7.416 loci** en la
+> tabla unificada, **494 candidatos de alta confianza** y **438 genes** en el
+> tamizaje de especificidad. La más parecida a «384» es **438**, que es una
+> transposición de dígitos plausible en un audio; «684» no se parece a ninguna.
+> Lo que se le dijo en la reunión estaba mal, y lo que hay que usar de acá en más
+> son los números de `pipeline/REPORT.md` §2 y §4.
 
 Lo entiende y lo valida, con una advertencia: hay que **chequear identidad** en
 cada paso, porque los genes de especies distintas no son iguales. Aclara además
@@ -448,9 +466,14 @@ esos minutos importa, hay que volver al video.
 Para registrar en `00_meta/PREGUNTAS_ABIERTAS.md`:
 
 1. Confirmar la grafía del apellido y el dominio del correo antes de escribirle.
-2. Identificar qué parámetro de BLAST es el que nombró como "HCP".
-3. Resolver si los genes recuperados del mapeo son 384 o 684, contra nuestros
-   propios resultados.
+   **Sigue abierto** al 2026-10-20: no se infiere, y el dominio no quedó en el
+   audio. Es lo único que bloquea el envío.
+2. ~~Identificar qué parámetro de BLAST es el que nombró como "HCP".~~ **Resuelto a
+   medias el 2026-10-20:** es HSP, y los candidatos son `-qcov_hsp_perc` y
+   `-max_hsps`. Ver la nota de la sección de off-targets.
+3. ~~Resolver si los genes recuperados del mapeo son 384 o 684.~~ **Resuelto el
+   2026-10-20: ninguno de los dos.** Ver la nota de la sección del genoma no
+   anotado.
 4. Qué umbral exacto usa si-Fi21 para marcar una ventana como eficiente, y cómo
    combina energía libre, identidad y estructura secundaria en esa decisión.
 5. Con qué criterio eligió las regiones 1–200 de los cuatro diseños. Dijo que no

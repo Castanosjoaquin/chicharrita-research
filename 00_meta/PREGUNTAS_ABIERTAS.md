@@ -665,3 +665,131 @@ Todo lo de abajo viene de `research/R7_microgravedad/`; las preguntas completas 
 - **Lecturas parciales.** De las 259 entradas de `research/R7_microgravedad/sources.json`, 24 se leyeron en texto completo (varias son registros de bases de datos), 92 parcial, 115 solo resumen y 28 solo fragmento de buscador. Hay que dar el desglose y no el total.
 - **Verificar antes de citar.** La cifra «28 %» de JAXA (ambigua entre 61/215 y 40/144), el vínculo de la cadena pembrolizumab–ISS (descrito como «presumido»), la discrepancia texto–tabla en la mosaicidad de la PfGST, y el código PDB de la estructura de Vallazza 2002.
 - **No evaluado en R7:** ARN regulatorio de los mollicutes (solo ARNr 16S), homología remota por perfiles o plegamiento de los blancos sin homólogo, modelado local de 480 proteínas de *Ca.* P. zeae, repositorios de vuelo de China, ESA y JAXA, y la licencia de cada estudio del OSDR.
+
+---
+
+# Ranking de candidatos (2026-10-20) — qué se cerró y qué queda
+
+## Cerradas en esta corrida
+
+- **De dónde salía el nulo del 7,2 %.** No estaba en `region_scoring.py`, donde la
+  palabra «nulo» no aparece: está en **`baseline_dsrip/region_nulo_multigen.py`**.
+  Es reproducible —con las rutas corregidas da la misma ganancia mediana de 7,2 % y
+  los mismos 0 de 20 genes— y lo que mide es más angosto de lo que el registro
+  sugería: permuta bloques contiguos de 30 ventanas, que preserva la estructura
+  local, y el estadístico es la media del puntaje y no un conteo por umbral. Ver D15.
+
+- **La contradicción entre `pipeline/REPORT.md` §6 y `sifi21_reproduccion.md` §3.**
+  Adjudicada con medición, no con un argumento sobre incomparabilidad. Ver D15.
+
+- **384 o 684 genes recuperados del mapeo.** `[E]` **Ninguno de los dos.** Ni 384 ni
+  684 corresponde a ninguna cantidad que hayamos producido. Las cifras reales del
+  mapeo son **2.814 proteínas con locus** de 3.904 alineadas (72,1 %), **7.416 loci**
+  en la tabla unificada, **494 candidatos de alta confianza** y **438 genes** en el
+  tamizaje de especificidad. La más parecida a «384» es **438**, que es una
+  transposición de dígitos plausible en un audio; «684» no se parece a ninguna.
+  Corregido en `research/checkpoints/checkpoint1.md`. No hay que preguntárselo.
+
+- **El parámetro de BLAST que se transcribió como «HCP».** `[R]` Casi con seguridad
+  es **HSP**, *high-scoring segment pair*, que sí es un término central de BLAST y no
+  «ningún parámetro conocido» como decía nuestra nota anterior —esa nota estaba mal—.
+  En `blastn` 2.17.0 hay dos parámetros que lo usan: **`-qcov_hsp_perc`** («percent
+  query coverage per HSP») y **`-max_hsps`**, los dos verificados en el texto de
+  ayuda del binario. **Cuál de los dos nombró sigue siendo `[?]`** y se le pregunta,
+  pero la pregunta ahora es barata. Detalle que vale la pena: `-qcov_hsp_perc` es
+  justamente el parámetro que evita la trampa de `-perc_identity` que medimos en W2
+  §2.4, así que si era ése, estaba usando el correcto.
+
+- **Qué hace el veto duro sobre los cuatro candidatos.** Deja afuera a las regiones
+  elegidas de `BicC_Dm` y `ATPaseD_Dm` y no a las dos virales, y hay 1.384 de 2.201 y
+  92 de 172 regiones alternativas que lo escapan. La decisión D2 tenía consecuencia
+  medible y ya está medida.
+
+- **La cuenta de azar para 18, 19 y 20 nt**, que él pidió explícito. Hecha, con tres
+  nulos y el cruce localizado entre 17 y 18. Ver `research/ola2/W7_ranking/azar_por_k.md`.
+
+- **El «salto en 17»**, que no estaba documentado con números. Ahora lo está, y el
+  resultado es mixto: **no hay un salto discreto en 17** —la curva se empina
+  progresivamente desde 19 hacia abajo, con factores de 2,5, 3,0 y 3,0 al bajar de
+  18 a 17, de 17 a 16 y de 16 a 15— pero **17-18 sí es un umbral real**, porque es
+  donde lo observado cruza a lo esperado por azar. Lo que el equipo recordaba como
+  un salto de conteo es, medido, un cruce de régimen.
+
+## Abiertas, y son para el investigador
+
+En orden de cuánto cambian lo que hacemos:
+
+1. **¿Qué versión de si-Fi21 corriste y contra qué base de datos?** Sigue siendo la
+   primera. si-Fi21 sin modificar da 133, 32, 212 y 42, y la planilla dice 114, 35,
+   199 y 33; los cuatro difieren y no en la misma dirección. Las dos pistas medidas
+   están en la sección anterior de este archivo.
+
+2. **¿Cuánto te importa un cicadélido no objetivo como *Homalodisca vitripennis*?**
+   Ésta es nueva y es la que más mueve el entregable. El tercer puesto del ranking
+   se da vuelta según el peso que lleve esa referencia, porque `BicC_Dm` concentra
+   ahí toda su exposición: 56 ventanas con bloque ≥19 nt en el gen entero, 40 de
+   ellas con coincidencia perfecta de 21 nt. Es una pregunta de política de riesgo,
+   no técnica, y no nos corresponde contestarla.
+
+3. **¿El veto por coincidencia perfecta de 21 nt con un no objetivo te parece
+   bien como descarte duro, o preferís que sea una penalización?** Con el veto, las
+   regiones que elegiste para `BicC_Dm` y `ATPaseD_Dm` quedan descartadas, y hay
+   alternativas dentro del mismo gen que lo escapan y además son más eficientes.
+   Sin el veto, se ordenan pero no se descartan. Nosotros tomamos la posición dura y
+   está argumentada, pero la consecuencia es tuya.
+
+4. **¿Un desajuste en la región semilla pesa igual que uno en el extremo 3'?** No
+   tenemos evidencia para distinguirlos y por eso nuestro criterio de un desajuste no
+   mira la posición. Si tenés una regla del laboratorio, cambia el peso de ese
+   criterio.
+
+5. **¿«HCP» era `-qcov_hsp_perc` o `-max_hsps`?** Ver arriba.
+
+6. **La grafía del apellido y el dominio del correo.** `[?]` No se infiere y sigue
+   pendiente. La parte local es `apolo.d.zaballo` —«Apolo» con una sola L, «D» de
+   Diego— y el apellido se deletreó con una corrección en el medio que la
+   transcripción automática resolvió de varias formas. **El dominio no quedó
+   registrado en el audio.** Hay que preguntarlo o conseguirlo por otra vía antes de
+   escribirle; es lo único que bloquea el envío.
+
+## Pendientes internos nuevos
+
+- **El cruce de `CP_MRFV` con la conservación entre aislados sigue sin hacerse**, y
+  ahora importa más que antes: `CP_MRFV` resultó el candidato más limpio de los
+  cuatro —cero off-targets en todo el gen contra las seis referencias, bajo los tres
+  criterios— así que lo único que puede descalificarlo es que su región funcione en
+  un solo aislado. La región elegida es 100 % idéntica sólo al aislado de Costa Rica
+  y cae a 91,5-93,5 % contra los 45 registros brasileños. **Es el pendiente con mejor
+  relación entre costo y consecuencia que queda.**
+
+- **Las 18 ventanas de `MP_MRFV` contra maíz bajo el criterio de un desajuste** siguen
+  sin revisarse una por una. El cultivo es el no objetivo que más importa.
+
+- **El barajado del nulo empírico es de mononucleótidos, no de dinucleótidos.** `[?]`
+  La consecuencia es que la caída que atribuimos a «estructura» (24,8 % a k = 15)
+  incluye lo que un nulo de dinucleótidos habría atribuido a composición de pares, de
+  modo que **ese número es un máximo y no una estimación puntual**. Se corrió además
+  una sola réplica por referencia, así que no hay intervalo.
+
+- **La condición de 26 pb con hasta 2 desajustes de dsRNA-Engineer no está
+  implementada** en nuestro tamizaje local. Es la única de sus tres condiciones que
+  falta para poder reproducir su criterio exacto sobre los genes que no se le pueden
+  subir.
+
+- **`project/download-file` de dsRNA-Engineer devolvió `Error!` en esta corrida**,
+  donde en octubre entregó un `.tar.gz` con los archivos Bowtie crudos. `[?]` Sin
+  esos archivos no se puede desagregar su conteo por condición desde su lado; se hizo
+  desde el nuestro. No sabemos si es transitorio, un cambio de la API o algo propio de
+  estos proyectos.
+
+- **El ranking no mide valor del blanco y eso no se arregla con más cómputo.** Ordena
+  qué tan bien está diseñada una región dentro de un gen que alguien ya eligió. Si se
+  forzara un solo orden de los cuatro, los dos virales quedarían arriba, y eso sería
+  un artefacto. Ver D20.
+
+- **Las regiones alternativas que recomendamos no se verificaron contra la
+  conservación dentro de *D. maidis*.** `BicC_Dm` 2123-2422 y `ATPaseD_Dm` 72-371
+  están elegidas por eficiencia y por ausencia de off-target, pero no sabemos si esos
+  tramos están conservados entre poblaciones argentinas del vector. Una región
+  excelente que varíe entre poblaciones no sirve, y es el mismo problema que el de
+  los aislados de `CP_MRFV`.
