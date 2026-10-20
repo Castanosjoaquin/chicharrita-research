@@ -322,3 +322,19 @@ del gen; con los cuatro genes del corpus el máximo caía dentro del dominio vá
 así que acotarlo no movió ningún número publicado.
 **Nota:** las decisiones de color están en `CAMINOS_PROBADOS.md`, porque se tomaron
 descartando alternativas con el validador de paleta.
+
+**Revisión del mismo día, a partir de una lectura del equipo.** La primera versión
+dibujaba la curva **sólo** donde cabe una región completa, y eso se leía como un
+hueco: en `BicC_Dm` la banda de la región más densa llega hasta 2422 y la curva se
+cortaba en 2350, así que parecía faltar dato dentro de la banda. El diagnóstico es
+que el eje tenía **dos significados a la vez** —las bandas y las tiras marcan la
+extensión en nucleótidos, la curva indexaba por el centro de la región— y eso no se
+resuelve con una aclaración al pie.
+**Corrección:** la curva pasa a estar definida en todas las posiciones del gen. En
+los dos extremos la región se recorta contra el borde, el valor baja de verdad
+—porque ahí hay menos ventanas alcanzables, no porque falte el dato— y esos tramos
+van punteados para no darlos por comparables.
+**Lo que esto habilita, y que conviene conservar:** leída en el centro de cualquier
+banda, la curva da **exactamente** el conteo de esa región en la tabla. Es una
+propiedad verificable, y está verificada en las ocho combinaciones de gen y región.
+Un gráfico que contradiga su propia tabla es peor que no tener gráfico.

@@ -148,16 +148,26 @@ def svg(gen, dens, dom_max, efic_pos, off_pos, mm1_pos, region, mejor, n_vent, l
         o.append('<text class="tick" x="%d" y="%.1f" text-anchor="end">%d</text>'
                  % (ML - 8, y + 4, round(v)))
 
-    # area + linea de densidad, indexada por el centro de cada region candidata.
-    # Solo se dibuja donde cabe una region completa: fuera de ese tramo el conteo
-    # seria de una region truncada y no es comparable.
-    off_c = (largo_reg - 1) / 2.0
-    xs = [sx(s + off_c) for s in range(1, len(dens) + 1)]
-    pts = " ".join("%.1f,%.1f" % (x, sy(v)) for x, v in zip(xs, dens))
-    if xs:
+    # Area + linea de densidad. `dens` esta indexada por POSICION del gen: dens[x-1]
+    # es cuantos siRNA eficientes caen en la region de largo `largo_reg` centrada en
+    # x. Cerca de los extremos la region se recorta contra el borde del gen, asi que
+    # el valor baja de verdad —hay menos ventanas alcanzables ahi— y ese tramo se
+    # dibuja punteado para no darlo por comparable con el resto.
+    media = (largo_reg - 1) // 2
+    cmin, cmax = 1 + media, n_vent - largo_reg + 1 + media
+    xs = [sx(x) for x in range(1, n_vent + 1)]
+    pts = ["%.1f,%.1f" % (x, sy(v)) for x, v in zip(xs, dens)]
+    if pts:
         o.append('<polygon class="area" points="%.1f,%.1f %s %.1f,%.1f"/>'
-                 % (xs[0], MT + PLOT_H, pts, xs[-1], MT + PLOT_H))
-        o.append('<polyline class="line" points="%s"/>' % pts)
+                 % (xs[0], MT + PLOT_H, " ".join(pts), xs[-1], MT + PLOT_H))
+        i0, i1 = max(0, cmin - 1), min(len(pts), cmax)
+        if i0 > 0:
+            o.append('<polyline class="line line-borde" points="%s"/>'
+                     % " ".join(pts[:i0 + 1]))
+        o.append('<polyline class="line" points="%s"/>' % " ".join(pts[i0:i1]))
+        if i1 < len(pts):
+            o.append('<polyline class="line line-borde" points="%s"/>'
+                     % " ".join(pts[i1 - 1:]))
 
     # tiras
     lanes = [("Ventana eficiente", efic_pos, "tick-efic"),
@@ -276,6 +286,7 @@ figcaption{font-size:.85rem; color:var(--text-dim); margin-top:10px; max-width:n
 .sw-mm1{background:var(--risk); opacity:.45}
 .area{fill:var(--efic); opacity:.16}
 .line{fill:none; stroke:var(--efic); stroke-width:2; stroke-linejoin:round}
+.line-borde{stroke-dasharray:4 3; opacity:.6}
 .grid{stroke:var(--grid); stroke-width:1}
 .axis{stroke:var(--axis); stroke-width:1}
 .tick{fill:var(--muted); font-size:11px; font-variant-numeric:tabular-nums}
@@ -319,7 +330,7 @@ JS = """
     var cross = svg.querySelector('.cross');
     var tip = fig.querySelector('.tip');
     if(!svg || !hit || !tip) return;
-    var ML=d.ml, PW=d.pw, nVent=d.nVent, offc=d.offc;
+    var ML=d.ml, PW=d.pw, nVent=d.nVent, cmin=d.cmin, cmax=d.cmax;
     var efic=new Set(d.efic), off=new Set(d.off), mm1=d.mm1?new Set(d.mm1):null;
 
     function mover(ev){
@@ -333,12 +344,12 @@ JS = """
       cross.setAttribute('x1',x); cross.setAttribute('x2',x);
       cross.style.display='';
       var partes = ['<b>posición '+pos+'</b>'];
-      // la curva se indexa por el centro de la region: start = pos - offc
-      var i = Math.round(pos - offc) - 1;
+      var i = pos-1;
       if(i>=0 && i<d.dens.length){
-        partes.push('región centrada acá: <b>'+d.dens[i]+'</b> eficientes');
-      } else {
-        partes.push('<span style="opacity:.7">acá no cabe una región completa</span>');
+        var nota = (pos<cmin || pos>cmax)
+          ? ' <span style="opacity:.75">(región recortada contra el borde del gen)</span>'
+          : '';
+        partes.push('región centrada acá: <b>'+d.dens[i]+'</b> eficientes'+nota);
       }
       var est=[];
       if(pos<=nVent){
@@ -406,9 +417,11 @@ def pagina(gen, datos):
     brecha = (d["mejor"]["eficientes"] - d["efic_region"])
     pct = (100.0 * brecha / d["mejor"]["eficientes"]) if d["mejor"]["eficientes"] else 0
 
+    _L = g["region"][1] - g["region"][0] + 1
+    _media = (_L - 1) // 2
     json_blob = json.dumps({
         "ml": ML, "pw": PW, "vbw": W, "nVent": d["n_vent"],
-        "offc": (g["region"][1] - g["region"][0]) / 2.0,
+        "cmin": 1 + _media, "cmax": d["n_vent"] - _L + 1 + _media,
         "dens": d["dens"], "efic": sorted(d["efic_set"]),
         "off": sorted(d["off_pos"]),
         "mm1": sorted(d["mm1_pos"]) if d["mm1_pos"] is not None else None,
@@ -460,9 +473,13 @@ def pagina(gen, datos):
 <p>La curva contesta una sola pregunta, en cada punto: <strong>si eligiera una región
 de %(largo_reg)d nt centrada acá, cuántos siRNA eficientes tendría</strong>. Elegir
 región es elegir un punto de esta curva, y por eso el máximo de la curva es la mejor
-región posible por densidad. La curva empieza y termina donde deja de caber una
-región completa. Abajo, una marca por ventana de 21 nt: si es eficiente y si le pega
-a algo que no queremos tocar.</p>
+región posible por densidad. Leída en el centro de cualquiera de las dos bandas, la
+curva da exactamente el número de esa región en la tabla de más abajo.</p>
+<p>Cerca de los dos extremos del gen la región ya no entra completa y queda recortada
+contra el borde: ahí hay menos ventanas alcanzables y el valor baja de verdad, no por
+falta de dato. Esos dos tramos van <strong>punteados</strong>, porque no son
+comparables con el resto. Abajo de la curva, una marca por ventana de 21 nt: si es
+eficiente y si le pega a algo que no queremos tocar.</p>
 
 <figure data-plot class="tipwrap">
   %(leyenda)s
@@ -471,9 +488,10 @@ a algo que no queremos tocar.</p>
   <script type="application/json">%(json)s</script>
   <figcaption>Eje horizontal: posición dentro del gen, 1 a %(n_vent)d (las ventanas de
   21 nt que entran en %(largo)s nt). La banda gris es la región que eligió EPILAB; la
-  banda azul, la de máxima densidad. Hay %(dom_max)d regiones de %(largo_reg)d nt
-  posibles en este gen. Pasá el mouse por el gráfico para leer cualquier
-  posición.</figcaption>
+  banda azul, la de máxima densidad. El tramo punteado de la curva, en los dos
+  extremos, es donde la región de %(largo_reg)d nt ya no entra completa. Hay
+  %(dom_max)d regiones completas posibles en este gen. Pasá el mouse por el gráfico
+  para leer cualquier posición.</figcaption>
 </figure>
 
 <h2>La región elegida contra la más densa</h2>
@@ -553,8 +571,18 @@ def main(argv=None):
 
         L = g["region"][1] - g["region"][0] + 1
         dom_max = max(1, n_vent - L + 1)
-        dens = [sum(1 for p in efic_set if x <= p <= x + L - 1)
-                for x in range(1, dom_max + 1)]
+        # Densidad local por posicion del gen: cuantos siRNA eficientes caen en la
+        # region de largo L centrada en x, recortada contra los bordes del gen.
+        # Con suma de prefijos para que sea lineal y no cuadratica.
+        pre = [0] * (n_vent + 1)
+        for i in range(1, n_vent + 1):
+            pre[i] = pre[i - 1] + (1 if i in efic_set else 0)
+        media = (L - 1) // 2
+        dens = []
+        for x in range(1, n_vent + 1):
+            ini = max(1, x - media)
+            fin = min(n_vent, x - media + L - 1)
+            dens.append(pre[fin] - pre[ini - 1])
         mejor = best_region(vent, L)
         a0, b0 = g["region"]
         m0, m1 = mejor["inicio"], mejor["fin"]
