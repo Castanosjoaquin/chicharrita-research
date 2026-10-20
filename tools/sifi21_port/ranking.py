@@ -321,6 +321,12 @@ def cmd_nulo(a) -> int:
             "mediana_regiones": float(np.median(conteo)),
             "media_regiones": round(float(conteo.mean()), 2),
             "minimo_regiones": int(conteo.min()),
+            # Los cuartiles dicen dónde está la masa de la distribución, que es lo
+            # que el mínimo y el máximo solos no dicen: entre dos genes con el mismo
+            # rango, uno puede tener casi todas las regiones apiladas y el otro
+            # repartidas. Es lo que hace legible el percentil de la región elegida.
+            "p25_regiones": float(np.percentile(conteo, 25)),
+            "p75_regiones": float(np.percentile(conteo, 75)),
             "brecha_vs_mejor_pct": round(-100.0 * (n_mejor - n_eleg) / n_mejor, 1),
             "ganancia_max_observada_pct": round(100.0 * (obs / conteo.mean() - 1), 1),
             "ganancia_max_nulo_etiquetas_pct": round(100.0 * float(ne_gan.mean()), 1),

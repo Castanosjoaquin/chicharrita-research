@@ -90,12 +90,12 @@ perfil por ventana ya existe: para cada gen se calcula el conteo de eficientes s
 **todas** las regiones deslizantes del largo que usó EPILAB y se ubica en esa
 distribución la región elegida.
 
-| Gen | Largo | Regiones posibles | Elegida | **Percentil** | Mejor | Mediana | Mínimo |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| `MP_MRFV` | 200 | 1.044 | 30 | **90,9** | 38 | 19 | 8 |
-| `CP_MRFV` | 200 | 309 | 17 | **48,5** | 21 | 18 | 5 |
-| `BicC_Dm` | 300 | 2.201 | 20 | **44,1** | 37 | 21 | 3 |
-| `ATPaseD_Dm` | 300 | 172 | 18 | **45,3** | 24 | 19 | 17 |
+| Gen | Largo | Regiones posibles | Elegida | **Percentil** | Mínimo | p25 | Mediana | p75 | Máximo |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `MP_MRFV` | 200 | 1.044 | 30 | **90,9** | 8 | 13 | 19 | 26 | 38 |
+| `CP_MRFV` | 200 | 309 | 17 | **48,5** | 5 | 9 | 18 | 19 | 21 |
+| `BicC_Dm` | 300 | 2.201 | 20 | **44,1** | 3 | 14 | 21 | 26 | 37 |
+| `ATPaseD_Dm` | 300 | 172 | 18 | **45,3** | 17 | 17 | 19 | 23 | 24 |
 
 `[E]` **Esto reencuadra el hallazgo de §3 de `sifi21_reproduccion.md`.** Decir que
 `MP_MRFV` 1-200 está «un 21 % por debajo del óptimo» es cierto y es engañoso: esa
@@ -104,6 +104,13 @@ cada diez regiones de 200 nt que se podrían haber elegido. Las otras tres está
 alrededor de la mediana, es decir que **no se distinguen de haber elegido al azar
 dentro del gen**, que es una afirmación mucho más precisa —y más falsable— que un
 porcentaje contra un óptimo.
+
+Los cuartiles agregan algo que el mínimo y el máximo solos esconden, y es cuánto
+margen hay en cada gen. **`ATPaseD_Dm` es el caso extremo: todo su gen va de 17 a 24
+ventanas eficientes**, con el cuartil 25 pegado al mínimo. Ahí la elección de región
+casi no mueve la aguja se elija como se elija, de modo que discutir cuál es la mejor
+región de ese gen por densidad es discutir sobre un rango de 7 ventanas. En
+`BicC_Dm`, en cambio, el rango va de 3 a 37 y el margen es real. `[E]`
 
 El porcentaje contra el óptimo no es falsable porque el óptimo está sesgado hacia
 arriba por construcción: es un máximo sobre cientos de regiones superpuestas. Cuánto,

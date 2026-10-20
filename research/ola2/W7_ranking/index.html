@@ -73,7 +73,7 @@
   .sw{width:12px; height:12px; display:inline-block; flex:none}
   .sw.e{background:var(--efic)}
   .sw.m{background:var(--muted)}
-  .sw.a{background:var(--accent)}
+  .sw.b{background:var(--muted); opacity:.3}
 
   .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
   table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
@@ -179,10 +179,11 @@ arriba por construcción. La cantidad falsable es el percentil.</p>
 <figure>
 <svg viewBox="0 0 880 300" role="img" aria-labelledby="t1 d1">
   <title id="t1">Posición de la región elegida dentro del rango de su gen</title>
-  <desc id="d1">Para cada uno de los cuatro genes, el rango completo de ventanas
-  eficientes que alcanzan todas las regiones deslizantes del mismo largo, con la
-  región elegida por EPILAB y la mejor región marcadas. MP_MRFV queda en el
-  percentil 91 y las otras tres alrededor de la mediana.</desc>
+  <desc id="d1">Para cada uno de los cuatro genes, la distribución del número de
+  ventanas eficientes sobre todas las regiones deslizantes del mismo largo: rango
+  completo, mitad central y mediana, con la región que eligió EPILAB marcada encima.
+  MP_MRFV queda en el percentil 91, fuera de la mitad central; las otras tres caen
+  dentro de ella, entre los percentiles 44 y 49.</desc>
 
   <!-- eje -->
   <line x1="150" y1="252" x2="840" y2="252" stroke="var(--axis)" stroke-width="1"/>
@@ -195,60 +196,79 @@ arriba por construcción. La cantidad falsable es el percentil.</p>
   </g>
   <text x="495" y="291" font-size="11.5" fill="var(--text-dim)" text-anchor="middle">ventanas eficientes en la región</text>
 
-  <!-- MP_MRFV: min 8 med 19 max 38 elegida 30 -->
+  <!-- MP_MRFV: min 8 · p25 13 · mediana 19 · p75 26 · max 38 · elegida 30 -->
   <g>
     <text x="142" y="48" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">MP_MRFV</text>
     <text x="142" y="63" font-size="10.5" fill="var(--text-dim)" text-anchor="end">200 nt · 1.044 regiones</text>
-    <line x1="288" y1="44" x2="805" y2="44" stroke="var(--muted)" stroke-width="2"/>
+    <line x1="288" y1="44" x2="806" y2="44" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="288" y1="39" x2="288" y2="49" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="806" y1="39" x2="806" y2="49" stroke="var(--muted)" stroke-width="1.5"/>
+    <rect x="374" y="37" width="224" height="14" fill="var(--muted)" fill-opacity="0.3"/>
     <line x1="478" y1="36" x2="478" y2="52" stroke="var(--muted)" stroke-width="2"/>
-    <circle cx="805" cy="44" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
-    <circle cx="667" cy="44" r="6.5" fill="var(--efic)" stroke="var(--surface)" stroke-width="2"/>
-    <text x="667" y="25" font-size="11.5" fill="var(--text)" text-anchor="middle" font-weight="650">30 · percentil 91</text>
+    <text x="280" y="48" font-size="10.5" fill="var(--text-dim)" text-anchor="end">8</text>
+    <text x="814" y="48" font-size="10.5" fill="var(--text-dim)" text-anchor="start">38</text>
+    <circle cx="668" cy="44" r="6.5" fill="var(--efic)" stroke="var(--surface)" stroke-width="2"/>
+    <text x="668" y="25" font-size="11.5" fill="var(--text)" text-anchor="middle" font-weight="650">30 · percentil 91</text>
   </g>
 
-  <!-- CP_MRFV: min 5 med 18 max 21 elegida 17 -->
+  <!-- CP_MRFV: min 5 · p25 9 · mediana 18 · p75 19 · max 21 · elegida 17 -->
   <g>
     <text x="142" y="110" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">CP_MRFV</text>
     <text x="142" y="125" font-size="10.5" fill="var(--text-dim)" text-anchor="end">200 nt · 309 regiones</text>
-    <line x1="236" y1="106" x2="512" y2="106" stroke="var(--muted)" stroke-width="2"/>
+    <line x1="236" y1="106" x2="512" y2="106" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="236" y1="101" x2="236" y2="111" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="512" y1="101" x2="512" y2="111" stroke="var(--muted)" stroke-width="1.5"/>
+    <rect x="305" y="99" width="173" height="14" fill="var(--muted)" fill-opacity="0.3"/>
     <line x1="460" y1="98" x2="460" y2="114" stroke="var(--muted)" stroke-width="2"/>
-    <circle cx="512" cy="106" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
+    <text x="228" y="110" font-size="10.5" fill="var(--text-dim)" text-anchor="end">5</text>
+    <text x="520" y="110" font-size="10.5" fill="var(--text-dim)" text-anchor="start">21</text>
     <circle cx="443" cy="106" r="6.5" fill="var(--efic)" stroke="var(--surface)" stroke-width="2"/>
     <text x="443" y="87" font-size="11.5" fill="var(--text)" text-anchor="middle" font-weight="650">17 · percentil 49</text>
   </g>
 
-  <!-- BicC_Dm: min 3 med 21 max 37 elegida 20 -->
+  <!-- BicC_Dm: min 3 · p25 14 · mediana 21 · p75 26 · max 37 · elegida 20 -->
   <g>
     <text x="142" y="172" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">BicC_Dm</text>
     <text x="142" y="187" font-size="10.5" fill="var(--text-dim)" text-anchor="end">300 nt · 2.201 regiones</text>
-    <line x1="202" y1="168" x2="788" y2="168" stroke="var(--muted)" stroke-width="2"/>
+    <line x1="202" y1="168" x2="788" y2="168" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="202" y1="163" x2="202" y2="173" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="788" y1="163" x2="788" y2="173" stroke="var(--muted)" stroke-width="1.5"/>
+    <rect x="392" y="161" width="206" height="14" fill="var(--muted)" fill-opacity="0.3"/>
     <line x1="512" y1="160" x2="512" y2="176" stroke="var(--muted)" stroke-width="2"/>
-    <circle cx="788" cy="168" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
+    <text x="194" y="172" font-size="10.5" fill="var(--text-dim)" text-anchor="end">3</text>
+    <text x="796" y="172" font-size="10.5" fill="var(--text-dim)" text-anchor="start">37</text>
     <circle cx="495" cy="168" r="6.5" fill="var(--efic)" stroke="var(--surface)" stroke-width="2"/>
     <text x="495" y="149" font-size="11.5" fill="var(--text)" text-anchor="middle" font-weight="650">20 · percentil 44</text>
   </g>
 
-  <!-- ATPaseD_Dm: min 17 med 19 max 24 elegida 18 -->
+  <!-- ATPaseD_Dm: min 17 · p25 17 · mediana 19 · p75 23 · max 24 · elegida 18 -->
   <g>
     <text x="142" y="234" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">ATPaseD_Dm</text>
     <text x="142" y="249" font-size="10.5" fill="var(--text-dim)" text-anchor="end">300 nt · 172 regiones</text>
-    <line x1="443" y1="230" x2="564" y2="230" stroke="var(--muted)" stroke-width="2"/>
+    <line x1="443" y1="230" x2="564" y2="230" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="443" y1="225" x2="443" y2="235" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="564" y1="225" x2="564" y2="235" stroke="var(--muted)" stroke-width="1.5"/>
+    <rect x="443" y="223" width="104" height="14" fill="var(--muted)" fill-opacity="0.3"/>
     <line x1="478" y1="222" x2="478" y2="238" stroke="var(--muted)" stroke-width="2"/>
-    <circle cx="564" cy="230" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
+    <text x="435" y="234" font-size="10.5" fill="var(--text-dim)" text-anchor="end">17</text>
+    <text x="572" y="234" font-size="10.5" fill="var(--text-dim)" text-anchor="start">24</text>
     <circle cx="460" cy="230" r="6.5" fill="var(--efic)" stroke="var(--surface)" stroke-width="2"/>
     <text x="460" y="211" font-size="11.5" fill="var(--text)" text-anchor="middle" font-weight="650">18 · percentil 45</text>
   </g>
 </svg>
 <div class="legend">
   <span><i class="sw e"></i> región elegida por EPILAB</span>
-  <span><i class="sw a"></i> mejor región del mismo largo</span>
-  <span><i class="sw m"></i> rango completo del gen, con la mediana marcada</span>
+  <span><i class="sw b"></i> mitad central de las regiones del gen, con la mediana marcada</span>
+  <span><i class="sw m"></i> rango completo, de la peor a la mejor región posible</span>
 </div>
-<figcaption>La barra gris es el rango entre la peor y la mejor región posible de ese
-largo dentro del gen, con un tick en la mediana. <strong>MP_MRFV está bien
-elegida</strong>: mejor que nueve de cada diez regiones posibles. Las otras tres caen
-sobre la mediana, o sea que no se distinguen de haber elegido al azar dentro del
-gen.</figcaption>
+<figcaption>La línea fina es el rango completo de ese largo dentro del gen y el
+cajón es la mitad central de las regiones, entre los cuartiles 25 y 75, con un tick
+en la mediana. <strong>MP_MRFV está bien elegida</strong>: su punto cae fuera del
+cajón, a la derecha, mejor que nueve de cada diez regiones posibles. Las otras tres
+caen dentro del cajón, o sea que no se distinguen de haber elegido al azar dentro del
+gen. <strong>ATPaseD_Dm es el caso extremo</strong>: todo su gen va de 17 a 24
+ventanas eficientes, así que ahí elegir región casi no mueve la aguja, se elija como
+se elija.</figcaption>
 </figure>
 
 <div class="note">
