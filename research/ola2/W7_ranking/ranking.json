@@ -1791,6 +1791,1180 @@
         "vetadas_por_21_perfecto": [],
         "muestras": 2000
       }
+    },
+    "los_cuatro_recomendados": {
+      "geometrica/mecanicista/absoluta": {
+        "frecuencia": {
+          "MP_MRFV": [
+            100.0,
+            0.1,
+            0.0,
+            0.0
+          ],
+          "CP_MRFV": [
+            0.1,
+            0.1,
+            99.8,
+            0.0
+          ],
+          "BicC_Dm": [
+            0.0,
+            99.8,
+            0.1,
+            0.0
+          ],
+          "ATPaseD_Dm": [
+            0.0,
+            0.0,
+            0.0,
+            100.0
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 100.0,
+          "CP_MRFV": 0.1,
+          "BicC_Dm": 0.0,
+          "ATPaseD_Dm": 0.0
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 99.8
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.1
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "geometrica/mecanicista/minmax": {
+        "frecuencia": {
+          "MP_MRFV": [
+            31.2,
+            6.2,
+            43.4,
+            19.1
+          ],
+          "CP_MRFV": [
+            43.5,
+            30.6,
+            25.9,
+            0.0
+          ],
+          "BicC_Dm": [
+            25.2,
+            63.1,
+            11.6,
+            0.0
+          ],
+          "ATPaseD_Dm": [
+            0.0,
+            0.0,
+            19.1,
+            80.9
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 31.2,
+          "CP_MRFV": 43.5,
+          "BicC_Dm": 25.2,
+          "ATPaseD_Dm": 0.0
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 27.0
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 24.6
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 16.4
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 11.6
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 7.5
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 6.7
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 4.9
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 1.4
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "geometrica/conservadora/absoluta": {
+        "frecuencia": {
+          "MP_MRFV": [
+            99.0,
+            0.3,
+            0.6,
+            0.2
+          ],
+          "CP_MRFV": [
+            0.4,
+            0.6,
+            99.0,
+            0.0
+          ],
+          "BicC_Dm": [
+            0.6,
+            99.0,
+            0.3,
+            0.0
+          ],
+          "ATPaseD_Dm": [
+            0.1,
+            0.1,
+            0.1,
+            99.8
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 99.0,
+          "CP_MRFV": 0.4,
+          "BicC_Dm": 0.6,
+          "ATPaseD_Dm": 0.1
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 98.7
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.3
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 0.1
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "geometrica/conservadora/minmax": {
+        "frecuencia": {
+          "MP_MRFV": [
+            13.8,
+            5.2,
+            40.8,
+            40.2
+          ],
+          "CP_MRFV": [
+            30.4,
+            52.4,
+            16.6,
+            0.7
+          ],
+          "BicC_Dm": [
+            55.5,
+            40.8,
+            3.8,
+            0.0
+          ],
+          "ATPaseD_Dm": [
+            0.3,
+            1.7,
+            38.9,
+            59.1
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 13.8,
+          "CP_MRFV": 30.4,
+          "BicC_Dm": 55.5,
+          "ATPaseD_Dm": 0.3
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 33.7
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 20.9
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 17.4
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 12.7
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 7.0
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 3.2
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 1.3
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 1.2
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 1.1
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm",
+              "CP_MRFV"
+            ],
+            "pct": 0.6
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "CP_MRFV",
+              "MP_MRFV"
+            ],
+            "pct": 0.5
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV",
+              "CP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 0.1
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "suma/mecanicista/absoluta": {
+        "frecuencia": {
+          "MP_MRFV": [
+            99.4,
+            0.4,
+            0.1,
+            0.1
+          ],
+          "CP_MRFV": [
+            0.6,
+            1.1,
+            98.4,
+            0.0
+          ],
+          "BicC_Dm": [
+            0.1,
+            98.5,
+            1.4,
+            0.0
+          ],
+          "ATPaseD_Dm": [
+            0.0,
+            0.0,
+            0.1,
+            100.0
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 99.4,
+          "CP_MRFV": 0.6,
+          "BicC_Dm": 0.1,
+          "ATPaseD_Dm": 0.0
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 98.3
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 1.1
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.3
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.1
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "suma/mecanicista/minmax": {
+        "frecuencia": {
+          "MP_MRFV": [
+            45.4,
+            14.1,
+            26.7,
+            13.8
+          ],
+          "CP_MRFV": [
+            48.3,
+            23.1,
+            28.6,
+            0.0
+          ],
+          "BicC_Dm": [
+            6.3,
+            62.8,
+            30.9,
+            0.0
+          ],
+          "ATPaseD_Dm": [
+            0.0,
+            0.0,
+            13.8,
+            86.2
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 45.4,
+          "CP_MRFV": 48.3,
+          "BicC_Dm": 6.3,
+          "ATPaseD_Dm": 0.0
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 28.1
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 24.3
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 17.3
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 13.6
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 10.4
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 3.4
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 2.4
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.6
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "suma/conservadora/absoluta": {
+        "frecuencia": {
+          "MP_MRFV": [
+            92.8,
+            1.4,
+            2.4,
+            3.4
+          ],
+          "CP_MRFV": [
+            4.3,
+            4.5,
+            90.7,
+            0.6
+          ],
+          "BicC_Dm": [
+            2.3,
+            92.9,
+            4.8,
+            0.1
+          ],
+          "ATPaseD_Dm": [
+            0.6,
+            1.3,
+            2.2,
+            96.0
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 92.8,
+          "CP_MRFV": 4.3,
+          "BicC_Dm": 2.3,
+          "ATPaseD_Dm": 0.6
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 89.7
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 2.9
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 1.6
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 1.1
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 1.0
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 0.8
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.6
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.6
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 0.6
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "CP_MRFV"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm",
+              "CP_MRFV"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "CP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "MP_MRFV",
+              "BicC_Dm"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "CP_MRFV",
+              "MP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV",
+              "CP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV"
+            ],
+            "pct": 0.1
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "suma/conservadora/minmax": {
+        "frecuencia": {
+          "MP_MRFV": [
+            43.6,
+            6.0,
+            16.5,
+            33.9
+          ],
+          "CP_MRFV": [
+            34.2,
+            20.6,
+            41.9,
+            3.2
+          ],
+          "BicC_Dm": [
+            14.0,
+            60.9,
+            24.6,
+            0.5
+          ],
+          "ATPaseD_Dm": [
+            8.2,
+            12.4,
+            17.1,
+            62.4
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 43.6,
+          "CP_MRFV": 34.2,
+          "BicC_Dm": 14.0,
+          "ATPaseD_Dm": 8.2
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 35.2
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 11.2
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 10.2
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 9.5
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 7.3
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 5.0
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "CP_MRFV",
+              "BicC_Dm",
+              "MP_MRFV"
+            ],
+            "pct": 4.7
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 3.6
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm"
+            ],
+            "pct": 2.9
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "CP_MRFV",
+              "MP_MRFV"
+            ],
+            "pct": 2.5
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 2.1
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "CP_MRFV",
+              "MP_MRFV"
+            ],
+            "pct": 2.1
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "CP_MRFV"
+            ],
+            "pct": 1.0
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "BicC_Dm",
+              "MP_MRFV",
+              "CP_MRFV"
+            ],
+            "pct": 0.8
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "MP_MRFV",
+              "ATPaseD_Dm",
+              "CP_MRFV"
+            ],
+            "pct": 0.7
+          },
+          {
+            "orden": [
+              "BicC_Dm",
+              "ATPaseD_Dm",
+              "MP_MRFV",
+              "CP_MRFV"
+            ],
+            "pct": 0.6
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "MP_MRFV",
+              "BicC_Dm"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "CP_MRFV",
+              "MP_MRFV",
+              "ATPaseD_Dm",
+              "BicC_Dm"
+            ],
+            "pct": 0.2
+          },
+          {
+            "orden": [
+              "ATPaseD_Dm",
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV"
+            ],
+            "pct": 0.1
+          },
+          {
+            "orden": [
+              "MP_MRFV",
+              "CP_MRFV",
+              "ATPaseD_Dm",
+              "BicC_Dm"
+            ],
+            "pct": 0.1
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "cascada/mecanicista": {
+        "frecuencia": {
+          "MP_MRFV": [
+            100.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CP_MRFV": [
+            0.0,
+            0.0,
+            100.0,
+            0.0
+          ],
+          "BicC_Dm": [
+            0.0,
+            100.0,
+            0.0,
+            0.0
+          ],
+          "ATPaseD_Dm": [
+            0.0,
+            0.0,
+            0.0,
+            100.0
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 100.0,
+          "CP_MRFV": 0.0,
+          "BicC_Dm": 0.0,
+          "ATPaseD_Dm": 0.0
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 100.0
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      },
+      "cascada/conservadora": {
+        "frecuencia": {
+          "MP_MRFV": [
+            100.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CP_MRFV": [
+            0.0,
+            0.0,
+            100.0,
+            0.0
+          ],
+          "BicC_Dm": [
+            0.0,
+            100.0,
+            0.0,
+            0.0
+          ],
+          "ATPaseD_Dm": [
+            0.0,
+            0.0,
+            0.0,
+            100.0
+          ]
+        },
+        "primero_pct": {
+          "MP_MRFV": 100.0,
+          "CP_MRFV": 0.0,
+          "BicC_Dm": 0.0,
+          "ATPaseD_Dm": 0.0
+        },
+        "ordenes": [
+          {
+            "orden": [
+              "MP_MRFV",
+              "BicC_Dm",
+              "CP_MRFV",
+              "ATPaseD_Dm"
+            ],
+            "pct": 100.0
+          }
+        ],
+        "vetadas_por_21_perfecto": [],
+        "muestras": 2000
+      }
     }
   },
   "alternativas": {
@@ -2073,6 +3247,24 @@
           }
         ]
       }
+    }
+  },
+  "regiones_recomendadas": {
+    "MP_MRFV": {
+      "elegida": "1-200",
+      "recomendada": "72-271"
+    },
+    "CP_MRFV": {
+      "elegida": "201-400",
+      "recomendada": "99-298"
+    },
+    "BicC_Dm": {
+      "elegida": "264-563",
+      "recomendada": "2123-2422"
+    },
+    "ATPaseD_Dm": {
+      "elegida": "151-450",
+      "recomendada": "72-371"
     }
   }
 }

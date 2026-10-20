@@ -27,6 +27,12 @@ coincidencias de 21 nt contra 22) y `ATPaseD_Dm` 72-371 (21 contra 18, cero cont
 3). **La recomendación operativa no es cambiar de gen: es mover la región dentro
 del gen, en los dos genes del insecto.**
 
+Y esa recomendación no es cosmética: **si se acepta, el orden cambia**. Con las
+regiones recomendadas el ranking pasa a ser `MP_MRFV` > `BicC_Dm` > `CP_MRFV` >
+`ATPaseD_Dm` en entre el 89,7 % y el 100 % de los sorteos, porque `BicC_Dm` mejora
+mucho en los dos ejes a la vez y salta de pelear el último puesto a quedar segundo
+(§2.3).
+
 > **Qué de todo esto es medición y qué es nuestra decisión.** Son medición: los
 > conteos de ventanas eficientes, los de ventanas con coincidencia en cada
 > referencia, los percentiles, los nulos y la cuenta de azar. Son decisión nuestra,
@@ -278,6 +284,50 @@ criterios, incluido el de un desajuste; con el criterio de §4 de
 `sifi21_reproduccion.md`, que es sólo bloque perfecto de ≥19 nt, los números son
 menores (en `BicC_Dm` 2123-2422, 3 en vez de 6). Los dos rangos de percentil
 corresponden a ordenar por puntaje geométrico y por la cascada con veto.
+
+> **La mejor región por densidad no siempre es la que recomendamos, y conviene no
+> confundirlas.** En tres de los cuatro genes coinciden. En `ATPaseD_Dm` no: la región
+> más densa de 300 nt es **136-435, con 24 ventanas eficientes, y está vetada**
+> —contiene las tres ventanas con coincidencia perfecta de 21 nt—, así que la
+> recomendación es **72-371, con 21**. Donde la tabla del percentil de §1.2 dice que
+> el máximo de ese gen es 24, ese 24 es un máximo que nosotros mismos descartamos.
+
+### 2.3 Si el laboratorio acepta mover las regiones, el orden cambia
+
+El ranking de §2.1 es el que pidió el investigador: los cuatro candidatos **tal como
+están**. Pero si la recomendación se acepta, los candidatos dejan de ser esos, y la
+pregunta de si el orden aguanta es distinta. No es obvia, porque mover una región
+cambia los dos ejes a la vez y no por igual en todos los genes.
+
+| Candidato | Región elegida | Eficacia | Limpieza | → | Región recomendada | Eficacia | Limpieza |
+|---|---|---:|---:|---|---|---:|---:|
+| `MP_MRFV` | 1-200 | 0,1500 | 0,9802 | → | 72-271 | 0,1900 | 0,9826 |
+| `CP_MRFV` | 201-400 | 0,0850 | 0,9931 | → | 99-298 | 0,1050 | 0,9925 |
+| `BicC_Dm` | 264-563 | 0,0667 | **0,9334** | → | 2123-2422 | **0,1233** | **0,9922** |
+| `ATPaseD_Dm` | 151-450 | 0,0600 | 0,9804 | → | 72-371 | 0,0700 | 0,9924 |
+
+`[E]` **El orden pasa a ser `MP_MRFV` > `BicC_Dm` > `CP_MRFV` > `ATPaseD_Dm`**, en
+entre el 89,7 % y el 100 % de los sorteos con la escala absoluta y en el 100 % con la
+cascada. **`BicC_Dm` salta de pelear el último puesto a quedar segundo.**
+
+El mecanismo está en la tabla y es el único que hace falta: su eficacia casi se
+duplica —0,0667 a 0,1233, con lo que pasa a `CP_MRFV`— y a la vez su limpieza sube de
+0,9334 a 0,9922, porque la región nueva deja afuera las 22 ventanas que coincidían
+perfecto con *Homalodisca vitripennis*. Es el único de los cuatro que mejora mucho en
+los dos ejes al mismo tiempo, y por eso es el único que cambia de puesto.
+
+**Esto es lo que vuelve a la recomendación algo más que una observación.** Si el
+laboratorio se queda con sus regiones, `BicC_Dm` es un candidato mediocre y vetado.
+Si acepta moverla 1.859 nucleótidos dentro del mismo gen, es el segundo mejor de los
+cuatro. **El gen no cambió; cambió qué parte del gen se usa.**
+
+Dos advertencias sobre este nivel 3. La primera: bajo la escala min-max el orden se
+vuelve inestable —ningún orden supera el 36 % de los sorteos—, y el motivo es que al
+mejorar los cuatro quedan mucho más juntos en los dos ejes, de modo que una
+normalización que estira el rango observado a [0,1] convierte diferencias chicas en
+distancias grandes. Es un argumento a favor de leer este nivel con la escala
+absoluta. La segunda: `ATPaseD_Dm` sigue último incluso mejorado, lo que es coherente
+con que todo su gen vaya de 17 a 24 ventanas eficientes.
 
 `[E]` **Las dos recomendaciones que importan están en los genes del insecto, y no
 se apoyan en la densidad sino en el veto.** La región elegida de `BicC_Dm` contiene

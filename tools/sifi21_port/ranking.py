@@ -766,6 +766,49 @@ def cmd_ranking(a) -> int:
                 print("      regiones que escapan al veto: %d de %d"
                       % (alt["no_vetadas"], alt["regiones_posibles"]))
 
+    # Nivel 3: el mismo ranking pero con las regiones recomendadas en lugar de las
+    # que eligio EPILAB. Contesta si la recomendacion cambia el orden, que no es
+    # obvio: mover una region cambia los dos ejes a la vez y no por igual en todos
+    # los genes. El nivel 1 sigue siendo el que el investigador pidio —los cuatro
+    # candidatos tal como estan—; esto es lo que pasaria si acepta moverlos.
+    recomendados = []
+    for c in CANDIDATOS:
+        mejor = salida["alternativas"][c["gen"]]["cascada"]["mejores"][0]
+        ini, fin = (int(x) for x in mejor["region"].split("-"))
+        d = dict(c)
+        d["region"] = (ini, fin)
+        recomendados.append(d)
+    salida["regiones_recomendadas"] = {
+        c["gen"]: {"elegida": "%d-%d" % dict(o)["region"],
+                   "recomendada": "%d-%d" % c["region"]}
+        for c, o in zip(recomendados, CANDIDATOS)}
+    salida["barridos"]["los_cuatro_recomendados"] = {}
+    for forma in ("geometrica", "suma", "cascada"):
+        for regla, s in (("mecanicista", True), ("conservadora", False)):
+            for escala in ("absoluta", "minmax"):
+                if forma == "cascada" and escala == "minmax":
+                    continue
+                r2 = barrer(recomendados, genes, forma, s, a.dmaidis_viral, a.muestras,
+                            np.random.default_rng(a.semilla), escala)
+                clave = ("%s/%s" % (forma, regla) if forma == "cascada"
+                         else "%s/%s/%s" % (forma, regla, escala))
+                salida["barridos"]["los_cuatro_recomendados"][clave] = r2
+
+    print("\n=== Nivel 3: el mismo ranking con las regiones recomendadas ===")
+    for c, o in zip(recomendados, CANDIDATOS):
+        print("  %-12s %s  ->  %s" % (c["gen"], "%d-%d" % o["region"],
+                                      "%d-%d" % c["region"]))
+    print()
+    for clave in sorted(salida["barridos"]["los_cuatro_recomendados"]):
+        r2 = salida["barridos"]["los_cuatro_recomendados"][clave]
+        print("  %-34s %s" % (clave, "  ".join(
+            "%s %s" % (n2, "/".join("%.0f" % x for x in v))
+            for n2, v in r2["frecuencia"].items())))
+        for o2 in r2["ordenes"][:2]:
+            print("      %5.1f %%  %s" % (o2["pct"], " > ".join(o2["orden"])))
+        if r2["vetadas_por_21_perfecto"]:
+            print("      vetadas: %s" % ", ".join(r2["vetadas_por_21_perfecto"]))
+
     if a.json:
         Path(a.json).parent.mkdir(parents=True, exist_ok=True)
         Path(a.json).write_text(json.dumps(salida, indent=2, ensure_ascii=False),
