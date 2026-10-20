@@ -552,3 +552,31 @@ JSON embebido. Los cuatro pasan. **Lo que no está hecho es mirarlos**, y eso qu
 anotado como pendiente en `PREGUNTAS_ABIERTAS.md`.
 **Qué lo reabriría:** que la extensión de Chrome responda, o instalar las DLL de
 cairo.
+
+### Dar por buena la equivalencia del port sin correr el programa original
+**Qué se intentó:** sostener las conclusiones del modo fiel sobre la lectura del
+fuente, sin ejecutar si-Fi21.
+**Qué pasó:** **ya no hace falta: se corrió y coincide.** si-Fi21 original, con su
+interfaz y sus valores por defecto, da **471 hits totales y 42 siRNA eficientes**
+sobre `ATPaseD_Dm_full`; nuestro port en modo fiel con el mismo RNAplfold da 471 y
+42. Además la curva del «RNAi design plot» se reprodujo tramo por tramo: ocho
+tramos, mismas posiciones, mismas alturas.
+**Estado:** el port queda **verificado contra el original**, no inferido de él. Eso
+convierte la diferencia entre los dos modos en una medición y no en una hipótesis:
+los 8 siRNA de diferencia en este gen son los que la rama terminal declara
+eficientes salteándose la termodinámica. Salida cruda en
+`analisis/sifi21_original_ATPaseD.csv`.
+**Qué lo reabriría:** que los otros tres genes no coincidan. Falta correrlos.
+
+### Suponer que «el botón no hace nada» es un problema de instalación
+**Qué se intentó:** interpretar que si-Fi no arrancaba el cálculo por una
+instalación incompleta o por la máquina.
+**Qué pasó:** descartado. Es un bug del programa, reproducido y aislado:
+`run_rnaplfold` pasa `cwd=<temporal>` a `Popen` con el ejecutable por nombre pelado,
+y en Windows eso rompe la búsqueda del binario. El error termina en un
+`UnboundLocalError` que Qt se traga, de ahí el silencio. `run_bowtie` no lo tiene
+porque no pasa `cwd`.
+**Estado:** resuelto lanzando el programa con los directorios de RNAplfold y Bowtie
+en el PATH. **La lección de método:** antes de culpar al entorno, reproducir la
+llamada exacta del programa en aislamiento. Tres variantes de la misma llamada —sin
+PATH, con PATH, y con ruta completa— localizaron el bug en una línea.

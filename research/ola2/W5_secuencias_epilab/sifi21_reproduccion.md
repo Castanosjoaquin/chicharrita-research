@@ -44,6 +44,59 @@ La **columna 9 de la planilla se llama «Nro de eficientes por región?»**, con
 de pregunta, y **está vacía en las cuatro filas**. Es la que el investigador pidió
 llenar en el checkpoint. Está más abajo.
 
+## 0. El port está verificado contra el programa original `[E]`
+
+Todo lo que sigue depende de que nuestro port calcule lo mismo que si-Fi21. Eso ya
+no es un supuesto: se corrió el programa original, con su interfaz gráfica, sobre
+`ATPaseD_Dm_full`, y **el número coincide exacto**.
+
+| | si-Fi21 original | Nuestro port, modo fiel + RNAplfold 2.1.5 |
+|---|---|---|
+| Hits totales de Bowtie | 471 | 471 |
+| **siRNA eficientes** | **42** | **42** |
+
+La corrida usó los valores por defecto de la interfaz —tamaño 21, 0 desajustes,
+umbral de extremos 1,00, accesibilidad 0,10, ventana 8, y las cuatro casillas
+tildadas, incluida la regla del nucleótido terminal 5'— y una base de Bowtie
+construida con el `bowtie-build` del propio instalador sobre los cuatro genes.
+
+Verificación adicional, independiente del número: la curva roja del «RNAi design
+plot» de si-Fi —que no es eficiente sí/no por ventana, sino cuántos siRNA eficientes
+se superponen a cada posición del ARNm— se reprodujo con nuestro port y **coincide
+tramo por tramo**: ocho tramos separados, en las mismas posiciones, con las mismas
+alturas (máximo 9 en 150-156, luego 8 en 287-297), y la línea azul plana en 21.
+
+**Qué habilita esto.** Si el modo fiel es fiel, entonces la diferencia que mide el
+modo corregido es real y no un artefacto nuestro: en este gen son 8 siRNA que si-Fi
+declara eficientes salteándose los filtros termodinámicos, 42 contra 34.
+
+### Tres defectos de si-Fi21 encontrados al hacerlo
+
+Ninguno afecta a nuestros números, pero cualquiera que intente correr el programa se
+los va a cruzar, así que quedan documentados. `[E]`
+
+1. **No encuentra su propio RNAplfold.** `sifi_pipeline.run_rnaplfold` hace
+   `os.chdir()` al directorio de la herramienta y después llama
+   `subprocess.Popen(["RNAplfold", ...], cwd=<temporal>)`. En Windows, pasar `cwd`
+   hace que la búsqueda del ejecutable se haga desde ahí y no desde el directorio del
+   padre, así que falla con `FileNotFoundError` salvo que el directorio esté en el
+   PATH. `run_bowtie` no tiene el problema porque no pasa `cwd`: es la única
+   diferencia entre las dos funciones. **El síntoma es que el botón Start no hace
+   nada**, porque el error cae en un `else` que nunca asigna `lunp_data` y el
+   `return lunp_data` siguiente tira `UnboundLocalError`, que el slot de Qt se traga.
+   *Solución:* lanzar el programa con `%LOCALAPPDATA%\siFi2015\RNAplfold` y
+   `...\Bowtie` en el PATH.
+   `[H]` Es probable que sea a lo que el investigador se refirió en el checkpoint
+   cuando dijo que el programa «no anda bien». Quien tenga ViennaRNA instalado aparte
+   nunca ve el bug.
+2. **La tabla de resultados no se muestra nunca.** `imageviewer.ImageViewer` recibe
+   `table_data` y sólo la usa en `export_table`: la ventana de resultados muestra la
+   imagen y nada más. El número de eficientes, que es el resultado principal, sólo se
+   obtiene por el menú **Save as → Table (CSV)**.
+3. **La exportación corrompe el nombre del archivo.** `export_table`, `export_image`
+   y `export_gbk` hacen `filename += filename + '.csv'` cuando falta la extensión, o
+   sea concatenan la ruta consigo misma. Hay que escribir la extensión a mano.
+
 ## 1. El conteo declarado no es reproducible con si-Fi21
 
 Se barrieron 15.120 configuraciones por gen, exigiendo que una sola configuración
