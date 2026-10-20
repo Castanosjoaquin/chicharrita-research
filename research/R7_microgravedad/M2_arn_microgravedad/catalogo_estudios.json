@@ -1,0 +1,559 @@
+[
+ {
+  "id": "C-01",
+  "tema": "estructura",
+  "organismo_o_sistema": "Heterodúplex ADN/ARN de 9 pb (sintético) cristalizado por contra-difusión",
+  "real_o_simulada": "real",
+  "plataforma": "ISS, módulo Kibo (JAXA), contenedor JCB-SGT; transporte SpaceX Dragon; difracción en SPring-8 y Photon Factory",
+  "n": "4 cristales depositados (Earth-1, Space-1, Earth-2, Space-2) = 1 cristal medido por condición; PDB 9KKZ, 9KL1, 9K7R, 9K8Z verificados en RCSB",
+  "control": "Mismas soluciones y método de contra-difusión en Tierra; estudio previo de los mismos autores por difusión de vapor (4U6M, 1,9 Å)",
+  "resultado": "Resolución máxima 1,5 Å (Tierra-1), 1,6 (espacio-1), 1,59 (Tierra-2; el artículo dice 1,6) y 1,4 (espacio-2) según RCSB; tamaño del cristal mayor en espacio en la condición 1 (550 vs 400 µm). RMSD < 0,2 Å entre todas las estructuras y 4U6M. Los autores concluyen que no hay diferencia significativa de resolución ni de mosaicidad y que el efecto de la contra-difusión probablemente supera al de la microgravedad.",
+  "confusores_de_vuelo_no_microgravedad": "Con n = 1 cristal por condición no hay estimación de variabilidad; en la condición 1 el cristal terrestre fue mejor y en la 2 el espacial. Confusor principal: método (contra-difusión vs vapor), no vuelo. La difracción se hizo a 100 K en sincrotrón; el artículo no discute radiación ni vibración durante el transporte.",
+  "fuente": [
+   "M2-02",
+   "M2-03"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "completo",
+  "nota": null
+ },
+ {
+  "id": "C-02",
+  "tema": "estructura",
+  "organismo_o_sistema": "ARN 5S rRNA de Thermus flavus modificado en 5' y 3' (~40 kDa)",
+  "real_o_simulada": "real",
+  "plataforma": "Transbordador, misión STS-94 (NASA)",
+  "n": null,
+  "control": "Cristales obtenidos también en condiciones terrestres (según el resumen)",
+  "resultado": "Los mejores cristales provinieron de la misión STS-94; primer conjunto de datos completo para cristales de 5S rRNA, a 7,8 Å, grupo espacial R32 (a = b = 110,3; c = 387,6 Å). No es una estructura refinada según el resumen.",
+  "confusores_de_vuelo_no_microgravedad": "No evaluado (solo resumen)",
+  "fuente": [
+   "M2-04"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (: el resumen no da n)"
+ },
+ {
+  "id": "C-03",
+  "tema": "estructura",
+  "organismo_o_sistema": "Dúplex de ARN sintético r(7-mer)·r(7-mer), hélice B del dominio de 5S rRNA de T. flavus",
+  "real_o_simulada": "real (según el resumen: «microgravity provided crystals of higher quality»; el resumen no dice si el conjunto de 2,6 Å se midió sobre un cristal espacial)",
+  "plataforma": "No consta en el resumen",
+  "n": null,
+  "control": "Cristalización terrestre del mismo ARN",
+  "resultado": "Datos de difracción hasta 2,6 Å, estructura refinada con R = 22,4 %, grupo P3(1)21; la variación de secuencia no mejoró la calidad, la microgravedad sí (según los autores). Contradice la afirmación de «primer informe» de Ando 2025 [?]. Código PDB no verificado.",
+  "confusores_de_vuelo_no_microgravedad": "No evaluado (solo resumen)",
+  "fuente": [
+   "M2-05"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-04",
+  "tema": "estructura",
+  "organismo_o_sistema": "Virus del mosaico del tabaco satélite (STMV): cápside + ARN genómico monocatenario",
+  "real_o_simulada": "real (cristales «grown in microgravity», según el resumen de 1998; «en parte» en 2014)",
+  "plataforma": "No nombrada en los resúmenes",
+  "n": null,
+  "control": "No evaluado (solo resumen)",
+  "resultado": "1998: refinamiento a 1,8 Å con datos de cristales crecidos en microgravedad; el modelo de la unidad asimétrica incluye 21 nucleótidos y en la partícula completa los nucleótidos se visualizaron como 30 segmentos helicoidales de 9 pb. 2014: 1,4 Å con cristales enfriados; ~57 % del ARN genómico visible en los mapas; el resumen no aclara qué parte de los cristales del refinamiento fue espacial.",
+  "confusores_de_vuelo_no_microgravedad": "No evaluado (solo resumen)",
+  "fuente": [
+   "M2-08",
+   "M2-09"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-05",
+  "tema": "estructura",
+  "organismo_o_sistema": "Proteínas aspartil-tRNA sintetasa (lado proteico; se registra solo como contexto)",
+  "real_o_simulada": "real",
+  "plataforma": "APCF/plataformas espaciales (según revisión de 2002)",
+  "n": null,
+  "control": "Cristales terrestres",
+  "resultado": "Reseñas de 2002 sostienen que los cristales espaciales dan mejor orden interno y mapas de densidad mejores en tres proteínas modelo. Es evidencia de proteínas, cubierta por M1; no se transfiere a ARN.",
+  "confusores_de_vuelo_no_microgravedad": "No evaluado (solo resumen)",
+  "fuente": [
+   "M2-11",
+   "M2-12",
+   "M2-10"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (sin detalle)"
+ },
+ {
+  "id": "C-06",
+  "tema": "medicion",
+  "organismo_o_sistema": "ARN de E. coli y de hígado de ratón (RT-qPCR) y ADN estándar",
+  "real_o_simulada": "real",
+  "plataforma": "ISS, WetLab-2 (módulo de preparación de ARN SPM + termociclador SmartCycler); incremento 47 / SpX-8",
+  "n": "Duplicados técnicos por muestra; repetición con 4 réplicas técnicas singleplex y 4 duplex; sin réplicas biológicas independientes descritas en lo leído",
+  "control": "Control a 1 g en Tierra (en la repetición, con 24 h de retraso)",
+  "resultado": "Ct y eficiencias de PCR a bordo similares a 1 g; RT-qPCR multiplex en ~3 h con datos transmitidos en ~2 h; RIN en las pruebas del módulo 7,9 ± 1,2 (E. coli) y 7,4 ± 1,6 (hígado), con figura de calidad típica a 1 g; ARN de E. coli purificado en órbita con RIN 8,5 vs 8 a 1 g el mismo día (una comparación). Burbujas de gas en tubos con septo aumentaron el ruido de Ct; se suprimieron en una repetición con tapas estándar.",
+  "confusores_de_vuelo_no_microgravedad": "Calidad del ARN comparada entre órbita y 1 g, sin separar radiación (exposición breve)",
+  "fuente": [
+   "M2-14"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "parcial",
+  "nota": null
+ },
+ {
+  "id": "C-07",
+  "tema": "medicion",
+  "organismo_o_sistema": "C. elegans: extracción de ADN, retrotranscripción y PCR semicuantitativa",
+  "real_o_simulada": "real",
+  "plataforma": "ISS, termociclador miniaturizado",
+  "n": null,
+  "control": "No evaluado (solo resumen)",
+  "resultado": "Implementación de tres procedimientos de biología molecular a bordo (extracción de ADN, RT, PCR semicuantitativa de cDNA).",
+  "confusores_de_vuelo_no_microgravedad": "No evaluado",
+  "fuente": [
+   "M2-15"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-08",
+  "tema": "medicion",
+  "organismo_o_sistema": "Expresión libre de células (BioBits): aptámeros de ARN y proteínas fluorescentes como sensores",
+  "real_o_simulada": "real",
+  "plataforma": "ISS",
+  "n": null,
+  "control": "No evaluado (resumen)",
+  "resultado": "Los dos sensores (uno para DFHBI y otro para una secuencia de ARN) funcionaron a bordo con lectura fluorescente visual y por imagen; se reportan cinéticas de transcripción y traducción libres de células en microgravedad.",
+  "confusores_de_vuelo_no_microgravedad": "No evaluado",
+  "fuente": [
+   "M2-16"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-09",
+  "tema": "medicion",
+  "organismo_o_sistema": "ADN genómico (lambda, E. coli, ratón) secuenciado con MinION",
+  "real_o_simulada": "real",
+  "plataforma": "ISS, 9 corridas en 6 meses; comparado con MinION, MiSeq y PacBio en Tierra",
+  "n": "9 corridas; 276.882 lecturas",
+  "control": "Plataformas terrestres como referencia",
+  "resultado": "Ensamblado dirigido de E. coli y lambda al 100 % de identidad de consenso y 96,7 % para el genoma mitocondrial de ratón; ensamblado de novo de E. coli en un contig con 98,6 % de identidad. Solo ADN.",
+  "confusores_de_vuelo_no_microgravedad": "No separa microgravedad de otros factores de vuelo",
+  "fuente": [
+   "M2-17"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "parcial",
+  "nota": null
+ },
+ {
+  "id": "C-10",
+  "tema": "medicion",
+  "organismo_o_sistema": "ADN con MinION en vuelo parabólico (g variable) y a g de Marte, Europa y Luna",
+  "real_o_simulada": "real (vuelo parabólico; microgravedad de segundos por parábola)",
+  "plataforma": "Vuelo parabólico",
+  "n": null,
+  "control": "Referencia a 1 g",
+  "resultado": "Se generaron lecturas de ADN durante el vuelo parabólico (2016, primeras lecturas en microgravedad según el resumen); en 2020 el desempeño fue consistente entre niveles de g, frente a aceleraciones y vibraciones. Solo ADN.",
+  "confusores_de_vuelo_no_microgravedad": "Vibración/aceleración del avión (evaluadas explícitamente en 2020)",
+  "fuente": [
+   "M2-18",
+   "M2-19"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "parcial",
+  "nota": "n: sin dato en la fuente leída (sin detalle)"
+ },
+ {
+  "id": "C-11",
+  "tema": "medicion",
+  "organismo_o_sistema": "ARN directo con nanoporos y RNA-seq en sangre de 4 astronautas (Inspiration4), 7 puntos temporales",
+  "real_o_simulada": "real (misión orbital de 3 días, Inspiration4); el secuenciado fue en Tierra",
+  "plataforma": "Sangre colectada pre-vuelo, día de regreso y post-vuelo; secuenciación en laboratorios terrestres",
+  "n": "4 astronautas; 7 puntos temporales (L−92, L−44, L−3 d; R+1, R+45, R+82, R+194 d)",
+  "control": "Comparación longitudinal con la propia línea de base pre-vuelo",
+  "resultado": "Primer perfil de metilación m6A en una misión humana; aumento de m6A inmediatamente tras el regreso. No es secuenciación en órbita.",
+  "confusores_de_vuelo_no_microgravedad": "Misión de 3 días: lanzamiento, aterrizaje y estrés no se separan de la microgravedad",
+  "fuente": [
+   "M2-21"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "parcial",
+  "nota": null
+ },
+ {
+  "id": "C-12",
+  "tema": "rnai",
+  "organismo_o_sistema": "Caenorhabditis elegans N2 (expresión de maquinaria de RNAi y miARN), alimentación con E. coli HT115",
+  "real_o_simulada": "real",
+  "plataforma": "ISS, módulo Kibo, instalación CBEF, experimento CERISE; congelación a −80 °C en MELFI y análisis en Tierra",
+  "n": "mRNA: 3 réplicas biológicas por condición, 18 arrays en GEO (3 condiciones x 3 x 2); miARN: 6 arrays en GEO (1 por condición y duración, 4 d y 8 d). Del método (ANOVA entre vuelo 4 d + 8 d y controles 4 d + 8 d) se deduce una comparación n = 2 vs n = 4 [H]",
+  "control": "Control terrestre simultáneo (simulador OES: temperatura, O2, CO2, humedad pero sin microgravedad ni radiación) y centrífuga 1 g a bordo",
+  "resultado": "Tras 8 d, ningún gen de la maquinaria (Dicer/dcr-1 0,99 ± 0,04 control vs 1,18 ± 0,10 vuelo, Argonauta, PIWI, rde-4) difirió con P > 0,05; 228 de 232 miARN sin cambio y 4 con cambio (P entre 0,003 y 0,049, sin corrección por comparaciones múltiples mencionada).",
+  "confusores_de_vuelo_no_microgravedad": "Radiación, vibración, lanzamiento y manejo no se separan en el contraste vuelo vs control terrestre; la centrífuga 1 g a bordo sí lo permitiría. La Tabla 1 contrasta vuelo con el control terrestre y su pie dice que los valores son relativos a un control interno («1G controls»): ambigüedad que no pude resolver. P > 0,05 con n = 3 no demuestra equivalencia [H].",
+  "fuente": [
+   "M2-01",
+   "M2-25",
+   "M2-26"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "completo",
+  "nota": null
+ },
+ {
+  "id": "C-13",
+  "tema": "rnai",
+  "organismo_o_sistema": "C. elegans AZ212 (GFP-histona en gónada), RNAi anti-gfp y anti-rbx-1 por alimentación, 4 d",
+  "real_o_simulada": "real",
+  "plataforma": "ISS, Kibo, CERISE",
+  "n": "No declarado en el texto ni en las leyendas de figura que leí (microscopía representativa)",
+  "control": "Vector vacío; control terrestre (GC); se declaran 3 condiciones por cultivo incluyendo centrífuga 1 g, pero las figuras de RNAi muestran vuelo vs GC",
+  "resultado": "Pérdida de GFP embrionaria con anti-gfp y anomalías de segregación cromosómica con anti-rbx-1 «no diferentes» entre vuelo y GC; sin cuantificación del knockdown ni intervalos.",
+  "confusores_de_vuelo_no_microgravedad": "Idem; resultado cualitativo",
+  "fuente": [
+   "M2-01"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "completo",
+  "nota": null
+ },
+ {
+  "id": "C-14",
+  "tema": "rnai",
+  "organismo_o_sistema": "C. elegans PD55 (dauer), RNAi anti-asp-4/asp-6 y Western de α-actina",
+  "real_o_simulada": "real",
+  "plataforma": "ISS, Kibo, CERISE",
+  "n": "3 Western blots, cada uno con un anticuerpo anti-α-actina distinto; ANOVA de dos vías de medidas repetidas",
+  "control": "Vector vacío; control terrestre",
+  "resultado": "El RNAi contra proteasas lisosomales preservó la α-actina tanto en vuelo como en Tierra (P < 0,01); el vector control perdió la α-actina en ambas condiciones.",
+  "confusores_de_vuelo_no_microgravedad": "Los tres blots son réplicas de detección, no réplicas biológicas independientes (inferencia mía [H])",
+  "fuente": [
+   "M2-01"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "completo",
+  "nota": null
+ },
+ {
+  "id": "C-15",
+  "tema": "rnai",
+  "organismo_o_sistema": "PBMC humanas (sangre de 3 astronautas Axiom-3 + 1 suborbital + voluntarios terrestres)",
+  "real_o_simulada": "real (ISS días 4, 7 y 10; suborbital: una muestra descriptiva)",
+  "plataforma": "ISS (Axiom-3) y vuelo suborbital (Galactic-07); RNA-seq total",
+  "n": "3 astronautas orbitales con 4 puntos (pre-vuelo y días 4, 7, 10); 1 suborbital (n = 1, solo descriptivo); controles terrestres de n no hallado",
+  "control": "Línea de base pre-vuelo (L−7 d) y voluntarios pareados en Tierra",
+  "resultado": "De 2.239 transcritos asociados a miARN, 118 pasaron filtros y 36 cambiaron (34 bajan y 2 suben); DROSHA, DGCR8, DICER1, AGO1–4 y exportinas bajan desde el día 4 con recuperación limitada. Son niveles de transcrito, no actividad de silenciamiento.",
+  "confusores_de_vuelo_no_microgravedad": "Los autores admiten que el diseño no aísla microgravedad, radiación, carga de trabajo, lanzamiento/aterrizaje, ritmo circadiano ni fondo individual; Kruskal-Wallis con p < 0,05; no hallé FDR/padj para las pruebas por gen en el texto que leí",
+  "fuente": [
+   "M2-22"
+  ],
+  "marcador": "[R] preprint",
+  "nivel_lectura": "parcial",
+  "nota": null
+ },
+ {
+  "id": "C-16",
+  "tema": "rnai",
+  "organismo_o_sistema": "Fibroblastos humanos confluentes (miARN y mRNA por microarray)",
+  "real_o_simulada": "real",
+  "plataforma": "ISS (cámaras BioCells); fijación a los 3 d y 14 d; muestras devueltas en mayo de 2014",
+  "n": "16 muestras en el registro OSD-118",
+  "control": "Células de tierra paralelas",
+  "resultado": "A los 3 d hubo activación de NF-κB y vías de crecimiento y descenso de la familia Let-7 en vuelo; a los 14 d el perfil de vuelo fue indistinguible del terrestre (resumen). Los autores concluyen que en células no proliferantes la microgravedad tiene poco efecto.",
+  "confusores_de_vuelo_no_microgravedad": "Fijación a bordo y retorno a 4 °C; efecto a los 3 d atribuible en parte a proliferación residual (según los autores)",
+  "fuente": [
+   "M2-23",
+   "M2-24"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "completo (ficha OSDR) y resumen (artículo)",
+  "nota": null
+ },
+ {
+  "id": "C-17",
+  "tema": "rnai",
+  "organismo_o_sistema": "C. elegans en tres experimentos de la ISS (4, 8 y 16,5 d): reanálisis de microarrays de mRNA y miARN",
+  "real_o_simulada": "real",
+  "plataforma": "ISS; comparaciones SF (vuelo), SC (centrífuga 1 g a bordo) y GC (control terrestre)",
+  "n": "3 experimentos; n por grupo no consta en el resumen",
+  "control": "SC y GC",
+  "resultado": "Según los autores, los patrones de genes de reparación de ADN se separan entre SF/GC y SC/GC y cambian genes de reparación y miARN reguladores bajo microgravedad.",
+  "confusores_de_vuelo_no_microgravedad": "El control SC difiere del GC, o sea que parte de la diferencia vuelo-Tierra no es gravedad",
+  "fuente": [
+   "M2-35"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": null
+ },
+ {
+  "id": "C-18",
+  "tema": "rnai",
+  "organismo_o_sistema": "C. elegans, 4 d en la ISS: miARNoma y transcriptoma",
+  "real_o_simulada": "real",
+  "plataforma": "ISS (SF, SC, GC)",
+  "n": null,
+  "control": "SC y GC",
+  "resultado": "25 miARN diferencialmente expresados bajan en SC vs GC y 13 suben en SF vs GC; los autores concluyen que la microgravedad regula módulos génicos a través de miARN (con verificación experimental no detallada en el resumen).",
+  "confusores_de_vuelo_no_microgravedad": "Hay 25 miARN que cambian entre el control a 1 g en vuelo y la Tierra",
+  "fuente": [
+   "M2-36"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-19",
+  "tema": "rnai",
+  "organismo_o_sistema": "Arabidopsis thaliana con circuito inducible por estrógeno (factor XVE) que incluye un sistema de silenciamiento por RNAi (construcción pX7-AtPDSi; que el blanco sea PDS lo infiero del nombre y del fotoblanqueo [H])",
+  "real_o_simulada": "real",
+  "plataforma": "ISS, invernadero personalizado de 1,25 U",
+  "n": null,
+  "control": "Col-0 silvestre (no fotoblanquea); sin cuantificación en el resumen",
+  "resultado": "Hojas pX7-AtPDSi fotoblanquearon «como estaba diseñado» en vuelo, lo que indica que el circuito, incluido el RNAi post-transcripcional, funcionó en órbita; PCR post-vuelo confirma la recombinación Cre/LoxP.",
+  "confusores_de_vuelo_no_microgravedad": "No evaluado (resumen)",
+  "fuente": [
+   "M2-29"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-20",
+  "tema": "rnai",
+  "organismo_o_sistema": "C. elegans N2 y mutantes; RNAi por alimentación a 1 g como herramienta de cribado",
+  "real_o_simulada": "RNAi a 1 g en Tierra; la microgravedad (ISS MME-2 y clinostato PMS-VII) es solo el contexto fenotípico",
+  "plataforma": "ISS (Cargo Dragon, CRS-22, junio de 2021) y clinostato",
+  "n": "ISS: 19 gusanos a 1 g y 10 en microgravedad (una misión); RNAi: 3–6 ensayos independientes por gen, n total 33 a 142 por gen",
+  "control": "Control 1 g en KSC; clinostato frente a agitador a 1 g",
+  "resultado": "Cinco de 20 genes cribados aumentaron la colonización por Enterobacter al silenciarse. El cribado de RNAi no se hizo en microgravedad, así que no mide eficacia del RNAi en vuelo (hallazgo negativo de búsqueda).",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-30"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "parcial",
+  "nota": null
+ },
+ {
+  "id": "C-21",
+  "tema": "rnai",
+  "organismo_o_sistema": "C. elegans: RNAi como herramienta bajo microgravedad simulada (clinostato)",
+  "real_o_simulada": "simulada",
+  "plataforma": "Sistema de microgravedad simulada de laboratorio",
+  "n": null,
+  "control": "No evaluado",
+  "resultado": "Los resúmenes usan RNAi (knockdown de glp-1, daf-16, daf-28, ins-39, ins-8 y otros) para probar epistasis bajo microgravedad simulada; no comparan la eficacia del RNAi entre simulada y 1 g.",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-31",
+   "M2-32"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-22",
+  "tema": "rnai",
+  "organismo_o_sistema": "HUVEC: siRNA contra PIEZO1 y SIRT3 bajo microgravedad simulada/clinorrotación",
+  "real_o_simulada": "simulada",
+  "plataforma": "Microgravedad simulada de laboratorio (48 h PIEZO1; clinorrotación 72 h SIRT3)",
+  "n": "n = 3 por grupo (PIEZO1)",
+  "control": "si-NC en condiciones normales y simuladas",
+  "resultado": "El knockdown se verificó por qPCR y Western; el siRNA se usa para probar la función del gen, no se compara la eficacia del silenciamiento contra 1 g (el orden temporal de transfección y exposición no quedó resuelto en lo que leí) [?].",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-33",
+   "M2-34"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "parcial",
+  "nota": null
+ },
+ {
+  "id": "C-23",
+  "tema": "rnai",
+  "organismo_o_sistema": "Mioblastos de ratón en vuelo; músculo de ratón con descarga",
+  "real_o_simulada": "real (vuelo) y simulada (descarga de miembros posteriores)",
+  "plataforma": "No detallada en el resumen",
+  "n": null,
+  "control": "No evaluado",
+  "resultado": "El resumen reporta cambios de miARN en mioblastos en vuelo y validación en el modelo de descarga con mímicos de miARN; sin medir la maquinaria.",
+  "confusores_de_vuelo_no_microgravedad": "No evaluado",
+  "fuente": [
+   "M2-38"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (sin detalle)"
+ },
+ {
+  "id": "C-24",
+  "tema": "estabilidad",
+  "organismo_o_sistema": "Aptámeros expuestos fuera de la ISS 588 días (EXPOSE-R2) y a partículas en aceleradores",
+  "real_o_simulada": "exposición espacial real sin diferenciar microgravedad (exterior de la ISS) más irradiación terrestre",
+  "plataforma": "EXPOSE-R2 (exterior de la ISS); dosis acumulada 220 mGy",
+  "n": null,
+  "control": "Irradiaciones terrestres por tipo de partícula",
+  "resultado": "Más de 50 % de los aptámeros seguían funcionales tras la misión; el colorante fluorescente perdió 60 % de señal por temperatura (−21 a +58 °C), lo que generó gran variabilidad. El resumen no dice si los aptámeros eran de ADN o de ARN.",
+  "confusores_de_vuelo_no_microgravedad": "Temperatura y radiación dominan; microgravedad no es la variable",
+  "fuente": [
+   "M2-40"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-25",
+  "tema": "estabilidad",
+  "organismo_o_sistema": "Daño de ADN y respuesta al daño en células, revisión",
+  "real_o_simulada": "real y simulada",
+  "plataforma": "Revisión",
+  "n": "—",
+  "control": "—",
+  "resultado": "La revisión señala que ha sido difícil aislar el efecto de la radiación de otros factores del vuelo y que los resultados sobre sinergia microgravedad-radiación son conflictivos; concluye que hacen falta experimentos en espacio real, con centrífuga 1 g a bordo como diseño de referencia.",
+  "confusores_de_vuelo_no_microgravedad": "Es el tema central",
+  "fuente": [
+   "M2-41"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "parcial",
+  "nota": null
+ },
+ {
+  "id": "C-26",
+  "tema": "terapeutico",
+  "organismo_o_sistema": "Ratón: oligonucleótido antisentido fluorescente tras 2 g por 24 h",
+  "real_o_simulada": "hipergravedad (centrífuga en Tierra; no es microgravedad)",
+  "plataforma": "Centrífuga de laboratorio",
+  "n": null,
+  "control": "Ratones a 1 g",
+  "resultado": "Tras 2 g durante 24 h el antisentido fluorescente y un dextrano de 70 kDa se detectaron en el parénquima cerebral (mayor permeabilidad de la barrera hematoencefálica). Es hipergravedad en Tierra, no microgravedad.",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-42"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-27",
+  "tema": "terapeutico",
+  "organismo_o_sistema": "Ratón con descarga de miembros posteriores y células en clinostato 2D: inhibidor de miR-132-3p en liposoma catiónico dirigido a hueso",
+  "real_o_simulada": "simulada",
+  "plataforma": "Descarga de miembros posteriores + clinostato 2D",
+  "n": null,
+  "control": "No evaluado",
+  "resultado": "El silenciamiento dirigido de miR-132-3p preservó masa ósea, microestructura y resistencia en el modelo de descarga.",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-43"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-28",
+  "tema": "terapeutico",
+  "organismo_o_sistema": "Ratón con microgravedad simulada y análogo de radiación de espacio profundo: cóctel de antagomires (miR-16-5p, miR-125b-5p, let-7a-5p)",
+  "real_o_simulada": "simulada",
+  "plataforma": "Modelo de microgravedad simulada + radiación",
+  "n": null,
+  "control": "No evaluado",
+  "resultado": "El resumen que obtuve indica que el tratamiento con antagomires influyó sobre genes asociados a senescencia e inflamación en hígado; el texto del resumen termina cortado.",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-39"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-29",
+  "tema": "terapeutico",
+  "organismo_o_sistema": "Liposomas (fosfolípidos y detergente), formación",
+  "real_o_simulada": "real",
+  "plataforma": "Vuelo espacial (plataforma no nombrada en el resumen)",
+  "n": null,
+  "control": "1 g",
+  "resultado": "En vuelo se formaron liposomas de hasta 2000 nm; a 1 g no superaron 150 nm; perturbaciones de fluido de equipo anularon el efecto. Es lípido sin ARN y de 1996: no es evidencia sobre LNP con ARN [H].",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-44"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": "n: sin dato en la fuente leída (resumen)"
+ },
+ {
+  "id": "C-30",
+  "tema": "terapeutico",
+  "organismo_o_sistema": "Terapias celulares y génicas en LEO (informe de estado, 2025)",
+  "real_o_simulada": "real (revisión)",
+  "plataforma": "Revisión",
+  "n": "—",
+  "control": "—",
+  "resultado": "En el texto completo hay 0 menciones de mRNA, siRNA/RNAi/oligonucleótido y nanopartículas lipídicas; no trata ARN terapéutico.",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-46",
+   "M2-47",
+   "M2-45"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "parcial",
+  "nota": null
+ },
+ {
+  "id": "C-31",
+  "tema": "otro",
+  "organismo_o_sistema": "Microbios en vuelo y análogos (revisión)",
+  "real_o_simulada": "real y simulada",
+  "plataforma": "Revisión",
+  "n": "—",
+  "control": "—",
+  "resultado": "El resumen reporta cambios de virulencia, de resistencia, biofilm y expresión bajo gravedad reducida y baja cizalla. Hallazgo de la literatura, sin condiciones; no se propone nada [R].",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-48"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": null
+ },
+ {
+  "id": "C-32",
+  "tema": "otro",
+  "organismo_o_sistema": "Revisiones de química prebiótica del ARN (2026)",
+  "real_o_simulada": "no aplica",
+  "plataforma": "Revisiones",
+  "n": "—",
+  "control": "—",
+  "resultado": "Mapa del campo: mezclas prebióticas complejas y rutas redundantes hacia precursores del ARN; no tratan microgravedad.",
+  "confusores_de_vuelo_no_microgravedad": "—",
+  "fuente": [
+   "M2-50",
+   "M2-51"
+  ],
+  "marcador": "[R]",
+  "nivel_lectura": "resumen",
+  "nota": null
+ }
+]

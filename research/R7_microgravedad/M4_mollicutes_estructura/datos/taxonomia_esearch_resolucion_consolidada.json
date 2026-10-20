@@ -1,0 +1,23 @@
+{
+ "nota": "Consolidado de las consultas esearch (db=taxonomy, [Scientific Name] o [All Names]) hechas el 2026-10-19; las respuestas individuales no se guardaron una a una. Los taxid se verificaron luego por esummary (taxonomia_esummary_parientes.json).",
+ "esearch_nombre_cientifico": [
+  2.0
+ ],
+ "esearch_all_names": {
+  "Mycoplasmoides pneumoniae": [
+   "2104"
+  ],
+  "Mycoplasmoides genitalium": [
+   "2097"
+  ],
+  "Aster yellows witches'-broom phytoplasma AYWB": [
+   "322098"
+  ],
+  "Candidatus Phytoplasma australiense": [
+   "59748"
+  ],
+  "Candidatus Phytoplasma solani": [
+   "69896"
+  ]
+ }
+}

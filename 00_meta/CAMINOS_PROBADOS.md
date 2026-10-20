@@ -584,3 +584,29 @@ porque no pasa `cwd`.
 en el PATH. **La lección de método:** antes de culpar al entorno, reproducir la
 llamada exacta del programa en aislamiento. Tres variantes de la misma llamada —sin
 PATH, con PATH, y con ruta completa— localizaron el bug en una línea.
+
+## Nivel R7 — microgravedad (2026-10-20)
+
+Todo lo de abajo viene de `research/R7_microgravedad/`.
+
+### Abrir una línea de cristalización o de estructura en microgravedad para los dos mollicutes
+**Qué se intentó:** evaluar si la cristalización de proteínas en microgravedad resuelve el faltante estructural de los blancos de *Ca.* P. zeae y *S. kunkelii*.
+**Qué pasó:** de 16 blancos con función documentada, ninguno tiene estructura experimental propia y en ninguno el cuello de botella documentado es el crecimiento del cristal (9 nadie lo intentó, 4 membrana, 1 sin ensayo, 1 sin cultivo, 1 sin faltante). Ninguno cumple las cinco condiciones de la regla de M4 ni las seis de la de M1. No hay estudio que una microgravedad con estos organismos.
+**Estado:** descartado. **Qué lo reabriría:** un cristal terrestre deficiente de un blanco concreto, un laboratorio socio y una decisión que dependa de más resolución (preguntas 2 a 4 de R7).
+
+### Usar microgravedad (real o simulada) para validar o seleccionar dsRNA o siRNA
+**Qué se intentó:** buscar estudios que lo hayan hecho, en proteínas, ARN, plantas, insectos y patógenos.
+**Qué pasó:** ninguno; seis formulaciones de búsqueda con las cadenas registradas. El único experimento de eficacia de RNAi en órbita es CERISE (*C. elegans*), cualitativo y de una misión. La eficacia de un dsRNA no depende de la gravedad a escala molecular `[H]`.
+**Estado:** descartado como vía de validación. **Qué lo reabriría:** un estudio que compare la eficacia de silenciamiento entre microgravedad y 1 g con siRNA o dsRNA exógeno.
+
+### Simulación molecular con gravedad alterada y ML de cristalizabilidad
+**Qué pasó:** no se halló ninguna simulación ni modelo que use la gravedad como variable; el cálculo de orden de magnitud da una energía gravitatoria de 10⁻⁹ a 10⁻⁷ de la térmica a escala de proteína o ARN. Entrenar un predictor viola D8.
+**Estado:** descartado.
+
+### Tomar los porcentajes de «mejora» de los metaanálisis de microgravedad como tamaño de efecto
+**Qué pasó:** los metaanálisis (77 a 90 %) cuentan estudios publicados mejorados en al menos una métrica, sin tamaño de efecto ni control del sesgo de publicación, y no se pudieron abrir completos. Las tasas de JAXA dependen del denominador (19 %, 28 % o 5 %).
+**Estado:** descartado como respaldo de una cifra. Se citan como conteos de estudios, con el denominador.
+
+### Relanzar una pista rechazada por el filtro de seguridad con otra redacción o con otro modelo
+**Qué se intentó:** nada; queda registrado porque pasó (ver `PREGUNTAS_ABIERTAS.md`, sección R7).
+**Estado:** no se reformula ni se reenvía desde la sesión que orquesta para esquivar un rechazo (`CLAUDE.md`). Cómo cubrir ese tema es decisión del equipo.

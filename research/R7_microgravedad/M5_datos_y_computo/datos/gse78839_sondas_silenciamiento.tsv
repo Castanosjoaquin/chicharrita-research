@@ -1,0 +1,47 @@
+ID	familia	Gene symbol	Gene title	en_matriz
+Os.10217.1.S1_a_at	Argonaute/PIWI/PAZ	LOC4335025	protein argonaute 4B	True
+Os.10753.1.S1_a_at	Argonaute/PIWI/PAZ	LOC9270411	protein argonaute 1B	True
+Os.10753.1.S2_a_at	Argonaute/PIWI/PAZ	LOC9270411	protein argonaute 1B	True
+Os.12351.1.S1_at	Argonaute/PIWI/PAZ	LOC4324438	protein argonaute 4A	True
+Os.1433.2.S1_at	Argonaute/PIWI/PAZ	LOC9269807	protein argonaute MEL1-like	True
+Os.1433.3.S1_x_at	Argonaute/PIWI/PAZ	LOC9269807	protein argonaute MEL1-like	True
+Os.18590.1.S1_a_at	Argonaute/PIWI/PAZ	LOC4342138	protein argonaute 1D	True
+Os.40026.1.S1_at	Argonaute/PIWI/PAZ	LOC4334449	protein argonaute MEL1	True
+Os.50333.1.S1_at	Argonaute/PIWI/PAZ	LOC4336991	protein argonaute 2	True
+Os.53826.1.S1_at	Argonaute/PIWI/PAZ	LOC4342603	protein argonaute 14	True
+Os.54612.1.A1_at	Argonaute/PIWI/PAZ	LOC4328436	protein argonaute 17	True
+Os.55120.1.S1_at	Argonaute/PIWI/PAZ	LOC4336992	protein argonaute 3	True
+Os.7338.1.S1_at	Argonaute/PIWI/PAZ	LOC4343201	protein argonaute 18	True
+Os.7338.2.A1_at	Argonaute/PIWI/PAZ	LOC4343201	protein argonaute 18	True
+Os.7419.1.S1_a_at	Argonaute/PIWI/PAZ	LOC4331253	protein argonaute 1C	True
+Os.8293.1.S1_at	Argonaute/PIWI/PAZ	LOC4330281	protein argonaute 1A	True
+Os.9351.1.S1_at	Argonaute/PIWI/PAZ	LOC9269490	protein argonaute PNH1	True
+Os.27988.1.A1_at	Dicer/DCL	LOC4336362	endoribonuclease Dicer homolog 4	True
+Os.28186.1.S1_s_at	Dicer/DCL	LOC4333337	endoribonuclease Dicer homolog 2a	True
+Os.28186.2.S1_s_at	Dicer/DCL	LOC4333337	endoribonuclease Dicer homolog 2a	True
+Os.49417.1.S1_at	Dicer/DCL	LOC4324864	endoribonuclease Dicer homolog 3a	True
+Os.50406.1.S1_x_at	Dicer/DCL	LOC4346696	endoribonuclease Dicer homolog 2b	True
+Os.2202.2.S1_x_at	RDR (RNA-dep. RNA pol.)	LOC4327336	probable RNA-dependent RNA polymerase 4	True
+Os.2202.3.S1_x_at	RDR (RNA-dep. RNA pol.)	LOC4327336	probable RNA-dependent RNA polymerase 4	True
+Os.30747.1.S1_at	RDR (RNA-dep. RNA pol.)	LOC4323938	probable RNA-dependent RNA polymerase SHL2	True
+Os.32212.1.A1_at	RDR (RNA-dep. RNA pol.)	LOC4327335	probable RNA-dependent RNA polymerase 3	True
+Os.51949.1.S1_at	RDR (RNA-dep. RNA pol.)	LOC4336092	probable RNA-dependent RNA polymerase 2	True
+Os.10492.1.S1_at	HEN1/SGS3/DRB/otros	LOC4344478	phytolongin Phyl1.1	True
+Os.10646.1.S1_at	HEN1/SGS3/DRB/otros	LOC4330105	putative nuclear RNA export factor SDE5	True
+Os.18007.1.S1_at	HEN1/SGS3/DRB/otros	LOC4324620	double-stranded RNA-binding protein 1	True
+Os.18007.1.S1_s_at	HEN1/SGS3/DRB/otros	LOC4324620	double-stranded RNA-binding protein 1	True
+Os.20233.1.S1_at	HEN1/SGS3/DRB/otros			True
+Os.20667.1.S1_at	HEN1/SGS3/DRB/otros	LOC4337826	double-stranded RNA-binding protein 2	True
+Os.22570.1.S1_at	HEN1/SGS3/DRB/otros	LOC4345448	double-stranded RNA-binding protein 4	True
+Os.25297.1.S1_at	HEN1/SGS3/DRB/otros	LOC4331698	probable RNA helicase SDE3	True
+Os.3114.1.S1_at	HEN1/SGS3/DRB/otros	LOC4348920	double-stranded RNA-binding protein 6	True
+Os.3740.1.S1_x_at	HEN1/SGS3/DRB/otros	LOC4351288	double-stranded RNA-binding protein 8	True
+Os.3740.3.S1_at	HEN1/SGS3/DRB/otros	LOC4338371	double-stranded RNA-binding protein 3	True
+Os.3740.3.S1_s_at	HEN1/SGS3/DRB/otros	LOC4338371	double-stranded RNA-binding protein 3	True
+Os.38870.1.S1_at	HEN1/SGS3/DRB/otros	LOC4351726	protein SUPPRESSOR OF GENE SILENCING 3 homolog	True
+Os.49632.1.S1_a_at	HEN1/SGS3/DRB/otros	LOC4347527	double-stranded RNA-binding protein 5	True
+Os.49794.1.S1_at	HEN1/SGS3/DRB/otros	LOC4342471	small RNA 2'-O-methyltransferase	True
+Os.51834.1.S1_at	HEN1/SGS3/DRB/otros	LOC4351288	double-stranded RNA-binding protein 8	True
+Os.52910.1.S1_at	HEN1/SGS3/DRB/otros	LOC4337228	small RNA degrading nuclease 1	True
+Os.9484.1.S1_at	HEN1/SGS3/DRB/otros	LOC4351724	protein SUPPRESSOR OF GENE SILENCING 3 homolog	True
+Os.9484.1.S2_at	HEN1/SGS3/DRB/otros	LOC4351724	protein SUPPRESSOR OF GENE SILENCING 3 homolog	True

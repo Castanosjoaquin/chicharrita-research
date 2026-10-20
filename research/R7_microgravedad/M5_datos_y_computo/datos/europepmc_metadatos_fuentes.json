@@ -1,0 +1,186 @@
+{
+ "PMC3549630": {
+  "title": "Ground-based facilities for simulation of microgravity: organism-specific recommendations for their use, and recommended terminology.",
+  "authors": "Herranz R, Anken R, Boonstra J, Braun M, Christianen PC, de Geest M, Hauslage J, Hilbig R, Hill RJ, Lebert M, Medina FJ, Vagt N, Ullrich O, van Loon JJ, Hemmersbach R.",
+  "year": "2013",
+  "venue": "Astrobiology",
+  "doi": "10.1089/ast.2012.0876",
+  "pmid": "23252378"
+ },
+ "PMC4310317": {
+  "title": "Simulated microgravity: critical review on the use of random positioning machines for mammalian cell culture.",
+  "authors": "Wuest SL, Richard S, Kopp S, Grimm D, Grimm D, Egli M.",
+  "year": "2015",
+  "venue": "Biomed Res Int",
+  "doi": "10.1155/2015/971474",
+  "pmid": "25649075"
+ },
+ "PMC5460110": {
+  "title": "<i>Pyrocystis noctiluca</i> represents an excellent bioassay for shear forces induced in ground-based microgravity simulators (clinostat and random positioning machine).",
+  "authors": "Hauslage J, Cevik V, Hemmersbach R.",
+  "year": "2017",
+  "venue": "NPJ Microgravity",
+  "doi": "10.1038/s41526-017-0016-x",
+  "pmid": "28649634"
+ },
+ "PMC6908503": {
+  "title": "Comparison of Microgravity Analogs to Spaceflight in Studies of Plant Growth and Development.",
+  "authors": "Kiss JZ, Wolverton C, Wyatt SE, Hasenstein KH, van Loon JJWA.",
+  "year": "2019",
+  "venue": "Front Plant Sci",
+  "doi": "10.3389/fpls.2019.01577",
+  "pmid": "31867033"
+ },
+ "PMC12216757": {
+  "title": "Light is sufficient to compensate for random positioning machine-simulated microgravity in plant roots.",
+  "authors": "David R, Situmorang A, Tran NN, Maythwe T, Hessel V, Brewer PB.",
+  "year": "2025",
+  "venue": "NPJ Microgravity",
+  "doi": "10.1038/s41526-025-00493-w",
+  "pmid": "40595656"
+ },
+ "PMC13271463": {
+  "title": "Characterization of the random positioning machine as a microgravity simulator for biological applications.",
+  "authors": "Pica A, Uras G, Porco IG, Manca A, Pantaleo A, Della Croce U.",
+  "year": "2026",
+  "venue": "PLoS One",
+  "doi": "10.1371/journal.pone.0351320",
+  "pmid": "42301985"
+ },
+ "PMC13287604": {
+  "title": "Maize (Zea mays L.) survival on Mars depends on regolith's chemical composition rather than reduced gravity or lack of magnetic field.",
+  "authors": "Servetto GP, Botta P, Rossi G, Bernasconi A, Caldo F, Vigliaturo R, Maffei ME.",
+  "year": "2026",
+  "venue": "Sci Rep",
+  "doi": "10.1038/s41598-026-50840-4",
+  "pmid": "42045524"
+ },
+ "PMC9287483": {
+  "title": "Recent transcriptomic studies to elucidate the plant adaptive response to spaceflight and to simulated space environments.",
+  "authors": "Manzano A, Carnero-Diaz E, Herranz R, Medina FJ.",
+  "year": "2022",
+  "venue": "iScience",
+  "doi": "10.1016/j.isci.2022.104687",
+  "pmid": "35856037"
+ },
+ "PMC10288856": {
+  "title": "Transcriptome profiles of rice roots under simulated microgravity conditions and following gravistimulation.",
+  "authors": "Kuya N, Nishijima R, Kitomi Y, Kawakatsu T, Uga Y.",
+  "year": "2023",
+  "venue": "Front Plant Sci",
+  "doi": "10.3389/fpls.2023.1193042",
+  "pmid": "37360733"
+ },
+ "PMC11426028": {
+  "title": "Microbiology of human spaceflight: microbial responses to mechanical forces that impact health and habitat sustainability.",
+  "authors": "Nickerson CA, McLean RJC, Barrila J, Yang J, Thornhill SG, Banken LL, Porterfield DM, Poste G, Pellis NR, Ott CM.",
+  "year": "2024",
+  "venue": "Microbiol Mol Biol Rev",
+  "doi": "10.1128/mmbr.00144-23",
+  "pmid": "39158275"
+ },
+ "PMC11743144": {
+  "title": "Benchmarking protein language models for protein crystallization.",
+  "authors": "Mall R, Kaushik R, Martinez ZA, Thomson MW, Castiglione F.",
+  "year": "2025",
+  "venue": "Sci Rep",
+  "doi": "10.1038/s41598-025-86519-5",
+  "pmid": "39827171"
+ },
+ "PMC5515504": {
+  "title": "Microgravity protein crystallization.",
+  "authors": "McPherson A, DeLucas LJ.",
+  "year": "2015",
+  "venue": "NPJ Microgravity",
+  "doi": "10.1038/npjmgrav.2015.10",
+  "pmid": "28725714"
+ },
+ "PMC3795566": {
+  "title": "JAXA protein crystallization in space: ongoing improvements for growing high-quality crystals.",
+  "authors": "Takahashi S, Ohta K, Furubayashi N, Yan B, Koga M, Wada Y, Yamada M, Inaka K, Tanaka H, Miyoshi H, Kobayashi T, Kamigaichi S.",
+  "year": "2013",
+  "venue": "J Synchrotron Radiat",
+  "doi": "10.1107/s0909049513021596",
+  "pmid": "24121350"
+ },
+ "PMC6151610": {
+  "title": "Molecular Dynamic Simulation of Space and Earth-Grown Crystal Structures of Thermostable T1 Lipase Geobacillus zalihae Revealed a Better Structure.",
+  "authors": "Ishak SNH, Aris SNAM, Halim KBA, Ali MSM, Leow TC, Kamarudin NHA, Masomian M, Rahman RNZRA.",
+  "year": "2017",
+  "venue": "Molecules",
+  "doi": "10.3390/molecules22101574",
+  "pmid": "28946656"
+ },
+ "PMC8854672": {
+  "title": "Tracing transport of protein aggregates in microgravity versus unit gravity crystallization.",
+  "authors": "Martirosyan A, Falke S, McCombs D, Cox M, Radka CD, Knop J, Betzel C, DeLucas LJ.",
+  "year": "2022",
+  "venue": "NPJ Microgravity",
+  "doi": "10.1038/s41526-022-00191-x",
+  "pmid": "35177635"
+ },
+ "PMC12167385": {
+  "title": "Exploring the potential of a bioassembler for protein crystallization in space.",
+  "authors": "MacCarthy C, Koudan E, Shevtsov M, Parfenov V, Petrov S, Levin A, Senatov F, Sykilinda N, Ostrovskiy S, Pekov S, Gushchin I, Popov I, Zinovev E, Bogorodskiy A, Mishin A, Ivanovich V, Rogachev A, Khesuani Y, Borshchevskiy V.",
+  "year": "2025",
+  "venue": "NPJ Microgravity",
+  "doi": "10.1038/s41526-025-00477-w",
+  "pmid": "40517138"
+ },
+ "PMC10027818": {
+  "title": "Meta-analysis of the space flight and microgravity response of the Arabidopsis plant transcriptome.",
+  "authors": "Barker R, Kruse CPS, Johnson C, Saravia-Butler A, Fogle H, Chang HS, Trane RM, Kinscherf N, Villacampa A, Manzano A, Herranz R, Davin LB, Lewis NG, Perera I, Wolverton C, Gupta P, Jaiswal P, Reinsch SS, Wyatt S, Gilroy S.",
+  "year": "2023",
+  "venue": "NPJ Microgravity",
+  "doi": "10.1038/s41526-023-00247-6",
+  "pmid": "36941263"
+ },
+ "PMC6158273": {
+  "title": "Meta-analysis of data from spaceflight transcriptome experiments does not support the idea of a common bacterial \"spaceflight response\".",
+  "authors": "Morrison MD, Nicholson WL.",
+  "year": "2018",
+  "venue": "Sci Rep",
+  "doi": "10.1038/s41598-018-32818-z",
+  "pmid": "30258082"
+ },
+ "PMC10485020": {
+  "title": "Microgravity and evasion of plant innate immunity by human bacterial pathogens.",
+  "authors": "Totsline N, Kniel KE, Bais HP.",
+  "year": "2023",
+  "venue": "NPJ Microgravity",
+  "doi": "10.1038/s41526-023-00323-x",
+  "pmid": "37679341"
+ },
+ "PMC13141840": {
+  "title": "Microgravity effects on secondary metabolism of plant-affecting bacteria.",
+  "authors": "Sharma G, Ahmed MMA, Ali T, Boudreau PD, Curtis PD.",
+  "year": "2026",
+  "venue": "Microbiol Spectr",
+  "doi": "10.1128/spectrum.02239-25",
+  "pmid": "41910142"
+ },
+ "PMID36682823": {
+  "title": "Comprehensive analyses of plant hormones in etiolated pea and maize seedlings grown under microgravity conditions in space: Relevance to the International Space Station experiment \"Auxin Transport\".",
+  "authors": "Yamazaki C, Yamazaki T, Kojima M, Takebayashi Y, Sakakibara H, Uheda E, Oka M, Kamada M, Shimazu T, Kasahara H, Sano H, Suzuki T, Higashibata A, Miyamoto K, Ueda J.",
+  "year": "2023",
+  "venue": "Life Sci Space Res (Amst)",
+  "doi": "10.1016/j.lssr.2022.10.005",
+  "pmid": "36682823"
+ },
+ "PMID32635987": {
+  "title": "Altered localisation of ZmPIN1a proteins in plasma membranes responsible for enhanced-polar auxin transport in etiolated maize seedlings under microgravity conditions in space.",
+  "authors": "Oka M, Kamada M, Inoue R, Miyamoto K, Uheda E, Yamazaki C, Shimazu T, Sano H, Kasahara H, Suzuki T, Higashibata A, Ueda J.",
+  "year": "2020",
+  "venue": "Funct Plant Biol",
+  "doi": "10.1071/fp20133",
+  "pmid": "32635987"
+ },
+ "PMID30797426": {
+  "title": "Polar auxin transport is essential to maintain growth and development of etiolated pea and maize seedlings grown under 1 g conditions: Relevance to the international space station experiment.",
+  "authors": "Miyamoto K, Inui A, Uheda E, Oka M, Kamada M, Yamazaki C, Shimazu T, Kasahara H, Sano H, Suzuki T, Higashibata A, Ueda J.",
+  "year": "2019",
+  "venue": "Life Sci Space Res (Amst)",
+  "doi": "10.1016/j.lssr.2018.11.001",
+  "pmid": "30797426"
+ }
+}

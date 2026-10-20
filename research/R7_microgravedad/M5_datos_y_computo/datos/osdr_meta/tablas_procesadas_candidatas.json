@@ -1,0 +1,312 @@
+{
+ "OSD-427": [
+  [
+   "GLDS-427_rna_seq_STAR_Unnormalized_Counts.csv",
+   5870798,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-427_rna_seq_RSEM_Unnormalized_Counts.csv",
+   5895821,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-427_rna_seq_Normalized_Counts.csv",
+   18988359,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-427_rna_seq_differential_expression.csv",
+   272217151,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential Expression Analysis Data"
+  ],
+  [
+   "GLDS-427_rna_seq_contrasts.csv",
+   17699,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential Expression Analysis Data"
+  ],
+  [
+   "GLDS-427_rna_seq_SampleTable.csv",
+   2223,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential Expression Analysis Data"
+  ]
+ ],
+ "OSD-678": [
+  [
+   "GLDS-612_rna_seq_STAR_Unnormalized_Counts_GLbulkRNAseq.csv",
+   4488016,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-612_rna_seq_RSEM_Unnormalized_Counts_GLbulkRNAseq.csv",
+   4499891,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-612_rna_seq_Normalized_Counts_GLbulkRNAseq.csv",
+   13118210,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-612_rna_seq_differential_expression_GLbulkRNAseq.csv",
+   250147088,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-612_rna_seq_contrasts_GLbulkRNAseq.csv",
+   31691,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-612_rna_seq_SampleTable_GLbulkRNAseq.csv",
+   3315,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-612_rna_seq_RSEM_Unnormalized_Counts_rRNArm_GLbulkRNAseq.csv",
+   4496121,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-612_rna_seq_VST_Counts_rRNArm_GLbulkRNAseq.csv",
+   15190232,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-612_rna_seq_VST_Counts_GLbulkRNAseq.csv",
+   15199987,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-612_rna_seq_Normalized_Counts_rRNArm_GLbulkRNAseq.csv",
+   13109154,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-612_rna_seq_differential_expression_rRNArm_GLbulkRNAseq.csv",
+   249942164,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ]
+ ],
+ "OSD-120": [
+  [
+   "GLDS-120_rna_seq_STAR_Unnormalized_Counts_GLbulkRNAseq.csv",
+   4033510,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-120_rna_seq_RSEM_Unnormalized_Counts_rRNArm_GLbulkRNAseq.csv",
+   4467455,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-120_rna_seq_RSEM_Unnormalized_Counts_GLbulkRNAseq.csv",
+   4470816,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-120_rna_seq_VST_Counts_rRNArm_GLbulkRNAseq.csv",
+   15344628,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-120_rna_seq_VST_Counts_GLbulkRNAseq.csv",
+   15353751,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-120_rna_seq_Normalized_Counts_rRNArm_GLbulkRNAseq.csv",
+   13548438,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-120_rna_seq_Normalized_Counts_GLbulkRNAseq.csv",
+   13557593,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-120_rna_seq_differential_expression_rRNArm_GLbulkRNAseq.csv",
+   251912239,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-120_rna_seq_differential_expression_GLbulkRNAseq.csv",
+   252082037,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-120_rna_seq_contrasts_GLbulkRNAseq.csv",
+   25883,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-120_rna_seq_SampleTable_GLbulkRNAseq.csv",
+   3567,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ]
+ ],
+ "OSD-37": [
+  [
+   "GLDS-37_rna_seq_STAR_Unnormalized_Counts_GLbulkRNAseq.csv",
+   6003348,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-37_rna_seq_RSEM_Unnormalized_Counts_rRNArm_GLbulkRNAseq.csv",
+   6489948,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-37_rna_seq_RSEM_Unnormalized_Counts_GLbulkRNAseq.csv",
+   6496558,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-37_rna_seq_VST_Counts_rRNArm_GLbulkRNAseq.csv",
+   26897406,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-37_rna_seq_VST_Counts_GLbulkRNAseq.csv",
+   26911997,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-37_rna_seq_Normalized_Counts_rRNArm_GLbulkRNAseq.csv",
+   23130215,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-37_rna_seq_Normalized_Counts_GLbulkRNAseq.csv",
+   23143992,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-37_rna_seq_differential_expression_rRNArm_GLbulkRNAseq.csv",
+   150067606,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-37_rna_seq_differential_expression_GLbulkRNAseq.csv",
+   150116645,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-37_rna_seq_contrasts_GLbulkRNAseq.csv",
+   5443,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-37_rna_seq_SampleTable_GLbulkRNAseq.csv",
+   3483,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ]
+ ],
+ "OSD-346": [
+  [
+   "GLDS-346_rna_seq_Normalized_Counts_GLbulkRNAseq.csv",
+   14652903,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-346_rna_seq_differential_expression_GLbulkRNAseq.csv",
+   774171857,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-346_rna_seq_contrasts_GLbulkRNAseq.csv",
+   147431,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-346_rna_seq_SampleTable_GLbulkRNAseq.csv",
+   4074,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ],
+  [
+   "GLDS-346_rna_seq_STAR_Unnormalized_Counts_GLbulkRNAseq.csv",
+   4393414,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-346_rna_seq_RSEM_Unnormalized_Counts_rRNArm_GLbulkRNAseq.csv",
+   4474757,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-346_rna_seq_RSEM_Unnormalized_Counts_GLbulkRNAseq.csv",
+   4477607,
+   "GeneLab Processed RNA-Seq Files",
+   "Raw Counts Tables"
+  ],
+  [
+   "GLDS-346_rna_seq_VST_Counts_rRNArm_GLbulkRNAseq.csv",
+   15553493,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-346_rna_seq_VST_Counts_GLbulkRNAseq.csv",
+   15562989,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-346_rna_seq_Normalized_Counts_rRNArm_GLbulkRNAseq.csv",
+   14645452,
+   "GeneLab Processed RNA-Seq Files",
+   "Normalized Counts Data"
+  ],
+  [
+   "GLDS-346_rna_seq_differential_expression_rRNArm_GLbulkRNAseq.csv",
+   772357016,
+   "GeneLab Processed RNA-Seq Files",
+   "Differential gene expression analysis"
+  ]
+ ]
+}

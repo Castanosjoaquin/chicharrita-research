@@ -1,0 +1,21 @@
+{
+  "archivo": "work/C5/miniprot/loci_macrosteles.csv",
+  "alineamientos_totales": 49202,
+  "proteinas_consulta_con_locus": 32269,
+  "loci_fusionados_por_hebra": 12540,
+  "loci_fusionados_sin_hebra": 12020,
+  "loci_identidad_ge_0.5": 11969,
+  "proteinas_identidad_ge_0.5": 30046,
+  "loci_identidad_ge_0.7": 10310,
+  "proteinas_identidad_ge_0.7": 25697,
+  "loci_identidad_ge_0.8": 8347,
+  "proteinas_identidad_ge_0.8": 21108,
+  "loci_identidad_ge_0.9": 4840,
+  "proteinas_identidad_ge_0.9": 12858,
+  "loci_identidad_ge_0.99": 244,
+  "proteinas_identidad_ge_0.99": 554,
+  "identidad_mediana": 0.8664,
+  "identidad_p10": 0.5539,
+  "identidad_p90": 0.9678,
+  "loci_limpios": 30391
+}

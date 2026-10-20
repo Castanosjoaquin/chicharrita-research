@@ -23,3 +23,13 @@ __pycache__/
 # Corpus oficial suelto en la raiz: secuencias no publicadas de EPILAB.
 # El original no se mueve ni se renombra (regla del CLAUDE.md), pero no entra a git.
 Sequences_EPILAB.xlsx
+
+# R7: volcados de texto de artículos (derechos de autor) y datos crudos pesados;
+# las consultas que los generan están en datos/COMANDOS.md de cada pista
+research/R7_microgravedad/*/_work/
+research/R7_microgravedad/*/datos/textos/
+research/R7_microgravedad/*/datos/descargas/
+research/R7_microgravedad/M4_mollicutes_estructura/datos/ft_*
+research/R7_microgravedad/M4_mollicutes_estructura/datos/*.fasta
+research/R7_microgravedad/M4_mollicutes_estructura/datos/*.faa
+research/R7_microgravedad/M4_mollicutes_estructura/datos/afdb_bulk_*.jsonl

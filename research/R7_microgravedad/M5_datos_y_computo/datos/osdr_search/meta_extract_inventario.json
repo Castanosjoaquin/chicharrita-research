@@ -1,0 +1,2231 @@
+{
+"OSD-1": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 173546
+},
+"OSD-3": {
+"n_samples_por_tabla": {
+"s_OSD-3-txt": 18
+},
+"assays_keys": [
+"a_OSD-3_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+}
+],
+"factores": [
+"Developmental Stage",
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-3_transcription-profiling_dna-microarray_affymetrix-txt": 18
+},
+"bytes": 309612
+},
+"OSD-4": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 89077
+},
+"OSD-7": {
+"n_samples_por_tabla": {
+"s_OSD-7-txt": 36
+},
+"assays_keys": [
+"a_OSD-7_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+}
+],
+"factores": [
+"Spaceflight",
+"Organism Part"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-7_transcription-profiling_dna-microarray_affymetrix-txt": 36
+},
+"bytes": 637157
+},
+"OSD-8": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 252281
+},
+"OSD-16": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 52030
+},
+"OSD-17": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 169384
+},
+"OSD-21": {
+"n_samples_por_tabla": {
+"s_OSD-21-txt": 23
+},
+"assays_keys": [
+"a_OSD-21_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+}
+],
+"factores": [
+"Spaceflight",
+"Hindlimb Unloading",
+"Time",
+"Tissue"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-21_transcription-profiling_dna-microarray_affymetrix-txt": 23
+},
+"bytes": 381099
+},
+"OSD-22": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 120063
+},
+"OSD-25": {
+"n_samples_por_tabla": {
+"s_OSD-25-txt": 17
+},
+"assays_keys": [
+"a_OSD-25_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+}
+],
+"factores": [
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-25_transcription-profiling_dna-microarray_affymetrix-txt": 17
+},
+"bytes": 297477
+},
+"OSD-27": {
+"n_samples_por_tabla": {
+"s_OSD-27-txt": 54
+},
+"assays_keys": [
+"a_OSD-27_transcription-profiling_dna-microarray_Affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+}
+],
+"factores": [
+"Duration",
+"Sex",
+"Temperature",
+"Microgravity Simulation"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-27_transcription-profiling_dna-microarray_Affymetrix-txt": 54
+},
+"bytes": 648017
+},
+"OSD-34": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 343126
+},
+"OSD-36": {
+"n_samples_por_tabla": {
+"s_OSD-36-txt": 21
+},
+"assays_keys": [
+"a_OSD-36_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Altered Gravity",
+"Treatment",
+"Spaceflight",
+"Altered Gravity Simulator"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-36_transcription-profiling_dna-microarray_affymetrix-txt": 21
+},
+"bytes": 287405
+},
+"OSD-37": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 702944
+},
+"OSD-38": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 266461
+},
+"OSD-41": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 106436
+},
+"OSD-44": {
+"n_samples_por_tabla": {
+"s_OSD-44-txt": 12
+},
+"assays_keys": [
+"a_OSD-44_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Genotype",
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-44_transcription-profiling_dna-microarray_affymetrix-txt": 12
+},
+"bytes": 195348
+},
+"OSD-45": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 132811
+},
+"OSD-46": {
+"n_samples_por_tabla": {
+"s_OSD-46-txt": 44
+},
+"assays_keys": [
+"a_OSD-46_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Ionizing Radiation",
+"Exposure Duration",
+"Time of Sample Collection After Treatment",
+"Genotype",
+"Age",
+"Absorbed Radiation Dose"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-46_transcription-profiling_dna-microarray_affymetrix-txt": 44
+},
+"bytes": 657161
+},
+"OSD-48": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 496825
+},
+"OSD-55": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 115559
+},
+"OSD-56": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 52621
+},
+"OSD-57": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 15149
+},
+"OSD-59": {
+"n_samples_por_tabla": {
+"s_PRJDB2020-txt": 2
+},
+"assays_keys": [
+"a_prjdb2020_transcription_profiling_RNA_Sequencing_(RNA-Seq)-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Illumina Genome Analyzer IIx",
+"Device Type": "RNA Sequencing (RNA-Seq)"
+}
+],
+"factores": [
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_prjdb2020_transcription_profiling_RNA_Sequencing_(RNA-Seq)-txt": 2
+},
+"bytes": 76056
+},
+"OSD-61": {
+"n_samples_por_tabla": {
+"s_OSD-61-txt": 6
+},
+"assays_keys": [
+"a_OSD-61_transcription-profiling_dna-microarray-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+}
+],
+"factores": [
+"Spaceflight",
+"Genotype"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-61_transcription-profiling_dna-microarray-txt": 6
+},
+"bytes": 139975
+},
+"OSD-70": {
+"n_samples_por_tabla": {
+"s_OSD-70-txt": 90
+},
+"assays_keys": [
+"a_OSD-70_transcription-profiling_dna-microarray_Affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+}
+],
+"factores": [
+"Altered Gravity",
+"Temperature",
+"O2 Level",
+"Altered Gravity Simulator"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-70_transcription-profiling_dna-microarray_Affymetrix-txt": 90
+},
+"bytes": 1087516
+},
+"OSD-75": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 38731
+},
+"OSD-85": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 97729
+},
+"OSD-96": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 119868
+},
+"OSD-98": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 223109
+},
+"OSD-101": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 283606
+},
+"OSD-102": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 280856
+},
+"OSD-103": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 323589
+},
+"OSD-104": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 181229
+},
+"OSD-105": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 333879
+},
+"OSD-111": {
+"n_samples_por_tabla": {
+"s_OSD-111-txt": 18
+},
+"assays_keys": [
+"a_OSD-111_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+}
+],
+"factores": [
+"Spaceflight",
+"Tissue"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-111_transcription-profiling_dna-microarray_affymetrix-txt": 18
+},
+"bytes": 438652
+},
+"OSD-115": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 53147
+},
+"OSD-118": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 127383
+},
+"OSD-120": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 612514
+},
+"OSD-121": {
+"n_samples_por_tabla": {
+"s_OSD-121-txt": 6
+},
+"assays_keys": [
+"a_OSD-121_glycomic-profile_elisa_thermo fisher scientific-txt",
+"a_OSD-121_morphometric-analysis_image-analysis_photography-txt",
+"a_OSD-121_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0000424\" title=\"An assay that determines gene expression and transcription activity using ribonucleic acids collected from a material entity. transcription profiling, gene expression profiling\" source=\"OBI\">transcription profiling</a>",
+"Device Platform": "Affymetrix",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.obolibrary.org/obo/OBI_0400148\" title=\"A DNA-microarray is a microarray that is used as a physical 2D immobilisation matrix for DNA sequences. DNA microarray-bound DNA fragments are used as targets for a hybridising probed sample. DNA Chip, DNA-array\" source=\"OBI\">DNA microarray</a>"
+},
+{
+"Assay Type": "Morphometric analysis",
+"Device Platform": "photography",
+"Device Type": "Image analysis"
+},
+{
+"Assay Type": "Glycomic Profile",
+"Device Platform": "Thermo Fisher Scientific",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.bioontology.org/ontology/MESH/D004797\" title=\"An immunoassay utilizing an antibody labeled with an enzyme marker such as horseradish peroxidase. While either the enzyme or the antibody is bound to an immunosorbent substrate, they both retain their biologic activity; the change in enzyme activity as a result of the enzyme-antibody-antigen reaction is proportional to the concentration of the antigen and can be measured spectrophotometrically or with the naked eye. Many variations of the method have been developed. Immunosorbent Assays, Enzyme-Linked, ELISA, Assays, Enzyme-Linked Immunosorbent, Enzyme Linked Immunosorbent Assay, Enzyme-Linked Immunosorbent Assays, Assay, Enzyme-Linked Immunosorbent, Immunosorbent Assay, Enzyme-Linked\" source=\"MESH\">ELISA</a>"
+}
+],
+"factores": [
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-121_glycomic-profile_elisa_thermo fisher scientific-txt": 6,
+"a_OSD-121_morphometric-analysis_image-analysis_photography-txt": 6,
+"a_OSD-121_transcription-profiling_dna-microarray_affymetrix-txt": 6
+},
+"bytes": 276295
+},
+"OSD-125": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 63389
+},
+"OSD-128": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 411019
+},
+"OSD-129": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 143948
+},
+"OSD-132": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 32837
+},
+"OSD-134": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 151805
+},
+"OSD-136": {
+"n_samples_por_tabla": {
+"s_OSD-136-txt": 9
+},
+"assays_keys": [
+"a_OSD-136_transcription-profiling_dna-microarray_Affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Atmospheric Pressure"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-136_transcription-profiling_dna-microarray_Affymetrix-txt": 9
+},
+"bytes": 147892
+},
+"OSD-144": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 123181
+},
+"OSD-147": {
+"n_samples_por_tabla": {
+"s_OSD-147-txt": 18
+},
+"assays_keys": [
+"a_OSD-147_transcription-profiling_dna-microarray_Affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Spaceflight",
+"Genotype"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-147_transcription-profiling_dna-microarray_Affymetrix-txt": 18
+},
+"bytes": 304312
+},
+"OSD-177": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 21161
+},
+"OSD-193": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 299284
+},
+"OSD-195": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 128533
+},
+"OSD-198": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 368480
+},
+"OSD-205": {
+"n_samples_por_tabla": {
+"s_OSD-205-txt": 16
+},
+"assays_keys": [
+"a_OSD-205_transcription-profiling_dna-microarray_Affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Spaceflight",
+"Genotype"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-205_transcription-profiling_dna-microarray_Affymetrix-txt": 16
+},
+"bytes": 253287
+},
+"OSD-207": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 455698
+},
+"OSD-208": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 109857
+},
+"OSD-210": {
+"n_samples_por_tabla": {
+"s_GSE121111-txt": 5
+},
+"assays_keys": [
+"a_gse121111_genome_sequencing_nucleotide_sequencing-txt",
+"a_gse121111_transcription_profiling_nucleotide_sequencing-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "genome sequencing",
+"Device Platform": "Pacific Biosciences",
+"Device Type": "nucleotide sequencing"
+}
+],
+"factores": [
+"Cosmic Radiation",
+"Genotype"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_gse121111_genome_sequencing_nucleotide_sequencing-txt": 5,
+"a_gse121111_transcription_profiling_nucleotide_sequencing-txt": 5
+},
+"bytes": 70002
+},
+"OSD-217": {
+"n_samples_por_tabla": {
+"s_OSD-217-txt": 24
+},
+"assays_keys": [
+"a_OSD-217_DNA-methylation-profiling_Whole-Genome-Bisulfite-Sequencing_Illumina-txt",
+"a_OSD-217_transcription-profiling_rna-sequencing-(rna-seq)_illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"OBI:0000634\" title=\"An assay that measures the state of methylation of DNA molecules using genomic DNA collected from a material entity using a range of techniques and instrument such as DNA sequencers and often relying on treatment with bisulfites to ensure cytosine conversion. DNA methylation profiling\" source=\"OBI\">DNA methylation profiling</a>",
+"Device Platform": "Illumina",
+"Device Type": "Whole Genome Bisulfite Sequencing"
+},
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Illumina",
+"Device Type": "RNA Sequencing (RNA-Seq)"
+}
+],
+"factores": [
+"Spaceflight",
+"Organism Part"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-217_DNA-methylation-profiling_Whole-Genome-Bisulfite-Sequencing_Illumina-txt": 12,
+"a_OSD-217_transcription-profiling_rna-sequencing-(rna-seq)_illumina-txt": 12
+},
+"bytes": 511843
+},
+"OSD-218": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 370624
+},
+"OSD-223": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 293033
+},
+"OSD-251": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 281548
+},
+"OSD-264": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 24473
+},
+"OSD-278": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 142368
+},
+"OSD-281": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 295849
+},
+"OSD-282": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 66159
+},
+"OSD-296": {
+"n_samples_por_tabla": {
+"s_OSD-296-txt": 36
+},
+"assays_keys": [
+"a_OSD-296_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Genotype",
+"Treatment",
+"Light",
+"Time"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-296_transcription-profiling_dna-microarray_affymetrix-txt": 36
+},
+"bytes": 665530
+},
+"OSD-301": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 104255
+},
+"OSD-305": {
+"n_samples_por_tabla": {
+"s_OSD-305-txt": 12
+},
+"assays_keys": [
+"a_OSD-305_transcription-profiling_rna-sequencing-(rna-seq)_Illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Illumina",
+"Device Type": "RNA Sequencing (RNA-Seq)"
+}
+],
+"factores": [
+"Temperature",
+"Atmospheric Pressure",
+"Atmospheric Composition"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-305_transcription-profiling_rna-sequencing-(rna-seq)_Illumina-txt": 12
+},
+"bytes": 165522
+},
+"OSD-306": {
+"n_samples_por_tabla": {
+"s_GLDS-306-txt": 3
+},
+"assays_keys": [
+"a_glds-306_genome_sequencing_nucleotide_sequencing-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "genome sequencing",
+"Device Platform": "Illumina NovaSeq 6000",
+"Device Type": "nucleotide sequencing"
+}
+],
+"factores": [
+"Spaceflight",
+"Strain"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_glds-306_genome_sequencing_nucleotide_sequencing-txt": 3
+},
+"bytes": 78871
+},
+"OSD-313": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 170962
+},
+"OSD-314": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 220481
+},
+"OSD-320": {
+"n_samples_por_tabla": {
+"s_OSD-320-txt": 44
+},
+"assays_keys": [
+"a_OSD-320_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Genotype",
+"Time of sample collection after treatment",
+"Ionizing Radiation"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-320_transcription-profiling_dna-microarray_affymetrix-txt": 44
+},
+"bytes": 800531
+},
+"OSD-321": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 408083
+},
+"OSD-329": {
+"n_samples_por_tabla": {
+"s_OSD-329-txt": 80
+},
+"assays_keys": [
+"a_OSD-329_transcription-profiling_dna-microarray-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Genotype",
+"Organism Part",
+"Ionizing Radiation",
+"Time of Sample Collection After Treatment"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-329_transcription-profiling_dna-microarray-txt": 80
+},
+"bytes": 1297891
+},
+"OSD-331": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 38961
+},
+"OSD-334": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 467158
+},
+"OSD-335": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 475627
+},
+"OSD-336": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 470479
+},
+"OSD-337": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 455354
+},
+"OSD-344": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 100930
+},
+"OSD-346": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 528171
+},
+"OSD-347": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 149499
+},
+"OSD-358": {
+"n_samples_por_tabla": {
+"s_GLDS-358-txt": 7
+},
+"assays_keys": [
+"a_glds-358_metagenome_profiling_Whole-Genome-Shotgun-Sequencing-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "Metagenomic sequencing",
+"Device Platform": "Oxford Nanopore Technologies",
+"Device Type": "<a target=\"_blank\" href=\"http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C19653\" title=\"A DNA sequencing method, which involves random sequencing of tiny cloned pieces of the genome, with no foreknowledge of where on a chromosome the piece originally came from. The sequences obtained have a considerable overlap and by using appropriate computer software it is possible to compare sequences and align them to build larger units of genetic information. This sequencing strategy can be automated and leads to rapid sequencing information. Whole-Genome Shotgun Sequencing\" source=\"NCIT\">Whole-Genome Shotgun Sequencing</a>"
+}
+],
+"factores": [
+"Spaceflight",
+"Organism Part"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_glds-358_metagenome_profiling_Whole-Genome-Shotgun-Sequencing-txt": 7
+},
+"bytes": 222036
+},
+"OSD-361": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 488837
+},
+"OSD-363": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 144231
+},
+"OSD-364": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 143683
+},
+"OSD-372": {
+"n_samples_por_tabla": {
+"s_GLDS-372-txt": 114
+},
+"assays_keys": [
+"a_GLDS-372_genome-sequencing_nucleotide-sequencing-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "genome sequencing",
+"Device Platform": "Illumina",
+"Device Type": "nucleotide sequencing"
+}
+],
+"factores": [
+"Spaceflight",
+"Collection Date",
+"Sample Location"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_GLDS-372_genome-sequencing_nucleotide-sequencing-txt": 114
+},
+"bytes": 1475460
+},
+"OSD-375": {
+"n_samples_por_tabla": {
+"s_GLDS-375-txt": 48
+},
+"assays_keys": [
+"a_GLDS-375_transcription-profiling_rna-sequencing-(rna-seq)_illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Illumina",
+"Device Type": "RNA Sequencing (RNA-Seq)"
+}
+],
+"factores": [
+"Spaceflight",
+"Accession",
+"Organism Part"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_GLDS-375_transcription-profiling_rna-sequencing-(rna-seq)_illumina-txt": 48
+},
+"bytes": 1107337
+},
+"OSD-400": {
+"n_samples_por_tabla": {
+"s_OSD-400-txt": 94
+},
+"assays_keys": [
+"a_OSD-400_genome-sequencing_nucleotide-sequencing_Illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "genome sequencing",
+"Device Platform": "Illumina",
+"Device Type": "nucleotide sequencing"
+}
+],
+"factores": [
+"Spaceflight",
+"Strain"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-400_genome-sequencing_nucleotide-sequencing_Illumina-txt": 94
+},
+"bytes": 1255271
+},
+"OSD-406": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 271547
+},
+"OSD-411": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 478838
+},
+"OSD-416": {
+"n_samples_por_tabla": {
+"s_OSD-416-txt": 48
+},
+"assays_keys": [
+"a_OSD-416_dna-methylation-profiling_bisulfite-sequencing_Illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"OBI:0000634\" title=\"An assay that measures the state of methylation of DNA molecules using genomic DNA collected from a material entity using a range of techniques and instrument such as DNA sequencers and often relying on treatment with bisulfites to ensure cytosine conversion. DNA methylation profiling\" source=\"OBI\">DNA methylation profiling</a>",
+"Device Platform": "Illumina",
+"Device Type": "<a target=\"_blank\" href=\"OBI:0000748\" title=\"A DNA methylation profiling assay which determines the methylation status of genomic DNA using DNA sequencing techniques preceded by a bisulfite based chemical modification of genomic DNA at CpG island location.\" source=\"OBI\">Bisulfite sequencing</a>"
+}
+],
+"factores": [
+"Spaceflight",
+"Genotype",
+"Organism Part"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-416_dna-methylation-profiling_bisulfite-sequencing_Illumina-txt": 48
+},
+"bytes": 773819
+},
+"OSD-426": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 231530
+},
+"OSD-427": {
+"n_samples_por_tabla": {
+"s_OSD-427-txt": 48
+},
+"assays_keys": [
+"a_OSD-427_transcription-profiling_rna-sequencing-(rna-seq)_Illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Illumina",
+"Device Type": "RNA Sequencing (RNA-Seq)"
+}
+],
+"factores": [
+"Spaceflight",
+"Genotype",
+"Organism part"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-427_transcription-profiling_rna-sequencing-(rna-seq)_Illumina-txt": 48
+},
+"bytes": 1527795
+},
+"OSD-428": {
+"n_samples_por_tabla": {
+"s_OSD-428-txt": 9
+},
+"assays_keys": [
+"a_OSD-428_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Altered Gravity",
+"Time"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-428_transcription-profiling_dna-microarray_affymetrix-txt": 9
+},
+"bytes": 206867
+},
+"OSD-434": {
+"n_samples_por_tabla": {
+"s_OSD-434-txt": 9
+},
+"assays_keys": [
+"a_OSD-434_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Altered Gravity",
+"Time"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-434_transcription-profiling_dna-microarray_affymetrix-txt": 9
+},
+"bytes": 190035
+},
+"OSD-436": {
+"n_samples_por_tabla": {
+"s_OSD-436-txt": 21
+},
+"assays_keys": [
+"a_OSD-436_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Altered Gravity",
+"Time"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-436_transcription-profiling_dna-microarray_affymetrix-txt": 21
+},
+"bytes": 348554
+},
+"OSD-437": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 187221
+},
+"OSD-450": {
+"n_samples_por_tabla": {
+"s_OSD-450-txt": 15
+},
+"assays_keys": [
+"a_OSD-450_transcription-profiling_dna-microarray_affymetrix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Affymetrix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Altered Gravity",
+"Time"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-450_transcription-profiling_dna-microarray_affymetrix-txt": 15
+},
+"bytes": 289897
+},
+"OSD-476": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 241317
+},
+"OSD-480": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 2130161
+},
+"OSD-496": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 54775
+},
+"OSD-497": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 245867
+},
+"OSD-498": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 160246
+},
+"OSD-502": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 86816
+},
+"OSD-508": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 322842
+},
+"OSD-510": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 416459
+},
+"OSD-514": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 348879
+},
+"OSD-518": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 171973
+},
+"OSD-519": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 260685
+},
+"OSD-520": {
+"n_samples_por_tabla": {
+"s_OSD-520-txt": 45
+},
+"assays_keys": [
+"a_OSD-520_dna-methylation-profiling_whole-genome-bisulfite-sequencing_illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "<a target=\"_blank\" href=\"OBI:0000634\" title=\"An assay that measures the state of methylation of DNA molecules using genomic DNA collected from a material entity using a range of techniques and instrument such as DNA sequencers and often relying on treatment with bisulfites to ensure cytosine conversion. DNA methylation profiling\" source=\"OBI\">DNA methylation profiling</a>",
+"Device Platform": "Illumina",
+"Device Type": "Whole Genome Bisulfite Sequencing"
+}
+],
+"factores": [
+"Generation",
+"Ionizing Radiation"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-520_dna-methylation-profiling_whole-genome-bisulfite-sequencing_illumina-txt": 45
+},
+"bytes": 842385
+},
+"OSD-522": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 267746
+},
+"OSD-531": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 53520
+},
+"OSD-565": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 317030
+},
+"OSD-577": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 545369
+},
+"OSD-581": {
+"n_samples_por_tabla": {
+"s_OSD-581-txt": 12
+},
+"assays_keys": [
+"a_OSD-581_protein-expression-profiling_mass-spectrometry_tripletof 6600-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "protein expression profiling",
+"Device Platform": "TripleTOF 6600",
+"Device Type": "mass spectrometry"
+}
+],
+"factores": [
+"soil environment exposure",
+"Organism Part"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-581_protein-expression-profiling_mass-spectrometry_tripletof 6600-txt": 12
+},
+"bytes": 182710
+},
+"OSD-582": {
+"n_samples_por_tabla": {
+"s_OSD-582-txt": 2
+},
+"assays_keys": [
+"a_OSD-582_genome-sequencing_nucleotide-sequencing_oxford nanopore technologies-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "genome sequencing",
+"Device Platform": "Oxford Nanopore Technologies",
+"Device Type": "nucleotide sequencing"
+}
+],
+"factores": [
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-582_genome-sequencing_nucleotide-sequencing_oxford nanopore technologies-txt": 2
+},
+"bytes": 94023
+},
+"OSD-588": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 734211
+},
+"OSD-590": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 75455
+},
+"OSD-592": {
+"n_samples_por_tabla": {
+"s_OSD-592-txt": 175
+},
+"assays_keys": [
+"a_OSD-592_molecular-cellular-imaging_immunohistochemistry_zeiss lsm 880-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "Molecular Cellular Imaging",
+"Device Platform": "Zeiss LSM 880",
+"Device Type": "Immunohistochemistry"
+}
+],
+"factores": [
+"Altered Gravity",
+"Sex",
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-592_molecular-cellular-imaging_immunohistochemistry_zeiss lsm 880-txt": 175
+},
+"bytes": 2904285
+},
+"OSD-594": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 82393
+},
+"OSD-595": {
+"n_samples_por_tabla": {
+"s_OSD-595-txt": 11
+},
+"assays_keys": [
+"a_OSD-595_behavior_video-recording_multi-use variable gravity drosophila hardware (ui-1491le camera)-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "Behavior",
+"Device Platform": "Multi-use Variable Gravity Drosophila hardware (UI-1491LE camera)",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.bioontology.org/ontology/MESH/D014741\" title=\"The storing or preserving of video signals to be played back later via a transmitter or receiver. Audiovisual Recording\" source=\"MESH\">Video Recording</a>"
+}
+],
+"factores": [
+"Altered Gravity",
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-595_behavior_video-recording_multi-use variable gravity drosophila hardware (ui-1491le camera)-txt": 11
+},
+"bytes": 175102
+},
+"OSD-596": {
+"n_samples_por_tabla": {
+"s_OSD-596-txt": 83
+},
+"assays_keys": [
+"a_OSD-596_behavior_locomotory-behavior_manual counting-1-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "Behavior",
+"Device Platform": "Manual Counting",
+"Device Type": "Locomotory Behavior"
+}
+],
+"factores": [
+"Altered Gravity",
+"Spaceflight",
+"Sex"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-596_behavior_locomotory-behavior_manual counting-1-txt": 83
+},
+"bytes": 1004448
+},
+"OSD-609": {
+"n_samples_por_tabla": {
+"s_OSD-609-txt": 8
+},
+"assays_keys": [
+"a_OSD-609_transcription-profiling_rna-sequencing-(rna-seq)_illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Illumina",
+"Device Type": "RNA Sequencing (RNA-Seq)"
+}
+],
+"factores": [
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-609_transcription-profiling_rna-sequencing-(rna-seq)_illumina-txt": 8
+},
+"bytes": 162570
+},
+"OSD-610": {
+"n_samples_por_tabla": {
+"s_OSD-610-txt": 8
+},
+"assays_keys": [
+"a_OSD-610_transcription-profiling_rna-sequencing-(rna-seq)_illumina-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "Illumina",
+"Device Type": "RNA Sequencing (RNA-Seq)"
+}
+],
+"factores": [
+"Spaceflight"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-610_transcription-profiling_rna-sequencing-(rna-seq)_illumina-txt": 8
+},
+"bytes": 162130
+},
+"OSD-615": {
+"n_samples_por_tabla": {
+"s_OSD-615-txt": 12
+},
+"assays_keys": [
+"a_OSD-615_glycomic-profile_elisa_thermo fisher scientific-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "Glycomic Profile",
+"Device Platform": "Thermo Fisher Scientific",
+"Device Type": "<a target=\"_blank\" href=\"http://purl.bioontology.org/ontology/MESH/D004797\" title=\"An immunoassay utilizing an antibody labeled with an enzyme marker such as horseradish peroxidase. While either the enzyme or the antibody is bound to an immunosorbent substrate, they both retain their biologic activity; the change in enzyme activity as a result of the enzyme-antibody-antigen reaction is proportional to the concentration of the antigen and can be measured spectrophotometrically or with the naked eye. Many variations of the method have been developed. Immunosorbent Assays, Enzyme-Linked, ELISA, Assays, Enzyme-Linked Immunosorbent, Enzyme Linked Immunosorbent Assay, Enzyme-Linked Immunosorbent Assays, Assay, Enzyme-Linked Immunosorbent, Immunosorbent Assay, Enzyme-Linked\" source=\"MESH\">ELISA</a>"
+}
+],
+"factores": [
+"Spaceflight",
+"Growth Time"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-615_glycomic-profile_elisa_thermo fisher scientific-txt": 12
+},
+"bytes": 223068
+},
+"OSD-622": {
+"n_samples_por_tabla": {
+"s_OSD-622-txt": 11
+},
+"assays_keys": [
+"a_OSD-622_transcription-profiling_dna-microarray_genepix-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "transcription profiling",
+"Device Platform": "GenePix",
+"Device Type": "DNA microarray"
+}
+],
+"factores": [
+"Spaceflight",
+"Age at sample harvest",
+"Gravity environment at imbibition",
+"duration"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-622_transcription-profiling_dna-microarray_genepix-txt": 1
+},
+"bytes": 153824
+},
+"OSD-624": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 327008
+},
+"OSD-625": {
+"n_samples_por_tabla": {
+"s_OSD-625-txt": 16
+},
+"assays_keys": [
+"a_OSD-625_targeted-dna-methylation-profiling_ccs-long-read-dna-enzymatic-methyl-sequencing_pacific biosciences-txt"
+],
+"assays_desc": [
+{
+"Assay Type": "Targeted DNA Methylation Profiling",
+"Device Platform": "Pacific Biosciences",
+"Device Type": "CCS long read DNA Enzymatic Methyl Sequencing"
+}
+],
+"factores": [
+"Spaceflight",
+"Genotype"
+],
+"organismos": [
+"links",
+"ontologies"
+],
+"n_filas_por_ensayo": {
+"a_OSD-625_targeted-dna-methylation-profiling_ccs-long-read-dna-enzymatic-methyl-sequencing_pacific biosciences-txt": 16
+},
+"bytes": 308966
+},
+"OSD-655": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 273474
+},
+"OSD-658": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 153037
+},
+"OSD-670": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 238565
+},
+"OSD-678": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 353095
+},
+"OSD-729": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 236351
+},
+"OSD-745": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 387783
+},
+"OSD-767": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 316619
+},
+"OSD-782": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 339162
+},
+"OSD-855": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 102775
+},
+"OSD-856": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 63308
+},
+"OSD-877": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 207808
+},
+"OSD-883": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 245445
+},
+"OSD-895": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 105165
+},
+"OSD-904": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 381839
+},
+"OSD-905": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 379813
+},
+"OSD-906": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 387466
+},
+"OSD-907": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 323711
+},
+"OSD-908": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 281480
+},
+"OSD-909": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 277781
+},
+"OSD-910": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 272915
+},
+"OSD-911": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 388447
+},
+"OSD-912": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 398726
+},
+"OSD-913": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 326066
+},
+"OSD-914": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 385656
+},
+"OSD-915": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 374858
+},
+"OSD-916": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 157961
+},
+"OSD-946": {
+"n_samples_por_tabla": {},
+"assays_keys": [],
+"assays_desc": [],
+"factores": [],
+"organismos": null,
+"n_filas_por_ensayo": {},
+"bytes": 196737
+}
+}

@@ -1,0 +1,400 @@
+<?xml version="1.0" ?>
+<!DOCTYPE TaxaSet PUBLIC "-//NLM//DTD Taxon, 14th January 2002//EN" "https://www.ncbi.nlm.nih.gov/entrez/query/DTD/taxon.dtd">
+<TaxaSet><Taxon>
+    <TaxId>202462</TaxId>
+    <ScientificName>Candidatus Phytoplasma zeae</ScientificName>
+    <OtherNames>
+        <CommonName>Maize bushy stunt phytoplasma</CommonName>
+        <EquivalentName>'Dalbulus maidis' phytoplasma</EquivalentName>
+        <EquivalentName>MBSP</EquivalentName>
+        <EquivalentName>Phytoplasma zeae</EquivalentName>
+        <Name>
+            <ClassCDE>authority</ClassCDE>
+            <DispName>&quot;Candidatus Phytoplasma zeae&quot; Pellegrinetti et al. 2025</DispName>
+        </Name>
+    </OtherNames>
+    <ParentTaxId>3042590</ParentTaxId>
+    <Rank>species</Rank>
+    <Division>Bacteria</Division>
+    <GeneticCode>
+        <GCId>11</GCId>
+        <GCName>Bacterial, Archaeal and Plant Plastid</GCName>
+    </GeneticCode>
+    <MitoGeneticCode>
+        <MGCId>0</MGCId>
+        <MGCName>Unspecified</MGCName>
+    </MitoGeneticCode>
+    <Lineage>cellular organisms; Bacteria; Bacillati; Mycoplasmatota; Mollicutes; Acholeplasmatales; Acholeplasmataceae; Candidatus Phytoplasma; 16SrI (Aster yellows group)</Lineage>
+    <LineageEx>
+        <Taxon>
+            <TaxId>131567</TaxId>
+            <ScientificName>cellular organisms</ScientificName>
+            <Rank>cellular root</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2</TaxId>
+            <ScientificName>Bacteria</ScientificName>
+            <Rank>domain</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>1783272</TaxId>
+            <ScientificName>Bacillati</ScientificName>
+            <Rank>kingdom</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>544448</TaxId>
+            <ScientificName>Mycoplasmatota</ScientificName>
+            <Rank>phylum</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>31969</TaxId>
+            <ScientificName>Mollicutes</ScientificName>
+            <Rank>class</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>186329</TaxId>
+            <ScientificName>Acholeplasmatales</ScientificName>
+            <Rank>order</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2146</TaxId>
+            <ScientificName>Acholeplasmataceae</ScientificName>
+            <Rank>family</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>33926</TaxId>
+            <ScientificName>Candidatus Phytoplasma</ScientificName>
+            <Rank>genus</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>3042590</TaxId>
+            <ScientificName>16SrI (Aster yellows group)</ScientificName>
+            <Rank>species group</Rank>
+        </Taxon>
+    </LineageEx>
+    <CreateDate>2002/05/08 12:00:00</CreateDate>
+    <UpdateDate>2026/04/28 11:28:54</UpdateDate>
+    <PubDate>2003/03/04 18:01:00</PubDate>
+</Taxon>
+<Taxon>
+    <TaxId>47834</TaxId>
+    <ScientificName>Spiroplasma kunkelii</ScientificName>
+    <OtherNames>
+        <Name>
+            <ClassCDE>authority</ClassCDE>
+            <DispName>Spiroplasma kunkelii Whitcomb et al. 1986</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>ATCC 29320</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>ATCC:29320</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>personal::E275</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>strain E275</DispName>
+        </Name>
+    </OtherNames>
+    <ParentTaxId>2132</ParentTaxId>
+    <Rank>species</Rank>
+    <Division>Bacteria</Division>
+    <GeneticCode>
+        <GCId>4</GCId>
+        <GCName>Mold Mitochondrial; Protozoan Mitochondrial; Coelenterate Mitochondrial; Mycoplasma; Spiroplasma</GCName>
+    </GeneticCode>
+    <MitoGeneticCode>
+        <MGCId>0</MGCId>
+        <MGCName>Unspecified</MGCName>
+    </MitoGeneticCode>
+    <Lineage>cellular organisms; Bacteria; Bacillati; Mycoplasmatota; Mollicutes; Entomoplasmatales; Spiroplasmataceae; Spiroplasma</Lineage>
+    <LineageEx>
+        <Taxon>
+            <TaxId>131567</TaxId>
+            <ScientificName>cellular organisms</ScientificName>
+            <Rank>cellular root</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2</TaxId>
+            <ScientificName>Bacteria</ScientificName>
+            <Rank>domain</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>1783272</TaxId>
+            <ScientificName>Bacillati</ScientificName>
+            <Rank>kingdom</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>544448</TaxId>
+            <ScientificName>Mycoplasmatota</ScientificName>
+            <Rank>phylum</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>31969</TaxId>
+            <ScientificName>Mollicutes</ScientificName>
+            <Rank>class</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>186328</TaxId>
+            <ScientificName>Entomoplasmatales</ScientificName>
+            <Rank>order</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2131</TaxId>
+            <ScientificName>Spiroplasmataceae</ScientificName>
+            <Rank>family</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2132</TaxId>
+            <ScientificName>Spiroplasma</ScientificName>
+            <Rank>genus</Rank>
+        </Taxon>
+    </LineageEx>
+    <CreateDate>1996/06/03 12:41:00</CreateDate>
+    <UpdateDate>2015/07/17 12:14:36</UpdateDate>
+    <PubDate>1996/08/02 01:00:00</PubDate>
+</Taxon>
+<Taxon>
+    <TaxId>2133</TaxId>
+    <ScientificName>Spiroplasma citri</ScientificName>
+    <OtherNames>
+        <Name>
+            <ClassCDE>authority</ClassCDE>
+            <DispName>Spiroplasma citri Saglio et al. 1973</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>ATCC 27556</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>ATCC:27556</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>NCPPB 2647</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>NCPPB:2647</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>personal::Maroc</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>personal::Morocco-R8-A2</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>strain Maroc</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>type material</ClassCDE>
+            <DispName>strain Morocco-R8-A2</DispName>
+        </Name>
+    </OtherNames>
+    <ParentTaxId>2132</ParentTaxId>
+    <Rank>species</Rank>
+    <Division>Bacteria</Division>
+    <GeneticCode>
+        <GCId>4</GCId>
+        <GCName>Mold Mitochondrial; Protozoan Mitochondrial; Coelenterate Mitochondrial; Mycoplasma; Spiroplasma</GCName>
+    </GeneticCode>
+    <MitoGeneticCode>
+        <MGCId>0</MGCId>
+        <MGCName>Unspecified</MGCName>
+    </MitoGeneticCode>
+    <Lineage>cellular organisms; Bacteria; Bacillati; Mycoplasmatota; Mollicutes; Entomoplasmatales; Spiroplasmataceae; Spiroplasma</Lineage>
+    <LineageEx>
+        <Taxon>
+            <TaxId>131567</TaxId>
+            <ScientificName>cellular organisms</ScientificName>
+            <Rank>cellular root</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2</TaxId>
+            <ScientificName>Bacteria</ScientificName>
+            <Rank>domain</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>1783272</TaxId>
+            <ScientificName>Bacillati</ScientificName>
+            <Rank>kingdom</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>544448</TaxId>
+            <ScientificName>Mycoplasmatota</ScientificName>
+            <Rank>phylum</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>31969</TaxId>
+            <ScientificName>Mollicutes</ScientificName>
+            <Rank>class</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>186328</TaxId>
+            <ScientificName>Entomoplasmatales</ScientificName>
+            <Rank>order</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2131</TaxId>
+            <ScientificName>Spiroplasmataceae</ScientificName>
+            <Rank>family</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2132</TaxId>
+            <ScientificName>Spiroplasma</ScientificName>
+            <Rank>genus</Rank>
+        </Taxon>
+    </LineageEx>
+    <CreateDate>1995/02/27 09:24:00</CreateDate>
+    <UpdateDate>2015/07/17 12:14:28</UpdateDate>
+    <PubDate>1993/04/26 01:00:00</PubDate>
+</Taxon>
+<Taxon>
+    <TaxId>2104</TaxId>
+    <ScientificName>Mycoplasmoides pneumoniae</ScientificName>
+    <OtherNames>
+        <Synonym>Schizoplasma pneumoniae</Synonym>
+        <CommonName>Filterable agent of primary atypical pneumonia</CommonName>
+        <Name>
+            <ClassCDE>authority</ClassCDE>
+            <DispName>&quot;Filterable agent of primary atypical pneumonia&quot; Eaton et al. 1944</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>authority</ClassCDE>
+            <DispName>&quot;Schizoplasma pneumoniae&quot; (Somerson et al. 1963) Furness et al. 1968</DispName>
+        </Name>
+        <Name>
+            <ClassCDE>authority</ClassCDE>
+            <DispName>Mycoplasmoides pneumoniae (Somerson et al. 1963) Gupta et al. 2018</DispName>
+        </Name>
+    </OtherNames>
+    <ParentTaxId>2995234</ParentTaxId>
+    <Rank>species</Rank>
+    <Division>Bacteria</Division>
+    <GeneticCode>
+        <GCId>4</GCId>
+        <GCName>Mold Mitochondrial; Protozoan Mitochondrial; Coelenterate Mitochondrial; Mycoplasma; Spiroplasma</GCName>
+    </GeneticCode>
+    <MitoGeneticCode>
+        <MGCId>0</MGCId>
+        <MGCName>Unspecified</MGCName>
+    </MitoGeneticCode>
+    <Lineage>cellular organisms; Bacteria; Bacillati; Mycoplasmatota; Mycoplasmoidales; Mycoplasmoidaceae; Mycoplasmoides</Lineage>
+    <LineageEx>
+        <Taxon>
+            <TaxId>131567</TaxId>
+            <ScientificName>cellular organisms</ScientificName>
+            <Rank>cellular root</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2</TaxId>
+            <ScientificName>Bacteria</ScientificName>
+            <Rank>domain</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>1783272</TaxId>
+            <ScientificName>Bacillati</ScientificName>
+            <Rank>kingdom</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>544448</TaxId>
+            <ScientificName>Mycoplasmatota</ScientificName>
+            <Rank>phylum</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2790996</TaxId>
+            <ScientificName>Mycoplasmoidales</ScientificName>
+            <Rank>order</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2790998</TaxId>
+            <ScientificName>Mycoplasmoidaceae</ScientificName>
+            <Rank>family</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2995234</TaxId>
+            <ScientificName>Mycoplasmoides</ScientificName>
+            <Rank>genus</Rank>
+        </Taxon>
+    </LineageEx>
+    <CreateDate>1995/02/27 09:24:00</CreateDate>
+    <UpdateDate>2022/11/16 15:34:36</UpdateDate>
+    <PubDate>1993/06/12 01:00:00</PubDate>
+</Taxon>
+<Taxon>
+    <TaxId>33926</TaxId>
+    <ScientificName>Candidatus Phytoplasma</ScientificName>
+    <OtherNames>
+        <GenbankCommonName>plant yellows agents</GenbankCommonName>
+        <Synonym>Mycoplasma-like organisms</Synonym>
+        <Acronym>MLOs</Acronym>
+        <EquivalentName>Phytoplasma</EquivalentName>
+        <Name>
+            <ClassCDE>authority</ClassCDE>
+            <DispName>&quot;Candidatus Phytoplasma&quot; Firrao et al. 2004</DispName>
+        </Name>
+    </OtherNames>
+    <ParentTaxId>2146</ParentTaxId>
+    <Rank>genus</Rank>
+    <Division>Bacteria</Division>
+    <GeneticCode>
+        <GCId>11</GCId>
+        <GCName>Bacterial, Archaeal and Plant Plastid</GCName>
+    </GeneticCode>
+    <MitoGeneticCode>
+        <MGCId>0</MGCId>
+        <MGCName>Unspecified</MGCName>
+    </MitoGeneticCode>
+    <Lineage>cellular organisms; Bacteria; Bacillati; Mycoplasmatota; Mollicutes; Acholeplasmatales; Acholeplasmataceae</Lineage>
+    <LineageEx>
+        <Taxon>
+            <TaxId>131567</TaxId>
+            <ScientificName>cellular organisms</ScientificName>
+            <Rank>cellular root</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2</TaxId>
+            <ScientificName>Bacteria</ScientificName>
+            <Rank>domain</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>1783272</TaxId>
+            <ScientificName>Bacillati</ScientificName>
+            <Rank>kingdom</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>544448</TaxId>
+            <ScientificName>Mycoplasmatota</ScientificName>
+            <Rank>phylum</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>31969</TaxId>
+            <ScientificName>Mollicutes</ScientificName>
+            <Rank>class</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>186329</TaxId>
+            <ScientificName>Acholeplasmatales</ScientificName>
+            <Rank>order</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2146</TaxId>
+            <ScientificName>Acholeplasmataceae</ScientificName>
+            <Rank>family</Rank>
+        </Taxon>
+    </LineageEx>
+    <CreateDate>1995/02/27 09:24:00</CreateDate>
+    <UpdateDate>2024/03/28 19:01:56</UpdateDate>
+    <PubDate>1993/04/26 01:00:00</PubDate>
+</Taxon>
+
+</TaxaSet>

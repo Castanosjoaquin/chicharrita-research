@@ -1,0 +1,25 @@
+organismo	region	criterio	ventanas	solo_genoma	solo_transcriptoma	en_los_dos	pos_solo_genoma	pos_solo_transcriptoma
+Zea mays	ATPaseD_Dm_sel_151-450	perfecto_21	280	0	0	0		
+Zea mays	ATPaseD_Dm_sel_151-450	perfecto_ge19	280	0	0	0		
+Zea mays	ATPaseD_Dm_sel_151-450	mm1_21	280	7	0	1	5,135,139,166,183,217,254	
+Zea mays	BicC_Dm_sel_264-563	perfecto_21	280	1	0	0	257	
+Zea mays	BicC_Dm_sel_264-563	perfecto_ge19	280	8	3	0	30,31,32,255,256,257,258,259	123,124,125
+Zea mays	BicC_Dm_sel_264-563	mm1_21	280	8	1	1	1,37,38,45,240,256,257,258	125
+Zea mays	CP_MRFV_sel_200-400	perfecto_21	180	0	0	0		
+Zea mays	CP_MRFV_sel_200-400	perfecto_ge19	180	0	0	0		
+Zea mays	CP_MRFV_sel_200-400	mm1_21	180	4	0	4	14,110,132,136	
+Zea mays	MP_MRFV_sel_1-200	perfecto_21	180	0	0	0		
+Zea mays	MP_MRFV_sel_1-200	perfecto_ge19	180	3	0	3	1,2,3	
+Zea mays	MP_MRFV_sel_1-200	mm1_21	180	4	0	1	3,9,10,56	
+Apis mellifera	ATPaseD_Dm_sel_151-450	perfecto_21	280	0	0	0		
+Apis mellifera	ATPaseD_Dm_sel_151-450	perfecto_ge19	280	0	0	0		
+Apis mellifera	ATPaseD_Dm_sel_151-450	mm1_21	280	0	0	0		
+Apis mellifera	BicC_Dm_sel_264-563	perfecto_21	280	0	0	0		
+Apis mellifera	BicC_Dm_sel_264-563	perfecto_ge19	280	0	0	0		
+Apis mellifera	BicC_Dm_sel_264-563	mm1_21	280	2	0	3	9,19	
+Apis mellifera	CP_MRFV_sel_200-400	perfecto_21	180	0	0	0		
+Apis mellifera	CP_MRFV_sel_200-400	perfecto_ge19	180	0	0	0		
+Apis mellifera	CP_MRFV_sel_200-400	mm1_21	180	0	0	0		
+Apis mellifera	MP_MRFV_sel_1-200	perfecto_21	180	0	0	0		
+Apis mellifera	MP_MRFV_sel_1-200	perfecto_ge19	180	0	0	0		
+Apis mellifera	MP_MRFV_sel_1-200	mm1_21	180	1	2	1	33	39,40

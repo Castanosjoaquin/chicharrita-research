@@ -1,0 +1,1049 @@
+{
+ "fecha_consulta": "2026-10-19",
+ "pista": "R7/M4",
+ "nota": "Una entrada por blanco. Estructura experimental = entrada PDB de la propia proteína (consulta RCSB por accesión UniProt, 2026-10-19). pLDDT medio = globalMetricValue de la API de AlphaFold DB. identidad_al_homologo = mejor acierto de BLASTP local (2.17.0+, -seg no) contra 12.450 secuencias UniProt con estructura en el PDB (12.412 bacterianas revisadas + 143 de Mycoplasmatota + 3 añadidas desde RCSB por rezago de xrefs; el mejor homólogo TrEMBL con PDB puede faltar). Las filas S01 y S02 son parientes con estructura sin papel en infección demostrado y no entran en los conteos de blancos.",
+ "vocabulario_causa": [
+  "no_se_logro_expresar",
+  "no_cristaliza_pese_a_intentarlo",
+  "de_membrana",
+  "nadie_lo_intento",
+  "ausencia_de_ensayo_funcional",
+  "imposibilidad_cultivo_axenico",
+  "otra",
+  "sin_faltante"
+ ],
+ "solidez_de_la_negativa": {
+  "fuerte": "la estructura del propio blanco o de un homólogo >90 % ya se obtuvo con métodos estándar, o el problema fue de fases/estabilidad",
+  "por_ausencia_de_evidencia": "nadie intentó o no se halló un intento; la regla exige evidencia de intento fallido y esta no existe"
+ },
+ "resumen": {
+  "n_blancos_con_evidencia_funcional": 16,
+  "n_Ca_P_zeae": 9,
+  "n_S_kunkelii": 7,
+  "n_blancos_proteina": 14,
+  "n_blancos_ARN": 2,
+  "con_estructura_experimental_propia": 0,
+  "con_homologo_estructurado_ge_90pct": [
+   "Z06"
+  ],
+  "proteinas_con_modelo_alphafold": [
+   "K01",
+   "K02",
+   "K03",
+   "K04",
+   "K05",
+   "K06"
+  ],
+  "proteinas_sin_modelo_alphafold": [
+   "Z01",
+   "Z02",
+   "Z03",
+   "Z04",
+   "Z05",
+   "Z06",
+   "Z07",
+   "Z08"
+  ],
+  "causa_principal": {
+   "nadie_lo_intento": 9,
+   "sin_faltante": 1,
+   "de_membrana": 4,
+   "ausencia_de_ensayo_funcional": 1,
+   "imposibilidad_cultivo_axenico": 1
+  },
+  "causa_cualquiera": {
+   "imposibilidad_cultivo_axenico": 7,
+   "nadie_lo_intento": 11,
+   "otra": 3,
+   "ausencia_de_ensayo_funcional": 9,
+   "de_membrana": 7,
+   "sin_faltante": 1
+  },
+  "n_que_cumplen_la_regla_de_microgravedad": 0,
+  "parientes_con_estructura_sin_papel_en_infeccion": [
+   "S01",
+   "S02"
+  ]
+ },
+ "blancos": [
+  {
+   "id": "Z01",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "SAP11-like (efector secretado; MBPSM3_v1c1080)",
+   "uniprot": "A0ABM6DLD7",
+   "refseq_proteina": "WP_069028078.1",
+   "grupo_funcional": "efector",
+   "papel_funcional": "SAP11 de MBSP desestabiliza específicamente TCP del tipo TB1/CYC; en maíz transgénico impide el desarrollo de la inflorescencia femenina (fenocopia tb1). Ni SAP11-AYWB ni SAP11-MBSP aumentaron la fecundidad de los vectores en maíz (incluido D. maidis para MBSP). La secuencia es idéntica entre aislados de México y Brasil.",
+   "fuente": [
+    "M4-01"
+   ],
+   "especie_de_la_evidencia": "SAP11 de MBSP (el artículo no da accesión; el mapeo a A0ABM6DLD7 es de R6 y queda [H])",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión UniProt; búsqueda de texto «SAP11» en PDB: 0 entradas (consulta 2026-10-19).",
+   "alphafold": null,
+   "alphafold_nota": "Sin modelo en AlphaFold DB (HTTP 404): la entrada UniProt se creó el 2025-10-08, posterior al corte de modelos de AlphaFold DB (modelos creados 2022-06-01 en las 5 entradas que sí lo tienen). No es un faltante de dificultad sino de fecha.",
+   "identidad_al_homologo": {
+    "uniprot": "Q2NK94",
+    "organismo": "Aster yellows witches'-broom phytoplasma (strain AYWB)",
+    "pct_identidad": 31.6,
+    "cobertura_consulta_pct": 77,
+    "longitud_alineada": 95,
+    "evalue": 0.000404,
+    "pdb_ids": [
+     "8JTK",
+     "8PFC",
+     "8PFD"
+    ],
+    "nota": "Único acierto: SAP05 (residuos 1–89 de la consulta contra 1–95 de SAP05), E 4e-4. Es región N-terminal; no es un homólogo funcional de SAP05. Sin homólogo con estructura detectable."
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "imposibilidad_cultivo_axenico (la proteína nativa no se obtiene; la recombinante sí es posible)",
+    "otra: sin modelo AlphaFold por fecha de corte"
+   ],
+   "decision_que_cambia": "Mapa de interfaz SAP11–TCP: no hay complejo experimental de ningún SAP11 en el PDB, así que un modelo de AlphaFold-Multimer (ipTM 0,705 «intermedio» para SAP11-AYWB–AtTCP10 en M4-08) no tiene verdad de terreno contra la cual validarse. Ninguna decisión demostrable sin laboratorio; sí sirve como anotación (identidad entre aislados) y priorización.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "La causa es «nadie lo intentó»: no hay intento de cristalización fallido que remediar (condición 2 de la regla). Es un péptido de 116 aa sin ensayo de unión purificado en nuestras fuentes.",
+   "marcador": "[E] función de SAP11-MBSP; [H] identidad del blanco con A0ABM6DLD7",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "sí (maíz transgénico, SAP11-MBSP)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "Z02",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "candidato SAP05-like (anotado «AYWB SAP50-like», 402 aa; MBSPM3_v1c2940)",
+   "uniprot": "A0ABM6DM10",
+   "refseq_proteina": "WP_232308825.1",
+   "grupo_funcional": "efector",
+   "papel_funcional": "Para SAP05 de otros fitoplasmas: degradación de SPL y GATA por RPN10 sin ubiquitina; dos aminoácidos de RPN10 vegetal dan una variante resistente a SAP05, pero las plantas con RPN10 resistente no producen más tejido vegetativo y mueren antes durante la infección. Para el candidato de M3 no hay evidencia funcional propia.",
+   "fuente": [
+    "M4-06",
+    "M4-D4"
+   ],
+   "especie_de_la_evidencia": "SAP05 de AYWB y OY (Arabidopsis); distancia al blanco de M3: 43,2 % de identidad en 81 aa (≈20 % de la proteína de M3)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión; SAP05 tiene 8 entradas PDB (otros fitoplasmas).",
+   "alphafold": null,
+   "alphafold_nota": "Sin modelo en AlphaFold DB (HTTP 404): la entrada UniProt se creó el 2025-10-08, posterior al corte de modelos de AlphaFold DB (modelos creados 2022-06-01 en las 5 entradas que sí lo tienen). No es un faltante de dificultad sino de fecha.",
+   "identidad_al_homologo": {
+    "uniprot": "Q6YQ57",
+    "organismo": "Onion yellows phytoplasma (strain OY-M)",
+    "pct_identidad": 43.2,
+    "cobertura_consulta_pct": 20,
+    "longitud_alineada": 81,
+    "evalue": 1.08e-11,
+    "pdb_ids": [
+     "8J48",
+     "8J49",
+     "8J4A",
+     "8J4B",
+     "8JTL"
+    ],
+    "nota": "Región 214–292 de la proteína de M3 contra 56–133 de SAP05-OY (Q6YQ57); cobertura de la consulta 20 %."
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "ausencia_de_ensayo_funcional (función de la proteína de M3 desconocida)"
+   ],
+   "decision_que_cambia": "Es la única fila donde existe una estructura de homólogo posiblemente transferible (8 complejos SAP05–SPL/GATA/RPN10, 1,57–2,2 Å) y donde una predicción de interfaz podría evaluarse retrospectivamente contra el PDB sin laboratorio. Utilidad práctica baja: la evidencia en Arabidopsis dice que anular el efecto de SAP05 no evita la infección.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Los complejos homólogos ya cristalizaron por difusión de vapor estándar a 1,57–2,2 Å; el faltante es de anotación, no de cristal.",
+   "marcador": "[H] (homología parcial, sin función demostrada en M3); [E] para SAP05 en Arabidopsis",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado (homólogos sí)",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "no (M3)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": {
+    "uniprot": "Q6YQ57",
+    "organismo": "fitoplasma OY (SAP05)",
+    "pct_identidad": 43.2,
+    "aln": 81,
+    "longitud_consulta": 402,
+    "fuente_calculo": "blast_blancos_vs_pdbhomologos_raw.tsv"
+   }
+  },
+  {
+   "id": "Z03",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "«Phytoplasmal effector causing phyllody 1» (anotación UniProt, 74 aa; MBSPM3_v1c2460)",
+   "uniprot": "A0ABN4RYC3",
+   "refseq_proteina": "WP_069028191.1",
+   "grupo_funcional": "efector",
+   "papel_funcional": "PHYL1/SAP54 de otros fitoplasmas se une a factores MADS y a RAD23 para inducir filodia (modelo estructural en M4-08; estructuras 6INR y 6JQA de otros fitoplasmas). Ningún dato funcional para la proteína de M3.",
+   "fuente": [
+    "M4-08"
+   ],
+   "especie_de_la_evidencia": "PHYL1 de OY-W y Ca. P. australasiaticum subsp. taiwanense",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión.",
+   "alphafold": null,
+   "alphafold_nota": "Sin modelo en AlphaFold DB (HTTP 404): la entrada UniProt se creó el 2025-10-08, posterior al corte de modelos de AlphaFold DB (modelos creados 2022-06-01 en las 5 entradas que sí lo tienen). No es un faltante de dificultad sino de fecha.",
+   "identidad_al_homologo": {
+    "uniprot": "X5IFG3 / A0ABF7PLP1",
+    "organismo": "PHYL1 de OY-W y de Ca. P. australasiaticum subsp. taiwanense",
+    "pct_identidad": null,
+    "cobertura_consulta_pct": null,
+    "evalue": 0.16,
+    "pdb_ids": [
+     "6JQA",
+     "6INR"
+    ],
+    "nota": "BLASTP de la entrada de M3 contra la base con PDB: mejor E = 0,16 (falso positivo). El nombre de UniProt no se respalda con similitud de secuencia detectable con PHYL1 con estructura. Coincide con el acierto débil de SAP54 de R6."
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "ausencia_de_ensayo_funcional"
+   ],
+   "decision_que_cambia": "Ninguna: sin similitud con la estructura conocida, el nombre no autoriza a transferirla. Una predicción local tendría que partir de la secuencia sola.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Nadie lo intentó; 74 aa sin ortología comprobada.",
+   "marcador": "[?]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "no",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "Z04",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "Imp (immunodominant membrane protein; MBSPM3_v1c2000, 190 aa)",
+   "uniprot": "A0ABM6DLQ2",
+   "refseq_proteina": "WP_069028156.1",
+   "grupo_funcional": "proteína de membrana / adhesina",
+   "papel_funcional": "Imp es una proteína de membrana mayoritaria de fitoplasmas que se une a F-actina; en Ca. P. mali se identificó su dominio de unión y la unión a actina de manzano; en el fitoplasma del maní se halló que interactúa con PHYL1. Las secuencias de Imp son muy diversas entre especies.",
+   "fuente": [
+    "M4-04",
+    "M4-05"
+   ],
+   "especie_de_la_evidencia": "Ca. P. mali (unión a actina) y fitoplasma de la escoba de bruja del maní (estructura 8J8Y); sin dato en M3",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión. La estructura de Imp de otra especie (8J8Y, 2,0 Å) existe pero no es transferible por BLASTP.",
+   "alphafold": null,
+   "alphafold_nota": "Sin modelo en AlphaFold DB (HTTP 404): la entrada UniProt se creó el 2025-10-08, posterior al corte de modelos de AlphaFold DB (modelos creados 2022-06-01 en las 5 entradas que sí lo tienen). No es un faltante de dificultad sino de fecha.",
+   "identidad_al_homologo": {
+    "uniprot": "E5D8B7",
+    "organismo": "fitoplasma de la escoba de bruja del maní (PnWB)",
+    "pct_identidad": null,
+    "cobertura_consulta_pct": null,
+    "evalue": 0.62,
+    "pdb_ids": [
+     "8J8Y"
+    ],
+    "nota": "Sin acierto con E ≤ 1e-3 contra toda la base con PDB (12.450 secuencias); con E ≤ 10 el mejor es espurio (E 0,62). Consistente con la diversidad de Imp descrita en M4-05."
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "de_membrana (la estructura de PnWB se resolvió sin el segmento transmembrana, aa 33–172)",
+    "imposibilidad_cultivo_axenico"
+   ],
+   "decision_que_cambia": "En PnWB el modelo de AlphaFold 2 sirvió para resolver las fases por reemplazo molecular: un modelo predicho de Imp de M3 es plausible. Mapa de interfaz con actina de maíz: solo hay validación por espectroscopía de fuerza de molécula única en Ca. P. mali, ningún complejo experimental.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "fuerte",
+   "justificacion_microgravedad": "En el único Imp resuelto, los cristales difractaron a 2,0 Å por difusión de vapor en gota sedente (60 mg/ml, PEG 8000); el obstáculo fue el problema de las fases (sin Met ni Cys utilizables), resuelto con un modelo de AlphaFold 2. Es un cuello de botella que la microgravedad no toca.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado (Imp de PnWB sí)",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (los cristales del homólogo salieron por métodos estándar)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "parcial (unión a actina en Ca. P. mali)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "Z05",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "Imp, segundo parálogo (MBSPM3_v1c1440, 155 aa)",
+   "uniprot": "A0ABN4S0Q5",
+   "refseq_proteina": "WP_069028105.1",
+   "grupo_funcional": "proteína de membrana / adhesina",
+   "papel_funcional": "Igual que Z04 (fuente por homología de anotación; no hay dato funcional de este parálogo).",
+   "fuente": [
+    "M4-04",
+    "M4-05"
+   ],
+   "especie_de_la_evidencia": "Ca. P. mali y PnWB; sin dato en M3",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión.",
+   "alphafold": null,
+   "alphafold_nota": "Sin modelo en AlphaFold DB (HTTP 404): la entrada UniProt se creó el 2025-10-08, posterior al corte de modelos de AlphaFold DB (modelos creados 2022-06-01 en las 5 entradas que sí lo tienen). No es un faltante de dificultad sino de fecha.",
+   "identidad_al_homologo": {
+    "uniprot": "E5D8B7",
+    "organismo": "PnWB",
+    "pct_identidad": null,
+    "cobertura_consulta_pct": null,
+    "evalue": 0.55,
+    "pdb_ids": [
+     "8J8Y"
+    ],
+    "nota": "Sin acierto con E ≤ 1e-3; con E ≤ 10 el mejor es espurio (E 0,47–0,55)."
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "de_membrana",
+    "imposibilidad_cultivo_axenico"
+   ],
+   "decision_que_cambia": "Igual que Z04.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "fuerte",
+   "justificacion_microgravedad": "Igual que Z04.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado (Imp de PnWB sí)",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (los cristales del homólogo salieron por métodos estándar)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "parcial",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "Z06",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "Enzima málica (sfcA; MBSPM3_v1c0630, 390 aa)",
+   "uniprot": "A0ABM6DLE7",
+   "refseq_proteina": "WP_069028041.1",
+   "grupo_funcional": "metabolismo (supervivencia)",
+   "papel_funcional": "La enzima málica de AYWB convierte malato en piruvato con NAD o NADP; los autores plantean que el malato puede ser una fuente principal de energía del fitoplasma, que depende del huésped. Todos los genomas de fitoplasma secuenciados la tienen (M4-28). Solo se leyó el resumen.",
+   "fuente": [
+    "M4-27",
+    "M4-28"
+   ],
+   "especie_de_la_evidencia": "Ca. Phytoplasma AYWB; 95,9 % de identidad con la de M3",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "Sin entrada propia; el homólogo AYWB (Q2NK75) tiene 5CEE.",
+   "alphafold": null,
+   "alphafold_nota": "Sin modelo en AlphaFold DB (HTTP 404): la entrada UniProt se creó el 2025-10-08, posterior al corte de modelos de AlphaFold DB (modelos creados 2022-06-01 en las 5 entradas que sí lo tienen). No es un faltante de dificultad sino de fecha.",
+   "identidad_al_homologo": {
+    "uniprot": "Q2NK75",
+    "organismo": "Aster yellows witches'-broom phytoplasma (strain AYWB)",
+    "pct_identidad": 95.9,
+    "cobertura_consulta_pct": 100,
+    "longitud_alineada": 390,
+    "evalue": 0.0,
+    "pdb_ids": [
+     "5CEE"
+    ]
+   },
+   "causa_del_faltante": "sin_faltante",
+   "causas_secundarias": [
+    "imposibilidad_cultivo_axenico (irrelevante: la recombinante de AYWB cristalizó)"
+   ],
+   "decision_que_cambia": "Ninguna estructura nueva: un modelo por homología sobre 5CEE (95,9 %) es trivial. Una comparación in silico del sitio con la enzima málica de maíz como control de selectividad es [H] y no se puede validar sin ensayo.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "fuerte",
+   "justificacion_microgravedad": "No hay faltante: la enzima de AYWB (96 % idéntica) cristalizó por difusión de vapor en gota colgante a 2,5 Å (RCSB 5CEE).",
+   "marcador": "[R] función (resumen); [E] estructura (PDB)",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "sí (homólogo 96 %)",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (los cristales del homólogo salieron por métodos estándar)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "parcial (actividad enzimática en AYWB)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": {
+    "uniprot": "Q2NK75",
+    "organismo": "Ca. Phytoplasma AYWB (enzima málica)",
+    "pct_identidad": 95.9,
+    "aln": 390,
+    "longitud_consulta": 390,
+    "fuente_calculo": "blast_blancos_vs_pdbhomologos_raw.tsv"
+   }
+  },
+  {
+   "id": "Z07",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "Simportador malato:citrato (citS; MBSPM3_v1c0640, 510 aa)",
+   "uniprot": "A0ABM6DLD1",
+   "refseq_proteina": null,
+   "grupo_funcional": "transportador de membrana",
+   "papel_funcional": "Los fitoplasmas codifican transportadores de malato, a diferencia de otros Mollicutes; se plantea que el malato es su fuente de energía (hipótesis, sin ensayo de transporte en nuestras fuentes; solo resumen).",
+   "fuente": [
+    "M4-27"
+   ],
+   "especie_de_la_evidencia": "AYWB (hipótesis a partir del genoma)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión.",
+   "alphafold": null,
+   "alphafold_nota": "Sin modelo en AlphaFold DB (HTTP 404): la entrada UniProt se creó el 2025-10-08, posterior al corte de modelos de AlphaFold DB (modelos creados 2022-06-01 en las 5 entradas que sí lo tienen). No es un faltante de dificultad sino de fecha.",
+   "identidad_al_homologo": {
+    "uniprot": "P31602",
+    "organismo": "Klebsiella pneumoniae (CitS)",
+    "pct_identidad": 27.4,
+    "cobertura_consulta_pct": 84,
+    "evalue": 2.65e-34,
+    "pdb_ids": [
+     "5X9R",
+     "5XAR",
+     "5XAS",
+     "5XAT",
+     "9LSH",
+     "9LSI",
+     "9LSJ",
+     "9LSK"
+    ],
+    "nota": "Homólogo lejano con estructuras de rayos X a 3,47–3,98 Å y crio-EM a 2,9–3,8 Å (RCSB)."
+   },
+   "causa_del_faltante": "de_membrana",
+   "causas_secundarias": [
+    "ausencia_de_ensayo_funcional",
+    "imposibilidad_cultivo_axenico"
+   ],
+   "decision_que_cambia": "Ninguna demostrable sin laboratorio: no hay ensayo de transporte ni inhibidor conocido.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Es de membrana y sin ensayo; no hay preparación estable ni intento de cristalización. Si la microgravedad ayuda a proteínas de membrana en general es una pregunta de M1; aquí falla igualmente la condición 2.",
+   "marcador": "[?]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "no",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "Z08",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "Timidina quinasa (tdk; MBSPM3_v1c4760, 209 aa)",
+   "uniprot": "A0ABN4RZ55",
+   "refseq_proteina": "WP_069028381.1",
+   "grupo_funcional": "metabolismo (proliferación)",
+   "papel_funcional": "En el fitoplasma de la escoba de bruja de Paulownia, TDK se expresa en tejido infectado, co-localiza con el fitoplasma y su ARNm correlaciona con la proliferación; expresarla en Pseudomonas syringae pv. tomato DC3000 aumentó crecimiento y virulencia en Arabidopsis. La actividad enzimática se predijo in silico.",
+   "fuente": [
+    "M4-09"
+   ],
+   "especie_de_la_evidencia": "fitoplasma de Paulownia (PaWB); identidad con la de M3 no medida",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión.",
+   "alphafold": null,
+   "alphafold_nota": "Sin modelo en AlphaFold DB (HTTP 404): la entrada UniProt se creó el 2025-10-08, posterior al corte de modelos de AlphaFold DB (modelos creados 2022-06-01 en las 5 entradas que sí lo tienen). No es un faltante de dificultad sino de fecha.",
+   "identidad_al_homologo": {
+    "uniprot": "Q5HE81",
+    "organismo": "Staphylococcus aureus (strain COL)",
+    "pct_identidad": 49.5,
+    "cobertura_consulta_pct": 91,
+    "longitud_alineada": 190,
+    "evalue": 2.97e-66,
+    "pdb_ids": [
+     "8Y7W"
+    ]
+   },
+   "causa_del_faltante": "ausencia_de_ensayo_funcional",
+   "causas_secundarias": [
+    "nadie_lo_intento",
+    "imposibilidad_cultivo_axenico"
+   ],
+   "decision_que_cambia": "Un modelo por homología es posible (S. aureus 49,5 %; Ureaplasma 41,9 % con 2B8T/2UZ3). Un inhibidor tipo análogo de nucleósido necesitaría un ensayo enzimático que no existe para la proteína del fitoplasma del maíz.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Sin ensayo ni intento de cristalización; ya hay estructuras de TK bacterianas a 2,0–2,5 Å.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "no (solo in silico + sistema heterólogo)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "Z09",
+   "organismo": "Candidatus Phytoplasma zeae",
+   "taxid": 202462,
+   "gen_o_proteina": "ARNr 16S (2 operones en NZ_CP015149.1: 215775–217307 y 373464–371932)",
+   "uniprot": null,
+   "refseq_proteina": null,
+   "grupo_funcional": "ARN ribosomal",
+   "papel_funcional": "Las tetraciclinas son los únicos antibióticos con efecto supresor demostrado sobre fitoplasmas, aunque la erradicación completa es difícil y el uso agrícola está prohibido en muchos países (M4-11). Que la diana sea el ribosoma lo registra R6 (M4-L1) y no se reverificó en una fuente abierta de esta pista.",
+   "fuente": [
+    "M4-11",
+    "M4-L1"
+   ],
+   "especie_de_la_evidencia": "fitoplasmas de otras especies (no Ca. P. zeae ni maíz)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "No hay ribosoma de ningún fitoplasma en el PDB; sí 55 entradas con ARN de Mycoplasmoides pneumoniae (resoluciones 2,9–26,7 Å, casi todas crio-EM en células).",
+   "alphafold": null,
+   "alphafold_nota": "No aplica (ARN).",
+   "identidad_al_homologo": {
+    "uniprot": null,
+    "organismo": "Mycoplasmoides pneumoniae (16S de 8P6P, 1.520 nt)",
+    "pct_identidad": 84.9,
+    "cobertura_consulta_pct": null,
+    "pdb_ids": [
+     "8P6P",
+     "8P8B",
+     "7OOC",
+     "7P6Z"
+    ],
+    "nota": "Alineamiento global (Biopython), identidad sobre 1.464 columnas sin hueco; el otro operón da 84,8 %."
+   },
+   "causa_del_faltante": "imposibilidad_cultivo_axenico",
+   "causas_secundarias": [
+    "otra: el homólogo ribosomal ya se resolvió por crio-EM en células, sin cristales"
+   ],
+   "decision_que_cambia": "Análisis in silico de conservación del sitio de unión de antibióticos sobre los ribosomas de M. pneumoniae (84,9 %): [H], sin ensayo en maíz.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "fuerte",
+   "justificacion_microgravedad": "Las estructuras ribosomales de mollicutes se obtuvieron por crio-EM, no por cristalización.",
+   "marcador": "[E] tetraciclinas en fitoplasmas (otras especies); [H] transferencia",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_aplica",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "no",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "K01",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "Fosfoglicerato quinasa (pgk; SKUN_00132, 412 aa)",
+   "uniprot": "A0A0K2JFN2",
+   "refseq_proteina": "WP_053390413.1",
+   "grupo_funcional": "adhesina de entrada / transmisión",
+   "papel_funcional": "En S. citri, la PGK se une a la actina del vector; PGK o su región mínima PGK-FL5 reducen la internalización en células Ciha-1 (inhibición de 85 % y 80 % a 400 µg/ml) y, inyectadas en cicadélidos infectados, bajan el porcentaje de lotes de 3 insectos con cultivo positivo: 58 % con tampón (149/257), 30 % con PGK (52/176), 34 % con PGK-FL5 (38/112), p < 0,0001.",
+   "fuente": [
+    "M4-02",
+    "M4-18"
+   ],
+   "especie_de_la_evidencia": "S. citri y Circulifer haematoceps; PGK de S. kunkelii 93,7 % idéntica en 412/412 aa",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión; 0 PDB para cualquier Spiroplasma (consulta por linaje 2132).",
+   "alphafold": {
+    "id": "AF-A0A0K2JFN2-F1",
+    "plddt_medio": 96.06,
+    "fraccion_residuos_plddt_menor_70": 0.005,
+    "version_modelo": 6,
+    "nota": "API AlphaFold DB, consultada 2026-10-19"
+   },
+   "identidad_al_homologo": {
+    "uniprot": "Q04LZ5",
+    "organismo": "Streptococcus pneumoniae serotype 2 (strain D39 / NCTC 7466)",
+    "pct_identidad": 57.4,
+    "cobertura_consulta_pct": 99,
+    "longitud_alineada": 411,
+    "evalue": 1.02e-158,
+    "pdb_ids": [
+     "3ZLB"
+    ]
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "ausencia_de_ensayo_funcional (ninguno con S. kunkelii ni D. maidis)"
+   ],
+   "decision_que_cambia": "La región FL5 de S. citri se puede ubicar en el modelo (pLDDT 96,1) y verificar su conservación en S. kunkelii. Una predicción de interfaz PGK–actina de insecto tiene una sola verdad de terreno (FL5, n = 1).",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Nadie intentó cristalizarla; es una enzima canónica con modelo de muy alta confianza y homólogos con estructura al 51–57 %.",
+   "marcador": "[R] (S. citri; solo 1 estudio in vivo)",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "sí en S. citri (E. coli, UGA→TGG)",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "sí en S. citri (células e insectos)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": {
+    "uniprot": "Q7WTU1",
+    "organismo": "Spiroplasma citri (PGK, revisada)",
+    "pct_identidad": 93.7,
+    "aln": 412,
+    "longitud_consulta": 412,
+    "fuente_calculo": "blast_scitri_vs_Sk.tsv"
+   }
+  },
+  {
+   "id": "K02",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "Espiralina (spi; SKUN_00682, 240 aa)",
+   "uniprot": "A0A0K2JG54",
+   "refseq_proteina": "WP_053390819.1",
+   "grupo_funcional": "lipoproteína de superficie",
+   "papel_funcional": "En S. citri, mutantes de espiralina conservan helicidad, motilidad y patogenicidad pero se transmiten con menor eficiencia (M4-19, solo resumen); la espiralina se une in vitro a glicoproteínas del vector (M4-20, solo resumen); scFv anti-espiralina inhibieron el crecimiento de S. citri in vitro (M4-21, solo resumen).",
+   "fuente": [
+    "M4-19",
+    "M4-20",
+    "M4-21",
+    "M4-38"
+   ],
+   "especie_de_la_evidencia": "S. citri; la espiralina de S. kunkelii tiene 61,1 % de identidad (239/241 aa)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión y 0 para el texto «spiralin». En 1995 solo se resolvió por RMN un péptido sintético de 20 aa (región 143–162 de la espiralina de S. melliferum; M4-38); tampoco está en el PDB.",
+   "alphafold": {
+    "id": "AF-A0A0K2JG54-F1",
+    "plddt_medio": 88.69,
+    "fraccion_residuos_plddt_menor_70": 0.112,
+    "version_modelo": 6,
+    "nota": "API AlphaFold DB, consultada 2026-10-19"
+   },
+   "identidad_al_homologo": {
+    "uniprot": null,
+    "organismo": null,
+    "pct_identidad": null,
+    "cobertura_consulta_pct": null,
+    "pdb_ids": null,
+    "nota": "Sin homólogo con estructura detectable (E ≤ 10: solo aciertos espurios, E ≥ 0,7)."
+   },
+   "causa_del_faltante": "de_membrana",
+   "causas_secundarias": [
+    "nadie_lo_intento"
+   ],
+   "decision_que_cambia": "Mapa de epítopos para anticuerpos o scFv: existe un ensayo de inhibición in vitro (S. citri), pero no para S. kunkelii; sin estructura experimental, la validación del modelo no es posible.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Lipoproteína anclada a membrana sin ningún intento estructural hallado; el primer paso sería producirla soluble, no cristalizarla mejor.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "sí in vitro y por mutantes en S. citri",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": {
+    "uniprot": "P19215",
+    "organismo": "Spiroplasma citri (espiralina, revisada)",
+    "pct_identidad": 61.1,
+    "aln": 239,
+    "longitud_consulta": 241,
+    "fuente_calculo": "blast_scitri_vs_Sk.tsv"
+   }
+  },
+  {
+   "id": "K03",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "Arp1 / SkARP1 (plásmido pSKU146; 865 aa)",
+   "uniprot": "Q5VCC1",
+   "refseq_proteina": "WP_011225090.1",
+   "grupo_funcional": "adhesina de entrada / transmisión",
+   "papel_funcional": "SkARP1 (96 kDa) es muy similar a la adhesina SARP1 de S. citri, implicada en el anclaje al intestino del vector (M4-22, solo resumen; M4-10). En S. citri, el dominio repetido de ScARP3d dispara la entrada a células de C. haematoceps: anticuerpos anti-Rep3d y Rep3d recombinante redujeron la invasión; el mutante G/6 sin plásmidos pSci1–5 tuvo 82 % menos adhesión y 84 % menos internalización.",
+   "fuente": [
+    "M4-03",
+    "M4-22",
+    "M4-10"
+   ],
+   "especie_de_la_evidencia": "S. citri; SkARP1 76,5 % de identidad con P89 de S. citri (Q9EV58) sobre 532 aa",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión.",
+   "alphafold": {
+    "id": "AF-Q5VCC1-F1",
+    "plddt_medio": 71.75,
+    "fraccion_residuos_plddt_menor_70": 0.386,
+    "version_modelo": 6,
+    "nota": "API AlphaFold DB, consultada 2026-10-19"
+   },
+   "identidad_al_homologo": {
+    "uniprot": null,
+    "organismo": null,
+    "pct_identidad": null,
+    "cobertura_consulta_pct": null,
+    "pdb_ids": null,
+    "nota": "Sin homólogo con estructura detectable (E ≤ 10, mejores aciertos espurios). Contra P89 de S. citri: 76,5 % sobre 532 aa (sin estructura)."
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "de_membrana (superficie, repeticiones)",
+    "ausencia_de_ensayo_funcional (ninguno con S. kunkelii–D. maidis)"
+   ],
+   "decision_que_cambia": "El 38,6 % de los residuos del modelo tiene pLDDT < 70 (repeticiones): ahí una estructura experimental sí corregiría el modelo, pero no hay receptor del vector identificado para el mapa de interfaz.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Nadie lo intentó; es una proteína grande de superficie con repeticiones; sin receptor ni ensayo en S. kunkelii.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "sí en S. citri (células)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": {
+    "uniprot": "Q9EV58",
+    "organismo": "Spiroplasma citri (P89 putativa adhesina)",
+    "pct_identidad": 76.5,
+    "aln": 532,
+    "longitud_consulta": 798,
+    "fuente_calculo": "blast_scitri_vs_Sk.tsv"
+   }
+  },
+  {
+   "id": "K04",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "Componente IIABC específico de fructosa del PTS (fruA; SKUN_00374, 687 aa)",
+   "uniprot": "A0A0K2JFE3",
+   "refseq_proteina": null,
+   "grupo_funcional": "transportador de membrana (operón de fructosa)",
+   "papel_funcional": "En S. citri, los mutantes del operón de fructosa (incluido uno con transposón en su primer gen) causan síntomas leves y tardíos (semana 4) en pervinca y los revertantes los reemplazan (M4-23, solo resumen).",
+   "fuente": [
+    "M4-23"
+   ],
+   "especie_de_la_evidencia": "S. citri en pervinca; FruA de S. kunkelii 92,6 % de identidad (687/687 aa)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión.",
+   "alphafold": {
+    "id": "AF-A0A0K2JFE3-F1",
+    "plddt_medio": 84.19,
+    "fraccion_residuos_plddt_menor_70": 0.107,
+    "version_modelo": 6,
+    "nota": "API AlphaFold DB, consultada 2026-10-19"
+   },
+   "identidad_al_homologo": {
+    "uniprot": "P71012",
+    "organismo": "Bacillus subtilis (strain 168)",
+    "pct_identidad": 34.3,
+    "cobertura_consulta_pct": 98,
+    "longitud_alineada": 696,
+    "evalue": 9.36e-112,
+    "pdb_ids": [
+     "2R4Q"
+    ]
+   },
+   "causa_del_faltante": "de_membrana",
+   "causas_secundarias": [
+    "ausencia_de_ensayo_funcional (ninguno en maíz)"
+   ],
+   "decision_que_cambia": "Ninguna demostrable: el ensayo es de patogenicidad en planta con mutantes y no hay inhibidor ni ensayo de transporte con S. kunkelii.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Permeasa de membrana sin ningún intento estructural; el cuello de botella sería extracción y estabilidad, no la gravedad.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "sí en S. citri (mutantes en planta)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": {
+    "uniprot": "Q9RMF5",
+    "organismo": "Spiroplasma citri (FruA)",
+    "pct_identidad": 92.6,
+    "aln": 687,
+    "longitud_consulta": 687,
+    "fuente_calculo": "blast_scitri_fru_vs_Sk.tsv"
+   }
+  },
+  {
+   "id": "K05",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "1-fosfofructoquinasa (fruK/pfkB; SKUN_00375, 310 aa)",
+   "uniprot": "A0A0K2JGE0",
+   "refseq_proteina": null,
+   "grupo_funcional": "metabolismo (operón de fructosa)",
+   "papel_funcional": "Parte del operón de fructosa cuya interrupción atenúa la patogenicidad de S. citri (M4-23, solo resumen); no se halló evidencia específica de esta proteína.",
+   "fuente": [
+    "M4-23"
+   ],
+   "especie_de_la_evidencia": "S. citri; FruK de S. kunkelii 91,0 % de identidad (310/310 aa)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión.",
+   "alphafold": {
+    "id": "AF-A0A0K2JGE0-F1",
+    "plddt_medio": 95.56,
+    "fraccion_residuos_plddt_menor_70": 0.0,
+    "version_modelo": 6,
+    "nota": "API AlphaFold DB, consultada 2026-10-19"
+   },
+   "identidad_al_homologo": {
+    "uniprot": "Q833W9",
+    "organismo": "Enterococcus faecalis (strain ATCC 700802 / V583)",
+    "pct_identidad": 28.6,
+    "cobertura_consulta_pct": 98,
+    "longitud_alineada": 308,
+    "evalue": 1.55e-28,
+    "pdb_ids": [
+     "2AWD",
+     "2F02"
+    ]
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "ausencia_de_ensayo_funcional"
+   ],
+   "decision_que_cambia": "Ninguna demostrable sin laboratorio (quinasa citosólica con modelo de pLDDT 95,6; sin ensayo enzimático ni inhibidor en S. kunkelii).",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Nadie lo intentó; modelo de muy alta confianza y homólogos al 29 %.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "parcial",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": {
+    "uniprot": "Q9RMF4",
+    "organismo": "Spiroplasma citri (FruK)",
+    "pct_identidad": 91.0,
+    "aln": 310,
+    "longitud_consulta": 310,
+    "fuente_calculo": "blast_scitri_fru_vs_Sk.tsv"
+   }
+  },
+  {
+   "id": "K06",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "Componente IIBC de glucosa del PTS (ptsG; SKUN_00378, 694 aa)",
+   "uniprot": "A0A0K2JFE4",
+   "refseq_proteina": null,
+   "grupo_funcional": "transportador de membrana (control negativo)",
+   "papel_funcional": "En S. citri, un mutante ptsG que no importa glucosa se transmitió a pervinca y causó síntomas severos como el tipo salvaje, a diferencia del mutante del operón de fructosa: la glucosa no es determinante de patogenicidad (M4-24, solo resumen). Fila de control: la propia fuente descarta este blanco.",
+   "fuente": [
+    "M4-24"
+   ],
+   "especie_de_la_evidencia": "S. citri en pervinca",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "RCSB: 0 entradas por accesión.",
+   "alphafold": {
+    "id": "AF-A0A0K2JFE4-F1",
+    "plddt_medio": 77.62,
+    "fraccion_residuos_plddt_menor_70": 0.248,
+    "version_modelo": 6,
+    "nota": "API AlphaFold DB, consultada 2026-10-19"
+   },
+   "identidad_al_homologo": {
+    "uniprot": "P20166",
+    "organismo": "Bacillus subtilis (strain 168)",
+    "pct_identidad": 38.7,
+    "cobertura_consulta_pct": 42,
+    "longitud_alineada": 292,
+    "evalue": 1.63e-51,
+    "pdb_ids": [
+     "1AX3",
+     "1GPR"
+    ]
+   },
+   "causa_del_faltante": "de_membrana",
+   "causas_secundarias": [
+    "ausencia_de_ensayo_funcional"
+   ],
+   "decision_que_cambia": "Ninguna: se baja la prioridad del blanco.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "por_ausencia_de_evidencia",
+   "justificacion_microgravedad": "Blanco descartado por la propia evidencia funcional.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_demostrado",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "sí en S. citri (resultado negativo)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": {
+    "uniprot": null,
+    "organismo": "Spiroplasma citri (PtsG)",
+    "pct_identidad": null,
+    "aln": null,
+    "longitud_consulta": null,
+    "fuente_calculo": "no calculado"
+   }
+  },
+  {
+   "id": "K07",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "ARNr 16S (NZ_CP010899.1: 988566–987047, un operón)",
+   "uniprot": null,
+   "refseq_proteina": null,
+   "grupo_funcional": "ARN ribosomal",
+   "papel_funcional": "S. kunkelii se cultiva in vitro y su crecimiento es inhibido por Novispirin T7 y Caerin 1.1 con eficacia comparable a la de la tetraciclina (M4-25, solo resumen). Que la tetraciclina actúe sobre el ribosoma lo registra R6 (M4-L1); no hay ensayo directo sobre el ribosoma de S. kunkelii.",
+   "fuente": [
+    "M4-25",
+    "M4-L1"
+   ],
+   "especie_de_la_evidencia": "S. kunkelii en cultivo (comparación con tetraciclina como control)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "No hay ribosoma de ningún Spiroplasma en el PDB.",
+   "alphafold": null,
+   "alphafold_nota": "No aplica (ARN).",
+   "identidad_al_homologo": {
+    "uniprot": null,
+    "organismo": "Mycoplasmoides pneumoniae (16S de 8P6P)",
+    "pct_identidad": 84.3,
+    "cobertura_consulta_pct": null,
+    "pdb_ids": [
+     "8P6P",
+     "8P8B",
+     "7OOC",
+     "7P6Z"
+    ],
+    "nota": "Alineamiento global, 1.479 columnas sin hueco."
+   },
+   "causa_del_faltante": "nadie_lo_intento",
+   "causas_secundarias": [
+    "otra: homólogo ribosomal resuelto por crio-EM"
+   ],
+   "decision_que_cambia": "Igual que Z09.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "fuerte",
+   "justificacion_microgravedad": "Ribosomas de mollicutes resueltos por crio-EM.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "no_aplica",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (ningún intento fallido hallado)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "parcial (crecimiento en cultivo)",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "S01",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "MreB (cinco parálogos; el más cercano a MreB5 de S. citri es SKUN_0062)",
+   "uniprot": "A0A0K2JEY9 (también A0A0K2JEH4, A0A0K2JEW4, A0A0K2JFG8, A0A0K2JIB5)",
+   "refseq_proteina": null,
+   "grupo_funcional": "pariente con estructura (sin papel en infección demostrado)",
+   "papel_funcional": "MreB5 de Spiroplasma es necesaria para la transición de bastón a hélice; no se halló evidencia de que esa forma sea necesaria para infectar (solo resumen de M4-26).",
+   "fuente": [
+    "M4-26",
+    "M4-07"
+   ],
+   "especie_de_la_evidencia": "S. citri (MreB5)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "Sin entrada propia; MreB5 de S. citri tiene 7BVY (2,5 Å, AMPPNP) y 7BVZ (2,3 Å, ADP).",
+   "alphafold": {
+    "id": "AF-A0A0K2JEY9-F1",
+    "plddt_medio": 90.12,
+    "fraccion_residuos_plddt_menor_70": 0.085,
+    "version_modelo": 6,
+    "nota": "API AlphaFold DB, consultada 2026-10-19"
+   },
+   "identidad_al_homologo": {
+    "uniprot": "Q8VQG1",
+    "organismo": "Spiroplasma citri",
+    "pct_identidad": 98.3,
+    "cobertura_consulta_pct": 100,
+    "longitud_alineada": 352,
+    "evalue": 0.0,
+    "pdb_ids": [
+     "7BVY",
+     "7BVZ"
+    ],
+    "nota": "Los otros cuatro parálogos: 56,9–80 % frente a MreB5 de S. citri o MreB3 de S. eriocheiris."
+   },
+   "causa_del_faltante": "sin_faltante",
+   "causas_secundarias": [
+    "estabilidad: MreB5 agrega al sobreexpresarse y se resolvió optimizando el tampón con KCl (M4-07)"
+   ],
+   "decision_que_cambia": "Ninguna (no es blanco de infección demostrado).",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "fuerte",
+   "justificacion_microgravedad": "Cristalizó por difusión de vapor estándar; el problema fue la estabilidad en solución, resuelto con tampón.",
+   "marcador": "[R]",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "sí",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (los cristales del homólogo salieron por métodos estándar)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "no",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  },
+  {
+   "id": "S02",
+   "organismo": "Spiroplasma kunkelii",
+   "taxid": 47834,
+   "gen_o_proteina": "FtsZ (ftsZ; SKUN_00658, 411 aa)",
+   "uniprot": "A0A0K2JH33",
+   "refseq_proteina": null,
+   "grupo_funcional": "pariente con estructura (sin papel en infección demostrado)",
+   "papel_funcional": "Proteína de división celular; no se halló evidencia de papel en infección o transmisión en espiroplasmas.",
+   "fuente": [
+    "M4-D4"
+   ],
+   "especie_de_la_evidencia": "S. melliferum (estructuras 7YOP, 7YSZ, 8GRW)",
+   "estructura_experimental": null,
+   "estructura_experimental_nota": "Sin entrada propia; FtsZ de S. melliferum (97,1 %) tiene 3 entradas a 2,2–2,4 Å.",
+   "alphafold": {
+    "id": "AF-A0A0K2JH33-F1",
+    "plddt_medio": 76.69,
+    "fraccion_residuos_plddt_menor_70": 0.317,
+    "version_modelo": 6,
+    "nota": "API AlphaFold DB, consultada 2026-10-19"
+   },
+   "identidad_al_homologo": {
+    "uniprot": "A0ABF7PLM3",
+    "organismo": "Spiroplasma melliferum",
+    "pct_identidad": 97.1,
+    "cobertura_consulta_pct": 100,
+    "longitud_alineada": 412,
+    "evalue": 0.0,
+    "pdb_ids": [
+     "7YOP",
+     "7YSZ",
+     "8GRW"
+    ]
+   },
+   "causa_del_faltante": "sin_faltante",
+   "causas_secundarias": [],
+   "decision_que_cambia": "Ninguna.",
+   "aporta_microgravedad": "no",
+   "solidez_de_la_negativa": "fuerte",
+   "justificacion_microgravedad": "Estructura de un homólogo al 97 % ya resuelta por difusión de vapor.",
+   "marcador": "[E] estructura; sin función en infección",
+   "regla_microgravedad": {
+    "c1_proteina_expresada_y_purificable": "sí (homólogo 97 %)",
+    "c2_intento_en_tierra_con_cristales_deficientes_por_crecimiento": "no (los cristales del homólogo salieron por métodos estándar)",
+    "c3_decision_que_depende_de_mejor_resolucion": "no",
+    "c4_ensayo_funcional_para_validar": "no",
+    "c5_acceso_a_vuelo_y_laboratorio_del_equipo": "no (D1)",
+    "cumple_todas": false
+   },
+   "identidad_al_ortologo_con_evidencia_funcional": null
+  }
+ ]
+}

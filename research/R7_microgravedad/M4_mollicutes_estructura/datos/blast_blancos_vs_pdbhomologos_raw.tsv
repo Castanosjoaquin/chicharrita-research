@@ -1,0 +1,102 @@
+Pz_SAP11like|A0ABM6DLD7	tr|Q2NK94|Q2NK94_AYWBP	31.579	95	116	135	77	4.04e-04	36.2	Sequence-variable mosaic (SVM) signal sequence domain-containing protein OS=Aster yellows witches'-broom phytoplasma (strain AYWB) OX=322098 GN=AYWB_032 PE=1 SV=1
+Pz_SAP11like|A0ABM6DLD7	tr|Q6YQ57|Q6YQ57_ONYPE	25.556	90	116	135	72	0.001	35.0	Sequence-variable mosaic (SVM) signal sequence domain-containing protein OS=Onion yellows phytoplasma (strain OY-M) OX=262768 GN=PAM_518 PE=1 SV=1
+Pz_ME|A0ABM6DLE7	tr|Q2NK75|Q2NK75_AYWBP	95.897	390	390	390	100	0.0	756	NAD-dependent malic enzyme OS=Aster yellows witches'-broom phytoplasma (strain AYWB) OX=322098 GN=sfcA PE=1 SV=1
+Pz_ME|A0ABM6DLE7	sp|P76558|MAO2_ECOLI	46.814	408	390	759	99	2.14e-116	354	NADP-dependent malic enzyme OS=Escherichia coli (strain K12) OX=83333 GN=maeB PE=1 SV=1
+Pz_ME|A0ABM6DLE7	sp|P26616|MAO1_ECOLI	26.726	449	390	565	93	2.05e-19	88.6	NAD-dependent malic enzyme OS=Escherichia coli (strain K12) OX=83333 GN=maeA PE=1 SV=4
+Pz_ME|A0ABM6DLE7	sp|P9WK25|MAOX_MYCTU	26.598	391	390	548	83	1.11e-16	80.1	Putative malate oxidoreductase [NAD] OS=Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv) OX=83332 GN=mez PE=1 SV=1
+Pz_TK|A0ABN4RZ55	sp|Q5HE81|KITH_STAAC	49.474	190	209	199	91	2.97e-66	201	Thymidine kinase OS=Staphylococcus aureus (strain COL) OX=93062 GN=tdk PE=1 SV=1
+Pz_TK|A0ABN4RZ55	sp|Q814U0|KITH_BACCR	51.630	184	209	195	88	1.39e-63	194	Thymidine kinase OS=Bacillus cereus (strain ATCC 14579 / DSM 31 / CCUG 7414 / JCM 2152 / NBRC 15305 / NCIMB 9373 / NCTC 2599 / NRRL B-3711) OX=226900 GN=tdk PE=1 SV=1
+Pz_TK|A0ABN4RZ55	sp|Q81JX0|KITH_BACAN	51.630	184	209	194	88	4.04e-63	192	Thymidine kinase OS=Bacillus anthracis OX=1392 GN=tdk PE=1 SV=1
+Pz_TK|A0ABN4RZ55	sp|Q97F65|KITH_CLOAB	48.370	184	209	195	88	2.12e-59	183	Thymidine kinase OS=Clostridium acetobutylicum (strain ATCC 824 / DSM 792 / JCM 1419 / IAM 19013 / LMG 5710 / NBRC 13948 / NRRL B-527 / VKM B-1787 / 2291 / W) OX=272562 GN=tdk PE=1 SV=1
+Pz_TK|A0ABN4RZ55	sp|Q9PPP5|KITH_UREPA	41.935	186	209	223	87	2.90e-43	143	Thymidine kinase OS=Ureaplasma parvum serovar 3 (strain ATCC 700970) OX=273119 GN=tdk PE=1 SV=1
+Pz_TK|A0ABN4RZ55	sp|Q9WYN2|KITH_THEMA	34.637	179	209	184	86	3.14e-23	90.5	Thymidine kinase OS=Thermotoga maritima (strain ATCC 43589 / DSM 3109 / JCM 10099 / NBRC 100826 / MSB8) OX=243274 GN=tdk PE=1 SV=1
+Pz_SAP50like|A0ABM6DM10	tr|Q6YQ57|Q6YQ57_ONYPE	43.210	81	402	135	20	1.08e-11	60.5	Sequence-variable mosaic (SVM) signal sequence domain-containing protein OS=Onion yellows phytoplasma (strain OY-M) OX=262768 GN=PAM_518 PE=1 SV=1
+Pz_SAP50like|A0ABM6DM10	tr|Q2NK94|Q2NK94_AYWBP	49.206	63	402	135	16	8.16e-07	46.6	Sequence-variable mosaic (SVM) signal sequence domain-containing protein OS=Aster yellows witches'-broom phytoplasma (strain AYWB) OX=322098 GN=AYWB_032 PE=1 SV=1
+Sk_PGK|A0A0K2JFN2	sp|Q04LZ5|PGK_STRP2	57.421	411	412	398	99	1.02e-158	451	Phosphoglycerate kinase OS=Streptococcus pneumoniae serotype 2 (strain D39 / NCTC 7466) OX=373153 GN=pgk PE=1 SV=1
+Sk_PGK|A0A0K2JFN2	sp|Q6GIL7|PGK_STAAR	57.073	410	412	396	99	8.32e-156	444	Phosphoglycerate kinase OS=Staphylococcus aureus (strain MRSA252) OX=282458 GN=pgk PE=1 SV=1
+Sk_PGK|A0A0K2JFN2	tr|Q6KHJ1|Q6KHJ1_MYCM1	51.456	412	412	511	99	3.55e-146	424	Phosphoglycerate kinase OS=Mycoplasma mobile (strain ATCC 43663 / 163K / NCTC 11711) OX=267748 GN=pgk PE=1 SV=1
+Sk_PGK|A0A0K2JFN2	sp|P36204|PGKT_THEMA	53.717	417	412	654	99	7.62e-140	412	Bifunctional PGK/TIM OS=Thermotoga maritima (strain ATCC 43589 / DSM 3109 / JCM 10099 / NBRC 100826 / MSB8) OX=243274 GN=pgk/tpi PE=1 SV=4
+Sk_PGK|A0A0K2JFN2	sp|Q81X75|PGK_BACAN	48.551	414	412	394	99	1.05e-126	370	Phosphoglycerate kinase OS=Bacillus anthracis OX=1392 GN=pgk PE=1 SV=1
+Sk_PGK|A0A0K2JFN2	sp|P18912|PGK_GEOSE	50.000	414	412	394	99	4.22e-126	368	Phosphoglycerate kinase OS=Geobacillus stearothermophilus OX=1422 GN=pgk PE=1 SV=2
+Sk_PGK|A0A0K2JFN2	sp|P09403|PGK_THET8	45.894	414	412	390	99	3.66e-115	340	Phosphoglycerate kinase OS=Thermus thermophilus (strain ATCC 27634 / DSM 579 / HB8) OX=300852 GN=pgk PE=1 SV=3
+Sk_PGK|A0A0K2JFN2	sp|Q5NF76|PGK_FRATT	44.068	413	412	392	99	1.52e-101	305	Phosphoglycerate kinase OS=Francisella tularensis subsp. tularensis (strain SCHU S4 / Schu 4) OX=177416 GN=pgk PE=1 SV=1
+Sk_PGK|A0A0K2JFN2	sp|Q83AU6|PGK_COXBU	38.929	411	412	391	99	2.08e-96	292	Phosphoglycerate kinase OS=Coxiella burnetii (strain RSA 493 / Nine Mile phase I) OX=227377 GN=pgk PE=1 SV=1
+Sk_PGK|A0A0K2JFN2	sp|Q9PMQ5|PGK_CAMJE	41.050	419	412	400	100	6.30e-95	289	Phosphoglycerate kinase OS=Campylobacter jejuni subsp. jejuni serotype O:2 (strain ATCC 700819 / NCTC 11168) OX=192222 GN=pgk PE=1 SV=1
+Sk_PGK|A0A0K2JFN2	sp|P0A799|PGK_ECOLI	41.176	408	412	387	99	2.96e-94	286	Phosphoglycerate kinase OS=Escherichia coli (strain K12) OX=83333 GN=pgk PE=1 SV=2
+Sk_PGK|A0A0K2JFN2	sp|A0QHY4|PGK_MYCA1	42.067	416	412	415	98	1.06e-92	283	Phosphoglycerate kinase OS=Mycobacterium avium (strain 104) OX=243243 GN=pgk PE=1 SV=1
+Sk_FruA|A0A0K2JFE3	sp|P71012|PTF3A_BACSU	34.339	696	687	635	98	9.36e-112	349	PTS system fructose-specific EIIABC component OS=Bacillus subtilis (strain 168) OX=224308 GN=fruA PE=1 SV=2
+Sk_FruA|A0A0K2JFE3	sp|O31645|PTN3B_BACSU	33.398	515	687	650	74	5.37e-63	219	PTS system mannose-specific EIIBCA component OS=Bacillus subtilis (strain 168) OX=224308 GN=manP PE=1 SV=2
+Sk_FruA|A0A0K2JFE3	sp|P69808|PTFB1_ECOLI	39.362	94	687	108	14	1.42e-16	74.3	PTS system fructose-like EIIB component 1 OS=Escherichia coli (strain K12) OX=83333 GN=fryB PE=1 SV=1
+Sk_FruA|A0A0K2JFE3	sp|P32676|PTFB3_ECOLI	37.500	80	687	113	12	9.66e-13	63.5	PTS system fructose-like EIIB component 3 OS=Escherichia coli (strain K12) OX=83333 GN=frwD PE=1 SV=1
+Sk_FruA|A0A0K2JFE3	sp|P69829|PTSN_ECOLI	29.167	96	687	163	14	2.87e-11	60.8	Nitrogen regulatory protein OS=Escherichia coli (strain K12) OX=83333 GN=ptsN PE=1 SV=1
+Sk_FruK|A0A0K2JGE0	sp|Q833W9|LACC_ENTFA	28.571	308	310	313	98	1.55e-28	110	Tagatose-6-phosphate kinase OS=Enterococcus faecalis (strain ATCC 700802 / V583) OX=226185 GN=lacC PE=1 SV=1
+Sk_FruK|A0A0K2JGE0	sp|Q5HE12|LACC_STAAC	29.348	276	310	310	87	1.34e-26	105	Tagatose-6-phosphate kinase OS=Staphylococcus aureus (strain COL) OX=93062 GN=lacC PE=1 SV=1
+Sk_FruK|A0A0K2JGE0	sp|P0A0B9|LACC_STAA8	29.348	276	310	310	87	1.34e-26	105	Tagatose-6-phosphate kinase OS=Staphylococcus aureus (strain NCTC 8325 / PS 47) OX=93061 GN=lacC PE=1 SV=1
+Sk_FruK|A0A0K2JGE0	sp|P06999|PFKB_ECOLI	29.352	293	310	309	93	5.53e-20	86.7	ATP-dependent 6-phosphofructokinase isozyme 2 OS=Escherichia coli (strain K12) OX=83333 GN=pfkB PE=1 SV=2
+Sk_FruK|A0A0K2JGE0	sp|P77493|YDJH_ECOLI	23.006	326	310	315	94	8.62e-05	42.0	L-glycero-L-galacto-octuluronate kinase OS=Escherichia coli (strain K12) OX=83333 GN=ydjH PE=1 SV=2
+Sk_PtsG|A0A0K2JFE4	sp|P20166|PTG3C_BACSU	38.699	292	694	699	42	1.63e-51	189	PTS system glucose-specific EIICBA component OS=Bacillus subtilis (strain 168) OX=224308 GN=ptsG PE=1 SV=2
+Sk_PtsG|A0A0K2JFE4	sp|P69786|PTGCB_ECOLI	39.382	259	694	477	37	1.62e-40	153	PTS system glucose-specific EIICB component OS=Escherichia coli (strain K12) OX=83333 GN=ptsG PE=1 SV=1
+Sk_MreB_65|A0A0K2JEH4	tr|A0A0H3XJK5|A0A0H3XJK5_9MOLU	79.830	352	352	352	100	0.0	591	Cell shape-determining protein MreB OS=Spiroplasma eriocheiris OX=315358 GN=mreB3 PE=1 SV=1
+Sk_MreB_65|A0A0K2JEH4	tr|Q8VQG1|Q8VQG1_SPICI	48.466	326	352	352	93	1.22e-110	325	Cell shape-determining protein MreB OS=Spiroplasma citri OX=2133 GN=mreB5 PE=1 SV=1
+Sk_MreB_65|A0A0K2JEH4	sp|A0A0H3C7V4|MREB_CAUVN	35.759	316	352	347	89	3.32e-65	208	Cell shape-determining protein MreB OS=Caulobacter vibrioides (strain NA1000 / CB15N) OX=565050 GN=mreB PE=1 SV=1
+Sk_MreB_65|A0A0K2JEH4	sp|Q2W8Q6|MAMK_PARM1	24.706	340	352	347	89	1.10e-08	54.3	Actin-like protein MamK OS=Paramagnetospirillum magneticum (strain ATCC 700264 / AMB-1) OX=342108 GN=mamK PE=1 SV=1
+Sk_MreB_65|A0A0K2JEH4	sp|Q6GHQ0|FTSA_STAAR	23.780	164	352	468	45	3.14e-06	47.0	Cell division protein FtsA OS=Staphylococcus aureus (strain MRSA252) OX=282458 GN=ftsA PE=1 SV=1
+Sk_MreB_65|A0A0K2JEH4	sp|Q8NX33|FTSA_STAAW	23.780	164	352	470	45	3.56e-06	47.0	Cell division protein FtsA OS=Staphylococcus aureus (strain MW2) OX=196620 GN=ftsA PE=1 SV=1
+Sk_MreB_65|A0A0K2JEH4	sp|P0ABH0|FTSA_ECOLI	25.455	165	352	420	45	4.27e-05	43.5	Cell division protein FtsA OS=Escherichia coli (strain K12) OX=83333 GN=ftsA PE=1 SV=1
+Sk_MreB_63|A0A0K2JEW4	tr|Q8VQG1|Q8VQG1_SPICI	56.875	320	347	352	92	8.60e-137	391	Cell shape-determining protein MreB OS=Spiroplasma citri OX=2133 GN=mreB5 PE=1 SV=1
+Sk_MreB_63|A0A0K2JEW4	tr|A0A0H3XJK5|A0A0H3XJK5_9MOLU	43.114	334	347	352	96	1.10e-97	291	Cell shape-determining protein MreB OS=Spiroplasma eriocheiris OX=315358 GN=mreB3 PE=1 SV=1
+Sk_MreB_63|A0A0K2JEW4	sp|A0A0H3C7V4|MREB_CAUVN	38.679	318	347	347	90	1.14e-72	228	Cell shape-determining protein MreB OS=Caulobacter vibrioides (strain NA1000 / CB15N) OX=565050 GN=mreB PE=1 SV=1
+Sk_MreB_63|A0A0K2JEW4	sp|Q2W8Q6|MAMK_PARM1	26.019	319	347	347	87	1.09e-10	60.5	Actin-like protein MamK OS=Paramagnetospirillum magneticum (strain ATCC 700264 / AMB-1) OX=342108 GN=mamK PE=1 SV=1
+Sk_MreB_63|A0A0K2JEW4	sp|P47547|DNAK_MYCGE	24.242	363	347	595	84	2.43e-06	47.8	Chaperone protein DnaK OS=Mycoplasmoides genitalium (strain ATCC 33530 / DSM 19775 / NCTC 10195 / G37) OX=243273 GN=dnaK PE=1 SV=1
+Sk_MreB_63|A0A0K2JEW4	sp|P0ABH0|FTSA_ECOLI	25.316	158	347	420	41	3.09e-04	40.8	Cell division protein FtsA OS=Escherichia coli (strain K12) OX=83333 GN=ftsA PE=1 SV=1
+Sk_MreB_63|A0A0K2JEW4	sp|Q5KWZ7|DNAK_GEOKA	24.615	195	347	607	51	0.001	39.3	Chaperone protein DnaK OS=Geobacillus kaustophilus (strain HTA426) OX=235909 GN=dnaK PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	tr|Q8VQG1|Q8VQG1_SPICI	98.295	352	352	352	100	0.0	707	Cell shape-determining protein MreB OS=Spiroplasma citri OX=2133 GN=mreB5 PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	tr|A0A0H3XJK5|A0A0H3XJK5_9MOLU	50.155	323	352	352	92	2.25e-115	337	Cell shape-determining protein MreB OS=Spiroplasma eriocheiris OX=315358 GN=mreB3 PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	sp|A0A0H3C7V4|MREB_CAUVN	39.222	334	352	347	93	2.38e-75	234	Cell shape-determining protein MreB OS=Caulobacter vibrioides (strain NA1000 / CB15N) OX=565050 GN=mreB PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	sp|Q2W8Q6|MAMK_PARM1	22.785	316	352	347	83	1.38e-08	54.3	Actin-like protein MamK OS=Paramagnetospirillum magneticum (strain ATCC 700264 / AMB-1) OX=342108 GN=mamK PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	sp|Q5KWZ7|DNAK_GEOKA	29.703	101	352	607	27	1.12e-05	45.4	Chaperone protein DnaK OS=Geobacillus kaustophilus (strain HTA426) OX=235909 GN=dnaK PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	sp|P9WMJ9|DNAK_MYCTU	30.682	88	352	625	25	2.58e-04	41.2	Chaperone protein DnaK OS=Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv) OX=83332 GN=dnaK PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	sp|Q56235|DNAK_THET8	28.431	102	352	615	28	3.03e-04	40.8	Chaperone protein DnaK OS=Thermus thermophilus (strain ATCC 27634 / DSM 579 / HB8) OX=300852 GN=dnaK PE=1 SV=2
+Sk_MreB_62|A0A0K2JEY9	sp|P0ABH0|FTSA_ECOLI	25.000	172	352	420	47	3.55e-04	40.4	Cell division protein FtsA OS=Escherichia coli (strain K12) OX=83333 GN=ftsA PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	sp|Q72IK5|DNAK_THET2	27.451	102	352	615	28	4.45e-04	40.4	Chaperone protein DnaK OS=Thermus thermophilus (strain ATCC BAA-163 / DSM 7039 / HB27) OX=262724 GN=dnaK PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	sp|P47547|DNAK_MYCGE	25.114	219	352	595	53	6.77e-04	40.0	Chaperone protein DnaK OS=Mycoplasmoides genitalium (strain ATCC 33530 / DSM 19775 / NCTC 10195 / G37) OX=243273 GN=dnaK PE=1 SV=1
+Sk_MreB_62|A0A0K2JEY9	sp|P0A6Z1|HSCA_ECOLI	22.822	241	352	616	56	7.52e-04	39.7	Chaperone protein HscA OS=Escherichia coli (strain K12) OX=83333 GN=hscA PE=1 SV=1
+Sk_MreB_66|A0A0K2JFG8	tr|Q8VQG1|Q8VQG1_SPICI	68.000	325	349	352	93	1.92e-166	466	Cell shape-determining protein MreB OS=Spiroplasma citri OX=2133 GN=mreB5 PE=1 SV=1
+Sk_MreB_66|A0A0K2JFG8	tr|A0A0H3XJK5|A0A0H3XJK5_9MOLU	49.688	320	349	352	92	4.76e-114	333	Cell shape-determining protein MreB OS=Spiroplasma eriocheiris OX=315358 GN=mreB3 PE=1 SV=1
+Sk_MreB_66|A0A0K2JFG8	sp|A0A0H3C7V4|MREB_CAUVN	38.776	343	349	347	96	1.48e-72	227	Cell shape-determining protein MreB OS=Caulobacter vibrioides (strain NA1000 / CB15N) OX=565050 GN=mreB PE=1 SV=1
+Sk_MreB_66|A0A0K2JFG8	sp|Q2W8Q6|MAMK_PARM1	25.949	316	349	347	84	4.84e-13	67.8	Actin-like protein MamK OS=Paramagnetospirillum magneticum (strain ATCC 700264 / AMB-1) OX=342108 GN=mamK PE=1 SV=1
+Sk_MreB_66|A0A0K2JFG8	sp|P0ABH0|FTSA_ECOLI	25.896	251	349	420	66	3.32e-04	40.8	Cell division protein FtsA OS=Escherichia coli (strain K12) OX=83333 GN=ftsA PE=1 SV=1
+Sk_MreB_1299|A0A0K2JIB5	tr|Q8VQG1|Q8VQG1_SPICI	56.875	320	346	352	92	4.61e-133	382	Cell shape-determining protein MreB OS=Spiroplasma citri OX=2133 GN=mreB5 PE=1 SV=1
+Sk_MreB_1299|A0A0K2JIB5	tr|A0A0H3XJK5|A0A0H3XJK5_9MOLU	43.275	342	346	352	98	2.09e-99	296	Cell shape-determining protein MreB OS=Spiroplasma eriocheiris OX=315358 GN=mreB3 PE=1 SV=1
+Sk_MreB_1299|A0A0K2JIB5	sp|A0A0H3C7V4|MREB_CAUVN	40.252	318	346	347	91	1.91e-74	232	Cell shape-determining protein MreB OS=Caulobacter vibrioides (strain NA1000 / CB15N) OX=565050 GN=mreB PE=1 SV=1
+Sk_MreB_1299|A0A0K2JIB5	sp|Q2W8Q6|MAMK_PARM1	23.659	317	346	347	87	6.63e-10	58.2	Actin-like protein MamK OS=Paramagnetospirillum magneticum (strain ATCC 700264 / AMB-1) OX=342108 GN=mamK PE=1 SV=1
+Sk_MreB_1299|A0A0K2JIB5	sp|Q5KWZ7|DNAK_GEOKA	27.727	220	346	607	56	2.92e-06	47.4	Chaperone protein DnaK OS=Geobacillus kaustophilus (strain HTA426) OX=235909 GN=dnaK PE=1 SV=1
+Sk_MreB_1299|A0A0K2JIB5	sp|P47547|DNAK_MYCGE	24.843	318	346	595	71	3.34e-06	47.0	Chaperone protein DnaK OS=Mycoplasmoides genitalium (strain ATCC 33530 / DSM 19775 / NCTC 10195 / G37) OX=243273 GN=dnaK PE=1 SV=1
+Sk_MreB_1299|A0A0K2JIB5	sp|P9WMJ9|DNAK_MYCTU	27.919	197	346	625	51	4.58e-04	40.4	Chaperone protein DnaK OS=Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv) OX=83332 GN=dnaK PE=1 SV=1
+Sk_MreB_1299|A0A0K2JIB5	sp|P0ABH0|FTSA_ECOLI	24.848	165	346	420	46	7.22e-04	39.7	Cell division protein FtsA OS=Escherichia coli (strain K12) OX=83333 GN=ftsA PE=1 SV=1
+Sk_FtsZ|A0A0K2JH33	tr|A0ABF7PLM3|A0ABF7PLM3_SPIME	97.087	412	411	411	100	0.0	793	Cell division protein FtsZ OS=Spiroplasma melliferum OX=2134 GN=ftsZ PE=3 SV=1
+Sk_FtsZ|A0A0K2JH33	sp|Q6GHP9|FTSZ_STAAR	50.249	402	411	390	98	3.07e-112	333	Cell division protein FtsZ OS=Staphylococcus aureus (strain MRSA252) OX=282458 GN=ftsZ PE=1 SV=1
+Sk_FtsZ|A0A0K2JH33	sp|Q2FZ89|FTSZ_STAA8	50.249	402	411	390	98	3.07e-112	333	Cell division protein FtsZ OS=Staphylococcus aureus (strain NCTC 8325 / PS 47) OX=93061 GN=ftsZ PE=1 SV=1
+Sk_FtsZ|A0A0K2JH33	sp|P0A029|FTSZ_STAAM	50.249	402	411	390	98	3.07e-112	333	Cell division protein FtsZ OS=Staphylococcus aureus (strain Mu50 / ATCC 700699) OX=158878 GN=ftsZ PE=1 SV=1
+Sk_FtsZ|A0A0K2JH33	sp|P0A031|FTSZ_STAAU	50.249	402	411	390	98	3.07e-112	333	Cell division protein FtsZ OS=Staphylococcus aureus OX=1280 GN=ftsZ PE=1 SV=1
+Sk_FtsZ|A0A0K2JH33	sp|P17865|FTSZ_BACSU	57.310	342	411	382	82	3.39e-112	332	Cell division protein FtsZ OS=Bacillus subtilis (strain 168) OX=224308 GN=ftsZ PE=1 SV=3
+Sk_FtsZ|A0A0K2JH33	sp|Q5HQ06|FTSZ_STAEQ	58.199	311	411	394	75	4.90e-109	325	Cell division protein FtsZ OS=Staphylococcus epidermidis (strain ATCC 35984 / DSM 28319 / BCRC 17069 / CCUG 31568 / BM 3577 / RP62A) OX=176279 GN=ftsZ PE=1 SV=1
+Sk_FtsZ|A0A0K2JH33	sp|P9WN95|FTSZ_MYCTU	53.425	292	411	379	71	7.43e-92	280	Cell division protein FtsZ OS=Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv) OX=83332 GN=ftsZ PE=1 SV=1
+Sk_FtsZ|A0A0K2JH33	sp|O08398|FTSZ_THEMA	47.546	326	411	351	78	8.09e-90	274	Cell division protein FtsZ OS=Thermotoga maritima (strain ATCC 43589 / DSM 3109 / JCM 10099 / NBRC 100826 / MSB8) OX=243274 GN=ftsZ PE=1 SV=2
+Sk_FtsZ|A0A0K2JH33	sp|P94337|FTSZ_CORGL	50.159	315	411	442	76	2.20e-87	271	Cell division protein FtsZ OS=Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / BCRC 11384 / CCUG 27702 / LMG 3730 / NBRC 12168 / NCIMB 10025 / NRRL B-2784 / 534) OX=196627 GN=ftsZ PE=1 SV=2
+Sk_FtsZ|A0A0K2JH33	sp|P0A9A6|FTSZ_ECOLI	44.571	350	411	383	82	1.73e-79	248	Cell division protein FtsZ OS=Escherichia coli (strain K12) OX=83333 GN=ftsZ PE=1 SV=1
+Sk_FtsZ|A0A0K2JH33	sp|P47204|FTSZ_PSEAE	49.839	311	411	394	75	6.98e-79	247	Cell division protein FtsZ OS=Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1) OX=208964 GN=ftsZ PE=1 SV=2
+Sk_FtsZ|A0A0K2JH33	sp|O66809|FTSZ_AQUAE	42.424	297	411	367	72	1.70e-69	222	Cell division protein FtsZ OS=Aquifex aeolicus (strain VF5) OX=224324 GN=ftsZ PE=1 SV=1
+Sk_LspA|A0A0K2JG32	sp|Q2FHP2|LSPA_STAA3	32.895	76	195	163	38	2.45e-05	41.2	Lipoprotein signal peptidase OS=Staphylococcus aureus (strain USA300) OX=367830 GN=lspA PE=1 SV=1
+Sk_LspA|A0A0K2JG32	sp|Q9HVM5|LSPA_PSEAE	27.778	162	195	169	79	4.44e-04	37.7	Lipoprotein signal peptidase OS=Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1) OX=208964 GN=lspA PE=1 SV=1
+Sk_HPr|A0A0K2JF34	sp|P45611|PTHP_MYCCT	49.425	87	87	89	100	4.54e-26	90.5	Phosphocarrier protein HPr OS=Mycoplasma capricolum subsp. capricolum (strain California kid / ATCC 27343 / NCTC 10154) OX=340047 GN=ptsH PE=1 SV=3
+Sk_HPr|A0A0K2JF34	sp|P08877|PTHP_BACSU	50.000	80	87	88	92	1.84e-20	76.3	Phosphocarrier protein HPr OS=Bacillus subtilis (strain 168) OX=224308 GN=ptsH PE=1 SV=3
+Sk_HPr|A0A0K2JF34	sp|P0A0E3|PTHP_STAAU	46.914	81	87	88	93	3.37e-19	73.2	Phosphocarrier protein HPr OS=Staphylococcus aureus OX=1280 GN=ptsH PE=1 SV=1
+Sk_HPr|A0A0K2JF34	sp|O69250|PTHP_PRIMG	50.667	75	87	88	86	2.66e-18	70.9	Phosphocarrier protein HPr OS=Priestia megaterium OX=1404 GN=ptsH PE=1 SV=1
+Sk_HPr|A0A0K2JF34	sp|P23534|PTHP_STACA	45.679	81	87	88	93	3.10e-18	70.5	Phosphocarrier protein HPr OS=Staphylococcus carnosus OX=1281 GN=ptsH PE=1 SV=2
+Sk_HPr|A0A0K2JF34	sp|P07515|PTHP_ENTFA	44.000	75	87	88	86	2.07e-16	65.9	Phosphocarrier protein HPr OS=Enterococcus faecalis (strain ATCC 700802 / V583) OX=226185 GN=ptsH PE=1 SV=2
+Sk_HPr|A0A0K2JF34	sp|P0AA04|PTHP_ECOLI	41.558	77	87	85	89	8.17e-16	64.3	Phosphocarrier protein HPr OS=Escherichia coli (strain K12) OX=83333 GN=ptsH PE=1 SV=1
+Sk_HPr|A0A0K2JF34	sp|O06976|CRH_BACSU	38.961	77	87	85	89	3.09e-15	62.8	HPr-like protein Crh OS=Bacillus subtilis (strain 168) OX=224308 GN=crh PE=1 SV=1
+Sk_HPr|A0A0K2JF34	sp|P42013|PTHP_GEOSE	48.387	62	87	88	71	6.53e-13	57.0	Phosphocarrier protein HPr OS=Geobacillus stearothermophilus OX=1422 GN=ptsH PE=1 SV=1
+Sk_HPr|A0A0K2JF34	sp|Q9KTD6|PTHP_VIBCH	37.681	69	87	85	79	2.91e-10	50.4	Phosphocarrier protein HPr OS=Vibrio cholerae serotype O1 (strain ATCC 39315 / El Tor Inaba N16961) OX=243277 GN=ptsH PE=1 SV=1
+Sk_HPr|A0A0K2JF34	sp|P0A9N0|PTSO_ECOLI	23.944	71	87	90	80	2.13e-04	35.4	Phosphocarrier protein NPr OS=Escherichia coli (strain K12) OX=83333 GN=ptsO PE=1 SV=1

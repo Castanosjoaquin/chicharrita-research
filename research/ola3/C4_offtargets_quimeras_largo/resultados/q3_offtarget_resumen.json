@@ -1,0 +1,17 @@
+{
+  "ventanas_de_empalme_examinadas": 240,
+  "aciertos_de_empalme_no_objetivo": 0,
+  "aciertos_de_empalme_on_target": 24,
+  "bases": [
+    "GCA_975739785.1_ihDalMaid1.1_genomic",
+    "GCF_002217175.1_ASM221717v1_rna",
+    "GCF_003254395.2_Amel_HAv3.1_rna",
+    "GCF_021130785.1_UT_GWSS_2.1_rna",
+    "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+    "GCF_914767665.1_icHarAxyr1.1_rna"
+  ],
+  "criterios": [
+    "perfecto_21",
+    "perfecto_ge19"
+  ]
+}

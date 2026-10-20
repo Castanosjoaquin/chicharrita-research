@@ -1,0 +1,18 @@
+{
+  "conteo_por_clase": {
+    "Zea mays|perfecto_ge19|intergenico": 18,
+    "Zea mays|perfecto_21|intergenico": 1,
+    "Zea mays|perfecto_ge19|intron": 3,
+    "Zea mays|perfecto_ge19|exon": 3
+  },
+  "pares_usados": {
+    "Zea mays": [
+      "Zmays_genoma.fna",
+      "Zmays_transcriptoma.fna"
+    ],
+    "Apis mellifera": [
+      "Amel_genoma.fna",
+      "Amel_transcriptoma.fna"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+quimera	izquierda	derecha	base	criterio	es_on_target_del_blanco	aciertos_heredados	aciertos_de_empalme	pos_empalme
+Q_ATPaseD_Dm__BicC_Dm	ATPaseD_Dm	BicC_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	409	3	281,282,300
+Q_ATPaseD_Dm__BicC_Dm	ATPaseD_Dm	BicC_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	442	7	281,282,283,284,298,299,300
+Q_ATPaseD_Dm__BicC_Dm	ATPaseD_Dm	BicC_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	25	0	
+Q_ATPaseD_Dm__BicC_Dm	ATPaseD_Dm	BicC_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	37	0	
+Q_ATPaseD_Dm__BicC_Dm	ATPaseD_Dm	BicC_Dm	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	3	0	
+Q_ATPaseD_Dm__CP_MRFV	ATPaseD_Dm	CP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	205	0	
+Q_ATPaseD_Dm__CP_MRFV	ATPaseD_Dm	CP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	222	2	281,282
+Q_ATPaseD_Dm__CP_MRFV	ATPaseD_Dm	CP_MRFV	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	3	0	
+Q_ATPaseD_Dm__CP_MRFV	ATPaseD_Dm	CP_MRFV	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	7	0	
+Q_ATPaseD_Dm__MP_MRFV	ATPaseD_Dm	MP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	205	0	
+Q_ATPaseD_Dm__MP_MRFV	ATPaseD_Dm	MP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	225	2	281,282
+Q_ATPaseD_Dm__MP_MRFV	ATPaseD_Dm	MP_MRFV	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	3	0	
+Q_ATPaseD_Dm__MP_MRFV	ATPaseD_Dm	MP_MRFV	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	7	0	
+Q_ATPaseD_Dm__MP_MRFV	ATPaseD_Dm	MP_MRFV	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	3	0	
+Q_BicC_Dm__ATPaseD_Dm	BicC_Dm	ATPaseD_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	409	0	
+Q_BicC_Dm__ATPaseD_Dm	BicC_Dm	ATPaseD_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	442	2	281,282
+Q_BicC_Dm__ATPaseD_Dm	BicC_Dm	ATPaseD_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	25	0	
+Q_BicC_Dm__ATPaseD_Dm	BicC_Dm	ATPaseD_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	37	0	
+Q_BicC_Dm__ATPaseD_Dm	BicC_Dm	ATPaseD_Dm	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	3	0	
+Q_BicC_Dm__CP_MRFV	BicC_Dm	CP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	204	0	
+Q_BicC_Dm__CP_MRFV	BicC_Dm	CP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	220	2	281,282
+Q_BicC_Dm__CP_MRFV	BicC_Dm	CP_MRFV	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	22	0	
+Q_BicC_Dm__CP_MRFV	BicC_Dm	CP_MRFV	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	30	0	
+Q_BicC_Dm__CP_MRFV	BicC_Dm	CP_MRFV	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	3	0	
+Q_BicC_Dm__MP_MRFV	BicC_Dm	MP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	204	0	
+Q_BicC_Dm__MP_MRFV	BicC_Dm	MP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	223	2	281,282
+Q_BicC_Dm__MP_MRFV	BicC_Dm	MP_MRFV	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	22	0	
+Q_BicC_Dm__MP_MRFV	BicC_Dm	MP_MRFV	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	30	0	
+Q_BicC_Dm__MP_MRFV	BicC_Dm	MP_MRFV	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	6	0	
+Q_CP_MRFV__ATPaseD_Dm	CP_MRFV	ATPaseD_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	205	0	
+Q_CP_MRFV__ATPaseD_Dm	CP_MRFV	ATPaseD_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	222	0	
+Q_CP_MRFV__ATPaseD_Dm	CP_MRFV	ATPaseD_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	3	0	
+Q_CP_MRFV__ATPaseD_Dm	CP_MRFV	ATPaseD_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	7	0	
+Q_CP_MRFV__BicC_Dm	CP_MRFV	BicC_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	204	0	
+Q_CP_MRFV__BicC_Dm	CP_MRFV	BicC_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	220	2	199,200
+Q_CP_MRFV__BicC_Dm	CP_MRFV	BicC_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	22	0	
+Q_CP_MRFV__BicC_Dm	CP_MRFV	BicC_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	30	0	
+Q_CP_MRFV__BicC_Dm	CP_MRFV	BicC_Dm	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	3	0	
+Q_CP_MRFV__MP_MRFV	CP_MRFV	MP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	False	3	0	
+Q_CP_MRFV__MP_MRFV	CP_MRFV	MP_MRFV	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	3	0	
+Q_MP_MRFV__ATPaseD_Dm	MP_MRFV	ATPaseD_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	205	0	
+Q_MP_MRFV__ATPaseD_Dm	MP_MRFV	ATPaseD_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	225	0	
+Q_MP_MRFV__ATPaseD_Dm	MP_MRFV	ATPaseD_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	3	0	
+Q_MP_MRFV__ATPaseD_Dm	MP_MRFV	ATPaseD_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	7	0	
+Q_MP_MRFV__ATPaseD_Dm	MP_MRFV	ATPaseD_Dm	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	3	0	
+Q_MP_MRFV__BicC_Dm	MP_MRFV	BicC_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_21	True	204	0	
+Q_MP_MRFV__BicC_Dm	MP_MRFV	BicC_Dm	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	True	223	2	199,200
+Q_MP_MRFV__BicC_Dm	MP_MRFV	BicC_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_21	False	22	0	
+Q_MP_MRFV__BicC_Dm	MP_MRFV	BicC_Dm	GCF_021130785.1_UT_GWSS_2.1_rna	perfecto_ge19	False	30	0	
+Q_MP_MRFV__BicC_Dm	MP_MRFV	BicC_Dm	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	6	0	
+Q_MP_MRFV__CP_MRFV	MP_MRFV	CP_MRFV	GCA_975739785.1_ihDalMaid1.1_genomic	perfecto_ge19	False	3	0	
+Q_MP_MRFV__CP_MRFV	MP_MRFV	CP_MRFV	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna	perfecto_ge19	False	3	0	

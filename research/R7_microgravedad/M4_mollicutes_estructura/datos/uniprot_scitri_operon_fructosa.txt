@@ -1,0 +1,10 @@
+Entry	Entry Name	Reviewed	Protein names	Gene Names	Length
+Q9RMF4	Q9RMF4_SPICI	unreviewed	1-phosphofructokinase (Fru1PK) (EC 2.7.1.56) (Fructose 1-phosphate kinase)	fruK SPICI18_007	310
+Q9RMF5	Q9RMF5_SPICI	unreviewed	Fructose-specific IIABC component	fruA SPICI18_008	687
+A0AAX3SXS1	A0AAX3SXS1_SPICI	unreviewed	1-phosphofructokinase (Fru1PK) (EC 2.7.1.56) (Fructose 1-phosphate kinase)	pfkB M0C40_08470	310
+A0AAX3SY69	A0AAX3SY69_SPICI	unreviewed	fructose-bisphosphatase (EC 3.1.3.11)	M0C40_09100	156
+A0AAX3SXR1	A0AAX3SXR1_SPICI	unreviewed	Fructose-specific PTS transporter subunit EIIC	M0C40_08475	687
+A0AAX3SYQ9	A0AAX3SYQ9_SPICI	unreviewed	Class II fructose-1,6-bisphosphate aldolase (EC 4.1.2.13)	fba M0C40_10175	296
+Q9RMF6	Q9RMF6_SPICI	unreviewed	Transcriptional regulator (Putative transcriptional regulator with helix-turn-helix domain transmembrane protein)	fruR GL298_08685 SPICI18_009	233
+A0AAX3SY11	A0AAX3SY11_SPICI	unreviewed	Fructose-bisphosphatase class II (EC 3.1.3.11)	M0C40_09090	73
+A0AAX3SY76	A0AAX3SY76_SPICI	unreviewed	Fructose-bisphosphatase class II family protein	M0C40_09095	54
