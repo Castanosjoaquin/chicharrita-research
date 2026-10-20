@@ -28,10 +28,33 @@ cuando el nucleótido 19 es A o T y el 2 no lo es, las líneas 535-541 deciden
 mirando **solo la accesibilidad**. Un siRNA que falla la selección de hebra y la
 estabilidad de extremos puede quedar clasificado como eficiente por esa vía.
 
-Medido sobre los datos del corpus, en modo fiel: de los 133 siRNA que el original
-declararía eficientes en `MP_MRFV_full`, **solo 122 pasan los filtros
-termodinámicos**. Once entran por el bypass, un 8,3 %. En `CP_MRFV_full` son 3 de
-32. No es un caso de borde.
+Medido sobre los datos del corpus, comparando ventana por ventana los dos modos con
+el mismo RNAplfold 2.1.5:
+
+| Gen | Fiel | Corregido | Entran por el bypass | En sentido contrario |
+|---|---|---|---|---|
+| `MP_MRFV_full` | 133 | 114 | **19** (14 %) | 0 |
+| `CP_MRFV_full` | 32 | 25 | **7** (22 %) | 0 |
+| `BicC_Dm_full` | 212 | 162 | **50** (24 %) | 0 |
+| `ATPaseD_Dm_full` | 42 | 34 | **8** (19 %) | 0 |
+
+Entre el 14 % y el 24 % de lo que si-Fi reporta como eficiente lo es **sólo porque
+la regla terminal se saltea la física**. Las 84 ventanas caen todas en la rama de
+`sifi_pipeline.py:535-541`, ninguna en otra, y **ninguna ventana va en sentido
+contrario**: el modo corregido es un subconjunto estricto del fiel.
+
+> **Corrección de una versión anterior de este documento.** Decía «11 de 133, un
+> 8,3 %», y estaba mal: ese número salía de restar dos totales (133 eficientes menos
+> 122 que pasan la termodinámica), y el total termodinámico incluye ventanas de la
+> rama 4 que **los dos modos rechazan igual**. Restar totales no cuenta ventanas. La
+> cifra correcta, contando ventana por ventana, es 19 de 133.
+
+**Por qué el efecto es de ese tamaño.** La rama del bypass cubre entre el 24 % y el
+29 % de las ventanas de cada gen —son las que tienen A o T en la posición 19 y G o C
+en la 2—, y ahí el original exige **sólo accesibilidad** en lugar de las tres
+condiciones. Que un 6 % de esa franja pase de más es poco sobre el gen entero, pero
+mucho sobre el conjunto de eficientes, que ronda el 10 % de las ventanas. De ahí que
+un efecto chico en términos absolutos se traduzca en una inflación de dos dígitos.
 
 El modo `corregido` aplica la preferencia terminal como filtro adicional sobre el
 veredicto termodinámico, que nunca se saltea:

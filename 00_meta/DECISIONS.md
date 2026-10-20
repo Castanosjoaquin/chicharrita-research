@@ -285,9 +285,15 @@ implementaciones separadas duplican el código y se desincronizan; un parámetro
 modo sobre el mismo código no, y además permite **medir** cuánto cambia cada
 arreglo, que es la parte interesante.
 **Consecuencia:** la diferencia entre los dos modos es un dato, no una molestia.
-Medida sobre el corpus, la rama del original agrega 11 de 133 «eficientes» en
-`MP_MRFV_full` y 3 de 32 en `CP_MRFV_full`: entre el 8 y el 9 % de lo que si-Fi
-reporta como eficiente lo es solo porque la regla terminal se saltea la física.
+Medida sobre el corpus, contando ventana por ventana, la rama del original agrega
+**19 de 133** «eficientes» en `MP_MRFV_full`, 7 de 32 en `CP_MRFV_full`, 50 de 212
+en `BicC_Dm_full` y 8 de 42 en `ATPaseD_Dm_full`: entre el **14 % y el 24 %** de lo
+que si-Fi reporta como eficiente lo es solo porque la regla terminal se saltea la
+física, y ninguna ventana va en sentido contrario.
+*(Una versión anterior de esta entrada decía «11 de 133, entre el 8 y el 9 %». Era
+una resta de totales —eficientes menos termodinámicos— y el total termodinámico
+incluye ventanas de la rama 4, que los dos modos rechazan igual. Restar totales no
+cuenta ventanas.)*
 Ese número es un entregable, y no habría existido con ninguna de las
 alternativas. Queda en `tools/sifi21_port/CAMBIOS.md` C1.
 **Nota de alcance:** el modo fiel es fiel al fuente de GitHub, que no es idéntico
