@@ -561,12 +561,16 @@ interfaz y sus valores por defecto, da **471 hits totales y 42 siRNA eficientes*
 sobre `ATPaseD_Dm_full`; nuestro port en modo fiel con el mismo RNAplfold da 471 y
 42. Además la curva del «RNAi design plot» se reprodujo tramo por tramo: ocho
 tramos, mismas posiciones, mismas alturas.
-**Estado:** el port queda **verificado contra el original**, no inferido de él. Eso
-convierte la diferencia entre los dos modos en una medición y no en una hipótesis:
-los 8 siRNA de diferencia en este gen son los que la rama terminal declara
-eficientes salteándose la termodinámica. Salida cruda en
-`analisis/sifi21_original_ATPaseD.csv`.
-**Qué lo reabriría:** que los otros tres genes no coincidan. Falta correrlos.
+**Estado:** el port queda **verificado contra el original**, no inferido de él, y en
+**los cuatro genes**: 42, 32, 133 y 212 eficientes, los cuatro idénticos. Eso
+convierte la diferencia entre los dos modos en una medición y no en una hipótesis.
+Salidas crudas en `analisis/sifi21_original_*.csv`.
+**Hallazgo de paso:** en `BicC_Dm` si-Fi reporta 2.504 hits sobre 2.500 ventanas,
+porque cuenta registros de Bowtie y no siRNA únicos y el gen tiene dos pares de
+21-meros repetidos. Los cuatro involucrados son no eficientes, así que el conteo no
+se infla acá — pero **el mecanismo existe** y con una base de datos que tenga
+parálogos sí inflaría. Es evidencia directa para la hipótesis de por qué los
+conteos de EPILAB no se reproducen.
 
 ### Suponer que «el botón no hace nada» es un problema de instalación
 **Qué se intentó:** interpretar que si-Fi no arrancaba el cálculo por una

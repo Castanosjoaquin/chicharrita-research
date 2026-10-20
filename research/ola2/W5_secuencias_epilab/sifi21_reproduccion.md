@@ -48,12 +48,31 @@ llenar en el checkpoint. Está más abajo.
 
 Todo lo que sigue depende de que nuestro port calcule lo mismo que si-Fi21. Eso ya
 no es un supuesto: se corrió el programa original, con su interfaz gráfica, sobre
-`ATPaseD_Dm_full`, y **el número coincide exacto**.
+**los cuatro genes**, y **los cuatro conteos coinciden exacto**.
 
-| | si-Fi21 original | Nuestro port, modo fiel + RNAplfold 2.1.5 |
-|---|---|---|
-| Hits totales de Bowtie | 471 | 471 |
-| **siRNA eficientes** | **42** | **42** |
+| Gen | Hits de si-Fi | siRNA eficientes de si-Fi | Port, modo fiel + RNAplfold 2.1.5 |
+|---|---|---|---|
+| `ATPaseD_Dm` | 471 | **42** | **42** |
+| `CP_MRFV` | 508 | **32** | **32** |
+| `MP_MRFV` | 1.243 | **133** | **133** |
+| `BicC_Dm` | 2.504 | **212** | **212** |
+
+Salidas crudas del programa en `analisis/sifi21_original_*.csv`.
+
+**El caso de `BicC_Dm` merece una nota, porque es donde se ve el mecanismo que
+podría inflar un conteo.** si-Fi reporta 2.504 hits y el gen tiene 2.500 ventanas.
+La diferencia no es un error: `general_helpers.py:113` cuenta **un registro por hit
+de Bowtie, no un siRNA único**. El gen tiene dos pares de 21-meros repetidos dentro
+de sí mismo —posiciones 2411/2488 y 2412/2489—, así que esas cuatro consultas
+matchean en dos lugares cada una y aportan cuatro registros de más. Los cuatro son
+**no eficientes**, de modo que el conteo de eficientes no se infla y la coincidencia
+con nuestro port no es casual. `[E]`
+
+Esto le da peso a una de las hipótesis sobre por qué los conteos de EPILAB no se
+reproducen: **con una base de datos distinta el mismo criterio da otro número.**
+Acá la base contenía sólo los cuatro genes; contra un transcriptoma completo, con
+parálogos e isoformas, muchas ventanas tendrían varios hits y el conteo subiría sin
+que cambie un solo parámetro. `[H]`
 
 La corrida usó los valores por defecto de la interfaz —tamaño 21, 0 desajustes,
 umbral de extremos 1,00, accesibilidad 0,10, ventana 8, y las cuatro casillas

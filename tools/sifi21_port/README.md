@@ -10,10 +10,11 @@ Origen: Lück et al. 2019, *Front Plant Sci* 10:1023, `10.3389/fpls.2019.01023`;
 fuente en `github.com/snowformatics/siFi21-`. Licencia del original en conflicto
 entre el artículo (CC BY-SA 4.0) y SourceForge (CC BY-NC 2.0); uso académico. `[?]`
 
-> **Verificado contra el original.** si-Fi21, corrido con su interfaz y sus valores
-> por defecto sobre `ATPaseD_Dm_full`, da **471 hits y 42 siRNA eficientes**. Este
-> port en modo fiel, con el mismo RNAplfold 2.1.5, da **471 y 42**. La curva del
-> «RNAi design plot» también se reproduce tramo por tramo. Detalle y salida cruda en
+> **Verificado contra el original, en los cuatro genes.** si-Fi21, corrido con su
+> interfaz y sus valores por defecto, da 42, 32, 133 y 212 siRNA eficientes para
+> `ATPaseD_Dm`, `CP_MRFV`, `MP_MRFV` y `BicC_Dm`. Este port en modo fiel, con el
+> mismo RNAplfold 2.1.5, da **los mismos cuatro números**. La curva del «RNAi design
+> plot» también se reproduce tramo por tramo. Detalle y salidas crudas en
 > `research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md` §0.
 >
 > **Para correr el original hace falta un arreglo:** si-Fi no encuentra su propio
