@@ -89,7 +89,58 @@ alturas (máximo 9 en 150-156, luego 8 en 287-297), y la línea azul plana en 21
 modo corregido es real y no un artefacto nuestro: en este gen son 8 siRNA que si-Fi
 declara eficientes salteándose los filtros termodinámicos, 42 contra 34.
 
-### Tres defectos de si-Fi21 encontrados al hacerlo
+### El defecto que sí cambia los números: la regla terminal no filtra, ramifica
+
+Es el hallazgo que justifica que el port tenga un modo corregido, y la verificación
+de arriba es lo que lo convierte en una medición y no en una lectura del código.
+
+si-Fi compone primero un veredicto termodinámico —selección de hebra, estabilidad de
+extremos y accesibilidad, en conjunción— y después aplica una regla sobre los
+nucleótidos 19 y 2. Esa segunda regla **no es un filtro: es una ramificación**, y una
+de sus cuatro ramas devuelve «eficiente» sin mirar el veredicto termodinámico.
+Concretamente, cuando el nucleótido 19 es A o T y el 2 es G o C, las líneas 535-541
+de `sifi_pipeline.py` deciden mirando **sólo la accesibilidad**: un siRNA que falló
+la selección de hebra y la estabilidad de extremos puede quedar clasificado como
+eficiente por esa vía.
+
+Medido ventana por ventana, con el mismo RNAplfold en los dos modos: `[E]`
+
+| Gen | Fiel (= si-Fi) | Corregido | Entran por el bypass | En sentido contrario |
+|---|---|---|---|---|
+| `MP_MRFV` | 133 | 114 | **19** (14 %) | 0 |
+| `CP_MRFV` | 32 | 25 | **7** (22 %) | 0 |
+| `BicC_Dm` | 212 | 162 | **50** (24 %) | 0 |
+| `ATPaseD_Dm` | 42 | 34 | **8** (19 %) | 0 |
+
+Entre el **14 % y el 24 %** de lo que si-Fi reporta como eficiente lo es sólo porque
+la regla terminal se saltea la física. No es un caso de borde.
+
+**Por qué el efecto tiene ese tamaño.** La rama del bypass cubre entre el 24 % y el
+29 % de las ventanas de cada gen. Ahí el original exige una sola condición en lugar
+de tres, así que deja pasar de más alrededor del 6 % de esa franja. Es poco sobre el
+gen entero, pero el conjunto de eficientes ronda el 10 % de las ventanas: un efecto
+chico en absoluto se vuelve de dos dígitos en relativo, porque lo que se cuenta es
+un subconjunto chico.
+
+**Qué dice esta medición sobre el modo corregido**, que es su propio test: las 84
+diferencias caen **todas** en esa rama, ninguna en las otras tres, y **ninguna
+ventana va en sentido contrario**. Si la regla corregida hubiera cambiado algo más
+que el bypass, aparecerían diferencias en las demás ramas. Y las restas cierran
+exactas en los cuatro genes (133−19=114, 32−7=25, 212−50=162, 42−8=34), lo que no
+pasaría si hubiera ventanas moviéndose en las dos direcciones. El modo corregido es
+un subconjunto estricto del fiel.
+
+> **Corrección de una versión anterior.** Este hallazgo se reportó primero como «11
+> de 133, entre el 8 y el 9 %». Ese número salía de restar dos totales —133
+> eficientes menos 122 que pasan la termodinámica— y el total termodinámico incluye
+> ventanas de la rama 4, que los dos modos rechazan igual. **Restar totales no
+> cuenta ventanas.** Fue un error de descripción y no de cálculo: los conteos de los
+> dos modos nunca cambiaron, así que la verificación contra el programa original, la
+> comparación con los conteos declarados, la elección de regiones y el cruce con
+> off-targets quedan intactos. Lo único que cambia es el tamaño del defecto, y
+> cambia en contra del original.
+
+### Tres defectos operativos de si-Fi21 encontrados al hacerlo
 
 Ninguno afecta a nuestros números, pero cualquiera que intente correr el programa se
 los va a cruzar, así que quedan documentados. `[E]`
