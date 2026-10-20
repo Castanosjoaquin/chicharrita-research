@@ -293,6 +293,16 @@ alternativas. Queda en `tools/sifi21_port/CAMBIOS.md` C1.
 **Nota de alcance:** el modo fiel es fiel al fuente de GitHub, que no es idéntico
 al binario de 2017 de SourceForge. `[?]`
 
+**La decisión quedó validada el mismo día.** Se corrió el **programa original** —el
+binario, con su interfaz y sus valores por defecto— sobre los cuatro genes, y el
+modo fiel reproduce sus cuatro conteos exacto: **42, 32, 133 y 212**. `[E]` Eso es
+precisamente lo que la alternativa (a) —portar y arreglar sin conservar el
+comportamiento viejo— habría hecho imposible: sin modo fiel no hay contra qué
+comparar, y la diferencia de la regla terminal seguiría siendo una lectura del
+código en vez de una medición. Detalle en
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md` §0; salidas crudas del
+programa en `analisis/sifi21_original_*.csv`.
+
 ---
 
 ## D14 — El gráfico por gen tiene un solo eje, y la curva se indexa por el centro de la región

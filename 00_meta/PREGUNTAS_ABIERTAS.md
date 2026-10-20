@@ -618,3 +618,38 @@ actualiza la sección anterior.
   y cae a 91,5-93,5 % contra los 45 registros brasileños. Una región más densa que
   funcione sólo en un aislado no sirve, y es la única explicación que le queda a la
   elección de ese gen.
+
+## La pregunta para el investigador, afilada con la verificación (2026-10-19)
+
+Ya no hace falta preguntar en abstracto qué cambió. **Se corrió si-Fi21 original,
+sin modificar, sobre los cuatro genes**, y nuestro port en modo fiel reproduce sus
+cuatro conteos exacto. Así que ahora la comparación con la planilla es directa:
+
+| Gen | si-Fi21 **sin modificar** | Declarado en la planilla | Diferencia |
+| --- | --- | --- | --- |
+| `MP_MRFV` | 133 | 114 | +19 |
+| `CP_MRFV` | 32 | 35 | −3 |
+| `BicC_Dm` | 212 | 199 | +13 |
+| `ATPaseD_Dm` | 42 | 33 | +9 |
+
+`[E]` **Los cuatro difieren, y no en la misma dirección.** Tres por encima y uno por
+debajo descarta una explicación simple de tipo «cuenta de más» o «cuenta de menos»:
+no es un desplazamiento constante ni un factor.
+
+La pregunta concreta, entonces: **si si-Fi sin modificar da 133, 32, 212 y 42, y tu
+planilla dice 114, 35, 199 y 33, ¿qué versión corriste?** Dos pistas que pueden
+ayudarlo a recordar, las dos nuestras y medidas:
+
+1. Las configuraciones que más se acercan en el barrido usan **umbral de estabilidad
+   de extremos 2,0 kcal/mol** —no el 1,0 por defecto— y **25 °C** en vez de 22.
+2. **La base de datos cambia el número sin que cambie el criterio.** si-Fi cuenta un
+   registro por hit de Bowtie, no un siRNA único. Lo vimos funcionando en `BicC_Dm`:
+   2.504 hits sobre 2.500 ventanas, por dos pares de 21-meros repetidos dentro del
+   propio gen. Ahí no infló el conteo de eficientes porque los repetidos resultaron
+   no eficientes, pero contra un transcriptoma con parálogos e isoformas sí
+   inflaría. **Por eso saber contra qué base corrió el modo diseño dejó de ser un
+   detalle.**
+
+Las dos preguntas siguen siendo las mismas que antes —qué parámetros cambió y contra
+qué base corrió— pero ahora cada una viene con un número que la respalda, que es lo
+que las vuelve baratas de contestar para él.
