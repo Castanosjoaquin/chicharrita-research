@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los cuatro genes de EPILAB: perfil de eficiencia y off-targets</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f4f5f6; --surface-2:#eceef0;
+  --text:#16191c; --text-dim:#565d64; --line:#d4d8dc;
+  --accent:#1d5c4a; --accent-soft:#e3efea;
+  --warn:#8a4b1c; --warn-soft:#f6ece3;
+  --stop:#8a2b2b; --stop-soft:#f7e8e8;
+  --efic:#2a78d6; --risk:#d03b3b;
+  --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+    --efic:#3987e5; --risk:#d03b3b;
+    --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+  --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+  --accent:#6fc4a7; --accent-soft:#1c2b26;
+  --warn:#d79a68; --warn-soft:#2a221b;
+  --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  --efic:#3987e5; --risk:#d03b3b;
+  --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px; line-height:1.6}
+.wrap{max-width:960px; margin:0 auto; padding:0 16px}
+header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:36px}
+.eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text-dim); margin:0 0 10px}
+h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+h1 em{font-style:italic}
+.sub{color:var(--text-dim); margin:0; max-width:62ch}
+h2{font-size:1.3rem; font-weight:650; margin:44px 0 14px; letter-spacing:-.01em;
+  padding-top:18px; border-top:1px solid var(--line)}
+h3{font-size:1.02rem; font-weight:650; margin:26px 0 8px}
+p{margin:0 0 14px; max-width:68ch}
+.lead{font-size:1.06rem}
+strong{font-weight:650}
+a{color:var(--accent)}
+.verdict{background:var(--surface); border:1px solid var(--line);
+  border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 28px}
+.verdict h2{margin:0 0 12px; border-top:none; padding-top:0; font-size:1.15rem}
+.verdict p:last-child{margin-bottom:0}
+.kpis{display:flex; flex-wrap:wrap; gap:10px; margin:0 0 22px; padding:0; list-style:none}
+.kpis li{flex:1 1 150px; background:var(--surface); border:1px solid var(--line); padding:12px 14px}
+.kpis .n{display:block; font-size:1.6rem; font-weight:650; line-height:1.1; letter-spacing:-.02em}
+.kpis .k{display:block; font-size:.78rem; color:var(--text-dim); margin-top:4px}
+figure{margin:0 0 10px; background:var(--surface); border:1px solid var(--line); padding:14px}
+figcaption{font-size:.85rem; color:var(--text-dim); margin-top:10px; max-width:none}
+.plot{display:block; width:100%; height:auto; overflow:visible; touch-action:pan-y}
+.legend{display:flex; flex-wrap:wrap; gap:14px; list-style:none; padding:0;
+  margin:0 0 10px; font-size:.84rem; color:var(--text-dim)}
+.legend li{display:flex; align-items:center; gap:6px}
+.sw{width:11px; height:11px; border-radius:2px; display:inline-block; flex:none}
+.sw-efic{background:var(--efic)}
+.sw-off{background:var(--risk)}
+.sw-mm1{background:var(--risk); opacity:.45}
+.area{fill:var(--efic); opacity:.16}
+.line{fill:none; stroke:var(--efic); stroke-width:2; stroke-linejoin:round}
+.line-borde{stroke-dasharray:4 3; opacity:.6}
+.grid{stroke:var(--grid); stroke-width:1}
+.axis{stroke:var(--axis); stroke-width:1}
+.tick{fill:var(--muted); font-size:11px; font-variant-numeric:tabular-nums}
+.lane{fill:var(--surface-2)}
+.tick-efic{fill:var(--efic)}
+.tick-off{fill:var(--risk)}
+.tick-mm1{fill:var(--risk); opacity:.45}
+.band-epilab{fill:var(--muted); opacity:.14; stroke:var(--muted); stroke-width:1; stroke-opacity:.5}
+.band-best{fill:var(--efic); opacity:.10; stroke:var(--efic); stroke-width:1; stroke-opacity:.6}
+.band-lab{font-size:11px; font-weight:650; text-anchor:middle}
+.band-epilab-lab{fill:var(--text-dim)}
+.band-best-lab{fill:var(--efic)}
+.cross{stroke:var(--text-dim); stroke-width:1; stroke-dasharray:3 3}
+.hit{fill:transparent}
+.tip{position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+  background:var(--bg); border:1px solid var(--line); padding:8px 10px;
+  font-size:.82rem; line-height:1.45; box-shadow:0 2px 10px rgba(0,0,0,.14);
+  max-width:260px; z-index:5}
+.tip b{font-variant-numeric:tabular-nums}
+.tipwrap{position:relative}
+table{border-collapse:collapse; width:100%; font-size:.9rem; margin:0 0 16px}
+th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line);
+  vertical-align:top}
+th{font-weight:650; font-size:.82rem; color:var(--text-dim)}
+td.n,th.n{text-align:right; font-variant-numeric:tabular-nums}
+.tag{display:inline-block; font-size:.72rem; padding:1px 7px; border-radius:9px;
+  border:1px solid currentColor; margin-left:6px; vertical-align:1px}
+.tag-e{color:var(--accent)} .tag-r{color:var(--warn)} .tag-h{color:var(--text-dim)}
+.tag-q{color:var(--stop)}
+footer{border-top:1px solid var(--line); margin-top:48px; padding:22px 0 56px;
+  color:var(--text-dim); font-size:.86rem}
+@media (max-width:640px){ h1{font-size:1.55rem} .kpis li{flex:1 1 100%} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="eyebrow">Investigathon Y-Hat · track chicharrita / ARNi</p>
+  <h1>Los cuatro genes de EPILAB</h1>
+  <p class="sub">Perfil de siRNA eficientes a lo largo de cada gen, la región que
+  eligió EPILAB contra la más densa, y el tamizaje de off-targets a 21 nt contra seis
+  referencias. Una página por gen.</p>
+</header>
+
+<div class="verdict">
+  <h2>Los tres resultados</h2>
+  <p><strong>Uno.</strong> Ninguna de 15.120 configuraciones de si-Fi21 reproduce los
+  cuatro conteos declarados en la planilla. El orden de magnitud es correcto; el
+  número exacto no sale. <span class="tag tag-e">[E]</span></p>
+  <p><strong>Dos.</strong> Las cuatro regiones elegidas están por debajo del óptimo
+  por densidad de siRNA eficientes, entre un 19 % y un 46 %.
+  <span class="tag tag-e">[E]</span></p>
+  <p><strong>Tres.</strong> Los off-targets no explican esas elecciones. En
+  <code>BicC_Dm</code> la contradicen: la región elegida es a la vez menos eficiente y
+  once veces más expuesta que la alternativa, que gana en los dos ejes a la vez.
+  <span class="tag tag-e">[E]</span></p>
+</div>
+
+<h2>Resumen</h2>
+<table>
+<thead><tr><th>Gen</th><th class='n'>Declarado</th><th class='n'>Calculado</th>
+<th>Región de EPILAB</th><th>Región más densa</th><th class='n'>Brecha</th></tr></thead>
+<tbody><tr><td><a href='MP_MRFV.html'><strong>MP_MRFV</strong></a><br><span style='color:var(--text-dim);font-size:.85rem'>proteína de movimiento</span></td><td class='n'>114</td><td class='n'>123</td><td>1-200<br><span style='color:var(--text-dim);font-size:.85rem'>30 efic · 6 off</span></td><td>72-271<br><span style='color:var(--text-dim);font-size:.85rem'>38 efic · 6 off</span></td><td class='n'>−21 %</td></tr><tr><td><a href='CP_MRFV.html'><strong>CP_MRFV</strong></a><br><span style='color:var(--text-dim);font-size:.85rem'>proteína de cápside</span></td><td class='n'>35</td><td class='n'>30</td><td>201-400<br><span style='color:var(--text-dim);font-size:.85rem'>17 efic · 0 off</span></td><td>99-298<br><span style='color:var(--text-dim);font-size:.85rem'>21 efic · 0 off</span></td><td class='n'>−19 %</td></tr><tr><td><a href='BicC_Dm.html'><strong>BicC_Dm</strong></a><br><span style='color:var(--text-dim);font-size:.85rem'>Bicaudal C</span></td><td class='n'>199</td><td class='n'>171</td><td>264-563<br><span style='color:var(--text-dim);font-size:.85rem'>20 efic · 33 off</span></td><td>2123-2422<br><span style='color:var(--text-dim);font-size:.85rem'>37 efic · 3 off</span></td><td class='n'>−46 %</td></tr><tr><td><a href='ATPaseD_Dm.html'><strong>ATPaseD_Dm</strong></a><br><span style='color:var(--text-dim);font-size:.85rem'>subunidad D de la V-ATPasa</span></td><td class='n'>33</td><td class='n'>29</td><td>151-450<br><span style='color:var(--text-dim);font-size:.85rem'>18 efic · 7 off</span></td><td>136-435<br><span style='color:var(--text-dim);font-size:.85rem'>24 efic · 7 off</span></td><td class='n'>−25 %</td></tr></tbody>
+</table>
+<p>«Declarado» es la columna 5 de la planilla, para el gen entero. «Calculado» es
+nuestro port en modo corregido. «off» cuenta ventanas con bloque perfecto de 19 nt o
+más en alguna referencia no objetivo.</p>
+
+<h2>La columna que faltaba</h2>
+<p>La columna 9 de la planilla se llama <em>«Nro de eficientes por región?»</em>, con
+signo de pregunta, y está vacía en las cuatro filas. Es la que el investigador pidió
+llenar. Con su procedimiento —recortar la región y correrla sola— los valores son
+<strong>16, 14, 17 y 16</strong>. Contando las mismas ventanas dentro de la corrida
+del gen entero son 30, 17, 20 y 18: una diferencia de hasta el 47 %, porque un
+fragmento recortado pierde el contexto de plegado de sus extremos. Los dos números
+son defendibles y no son comparables entre sí.
+<span class="tag tag-e">[E]</span></p>
+
+<footer>
+  <p>Generado por <code>tools/sifi21_port/informe_html.py</code>. Detalle completo en
+  <code>research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md</code>. Todo corrió
+  local; ninguna secuencia salió de la máquina.</p>
+</footer>
+</div>
+</body>
+</html>

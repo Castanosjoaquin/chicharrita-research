@@ -222,6 +222,11 @@ reproducibilidad. Se reimplementan sus reglas de selección de hebra guía con
 ViennaRNA y Bowtie, que es lo que el propio artículo describe.
 **Estado:** descartado como dependencia; **en pie como línea de base** a la que
 compararse, asumiendo la fricción de hacerlo correr una vez.
+**Actualización 2026-10-19:** la línea de base ya está construida y no requiere la
+herramienta original. El instalador de si-Fi21 trae `bowtie.exe` 0.11.3 y
+`RNAplfold.exe` 2.1.5 como ejecutables de línea de comandos, y el criterio está
+portado a Python 3 en `tools/sifi21_port/`. La decisión de no depender del
+programa original se mantiene; lo que cambia es que ahora hay con qué compararse.
 
 ### Ensamblar el transcriptoma de *Dalbulus maidis* de novo
 **Qué se intentó:** ensamblar desde las corridas públicas de RNA-seq, que R2
@@ -301,6 +306,19 @@ eficientes**, cuenta aciertos.
 **Estado:** descartado por ahora, y convertido en la primera pregunta técnica
 para el investigador.
 **Qué lo reabriría:** que nos digan la herramienta y la versión.
+**Actualización 2026-10-19: el descarte se refuerza, ahora con la herramienta.**
+Ya sabemos la herramienta —el investigador confirmó en el checkpoint que si-Fi21
+es la base— y sigue sin reproducirse. Con un port fiel del programa, **ninguna de
+15.120 configuraciones** (3 temperaturas × 2 versiones de ViennaRNA × 2 modos ×
+21 ventanas de accesibilidad × 5 umbrales de extremos × 6 de accesibilidad × regla
+terminal sí/no) reproduce a la vez los 114 de `MP_MRFV_full` y los 35 de
+`CP_MRFV_full`. Antes falló nuestra reimplementación de los criterios publicados;
+ahora falla el programa mismo. Medición completa en
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md`.
+**Qué lo reabriría:** que nos pasen la versión modificada que usó el laboratorio
+(el investigador dijo que cambió parámetros), o la base de datos de la corrida —el
+conteo del original suma un registro por hit de Bowtie, no un siRNA único, así que
+depende de la base.
 
 ### Correr si-Fi21 para comparar criterios
 **Qué se intentó:** usarlo como línea de base, como preveía la ola 1.
@@ -309,6 +327,16 @@ gráfica y no es ejecutable acá, lo que la ola 1 ya sospechaba y ahora está
 confirmado en la práctica.
 **Estado:** descartado como dependencia; se reimplementan sus reglas, que el
 propio artículo describe.
+**Reabierto y resuelto, 2026-10-19.** El descarte era correcto en cuanto a la
+interfaz gráfica y equivocado en cuanto al cálculo. Dos cosas lo reabrieron: el
+instalador se puede correr en la máquina Windows del equipo, y **trae los dos
+motores de cálculo como ejecutables de línea de comandos** (`bowtie.exe` 0.11.3 y
+`RNAplfold.exe` 2.1.5, en `ToCopy/`), que sí son invocables. Además el fuente está
+en GitHub y es legible. Con eso se armó `tools/sifi21_port/`, que corre el criterio
+sin interfaz, en dos modos: fiel al original y corregido.
+**Lección de método:** «es una aplicación gráfica» no implica «su cálculo es
+inalcanzable». Conviene mirar qué binarios empaqueta un instalador antes de
+descartarlo.
 
 ### Subir las secuencias de EPILAB a dsRNA-Engineer o al BLAST web
 **Qué se intentó:** nada: quedó vedado de entrada por la regla de
@@ -370,3 +398,189 @@ nombre no es una ausencia.
 **Qué se intentó:** nada; entra acá antes de que alguien lo haga.
 **Qué pasó:** queda fuera de alcance, sin excepción: aumentaría la virulencia, la transmisibilidad o el rango de hospedadores. El trabajo sobre efectores sólo es válido en modo defensivo (inventario y candidatos a inhibición).
 **Estado:** descartado de forma permanente. No es una limitación técnica: es una condición del trabajo.
+
+---
+
+## Nivel herramienta — el port de si-Fi21 (2026-10-19)
+
+### Dar por desactualizadas las tablas termodinámicas de si-Fi21
+**Qué se intentó:** aplicar una lista de «parámetros químicos a actualizar» que
+asumía que si-Fi usa las tablas de Freier et al. (1986) y Xia et al. (1998), y que
+calcula a 37 °C como las herramientas de cultivo de mamífero.
+**Qué pasó:** descartado al abrir el fuente. `free_energy.py:278` declara
+`nn_table=RNA_NN3`, que es **Chen et al. 2012**, o sea las tablas modernas. Las
+viejas están definidas en el archivo pero no se usan, y de ahí sale la confusión. Y
+la temperatura está fijada en **22 °C** en dos lugares independientes
+(`free_energy.py:420` y `sifi_pipeline.py:62`), no en 37. Los dos cambios más
+prominentes de la lista ya estaban hechos en el programa.
+**Estado:** descartados los dos. **Lección de método:** un diagnóstico de software
+razonado desde el artículo y la época de la herramienta acierta donde el
+razonamiento general aplica y falla donde hacía falta abrir el archivo. Se abre el
+archivo.
+
+### Cambiar la corrección salina de si-Fi para acercarla al medio intracelular
+**Qué se intentó:** agregar Mg²⁺ y llevar la fuerza iónica a condiciones
+fisiológicas, sobre el supuesto de que el original calcula a 1 M de NaCl.
+**Qué pasó:** descartado por dos razones. El original ya aplica corrección salina a
+~70 mM de monovalentes (`Na=20, K=50, saltcorr=5`). Y cambiarla **no puede mover
+ningún veredicto**: el método 5 es `0.368·(len−1)·ln(mon)`, función solo del largo,
+y si-Fi nunca usa un ΔG absoluto —compara dos ventanas de 3 nt del mismo largo—, así
+que la corrección se cancela exacto en la resta. Verificado como test.
+**Estado:** descartado como cambio con efecto. El parámetro sigue expuesto, con la
+aclaración de que no hace nada en esta ruta de cálculo.
+
+### Sustituir las tablas de mismatch de ADN por equivalentes de ARN
+**Qué se intentó:** arreglar una inconsistencia química real del original, que usa
+`DNA_IMM1` y `DNA_TMM1` (Allawi & SantaLucia 1998, ADN/ADN) dentro de un cálculo
+por lo demás de ARN, de modo que un par G-U no se trata como wobble.
+**Qué pasó:** no se hizo, por dos motivos. Primero, sustituirlas exige parámetros
+de mismatch de ARN publicados y verificados, y no hay ninguno abierto: inventarlos
+o trasladarlos de memoria viola la regla de evidencia. Segundo, se midió si hacía
+falta: se instrumentó el contador de consultas a esas tablas y en los cuatro casos
+corridos dio **cero**. En la ruta que si-Fi usa para la eficiencia, las claves de
+mismatch no se alcanzan nunca.
+**Estado:** no corregido, instrumentado y documentado. El defecto existe y no
+afecta a este uso. **Qué lo reabriría:** extender el cálculo a secuencias
+desapareadas, o conseguir las tablas de ARN de una fuente que se pueda abrir.
+
+### Tomar un acierto numérico en un solo gen como reproducción del criterio
+**Qué se intentó:** nada todavía, y por eso entra acá antes de que alguien lo haga.
+**Qué pasó:** el caso apareció medido. El modo corregido con el RNAplfold del
+instalador da **exactamente 114** en `MP_MRFV_full`, que es el número declarado por
+EPILAB. Parecía la respuesta. Esa misma configuración da 25 en `CP_MRFV_full` contra
+35 declarados: era coincidencia. Con un espacio de 15.120 configuraciones y
+conteos de dos o tres cifras, los aciertos aislados son esperables.
+**Estado:** descartado como criterio. **La regla operativa:** una configuración vale
+solo si reproduce **todos** los conteos a la vez, y si además cae cerca de los
+valores por defecto. Casi-aciertos dispersos en parámetros mutuamente
+incompatibles son firma de casualidad, no de hallazgo.
+
+### Explicar la elección de regiones de EPILAB por el perfil de off-targets
+**Qué se intentó:** la hipótesis del propio investigador. Dijo que en teoría debió
+elegir las regiones con más siRNA eficientes, que tal vez no lo hizo y que quizá
+fue por off-targets, pero que no lo recordaba.
+**Qué pasó:** descartada, y en un gen refutada. Con el tamizaje exacto de 21 nt
+contra seis referencias: en `CP_MRFV` el gen entero tiene **cero** off-targets, así
+que no había nada que optimizar; en `MP_MRFV` y `ATPaseD_Dm` la exposición de la
+región elegida es **idéntica** a la de la mejor región (6 y 6; 7 y 7); y en
+`BicC_Dm` la región elegida es a la vez **menos eficiente y once veces más
+expuesta** —20 eficientes y 33 ventanas con off-target, contra 37 y 3 de la región
+2123-2422—, o sea que la alternativa domina en los dos ejes y no hay compromiso que
+justifique la elección.
+**Estado:** descartada como explicación. Las cuatro regiones están entre un 19 % y
+un 46 % por debajo del óptimo por densidad y eso no se explica por seguridad.
+**Qué lo reabriría:** un criterio que no hayamos medido —conservación entre
+aislados virales, accesibilidad para la construcción, restricciones de clonado— o
+que el investigador recuerde el motivo. Medición en
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md` §4.
+
+### Usar BLAST para contar coincidencias de 21 nt con un desajuste
+**Qué se intentó:** reutilizar los conteos de «21 nt con 1 desajuste» que W5 produjo
+con `blastn -task blastn-short -word_size 11`.
+**Qué pasó:** descartado como completo. Son subestimaciones, por hasta un factor de
+tres: 5 contra 16 reales en `BicC_Dm`, 9 contra 17 en `ATPaseD_Dm`. La causa es
+identificable y no es un error de parámetros: un 21-mero cuyo único desajuste cae
+en la posición 11 deja dos bloques exactos de 10 nt, y con `word_size 11` BLAST no
+tiene semilla con la que encontrarlo.
+**Estado:** descartado para el criterio de un desajuste; **en pie** para los
+criterios de bloque perfecto, donde coincide exacto con la enumeración en las 20
+celdas comparadas. Para un desajuste se enumeran las 63 variantes por ventana.
+**Lección de método:** un umbral de identidad no sustituye al tamaño de semilla.
+BLAST no puede encontrar lo que no puede sembrar.
+
+### Comparar conteos de eficientes por región entre procedimientos distintos
+**Qué se intentó:** nada todavía, y por eso entra acá antes de que alguien lo haga.
+**Qué pasó:** hay dos procedimientos y **no son comparables**. Recortar la región y
+correrla sola —que es lo que describió el investigador— da 16 eficientes en la
+región 1-200 de `MP_MRFV`; contar las mismas ventanas dentro de la corrida del gen
+entero da 30. Una diferencia del 47 % sobre el mismo tramo de secuencia. La causa
+es el término de accesibilidad: RNAplfold evalúa plegado local y un fragmento
+recortado pierde el contexto de sus extremos.
+**Estado:** descartado comparar números de procedimientos distintos. Hay que fijar
+uno y declararlo. Para llenar la planilla se usa el aislado, que es el que el
+investigador describió.
+
+## Nivel herramienta — el criterio de un desajuste y los gráficos (2026-10-19)
+
+### Dar por cerrado el riesgo en polinizadores con el criterio de bloque perfecto
+**Qué se intentó:** concluir «cero coincidencias en *Apis mellifera* en los cuatro
+genes», que es cierto con el criterio de bloque contiguo perfecto de ≥19 nt.
+**Qué pasó:** descartado como formulación. Al correr el criterio de un desajuste
+sobre los genes completos, *Apis* **no** da cero: `MP_MRFV` tiene 7 ventanas,
+`BicC_Dm` 7, `CP_MRFV` 2 y `ATPaseD_Dm` 1. Son coincidencias más débiles, pero
+existen.
+**Estado:** la frase defendible es **«sin homología perfecta en abeja»**, no «sin
+riesgo en abeja». Y en ningún caso es un ensayo de toxicidad: es ausencia de
+homología de secuencia en un transcriptoma de referencia.
+**Lección de método:** un cero siempre lleva pegado el criterio con el que se midió.
+
+### Decir que `CP_MRFV` no tiene off-targets
+**Qué se intentó:** la conclusión de la versión anterior del informe, basada sólo en
+el criterio de bloque perfecto.
+**Qué pasó:** descartado. Con bloque perfecto el gen entero da cero, que sigue
+siendo cierto y lo vuelve el más limpio de los cuatro. Con un desajuste tiene 14
+ventanas, 6 de ellas en maíz.
+**Estado:** corregido en el informe y en la página del gen. **Lo que sí se sostiene**
+es la conclusión sobre la elección de región: con el criterio principal no hay nada
+que esquivar en ningún tramo, así que acá la región no pudo elegirse por off-targets.
+
+### Usar dos colores distintos para los dos niveles de riesgo en los gráficos
+**Qué se intentó:** una lane roja para el bloque perfecto y otra naranja o amarilla
+para el desajuste, que es la lectura intuitiva de severidad.
+**Qué pasó:** descartado por el validador de paleta del skill de dataviz, corrido
+contra las superficies reales de estas páginas. Rojo contra naranja da ΔE 10,8 en
+visión normal y amarillo contra naranja 13,6, los dos bajo el piso de 15, que es
+falla dura y no se excusa con codificación secundaria.
+**Estado:** reemplazado por codificación **ordinal**, que además es la correcta:
+los dos niveles están ordenados (perfecto > un desajuste), así que es un solo hue en
+dos pasos —rojo pleno y el mismo rojo atenuado—, no dos hues. La paleta final
+(azul para eficiencia, rojo para riesgo) pasa los seis chequeos en los dos modos y
+con todos los pares.
+**Lección de método:** cuando dos categorías están ordenadas, dos hues no son sólo
+arriesgados: son el trabajo de color equivocado.
+
+### Verificar los gráficos visualmente en este entorno
+**Qué se intentó:** abrir los HTML en Chrome para mirarlos, y después rasterizar los
+SVG para poder verlos como imagen.
+**Qué pasó:** las dos vías fallaron. La extensión de Chrome no respondió en dos
+intentos, en dos momentos distintos de la sesión. `cairosvg` no carga porque faltan
+las DLL de cairo, y los rasterizadores en Python puro no aplican el CSS externo del
+que dependen estos SVG, así que su salida no sería fiel.
+**Estado:** verificado **numéricamente** en su lugar: overflow del viewBox, colisión
+de etiquetas de banda, cobertura de clases CSS, variables CSS definidas y parseo del
+JSON embebido. Los cuatro pasan. **Lo que no está hecho es mirarlos**, y eso queda
+anotado como pendiente en `PREGUNTAS_ABIERTAS.md`.
+**Qué lo reabriría:** que la extensión de Chrome responda, o instalar las DLL de
+cairo.
+
+### Dar por buena la equivalencia del port sin correr el programa original
+**Qué se intentó:** sostener las conclusiones del modo fiel sobre la lectura del
+fuente, sin ejecutar si-Fi21.
+**Qué pasó:** **ya no hace falta: se corrió y coincide.** si-Fi21 original, con su
+interfaz y sus valores por defecto, da **471 hits totales y 42 siRNA eficientes**
+sobre `ATPaseD_Dm_full`; nuestro port en modo fiel con el mismo RNAplfold da 471 y
+42. Además la curva del «RNAi design plot» se reprodujo tramo por tramo: ocho
+tramos, mismas posiciones, mismas alturas.
+**Estado:** el port queda **verificado contra el original**, no inferido de él, y en
+**los cuatro genes**: 42, 32, 133 y 212 eficientes, los cuatro idénticos. Eso
+convierte la diferencia entre los dos modos en una medición y no en una hipótesis.
+Salidas crudas en `analisis/sifi21_original_*.csv`.
+**Hallazgo de paso:** en `BicC_Dm` si-Fi reporta 2.504 hits sobre 2.500 ventanas,
+porque cuenta registros de Bowtie y no siRNA únicos y el gen tiene dos pares de
+21-meros repetidos. Los cuatro involucrados son no eficientes, así que el conteo no
+se infla acá — pero **el mecanismo existe** y con una base de datos que tenga
+parálogos sí inflaría. Es evidencia directa para la hipótesis de por qué los
+conteos de EPILAB no se reproducen.
+
+### Suponer que «el botón no hace nada» es un problema de instalación
+**Qué se intentó:** interpretar que si-Fi no arrancaba el cálculo por una
+instalación incompleta o por la máquina.
+**Qué pasó:** descartado. Es un bug del programa, reproducido y aislado:
+`run_rnaplfold` pasa `cwd=<temporal>` a `Popen` con el ejecutable por nombre pelado,
+y en Windows eso rompe la búsqueda del binario. El error termina en un
+`UnboundLocalError` que Qt se traga, de ahí el silencio. `run_bowtie` no lo tiene
+porque no pasa `cwd`.
+**Estado:** resuelto lanzando el programa con los directorios de RNAplfold y Bowtie
+en el PATH. **La lección de método:** antes de culpar al entorno, reproducir la
+llamada exacta del programa en aislamiento. Tres variantes de la misma llamada —sin
+PATH, con PATH, y con ruta completa— localizaron el bug en una línea.

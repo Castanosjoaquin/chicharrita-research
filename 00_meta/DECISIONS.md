@@ -264,3 +264,93 @@ estrictamente más completo.
 produjo, que las aplicó y volvió a medir. Y queda una advertencia de método en el
 repositorio: **un cero devuelto por una consulta por nombre común no es una
 ausencia**; hay que resolver el taxid primero.
+
+---
+
+## D13 — El port de si-Fi21 tiene dos modos, y el fiel conserva los defectos a propósito
+**Fecha:** 2026-10-19
+**Decisión:** `tools/sifi21_port/` expone un modo `fiel`, que reproduce si-Fi21 tal
+como es —incluida la rama que permite declarar eficiente un siRNA que falla los
+filtros termodinámicos—, y un modo `corregido` con los arreglos justificados. El
+modo por defecto del CLI es el corregido; el fiel hay que pedirlo.
+**Alternativas consideradas:** (a) portar y arreglar, sin conservar el
+comportamiento viejo; (b) portar sin arreglar nada y dejar la crítica por escrito;
+(c) dos implementaciones separadas.
+**Criterio:** arreglar sin conservar hace imposible la tarea que el investigador
+pidió primero, que es auditar los números que ya existen. Si el modo fiel no
+existe, no se puede responder «¿de dónde salen los 114?», porque cualquier
+discrepancia se confunde con nuestros propios arreglos. Al revés, portar sin
+arreglar nos deja usando para diseñar una regla que sabemos mal. Dos
+implementaciones separadas duplican el código y se desincronizan; un parámetro de
+modo sobre el mismo código no, y además permite **medir** cuánto cambia cada
+arreglo, que es la parte interesante.
+**Consecuencia:** la diferencia entre los dos modos es un dato, no una molestia.
+Medida sobre el corpus, contando ventana por ventana, la rama del original agrega
+**19 de 133** «eficientes» en `MP_MRFV_full`, 7 de 32 en `CP_MRFV_full`, 50 de 212
+en `BicC_Dm_full` y 8 de 42 en `ATPaseD_Dm_full`: entre el **14 % y el 24 %** de lo
+que si-Fi reporta como eficiente lo es solo porque la regla terminal se saltea la
+física, y ninguna ventana va en sentido contrario.
+*(Una versión anterior de esta entrada decía «11 de 133, entre el 8 y el 9 %». Era
+una resta de totales —eficientes menos termodinámicos— y el total termodinámico
+incluye ventanas de la rama 4, que los dos modos rechazan igual. Restar totales no
+cuenta ventanas.)*
+Ese número es un entregable, y no habría existido con ninguna de las
+alternativas. Queda en `tools/sifi21_port/CAMBIOS.md` C1.
+**Nota de alcance:** el modo fiel es fiel al fuente de GitHub, que no es idéntico
+al binario de 2017 de SourceForge. `[?]`
+
+**La decisión quedó validada el mismo día.** Se corrió el **programa original** —el
+binario, con su interfaz y sus valores por defecto— sobre los cuatro genes, y el
+modo fiel reproduce sus cuatro conteos exacto: **42, 32, 133 y 212**. `[E]` Eso es
+precisamente lo que la alternativa (a) —portar y arreglar sin conservar el
+comportamiento viejo— habría hecho imposible: sin modo fiel no hay contra qué
+comparar, y la diferencia de la regla terminal seguiría siendo una lectura del
+código en vez de una medición. Detalle en
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md` §0; salidas crudas del
+programa en `analisis/sifi21_original_*.csv`.
+
+---
+
+## D14 — El gráfico por gen tiene un solo eje, y la curva se indexa por el centro de la región
+**Fecha:** 2026-10-19
+**Decisión:** las tres capas del gráfico de cada gen —la curva de densidad, las
+bandas de región y las tiras de marcas por ventana— comparten un único eje
+horizontal en coordenadas del gen. La curva se indexa por el **centro** de la región
+candidata, no por su inicio, y se dibuja sólo en el tramo donde cabe una región
+completa.
+**Alternativas consideradas:** (a) indexar la curva por el inicio de la región, que
+es la variable que el código ya barría; (b) dos ejes, uno para la curva y otro para
+las tiras; (c) extender la curva a todo el gen contando regiones truncadas en los
+bordes.
+**Criterio:** la primera versión hizo (a) y (b) a la vez sin darse cuenta: la curva
+iba de 1 a *n−L+1* y las tiras de 1 a *n*, así que **las capas estaban desalineadas
+y las bandas no coincidían con las marcas**. Con 300 nt de región en un gen de 491
+—el caso de `ATPaseD_Dm`— el desfasaje era de más de dos tercios del ancho. Indexar
+por el centro arregla el eje sin cambiar un solo número: el máximo de la curva
+corresponde a la misma región que devuelve `best_region`, sólo reindexada. La
+opción (c) se descartó porque un conteo sobre una región truncada no es comparable
+con los demás y produciría una caída artificial en los bordes.
+**Consecuencia:** el gráfico es legible de una pasada y la curva arranca y termina
+donde deja de haber opciones, lo que comunica gratis algo que importa: en
+`ATPaseD_Dm` hay apenas 172 regiones posibles y en `BicC_Dm` hay 2.201. Además salió
+a la luz un bug latente en `best_region`, que consideraba regiones pasadas del final
+del gen; con los cuatro genes del corpus el máximo caía dentro del dominio válido,
+así que acotarlo no movió ningún número publicado.
+**Nota:** las decisiones de color están en `CAMINOS_PROBADOS.md`, porque se tomaron
+descartando alternativas con el validador de paleta.
+
+**Revisión del mismo día, a partir de una lectura del equipo.** La primera versión
+dibujaba la curva **sólo** donde cabe una región completa, y eso se leía como un
+hueco: en `BicC_Dm` la banda de la región más densa llega hasta 2422 y la curva se
+cortaba en 2350, así que parecía faltar dato dentro de la banda. El diagnóstico es
+que el eje tenía **dos significados a la vez** —las bandas y las tiras marcan la
+extensión en nucleótidos, la curva indexaba por el centro de la región— y eso no se
+resuelve con una aclaración al pie.
+**Corrección:** la curva pasa a estar definida en todas las posiciones del gen. En
+los dos extremos la región se recorta contra el borde, el valor baja de verdad
+—porque ahí hay menos ventanas alcanzables, no porque falte el dato— y esos tramos
+van punteados para no darlos por comparables.
+**Lo que esto habilita, y que conviene conservar:** leída en el centro de cualquier
+banda, la curva da **exactamente** el conteo de esa región en la tabla. Es una
+propiedad verificable, y está verificada en las ocho combinaciones de gen y región.
+Un gráfico que contradiga su propia tabla es peor que no tener gráfico.

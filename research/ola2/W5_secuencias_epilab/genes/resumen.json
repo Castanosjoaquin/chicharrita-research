@@ -1,0 +1,54 @@
+[
+  {
+    "gen": "MP_MRFV",
+    "declarado": 114,
+    "calculado": 123,
+    "region": "1-200",
+    "efic_region": 30,
+    "off_region": 6,
+    "mejor": "72-271",
+    "efic_mejor": 38,
+    "off_mejor": 6,
+    "riesgo_region_total": 11,
+    "riesgo_mejor_total": 9
+  },
+  {
+    "gen": "CP_MRFV",
+    "declarado": 35,
+    "calculado": 30,
+    "region": "201-400",
+    "efic_region": 17,
+    "off_region": 0,
+    "mejor": "99-298",
+    "efic_mejor": 21,
+    "off_mejor": 0,
+    "riesgo_region_total": 5,
+    "riesgo_mejor_total": 5
+  },
+  {
+    "gen": "BicC_Dm",
+    "declarado": 199,
+    "calculado": 171,
+    "region": "264-563",
+    "efic_region": 20,
+    "off_region": 33,
+    "mejor": "2123-2422",
+    "efic_mejor": 37,
+    "off_mejor": 3,
+    "riesgo_region_total": 44,
+    "riesgo_mejor_total": 6
+  },
+  {
+    "gen": "ATPaseD_Dm",
+    "declarado": 33,
+    "calculado": 29,
+    "region": "151-450",
+    "efic_region": 18,
+    "off_region": 7,
+    "mejor": "136-435",
+    "efic_mejor": 24,
+    "off_mejor": 7,
+    "riesgo_region_total": 21,
+    "riesgo_mejor_total": 21
+  }
+]

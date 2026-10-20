@@ -15,3 +15,11 @@ work/
 # tiene licencia abierta: se publica el generador, no el dato.
 pipeline/salida/
 pipeline/datos/
+
+# Bytecode de Python
+__pycache__/
+*.pyc
+
+# Corpus oficial suelto en la raiz: secuencias no publicadas de EPILAB.
+# El original no se mueve ni se renombra (regla del CLAUDE.md), pero no entra a git.
+Sequences_EPILAB.xlsx

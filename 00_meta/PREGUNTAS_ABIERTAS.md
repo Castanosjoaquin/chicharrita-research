@@ -454,3 +454,202 @@ Todo lo de abajo viene de `research/R6_estrategias_molicutes/`. Los pendientes y
 - **Año de S27 en R1 (abierta).** R1 lo registra como 2026; un listado de ResearchGate lo fecha en diciembre de 2025.
 - **Transcriptomas y ensamblado de *D. maidis* en la Línea 2:** accesiones tomadas de W3 y de nombres de archivo de W5, no re-verificadas en R6.
 - **Rechazo de una herramienta (registrado, no esquivado).** Al cerrar R6, una escritura en la memoria persistente del agente (resumen de siete hallazgos de R6) fue rechazada por un clasificador de seguridad («posible inyección de prompt») y no se guardó. No se reformuló ni se reintentó. Los hallazgos están completos en `research/R6_estrategias_molicutes/` (REPORT.md, `datos/COMANDOS.md`); lo único que no quedó es el resumen en la memoria del agente. Decidir si se quiere guardarlo a mano.
+
+## Port de si-Fi21 (2026-10-19) — pendientes y preguntas
+
+Todo lo de abajo viene de `tools/sifi21_port/` y de
+`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md`.
+
+### Para el investigador
+
+1. **¿Qué parámetros químicos cambió exactamente?** En el checkpoint dijo que tuvo
+   que actualizar parámetros desactualizados. El si-Fi21 que se distribuye **ya**
+   usa las tablas de Chen et al. 2012 y **ya** calcula a 22 °C, así que los dos
+   candidatos obvios no son. La respuesta decide si nuestro modo «fiel» es fiel a
+   lo que ellos corren, y es la que explicaría por qué los conteos no se
+   reproducen. Pregunta de alto rendimiento: barata para él, y nos desbloquea.
+2. **¿Contra qué base de datos corrió el modo diseño?** El conteo de «eficientes»
+   del original suma **un registro por hit de Bowtie en hebra +**, no un siRNA
+   único (`general_helpers.py:113`), así que el número depende de la base. Sin eso
+   no hay forma de reproducirlo aunque el criterio sea idéntico.
+3. **¿La región 1-200 se eligió por off-targets y no por densidad de eficientes?**
+   Él mismo lo sospechó y dijo no recordarlo. Medido: en `CP_MRFV_full` la región
+   1-200 tiene 8-9 siRNA eficientes y la región 195-394 tiene 21, más del doble. Si
+   fue por off-targets, cerramos el punto; si no, la elección es mejorable y eso es
+   un resultado nuestro.
+4. **¿El «130» que mencionó existe?** En el checkpoint citó «114, 130» como
+   ejemplos de la columna. Nuestros cuatro declarados son 114, 35, 199 y 33. No hay
+   ningún 130. Puede ser un recuerdo impreciso o una columna que no tenemos. `[?]`
+
+### Pendientes internos
+
+- **Dos de los cuatro genes no se pudieron verificar.** `BicC_Dm_full` (199
+  declarados) y `ATPaseD_Dm_full` (33) son transcritos multiexónicos con 97,6-100 %
+  y 99,3-100 % de identidad contra el ensamblado, así que reconstruirlos desde
+  coordenadas públicas daría una secuencia distinta. Hace falta que alguien con el
+  corpus corra `barrido.py` sobre los cuatro. El comando está en el informe.
+- **El corpus no está en esta máquina.** `work/` está fuera del control de
+  versiones y `baseline_dsrip/` quedó vacío: ese trabajo se hizo en otro equipo con
+  rutas absolutas. Para repetir cualquier medición sobre las secuencias de EPILAB
+  hay que volver a copiar el corpus.
+- **Tablas de mismatch de ARN.** El original usa tablas de ADN para mismatches
+  dentro de un cálculo de ARN, de modo que un par G-U no se trata como wobble. No
+  se corrigió porque no hay una fuente abierta con los parámetros de ARN
+  equivalentes, y porque se midió que en esta ruta de cálculo esas tablas no se
+  consultan nunca. Si alguna vez se extiende el cálculo a secuencias desapareadas,
+  hay que conseguir esos parámetros de una fuente que se pueda abrir.
+- **Ponderación por posición de los mismatches en off-targets.** Es la única
+  crítica de la lista revisada que resultó correcta y sigue pendiente: `bowtie -v N`
+  cuenta mismatches ciego a la posición, cuando la región semilla (nt 2-8) y las
+  posiciones catalíticas 10-11 no valen lo mismo. Pertenece al módulo de
+  off-targets, no al de eficiencia.
+- **Las dos versiones de ViennaRNA no dan lo mismo** y no está decidido cuál es la
+  nuestra. RNAplfold 2.1.5 (el que trae si-Fi) contra 2.7.2 (las ligaduras de
+  Python) difieren en 9 eficientes sobre 1.243 ventanas en `MP_MRFV_full`. Por
+  ahora se reporta cuál se usó en cada corrida.
+- **El fuente de GitHub no es el binario de 2017.** `Resources/ui_sifi2015.py` mide
+  23.791 bytes en la instalación y 23.787 en el clon. No se investigó en qué
+  difieren. `[?]`
+- **Licencia del original en conflicto:** el artículo dice CC BY-SA 4.0 y
+  SourceForge dice CC BY-NC 2.0. Para uso académico no cambia nada; si algo de esto
+  se publicara, hay que resolverlo. `[?]`
+
+## Con la planilla en mano (2026-10-19) — qué se cerró y qué se abrió
+
+La planilla `Sequences_EPILAB.xlsx` llegó y permitió correr los cuatro genes. Esto
+actualiza la sección anterior.
+
+### Cerradas
+
+- **«¿La región se eligió por off-targets?»** Contestada por nuestra cuenta, y la
+  respuesta es no. Ver `CAMINOS_PROBADOS.md`. Deja de ser pregunta para el
+  investigador y pasa a ser un resultado a mostrarle.
+- **Los dos genes que faltaban** (`BicC_Dm` y `ATPaseD_Dm`) ya están medidos. El
+  barrido con los cuatro a la vez sigue sin reproducir los conteos declarados, con
+  un error mínimo de 8 sobre ~381 siRNA.
+- **El «130» que mencionó el investigador no existe en la planilla.** Las cuatro
+  filas declaran 114, 35, 199 y 33. La columna 9, «Nro de eficientes por región?»,
+  está vacía. Probablemente fue un recuerdo impreciso de la columna que falta
+  llenar, no un dato que no tengamos.
+
+### Abiertas, y la primera sigue siendo la misma
+
+1. **¿Qué parámetros químicos cambió?** Sigue siendo la pregunta de mayor
+   rendimiento. Con los cuatro genes el barrido de 15.120 configuraciones no
+   reproduce nada, así que la versión que corrió el laboratorio no es la que se
+   distribuye. Dato que puede ayudarlo a recordar: las configuraciones que más se
+   acercan usan **umbral de estabilidad de extremos 2,0 kcal/mol**, no el 1,0 por
+   defecto, y 25 °C en vez de 22.
+2. **¿Contra qué base de datos corrió el modo diseño?** Sin eso el conteo no es
+   reproducible aunque el criterio sea idéntico, porque el original suma un
+   registro por hit de Bowtie.
+3. **¿Con qué procedimiento quiere la columna 9?** Recortar la región y correrla
+   sola da 16, 14, 17 y 16; contar las mismas ventanas dentro del gen entero da 30,
+   17, 20 y 18. La diferencia llega al 47 %. Entregamos la primera porque es la que
+   él describió, pero conviene confirmarlo.
+4. **¿Hay un criterio que no medimos detrás de la elección de regiones?**
+   Conservación entre aislados virales, restricciones de clonado, accesibilidad para
+   la construcción. Es la única salida que le queda a la elección de `BicC_Dm`.
+
+### Riesgos que el cruce puso arriba de la mesa
+
+- **`BicC_Dm` tiene 40 ventanas con coincidencia perfecta de 21/21 en
+  *Homalodisca vitripennis*** y 3 en *Harmonia axyridis*. La primera es una
+  chicharrita no objetivo; la segunda es una vaquita predadora, o sea un enemigo
+  natural del propio blanco. Bicaudal C está conservado entre cicadélidos, así que
+  esto es esperable y hay que tratarlo como restricción de diseño, no como
+  sorpresa. La región 2123-2422 reduce la exposición de 33 a 3 ventanas sin perder
+  eficiencia: es una recomendación concreta que podemos llevar.
+- **Cero coincidencias en *Apis mellifera*** para los cuatro genes, en las seis
+  referencias. Es el dato más tranquilizador del cuadro y conviene decirlo con el
+  alcance correcto: es ausencia de homología de secuencia en un transcriptoma de
+  referencia, no un ensayo de toxicidad.
+- **El panel sigue siendo de especies modelo.** Ya estaba anotado y sigue valiendo:
+  la ausencia de riesgo en cicadélidos nativos y parasitoides **no está medida**
+  porque no hay transcriptomas. Seis referencias no son el ambiente. `[?]`
+
+### Pendientes internos
+
+- **El corpus quedó suelto en la raíz del repositorio.** `Sequences_EPILAB.xlsx`
+  estaba sin ignorar y un `git add .` lo habría subido. Se agregó al `.gitignore`
+  sin moverlo (la regla prohíbe mover originales). **Conviene moverlo a
+  `YHat-Biotech/`**, que es donde el `CLAUDE.md` dice que vive el corpus y que ya
+  está ignorado. Lo tiene que hacer una persona, no el agente.
+- **El md5 difiere del que registró W5, y está explicado.** El original era
+  `048833f606d9aba2a1220a7dc280d9a9`; esta copia es
+  `dcf234e1ba6d5584f1c9c1e4db59c34b`. No es otro documento: el `dc:creator`
+  («Johan Rodríguez») y la fecha de creación (2026-10-17T15:03:07Z) coinciden
+  exacto con lo que registró W5, pero **todas las entradas del ZIP tienen fecha de
+  hoy** y desaparecieron los campos de modificación que W5 sí había visto
+  (`modified 15:10:01Z`, `lastModifiedBy`). Es una reexportación del mismo
+  documento, probablemente por el camino de subida y bajada.
+  Dos verificaciones independientes confirman que el **contenido** es el mismo: las
+  secuencias virales coinciden byte a byte con la reconstrucción desde
+  `NC_002786.2`, y nuestro tamizaje de off-targets reproduce los conteos de bloque
+  perfecto de W5 en las 20 celdas. `[E]` El análisis no está afectado.
+- **Las referencias pesan 379 MB** en `work/offtarget_db/`, fuera del control de
+  versiones. Si alguien reproduce desde cero, se vuelven a bajar.
+- **Falta el criterio de un desajuste sobre los genes completos.** Se corrió exacto
+  solo sobre las regiones elegidas (920 ventanas); sobre los cuatro genes completos
+  se corrió solo bloque perfecto, para no inflar el autómata a 600.000 patrones.
+
+## Cierre del criterio de un desajuste (2026-10-19)
+
+- **Cerrado:** el criterio de un desajuste ya está corrido sobre **los cuatro genes
+  completos**, no sólo sobre las regiones elegidas. Se resolvió el límite de memoria
+  corriendo un gen por vez (entre 61.000 y 324.000 patrones cada uno en lugar de
+  600.000 juntos). **La comparación de regiones no se da vuelta en ningún gen**: en
+  `BicC_Dm` la región elegida pasa de 33 a 44 ventanas comprometidas y la
+  alternativa de 3 a 6, así que la conclusión se refuerza. En `MP_MRFV` queda 11
+  contra 9 y en `CP_MRFV` y `ATPaseD_Dm` empatan.
+- **Abierto, nuevo:** **los gráficos no se miraron.** Se verificaron numéricamente
+  (overflow, colisión de etiquetas, cobertura de CSS, parseo del JSON) y los cuatro
+  pasan, pero nadie los abrió en un navegador: la extensión de Chrome no respondió y
+  los rasterizadores disponibles no aplican el CSS externo. **Hace falta que una
+  persona abra `research/ola2/W5_secuencias_epilab/genes/index.html` y confirme que
+  no hay nada roto**, sobre todo el escalonado de etiquetas en `ATPaseD_Dm`, donde
+  quedan a 28 px, y el gráfico de `BicC_Dm`, que dibuja 2.500 marcas.
+- **Abierto:** el salto más grande al agregar el criterio de un desajuste está en
+  **maíz contra `MP_MRFV`: de 3 a 18 ventanas**. El cultivo es el no objetivo que más
+  importa, así que esas 18 merecen revisarse una por una antes de construir nada.
+  No está hecho.
+- **Abierto:** falta cruzar el perfil de `CP_MRFV` con la conservación entre aislados
+  que W5 ya midió. La región elegida es 100 % idéntica sólo al aislado de Costa Rica
+  y cae a 91,5-93,5 % contra los 45 registros brasileños. Una región más densa que
+  funcione sólo en un aislado no sirve, y es la única explicación que le queda a la
+  elección de ese gen.
+
+## La pregunta para el investigador, afilada con la verificación (2026-10-19)
+
+Ya no hace falta preguntar en abstracto qué cambió. **Se corrió si-Fi21 original,
+sin modificar, sobre los cuatro genes**, y nuestro port en modo fiel reproduce sus
+cuatro conteos exacto. Así que ahora la comparación con la planilla es directa:
+
+| Gen | si-Fi21 **sin modificar** | Declarado en la planilla | Diferencia |
+| --- | --- | --- | --- |
+| `MP_MRFV` | 133 | 114 | +19 |
+| `CP_MRFV` | 32 | 35 | −3 |
+| `BicC_Dm` | 212 | 199 | +13 |
+| `ATPaseD_Dm` | 42 | 33 | +9 |
+
+`[E]` **Los cuatro difieren, y no en la misma dirección.** Tres por encima y uno por
+debajo descarta una explicación simple de tipo «cuenta de más» o «cuenta de menos»:
+no es un desplazamiento constante ni un factor.
+
+La pregunta concreta, entonces: **si si-Fi sin modificar da 133, 32, 212 y 42, y tu
+planilla dice 114, 35, 199 y 33, ¿qué versión corriste?** Dos pistas que pueden
+ayudarlo a recordar, las dos nuestras y medidas:
+
+1. Las configuraciones que más se acercan en el barrido usan **umbral de estabilidad
+   de extremos 2,0 kcal/mol** —no el 1,0 por defecto— y **25 °C** en vez de 22.
+2. **La base de datos cambia el número sin que cambie el criterio.** si-Fi cuenta un
+   registro por hit de Bowtie, no un siRNA único. Lo vimos funcionando en `BicC_Dm`:
+   2.504 hits sobre 2.500 ventanas, por dos pares de 21-meros repetidos dentro del
+   propio gen. Ahí no infló el conteo de eficientes porque los repetidos resultaron
+   no eficientes, pero contra un transcriptoma con parálogos e isoformas sí
+   inflaría. **Por eso saber contra qué base corrió el modo diseño dejó de ser un
+   detalle.**
+
+Las dos preguntas siguen siendo las mismas que antes —qué parámetros cambió y contra
+qué base corrió— pero ahora cada una viene con un número que la respalda, que es lo
+que las vuelve baratas de contestar para él.
