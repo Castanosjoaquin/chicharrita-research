@@ -211,6 +211,31 @@ lo que los hace comparables entre regiones de 200 y de 300 nt:
 - **Limpieza**, la fracción de ventanas limpias, descontando cada ventana sucia en
   proporción a la gravedad de su peor acierto contra el panel de no objetivo.
 
+### 2.0 Con qué se calcula cada eje, y qué le cambiamos a si-Fi21
+
+El eje de eficacia sale de **si-Fi21**, que es la referencia declarada del
+laboratorio. El problema práctico es que es una aplicación Qt4 en Python 2.7, corre
+sólo en Windows, abre diálogos modales en medio del cálculo y no es automatizable, de
+modo que no sirve como dependencia de un pipeline. Lo portamos a Python 3 sin
+interfaz, con **dos modos a propósito**, y lo que sigue es lo que cambia respecto del
+original, con el efecto medido. El detalle está en `tools/sifi21_port/CAMBIOS.md` y en
+`sifi21_reproduccion.md`; acá va lo que hace falta para leer los números de este
+documento.
+
+| Qué | Por qué | Efecto medido |
+|---|---|---|
+| **Modo fiel**, que reproduce si-Fi21 tal cual, defectos incluidos | Sin él no hay contra qué comparar: los conteos de la planilla se hicieron con el original, y auditarlos exige poder correrlo | Reproduce **los cuatro conteos exacto** —42, 32, 133 y 212— y la curva del «RNAi design plot» tramo por tramo `[E]` |
+| **Modo corregido**, que arregla la regla de los nucleótidos terminales | Esa regla **no es un filtro, es una ramificación**: una de sus cuatro ramas devuelve «eficiente» mirando sólo la accesibilidad, sin el veredicto termodinámico | Entre el **14 % y el 24 %** de lo que el original cuenta como eficiente entra por ahí: 19 de 133, 7 de 32, 50 de 212 y 8 de 42. Las 84 diferencias caen **todas** en esa rama y ninguna va en sentido contrario `[E]` |
+| **Conteo «en contexto»**, no sobre la región recortada y plegada sola | La accesibilidad depende del plegado local; un fragmento recortado pierde el contexto que apareaba o liberaba su extremo | La diferencia llega al **47 %** en `MP_MRFV`: 16 eficientes aislada contra 30 en contexto. Si se comparan regiones, hay que fijar el procedimiento `[E]` |
+| **Tamizaje de off-targets propio**, por coincidencia exacta con Aho-Corasick en vez de BLAST | Para bloques perfectos la coincidencia exacta es la respuesta correcta y no una heurística | Coincide con BLAST+ local en las **20 celdas** de los criterios de bloque perfecto; en el de un desajuste **no**, y el exacto encuentra hasta **tres veces más** `[E]` |
+| **Tamaño de ventana parametrizable** (`--size`) | Hacía falta para la cuenta de azar por *k* de §5 y el código lo tenía fijo en 21 | Con el valor por defecto la salida es **idéntica byte a byte** a la de antes de parametrizar, verificado en esta corrida `[E]` |
+
+Con eso, elegir región es un barrido: para cada gen se calcula el conteo de ventanas
+eficientes de **todas** las regiones deslizantes del largo que usó EPILAB, se
+descartan las que contienen alguna ventana idéntica en 21 nt a una referencia no
+objetivo, y se ordena lo que queda. **Por eso la región más densa no siempre es la que
+proponemos**, y el único caso donde difieren es `ATPaseD_Dm`.
+
 Con los pesos base, y contando todas las ventanas (regla conservadora de D2):
 
 | Candidato | Región | Ventanas | Eficientes | Eficacia | Exposición | Limpieza | Eficientes y limpias | ¿Vetada? |

@@ -54,7 +54,12 @@
   code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.9em;
        background:var(--surface-2); padding:1px 5px; border-radius:2px}
   .lead{font-size:1.06rem}
-  .lead strong{font-weight:650}
+
+  .parte{margin:56px 0 0; padding:22px 0 0; border-top:3px solid var(--accent)}
+  .parte .k{font-size:.78rem; letter-spacing:.09em; text-transform:uppercase;
+            color:var(--accent); margin:0 0 6px; font-weight:650}
+  .parte h2{margin:0 0 10px; padding-top:0; border-top:none; font-size:1.5rem}
+  .parte .d{color:var(--text-dim); margin:0; max-width:64ch}
 
   .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
   .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
@@ -74,6 +79,7 @@
   .sw.e{background:var(--efic)}
   .sw.m{background:var(--muted)}
   .sw.b{background:var(--muted); opacity:.3}
+  .sw.h{background:transparent; border:2px solid var(--efic)}
 
   .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
   table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
@@ -90,7 +96,7 @@
   .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
   .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
 
-  ul{margin:0 0 14px; padding-left:22px}
+  ul,ol{margin:0 0 14px; padding-left:22px}
   li{margin-bottom:7px}
   .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
         padding:16px 18px; margin:22px 0}
@@ -119,42 +125,41 @@
 
 <div class="wrap">
 
-<p class="lead">El orden es <strong>MP_MRFV &gt; CP_MRFV &gt; {BicC_Dm,
-ATPaseD_Dm}</strong>. Lo que aguanta el barrido de 2.000 juegos de pesos es la
-primera mitad; <strong>los dos genes del insecto no se ordenan entre sí</strong> y
-decirlo es parte del resultado. Lo que sí los separa de los dos virales no es el
-puntaje sino una compuerta: sus regiones elegidas contienen ventanas con
-coincidencia perfecta de 21 nt en un cicadélido no objetivo, y las virales no.
-<strong>La recomendación no es cambiar de gen: es mover la región dentro del
-gen</strong>, en los dos del insecto. Y no es cosmética: <strong>si se acepta, el
-orden cambia</strong> a MP_MRFV &gt; BicC_Dm &gt; CP_MRFV &gt; ATPaseD_Dm, porque
-BicC_Dm mejora en los dos ejes a la vez y salta de pelear el último puesto a quedar
-segundo.</p>
+<p class="lead">Hay <strong>dos resultados y conviene no mezclarlos</strong>. El
+primero es la auditoría de los cuatro candidatos <strong>tal como están</strong>, que
+es lo que se pidió: ahí el orden es <strong>MP_MRFV &gt; CP_MRFV</strong> y los dos
+genes del insecto <strong>no se ordenan entre sí</strong>, además de que sus regiones
+quedan vetadas por coincidir perfecto con un cicadélido no objetivo. El segundo es
+qué pasa <strong>si se mueven las regiones dentro de los mismos genes</strong>, que es
+lo que proponemos: ahí el orden sí queda definido —<strong>MP_MRFV &gt; BicC_Dm &gt;
+CP_MRFV &gt; ATPaseD_Dm</strong>— y ninguna región queda vetada. El gen no cambia en
+ningún caso: cambia qué parte del gen se usa.</p>
 
 <div class="calls">
-  <div class="call ok">
-    <p class="k">Primer puesto</p>
-    <p class="v">MP_MRFV, en 76–100 %</p>
-    <p class="n">De los sorteos, según la combinación de reglas. Nunca por debajo
-    del 76 %.</p>
-  </div>
   <div class="call warn">
-    <p class="k">Tercer puesto</p>
-    <p class="v">No existe</p>
-    <p class="n">BicC_Dm y ATPaseD_Dm se reparten las posiciones 3 y 4 casi en
-    mitades, y se dan vuelta según la forma de combinación.</p>
+    <p class="k">A · tal como están</p>
+    <p class="v">MP_MRFV &gt; CP_MRFV, y después empate</p>
+    <p class="n">Los dos primeros puestos aguantan el barrido. BicC_Dm y ATPaseD_Dm
+    se reparten el 3.º y el 4.º casi en mitades y se dan vuelta según la forma de
+    combinación: ahí <strong>no hay tercer puesto</strong>.</p>
   </div>
   <div class="call stop">
-    <p class="k">Compuerta</p>
+    <p class="k">A · la compuerta</p>
     <p class="v">2 de 4 regiones vetadas</p>
     <p class="n">BicC_Dm 264-563 y ATPaseD_Dm 151-450 contienen 22 y 3 ventanas
     idénticas en 21 nt a <em>Homalodisca vitripennis</em>.</p>
   </div>
   <div class="call ok">
-    <p class="k">Si se mueven las regiones</p>
-    <p class="v">BicC_Dm pasa a segundo</p>
-    <p class="n">Con 2123-2422 su eficacia casi se duplica y su limpieza sube de
-    0,93 a 0,99. El orden cambia en el 90–100 % de los sorteos.</p>
+    <p class="k">B · con las regiones que proponemos</p>
+    <p class="v">MP_MRFV &gt; BicC_Dm &gt; CP_MRFV &gt; ATPaseD_Dm</p>
+    <p class="n">Acá <strong>sí hay un orden completo</strong>, en el 90–100 % de los
+    sorteos, y ninguna de las cuatro regiones queda vetada.</p>
+  </div>
+  <div class="call ok">
+    <p class="k">B · qué lo produce</p>
+    <p class="v">BicC_Dm pasa de último a segundo</p>
+    <p class="n">Moviendo la región 1.859 nt dentro del mismo gen: su eficacia casi
+    se duplica y su limpieza sube de 0,93 a 0,99.</p>
   </div>
 </div>
 
@@ -172,7 +177,16 @@ segundo.</p>
 </div>
 
 
-<h2>1. La región que eligió EPILAB, dentro de la distribución de su propio gen</h2>
+<div class="parte">
+  <p class="k">Parte A</p>
+  <h2>Los cuatro candidatos tal como están</h2>
+  <p class="d">La auditoría de lo que el laboratorio eligió hace dos años. Es lo que
+  el investigador pidió, y lo que corresponde contestar antes de proponer nada: las
+  regiones son las de la planilla, sin tocar.</p>
+</div>
+
+
+<h2>A.1 · La región elegida, dentro de la distribución de su propio gen</h2>
 
 <p>Lo que teníamos dicho era que las cuatro regiones están entre un 19 % y un 46 %
 por debajo del óptimo. Es cierto y es engañoso, porque ese óptimo es un
@@ -188,7 +202,6 @@ arriba por construcción. La cantidad falsable es el percentil.</p>
   MP_MRFV queda en el percentil 91, fuera de la mitad central; las otras tres caen
   dentro de ella, entre los percentiles 44 y 49.</desc>
 
-  <!-- eje -->
   <line x1="150" y1="252" x2="840" y2="252" stroke="var(--axis)" stroke-width="1"/>
   <g font-size="11" fill="var(--text-dim)" text-anchor="middle">
     <line x1="150" y1="252" x2="150" y2="257" stroke="var(--axis)"/><text x="150" y="272">0</text>
@@ -271,7 +284,8 @@ cajón, a la derecha, mejor que nueve de cada diez regiones posibles. Las otras 
 caen dentro del cajón, o sea que no se distinguen de haber elegido al azar dentro del
 gen. <strong>ATPaseD_Dm es el caso extremo</strong>: todo su gen va de 17 a 24
 ventanas eficientes, así que ahí elegir región casi no mueve la aguja, se elija como
-se elija.</figcaption>
+se elija. Cuidado con leer la punta derecha como «lo que recomendamos»: en ATPaseD_Dm
+ese máximo de 24 está vetado y no es lo que proponemos (ver B.2).</figcaption>
 </figure>
 
 <div class="note">
@@ -284,7 +298,7 @@ se elija.</figcaption>
 </div>
 
 
-<h2>2. La adjudicación del 7,2 %: lo que separaba a nuestras dos mediciones era el nulo</h2>
+<h2>A.2 · La adjudicación del 7,2 %: lo que separaba a nuestras dos mediciones era el nulo</h2>
 
 <p>Teníamos dos resultados propios apuntando en direcciones opuestas: el pipeline
 decía que afinar la región dentro de un gen <em>no discrimina</em> (mejora un 7,2 %
@@ -326,12 +340,12 @@ y con nuestro estadístico.</p>
 contestan preguntas distintas. El nulo de etiquetas pregunta si las ventanas
 eficientes están agrupadas, y la respuesta es sí. El nulo de bloques pregunta si,
 dado que están agrupadas en rachas de ese tamaño, el mejor grupo es mejor que otro
-grupo, y la respuesta es no. <strong>Consecuencia sobre el ranking:</strong> las
-recomendaciones de mover región no se apoyan en la densidad, se apoyan en el eje de
+grupo, y la respuesta es no. <strong>Consecuencia sobre lo que viene:</strong> las
+recomendaciones de la parte B no se apoyan en la densidad, se apoyan en el eje de
 off-targets.</p>
 
 
-<h2>3. El barrido de pesos, que es el resultado y no el orden puntual</h2>
+<h2>A.3 · El ranking de los cuatro, y el barrido de pesos</h2>
 
 <p>Se sortean 2.000 juegos de pesos sobre el símplex completo: el reparto entre los
 dos ejes, los pesos de las seis referencias y los tres criterios de riesgo. Lo que se
@@ -341,57 +355,54 @@ candidatos llegaron al top-10 por una elección de pesos arbitraria.</p>
 
 <figure>
 <svg viewBox="0 0 880 300" role="img" aria-labelledby="t3 d3">
-  <title id="t3">Frecuencia de cada candidato en cada posición del ranking</title>
+  <title id="t3">Frecuencia de cada candidato en cada posición, con las regiones de EPILAB</title>
   <desc id="d3">Matriz de cuatro candidatos por cuatro posiciones. MP_MRFV ocupa la
-  primera posición en el 76 por ciento de los sorteos y CP_MRFV la segunda en el
-  76 por ciento, mientras que BicC_Dm y ATPaseD_Dm se reparten las posiciones tercera
-  y cuarta casi en mitades.</desc>
+  primera posición en el 99 por ciento de los sorteos y CP_MRFV la segunda en el
+  99 por ciento, mientras que BicC_Dm y ATPaseD_Dm se reparten las posiciones tercera
+  y cuarta en proporción 75 a 25.</desc>
 
   <g font-size="12" fill="var(--text-dim)" text-anchor="middle">
     <text x="330" y="36">1.º</text><text x="470" y="36">2.º</text>
     <text x="610" y="36">3.º</text><text x="750" y="36">4.º</text>
   </g>
 
-  <!-- MP_MRFV 75.7 13.7 5.5 5.1 -->
   <g>
     <text x="250" y="78" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">MP_MRFV</text>
-    <rect x="270" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.71"/><text x="330" y="80" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">76 %</text>
-    <rect x="410" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.13"/><text x="470" y="80" font-size="13" fill="var(--text)" text-anchor="middle">14 %</text>
-    <rect x="550" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.06"/><text x="610" y="80" font-size="13" fill="var(--text-dim)" text-anchor="middle">6 %</text>
-    <rect x="690" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.05"/><text x="750" y="80" font-size="13" fill="var(--text-dim)" text-anchor="middle">5 %</text>
+    <rect x="270" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.71"/><text x="330" y="80" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">99 %</text>
+    <rect x="410" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="470" y="80" font-size="13" fill="var(--text-dim)" text-anchor="middle">1 %</text>
+    <rect x="550" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="610" y="80" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="690" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="750" y="80" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
   </g>
-  <!-- CP_MRFV 24.3 75.7 0 0 -->
   <g>
     <text x="250" y="134" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">CP_MRFV</text>
-    <rect x="270" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.23"/><text x="330" y="136" font-size="13" fill="var(--text)" text-anchor="middle">24 %</text>
-    <rect x="410" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.71"/><text x="470" y="136" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">76 %</text>
+    <rect x="270" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="330" y="136" font-size="13" fill="var(--text-dim)" text-anchor="middle">1 %</text>
+    <rect x="410" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.71"/><text x="470" y="136" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">99 %</text>
     <rect x="550" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="610" y="136" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
     <rect x="690" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="750" y="136" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
   </g>
-  <!-- BicC_Dm 0 8.2 42.2 49.5 -->
   <g>
     <text x="250" y="190" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">BicC_Dm</text>
     <rect x="270" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="330" y="192" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
-    <rect x="410" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.08"/><text x="470" y="192" font-size="13" fill="var(--text-dim)" text-anchor="middle">8 %</text>
-    <rect x="550" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.39"/><text x="610" y="192" font-size="13" fill="var(--text)" text-anchor="middle">42 %</text>
-    <rect x="690" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.47"/><text x="750" y="192" font-size="13" fill="var(--text)" text-anchor="middle">50 %</text>
+    <rect x="410" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="470" y="192" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="550" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.54"/><text x="610" y="192" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">75 %</text>
+    <rect x="690" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.18"/><text x="750" y="192" font-size="13" fill="var(--text)" text-anchor="middle">25 %</text>
   </g>
-  <!-- ATPaseD_Dm 0 2.5 52.2 45.4 -->
   <g>
     <text x="250" y="246" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">ATPaseD_Dm</text>
     <rect x="270" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="330" y="248" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
-    <rect x="410" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="470" y="248" font-size="13" fill="var(--text-dim)" text-anchor="middle">3 %</text>
-    <rect x="550" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.49"/><text x="610" y="248" font-size="13" fill="var(--text)" text-anchor="middle">52 %</text>
-    <rect x="690" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.42"/><text x="750" y="248" font-size="13" fill="var(--text)" text-anchor="middle">45 %</text>
+    <rect x="410" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="470" y="248" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="550" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.18"/><text x="610" y="248" font-size="13" fill="var(--text)" text-anchor="middle">25 %</text>
+    <rect x="690" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.54"/><text x="750" y="248" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">75 %</text>
   </g>
-  <text x="540" y="288" font-size="11.5" fill="var(--text-dim)" text-anchor="middle">media geométrica · regla conservadora · escala min-max · 2.000 sorteos</text>
+  <text x="540" y="288" font-size="11.5" fill="var(--text-dim)" text-anchor="middle">media geométrica · regla conservadora · escala absoluta · 2.000 sorteos</text>
 </svg>
-<figcaption>La combinación más exigente de las diez probadas, que es la que más
-deja mover el orden. <strong>MP_MRFV y CP_MRFV se quedan con los dos primeros
-puestos</strong>; BicC_Dm y ATPaseD_Dm se reparten el tercero y el cuarto en mitades,
-y además se dan vuelta según la forma de combinación: la media geométrica favorece a
-BicC_Dm y la suma ponderada a ATPaseD_Dm. Decir «BicC_Dm es tercero» sería reportar
-una decisión nuestra, no una medición.</figcaption>
+<figcaption><strong>Los dos primeros puestos aguantan</strong>; el tercero no existe.
+BicC_Dm y ATPaseD_Dm se reparten las posiciones 3 y 4 en proporción 75 a 25, y con
+suma ponderada en lugar de media geométrica se dan vuelta: ahí ATPaseD_Dm queda
+tercero el 72 % de las veces. Decir «BicC_Dm es tercero» sería reportar una decisión
+nuestra, no una medición. Bajo la normalización min-max —que es set-dependiente— la
+inestabilidad se extiende también a los dos primeros puestos, que bajan al
+76 %.</figcaption>
 </figure>
 
 <div class="note stop">
@@ -406,9 +417,7 @@ una decisión nuestra, no una medición.</figcaption>
 </div>
 
 
-<h2>4. Dónde está el riesgo, y por qué la recomendación es mover la región</h2>
-
-<p>Las cuatro regiones, con los dos ejes y la compuerta:</p>
+<h2>A.4 · Dónde está el riesgo, y qué regiones quedan vetadas</h2>
 
 <div class="tw">
 <table>
@@ -430,84 +439,283 @@ una decisión nuestra, no una medición.</figcaption>
 una vez. En todo el gen hay coincidencias de 21 nt con <em>Homalodisca
 vitripennis</em> en tres tramos —212-229, 446-463 y 512-515— y <strong>la región que
 EPILAB eligió, 264-563, se superpone con dos de los tres</strong>. En ATPaseD_Dm las
-tres están juntas en 392-394, dentro de la región elegida y fuera de la alternativa.
-<span class="tag e">E</span></p>
+tres están juntas en 392-394, dentro de la región elegida. <span class="tag e">E</span></p>
+
+
+<div class="parte">
+  <p class="k">Parte B</p>
+  <h2>Las regiones que proponemos</h2>
+  <p class="d">Mismos cuatro genes, otra parte de cada gen. Acá se explica cómo se
+  calcularon, con qué herramienta, qué le arreglamos a esa herramienta y por qué, y
+  qué pasa con el ranking cuando se usan.</p>
+</div>
+
+
+<h2>B.1 · Cómo se calcularon, y qué le cambiamos a si-Fi21</h2>
+
+<p>La herramienta es <strong>si-Fi21</strong>, que es la referencia declarada del
+laboratorio. El problema práctico es que es una aplicación de escritorio en Qt4 y
+Python 2.7, corre sólo en Windows, abre diálogos modales en medio del cálculo y no se
+puede automatizar: no sirve como dependencia de nada. Así que la portamos a Python 3
+sin interfaz, y el port tiene <strong>dos modos a propósito</strong>.</p>
 
 <div class="tw">
 <table>
-<caption>Nivel 2: la región elegida contra la mejor alternativa que escapa al veto, dentro del mismo gen.</caption>
-<thead><tr>
-  <th>Gen</th><th>Elegida</th><th class="num">Percentil</th><th>¿Vetada?</th>
-  <th>Mejor alternativa sin veto</th><th class="num">Eficientes</th><th class="num">Con 21/21</th>
-  <th class="num">Regiones sin veto</th>
-</tr></thead>
+<caption>Qué le cambiamos al criterio original, por qué, y qué efecto tiene medido sobre los cuatro genes.</caption>
+<thead><tr><th>Qué</th><th>Por qué</th><th>Efecto medido</th></tr></thead>
 <tbody>
-  <tr><td>MP_MRFV</td><td>1-200</td><td class="num">90</td><td>no</td><td>72-271</td><td class="num">38 <span style="color:var(--text-dim)">(de 30)</span></td><td class="num">0</td><td class="num">1.044 / 1.044</td></tr>
-  <tr><td>CP_MRFV</td><td>201-400</td><td class="num">44–49</td><td>no</td><td>99-298</td><td class="num">21 <span style="color:var(--text-dim)">(de 17)</span></td><td class="num">0</td><td class="num">309 / 309</td></tr>
-  <tr><td>BicC_Dm</td><td>264-563</td><td class="num">16–38</td><td><span class="tag q">sí</span></td><td><strong>2123-2422</strong></td><td class="num"><strong>37</strong> <span style="color:var(--text-dim)">(de 20)</span></td><td class="num">0 <span style="color:var(--text-dim)">(de 22)</span></td><td class="num">1.384 / 2.201</td></tr>
-  <tr><td>ATPaseD_Dm</td><td>151-450</td><td class="num">9–40</td><td><span class="tag q">sí</span></td><td><strong>72-371</strong></td><td class="num"><strong>21</strong> <span style="color:var(--text-dim)">(de 18)</span></td><td class="num">0 <span style="color:var(--text-dim)">(de 3)</span></td><td class="num">92 / 172</td></tr>
+<tr>
+  <td><strong>Modo fiel</strong>: reproduce si-Fi21 tal cual, defectos incluidos</td>
+  <td>Sin él no hay contra qué comparar: los conteos de la planilla se hicieron con el
+  original, y auditarlos exige poder correr el original.</td>
+  <td>Reproduce los <strong>cuatro conteos exacto</strong> —42, 32, 133 y 212— y la
+  curva del «RNAi design plot» tramo por tramo. <span class="tag e">E</span></td>
+</tr>
+<tr>
+  <td><strong>Modo corregido</strong>: arregla la regla de los nucleótidos terminales</td>
+  <td>Esa regla <strong>no es un filtro, es una ramificación</strong>, y una de sus
+  cuatro ramas devuelve «eficiente» mirando sólo la accesibilidad, sin el veredicto
+  termodinámico. Un siRNA que falló la selección de hebra y la estabilidad de
+  extremos puede entrar por ahí.</td>
+  <td>Entre el <strong>14 % y el 24 %</strong> de lo que el original cuenta como
+  eficiente entra por ese atajo: 19 de 133, 7 de 32, 50 de 212 y 8 de 42. Las 84
+  diferencias caen <strong>todas</strong> en esa rama y ninguna va en sentido
+  contrario. <span class="tag e">E</span></td>
+</tr>
+<tr>
+  <td><strong>Conteo «en contexto»</strong> y no sobre la región recortada</td>
+  <td>El término de accesibilidad depende del plegado local, así que una región
+  plegada sola pierde el contexto que apareaba o liberaba su extremo. Las dos
+  variantes no son comparables entre sí.</td>
+  <td>La diferencia llega al <strong>47 %</strong> en MP_MRFV: 16 ventanas
+  eficientes aislada contra 30 en contexto. Si se van a comparar regiones, hay que
+  fijar el procedimiento. <span class="tag e">E</span></td>
+</tr>
+<tr>
+  <td><strong>Tamizaje de off-targets propio</strong>, por coincidencia exacta con un
+  autómata de Aho-Corasick, en vez de BLAST</td>
+  <td>Para bloques perfectos la coincidencia exacta es la respuesta correcta y no una
+  heurística. BLAST aproxima con semillas y hay que postfiltrar.</td>
+  <td>Coincide con BLAST+ local en las <strong>20 celdas</strong> de los criterios de
+  bloque perfecto. En el criterio de un desajuste <strong>no</strong> coincide, y el
+  exacto encuentra hasta <strong>tres veces más</strong>: <code>blastn-short</code>
+  con <code>word_size 11</code> no puede sembrar un 21-mero cuyo desajuste cae en la
+  posición 11. <span class="tag e">E</span></td>
+</tr>
+<tr>
+  <td><strong>Tamaño de ventana parametrizable</strong></td>
+  <td>Hacía falta para la cuenta de azar por k de la sección 5, y el código lo tenía
+  fijo en 21.</td>
+  <td>Con el valor por defecto la salida es <strong>idéntica byte a byte</strong> a la
+  de antes de parametrizar, verificado en esta corrida sobre los cuatro genes y las
+  seis referencias. Esos conteos se citan en tres documentos.
+  <span class="tag e">E</span></td>
+</tr>
 </tbody>
 </table>
 </div>
 
-<p>Las alternativas <strong>dominan en los dos ejes a la vez</strong>: más eficientes
-y sin una sola coincidencia perfecta. Y el veto deja material de sobra —1.384 de
-2.201 regiones y 92 de 172—, así que el argumento de que un filtro duro deja al
-proyecto sin opciones no se sostiene.</p>
+<p>Con eso, elegir región es un barrido: para cada gen se calcula el conteo de
+ventanas eficientes de <strong>todas</strong> las regiones deslizantes del mismo
+largo que usó EPILAB, se descartan las que contienen alguna ventana idéntica en 21 nt
+a una referencia no objetivo, y se ordena lo que queda. <strong>Por eso la región más
+densa no siempre es la que proponemos</strong>: en ATPaseD_Dm la más densa es 136-435,
+con 24 ventanas eficientes, y está vetada; la que proponemos es 72-371, con 21.</p>
 
 <div class="note">
-  <p class="t">La región más densa no siempre es la que recomendamos</p>
-  <p>En tres de los cuatro genes coinciden. En <strong>ATPaseD_Dm no</strong>: la
-  región más densa de 300 nt es <strong>136-435, con 24 ventanas eficientes, y está
-  vetada</strong> —contiene las tres ventanas que coinciden perfecto con
-  <em>H. vitripennis</em>—, así que lo que recomendamos es <strong>72-371, con
-  21</strong>. Donde el gráfico de arriba marca el máximo de ese gen en 24, ese 24 es
-  un máximo que nosotros mismos descartamos.</p>
+  <p class="t">Tres defectos operativos del original, por si alguien lo corre</p>
+  <p>No afectan a ningún número nuestro, pero cuestan horas. <strong>si-Fi21 no
+  encuentra su propio RNAplfold</strong> en Windows y falla en silencio: el síntoma es
+  que el botón Start no hace nada. <strong>La tabla de resultados no se muestra
+  nunca</strong>: el conteo de eficientes, que es el resultado principal, sólo sale
+  por <em>Save as → Table (CSV)</em>. Y <strong>la exportación corrompe el nombre del
+  archivo</strong>, porque concatena la ruta consigo misma. Es probable que el primero
+  sea a lo que el investigador se refirió cuando dijo que el programa «no anda
+  bien».</p>
 </div>
 
-<h3>Y si el laboratorio acepta moverlas, el orden cambia</h3>
 
-<p>El ranking de la sección 3 es el que pidió el investigador: los cuatro candidatos
-<strong>tal como están</strong>. Si la recomendación se acepta, los candidatos dejan
-de ser esos. No es obvio qué pasa, porque mover una región cambia los dos ejes a la
-vez y no por igual en todos los genes.</p>
+<h2>B.2 · Las cuatro regiones propuestas, y cuánto mueven cada eje</h2>
 
 <div class="tw">
 <table>
-<caption>Los dos ejes antes y después de mover la región, con los pesos base. La región del gen cambia; el gen, no.</caption>
+<caption>La región de la planilla contra la que proponemos, dentro del mismo gen. El percentil es dentro de la distribución completa de ese gen.</caption>
 <thead><tr>
-  <th>Candidato</th><th>Región elegida</th><th class="num">Eficacia</th><th class="num">Limpieza</th>
-  <th>Región recomendada</th><th class="num">Eficacia</th><th class="num">Limpieza</th>
+  <th>Gen</th><th>Región elegida</th><th class="num">Eficientes</th><th class="num">Percentil</th><th>¿Vetada?</th>
+  <th>Región propuesta</th><th class="num">Eficientes</th><th class="num">Percentil</th><th>¿Vetada?</th>
 </tr></thead>
 <tbody>
-  <tr><td>MP_MRFV</td><td>1-200</td><td class="num">0,1500</td><td class="num">0,9802</td><td>72-271</td><td class="num">0,1900</td><td class="num">0,9826</td></tr>
-  <tr><td>CP_MRFV</td><td>201-400</td><td class="num">0,0850</td><td class="num">0,9931</td><td>99-298</td><td class="num">0,1050</td><td class="num">0,9925</td></tr>
-  <tr><td><strong>BicC_Dm</strong></td><td>264-563</td><td class="num">0,0667</td><td class="num"><strong>0,9334</strong></td><td>2123-2422</td><td class="num"><strong>0,1233</strong></td><td class="num"><strong>0,9922</strong></td></tr>
-  <tr><td>ATPaseD_Dm</td><td>151-450</td><td class="num">0,0600</td><td class="num">0,9804</td><td>72-371</td><td class="num">0,0700</td><td class="num">0,9924</td></tr>
+  <tr><td>MP_MRFV</td><td>1-200</td><td class="num">30</td><td class="num">91</td><td>no</td><td>72-271</td><td class="num">38</td><td class="num">100</td><td>no</td></tr>
+  <tr><td>CP_MRFV</td><td>201-400</td><td class="num">17</td><td class="num">49</td><td>no</td><td>99-298</td><td class="num">21</td><td class="num">100</td><td>no</td></tr>
+  <tr><td><strong>BicC_Dm</strong></td><td>264-563</td><td class="num">20</td><td class="num">44</td><td><span class="tag q">sí</span></td><td><strong>2123-2422</strong></td><td class="num"><strong>37</strong></td><td class="num">100</td><td>no</td></tr>
+  <tr><td>ATPaseD_Dm</td><td>151-450</td><td class="num">18</td><td class="num">45</td><td><span class="tag q">sí</span></td><td>72-371</td><td class="num">21</td><td class="num">72</td><td>no</td></tr>
 </tbody>
 </table>
 </div>
 
-<p><span class="tag e">E</span> El orden pasa a ser <strong>MP_MRFV &gt; BicC_Dm &gt;
-CP_MRFV &gt; ATPaseD_Dm</strong>, en entre el 89,7 % y el 100 % de los sorteos con la
-escala absoluta y en el 100 % con la cascada. <strong>BicC_Dm salta de pelear el
-último puesto a quedar segundo.</strong></p>
+<p>El veto deja material de sobra: <strong>1.384 de 2.201 regiones</strong> de
+BicC_Dm y <strong>92 de 172</strong> de ATPaseD_Dm lo escapan, así que el argumento
+de que un filtro duro deja al proyecto sin opciones no se sostiene. ATPaseD_Dm es la
+única cuya región propuesta no es la más densa de su gen, por el motivo de B.1.</p>
 
-<p>El mecanismo está entero en la tabla: su eficacia casi se duplica —0,0667 a
-0,1233, con lo que pasa a CP_MRFV— y al mismo tiempo su limpieza sube de 0,9334 a
-0,9922, porque la región nueva deja afuera las 22 ventanas que coincidían perfecto
-con <em>H. vitripennis</em>. Es el único de los cuatro que mejora mucho en los dos
-ejes a la vez, y por eso es el único que cambia de puesto.</p>
+<figure>
+<svg viewBox="0 0 880 300" role="img" aria-labelledby="t4 d4">
+  <title id="t4">Movimiento de cada candidato en los dos ejes al cambiar de región</title>
+  <desc id="d4">Dispersión de eficacia contra limpieza. Cada candidato aparece dos
+  veces, unido por una línea: círculo hueco en la región elegida por EPILAB y círculo
+  lleno en la región que proponemos. BicC_Dm tiene el movimiento más largo, hacia
+  arriba y a la derecha; los otros tres se mueven poco.</desc>
 
-<p><strong>Esto es lo que vuelve a la recomendación algo más que una observación.</strong>
-Si el laboratorio se queda con su región, BicC_Dm es un candidato mediocre y vetado;
-si la mueve 1.859 nucleótidos dentro del mismo gen, es el segundo mejor de los
-cuatro. El gen no cambió: cambió qué parte del gen se usa. ATPaseD_Dm, en cambio,
-sigue último incluso mejorado, lo que es coherente con que todo su gen vaya de 17 a
-24 ventanas eficientes.</p>
+  <g stroke="var(--grid)" stroke-width="1">
+    <line x1="110" y1="206" x2="820" y2="206"/><line x1="110" y1="159" x2="820" y2="159"/>
+    <line x1="110" y1="111" x2="820" y2="111"/><line x1="110" y1="64" x2="820" y2="64"/>
+  </g>
+  <g font-size="11" fill="var(--text-dim)" text-anchor="end">
+    <text x="102" y="210">0,93</text><text x="102" y="163">0,95</text>
+    <text x="102" y="115">0,97</text><text x="102" y="68">0,99</text>
+  </g>
+  <text transform="rotate(-90 34 135)" x="34" y="135" font-size="11.5" fill="var(--text-dim)" text-anchor="middle">limpieza →</text>
+
+  <line x1="110" y1="230" x2="820" y2="230" stroke="var(--axis)" stroke-width="1"/>
+  <g font-size="11" fill="var(--text-dim)" text-anchor="middle">
+    <text x="110" y="249">0,05</text><text x="252" y="249">0,08</text><text x="394" y="249">0,11</text>
+    <text x="536" y="249">0,14</text><text x="678" y="249">0,17</text><text x="820" y="249">0,20</text>
+  </g>
+  <text x="465" y="270" font-size="11.5" fill="var(--text-dim)" text-anchor="middle">eficacia → (fracción de ventanas de la región que son eficientes)</text>
+  <text x="465" y="289" font-size="10.5" fill="var(--text-dim)" text-anchor="middle">los dos ejes arrancan recortados, no en cero</text>
+
+  <!-- BicC_Dm: el movimiento largo -->
+  <line x1="189" y1="198" x2="457" y2="59" stroke="var(--efic)" stroke-width="2"/>
+  <!-- MP_MRFV -->
+  <line x1="583" y1="87" x2="772" y2="81" stroke="var(--efic)" stroke-width="2"/>
+  <!-- CP_MRFV -->
+  <line x1="276" y1="56" x2="370" y2="58" stroke="var(--efic)" stroke-width="2"/>
+  <!-- ATPaseD_Dm -->
+  <line x1="157" y1="87" x2="205" y2="58" stroke="var(--efic)" stroke-width="2"/>
+
+  <g fill="var(--surface)" stroke="var(--efic)" stroke-width="2">
+    <circle cx="189" cy="198" r="5.5"><title>BicC_Dm 264-563 · eficacia 0,0667 · limpieza 0,9334</title></circle>
+    <circle cx="583" cy="87" r="5.5"><title>MP_MRFV 1-200 · eficacia 0,1500 · limpieza 0,9802</title></circle>
+    <circle cx="276" cy="56" r="5.5"><title>CP_MRFV 201-400 · eficacia 0,0850 · limpieza 0,9931</title></circle>
+    <circle cx="157" cy="87" r="5.5"><title>ATPaseD_Dm 151-450 · eficacia 0,0600 · limpieza 0,9804</title></circle>
+  </g>
+  <g fill="var(--efic)" stroke="var(--surface)" stroke-width="2">
+    <circle cx="457" cy="59" r="6.5"><title>BicC_Dm 2123-2422 · eficacia 0,1233 · limpieza 0,9922</title></circle>
+    <circle cx="772" cy="81" r="6.5"><title>MP_MRFV 72-271 · eficacia 0,1900 · limpieza 0,9826</title></circle>
+    <circle cx="370" cy="58" r="6.5"><title>CP_MRFV 99-298 · eficacia 0,1050 · limpieza 0,9925</title></circle>
+    <circle cx="205" cy="58" r="6.5"><title>ATPaseD_Dm 72-371 · eficacia 0,0700 · limpieza 0,9924</title></circle>
+  </g>
+
+  <text x="772" y="68" font-size="11.5" fill="var(--text)" text-anchor="middle" font-weight="650">MP_MRFV</text>
+  <text x="468" y="44" font-size="11.5" fill="var(--text)" text-anchor="start" font-weight="650">BicC_Dm</text>
+  <text x="370" y="44" font-size="11.5" fill="var(--text)" text-anchor="middle">CP_MRFV</text>
+  <text x="198" y="44" font-size="11.5" fill="var(--text)" text-anchor="middle">ATPaseD_Dm</text>
+  <text x="196" y="217" font-size="10.5" fill="var(--text-dim)" text-anchor="start">BicC_Dm, región de la planilla</text>
+</svg>
+<div class="legend">
+  <span><i class="sw h"></i> región elegida por EPILAB</span>
+  <span><i class="sw e"></i> región que proponemos</span>
+</div>
+<figcaption>Cada candidato aparece dos veces, unido por una línea: hueco donde está
+hoy, lleno donde proponemos moverlo. <strong>BicC_Dm es el único con un movimiento
+grande, y lo hace en los dos ejes a la vez</strong>: su eficacia casi se duplica y su
+limpieza sube de 0,93 a 0,99, porque la región nueva deja afuera las 22 ventanas que
+coincidían perfecto con <em>H. vitripennis</em>. Los otros tres se mueven poco,
+y ATPaseD_Dm se mueve sobre todo en limpieza. Los dos ejes arrancan recortados para
+que el movimiento se vea; ninguno arranca en cero.</figcaption>
+</figure>
 
 
-<h2>5. La cuenta de azar: dónde deja de ser ruido lo que se encuentra</h2>
+<h2>B.3 · El ranking con las regiones propuestas</h2>
+
+<p>Mismo barrido, mismos 2.000 juegos de pesos, mismas reglas: lo único que cambia es
+qué parte de cada gen se evalúa.</p>
+
+<figure>
+<svg viewBox="0 0 880 300" role="img" aria-labelledby="t5 d5">
+  <title id="t5">Frecuencia de cada candidato en cada posición, con las regiones propuestas</title>
+  <desc id="d5">Matriz de cuatro candidatos por cuatro posiciones. Con las regiones
+  propuestas cada candidato ocupa una posición distinta en el 99 por ciento o más de
+  los sorteos: MP_MRFV primero, BicC_Dm segundo, CP_MRFV tercero y ATPaseD_Dm cuarto.</desc>
+
+  <g font-size="12" fill="var(--text-dim)" text-anchor="middle">
+    <text x="330" y="36">1.º</text><text x="470" y="36">2.º</text>
+    <text x="610" y="36">3.º</text><text x="750" y="36">4.º</text>
+  </g>
+
+  <g>
+    <text x="250" y="78" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">MP_MRFV</text>
+    <rect x="270" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.71"/><text x="330" y="80" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">99 %</text>
+    <rect x="410" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="470" y="80" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="550" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="610" y="80" font-size="13" fill="var(--text-dim)" text-anchor="middle">1 %</text>
+    <rect x="690" y="52" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="750" y="80" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+  </g>
+  <g>
+    <text x="250" y="134" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">BicC_Dm</text>
+    <rect x="270" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="330" y="136" font-size="13" fill="var(--text-dim)" text-anchor="middle">1 %</text>
+    <rect x="410" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.71"/><text x="470" y="136" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">99 %</text>
+    <rect x="550" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="610" y="136" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="690" y="108" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="750" y="136" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+  </g>
+  <g>
+    <text x="250" y="190" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">CP_MRFV</text>
+    <rect x="270" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="330" y="192" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="410" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="470" y="192" font-size="13" fill="var(--text-dim)" text-anchor="middle">1 %</text>
+    <rect x="550" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.71"/><text x="610" y="192" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">99 %</text>
+    <rect x="690" y="164" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="750" y="192" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+  </g>
+  <g>
+    <text x="250" y="246" font-size="12.5" fill="var(--text)" text-anchor="end" font-weight="650">ATPaseD_Dm</text>
+    <rect x="270" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="330" y="248" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="410" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="470" y="248" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="550" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.03"/><text x="610" y="248" font-size="13" fill="var(--text-dim)" text-anchor="middle">0 %</text>
+    <rect x="690" y="220" width="120" height="44" fill="var(--efic)" fill-opacity="0.72"/><text x="750" y="248" font-size="13" fill="var(--text)" text-anchor="middle" font-weight="650">100 %</text>
+  </g>
+  <text x="540" y="288" font-size="11.5" fill="var(--text-dim)" text-anchor="middle">media geométrica · regla conservadora · escala absoluta · 2.000 sorteos</text>
+</svg>
+<figcaption>La diagonal se arma sola: <strong>cada candidato ocupa una posición
+distinta en el 99 % o más de los sorteos</strong>. Es el mismo gráfico que A.3 con
+las mismas reglas, y la diferencia es que ahí el tercer puesto se repartía 75 a 25 y
+acá no se reparte. <strong>BicC_Dm pasa de disputar el último lugar a quedar
+segundo</strong>, delante de CP_MRFV.</figcaption>
+</figure>
+
+<p><span class="tag e">E</span> El orden <strong>MP_MRFV &gt; BicC_Dm &gt; CP_MRFV
+&gt; ATPaseD_Dm</strong> se sostiene en entre el <strong>89,7 % y el 100 %</strong> de
+los sorteos sobre las seis combinaciones de forma de combinación y regla con escala
+absoluta, y en el 100 % con la cascada de veto.</p>
+
+
+<h2>B.4 · Qué cambia, qué no, y qué hay que mirar antes de usarlo</h2>
+
+<p><strong>Lo que cambia es el orden, no el conjunto de genes.</strong> Los cuatro
+candidatos siguen siendo los mismos cuatro genes; lo que se mueve es qué tramo de
+cada uno se sintetiza. BicC_Dm es el único que cambia de puesto, y es porque es el
+único que mejora mucho en los dos ejes a la vez.</p>
+
+<p><strong>Lo que no cambia:</strong> ATPaseD_Dm sigue último incluso con su mejor
+región disponible, lo que es coherente con que todo su gen vaya de 17 a 24 ventanas
+eficientes; y MP_MRFV sigue primero en los dos escenarios, que es el resultado más
+robusto de todo el trabajo.</p>
+
+<div class="note">
+  <p class="t">Dos cosas que hay que mirar antes de sintetizar nada</p>
+  <p><strong>Las regiones propuestas no están verificadas contra la conservación
+  dentro de <em>Dalbulus maidis</em>.</strong> Están elegidas por densidad de
+  eficientes y por ausencia de coincidencia perfecta con no objetivo, pero no sabemos
+  si esos tramos están conservados entre poblaciones argentinas del vector. Una
+  región excelente que varíe entre poblaciones no sirve.
+  <span class="tag q">?</span></p>
+  <p>Y bajo la normalización min-max el orden de la parte B se vuelve inestable
+  —ningún orden supera el 36 % de los sorteos—. El motivo es entendible: al mejorar,
+  los cuatro quedan mucho más juntos en los dos ejes, y una normalización que estira
+  el rango observado a [0,1] convierte diferencias chicas en distancias grandes. Es
+  un argumento a favor de leer la parte B con la escala absoluta, que no depende del
+  conjunto.</p>
+</div>
+
+
+<h2>5 · La cuenta de azar: dónde deja de ser ruido lo que se encuentra</h2>
 
 <p>El investigador la pidió explícito, porque es el soporte de su argumento de que
 <em>la biología no es random</em>: «no vas a encontrar lo que te dice la estadística
@@ -515,17 +723,15 @@ que deberías encontrar por azar». Teníamos el lado observado y faltaban el es
 la comparación.</p>
 
 <figure>
-<svg viewBox="0 0 880 330" role="img" aria-labelledby="t5 d5">
-  <title id="t5">Razón entre lo observado y lo esperado por azar, por tamaño de ventana</title>
-  <desc id="d5">La razón sube de 0,60 en 15 nucleótidos a 41 en 21 nucleótidos,
+<svg viewBox="0 0 880 330" role="img" aria-labelledby="t6 d6">
+  <title id="t6">Razón entre lo observado y lo esperado por azar, por tamaño de ventana</title>
+  <desc id="d6">La razón sube de 0,60 en 15 nucleótidos a 41 en 21 nucleótidos,
   cruzando el valor 1 entre 17 y 18 nucleótidos. Por debajo del cruce aparecen menos
   coincidencias de las que predice el azar; por encima, muchas más.</desc>
 
-  <!-- bandas de regimen, partidas en el cruce real (x=335) -->
   <rect x="80" y="18" width="255" height="234" fill="var(--accent)" fill-opacity="0.05"/>
   <rect x="335" y="18" width="485" height="234" fill="var(--risk)" fill-opacity="0.05"/>
 
-  <!-- grilla log: y(1)=204, 113 px por decada -->
   <g stroke="var(--grid)" stroke-width="1">
     <line x1="80" y1="238" x2="820" y2="238"/><line x1="80" y1="204" x2="820" y2="204"/>
     <line x1="80" y1="170" x2="820" y2="170"/><line x1="80" y1="125" x2="820" y2="125"/>
@@ -535,11 +741,9 @@ la comparación.</p>
     <text x="72" y="242">0,5</text><text x="72" y="208">1</text><text x="72" y="174">2</text>
     <text x="72" y="129">5</text><text x="72" y="95">10</text><text x="72" y="61">20</text>
   </g>
-  <!-- linea de referencia en 1 -->
   <line x1="80" y1="204" x2="820" y2="204" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
   <text x="826" y="208" font-size="11" fill="var(--muted)">1,0</text>
 
-  <!-- eje x -->
   <line x1="80" y1="252" x2="820" y2="252" stroke="var(--axis)" stroke-width="1"/>
   <g font-size="11.5" fill="var(--text-dim)" text-anchor="middle">
     <text x="80" y="271">15</text><text x="203" y="271">16</text><text x="327" y="271">17</text>
@@ -548,7 +752,6 @@ la comparación.</p>
   </g>
   <text x="450" y="292" font-size="11.5" fill="var(--text-dim)" text-anchor="middle">tamaño de la ventana, en nucleótidos</text>
 
-  <!-- serie: razon observado/esperado, escala log -->
   <polyline fill="none" stroke="var(--efic)" stroke-width="2" stroke-linejoin="round"
             points="80,229 203,218 327,205 450,183 573,140 697,83 820,22"/>
   <g fill="var(--efic)" stroke="var(--surface)" stroke-width="2">
@@ -563,12 +766,10 @@ la comparación.</p>
   <text x="88" y="238" font-size="11.5" fill="var(--text)" text-anchor="start" font-weight="650">0,60</text>
   <text x="828" y="26" font-size="12.5" fill="var(--text)" text-anchor="start" font-weight="650">41×</text>
 
-  <!-- marca del cruce, en la posicion real donde la razon vale 1 -->
   <line x1="335" y1="18" x2="335" y2="252" stroke="var(--text-dim)" stroke-width="1" stroke-dasharray="3 3"/>
   <text x="326" y="104" font-size="11.5" fill="var(--text)" text-anchor="end" font-weight="650">el cruce está</text>
   <text x="326" y="119" font-size="11.5" fill="var(--text)" text-anchor="end" font-weight="650">entre 17 y 18</text>
 
-  <!-- que significa cada banda -->
   <text x="80" y="316" font-size="11.5" fill="var(--text-dim)" text-anchor="start">← aparece menos de lo que predice el azar</text>
   <text x="820" y="316" font-size="11.5" fill="var(--text-dim)" text-anchor="end">aparece más de lo que predice el azar →</text>
 </svg>
@@ -623,7 +824,7 @@ estructura de las secuencias la otra mitad —un 24,8 % adicional—.</p>
 </div>
 
 
-<h2>6. El benchmark de las tres herramientas, y la compuerta de confidencialidad</h2>
+<h2>6 · El benchmark de las tres herramientas, y la compuerta de confidencialidad</h2>
 
 <p>El investigador pidió comparar si-Fi21, dsRNA-Engineer y BLAST sobre los cuatro
 genes. dsRNA-Engineer corre <strong>sólo como servicio web</strong>, con
@@ -688,7 +889,7 @@ es exactamente la que no se puede usar con el material que el mismo organizador
 entregó.</p>
 
 
-<h2>7. Lo que este ranking no mide</h2>
+<h2>7 · Lo que este ranking no mide</h2>
 
 <p>Conviene dejarlo junto al resultado y no en una nota al pie.</p>
 
@@ -712,7 +913,7 @@ todo sobre la molécula completa.</li>
 </ul>
 
 
-<h2>8. Qué hay que preguntarle</h2>
+<h2>8 · Qué hay que preguntarle</h2>
 
 <p>En orden de cuánto cambia lo que hacemos:</p>
 
@@ -721,7 +922,7 @@ todo sobre la molécula completa.</li>
 si-Fi21 sin modificar da 133, 32, 212 y 42; la planilla dice 114, 35, 199 y 33. Los
 cuatro difieren y no en la misma dirección.</li>
 <li><strong>¿Cuánto te importa un cicadélido no objetivo como <em>H.
-vitripennis</em>?</strong> Es la que más mueve el entregable: el tercer puesto se da
+vitripennis</em>?</strong> Es la que más mueve la parte A: el tercer puesto se da
 vuelta según el peso de esa referencia, porque BicC_Dm concentra ahí toda su
 exposición. Es una pregunta de política de riesgo, no técnica.</li>
 <li><strong>¿El veto por coincidencia perfecta de 21 nt te parece bien como descarte
@@ -756,7 +957,7 @@ mira la posición.</li>
 <tbody>
 <tr><td>Perfil de eficiencia</td><td><code>run_sifi.py --modo corregido --backend vienna</code></td><td>un TSV por gen, una fila por ventana</td></tr>
 <tr><td>Percentil y los dos nulos</td><td><code>ranking.py nulo --reps 2000 --correlacion</code></td><td><code>nulo_region.json</code></td></tr>
-<tr><td>Ranking y barrido</td><td><code>ranking.py ranking --muestras 2000</code></td><td><code>ranking.json</code></td></tr>
+<tr><td>Ranking, barrido y regiones propuestas</td><td><code>ranking.py ranking --muestras 2000</code></td><td><code>ranking.json</code></td></tr>
 <tr><td>Cuenta de azar</td><td><code>azar_kmer.py --k 15 16 17 18 19 20 21</code></td><td><code>azar_por_k.json</code></td></tr>
 <tr><td>Verificaciones</td><td><code>test_ranking.py</code></td><td>propiedades del criterio y anclas contra los números ya publicados</td></tr>
 </tbody>
@@ -766,7 +967,8 @@ mira la posición.</li>
 <p>Los documentos largos: <a href="REPORT.md">el reporte del ranking</a> con las cinco
 decisiones defendidas una por una, <a href="azar_por_k.md">la cuenta de azar</a> y
 <a href="benchmark_tres_herramientas.md">el benchmark de las tres herramientas</a>.
-Las decisiones formales están en <code>00_meta/DECISIONS.md</code>, D15 a D21.</p>
+Las decisiones formales están en <code>00_meta/DECISIONS.md</code>, D15 a D21, y lo
+que le cambiamos a si-Fi21 en <code>tools/sifi21_port/CAMBIOS.md</code>.</p>
 
 </div>
 
