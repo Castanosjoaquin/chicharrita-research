@@ -694,3 +694,32 @@ y el desacuerdo por hasta un factor de tres en el de un desajuste, con causa
 identificada (`blastn-short` con `word_size 11` no puede sembrar un 21-mero cuyo
 desajuste cae en la posición 11). Correr BLAST otra vez habría producido los mismos
 números con más ruido en el repositorio.
+
+## Nivel panel y largo de ventana — complemento de W7 (2026-10-20)
+
+### Correr sólo las dos referencias nuevas en vez de rebajar las seis de W7
+**Qué se intentó:** contestar si las regiones que W7 recomienda sobreviven a un panel más
+grande, sin volver a bajar los 379 MB de referencias originales.
+**Qué pasó:** funcionó, y el argumento es que **agregar referencias sólo puede agregar vetos,
+nunca sacarlos**, así que para falsar «esta región está limpia» alcanza con las nuevas. Costó
+156 MB de descarga y veinte segundos de cómputo. Lo que **no** se puede contestar así es el
+puntaje de limpieza completo, que necesita las seis.
+**Estado:** vigente. Para rehacer el ranking entero hay que bajar las seis otra vez.
+
+### Dar por bueno el entorno sin verificar que reproduce a W7
+**Qué se intentó:** nada; se evitó a propósito. `panel_y_k.py` aborta si los cuatro conteos
+de eficientes no son 123, 30, 171 y 29.
+**Qué pasó:** el entorno nuevo (venv con ViennaRNA 2.7.2, biopython, pyahocorasick) los
+reproduce exacto, y en modo fiel da 142, 39, 223 y 35, que es la columna «fiel + 2.7.2» ya
+publicada. Recién con eso se midió algo nuevo.
+**Estado:** es la práctica que ya había introducido el port y conviene mantenerla.
+
+### Generalizar la regla terminal de si-Fi21 a 22 nt
+**Qué se intentó:** correr el criterio de eficiencia con ventana de 22 nt.
+**Qué pasó:** se puede, porque el motor toma `sirna_size`, pero la regla terminal mira el
+nucleótido 2 y `sirna[size-3]` —el tercero desde el final—, que a 21 nt es el 19 y a 22 pasa
+a ser el 20. Se conservó la **posición relativa** (el extremo 3' de la guía), que es la
+lectura mecanicista. Es una decisión nuestra y no una propiedad del original: si-Fi21 no
+contempla 22 nt. Queda declarada acá y en el informe.
+**Estado:** abierto. Si el investigador tiene la regla del laboratorio para 22, hay que
+reemplazarla.

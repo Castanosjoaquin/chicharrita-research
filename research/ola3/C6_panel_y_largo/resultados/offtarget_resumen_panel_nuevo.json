@@ -1,0 +1,82 @@
+[
+  {
+    "base_de_datos": "macrosteles_rna",
+    "consulta": "ATPaseD_Dm_full",
+    "siRNA_perfecto_ge19": 20,
+    "siRNA_perfecto_21": 12,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 2,
+    "size": 21,
+    "min_block": 19
+  },
+  {
+    "base_de_datos": "macrosteles_rna",
+    "consulta": "BicC_Dm_full",
+    "siRNA_perfecto_ge19": 180,
+    "siRNA_perfecto_21": 101,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 4,
+    "size": 21,
+    "min_block": 19
+  },
+  {
+    "base_de_datos": "macrosteles_rna",
+    "consulta": "CP_MRFV_full",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0,
+    "size": 21,
+    "min_block": 19
+  },
+  {
+    "base_de_datos": "macrosteles_rna",
+    "consulta": "MP_MRFV_full",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0,
+    "size": 21,
+    "min_block": 19
+  },
+  {
+    "base_de_datos": "humano_rna",
+    "consulta": "ATPaseD_Dm_full",
+    "siRNA_perfecto_ge19": 7,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 2,
+    "size": 21,
+    "min_block": 19
+  },
+  {
+    "base_de_datos": "humano_rna",
+    "consulta": "BicC_Dm_full",
+    "siRNA_perfecto_ge19": 12,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 21,
+    "size": 21,
+    "min_block": 19
+  },
+  {
+    "base_de_datos": "humano_rna",
+    "consulta": "CP_MRFV_full",
+    "siRNA_perfecto_ge19": 2,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 8,
+    "size": 21,
+    "min_block": 19
+  },
+  {
+    "base_de_datos": "humano_rna",
+    "consulta": "MP_MRFV_full",
+    "siRNA_perfecto_ge19": 3,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 7,
+    "size": 21,
+    "min_block": 19
+  }
+]

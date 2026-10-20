@@ -557,3 +557,31 @@ resultado y va a la presentación: la herramienta que el organizador señala com
 de diseño y verificación de off-targets es la que no se puede usar con el material
 que el organizador entregó. Proyectos `ff5138f6b1e5a91c` y `c816ff87893b36a4`,
 registrados en `research/ola2/W7_ranking/dsrnaengineer_corrida.json`.
+
+## D22 — El panel de no objetivo se amplía con el pariente más cercano y con humano, y el largo de ventana pasa a ser un parámetro declarado
+**Fecha:** 2026-10-20
+**Decisión:** el veto por coincidencia perfecta de 21 nt se evalúa también contra
+*Macrosteles quadrilineatus* (`GCF_028750875.1`, transcriptoma) y *Homo sapiens*
+(`GCF_000001405.40`, transcriptoma), y toda recomendación de región declara a qué largo de
+ventana se calculó, reportando 21 y 22 nt cuando difieren.
+**Alternativas consideradas:** (a) dejar el panel de seis de W7 y anotar la ausencia como
+límite; (b) bajar el catálogo completo de 26 especies de `pipeline/no_objetivo_catalogo.py`;
+(c) seguir sólo con 21 nt, que es lo que hacen si-Fi21 y todo el repositorio.
+**Criterio:** (a) no alcanza porque la especie que falta no es una más: `pipeline/REPORT.md`
+§4.2 ya había medido que *M. quadrilineatus* descarta 70 veces más que el maíz y que 613 de
+sus 700 descartes no los ve ninguna otra especie, y es el cicadélido con genoma anotado más
+cercano a *Dalbulus*. Humano lo nombró el investigador y lo pide `CLAUDE.md`. (b) es lo
+correcto a futuro pero son 26 descargas y el objetivo acá era falsar una recomendación
+concreta, para lo que alcanza con que agregar referencias sólo pueda agregar vetos. (c) deja
+fijo un parámetro que `R1_fundamentos` §2.1 muestra que es específico de orden y que para
+hemípteros no está publicado.
+**Consecuencia:** la recomendación de W7 §2.2 de mover la región en los dos genes del insecto
+**no sobrevive**. En `BicC_Dm` la región propuesta (2123-2422) tiene 19 ventanas con 21/21
+contra *Macrosteles* y la de EPILAB tiene 10; la alternativa 922-1221 conserva 36 de las 37
+ventanas eficientes y escapa al veto. En `ATPaseD_Dm` ninguna región de 300 nt escapa, y la
+salida es acortar a 200 nt (94 de 272 regiones limpias, la mejor 88-287 con 17 eficientes),
+lo que además devuelve el diseño al rango de 150-250 nt que declaró el investigador. Los dos
+genes virales no se tocan: cero coincidencias perfectas contra las dos referencias nuevas.
+Sobre el largo: el conteo total de eficientes se mueve menos de un punto porcentual entre 21
+y 22 nt, pero el conjunto cambia casi entero (Jaccard 0,20 a 0,39), y en `MP_MRFV` la mejor
+región se muda de 72-271 a 820-1019. Detalle en `research/ola3/C6_panel_y_largo/REPORT.md`.

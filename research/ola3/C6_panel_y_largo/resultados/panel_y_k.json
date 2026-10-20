@@ -1,0 +1,333 @@
+{
+ "anclas_21nt": {
+  "MP_MRFV": {
+   "obtenido": 123,
+   "publicado": 123,
+   "coincide": true
+  },
+  "CP_MRFV": {
+   "obtenido": 30,
+   "publicado": 30,
+   "coincide": true
+  },
+  "BicC_Dm": {
+   "obtenido": 171,
+   "publicado": 171,
+   "coincide": true
+  },
+  "ATPaseD_Dm": {
+   "obtenido": 29,
+   "publicado": 29,
+   "coincide": true
+  }
+ },
+ "panel_ampliado": {
+  "MP_MRFV": {
+   "ventanas": 1243,
+   "largo_region": 200,
+   "veto_por_referencia": {
+    "humano_rna": 0,
+    "macrosteles_rna": 0
+   },
+   "regiones": {
+    "epilab": {
+     "region": [
+      1,
+      200
+     ],
+     "eficientes": 30,
+     "veto_nuevo": {
+      "humano_rna": 0,
+      "macrosteles_rna": 0
+     },
+     "vetada_por_panel_nuevo": false
+    },
+    "w7_recomendada": {
+     "region": [
+      72,
+      271
+     ],
+     "eficientes": 38,
+     "veto_nuevo": {
+      "humano_rna": 0,
+      "macrosteles_rna": 0
+     },
+     "vetada_por_panel_nuevo": false
+    }
+   },
+   "regiones_que_escapan": 1044,
+   "regiones_totales": 1044
+  },
+  "CP_MRFV": {
+   "ventanas": 508,
+   "largo_region": 200,
+   "veto_por_referencia": {
+    "humano_rna": 0,
+    "macrosteles_rna": 0
+   },
+   "regiones": {
+    "epilab": {
+     "region": [
+      201,
+      400
+     ],
+     "eficientes": 17,
+     "veto_nuevo": {
+      "humano_rna": 0,
+      "macrosteles_rna": 0
+     },
+     "vetada_por_panel_nuevo": false
+    },
+    "w7_recomendada": {
+     "region": [
+      99,
+      298
+     ],
+     "eficientes": 21,
+     "veto_nuevo": {
+      "humano_rna": 0,
+      "macrosteles_rna": 0
+     },
+     "vetada_por_panel_nuevo": false
+    }
+   },
+   "regiones_que_escapan": 309,
+   "regiones_totales": 309
+  },
+  "BicC_Dm": {
+   "ventanas": 2500,
+   "largo_region": 300,
+   "veto_por_referencia": {
+    "humano_rna": 0,
+    "macrosteles_rna": 101
+   },
+   "regiones": {
+    "epilab": {
+     "region": [
+      264,
+      563
+     ],
+     "eficientes": 20,
+     "veto_nuevo": {
+      "humano_rna": 0,
+      "macrosteles_rna": 10
+     },
+     "vetada_por_panel_nuevo": true
+    },
+    "w7_recomendada": {
+     "region": [
+      2123,
+      2422
+     ],
+     "eficientes": 37,
+     "veto_nuevo": {
+      "humano_rna": 0,
+      "macrosteles_rna": 19
+     },
+     "vetada_por_panel_nuevo": true
+    }
+   },
+   "regiones_que_escapan": 497,
+   "regiones_totales": 2201,
+   "mejor_sin_veto_ampliado": {
+    "region": [
+     922,
+     1221
+    ],
+    "eficientes": 36
+   }
+  },
+  "ATPaseD_Dm": {
+   "ventanas": 471,
+   "largo_region": 300,
+   "veto_por_referencia": {
+    "humano_rna": 0,
+    "macrosteles_rna": 12
+   },
+   "regiones": {
+    "epilab": {
+     "region": [
+      151,
+      450
+     ],
+     "eficientes": 18,
+     "veto_nuevo": {
+      "humano_rna": 0,
+      "macrosteles_rna": 12
+     },
+     "vetada_por_panel_nuevo": true
+    },
+    "w7_recomendada": {
+     "region": [
+      72,
+      371
+     ],
+     "eficientes": 21,
+     "veto_nuevo": {
+      "humano_rna": 0,
+      "macrosteles_rna": 12
+     },
+     "vetada_por_panel_nuevo": true
+    }
+   },
+   "regiones_que_escapan": 0,
+   "regiones_totales": 172,
+   "mejor_sin_veto_ampliado": {
+    "region": null,
+    "eficientes": 0
+   }
+  }
+ },
+ "k21_vs_k22": {
+  "MP_MRFV": {
+   "largo_gen": 1263,
+   "k21": {
+    "ventanas": 1243,
+    "eficientes": 123,
+    "tasa": 0.099,
+    "epilab": 30,
+    "w7": 38,
+    "mejor_region": [
+     72,
+     271
+    ],
+    "mejor_eficientes": 38
+   },
+   "k22": {
+    "ventanas": 1242,
+    "eficientes": 123,
+    "tasa": 0.099,
+    "epilab": 21,
+    "w7": 29,
+    "mejor_region": [
+     820,
+     1019
+    ],
+    "mejor_eficientes": 32
+   },
+   "solapamiento": {
+    "en_ambos": 66,
+    "solo_21": 57,
+    "solo_22": 57,
+    "jaccard": 0.3667
+   }
+  },
+  "CP_MRFV": {
+   "largo_gen": 528,
+   "k21": {
+    "ventanas": 508,
+    "eficientes": 30,
+    "tasa": 0.0591,
+    "epilab": 17,
+    "w7": 21,
+    "mejor_region": [
+     99,
+     298
+    ],
+    "mejor_eficientes": 21
+   },
+   "k22": {
+    "ventanas": 507,
+    "eficientes": 29,
+    "tasa": 0.0572,
+    "epilab": 15,
+    "w7": 21,
+    "mejor_region": [
+     77,
+     276
+    ],
+    "mejor_eficientes": 22
+   },
+   "solapamiento": {
+    "en_ambos": 10,
+    "solo_21": 20,
+    "solo_22": 19,
+    "jaccard": 0.2041
+   }
+  },
+  "BicC_Dm": {
+   "largo_gen": 2520,
+   "k21": {
+    "ventanas": 2500,
+    "eficientes": 171,
+    "tasa": 0.0684,
+    "epilab": 20,
+    "w7": 37,
+    "mejor_region": [
+     2123,
+     2422
+    ],
+    "mejor_eficientes": 37
+   },
+   "k22": {
+    "ventanas": 2499,
+    "eficientes": 174,
+    "tasa": 0.0696,
+    "epilab": 16,
+    "w7": 41,
+    "mejor_region": [
+     2122,
+     2421
+    ],
+    "mejor_eficientes": 41
+   },
+   "solapamiento": {
+    "en_ambos": 83,
+    "solo_21": 88,
+    "solo_22": 91,
+    "jaccard": 0.3168
+   }
+  },
+  "ATPaseD_Dm": {
+   "largo_gen": 491,
+   "k21": {
+    "ventanas": 471,
+    "eficientes": 29,
+    "tasa": 0.0616,
+    "epilab": 18,
+    "w7": 21,
+    "mejor_region": [
+     136,
+     435
+    ],
+    "mejor_eficientes": 24
+   },
+   "k22": {
+    "ventanas": 470,
+    "eficientes": 32,
+    "tasa": 0.0681,
+    "epilab": 23,
+    "w7": 25,
+    "mejor_region": [
+     135,
+     434
+    ],
+    "mejor_eficientes": 28
+   },
+   "solapamiento": {
+    "en_ambos": 17,
+    "solo_21": 12,
+    "solo_22": 15,
+    "jaccard": 0.3864
+   }
+  }
+ },
+ "off_target_22nt": {
+  "ATPaseD_Dm": {
+   "humano_rna|perfecto_ge19": 9,
+   "macrosteles_rna|perfecto_ge19": 22,
+   "macrosteles_rna|perfecto_21": 11
+  },
+  "BicC_Dm": {
+   "macrosteles_rna|perfecto_ge19": 200,
+   "macrosteles_rna|perfecto_21": 90,
+   "humano_rna|perfecto_ge19": 16
+  },
+  "CP_MRFV": {
+   "humano_rna|perfecto_ge19": 2
+  },
+  "MP_MRFV": {
+   "humano_rna|perfecto_ge19": 4
+  }
+ }
+}

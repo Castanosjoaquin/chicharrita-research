@@ -411,3 +411,13 @@ cita nada de ella. Si cambió parámetros respecto del preprint, seguimos sin sa
 | id | Fuente | Tipo | Marcador | Acceso | Para qué se usó |
 | --- | --- | --- | --- | --- | --- |
 | `blastn_hsp` | Texto de ayuda de `blastn` 2.17.0, `ejemplos/salidas/blastn_help_2.17.0.txt` | documentación del binario, local | `[E]` | local | Resolver que «HCP» es **HSP** (*high-scoring segment pair*) y que los parámetros que lo usan son `-qcov_hsp_perc` y `-max_hsps`. Cuál de los dos nombró sigue `[?]`. |
+
+### Referencias no objetivo agregadas al panel (2026-10-20)
+
+Bajadas a disco desde el FTP de NCBI para `research/ola3/C6_panel_y_largo/`. Sólo entró
+tráfico: las secuencias de EPILAB nunca salieron de la máquina.
+
+| id | Accesión | Organismo | Rol en el tamizaje | Marcador |
+| --- | --- | --- | --- | --- |
+| `ref_macrosteles` | [GCF_028750875.1 UCM_ALF_1.0, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/750/875/GCF_028750875.1_UCM_ALF_1.0/) | *Macrosteles quadrilineatus* | Cicadellidae, subfamilia Deltocephalinae: **el pariente con genoma anotado más cercano a *Dalbulus maidis***, y a su vez vector de fitoplasmas. 36.629 secuencias, 102,7 Mb. Es el que da 101 ventanas con 21/21 en `BicC_Dm` y 12 en `ATPaseD_Dm`. | `[E]` |
+| `ref_humano` | [GCF_000001405.40 GRCh38.p14, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.40_GRCh38.p14/) | *Homo sapiens* | Lo nombró el investigador en el checkpoint y lo pide `CLAUDE.md`. 186.185 secuencias, 718,6 Mb. **Cero coincidencias perfectas en los cuatro genes.** | `[E]` |

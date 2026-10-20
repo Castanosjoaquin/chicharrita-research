@@ -793,3 +793,37 @@ En orden de cuánto cambian lo que hacemos:
   tramos están conservados entre poblaciones argentinas del vector. Una región
   excelente que varíe entre poblaciones no sirve, y es el mismo problema que el de
   los aislados de `CP_MRFV`.
+
+## Panel ampliado y largo de ventana (2026-10-20) — lo que abre
+
+### Para el investigador
+
+- **¿*Macrosteles quadrilineatus* cuenta como organismo no objetivo?** Es la pregunta que
+  decide la recomendación de los dos genes del insecto. Es el cicadélido con genoma anotado
+  más cercano a la chicharrita, de la misma subfamilia, y a su vez es plaga y vector de
+  fitoplasmas, así que la respuesta no es técnica. **Si cuenta**, la región que W7 propone
+  para `BicC_Dm` es peor que la de EPILAB en ese eje (19 ventanas con 21/21 contra 10) y hay
+  que ir a 922-1221; y `ATPaseD_Dm` no tiene ninguna región de 300 nt limpia, hay que
+  acortar a 200. **Si no cuenta**, vale lo que dice W7. Ya estaba anotada como pregunta en
+  `pipeline/REPORT.md` §4.2 y ahora tiene consecuencia medida.
+- **¿A qué largo de ventana quieren que elijamos la región, 21 o 22 nt?** El conteo total de
+  eficientes casi no cambia, pero el conjunto sí, y en `MP_MRFV` la mejor región de 200 nt se
+  muda de 72-271 a 820-1019 según el largo. Para hemípteros no hay perfil de largo publicado
+  (`R1_fundamentos` §2.1), así que no lo podemos decidir con evidencia.
+- **¿Tienen una regla terminal para 22 nt?** La de si-Fi21 mira el nucleótido 19 de 21.
+  Nosotros conservamos la posición relativa (el tercero desde el final), que es una decisión
+  nuestra.
+
+### Pendientes internos
+
+- **Faltan dieciocho especies del catálogo propio.** `pipeline/no_objetivo_catalogo.py` tiene
+  26 y el panel ahora cubre 8. Por el patrón de hasta ahora —el riesgo se concentra en los
+  cicadélidos— las siguientes a bajar son *Nilaparvata lugens* y *Acyrthosiphon pisum*.
+- **Las regiones que propone C6 no están verificadas contra la conservación dentro de
+  *D. maidis***, igual que las de W7. `BicC_Dm` 922-1221 y `ATPaseD_Dm` 88-287 heredan ese
+  pendiente entero.
+- **El puntaje de limpieza completo no se recalculó.** Se corrieron sólo las dos referencias
+  nuevas, que alcanza para el veto pero no para el eje continuo del ranking. Para rehacer el
+  ranking con ocho referencias hay que volver a bajar las seis originales (379 MB).
+- **El criterio de un desajuste no se corrió contra las dos referencias nuevas**, para no
+  inflar el autómata. Sólo bloque perfecto y 21/21.
