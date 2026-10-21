@@ -77,15 +77,16 @@ mitades se tocan.
 | --- | --- | --- | --- |
 | 1 · Entender si-Fi21 | **Cubierto como contenido, falta el documento** | `tools/sifi21_port/` + `research/ola3/C1_sifi21_paper_metodo/` | La nota corta y legible, para él (T1) |
 | 2 · Benchmarking de las tres | **Cerrado** | `W7_ranking/benchmark_tres_herramientas.md` | Nada del pedido |
-| 3 · Ranking con criterio | **Cerrado** | `W7_ranking/REPORT.md` §2 a §4 | Rehacerlo con el panel ampliado (T3) |
-| 4 · Evaluación de las regiones | **Cerrado, con una revisión pendiente** | `W7_ranking/REPORT.md` §2.2 y §2.3 | La recomendación de `BicC_Dm` no sobrevive al panel ampliado |
+| 3 · Ranking con criterio | **Cerrado, con segunda versión** | `W7_ranking/REPORT.md` §2 a §4 y `research/ola3/C7_ranking_v2/` | Nada del pedido; la v2 reproduce W7 exacto, suma humano, `eth` y `burs-alpha`, y reporta 21 y 22 nt |
+| 4 · Evaluación de las regiones | **Cerrado y revisado** | `W7_ranking/REPORT.md` §2.2 y §2.3, y `research/ola3/C8_conservacion/` | Nada del pedido; `BicC_Dm` pasa a 922-1221 por conservación (D25) y `ATPaseD_Dm` mantiene 72-371 |
 | 5 · Crítica de las herramientas | **Material completo, sin documento** | Disperso en seis archivos | Juntarlo y escribirlo para él (T5) |
 | Opcional · 21 contra 22 | **Cerrado** | `research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` y `C6_panel_y_largo/` | Nada |
-| Opcional · Genes nuevos | **Cerrado como catálogo** | `research/ola3/C5_.../catalogo_genes_blanco.md` | Meter los dos mejores al ranking (T6) |
+| Opcional · Genes nuevos | **Cerrado: catálogo y entrada al ranking** | `research/ola3/C5_.../catalogo_genes_blanco.md` y `C7_ranking_v2/` | Un transcriptoma que contenga `eth` y `burs-alpha`, para medir su conservación |
 
 **Lo que esto quiere decir en una línea:** el entregable ya existe y lo que queda no es
-producirlo sino **reescribir dos piezas con lo que se midió después, y redactar dos documentos
-con material que ya está**. No hay ninguna medición grande pendiente.
+producirlo sino **redactar dos documentos con material que ya está** (T1 y T5): las dos reescrituras
+que quedaban —el ranking con el panel ampliado y la región de `BicC_Dm`— se hicieron el 2026-10-21
+(C7 y C8). No hay ninguna medición grande pendiente.
 
 Y una pregunta que el checkpoint dejó abierta y que ahora tiene respuesta medida: **la cuenta del
 azar que él pidió para 18, 19 y 20 nucleótidos está hecha dos veces, por dos caminos, y las dos
@@ -199,19 +200,21 @@ estabilidad del orden frente al largo de ventana. **Terminada cuando:** cada rec
 mover una región dice contra qué panel se evaluó, y el documento dice cuáles de sus conclusiones
 cambiaron respecto de la primera versión.
 
-### T4 · La auditoría de las regiones 1–200 — hecha, y con una revisión pendiente
+### T4 · La auditoría de las regiones 1–200 — hecha y revisada
 
 **Estado:** hecha en `W7_ranking/REPORT.md` §2.2 y §2.3. Para los dos genes del insecto hay
 región alternativa recomendada —`BicC_Dm` 2123-2422 y `ATPaseD_Dm` 72-371—, mejores en los dos
 ejes a la vez, y el informe dice explícitamente qué pasa si el laboratorio acepta moverlas: el
 orden cambia y `BicC_Dm` salta de pelear el último puesto a quedar segundo.
 
-**Lo que queda, y no es un detalle:** al agregar al panel el cicadélido más cercano a la
-chicharrita con genoma anotado, la región recomendada para `BicC_Dm` tiene 19 ventanas con
-coincidencia perfecta de 21 nt contra las 10 de la que eligió EPILAB, así que en ese eje la
-recomendación empeora las cosas. Hay salida medida —otra región del mismo gen que escapa al veto
-perdiendo una sola ventana eficiente—, pero **la recomendación tal como está escrita no
-sobrevive al panel ampliado** y hay que reescribirla.
+**La revisión, hecha el 2026-10-21.** Al agregar al panel el cicadélido más cercano a la chicharrita con genoma
+anotado, la región que W7 recomendaba para `BicC_Dm` tenía 19 ventanas con coincidencia perfecta de 21 nt contra
+las 10 de la que eligió EPILAB (C6). El equipo decidió dejar a *Macrosteles* fuera del ranking (D23), con el
+argumento de que no está en Argentina, que todavía no verificamos contra un catálogo. Con esa decisión las
+recomendaciones de W7 vuelven a valer (C7), y la conservación entre fuentes públicas (C8) cambia solo una:
+**`BicC_Dm` pasa de 2121-2420 a 922-1221** (36 eficientes, 32 idénticas en los tres transcriptomas, todas en el
+argentino; D25), sin costo en el orden de diseño; `ATPaseD_Dm` mantiene 72-371. Es conservación entre fuentes
+públicas y no entre poblaciones de campo.
 
 **Nota de método que ya pagamos:** el número de eficientes de una región depende de si se calcula
 sobre la región recortada o sobre el gen entero, y la diferencia llega al 47 %. Hay que declarar
@@ -374,9 +377,9 @@ que ahora hay un pedido explícito del investigador que ordena las prioridades.
 | Rama | Dueño de | Entregable | Estado |
 | --- | --- | --- | --- |
 | **Método** | T1 y T5 | La nota de qué significa «eficiente» y la crítica de las herramientas | **Es lo que falta.** Dos documentos de redacción, con todo el material ya medido |
-| **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho. Queda reescribir la recomendación de región contra el panel ampliado |
-| **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho. Queda la segunda versión con el panel ampliado |
-| **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho; falta meter los dos mejores candidatos al ranking |
+| **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho, y la recomendación de región ya se reescribió (C8, D25) |
+| **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho, con la segunda versión (C7) |
+| **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho y los dos mejores candidatos ya están en el ranking (C7); queda la conservación de `eth` y `burs-alpha` y la de `MP_MRFV`, que no se puede evaluar con los registros públicos (C8) |
 
 El hito a proteger ya se pasó: **la primera corrida punta a punta sobre los cuatro candidatos
 reales, con su ficha, existe desde el 2026-10-20**. Desde acá el riesgo cambia de naturaleza —ya
