@@ -77,38 +77,6 @@ mitades se tocan.
 | --- | --- | --- | --- |
 | 1 · Entender si-Fi21 | **Cubierto como contenido, falta el documento** | `tools/sifi21_port/` + `research/ola3/C1_sifi21_paper_metodo/` | La nota corta y legible, para él (T1) |
 | 2 · Benchmarking de las tres | **Cerrado** | `W7_ranking/benchmark_tres_herramientas.md` | Nada del pedido |
-<<<<<<< HEAD
-| 3 · Ranking con criterio | **Cerrado, con v2** | `W7_ranking/REPORT.md` + `research/ola3/C7_ranking_v2/` | Nada |
-| 4 · Evaluación de las regiones | **Cerrado** | `W7_ranking/REPORT.md` §2.2 y §2.3, revisado en `C7_ranking_v2/` | Nada: la revisión se resolvió sacando *Macrosteles* del panel (D23) |
-| 5 · Crítica de las herramientas | **Material completo, sin documento** | Disperso en seis archivos | Juntarlo y escribirlo para él (T5) |
-| Opcional · 21 contra 22 | **Cerrado** | `research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` y `C6_panel_y_largo/` | Nada |
-| Opcional · Genes nuevos | **Cerrado, y ya en el ranking** | `C5_.../catalogo_genes_blanco.md` + `C7_ranking_v2/` | Nada |
-
-**Lo que esto quiere decir en una línea, al 2026-10-21:** de los cinco pedidos y los dos
-opcionales, **lo único que falta son dos documentos de redacción** —la nota legible de qué
-significa «eficiente» (T1) y la crítica unificada de las herramientas (T5)—, los dos con todo el
-material ya medido. No queda ninguna medición pendiente.
-
-El ranking v2 (`research/ola3/C7_ranking_v2/`, 2026-10-21) cerró las dos reescrituras que este
-plan listaba. Hizo lo que corresponde antes de agregar nada: **reprodujo a W7 exacto** —los cuatro
-conteos de eficientes, las cuatro fichas campo por campo y el barrido— y recién después sumó
-humano al panel, los dos genes nuevos y el cálculo a 21 y a 22 nt. Ninguna conclusión de W7 se
-cayó. Los dos genes nuevos entran sin vetos pero quedan cuartos y quintos cuando se compara a
-todos en su mejor región, y eso es por diseño: su aporte es la evidencia publicada, que se
-presenta como un eje descriptivo aparte y sin puntaje, porque sumarla al puntaje exigiría una
-equivalencia entre un fenotipo de microinyección y uno de ingesta que no tenemos (D24).
-
-**La revisión de `BicC_Dm` no se resolvió midiendo sino decidiendo, y conviene saberlo.** La
-recomendación de mover la región volvió a valer porque el equipo sacó a *Macrosteles
-quadrilineatus* del panel (D23), con el argumento de que la especie no está expuesta en Argentina.
-Ese argumento quedó **verificado el 2026-10-21 contra GBIF**: de 3.592 ocurrencias, 2.929 son de
-Canadá y 549 de Estados Unidos, y hay cero en Argentina y cero en las siete consultas
-sudamericanas. `[E]` Pero la decisión tiene un segundo flanco que sigue abierto y que el propio
-D23 declara: *Macrosteles* se había incorporado como **sustituto filogenético** del resto de los
-Deltocephalinae, no por exposición directa, y que no esté en Argentina no descarta ese uso. Si el
-investigador dice que los cicadélidos hermanos cuentan como no objetivo, la recomendación de
-`BicC_Dm` se vuelve a caer. Es la pregunta más barata y más cara de la lista.
-=======
 | 3 · Ranking con criterio | **Cerrado, con segunda versión** | `W7_ranking/REPORT.md` §2 a §4 y `research/ola3/C7_ranking_v2/` | Nada del pedido; la v2 reproduce W7 exacto, suma humano, `eth` y `burs-alpha`, y reporta 21 y 22 nt |
 | 4 · Evaluación de las regiones | **Cerrado y revisado** | `W7_ranking/REPORT.md` §2.2 y §2.3, y `research/ola3/C8_conservacion/` | Nada del pedido; `BicC_Dm` pasa a 922-1221 por conservación (D25) y `ATPaseD_Dm` mantiene 72-371 |
 | 5 · Crítica de las herramientas | **Material completo, sin documento** | Disperso en seis archivos | Juntarlo y escribirlo para él (T5) |
@@ -119,7 +87,31 @@ investigador dice que los cicadélidos hermanos cuentan como no objetivo, la rec
 producirlo sino **redactar dos documentos con material que ya está** (T1 y T5): las dos reescrituras
 que quedaban —el ranking con el panel ampliado y la región de `BicC_Dm`— se hicieron el 2026-10-21
 (C7 y C8). No hay ninguna medición grande pendiente.
->>>>>>> origin/main
+
+El ranking v2 (`research/ola3/C7_ranking_v2/`, 2026-10-21) cerró las dos reescrituras que este
+plan listaba. Hizo lo que corresponde antes de agregar nada: **reprodujo a W7 exacto** —los cuatro
+conteos de eficientes, las cuatro fichas campo por campo y el barrido— y recién después sumó
+humano al panel, los dos genes nuevos y el cálculo a 21 y a 22 nt. Ninguna conclusión de W7 se
+cayó. Los dos genes nuevos entran sin vetos pero quedan cuartos y quintos cuando se compara a
+todos en su mejor región, y eso es por diseño: su aporte es la evidencia publicada, que se
+presenta como un eje descriptivo aparte y sin puntaje, porque sumarla al puntaje exigiría una
+equivalencia entre un fenotipo de microinyección y uno de ingesta que no tenemos (D24).
+
+**La región de `BicC_Dm` se movió dos veces, y la segunda vez por conservación y no por el panel.**
+C7 recomendaba 2121-2420; C8 la pasa a **922-1221** porque de sus 36 ventanas eficientes 32 son
+idénticas en los tres transcriptomas públicos de *Dalbulus maidis* y las 36 son exactas en el
+transcriptoma argentino y en el genoma de Córdoba, contra 22 de 35 en 2121-2420, y el cambio no
+mueve el orden del ranking (D25, `research/ola3/C8_conservacion/`). `[E]` Lo que importa para la
+discusión que este plan dejaba abierta: 922-1221 es la misma región que C6 había encontrado como
+salida al veto de *Macrosteles quadrilineatus*, **pero ahora llega por un motivo que no depende de
+ese pariente**, así que la recomendación ya no cuelga de D23. Esa decisión igual quedó con su
+premisa verificada el 2026-10-21 contra GBIF: de 3.592 ocurrencias, 2.929 son de Canadá y 549 de
+Estados Unidos, y hay cero en Argentina y cero en las siete consultas sudamericanas. `[E]` Y el
+segundo flanco que el propio D23 declara sigue abierto para el panel —*Macrosteles* se había
+incorporado como **sustituto filogenético** del resto de los Deltocephalinae, no por exposición
+directa—, pero ya no puede tumbar esta región: si el investigador dice que los cicadélidos hermanos
+cuentan como no objetivo, lo que hay que revisar es el panel del ranking, no la región de
+`BicC_Dm`.
 
 Y una pregunta que el checkpoint dejó abierta y que ahora tiene respuesta medida: **la cuenta del
 azar que él pidió para 18, 19 y 20 nucleótidos está hecha dos veces, por dos caminos, y las dos
@@ -233,44 +225,29 @@ estabilidad del orden frente al largo de ventana. **Terminada cuando:** cada rec
 mover una región dice contra qué panel se evaluó, y el documento dice cuáles de sus conclusiones
 cambiaron respecto de la primera versión.
 
-<<<<<<< HEAD
-### T4 · La auditoría de las regiones 1–200 — hecha, y ya revisada
-=======
 ### T4 · La auditoría de las regiones 1–200 — hecha y revisada
->>>>>>> origin/main
 
 **Estado:** hecha en `W7_ranking/REPORT.md` §2.2 y §2.3, y **revisada el 2026-10-21 en
 `research/ola3/C7_ranking_v2/`**. Para los dos genes del insecto hay región alternativa
 recomendada, mejor en los dos ejes a la vez, y el informe dice explícitamente qué pasa si el
 laboratorio acepta moverlas: el orden cambia y `BicC_Dm` salta de pelear el último puesto a
-quedar segundo. Las regiones vigentes son las de la v2: **`BicC_Dm` 2121-2420** —corrida dos
-nucleótidos respecto de la 2123-2422 de W7, por la columna de humano— y **`ATPaseD_Dm` 72-371**,
-igual que en W7.
+quedar segundo. Las regiones vigentes, después de C8, son **`BicC_Dm` 922-1221** —por
+conservación (D25), en lugar de la 2121-2420 de C7, que a su vez corría dos nucleótidos respecto de
+la 2123-2422 de W7 por la columna de humano— y **`ATPaseD_Dm` 72-371**, igual que en W7.
 
-<<<<<<< HEAD
-**Cómo se resolvió la revisión que este plan dejaba abierta, que importa más que el resultado.**
-La objeción era que, al agregar al panel el cicadélido más cercano a la chicharrita con genoma
-anotado, la región recomendada para `BicC_Dm` tiene 19 ventanas con coincidencia perfecta de
-21 nt contra las 10 de la que eligió EPILAB, de modo que en ese eje la recomendación empeoraba
-las cosas (`C6_panel_y_largo/`). **No se resolvió midiendo sino decidiendo:** el equipo sacó a
-*Macrosteles quadrilineatus* del panel (D23), y con ese panel la recomendación vuelve a valer.
-La premisa fáctica de esa decisión quedó verificada contra GBIF —cero ocurrencias en Argentina y
-en Sudamérica sobre 3.592, concentradas en Canadá y Estados Unidos `[E]`—, pero el segundo flanco
-sigue abierto y el propio D23 lo declara: la especie se había incorporado como **sustituto
-filogenético** del resto de los Deltocephalinae, no por exposición directa, y su ausencia en
-Argentina no descarta ese uso. **Si el investigador dice que los cicadélidos hermanos cuentan
-como no objetivo, esta recomendación se vuelve a caer** y hay que reescribirla con la región
-alternativa que C6 midió, la que escapa al veto perdiendo una sola ventana eficiente.
-=======
-**La revisión, hecha el 2026-10-21.** Al agregar al panel el cicadélido más cercano a la chicharrita con genoma
-anotado, la región que W7 recomendaba para `BicC_Dm` tenía 19 ventanas con coincidencia perfecta de 21 nt contra
-las 10 de la que eligió EPILAB (C6). El equipo decidió dejar a *Macrosteles* fuera del ranking (D23), con el
-argumento de que no está en Argentina, que todavía no verificamos contra un catálogo. Con esa decisión las
-recomendaciones de W7 vuelven a valer (C7), y la conservación entre fuentes públicas (C8) cambia solo una:
-**`BicC_Dm` pasa de 2121-2420 a 922-1221** (36 eficientes, 32 idénticas en los tres transcriptomas, todas en el
-argentino; D25), sin costo en el orden de diseño; `ATPaseD_Dm` mantiene 72-371. Es conservación entre fuentes
-públicas y no entre poblaciones de campo.
->>>>>>> origin/main
+**La revisión, hecha el 2026-10-21.** Al agregar al panel el cicadélido más cercano a la
+chicharrita con genoma anotado, la región que W7 recomendaba para `BicC_Dm` tenía 19 ventanas con
+coincidencia perfecta de 21 nt contra las 10 de la que eligió EPILAB (C6). El equipo decidió dejar
+a *Macrosteles* fuera del ranking (D23), con el argumento de que no está en Argentina: esa premisa
+**quedó verificada el 2026-10-21 contra GBIF** —de 3.592 ocurrencias, 2.929 son de Canadá y 549 de
+Estados Unidos, con cero en Argentina y cero en las siete consultas sudamericanas `[E]`—, aunque el
+flanco que D23 declara sigue abierto, porque la especie entró como sustituto filogenético del resto
+de los Deltocephalinae y no por exposición directa. Con esa decisión las recomendaciones de W7
+vuelven a valer (C7), y la conservación entre fuentes públicas (C8) cambia solo una: **`BicC_Dm`
+pasa de 2121-2420 a 922-1221** (36 eficientes, 32 idénticas en los tres transcriptomas, todas en el
+argentino; D25), sin costo en el orden de diseño, y por un criterio que ya no depende de
+*Macrosteles*; `ATPaseD_Dm` mantiene 72-371. Es conservación entre fuentes públicas y no entre
+poblaciones de campo.
 
 **Nota de método que ya pagamos:** el número de eficientes de una región depende de si se calcula
 sobre la región recortada o sobre el gen entero, y la diferencia llega al 47 %. Hay que declarar
@@ -460,15 +437,9 @@ que ahora hay un pedido explícito del investigador que ordena las prioridades.
 | Rama | Dueño de | Entregable | Estado |
 | --- | --- | --- | --- |
 | **Método** | T1 y T5 | La nota de qué significa «eficiente» y la crítica de las herramientas | **Es lo que falta.** Dos documentos de redacción, con todo el material ya medido |
-<<<<<<< HEAD
-| **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho, y la recomendación de región ya reescrita en la v2 |
-| **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho, con segunda versión (`C7_ranking_v2/`) |
-| **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho y los dos mejores ya están en el ranking v2 |
-=======
 | **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho, y la recomendación de región ya se reescribió (C8, D25) |
 | **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho, con la segunda versión (C7) |
 | **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho y los dos mejores candidatos ya están en el ranking (C7); queda la conservación de `eth` y `burs-alpha` y la de `MP_MRFV`, que no se puede evaluar con los registros públicos (C8) |
->>>>>>> origin/main
 
 El hito a proteger ya se pasó: **la primera corrida punta a punta sobre los cuatro candidatos
 reales, con su ficha, existe desde el 2026-10-20**. Desde acá el riesgo cambia de naturaleza —ya
