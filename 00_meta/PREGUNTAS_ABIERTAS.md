@@ -850,9 +850,13 @@ En orden de cuánto cambian lo que hacemos:
   barrido informa frecuencias de posición sobre 2.000 juegos de pesos, y en la escala **absoluta**
   los dos ejes tienen rangos incomparables: entre los cuatro candidatos la eficacia varía un factor
   2,4-2,5 y la limpieza un factor 1,015-1,064. En la media geométrica eso deja a la limpieza sin
-  palanca, y el resultado es que **en las cuatro variantes de escala absoluta el orden modal es
-  exactamente el orden por eficacia sola** —`MP > CP > BicC > ATPaseD` con las regiones de EPILAB y
-  `MP > BicC > CP > ATPaseD` con las propuestas—. `[E]` Calculado el peso de cruce de cada par:
+  palanca, y el resultado es que **en tres de las cuatro variantes de escala absoluta el orden modal
+  es exactamente el orden por eficacia sola** —`MP > CP > BicC > ATPaseD` con las regiones de EPILAB
+  y `MP > BicC > CP > ATPaseD` con las propuestas—. `[E]` La cuarta, `suma/conservadora/absoluta`
+  sobre las regiones de EPILAB, da `MP > CP > ATPaseD > BicC` en el 65,9 %: invierte justamente el
+  par en conflicto, que es lo esperable, porque la suma ponderada sí deja que la limpieza compense
+  —`BicC_Dm` es el candidato con el déficit de limpieza grande— mientras que la media geométrica no.
+  Con las regiones propuestas, donde ese déficit ya no existe, las dos formas coinciden. `[E]` Calculado el peso de cruce de cada par:
   con las regiones de EPILAB hay un cruce dentro del rango, `BicC_Dm` contra `ATPaseD_Dm` en
   w* = 0,32, que es el bloque 75/25 que se ve en A.3; con las regiones propuestas los tres cruces
   caen en w* ≈ 0,02, al borde, y por eso B.3 sale diagonal. No es que un candidato domine a otro en
