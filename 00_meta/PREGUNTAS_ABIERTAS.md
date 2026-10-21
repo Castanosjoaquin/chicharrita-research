@@ -881,7 +881,12 @@ En orden de cuánto cambian lo que hacemos:
   esta validación **no es evidencia de que el puntaje no sirva**, y hay que escribirlo en el
   pre-registro antes de mirar los datos, junto con la decisión de reportar el intervalo y no el
   valor p. Y distinguir entre dos proxies es directamente inviable: con n = 15 la potencia para
-  separar ρ = 0,7 de ρ = 0,3 es 0,26 (PRB §5).
+  separar ρ = 0,7 de ρ = 0,3 es 0,26 (PRB §5), y **con los n que de verdad tenemos, 28 y 29, es
+  0,48 y 0,50** —reproducido con la misma aproximación de PRB, que devuelve sus mismos valores para
+  n = 5, 8, 10 y 15—; para 80 % harían falta n = 57. `[E]` Y eso es la potencia **nominal**: si se
+  arrastra la atenuación por fiabilidad del desenlace, las dos correlaciones verdaderas se observan
+  como 0,346 y 0,148, y la potencia con n = 28 cae a **0,11**, con n = 374 para llegar al 80 %.
+  Conclusión de método: **el ejercicio sirve para acotar un puntaje, no para comparar dos.**
 - **Cuánta palanca puede llegar a tener la limpieza, medido como cota** (misma auditoría). Como el
   riesgo por ventana es un **máximo** ponderado y los pesos viven en el simplex, la exposición de
   una región no puede superar la fracción de sus ventanas con algún off-target, cualquiera sea el
