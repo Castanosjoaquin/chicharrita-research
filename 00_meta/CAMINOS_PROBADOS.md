@@ -873,3 +873,38 @@ entre el port y nuestra lectura del fuente.
   `quimeras_ventanas_cambiadas.tsv` y `quimeras_meta.json` de una primera corrida. Su contenido se
   reemplazó por una línea que dice que están obsoletos y adónde ir. Los datos buenos están en los
   pares con sufijo `_fiel_vienna` y `_corregido_vienna`.
+
+---
+
+## Contar cifras compartidas no sirve para detectar divergencia entre un informe y su página (2026-10-21)
+
+**Qué se intentó.** `estado.html` declaraba como trabajo pendiente «resolver la divergencia del
+`index.html` de W7», con el argumento de que 25 porcentajes del `REPORT.md` no aparecen en la
+página y sólo 14 coinciden, y concluía que hasta resolverlo la página no se cita como fuente de
+cifras.
+
+**Qué se encontró al revisarlo.** **No hay divergencia.** El conteo mide otra cosa. Se extrajeron
+todos los porcentajes de los dos archivos y se clasificó cada diferencia:
+
+- Los **25 que están sólo en el informe** son omisiones, no contradicciones: la página es un
+  resumen y el informe tiene 722 líneas. Que un resumen no repita una cifra no la contradice.
+- De los **6 que están sólo en la página**, cuatro (`0 %`, `1 %`, `17 %`, `25 %`) son celdas de las
+  matrices A.3 y B.3 o redondeos de cifras que el informe sí trae con decimal —el `17 %` de la
+  página es el `17,0 %` del informe, y su `46 %` es el `46,3 %`—.
+- Los **dos restantes** (`20,6 %` y `24,8 %`) sí eran números sin respaldo en el `REPORT.md`, pero
+  **tienen fuente**: la tabla de 15 nt de `azar_por_k.md`, archivo hermano en la misma carpeta. Se
+  agregó la cita a la página.
+
+Y se verificó una por una que las cifras que **sí** aparecen en los dos digan lo mismo: 98,7 %,
+33,7 %, 89,7 %, w* ≈ 0,02, los factores 2,38–2,50 y 1,015–1,064. Coinciden todas. `[E]`
+
+**La sospecha más seria también se descartó.** Parecía que la página seguía afirmando sin tachar
+«la diagonal se arma sola», que es justo lo que C9 retractó en §2.1 bis del informe. Está dentro de
+un `<del>` con la corrección completa al lado; lo que falló fue el extractor de texto, que borra
+las etiquetas y por lo tanto borra el tachado.
+
+**La lección, que es el motivo de registrar esto.** Un verificador automático que compara un
+documento con su resumen contando cifras **produce falsos positivos por diseño**, y además no ve
+las fuentes en archivos hermanos ni distingue un número tachado de uno afirmado. Para comparar un
+informe con su página hay que comparar **afirmaciones sobre la misma magnitud**, no inventarios de
+números. El item se sacó de `tools/generar_estado.py`.

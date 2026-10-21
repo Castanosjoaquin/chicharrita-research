@@ -92,10 +92,6 @@ FALTA = [
      "Media hora de cómputo una vez cerrado el punto anterior. Con la fiabilidad medida del desenlace la "
      "potencia es 0,42, de modo que lo mas probable es un intervalo que incluya el cero; el pre-registro ya "
      "declara que eso <strong>no refuta el puntaje</strong>."),
-    ("Resolver la divergencia del index.html de W7", "trabajo", False,
-     "La página y el informe de W7 ya no dicen lo mismo: 25 porcentajes del informe no aparecen en la página "
-     "y solo 14 coinciden. Los dos se escribieron a mano, así que no hay fuente que gane. Hasta decidirlo, "
-     "la página no se cita como fuente de cifras."),
     ("Confirmar el criterio de commits", "decision", False,
      "El prompt de C9 pide un commit por tarea y la regla general de la ola 3 dice no commitear (D5). Se "
      "siguió la instrucción específica del prompt; si se prefiere la regla general, se reescribe."),
