@@ -57,7 +57,7 @@ es que cada número que entreguemos tiene que venir con el porqué de haberlo el
 | --- | --- | --- | --- |
 | 1 | **Leer y entender si-Fi21**: qué implica que algo sea eficiente, cómo lo calculan, qué significa la energía libre ahí | **Hecho.** El port verificado contra el original, `research/ola3/C1_sifi21_paper_metodo/` con el artículo y la fuente de cada umbral, y la nota escrita en `entregables/que-significa-eficiente.md` | Nada |
 | 2 | **Benchmarking** de si-Fi21, dsRNA-Engineer y BLAST sobre los cuatro genes | **Hecho** en `research/ola2/W7_ranking/benchmark_tres_herramientas.md`: las tres en un eje común, con el panel de referencias verificado como idéntico y la atribución del conteo por condición | Nada del pedido. Queda el hueco declarado: los dos genes del insecto no tienen corrida de dsRNA-Engineer y no la van a tener |
-| 3 | **Un ranking** de candidatos con el criterio explicitado | **Hecho** el 2026-10-20 en `research/ola2/W7_ranking/`: el orden, las cinco decisiones declaradas, la ficha por candidato y el barrido de 2.000 juegos de pesos | Rehacerlo con lo que la ola 3 midió después, que toca su recomendación central (ver §3) |
+| 3 | **Un ranking** de candidatos con el criterio explicitado | **Hecho** el 2026-10-20 en `research/ola2/W7_ranking/`: el orden, las cinco decisiones declaradas, la ficha por candidato y el barrido de 2.000 juegos de pesos | ~~Rehacerlo con lo que la ola 3 midió después~~ (hecho el 2026-10-21 en `research/ola3/C7_ranking_v2/`). Nada del pedido; el 2026-10-21 se corrigió la lectura de B.3 (W7 §2.1 bis) y se midió la sensibilidad a los umbrales (`research/ola3/C9_sensibilidad_umbral/`) |
 | 4 | **Evaluación de las regiones ya elegidas** | **Hecho** en `W7_ranking/REPORT.md` §2.2 y §2.3: la región dentro de cada gen, con la región alternativa recomendada en los dos genes del insecto y el efecto sobre el orden | Revisar la recomendación contra el panel ampliado, que la da vuelta en `BicC_Dm` (§3) |
 | 5 | **Crítica de las herramientas**, aunque no la implementemos | **Hecho.** Todo el material medido, reunido y escrito en `entregables/critica-herramientas.md`: si-Fi21, dsRNA-Engineer, BLAST y el código del laboratorio, cada crítica con su medición o su línea de código, más las mejoras que propondríamos | Nada |
 
@@ -77,7 +77,7 @@ mitades se tocan.
 | --- | --- | --- | --- |
 | 1 · Entender si-Fi21 | **Cerrado** | `tools/sifi21_port/` + `research/ola3/C1_sifi21_paper_metodo/` + `entregables/que-significa-eficiente.md` | Nada |
 | 2 · Benchmarking de las tres | **Cerrado** | `W7_ranking/benchmark_tres_herramientas.md` | Nada del pedido |
-| 3 · Ranking con criterio | **Cerrado, con segunda versión** | `W7_ranking/REPORT.md` §2 a §4 y `research/ola3/C7_ranking_v2/` | Nada del pedido; la v2 reproduce W7 exacto, suma humano, `eth` y `burs-alpha`, y reporta 21 y 22 nt |
+| 3 · Ranking con criterio | **Cerrado, con segunda versión** | `W7_ranking/REPORT.md` §2 a §4 y `research/ola3/C7_ranking_v2/` | Nada del pedido; la v2 reproduce W7 exacto, suma humano, `eth` y `burs-alpha`, y reporta 21 y 22 nt. Fortalecido el 2026-10-21: lectura de B.3 corregida (W7 §2.1 bis, C7 §4) y sensibilidad a los umbrales en `research/ola3/C9_sensibilidad_umbral/` |
 | 4 · Evaluación de las regiones | **Cerrado y revisado** | `W7_ranking/REPORT.md` §2.2 y §2.3, y `research/ola3/C8_conservacion/` | Nada del pedido; `BicC_Dm` pasa a 922-1221 por conservación (D25) y `ATPaseD_Dm` mantiene 72-371 |
 | 5 · Crítica de las herramientas | **Cerrado** | `entregables/critica-herramientas.md` | Nada |
 | Opcional · 21 contra 22 | **Cerrado** | `research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` y `C6_panel_y_largo/` | Nada |
@@ -225,6 +225,15 @@ estabilidad del orden frente al largo de ventana. **Terminada cuando:** cada rec
 mover una región dice contra qué panel se evaluó, y el documento dice cuáles de sus conclusiones
 cambiaron respecto de la primera versión.
 
+**Fortalecimiento del 2026-10-21 (C9).** Se corrigió la lectura de B.3: la diagonal sale de que
+los cruces de los pares en conflicto caen al borde del rango de pesos y de que la limpieza casi no
+tiene palanca con la escala absoluta, no de que el orden sea robusto (W7 §2.1 bis y C7 §4, con la
+afirmación vieja tachada). Y se midió, sin etiquetas y con el backend `vienna`, cuánto depende la
+recomendación de los dos umbrales sin fuente primaria: el candidato superior (`MP_MRFV`) se
+mantiene en el 98–99 % de la grilla, pero la región exacta de 200 nt no, y el par
+`ATPaseD_Dm`/`CP_MRFV` es un empate práctico. Mide fragilidad, no calidad del umbral.
+Ver `research/ola3/C9_sensibilidad_umbral/REPORT.md`.
+
 ### T4 · La auditoría de las regiones 1–200 — hecha y revisada
 
 **Estado:** hecha en `W7_ranking/REPORT.md` §2.2 y §2.3, y **revisada el 2026-10-21 en
@@ -359,9 +368,9 @@ terminar lo que falta, no con llenar un hueco.
 | Opción | Qué daría | Pros | Contras | Veredicto |
 | --- | --- | --- | --- | --- |
 | **1. Escribir T1 y T5** (nota de «eficiente» y crítica de herramientas) | Los dos únicos pedidos del investigador sin entregable | Material íntegramente medido y disperso en seis archivos; es redacción, no investigación. Cierra el pedido que él puso primero | Ninguno. Es trabajo pendiente, no una apuesta | **Hacer primero** |
-| **2. Sensibilidad del umbral sin etiquetas** | Si mover el corte de accesibilidad de 0,1 o la brecha de 1,00 kcal/mol cambia el orden de candidatos | No necesita etiquetas ni laboratorio. La maquinaria existe (`barrido.py`, `ranking.py`). Contesta de frente «¿cómo saben que 0,1 es el valor?» con una medición | No dice si el umbral es bueno, sólo si la recomendación es frágil. Hay que no confundir las dos cosas al presentarlo | **Hacer segundo** |
-| **3. Corregir cómo se presenta B.3** | Que la diagonal se lea como lo que es | Una tabla y un párrafo. Evita que nos pregunten lo que ya sabemos que no se sostiene | Obliga a mostrar que el orden modal cae del 98,7 % al 33,7 % en la otra escala | **Hacer tercero** |
-| **4. Validación retrospectiva pre-registrada** | Una cota sobre cuánto discrimina el puntaje | Es la única comprobación empírica posible sin laboratorio. Los 28 ARNdc de Cedden son CC BY y están en el repo. «Con este n no se distingue» es un resultado | **Sub-potenciada por un factor 2,4 en n**: con la fiabilidad medida del desenlace, una correlación verdadera de 0,7 se observa como 0,35 y la potencia con n = 28 es 0,42. Harían falta n = 67 | **Hacer cuarto, con tiempo acotado y el pre-registro escrito antes** |
+| **2. Sensibilidad del umbral sin etiquetas** | Si mover el corte de accesibilidad de 0,1 o la brecha de 1,00 kcal/mol cambia el orden de candidatos | No necesita etiquetas ni laboratorio. La maquinaria existe (`barrido.py`, `ranking.py`). Contesta de frente «¿cómo saben que 0,1 es el valor?» con una medición | No dice si el umbral es bueno, sólo si la recomendación es frágil. Hay que no confundir las dos cosas al presentarlo | **Hacer segundo** — *hecho el 2026-10-21 en C9* |
+| **3. Corregir cómo se presenta B.3** | Que la diagonal se lea como lo que es | Una tabla y un párrafo. Evita que nos pregunten lo que ya sabemos que no se sostiene | Obliga a mostrar que el orden modal cae del 98,7 % al 33,7 % en la otra escala | **Hacer tercero** — *hecho el 2026-10-21 (W7 §2.1 bis y C7 §4)* |
+| **4. Validación retrospectiva pre-registrada** | Una cota sobre cuánto discrimina el puntaje | Es la única comprobación empírica posible sin laboratorio. Los 28 ARNdc de Cedden son CC BY y están en el repo. «Con este n no se distingue» es un resultado | **Sub-potenciada por un factor 2,4 en n**: con la fiabilidad medida del desenlace, una correlación verdadera de 0,7 se observa como 0,35 y la potencia con n = 28 es 0,42. Harían falta n = 67 | **Hacer cuarto, con tiempo acotado y el pre-registro escrito antes** — *pre-registro escrito el 2026-10-21 en `research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md`; la validación **no se corrió*** |
 | **5. Curva precisión-recall barriendo el umbral** | El umbral elegido con su precisión y su cobertura | Es el método correcto, y la fila de Reynolds (88,9 % de precisión con 1,1 % de cobertura) muestra la forma que tendría | Necesita las mismas etiquetas de la opción 4, así que hereda su falta de potencia. Con n = 28 los intervalos tapan la curva | **Sólo como salida de la opción 4, no como línea propia** |
 | **6. Modelo de ML existente entrenado en humano** | Una estimación de eficacia por ventana | Existen, son buenos en su dominio (Pearson 0,55-0,58 entre conjuntos humanos, AUC 0,81-0,87) y correrlos es barato | Al cambiar de ensayo caen a AUC ≈ 0,50, que es azar; y entre humano e insecto el GC de las posiciones 9-14 invierte su signo. Sin verdad de terreno en hemípteros no hay forma de saber si acertó | **No como predictor. Sólo como ablación declarada sobre los datos CC BY de *Tribolium*** |
 | **7. Aprendizaje no supervisado para predecir eficacia** | — | — | No resuelve la falta de etiquetas: la mueve al cabezal. Un método no supervisado encuentra estructura, no puede saber que esa estructura es silenciamiento | **Descartar como predictor.** Sí vale lo label-free que ya hacemos: el eje de especificidad, que es un hecho de alineamiento y no una predicción |
