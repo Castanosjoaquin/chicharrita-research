@@ -866,6 +866,22 @@ En orden de cuánto cambian lo que hacemos:
   los sorteos, **pasa a tercero**. `[E]` Lo que hay que corregir no es el cálculo, que está bien y
   tiene las dos escalas: es la lectura de que «la diagonal se arma sola», que sin la escala al lado
   se lee como robustez y es sensibilidad al rango de los ejes. Afecta a W7 y al v2 por igual.
+- **La validación retrospectiva está sub-potenciada por un factor 2,4 en n, y hay que declararlo
+  antes de correrla** (cálculo propio, 2026-10-21, sobre la maquinaria de
+  `research/ola2/W6_agentes_ciencia/notas/PRB_scripts/prb_potencia.py` más la fiabilidad medida en
+  `pipeline/REPORT.md` §6). El conjunto etiquetado abierto más grande que tenemos en insectos son
+  los **28 ARNdc** de la Tabla S1 de Cedden 2025 (CC BY, 8 genes de *Tribolium*, en el repo) y los
+  **29 siRNA** del modelo publicado. La potencia nominal con n = 28 para rechazar ρ = 0 es 0,32 si
+  la correlación verdadera es 0,3, 0,76 si es 0,5 y 0,99 si es 0,7 (PRB). **Pero esa potencia
+  ignora el error de medición del desenlace, que está medido:** dos ARNdc contra el mismo gen
+  correlacionan 0,245, de modo que la atenuación es √0,245 = 0,495. Con eso, una correlación
+  verdadera de 0,7 **se observa como 0,35**, y la potencia con n = 28 cae de 0,99 a **0,42**; para
+  80 % de potencia harían falta **n = 67**. `[E]` Una ρ observada de 0,35 con n = 28 tiene IC95
+  [−0,04, +0,65], que ni siquiera excluye el cero. **Consecuencia de método:** un resultado nulo en
+  esta validación **no es evidencia de que el puntaje no sirva**, y hay que escribirlo en el
+  pre-registro antes de mirar los datos, junto con la decisión de reportar el intervalo y no el
+  valor p. Y distinguir entre dos proxies es directamente inviable: con n = 15 la potencia para
+  separar ρ = 0,7 de ρ = 0,3 es 0,26 (PRB §5).
 - **Cuánta palanca puede llegar a tener la limpieza, medido como cota** (misma auditoría). Como el
   riesgo por ventana es un **máximo** ponderado y los pesos viven en el simplex, la exposición de
   una región no puede superar la fracción de sus ventanas con algún off-target, cualquiera sea el
