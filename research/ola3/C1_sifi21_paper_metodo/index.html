@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C1 &mdash; si-Fi21 desde las fuentes primarias</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigath&oacute;n Y-Hat &middot; ola 3 &middot; l&iacute;nea C1</p>
+    <h1>si-Fi21 desde las fuentes primarias</h1>
+    <p class="sub">Qu&eacute; umbral exacto declara &laquo;eficiente&raquo; a una ventana de 21 nt,
+    de d&oacute;nde sale cada umbral, qu&eacute; valid&oacute; el experimento del art&iacute;culo y
+    d&oacute;nde el c&oacute;digo se aparta del paper.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">Las tres respuestas, arriba de todo</h2>
+    <p class="lead"><strong>&laquo;Eficiente&raquo; es una conjunci&oacute;n de tres condiciones
+    booleanas sobre cada ventana de 21&nbsp;nt, m&aacute;s una regla sobre dos nucle&oacute;tidos. Los dos
+    &uacute;nicos umbrales num&eacute;ricos que contiene &mdash;1&nbsp;kcal/mol y 0,1&mdash; no tienen
+    fuente primaria que los fije: son convenciones de los autores.</strong> <span class="tag e">E</span></p>
+    <p><strong>P1.</strong> La &uacute;nica formulaci&oacute;n compacta de la regla est&aacute; en la
+    Discusi&oacute;n del art&iacute;culo, p&aacute;gina 8: selecci&oacute;n de hebra (U o A en el 5';
+    MFE del 5' mayor que el de la hebra opuesta; &Delta;MFE de los primeros tres nucle&oacute;tidos
+    &gt; 1&nbsp;kcal/mol) m&aacute;s accesibilidad local (u&nbsp;=&nbsp;8, umbral 0,1). No hay ecuaci&oacute;n
+    numerada, ni ajuste, ni curva ROC. Y la <strong>&laquo;identidad&raquo; no es un filtro</strong>:
+    en el programa es el presupuesto de desajustes de Bowtie &mdash;cero por defecto&mdash; y en el
+    art&iacute;culo es una variable experimental, la similitud global entre disparador y blanco, cuyo
+    efecto se mide y cae por debajo del 92&nbsp;%. <span class="tag e">E</span></p>
+    <p><strong>P2.</strong> El art&iacute;culo valida <strong>la herramienta entera</strong>, en cebada
+    contra o&iacute;dio, con <strong>doce construcciones</strong> y una correlaci&oacute;n de Pearson de
+    <strong>&minus;0,61</strong> entre los siRNA eficientes predichos y el efecto medio de
+    silenciamiento. No valida ning&uacute;n umbral por separado, no mide ning&uacute;n siRNA individual,
+    y <strong>no hay ning&uacute;n insecto</strong> en toda la validaci&oacute;n. La medida de eficacia no
+    es el ARN mensajero: es un fenotipo de resistencia usado como sustituto, porque medir el
+    transcrito no era viable en ese sistema. <span class="tag e">E</span></p>
+    <p><strong>P3.</strong> El rango de 150 a 250&nbsp;nt y la frase &laquo;con largos no funciona&raquo;
+    <strong>no est&aacute;n en el art&iacute;culo, ni en el manual, ni en el c&oacute;digo</strong>. Las
+    construcciones del paper son de 500&nbsp;pb y sus ventanas de prueba de 100&nbsp;pb; el manual da un
+    criterio cualitativo de regi&oacute;n sin ning&uacute;n largo; y si-Fi21 no busca regiones: el
+    &uacute;nico rastro es un par&aacute;metro llamado &laquo;Plot for suggested RNAi design region&raquo;
+    que nunca se usa. Queda como vac&iacute;o declarado y pregunta para el investigador.
+    <span class="tag q">?</span></p>
+  </section>
+
+  <h2>Una fila por filtro</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Umbral por defecto del modo dise&ntilde;o, fuente primaria abierta por nosotros, y si el
+    paper y el c&oacute;digo coinciden. Las l&iacute;neas del c&oacute;digo son del clon en
+    <code>work/C1/siFi21--d6296b7/</code>, commit <code>d6296b7</code>.</caption>
+    <thead><tr><th>Filtro</th><th>Umbral</th><th>Fuente primaria</th><th>Evidencia</th><th>Paper contra c&oacute;digo</th></tr></thead>
+    <tbody>
+      <tr><td>Ventana de siRNA</td><td class="num">21 nt</td><td>Elbashir, Lendeckel y Tuschl 2001, <em>Genes Dev</em> (texto completo): los mediadores son fragmentos de 21-22 nt, en lisado de <em>Drosophila melanogaster</em></td><td><span class="tag e">emp&iacute;rica</span></td><td>Coinciden. <code>main.py:334</code>, <code>:357</code></td></tr>
+      <tr><td>Desajustes permitidos</td><td class="num">0</td><td>Langmead y colaboradores 2009 (texto completo): es el alineador, no una medici&oacute;n</td><td><span class="tag r">convenci&oacute;n</span></td><td>Coinciden. Con &ge;1 desajuste la eficiencia se apaga entera: <code>main.py:114-118</code> &rarr; <code>sifi_pipeline.py:513-514</code></td></tr>
+      <tr><td>Selecci&oacute;n de hebra gu&iacute;a</td><td class="num">&Delta;G(5' anti) &ge; &Delta;G(5' sentido)</td><td>Schwarz 2003 y Khvorova 2003 (s&oacute;lo resumen): la estabilidad de los extremos 5' decide qu&eacute; hebra entra al RISC</td><td><span class="tag e">emp&iacute;rica</span></td><td>Coinciden. <code>sifi_pipeline.py:423-426</code></td></tr>
+      <tr><td>Estabilidad de extremos</td><td class="num">1,00 kcal/mol</td><td><strong>Ninguna.</strong> Khvorova 2003 mide 0,5 kcal/mol de diferencia media entre d&uacute;plex funcionales y no funcionales: el umbral es el doble y no se deriva de ah&iacute;</td><td><span class="tag r">convenci&oacute;n</span></td><td>Coinciden en el valor; el paper escribe &gt; y el c&oacute;digo aplica &ge;. <code>sifi_pipeline.py:442</code></td></tr>
+      <tr><td>Regla del nucle&oacute;tido terminal 5'</td><td>categ&oacute;rica</td><td>Ui-Tei y colaboradores 2004 (texto completo): 62 blancos, 6 genes, c&eacute;lulas de mam&iacute;fero, <em>Drosophila</em> y embri&oacute;n de pollo. Reynolds 2004 (s&oacute;lo resumen): 180 siRNA, 2 genes, posiciones 3, 10, 13 y 19</td><td><span class="tag e">emp&iacute;rica</span></td><td><strong>No coinciden.</strong> El c&oacute;digo ramifica en vez de combinar (<code>sifi_pipeline.py:534-541</code>) y comprueba la posici&oacute;n 2 donde la regla pone la 1 (<code>:528</code>, <code>:543</code> contra <code>:377</code>)</td></tr>
+      <tr><td>Accesibilidad del sitio blanco</td><td class="num">&ge; 0,1 con u = 8, L = 40, W = 80</td><td>Tafer 2008, Bernhart 2006 y Ameres 2007 (s&oacute;lo resumen). <strong>Ninguna fija 0,1</strong></td><td><span class="tag e">emp&iacute;rica</span> el principio, <span class="tag r">convenci&oacute;n</span> el valor</td><td>Coinciden. Pie de Figura 2A contra <code>sifi_pipeline.py:60-61</code>, <code>:252</code>, <code>:454</code></td></tr>
+      <tr><td>Temperatura</td><td class="num">22 &deg;C</td><td><strong>Ninguna.</strong> El art&iacute;culo no menciona temperatura en sus 12 p&aacute;ginas</td><td><span class="tag r">convenci&oacute;n</span></td><td>No comparable: el paper calla. <code>free_energy.py:420</code>, <code>sifi_pipeline.py:62</code></td></tr>
+      <tr><td>Tablas de energ&iacute;a</td><td><code>RNA_NN3</code>, <code>RNA_DE2</code></td><td>Chen 2012 y Turner y Mathews 2010 (texto completo): fusi&oacute;n &oacute;ptica en 1 M NaCl, par&aacute;metros a 37 &deg;C</td><td><span class="tag e">emp&iacute;rica</span>, fuera de las condiciones de uso</td><td>No comparable: el art&iacute;culo no nombra ninguna tabla. <code>free_energy.py:278-281</code></td></tr>
+      <tr><td>&laquo;Identidad&raquo;</td><td>no es un filtro</td><td>El propio art&iacute;culo, Tabla 1 y p&aacute;gina 8: la eficacia cae por debajo del 92 % de similitud global</td><td><span class="tag e">emp&iacute;rica</span></td><td>No aplica: no hay filtro que comparar</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>De los seis filtros que deciden el veredicto, <strong>dos tienen fuente emp&iacute;rica abierta y
+  espec&iacute;fica</strong>, <strong>dos tienen fuente para el principio pero no para el n&uacute;mero</strong>
+  y <strong>dos no tienen ninguna fuente</strong>. <span class="tag e">E</span></p>
+
+  <div class="note">
+    <p class="t">El segundo apartamiento de la regla terminal, medido</p>
+    <p>El c&oacute;digo comprueba la <strong>posici&oacute;n 2</strong> del 21-mero donde Ui-Tei 2004 y la
+    propia geometr&iacute;a de si-Fi ponen la <strong>posici&oacute;n 1</strong> &mdash;la que su cálculo de
+    &Delta;G trata como extremo 5' del sentido&mdash;. Sobre el genoma p&uacute;blico <code>NC_002786.2</code>
+    (6.346 ventanas de 21 nt), cambiar el &iacute;ndice cambia la rama que decide en el
+    <strong>51,4&nbsp;%</strong> de las ventanas y el booleano de preferencia terminal en el
+    <strong>31,4&nbsp;%</strong>. Cu&aacute;ntos veredictos finales cambian <strong>no se midi&oacute;</strong>:
+    requiere correr el port con ViennaRNA. <span class="tag e">E</span> la medici&oacute;n,
+    <span class="tag q">H</span> llamarlo error en vez de decisi&oacute;n no documentada.</p>
+  </div>
+
+  <h2>Qu&eacute; valid&oacute; el experimento</h2>
+
+  <p>Cebada (<em>Hordeum vulgare</em> ssp. <em>vulgare</em>) transformada transitoriamente por
+  bombardeo de part&iacute;culas, inoculada con <em>Blumeria graminis</em> f. sp. <em>hordei</em>, con
+  el gen <em>HvMlo</em> como blanco y la resistencia al o&iacute;dio como lectura. M&iacute;nimo cinco
+  repeticiones biol&oacute;gicas por construcci&oacute;n, ANOVA de una v&iacute;a con correcci&oacute;n
+  de Dunnett. La medida es el &iacute;ndice de susceptibilidad relativa, no el ARN mensajero: el
+  propio art&iacute;culo dice que medir el transcrito no era viable en ese sistema.
+  <span class="tag e">E</span></p>
+
+  <div class="tw">
+  <table>
+    <caption>Correlaci&oacute;n de Pearson con el efecto medio de silenciamiento, sobre las doce
+    construcciones de la Tabla 2 del art&iacute;culo. Es toda la evidencia cuantitativa de que el
+    criterio predice potencia.</caption>
+    <thead><tr><th>Predictor</th><th>Pearson R</th></tr></thead>
+    <tbody>
+      <tr><td>si-Fi anterior, hits totales</td><td class="num">&minus;0,31</td></tr>
+      <tr><td>si-Fi anterior, &laquo;eficientes&raquo;</td><td class="num">&minus;0,34</td></tr>
+      <tr><td>si-Fi21, hits totales</td><td class="num">&minus;0,31</td></tr>
+      <tr><td>si-Fi21, modo alta sensibilidad (HS)</td><td class="num">&minus;0,37</td></tr>
+      <tr><td><strong>si-Fi21, modo alta eficiencia (HE, dise&ntilde;o)</strong></td><td class="num"><strong>&minus;0,61</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="calls">
+    <div class="call ok"><p class="k">Predecir potencia</p><p class="v">n = 12 construcciones</p><p class="n">Correlaci&oacute;n de &minus;0,61 a nivel de construcci&oacute;n, con fenotipo como sustituto. Ning&uacute;n siRNA individual fue medido.</p></div>
+    <div class="call ok"><p class="k">Evitar off-targets</p><p class="v">n = 5 secuencias</p><p class="n">Reanálisis de datos ajenos en <em>Arabidopsis thaliana</em>: los cuatro genes con transcrito reducido fueron predichos y el que no se afect&oacute; dio cero hits.</p></div>
+    <div class="call stop"><p class="k">Validaci&oacute;n en insecto</p><p class="v">no existe</p><p class="n">Toda la validaci&oacute;n es en cebada. La evidencia primaria de las reglas de secuencia viene de c&eacute;lulas de mam&iacute;fero.</p></div>
+  </div>
+
+  <h2>Qu&eacute; es la energ&iacute;a libre ac&aacute;</h2>
+
+  <p>No es la energ&iacute;a de plegado del siRNA ni la de uni&oacute;n al blanco: es la
+  <strong>energ&iacute;a de hibridaci&oacute;n de tres pares de bases</strong> en cada extremo del
+  d&uacute;plex, con correcci&oacute;n por extremo colgante, calculada por vecinos m&aacute;s cercanos y
+  convertida con &Delta;G = &Delta;H &minus; T&middot;&Delta;S a 22&nbsp;&deg;C. Se calcula
+  <strong>entre las dos hebras del propio siRNA</strong>; la interacci&oacute;n con el ARN mensajero
+  entra por otro lado, como accesibilidad calculada sobre el ARNm solo. Se usa como
+  <strong>diferencia</strong> y no como valor absoluto porque lo que importa es cu&aacute;l de los dos
+  extremos es m&aacute;s f&aacute;cil de abrir, y porque as&iacute; se cancelan las correcciones que
+  afectan igual a los dos. <span class="tag e">E</span></p>
+
+  <p><strong>Y no es una eficacia medida.</strong> Los par&aacute;metros vienen de fusi&oacute;n
+  &oacute;ptica de oligos en 1 M de NaCl reportada a 37&nbsp;&deg;C y ac&aacute; se extrapolan a
+  22&nbsp;&deg;C y ~70&nbsp;mM; el n&uacute;mero nunca se ajust&oacute; contra datos de silenciamiento
+  &mdash;no hay regresi&oacute;n, ni pesos, ni conjunto de entrenamiento&mdash;; y el propio
+  art&iacute;culo trata la accesibilidad como condici&oacute;n <em>necesaria pero no suficiente</em>.
+  <span class="tag e">E</span> si-Fi21 es un clasificador de reglas con umbrales duros, y la
+  informaci&oacute;n rica est&aacute; en los t&eacute;rminos continuos que el booleano descarta.
+  <span class="tag q">H</span></p>
+
+  <h2>Qui&eacute;n lo us&oacute; despu&eacute;s</h2>
+
+  <p>128 citas en Europe PMC al 20 de octubre de 2026, con uso dominante en patosistemas de planta y
+  hongo. En hemípteros encontramos <strong>dos</strong> trabajos, los dos de especificidad entre
+  especies y ninguno de dise&ntilde;o de regi&oacute;n: la cochinilla de la vid
+  <em>Pseudococcus maritimus</em> (2020) y un estudio de efectos no deseados de ARNdc en
+  hem&iacute;pteros (2021). La consulta de texto completo de &laquo;si-Fi21&raquo; combinada con
+  t&eacute;rminos de hem&iacute;pteros devuelve <strong>cero</strong>. En cicad&eacute;lidos, nada.
+  <span class="tag e">E</span></p>
+
+  <p>El uso m&aacute;s cercano a nuestro problema est&aacute; en <em>Aedes albopictus</em> (2025): se
+  identificaron regiones con si-Fi21 y se construyeron ARNdc de <strong>400 y 500&nbsp;pb</strong>, con
+  conteos de siRNA eficientes entre 181 y 240 por candidato; de los diez, s&oacute;lo uno redujo la
+  viabilidad celular. <span class="tag e">E</span> El conteo no separ&oacute; al que funcion&oacute; de
+  los que no, aunque el estudio no estaba dise&ntilde;ado para evaluar a si-Fi.
+  <span class="tag q">H</span></p>
+
+  <p>Cr&iacute;ticas publicadas, tres, y ninguna es un benchmark con datos medidos: la del propio
+  art&iacute;culo contra siDirect, dsCheck y RNAi Designer &mdash;que el art&iacute;culo aclara que no
+  pudo hacer contra el experimento&mdash;; la de la plataforma dsRIP (2025), que apunta que si-Fi
+  nunca fue una herramienta en l&iacute;nea y que las herramientas previas se basaron en datos de siRNA
+  humanos; y una revisi&oacute;n de 2026 que clasifica a si-Fi como herramienta
+  <strong>sin componente predictivo entrenado</strong>. <span class="tag e">E</span></p>
+
+  <h2>Licencia y versiones</h2>
+
+  <p>Hay <strong>tres</strong> declaraciones de licencia del software, no dos: el art&iacute;culo
+  (p&aacute;gina 9) dice CC BY-SA 4.0; el README del repositorio oficial dice CC BY-NC-SA 2.0; y la
+  &uacute;ltima p&aacute;gina del manual dice CC BY-NC-SA. La cl&aacute;usula NonCommercial de las dos
+  &uacute;ltimas es incompatible con la primera. La declaraci&oacute;n de SourceForge no se pudo
+  verificar: el dominio est&aacute; bloqueado en este entorno, igual que Zenodo y e!DAL.
+  <span class="tag q">?</span></p>
+
+  <p>La versi&oacute;n es <strong>siFi21_1.2.3-0008</strong>, IPK-Gatersleben 2017. El repositorio no
+  tiene cambios de c&oacute;digo despu&eacute;s de marzo de 2025 y su propio README avisa que la
+  herramienta no est&aacute; actualizada. Verificado por medici&oacute;n propia: el
+  <code>RNAplfold.exe</code> que trae declara ViennaRNA <strong>2.1.5</strong>.
+  <span class="tag e">E</span></p>
+
+  <h2>Lo que no pudimos hacer</h2>
+
+  <p>Seis fuentes primarias quedaron en nivel de resumen porque sus editoriales est&aacute;n fuera de
+  la lista de dominios permitidos: Schwarz 2003, Khvorova 2003, Reynolds 2004, Tafer 2008,
+  Bernhart 2006 y Ameres 2007 <span class="tag q">?</span>. No se abrieron el binario de SourceForge,
+  el dep&oacute;sito de Zenodo ni el conjunto de calibraci&oacute;n de e!DAL, por el mismo motivo. No se
+  midi&oacute; cu&aacute;ntos veredictos finales cambian al corregir el &iacute;ndice de la regla
+  terminal. Y no hay fuente abierta para el rango de 150 a 250&nbsp;nt: es pregunta para el
+  investigador, no un hueco que se pueda tapar con una explicaci&oacute;n plausible.</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>L&iacute;nea C1 de la ola 3. La fuente de verdad es <code>REPORT.md</code>; la tabla de filtros
+    con sus l&iacute;neas de c&oacute;digo est&aacute; en <code>filtros.json</code>, la validaci&oacute;n
+    experimental en <code>validacion_paper.md</code>, el cotejo con lo que el repositorio ya
+    afirmaba en <code>contraste_con_repo.md</code> y el nivel de lectura de cada fuente en
+    <code>sources.json</code>.</p>
+    <p>Nada de lo afirmado ac&aacute; sale de una fuente que no se haya abierto. Ninguna secuencia de
+    EPILAB se us&oacute; ni se envi&oacute; a ning&uacute;n servicio; la &uacute;nica secuencia procesada
+    es un genoma p&uacute;blico del NCBI, procesado localmente.</p>
+  </div>
+</footer>
+
+</body>
+</html>

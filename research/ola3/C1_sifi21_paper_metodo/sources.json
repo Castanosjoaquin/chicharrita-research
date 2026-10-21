@@ -1,0 +1,163 @@
+[
+ {
+  "referencia": "Lück S, Kreszies T, Strickert M, Schweizer P, Kuhlmann M, Douchkov D (2019). siRNA-Finder (si-Fi) Software for RNAi-Target Design and Off-Target Prediction. Front Plant Sci 10:1023. doi:10.3389/fpls.2019.01023. PMID 31475020, PMCID PMC6704232",
+  "url": "https://doi.org/10.3389/fpls.2019.01023",
+  "nivel_lectura": "texto completo (PDF, 12 páginas)",
+  "que_se_uso": "Fuente central: criterio de eficiencia (Discusión p.8), parámetros de accesibilidad (pie de Fig. 2A), asimetría y regla terminal (p.4, Fig. 1), implementación y Bowtie (p.3), validación experimental (p.2-8, Tablas 1-3, Figs. 3-4), comparación con versiones previas y con otras herramientas (p.6-7), disponibilidad y licencia (p.9), referencias primarias.",
+  "que_se_descarto": "La Tabla Suplementaria S1-S4 no se abrió (archivos suplementarios aparte); el detalle de clonado y vectores no es relevante para el criterio."
+ },
+ {
+  "referencia": "Lück S, Douchkov D (2017). Quick_help.pdf — Long double stranded RNAi construct design and RNAi off-target prediction. siFi21 v1.2.3-0008, IPK-Gatersleben. Manual incluido en el repositorio oficial",
+  "url": "https://github.com/snowformatics/siFi21-/blob/master/Quick_help.pdf",
+  "nivel_lectura": "texto completo (PDF, 13 páginas)",
+  "que_se_uso": "Valores por defecto de los dos modos (p.7 y p.11), desactivación de la eficiencia con desajustes, explicación de la regla terminal y sus referencias (p.3), accesibilidad y RNAplfold (p.4), lectura del gráfico y criterio cualitativo de región (p.9), licencia declarada (p.13).",
+  "que_se_descarto": "Las instrucciones de instalación y de gestión de la base de datos sólo se usaron para confirmar el flujo."
+ },
+ {
+  "referencia": "Repositorio oficial de si-Fi21, github.com/snowformatics/siFi21-, commit d6296b7 (2025-03-18), incluido README.md y ToCopy/ con RNAplfold.exe y bowtie.exe",
+  "url": "https://github.com/snowformatics/siFi21-",
+  "nivel_lectura": "texto completo del fuente (clon en work/C1/siFi21--d6296b7/)",
+  "que_se_uso": "Todas las citas de archivo y línea: sifi_pipeline.py, main.py, free_energy.py, general_helpers.py, show_plot.py, create_plots.py. README: versión, enlace a SourceForge, licencia CC BY-NC-SA 2.0, aviso de falta de actualización. Verificación por cadenas de que RNAplfold.exe es ViennaRNA 2.1.5.",
+  "que_se_descarto": "Resources/ (interfaz Qt generada) y los recursos gráficos no se analizaron. No se copió ningún archivo a la parte versionada del repositorio (licencia en conflicto)."
+ },
+ {
+  "referencia": "Elbashir SM, Lendeckel W, Tuschl T (2001). RNA interference is mediated by 21- and 22-nucleotide RNAs. Genes Dev 15:188-200. doi:10.1101/gad.862301",
+  "url": "https://doi.org/10.1101/gad.862301",
+  "nivel_lectura": "texto completo (vía PMC)",
+  "que_se_uso": "Fuente primaria del tamaño de ventana de 21 nt: evidencia in vitro en lisado de Drosophila melanogaster.",
+  "que_se_descarto": "El detalle del mapeo de sitios de corte no se usó."
+ },
+ {
+  "referencia": "Ui-Tei K, Naito Y, Takahashi F, Haraguchi T, Ohki-Hamazaki H, Juni A, Ueda R, Saigo K (2004). Guidelines for the selection of highly effective siRNA sequences for mammalian and chick RNA interference. Nucleic Acids Res 32:936-948. doi:10.1093/nar/gkh247",
+  "url": "https://doi.org/10.1093/nar/gkh247",
+  "nivel_lectura": "texto completo (vía PMC)",
+  "que_se_uso": "Fuente primaria de la regla del nucleótido terminal: n=62 blancos, 6 genes, células de mamífero, Drosophila y embrión de pollo; condiciones (i) A/U en 5' antisentido y (ii) G/C en 5' sentido, que son las dos que si-Fi implementa; y la observación de que en Drosophila in vivo casi no hay preferencia de secuencia.",
+  "que_se_descarto": "Las condiciones (iii) y (iv) —riqueza A/U en el tercio 5' y ausencia de tramos G/C largos— no están en si-Fi; se registran como diferencia, no se usaron para nada más."
+ },
+ {
+  "referencia": "Reynolds A, Leake D, Boese Q, Scaringe S, Marshall WS, Khvorova A (2004). Rational siRNA design for RNA interference. Nat Biotechnol 22:326-330. doi:10.1038/nbt936",
+  "url": "https://doi.org/10.1038/nbt936",
+  "nivel_lectura": "sólo resumen (Europe PMC; nature.com bloqueado por la red del entorno)",
+  "que_se_uso": "n=180 siRNA sobre dos genes; preferencias de base en las posiciones 3, 10, 13 y 19 de la hebra sentido, que es la posición que si-Fi comprueba.",
+  "que_se_descarto": "No se pudo verificar el detalle de los ocho criterios ni el algoritmo de puntaje."
+ },
+ {
+  "referencia": "Schwarz DS, Hutvágner G, Du T, Xu Z, Aronin N, Zamore PD (2003). Asymmetry in the assembly of the RNAi enzyme complex. Cell 115:199-208. doi:10.1016/S0092-8674(03)00759-1",
+  "url": "https://doi.org/10.1016/S0092-8674(03)00759-1",
+  "nivel_lectura": "sólo resumen (Europe PMC; cell.com bloqueado)",
+  "que_se_uso": "Fuente primaria de la asimetría de carga de hebra: la estabilidad absoluta y relativa de los pares de los extremos 5' determina qué hebra entra al RISC.",
+  "que_se_descarto": "No se pudo extraer ningún valor numérico de umbral del texto completo."
+ },
+ {
+  "referencia": "Khvorova A, Reynolds A, Jayasena SD (2003). Functional siRNAs and miRNAs exhibit strand bias. Cell 115:209-216. doi:10.1016/S0092-8674(03)00801-8",
+  "url": "https://doi.org/10.1016/S0092-8674(03)00801-8",
+  "nivel_lectura": "sólo resumen (Europe PMC; cell.com bloqueado)",
+  "que_se_uso": "La cifra clave para evaluar el umbral de 1 kcal/mol: los dúplex funcionales muestran 0,5 kcal/mol menos de estabilidad interna en el extremo 5' antisentido que los no funcionales.",
+  "que_se_descarto": "El análisis de precursores de miARN no se usó."
+ },
+ {
+  "referencia": "Tafer H, Ameres SL, Obernosterer G, Gebeshuber CA, Schroeder R, Martinez J, Hofacker IL (2008). The impact of target site accessibility on the design of effective siRNAs. Nat Biotechnol 26:578-583. doi:10.1038/nbt1404",
+  "url": "https://doi.org/10.1038/nbt1404",
+  "nivel_lectura": "sólo resumen (Europe PMC; nature.com bloqueado; fetch de texto completo devolvió 'closed')",
+  "que_se_uso": "Antecedente directo del módulo de accesibilidad de si-Fi: calibración con 573 siRNA de 38 genes y prueba con 360 siRNA de 4 genes; herramienta RNAxs.",
+  "que_se_descarto": "No se pudo verificar si u=8, W=80 y L=40 provienen de este trabajo ni si propone algún umbral de probabilidad."
+ },
+ {
+  "referencia": "Bernhart SH, Hofacker IL, Stadler PF (2006). Local RNA base pairing probabilities in large sequences. Bioinformatics 22:614-615. doi:10.1093/bioinformatics/btk014",
+  "url": "https://doi.org/10.1093/bioinformatics/btk014",
+  "nivel_lectura": "sólo resumen (Europe PMC; academic.oup.com bloqueado)",
+  "que_se_uso": "Origen de RNAplfold y de la idea de probabilidades locales de apareamiento robustas a la ventana elegida.",
+  "que_se_descarto": "No aporta umbrales de diseño de siRNA; no se usó para nada más."
+ },
+ {
+  "referencia": "Ameres SL, Martinez J, Schroeder R (2007). Molecular basis for target RNA recognition and cleavage by human RISC. Cell 130:101-112. doi:10.1016/j.cell.2007.04.037",
+  "url": "https://doi.org/10.1016/j.cell.2007.04.037",
+  "nivel_lectura": "sólo resumen (Europe PMC; cell.com bloqueado)",
+  "que_se_uso": "Justificación mecanística del filtro de accesibilidad: la accesibilidad del sitio correlaciona directamente con la eficiencia de corte y el RISC no despliega ARN estructurado.",
+  "que_se_descarto": "El detalle cinético no se usó."
+ },
+ {
+  "referencia": "Langmead B, Trapnell C, Pop M, Salzberg SL (2009). Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol 10:R25. doi:10.1186/gb-2009-10-3-r25",
+  "url": "https://doi.org/10.1186/gb-2009-10-3-r25",
+  "nivel_lectura": "texto completo (vía Europe PMC)",
+  "que_se_uso": "Identificación de Bowtie como el componente de búsqueda y de su modelo de alineamiento extremo a extremo con presupuesto de desajustes.",
+  "que_se_descarto": "Los detalles del índice FM no se usaron."
+ },
+ {
+  "referencia": "Chen JL, Dishler AL, Kennedy SD, Yildirim I, Liu B, Turner DH, Serra MJ (2012). Testing the nearest neighbor model for canonical RNA base pairs: revision of GU parameters. Biochemistry 51:3508-3522. doi:10.1021/bi3002709",
+  "url": "https://doi.org/10.1021/bi3002709",
+  "nivel_lectura": "texto completo (vía Europe PMC)",
+  "que_se_uso": "Origen de los parámetros RNA_NN3 que usa el código: fusión óptica de 29 dúplex de ARN en 1 M NaCl, parámetros reportados como ΔG°37.",
+  "que_se_descarto": "La discusión sobre pares G·U terminales sólo se usó para caracterizar las condiciones de medición."
+ },
+ {
+  "referencia": "Turner DH, Mathews DH (2010). NNDB: the nearest neighbor parameter database for predicting stability of nucleic acid secondary structure. Nucleic Acids Res 38:D280-D282. doi:10.1093/nar/gkp892",
+  "url": "https://doi.org/10.1093/nar/gkp892",
+  "nivel_lectura": "texto completo (vía Europe PMC)",
+  "que_se_uso": "Respaldo de los parámetros de extremos colgantes y de las ecuaciones para extrapolar energías libres a temperaturas distintas de 37 °C.",
+  "que_se_descarto": "La navegación del sitio web de la NNDB no se exploró."
+ },
+ {
+  "referencia": "Arora AK, Clark N, Wentworth KS, Hesler S, Fuchs M, Loeb G, Douglas AE (2020). Evaluation of RNA Interference for Control of the Grape Mealybug Pseudococcus maritimus (Hemiptera: Pseudococcidae). Insects 11:739. PMID 33126451, PMCID PMC7692628. doi:10.3390/insects11110739",
+  "url": "https://europepmc.org/article/MED/33126451",
+  "nivel_lectura": "texto completo (XML de Europe PMC), lectura dirigida a las menciones de si-Fi",
+  "que_se_uso": "Uso documentado de si-Fi en un hemíptero: valores por defecto, 21 pb, cero desajustes, para contar coincidencias perfectas de 21-meros en especies no objetivo.",
+  "que_se_descarto": "Los bioensayos de alimentación y los resultados de mortalidad no se analizaron: están fuera del alcance de esta investigación."
+ },
+ {
+  "referencia": "Arora AK, Chung SH, Douglas AE (2021). Non-Target Effects of dsRNA Molecules in Hemipteran Insects. Genes (Basel) 12:407. PMID 33809132, PMCID PMC8000911. doi:10.3390/genes12030407",
+  "url": "https://europepmc.org/article/MED/33809132",
+  "nivel_lectura": "texto completo (XML de Europe PMC), lectura dirigida a las menciones de si-Fi",
+  "que_se_uso": "Segundo uso en hemípteros: si-Fi para contar 21-meros con coincidencia perfecta entre Acyrthosiphon pisum, Myzus persicae, Pseudococcus maritimus y Bemisia tabaci.",
+  "que_se_descarto": "Los datos de expresión de los genes NUC no se usaron."
+ },
+ {
+  "referencia": "Omokungbe B, Centurión A, Stiehler S, Wolf M, Geisler P, Vilcinskas A, Steinbrink A, Hardes K (2025). RNA interference mediated mortality in Aedes albopictus: a challenging journey toward species-specific vector control. Parasit Vectors. PMID 41239436, PMCID PMC12619383. doi:10.1186/s13071-025-07113-2",
+  "url": "https://europepmc.org/article/MED/41239436",
+  "nivel_lectura": "texto completo (XML de Europe PMC), lectura dirigida a métodos y resultados de los ARNdc",
+  "que_se_uso": "Uso de si-Fi21 en un insecto vector para identificar regiones y construir ARNdc de 400 y 500 pb; Tabla 1 con los hits de siRNA eficientes por candidato (181 a 240) y el resultado de que sólo IAP 2 redujo la viabilidad celular.",
+  "que_se_descarto": "Los ensayos de nanopartículas y de estabilidad no se usaron."
+ },
+ {
+  "referencia": "Bulgarella M, Reason A, Baty JW, McGruddy RA, Gordon ERL, Devisetty UK, Lester PJ (2025). In Silico Analysis of Potential Off-Target Effects of a Next-Generation dsRNA Acaricide for Varroa Mites. Insects 16:317. PMID 40266823, PMCID PMC11942661. doi:10.3390/insects16030317",
+  "url": "https://europepmc.org/article/MED/40266823",
+  "nivel_lectura": "texto completo (XML de Europe PMC), lectura dirigida a las menciones de si-Fi",
+  "que_se_uso": "Precedente metodológico: si-Fi21 v.1.2.3.-0008 sobre genomas de organismos no objetivo, con verificación cruzada mediante bwa-aln.",
+  "que_se_descarto": "Los bioensayos con Galleria mellonella no se usaron."
+ },
+ {
+  "referencia": "Cedden D, Güney G, Rostás M, Bucher G (2025). Optimizing dsRNA sequences for RNAi in pest control and research with the dsRIP web platform. BMC Biol. PMID 40296100, PMCID PMC12039203. doi:10.1186/s12915-025-02219-6",
+  "url": "https://europepmc.org/article/MED/40296100",
+  "nivel_lectura": "texto completo (XML de Europe PMC), lectura dirigida a las menciones de si-Fi",
+  "que_se_uso": "Crítica publicada: si-Fi nunca fue una herramienta en línea, y las herramientas previas se basaron en datos de siRNA humanos mientras que dsRIP determinó sus parámetros en un modelo de insecto plaga.",
+  "que_se_descarto": "El resto del artículo no se reabrió: dsRIP ya está cubierto por R2 y R4 de la ola 1."
+ },
+ {
+  "referencia": "Khodagholi Z, Yousefi N (2026). From rules to foundation models: a comprehensive review of machine learning approaches for siRNA design. NAR Genom Bioinform. PMID 42676509, PMCID PMC13527166. doi:10.1093/nargab/lqag099",
+  "url": "https://europepmc.org/article/MED/42676509",
+  "nivel_lectura": "texto completo (XML de Europe PMC), lectura dirigida a las menciones de si-Fi",
+  "que_se_uso": "Clasificación de si-Fi como herramienta de reglas sin componente predictivo entrenado ('No (predictive)'); y dos imprecisiones suyas sobre si-Fi (dice RNAfold por RNAplfold, y marca disponibilidad de servidor web).",
+  "que_se_descarto": "El resto de la revisión (modelos fundacionales, transformers) no se usó en esta investigación."
+ },
+ {
+  "referencia": "Kaweesi T, Colvin J, Campbell L, Visendi P, Maslen G, Alicai T, Seal S (2024). In silico prediction of candidate gene targets for the management of African cassava whitefly (Bemisia tabaci, SSA1-SG1), a key vector of viruses causing cassava brown streak disease. PeerJ 12:e16949. PMID 38410806, PMCID PMC10896082. doi:10.7717/peerj.16949",
+  "url": "https://europepmc.org/article/MED/38410806",
+  "nivel_lectura": "texto completo (XML de Europe PMC), lectura dirigida a las menciones de si-Fi",
+  "que_se_uso": "Uso crítico de siRNA-Finder en un hemíptero: una secuencia publicada contra SUC1 no produjo ningún siRNA predicho en el genoma de la mosca blanca MEAM1.",
+  "que_se_descarto": "El modelo metabólico y el resto del trabajo no se usaron."
+ },
+ {
+  "referencia": "Europe PMC REST API — registro del artículo (PMID 31475020), lista de citas y búsquedas de texto completo por \"si-Fi21\", \"siFi21\" y \"siRNA-Finder\", 2026-10-20",
+  "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/",
+  "nivel_lectura": "consulta programática; resultados crudos en work/C1/citas_sifi_epmc.json y work/C1/sifi_menciones.json",
+  "que_se_uso": "128 citas registradas; 135 registros devueltos por el endpoint de citas; cero resultados para si-Fi21 combinado con términos de hemípteros; identificación de los trabajos listados arriba.",
+  "que_se_descarto": "No se consultaron Scopus ni Web of Science; no se revisó literatura no indexada en Europe PMC."
+ },
+ {
+  "referencia": "Genoma del Maize rayado fino virus, NCBI NC_002786.2, copia local en work/W2/MRFV_NC_002786.2.fa",
+  "url": "https://www.ncbi.nlm.nih.gov/nuccore/NC_002786.2",
+  "nivel_lectura": "secuencia usada localmente, sin enviarse a ningún servicio",
+  "que_se_uso": "Medición del efecto del índice de la regla terminal: 6.346 ventanas de 21 nt, 51,4 % de cambio de rama y 31,4 % de cambio del booleano terminal al usar la posición 1 en lugar de la 2.",
+  "que_se_descarto": "No se calculó accesibilidad ni veredicto completo: no se corrió el port."
+ }
+]

@@ -115,6 +115,13 @@ con sus tres límites: **n = 12**, la unidad es la **construcción** y no el siR
 individual fue medido— y la variable dependiente es un fenotipo de resistencia, no un nivel de
 transcrito.
 
+Una advertencia antes de que alguien cite cifras sueltas de ese experimento: **el texto y la
+Tabla 2 del artículo no coinciden en dos lugares.** `[?]` La Discusión dice que la construcción
+0MY genera 239 siRNA en modo HS y 26 en HE, y que desde 4MY el número de siRNA en modo HE cae a
+cero; la Tabla 2 lista 26 en las dos columnas para 0MY y 9 para 4MY, con el cero recién en 5MY.
+El detalle está en `validacion_paper.md`; no se puede resolver sin los datos suplementarios, que
+viven en un archivo aparte que no abrimos.
+
 La distinción que pidió el prompt, dicha con precisión: **«si-Fi predice un siRNA potente» y
 «si-Fi evita off-targets» tienen evidencias distintas y de calidad distinta.** `[E]` La primera se
 apoya en esa correlación de −0,61 a nivel de construcción, en una sola especie vegetal, con un

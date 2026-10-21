@@ -1,0 +1,74 @@
+[
+ {
+  "nombre": "tamano_ventana_siRNA",
+  "umbral": "21 nt (modo diseno y modo off-target)",
+  "fuente_primaria": "Elbashir S, Lendeckel W, Tuschl T (2001) Genes Dev 15:188-200, doi 10.1101/gad.862301 (texto completo). Los mediadores de la interferencia son fragmentos de 21-22 nt, en lisado de embrion de Drosophila melanogaster.",
+  "tipo_evidencia": "empirica",
+  "paper_vs_codigo": "Coinciden. El paper lo da por sentado en la Introduccion (pag. 1) y el nombre si-Fi21 viene de ahi; el manual lo declara default (pag. 7 y 11).",
+  "archivo_linea": "work/C1/siFi21--d6296b7/main.py:334 y :357 (spinBox_size=21); work/C1/siFi21--d6296b7/sifi_pipeline.py:282-305 (ventanas corriendo de a 1 nt)"
+ },
+ {
+  "nombre": "desajustes_permitidos",
+  "umbral": "0 desajustes por 21-mero (bowtie -v 0)",
+  "fuente_primaria": "Langmead B et al. (2009) Genome Biol 10:R25, doi 10.1186/gb-2009-10-3-r25 (texto completo). Es el alineador, no una medicion de eficacia.",
+  "tipo_evidencia": "convencion",
+  "paper_vs_codigo": "Coinciden. Paper, Implementation pag. 3: BOWTIE elegido por exactitud, velocidad y memoria. Manual pag. 7 y 11: default 0, y si se permiten desajustes el calculo de eficiencia se desactiva 'porque no hay datos confiables'.",
+  "archivo_linea": "work/C1/siFi21--d6296b7/main.py:335 y :358 (comboBox_miss=0); work/C1/siFi21--d6296b7/sifi_pipeline.py:332 (bowtie -a -v N -y); work/C1/siFi21--d6296b7/main.py:114-118 y work/C1/siFi21--d6296b7/sifi_pipeline.py:513-514 (con desajustes, is_efficient=False siempre)"
+ },
+ {
+  "nombre": "seleccion_hebra_guia",
+  "umbral": "dG(5' antisentido) >= dG(5' sentido), sobre 3 nt de cada extremo, con extremos colgantes; sin margen",
+  "fuente_primaria": "Schwarz DS et al. (2003) Cell 115:199-208, doi 10.1016/S0092-8674(03)00759-1 (solo resumen) y Khvorova A, Reynolds A, Jayasena SD (2003) Cell 115:209-216, doi 10.1016/S0092-8674(03)00801-8 (solo resumen).",
+  "tipo_evidencia": "empirica",
+  "paper_vs_codigo": "Coinciden. Paper, 'siRNA Asymmetry and Strand Selection Parameters' pag. 4 y Figura 1; manual pag. 3 (MFE de los primeros 3 nt de cada extremo 5' teniendo en cuenta el extremo 3' colgante de la hebra opuesta).",
+  "archivo_linea": "work/C1/siFi21--d6296b7/sifi_pipeline.py:413-428 (comparacion anti>=sense); :65 (end_nucleotides=3); :388-411 (extremos colgantes)"
+ },
+ {
+  "nombre": "estabilidad_de_extremos",
+  "umbral": "1,00 kcal/mol de brecha minima entre los dos extremos",
+  "fuente_primaria": "Ninguna fija el valor. Khvorova 2003 (solo resumen) reporta 0,5 kcal/mol de diferencia media de estabilidad interna entre duplex funcionales y no funcionales en el extremo 5' antisentido: el umbral de si-Fi es el doble y no se deriva de esa medicion.",
+  "tipo_evidencia": "convencion",
+  "paper_vs_codigo": "Coinciden en el valor. Paper, Discusion pag. 8: 'dMFE de los primeros tres nucleotidos de cada hebra > 1 kcal/mol', sin citar fuente del numero. El paper escribe '>' y el codigo aplica '>='.",
+  "archivo_linea": "work/C1/siFi21--d6296b7/sifi_pipeline.py:430-446 (comparacion >= umbral); work/C1/siFi21--d6296b7/main.py:329 y :359 (doubleSpinBox_end=1)"
+ },
+ {
+  "nombre": "regla_nucleotido_terminal_5prime",
+  "umbral": "categorico: U/A en el 5' de la hebra guia y G/C en el 5' de la hebra pasajera (casilla tildada por defecto en los dos modos)",
+  "fuente_primaria": "Ui-Tei K et al. (2004) Nucleic Acids Res 32:936-948, doi 10.1093/nar/gkh247 (texto completo; 62 blancos, 6 genes, celulas de mamifero, Drosophila y embrion de pollo). Reynolds A et al. (2004) Nat Biotechnol 22:326-330, doi 10.1038/nbt936 (solo resumen; 180 siRNA, 2 genes; preferencias de base en posiciones 3, 10, 13 y 19 del sentido).",
+  "tipo_evidencia": "empirica",
+  "paper_vs_codigo": "NO coinciden, por dos motivos. (1) El paper presenta las reglas de secuencia como combinacion con las termodinamicas (pag. 4 y pag. 6) y el codigo las implementa como ramificacion, con una rama que declara eficiente mirando solo accesibilidad. (2) El codigo comprueba la posicion 2 del 21-mero donde la regla y la geometria del propio si-Fi ponen la posicion 1 (el extremo 5' del sentido que usa su propio calculo de dG). Medido sobre NC_002786.2 (6.346 ventanas): cambiar el indice cambia la rama en 51,4 % de las ventanas y el booleano terminal en 31,4 %.",
+  "archivo_linea": "work/C1/siFi21--d6296b7/sifi_pipeline.py:525-555 (regla completa); :526 (posicion 19, indice sirna_size-3); :528 y :543 (posicion 2, indice 1); :534-541 (rama que saltea la termodinamica); comparar con :377 (el calculo de dG toma los indices 0-2 como extremo 5' del sentido)"
+ },
+ {
+  "nombre": "accesibilidad_sitio_blanco",
+  "umbral": "probabilidad de desapareamiento >= 0,1 para un tramo de u=8 nt, con RNAplfold -W 80 -L 40",
+  "fuente_primaria": "Tafer H et al. (2008) Nat Biotechnol 26:578-583, doi 10.1038/nbt1404 (solo resumen; calibrado con 573 siRNA de 38 genes, probado con 360 siRNA de 4 genes). Bernhart SH et al. (2006) Bioinformatics 22:614-615, doi 10.1093/bioinformatics/btk014 (solo resumen; RNAplfold). Ameres SL, Martinez J, Schroeder R (2007) Cell 130:101-112, doi 10.1016/j.cell.2007.04.037 (solo resumen; la accesibilidad correlaciona con la eficiencia de corte). Ninguna fija 0,1.",
+  "tipo_evidencia": "empirica para el principio y para u=8; convencion para el valor 0,1",
+  "paper_vs_codigo": "Coinciden. Paper, pie de Figura 2A: u=8, L=40, W=80 y 'umbral LAP por defecto de si-Fi de 0,1', con la aclaracion de que un LAP alto es condicion necesaria pero no suficiente.",
+  "archivo_linea": "work/C1/siFi21--d6296b7/sifi_pipeline.py:60-61 (winsize=80, span=40); :351 (RNAplfold -W 80 -L 40 -u 21 -T 22); :252 (se lee la columna 8 del _lunp); :448-457 (umbral >=); work/C1/siFi21--d6296b7/main.py:330-331 y :360-361 (0.1 y 8)"
+ },
+ {
+  "nombre": "temperatura",
+  "umbral": "22 C, fija",
+  "fuente_primaria": "Ninguna. El articulo no menciona temperatura en sus 12 paginas.",
+  "tipo_evidencia": "convencion",
+  "paper_vs_codigo": "No comparable: el paper calla. El codigo la fija en dos lugares independientes.",
+  "archivo_linea": "work/C1/siFi21--d6296b7/free_energy.py:420-421 (tao=273.15+22; deltaG=(dH*1000-tao*dS)/1000); work/C1/siFi21--d6296b7/sifi_pipeline.py:62 y :351 (-T 22 a RNAplfold)"
+ },
+ {
+  "nombre": "tablas_termodinamicas",
+  "umbral": "RNA_NN3 (apilamientos) y RNA_DE2 (extremos colgantes) por defecto; DNA_TMM1 y DNA_IMM1 para desapareamientos",
+  "fuente_primaria": "Chen JL et al. (2012) Biochemistry 51:3508-3522, doi 10.1021/bi3002709 (texto completo; fusion optica de 29 duplex de ARN en 1 M NaCl, parametros como dG37). Turner DH, Mathews DH (2010) Nucleic Acids Res 38:D280-D282, doi 10.1093/nar/gkp892 (texto completo; NNDB y ecuaciones de extrapolacion a otras temperaturas).",
+  "tipo_evidencia": "empirica, pero medida en 1 M NaCl sobre oligos cortos y reportada a 37 C",
+  "paper_vs_codigo": "No comparable: el articulo no nombra ninguna tabla termodinamica.",
+  "archivo_linea": "work/C1/siFi21--d6296b7/free_energy.py:278-281 (defaults de calculate_free_energy); :280 (Na=20, K=50, Mg=0, saltcorr=5)"
+ },
+ {
+  "nombre": "identidad",
+  "umbral": "no existe como filtro de eficiencia",
+  "fuente_primaria": "Lueck S et al. (2019) Front Plant Sci 10:1023 (texto completo), Tabla 1 y Discusion pag. 8: la eficacia cae por debajo del 92 % de similitud global entre disparador y blanco; los hits de 21-meros caen a cero con 89,4 % de identidad observada.",
+  "tipo_evidencia": "empirica",
+  "paper_vs_codigo": "No aplica: no hay filtro de identidad que comparar. La identidad se resuelve fuera de la regla, como coincidencia exacta del 21-mero con N desajustes en BOWTIE, y como una propiedad medida del par disparador-blanco.",
+  "archivo_linea": "work/C1/siFi21--d6296b7/sifi_pipeline.py:328-341 (bowtie); no hay funcion de identidad en el calculo de eficiencia"
+ }
+]
