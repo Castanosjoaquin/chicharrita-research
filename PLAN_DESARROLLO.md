@@ -55,11 +55,11 @@ es que cada número que entreguemos tiene que venir con el porqué de haberlo el
 
 | # | Lo que pidió | Qué hay ya | Qué falta |
 | --- | --- | --- | --- |
-| 1 | **Leer y entender si-Fi21**: qué implica que algo sea eficiente, cómo lo calculan, qué significa la energía libre ahí | El port a Python 3 verificado contra el programa original: `tools/sifi21_port/`, los tres filtros implementados y `CAMBIOS.md` con lo que se cambió y por qué | El paper y la fuente primaria de cada umbral; qué validó el artículo y qué no; de dónde sale el criterio de 150–250 nt |
+| 1 | **Leer y entender si-Fi21**: qué implica que algo sea eficiente, cómo lo calculan, qué significa la energía libre ahí | **Hecho.** El port verificado contra el original, `research/ola3/C1_sifi21_paper_metodo/` con el artículo y la fuente de cada umbral, y la nota escrita en `entregables/que-significa-eficiente.md` | Nada |
 | 2 | **Benchmarking** de si-Fi21, dsRNA-Engineer y BLAST sobre los cuatro genes | **Hecho** en `research/ola2/W7_ranking/benchmark_tres_herramientas.md`: las tres en un eje común, con el panel de referencias verificado como idéntico y la atribución del conteo por condición | Nada del pedido. Queda el hueco declarado: los dos genes del insecto no tienen corrida de dsRNA-Engineer y no la van a tener |
 | 3 | **Un ranking** de candidatos con el criterio explicitado | **Hecho** el 2026-10-20 en `research/ola2/W7_ranking/`: el orden, las cinco decisiones declaradas, la ficha por candidato y el barrido de 2.000 juegos de pesos | Rehacerlo con lo que la ola 3 midió después, que toca su recomendación central (ver §3) |
 | 4 | **Evaluación de las regiones ya elegidas** | **Hecho** en `W7_ranking/REPORT.md` §2.2 y §2.3: la región dentro de cada gen, con la región alternativa recomendada en los dos genes del insecto y el efecto sobre el orden | Revisar la recomendación contra el panel ampliado, que la da vuelta en `BicC_Dm` (§3) |
-| 5 | **Crítica de las herramientas**, aunque no la implementemos | **Casi todo el material ya existe y está medido**: la regla terminal que saltea la física, las tablas de ADN dentro de un cálculo de ARN, los tres defectos operativos de si-Fi21, el conteo de dsRNA-Engineer dominado por la condición de 16 pb, lo que BLAST no puede hacer, y qué herramienta conviene para qué (`benchmark_tres_herramientas.md` §5) | Juntarlo en un documento único escrito para que lo lea él, con las mejoras propuestas |
+| 5 | **Crítica de las herramientas**, aunque no la implementemos | **Hecho.** Todo el material medido, reunido y escrito en `entregables/critica-herramientas.md`: si-Fi21, dsRNA-Engineer, BLAST y el código del laboratorio, cada crítica con su medición o su línea de código, más las mejoras que propondríamos | Nada |
 
 Y las dos extensiones opcionales que ofreció: **sumar genes nuevos** encontrados en la
 literatura, y **comparar 21 contra 22 nt**.
@@ -75,11 +75,11 @@ mitades se tocan.
 
 | Pedido | Estado | Dónde está | Qué falta |
 | --- | --- | --- | --- |
-| 1 · Entender si-Fi21 | **Cubierto como contenido, falta el documento** | `tools/sifi21_port/` + `research/ola3/C1_sifi21_paper_metodo/` | La nota corta y legible, para él (T1) |
+| 1 · Entender si-Fi21 | **Cerrado** | `tools/sifi21_port/` + `research/ola3/C1_sifi21_paper_metodo/` + `entregables/que-significa-eficiente.md` | Nada |
 | 2 · Benchmarking de las tres | **Cerrado** | `W7_ranking/benchmark_tres_herramientas.md` | Nada del pedido |
 | 3 · Ranking con criterio | **Cerrado, con segunda versión** | `W7_ranking/REPORT.md` §2 a §4 y `research/ola3/C7_ranking_v2/` | Nada del pedido; la v2 reproduce W7 exacto, suma humano, `eth` y `burs-alpha`, y reporta 21 y 22 nt |
 | 4 · Evaluación de las regiones | **Cerrado y revisado** | `W7_ranking/REPORT.md` §2.2 y §2.3, y `research/ola3/C8_conservacion/` | Nada del pedido; `BicC_Dm` pasa a 922-1221 por conservación (D25) y `ATPaseD_Dm` mantiene 72-371 |
-| 5 · Crítica de las herramientas | **Material completo, sin documento** | Disperso en seis archivos | Juntarlo y escribirlo para él (T5) |
+| 5 · Crítica de las herramientas | **Cerrado** | `entregables/critica-herramientas.md` | Nada |
 | Opcional · 21 contra 22 | **Cerrado** | `research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` y `C6_panel_y_largo/` | Nada |
 | Opcional · Genes nuevos | **Cerrado: catálogo y entrada al ranking** | `research/ola3/C5_.../catalogo_genes_blanco.md` y `C7_ranking_v2/` | Un transcriptoma que contenga `eth` y `burs-alpha`, para medir su conservación |
 
@@ -154,17 +154,17 @@ desde hace días: por qué su planilla declara 114, 35, 199 y 33 cuando si-Fi21 
 Cada tarea dice qué consume, qué produce y cuándo está terminada. Las que dependen de la fase 0
 lo dicen.
 
-### T1 · La nota de método: qué significa «eficiente»
+### T1 · La nota de método: qué significa «eficiente» — hecha
 
-**Entrada:** `research/ola3/C1_sifi21_paper_metodo/` —que ya tiene el artículo, el manual, la tabla
-de umbrales con su fuente y lo que el artículo validó—, más `tools/sifi21_port/` y
-`sifi21_reproduccion.md`. **El contenido está completo: lo que falta es escribirlo para él.**
-**Salida:** una nota corta, legible por alguien que no programa, que explique la ventana de 21,
-los tres filtros, qué es la energía libre acá y qué NO es —no es eficacia medida, es una regla
-de diseño—, y una tabla con el umbral de cada filtro, su fuente y si esa fuente es evidencia
-empírica o convención.
-**Terminada cuando:** cada fila de la tabla tiene fuente abierta o dice «convención».
-**Por qué primero:** él lo puso primero, y sin esto el ranking no se puede defender.
+**Estado:** escrita el 2026-10-21 en [`entregables/que-significa-eficiente.md`](entregables/que-significa-eficiente.md).
+Explica la ventana de 21 y los tres filtros sin pedir que se abra código, dice qué es la energía
+libre acá y qué no es, y trae la tabla con el umbral de cada filtro y su fuente. El saldo de esa
+tabla, que es lo que hay que poder decir en voz alta: **dos umbrales tienen fuente experimental
+abierta, dos tienen fuente para el principio pero no para el número, y dos no tienen ninguna** —el
+margen de 1,00 kcal/mol y los 22 °C—. Incluye además las tres cosas que el artículo no dice y se
+verificaron una por una: que «identidad» no es un filtro de eficiencia, que lo validado son doce
+construcciones en cebada con fenotipo y no caída de transcrito (Pearson −0,61, n = 12), y que el
+rango de 150-250 nt no está ni en el artículo, ni en el manual, ni en el código.
 
 ### T2 · El benchmarking de las tres herramientas — hecho
 
@@ -253,22 +253,21 @@ poblaciones de campo.
 sobre la región recortada o sobre el gen entero, y la diferencia llega al 47 %. Hay que declarar
 cuál se usó antes de comparar.
 
-### T5 · La crítica de las herramientas
+### T5 · La crítica de las herramientas — hecha
 
-**Entrada:** seis archivos que ya tienen la crítica medida y dispersa: `tools/sifi21_port/CAMBIOS.md`,
-`W2_herramientas/REPORT.md` §4, `sifi21_reproduccion.md`, `benchmark_tres_herramientas.md` §5,
-`research/ola3/C2_codigo_apolo_inta/` y `research/ola3/C3_blast_ventana_azar/`. **No falta medir
-nada: falta el documento.**
-**Salida:** un documento por herramienta con lo que falla, cómo lo comprobamos y qué mejora
-propondríamos. Él fue explícito en que no hace falta implementarla. Lo que ya tenemos y entra
-acá: la rama de la regla terminal de si-Fi21 que declara eficiente un siRNA que falló los
-filtros termodinámicos —entre el 14 % y el 24 % de lo que reporta como eficiente, medido ventana
-por ventana sobre los cuatro genes—; las tablas de energía de ADN usadas dentro de un cálculo de
-ARN; los tres defectos operativos que encontramos al correr el original; y que el conteo de
-off-targets de la herramienta oficial, leído como riesgo, está dominado por la condición de
-16 pb.
-**Terminada cuando:** cada crítica tiene la medición o la línea de código que la respalda. Una
-crítica sin evidencia no entra.
+**Estado:** escrita el 2026-10-21 en [`entregables/critica-herramientas.md`](entregables/critica-herramientas.md),
+con la regla de que cada crítica va con la medición o la línea de código que la respalda. Cubre
+si-Fi21, dsRNA-Engineer, BLAST y el código del laboratorio, y cierra con las mejoras que
+propondríamos sin implementarlas, como él pidió.
+
+Las cuatro que más pesan: **la accesibilidad del sitio blanco no muestra valor predictivo sobre la
+eficacia medida** (OR 1,00 [0,89–1,12] en 300 casos humanos; HR 0,9994 con P = 0,853 en
+*Tribolium*), y es una de las tres patas del criterio; **el 100 % del riesgo que informa
+dsRNA-Engineer viene de su condición de 16 pb**, que a su vez está por debajo del azar (860
+observadas contra 909 esperadas por composición); **BLAST no puede hacer este tamizaje**, con un
+techo medido de 0,762 de sensibilidad y cero con los valores por defecto de `megablast`; y en el
+código del laboratorio, **una secuencia en minúsculas produce cero eficientes en silencio**, medido
+138 contra 0 sobre el mismo gen.
 
 ### T6 · Las extensiones opcionales
 
@@ -436,7 +435,7 @@ que ahora hay un pedido explícito del investigador que ordena las prioridades.
 
 | Rama | Dueño de | Entregable | Estado |
 | --- | --- | --- | --- |
-| **Método** | T1 y T5 | La nota de qué significa «eficiente» y la crítica de las herramientas | **Es lo que falta.** Dos documentos de redacción, con todo el material ya medido |
+| **Método** | T1 y T5 | La nota de qué significa «eficiente» y la crítica de las herramientas | Hecho: los dos documentos están en `entregables/` |
 | **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho, y la recomendación de región ya se reescribió (C8, D25) |
 | **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho, con la segunda versión (C7) |
 | **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho y los dos mejores candidatos ya están en el ranking (C7); queda la conservación de `eth` y `burs-alpha` y la de `MP_MRFV`, que no se puede evaluar con los registros públicos (C8) |
