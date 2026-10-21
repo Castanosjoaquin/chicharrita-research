@@ -853,3 +853,27 @@ En orden de cuánto cambian lo que hacemos:
 - **El largo de siRNA en hemípteros no tiene perfil publicado**: el ranking reporta 21 y 22 y no elige.
 - **Qué hebra carga AGO2 no está modelado** (ficha del investigador, 19-26/10): si-Fi21 filtra por
   estabilidad de extremos 5′, pero la elección de hebra depende de más factores.
+
+## Conservación y amplicones (2026-10-21) — lo que abre
+
+### Para el investigador
+
+- **¿Qué porción del transcrito cubren sus amplicones de `eth` (544 pb) y `burs-alpha` (578 pb)?** Con los
+  cebadores de la Tabla 1 lo inferimos: `eth` 1–446 de la secuencia codificante más 98 nt de 5′UTR; `burs-alpha`
+  79–468 más 188 nt de 3′UTR. Confirmarlo requiere la Figura S1 del artículo, que no se leyó.
+- **¿Tienen secuencias de MRFV de aislados argentinos, o de la porción que codifica `MP_MRFV`?** En GenBank no hay
+  ninguna argentina, y solo 4 de 71 registros cubren `MP_MRFV` (2 son la referencia). El primero del ranking
+  de diseño no se puede evaluar frente a la variación entre aislados.
+- **¿Qué colonia o población fue la fuente de `BicC_Dm` y de `ATPaseD_Dm`?** `ATPaseD_Dm` es idéntica al 100 % al
+  contig de Illinois y difiere en un nucleótido de los transcriptomas de Ohio y de Argentina.
+
+### Pendientes internos
+
+- **Corregir la frase de D21** "no son subcadenas de nada publicado": `ATPaseD_Dm` es un fragmento exacto del
+  contig público `GCWP01010867.1` (posiciones 190-680, W5 §2.5). La decisión no cambia —las dos siguen siendo
+  confidenciales y no se subieron—, pero la frase es imprecisa.
+- **Un transcriptoma de *D. maidis* que contenga `eth` y `burs-alpha`** para medir su conservación como se hizo
+  con `BicC_Dm` y `ATPaseD_Dm`; hoy solo hay el genoma de Córdoba, que es la fuente menos confiable.
+- **Repetir la conservación a 22 nt**, que no se hizo.
+- **Si una pool de siRNA con algunos desajustes sigue silenciando** no lo podemos cuantificar; limita cuánto pesa
+  que `CP_MRFV` tenga solo 7 eficientes conservadas de 17 en su región.

@@ -18,6 +18,7 @@ toca llevar a `00_meta/`.
 | [`C5_estructura_genes_ingenieria_inversa/`](C5_estructura_genes_ingenieria_inversa/REPORT.md) | Qué se puede predecir de la estructura de un ARN largo y qué no; un catálogo de 36 filas de genes blanco, 20 nuevas; y el circuito de ingeniería inversa corrido entero. |
 | [`C6_panel_y_largo/`](C6_panel_y_largo/REPORT.md) | *(De otra sesión, no de estos cinco prompts.)* El panel de no objetivo ampliado y el largo de ventana, medidos contra la recomendación del ranking. |
 | [`C7_ranking_v2/`](C7_ranking_v2/REPORT.md) | *(Segunda versión de W7.)* El ranking con los cuatro de EPILAB y dos genes nuevos de *D. maidis* (`eth`, `burs-alpha`), a 21 y 22 nt, sin *Macrosteles* (D23). Reproduce W7 exacto; los genes nuevos quedan cuarto y quinto por diseño; las puntas del orden aguantan 22 nt y el medio no. |
+| [`C8_conservacion/`](C8_conservacion/REPORT.md) | *(Sigue a C7.)* Qué parte de la molécula probada de `eth` y `burs-alpha` cubren nuestras regiones, y conservación de cada ventana entre tres transcriptomas y dos genomas de *D. maidis* y entre los 71 registros de MRFV. Cambia la región recomendada de `BicC_Dm` (922-1221), mantiene la de `ATPaseD_Dm`, y muestra que `MP_MRFV` no se puede evaluar. |
 
 ## Lo que hay que leer antes de usar estos números
 

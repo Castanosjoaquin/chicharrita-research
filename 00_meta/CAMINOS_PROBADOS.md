@@ -757,3 +757,34 @@ ver los off-targets, y favorece a los nuevos. Con todos en su mejor región (niv
 **Qué pasó:** favorece a las regiones de 300 nt: a 22 nt pone a `BicC_Dm` primero con 39 contra 30 de `MP_MRFV`, y
 a `ATPaseD_Dm` por delante de `burs-alpha`. Además, los empates se resuelven por posición, un desempate arbitrario.
 **Estado:** se reporta, y el orden de las puntas se lee con la escala absoluta.
+
+## Conservación entre poblaciones y aislados (2026-10-21)
+
+### Usar el haplotipo alternativo del genoma del Reino Unido como una fuente más
+**Qué se intentó:** contar `GCA_975739835.1` como segunda fuente genómica de conservación.
+**Qué pasó:** es un ensamblado alternativo de 488 Mb que no contiene los loci de `ATPaseD_Dm` (0 de 471
+ventanas exactas), `eth` (1 de 539) ni `burs-alpha` (0 de 398), y contó como variación lo que era un hueco:
+daba 77, 12 y 1 ventanas conservadas. **Estado:** descartado como criterio; se reporta como descripción.
+
+### Usar el genoma de Córdoba (CIAP v1, ONT) como criterio de conservación
+**Qué se intentó:** aceptar ventanas con hasta un desajuste en ese genoma.
+**Qué pasó:** con un ensamblado solo ONT a 20x, una ventana con un desajuste puede ser variación o error:
+en `burs-alpha` 118 de las 398 ventanas presentes en la línea de base aparecen con un desajuste. **Estado:**
+se reporta en tres categorías (exacta, un desajuste, ausente) y no excluye ventanas.
+
+### Un alineamiento local que no ve las inserciones del otro
+**Qué se intentó:** marcar como conservada toda ventana cuyas 21 posiciones alinean y son idénticas.
+**Qué pasó:** una inserción en el otro transcrito deja las posiciones de la consulta contiguas y pasaba
+inadvertida; el transcriptoma argentino de `BicC_Dm` tiene una de 36 nt. Se agregó el corte entre bloques
+alineados. **Estado:** corregido; es el mismo defecto que daría falsos "idénticos" en los 71 registros virales.
+
+### Etiquetar una fuente por una localidad que no se había leído
+**Qué se intentó:** rotular el transcriptoma `GHCC01` como "Junín".
+**Qué pasó:** el registro dice "Argentina" y el remitente es el CeBio, Pergamino; la localidad de colecta no
+figura. **Estado:** corregido a "Argentina (depositado desde el CeBio, Pergamino)".
+
+### Buscar `eth` y `burs-alpha` en el TSA de NCBI por la API web de BLAST
+**Qué se intentó:** ubicar contigs de estos genes en los transcriptomas de *D. maidis*, con las secuencias
+públicas PZ371507 y PZ371508 (no con las de EPILAB).
+**Qué pasó:** quedó en cola más de media hora sin resultado y se canceló. **Estado:** pendiente; sin eso la
+conservación de estos dos genes solo se describe con el genoma de Córdoba.
