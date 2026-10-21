@@ -788,3 +788,88 @@ figura. **Estado:** corregido a "Argentina (depositado desde el CeBio, Pergamino
 públicas PZ371507 y PZ371508 (no con las de EPILAB).
 **Qué pasó:** quedó en cola más de media hora sin resultado y se canceló. **Estado:** pendiente; sin eso la
 conservación de estos dos genes solo se describe con el genoma de Córdoba.
+
+
+---
+
+## Ola 3 — las cinco investigaciones del checkpoint (2026-10-20/21)
+
+Integrado desde los `NOTAS_PARA_META.md` de `research/ola3/C1` a `C5`.
+
+### Lo que se cerró
+
+**El manual del programa existía y nadie lo había leído.** `Quick_help.pdf`, 13 páginas, viaja
+dentro del repositorio oficial de si-Fi21. Contesta los valores por defecto de cada modo y explica
+por qué la eficiencia se apaga cuando se permiten desajustes. Copia en
+`work/C1/siFi21--d6296b7/` y texto extraído en `work/C1/quick_help.txt`.
+
+**si-Fi21 no busca regiones.** El único rastro es un parámetro `region_plot_lst`, documentado como
+«Plot for suggested RNAi design region», **que nunca se usa**. La búsqueda de la región de 200 nt
+más densa es un agregado nuestro, y hay que presentarlo así.
+
+**La base de datos no explica los conteos de la planilla, si el laboratorio corrió `sifi21INTA`.**
+En esa librería el conteo es por ventana y no por acierto de Bowtie como en el original. Medido
+contra tres bases —los cuatro genes, los 71 registros públicos de MRFV y el transcriptoma TSA
+GITV01—: 138, 40, 218 y 35 en las tres, sin mover una unidad. **Pero sólo bajo ese supuesto**: si
+corrieron el programa original, la hipótesis de la base sigue viva tal como estaba.
+
+**Verificación independiente del port.** `sifi21INTA`, forzando su tabla de energía a la del
+original, coincide con `tools/sifi21_port/` en modo fiel **ventana por ventana** en las 4.722
+ventanas de los cuatro genes y en los cinco términos del veredicto, con cero diferencias. Dos
+implementaciones escritas sin conocerse dan lo mismo, lo que descarta además errores compartidos
+entre el port y nuestra lectura del fuente.
+
+### Lo que se descartó, con su motivo
+
+- **Que la tabla de energía nueva explique la diferencia de conteos.** Es el único cambio químico
+  entre si-Fi21 y la versión del INTA y mueve los conteos sólo −4, +1, −5 y 0.
+- **Diseñar sobre el ortólogo de un cicadélido pariente.** Medido: de las ventanas de 21 nt de
+  cada ortólogo, las que existen idénticas en el genoma del vector son entre el **0,7 % y el
+  11,1 %**, contra 89-91 % para los dos genes que sí son de *D. maidis*. El camino que queda es
+  recuperar la secuencia del vector primero.
+- **Elegir ortólogos por nombre en el proteoma de referencia.** Descartado por el caso de `Rpn6`
+  (ver D30). W4 §6.1 ya lo había declarado como límite; ahora hay un caso con número.
+- **Seis de los ocho forks de si-Fi21**, descartados por SHA sin bajar contenido: su cabeza es un
+  commit de la historia de upstream. Método barato y reutilizable, `git ls-remote` contra la lista
+  de commits de la API.
+- **Medir cuántos veredictos finales cambian al corregir el índice de la regla terminal.** Requiere
+  correr el port con ViennaRNA. Se midió en cambio el efecto sobre la rama (51,4 % de las ventanas)
+  y sobre el booleano terminal (31,4 %), que acota el problema.
+
+### Advertencias de método que van a volver a pasar
+
+- **No se puede crear ningún directorio `.git` dentro de la carpeta concedida**, así que `git
+  clone` falla —también `--bare`—. Se resuelve bajando el tarball del commit por
+  `api.github.com/repos/<owner>/<repo>/tarball/<ref>` y verificando el commit con `git ls-remote`,
+  que sí funciona.
+- **`sifi21INTA` no corre con Biopython ≥ 1.82**: usa `Bio.SeqUtils.GC`, eliminado en esa versión.
+  Hay que fijar 1.81. Si a alguien le aborta, es esto.
+- **Una secuencia en minúsculas da cero eficientes sin avisar**, en las dos librerías del INTA y en
+  el original. Medido: 138 contra 0 en `MP_MRFV_full`. Si se corre cualquiera de estas herramientas
+  sobre un FASTA enmascarado, el resultado va a ser cero y va a parecer válido.
+- **Medir tamaño de palabra con fondos de alfabeto disjunto exige `-strand plus`.** Si la consulta
+  tiene fondo de {A,C} y el sujeto de {G,T}, la hebra menos de la consulta calza con el fondo del
+  sujeto. Costó una corrida.
+- **`blastdbcmd` sobre las bases de W5 es inviable**: se construyeron sin `-parse_seqids`. Se
+  muestrea directamente de los FASTA de `work/W5/ref/`.
+- **Lanzar trabajos largos con `nohup … &` dentro de una celda corta: se mueren.** Hay que lanzar el
+  comando en primer plano dentro de una celda en segundo plano.
+- **Semilla derivada de `hash()` de Python: no reproducible entre procesos.** Cambiado a semilla
+  determinista; una versión anterior de un TSV puede diferir en ±2 coincidencias en el control
+  barajado.
+- **Un DOI tampoco se reconstruye de memoria.** Se conjeturó el DOI de la versión revisada de
+  Ribonanza; el DOI existía y correspondía a un artículo de neurociencia sin relación. Se descartó
+  sin usarlo. Es la regla de `CLAUDE.md` extendida a los identificadores.
+- **OpenAlex quedó fuera por falta de clave de API**, no por bloqueo de red. Se usó Europe PMC, que
+  resolvió 21 de 23 textos completos en C4. No se intentó ninguna llamada anónima.
+- **El backend `exe` del port no se pudo usar en ninguna línea de la ola 3**: necesita el RNAplfold
+  2.1.5 que instala si-Fi21 en Windows. Todos los números de eficiencia de la ola 3 son del backend
+  `vienna` con ViennaRNA 2.7.2, y los dos no dan lo mismo.
+- **La comparación genoma contra transcriptoma sólo es posible en 2 de los 17 conjuntos locales**
+  (maíz y abeja). Falta el genoma de *Homalodisca vitripennis*, que es la comparación que más
+  valdría porque ahí están los 30 y 7 aciertos de W5.
+- **Archivos obsoletos que conviene borrar a mano:** en
+  `research/ola3/C4_offtargets_quimeras_largo/resultados/` quedaron `quimeras_eficiencia.tsv`,
+  `quimeras_ventanas_cambiadas.tsv` y `quimeras_meta.json` de una primera corrida. Su contenido se
+  reemplazó por una línea que dice que están obsoletos y adónde ir. Los datos buenos están en los
+  pares con sufijo `_fiel_vienna` y `_corregido_vienna`.

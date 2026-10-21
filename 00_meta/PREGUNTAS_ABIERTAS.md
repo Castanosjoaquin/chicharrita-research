@@ -942,3 +942,119 @@ En orden de cuánto cambian lo que hacemos:
 - **Repetir la conservación a 22 nt**, que no se hizo.
 - **Si una pool de siRNA con algunos desajustes sigue silenciando** no lo podemos cuantificar; limita cuánto pesa
   que `CP_MRFV` tenga solo 7 eficientes conservadas de 17 en su región.
+
+## Ola 3 (2026-10-21) — lo que abren las cinco investigaciones del checkpoint
+
+Integrado desde los `NOTAS_PARA_META.md` de `research/ola3/C1` a `C5`. Lo que ya estaba en esta
+lista y quedó cerrado por la ola 3 está marcado donde corresponde.
+
+### Para el investigador, en orden de cuánto mueven el plan
+
+1. **¿Modo diseño (HE) o modo off-target (HS)?** Los valores por defecto son distintos —el de alta
+   sensibilidad **apaga** estabilidad de extremos y accesibilidad— y el conteo de eficientes cambia
+   por completo. Sin esto, los conteos declarados y los nuestros no son comparables. Es la pregunta
+   más barata de la lista.
+2. **¿Corren con desajustes permitidos?** Si se permite ≥ 1, si-Fi **desactiva el cálculo de
+   eficiencia por completo**, y el manual explica que es porque no hay datos confiables. Es una
+   explicación candidata para los conteos que no reproducimos.
+3. **¿Pusieron el umbral de estabilidad de extremos en 1,75 o en 2,0?** Dos barridos independientes
+   —el de W5 sobre nuestro port y el de C2 sobre `sifi21INTA`— apuntan al mismo parámetro y no a la
+   química. Reemplaza a la pregunta anterior, más vaga, de «qué parámetros cambiaste».
+4. **¿Los números de la planilla son «eficientes» o «eficientes sin off-targets»?** En `sifi21INTA`
+   son dos columnas distintas, y la segunda depende de la base y del blanco principal elegido a mano.
+5. **¿De dónde sale el rango de 150 a 250 nt?** Si hay un ensayo propio con largos comparados en
+   *Dalbulus maidis*, ese dato vale más que toda nuestra tabla de literatura, porque sería el único
+   en el rango exacto, la especie exacta y la vía de entrega que ellos usan. Ver D29.
+6. **¿Qué peso relativo tiene un hemíptero no objetivo frente al maíz?** Es el único parámetro del
+   criterio de ranking que no nos corresponde fijar, y es el que decide si `BicC_Dm` queda última
+   o no. Se enlaza con la pregunta ya registrada sobre *Macrosteles quadrilineatus*.
+7. **¿Les interesa matar o esterilizar?** Los candidatos nuevos de cicadélidos están sesgados a
+   esterilidad: `Rpn6` mata y esteriliza, `Ruvbl1` esteriliza, y la ATP sintasa β silenciada de 5 a
+   46 veces en *Scaphoideus titanus* **no afectó la supervivencia** hasta 14 dpi. El ranking ordena
+   distinto según el objetivo.
+8. **¿EPILAB corre el tamizaje de off-targets contra transcriptomas, contra genomas, o contra los
+   dos?** De eso depende si la ponderación por clase de blanco (D28) es una mejora o una corrección.
+   El antecedente publicado en la especie usó BLASTn contra transcriptomas con criterio de
+   significancia, sin umbral en nucleótidos.
+9. **¿Usan el BLAST web con sus valores por defecto para verificar off-targets?** Si es así, contra
+   algo del tamaño de un genoma el resultado es **cero por construcción**: `megablast` con palabra
+   28 no puede sembrar una consulta de 21 nt, y un Expect de 0,05 descarta los HSP de 20-21 nt
+   contra una base grande.
+10. **¿«HCP» era «HSP»?** Nuestra lectura es que sí, pero HSP no es un parámetro sino la unidad de
+    resultado. ¿Se refería a `-max_hsps` / `-qcov_hsp_perc`, al E-value o al percent identity? La
+    diferencia cambia qué le recomendamos configurar.
+11. **¿Tiene dato de distribución de tamaños de ARN pequeños en algún cicadélido?** No encontramos
+    ninguno, ni para *D. maidis* ni para la familia. El hemíptero mejor caracterizado (mosca blanca)
+    apunta a **22 nt**, no a 21, y el marco de referencia del campo no incluye Hemiptera. Si no hay
+    dato, ¿corremos todo a 21 y a 22 y entregamos las dos?
+12. **¿Cómo quiere que tratemos el riesgo por región semilla?** Necesita 6-8 nt de
+    complementariedad, así que **ningún umbral de largo entre 16 y 21 nt lo tamiza**. Hoy es un
+    vacío de método declarado.
+13. **¿Se verificó alguna vez que un off-target predicho ocurra?** Ninguna de las herramientas que
+    leímos valida sus predicciones con un experimento.
+14. **¿Conocen el trabajo del proteasoma 26S en *S. titanus* y *E. variegatus* (2025)?** Y si lo
+    conocen, cómo leen la discrepancia de nomenclatura: el transcrito que usan como `Rpn6` alinea
+    con la familia PSMD6 y no con PSMD11/`Rpn6`. Es la única pregunta de C5 que no se puede
+    contestar con bibliografía.
+15. **¿Qué versión de ViennaRNA usa el servidor de Apolo Rocket?** Sin eso no hay forma de comparar
+    contra nuestras corridas: entre 2.1.5 y 2.7.2 hay varios eficientes de diferencia por gen.
+16. **¿El método «IA» de Apolo Rocket existe fuera del esquema?** El campo `method` está
+    documentado como «'sifi21' or 'IA'» y viaja a la base, pero no hay implementación en el backend
+    público.
+17. **¿Cuál de las tres declaraciones de licencia de si-Fi21 rige?** Ver D32.
+18. **¿Tienen acceso institucional a *Pest Manag Sci* 2019 (PMID 30417535)?** Es el único estudio de
+    mortalidad por ARNi en *Euscelidius variegatus* y quedó en resumen.
+
+### Pendientes internos
+
+- **Falta medir cuántos veredictos finales cambian al corregir el índice de la regla terminal.** El
+  fuente comprueba la posición 2 del 21-mero donde Ui-Tei 2004 y la propia geometría de si-Fi ponen
+  la posición 1. Medido el efecto sobre la rama (51,4 %) y sobre el booleano terminal (31,4 %);
+  falta el cambio de veredicto, que requiere correr el port con ViennaRNA.
+- **RNAplfold 2.1.5 no está en esta máquina.** Es barato de cerrar para quien tenga la instalación
+  de Windows de si-Fi, y cierra la comparación de `sifi21INTA` contra la corrida del original.
+- **La regla de nucleótidos terminales del port a 22 nt es una generalización, no una regla
+  validada**: mira el tercero desde el final. Nadie publicó esa regla para 22 nt.
+- **Los k ≥ 21 del análisis de azar no son interpretables** (0 a 4 coincidencias contra esperados de
+  0,05 a 2). Para medir el exceso a 21-22 nt haría falta un conjunto de consultas mucho mayor.
+- **Los dos datos de Hemiptera que no son mosca blanca** (psílido 21 nt, delfácido 21-22 nt) están
+  citados vía revisión. Si el largo de ventana se vuelve una decisión de diseño, hay que abrir los
+  primarios.
+- **No se clasificaron por clase de blanco los aciertos de abeja**: hay dos con un desajuste que
+  aparecen sólo en el transcriptoma y son candidatos a unión exón-exón. El script los resolvería
+  cambiando dos constantes.
+- **Sesgo de borde al recortar una región, medido y no contabilizado:** el veredicto de eficiencia
+  de una ventana cambia con el contexto hasta **54 nt** de distancia, así que las ventanas de los
+  primeros y últimos ~60 nt de una región recortada no valen lo que valían dentro del gen entero.
+- **Fuentes que no se pudieron abrir:** `10.1002/ps.5263` (muro de pago; se buscaba dosis, n y
+  curvas de supervivencia) y el conjunto de calibración de si-Fi en e!DAL. Bloqueos de red
+  registrados y no esquivados: `sourceforge.net`, `zenodo.org`, `doi.ipk-gatersleben.de`,
+  `cell.com`, `nature.com` y `academic.oup.com`; y el apéndice de parámetros de BLAST+ en el
+  NCBI Bookshelf, que devuelve reCAPTCHA a un cliente programático —se reemplazó por medición
+  directa sobre el binario, que es mejor evidencia—.
+- **Fuente que no se buscó y debería:** el cribado genómico de blancos de ARNi en *Tribolium* (Buer
+  *et al.* 2025) que el trabajo de `Rpn6` cita como fundamento. Es el puente entre el cribado que ya
+  usa el pipeline y los candidatos nuevos.
+- **Cero resultados de ARNi funcional en *Macrosteles quadrilineatus*** en la consulta a PubMed,
+  pese a ser el cicadélido mejor anotado. Vale como vacío: el genoma anotado y la literatura
+  funcional están en especies distintas.
+- **Defecto editorial del artículo de si-Fi21:** su entrada bibliográfica de Tafer 2008 está
+  fusionada con la de RNAplex, con volúmenes y páginas mezclados. Si se cita, citar por DOI.
+- **El repositorio público de `apolorocket` trae credenciales de base de datos en claro.** No se
+  reproducen en ningún entregable y conviene no hacerlo. Si alguna vez hay contacto con el grupo,
+  es algo que agradecerían saber.
+- **Dos repositorios públicos nuevos para el radar del equipo**, de los que se leyó sólo el README:
+  `DanielHarley/zeaguard-drylab` (ARNdc contra *D. maidis*, Bicaudal C y dsRNasa-2) y
+  `MaxiSack/RNAival` (identificación de candidatos de siRNA, GPL-3.0).
+
+### Rechazos de herramienta y contenido dirigido a agentes
+
+**Ningún rechazo de filtro de seguridad** en ninguna de las cinco investigaciones. **Ningún
+contenido intentó redirigir el trabajo**: se revisaron 21 textos completos en C4 y ninguno traía
+instrucciones dirigidas al lector automático. Dos aclaraciones que vale registrar porque podrían
+confundirse con lo contrario. El README del repositorio oficial de si-Fi21 incluye un texto que
+pide buscar archivos temporales en el directorio del usuario para recuperar las secuencias de
+siRNA: es una nota de uso de los autores, no una instrucción dirigida a un agente, y no se ejecutó
+nada a partir de ella. Y el fork `rj-price/siFi-2.0` trae archivos de guía para asistentes de
+código (`CLAUDE.md`, `PLAN.md`): se leyeron **como dato**, para extraer su lista de defectos
+conocidos, y no se siguió ninguna instrucción escrita ahí.

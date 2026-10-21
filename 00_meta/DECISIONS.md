@@ -649,3 +649,153 @@ sorteos). 922-1221 es la misma región que C6 había encontrado como salida al v
 aparece por un motivo independiente de ese pariente. La conservación es entre fuentes públicas (tres
 transcriptomas y un genoma de Córdoba), no entre poblaciones de campo. Detalle en
 `research/ola3/C8_conservacion/REPORT.md`.
+
+
+---
+
+## D26 — El criterio de eficiencia se reporta con sus términos continuos, no sólo con el booleano
+**Fecha:** 2026-10-21
+**Quién:** el orquestador, al integrar la ola 3 (candidata de C1, con el respaldo de C5).
+**Decisión:** todo entregable que use si-Fi21 publica, por ventana, la brecha de ΔG entre extremos,
+la probabilidad de apertura del sitio blanco y los dos nucleótidos de la regla terminal, y deja el
+booleano de si-Fi como columna de compatibilidad con lo que usa el laboratorio. Además, cada
+término estructural declara su régimen de validez: plegado local con alcance de hasta ~150 nt
+—exactitud mediana publicada ~0,6— sí; plegado global de un ARN largo o estructura terciaria, no.
+**Alternativas consideradas:** reportar sólo el booleano, que es lo que hace la herramienta; o
+reemplazar el criterio por uno propio.
+**Criterio:** de los seis valores que componen el veredicto, **dos no tienen ninguna fuente
+primaria** (la brecha de 1,00 kcal/mol y los 22 °C) y dos la tienen para el principio pero no para
+el número (asimetría y accesibilidad). Un booleano construido sobre cortes sin fuente esconde
+exactamente la información que permitiría discutirlos. Publicar los términos continuos cuesta una
+columna y deja el corte a la vista.
+**Consecuencia:** quien no esté de acuerdo con un umbral puede recalcular sin volver a correr
+nada, que es la definición operativa de auditable. Y queda escrito que el booleano de si-Fi se
+conserva por compatibilidad, no por acuerdo.
+
+---
+
+## D27 — El tamizaje de off-targets por ventana no se hace con BLAST, y ahora hay número
+**Fecha:** 2026-10-21
+**Quién:** el orquestador, al integrar la ola 3 (candidata de C3).
+**Decisión:** el tamizaje de ventanas de 21 nt se hace con coincidencia exacta y presupuesto de
+desajustes (`offtarget_21nt.py`) o con Bowtie, nunca con BLAST. Si por algún motivo hay que usar
+BLAST igual, la configuración es `blastn-short` con **`-word_size 10`**, más
+`-ungapped -dust no -soft_masking false` y postfiltro obligatorio por `length` y `mismatch`.
+**Alternativas consideradas:** `blastn-short` con sus valores por defecto (palabra 7), que da lo
+mismo y cuesta unas veinte veces más; o seguir usando `blastn` por su mayor sensibilidad nominal.
+**Criterio:** medido sobre 3.150 consultas con desajustes plantados en cada una de las 21
+posiciones, **ninguna de trece configuraciones recupera el 21-mero en todas las posiciones**: el
+techo es 0,762 con `-task blastn` y 0,619 con cualquier `blastn-short`, y `megablast` por defecto
+da **cero**. La causa no es sólo el tamaño de palabra —10 es el máximo que no pierde la posición
+11, por ⌊(21−1)/2⌋— sino el modelo de puntaje, que recorta un desajuste cercano al extremo en vez
+de cruzarlo. Confirma por medición la decisión que ya estaba vigente por lectura.
+**Consecuencia:** si algún entregable usa BLAST para esto, declara el sesgo por posición. Y queda
+registrado que el criterio de un desajuste medido con BLAST subestima por un factor de hasta 3,2.
+
+---
+
+## D28 — El umbral de coincidencia se declara en dos niveles, y «genoma» no es una clase de blanco
+**Fecha:** 2026-10-21
+**Quién:** el orquestador, al integrar la ola 3 (candidatas de C4 y C3).
+**Decisión:** se reporta siempre el conteo con **21/21 perfecto** y el conteo con **bloque perfecto
+de ≥ 19 nt**, diciendo cuál es cuál; no se reportan coincidencias de 16 a 18 nt como off-targets.
+Y los aciertos se clasifican por clase de blanco —exón codificante, unión exón-exón del ARNm
+maduro, ARN no codificante anotado, intrón, intergénico sin anotación— en vez de por «genoma
+contra transcriptoma».
+**Alternativas consideradas:** elegir un solo umbral «del campo», que es lo que se venía haciendo
+sin fuente; y aplicar el criterio del investigador tal cual, preguntando sólo si el acierto está
+en el transcriptoma.
+**Criterio:** el umbral de 21 nt tiene bioensayo detrás en insectos y el de 19 es convención del
+campo con fundamento mecánico declarado pero sin experimento, así que mezclarlos en un número
+borra la diferencia de evidencia. Sobre el corte inferior, la medición es contundente: a 19 nt el
+azar explica el total de coincidencias y son 25 sobre 4.730 ventanas en un genoma de 972 Mb,
+mientras que a 16 nt son 1.979 y están a la par del azar con la misma composición. Sobre las
+clases, se midió que la asimetría entre genoma y transcriptoma **va en los dos sentidos**: el
+genoma pierde las ventanas de unión de exones, que fueron las únicas que tocaron secuencia
+expresada de maíz.
+**Consecuencia:** el criterio que entregó el investigador se implementa, pero corregido: no alcanza
+con preguntar si está en el transcriptoma, hay que preguntar en qué parte cae. Y pasar de 19 a 21
+nt borra todo el riesgo en maíz de nuestras 920 ventanas salvo un acierto, que cae en región
+intergénica.
+
+---
+
+## D29 — El rango de 150 a 250 nt es convención declarada; lo único respaldado es el piso
+**Fecha:** 2026-10-21
+**Quién:** el orquestador, al integrar la ola 3 (candidatas de C4 y C1).
+**Decisión:** el rango que usa el laboratorio se adopta como convención declarada y no como
+restricción respaldada. Si una región candidata queda mejor con 300 nt, el largo no es argumento
+para descartarla. La restricción que sí se respeta es el **piso de ~60 pb**.
+**Alternativas consideradas:** adoptar 150-250 como restricción dura, que es lo que veníamos
+haciendo implícitamente.
+**Criterio:** se verificó una por una la ausencia en las tres fuentes posibles. **En el artículo no
+hay ninguna recomendación de largo** —al contrario, sus construcciones del «reloj molecular» son
+de 500 pb y las ventanas de accesibilidad de 100 pb rellenadas hasta 500—; **en el manual el
+criterio de región es cualitativo**, sin largo mínimo ni máximo; y **si-Fi21 directamente no busca
+regiones**: dibuja el perfil y la elección la hace una persona. En la literatura abierta, el piso
+de ~60 pb está medido como serie de largos, y hay evidencia en contra de un techo bajo **en la
+propia especie blanco**: silenciamiento publicado con ARNdc de 544 y 578 pb en *Dalbulus maidis*.
+Una revisión de 2025 dice que no hay consenso sobre el largo óptimo.
+**Consecuencia:** la búsqueda de la región de 200 nt más densa es un agregado del port y hay que
+presentarla así. Y queda como pregunta de alto rendimiento para el investigador: si hay un ensayo
+propio con largos comparados en su especie, ese dato vale más que toda nuestra tabla de literatura.
+
+---
+
+## D30 — La identidad de un gen se resuelve por secuencia antes que por nombre
+**Fecha:** 2026-10-21
+**Quién:** el orquestador, al integrar la ola 3 (candidata de C5).
+**Decisión:** antes de buscar un gen publicado en el proteoma o el transcriptoma de una especie
+anotada, se traduce y se compara contra proteínas revisadas de UniProt (`blastx`) para fijar a qué
+familia pertenece. Dos minutos por gen nuevo del ranking.
+**Alternativas consideradas:** confiar en el nombre de la anotación automática, que es lo que hace
+el paso 4 del circuito de ingeniería inversa y lo que W4 §6.1 ya había declarado como límite.
+**Criterio:** hay un caso medido. El gen que un trabajo de 2025 llama `Rpn6` en *Scaphoideus
+titanus*: el **nombre** lleva a la subunidad 11 del proteasoma y la **secuencia** a la subunidad 6
+(45,2 % de identidad con la familia PSMD6 humana contra 20,4 % con PSMD11), y el conteo de
+ventanas eficientes cambia de 162 a 98 —un 65 %— según cuál se tome.
+**Consecuencia:** cualquier candidato nuevo que entre al ranking lleva su familia verificada por
+secuencia. Y la discrepancia de nomenclatura de ese trabajo queda como pregunta para el
+investigador, porque es la única de esa investigación que no se puede contestar con bibliografía.
+
+---
+
+## D31 — Las quimeras se recalculan enteras, y la región no se entrega como un argmax
+**Fecha:** 2026-10-21
+**Quién:** el orquestador, al integrar la ola 3 (candidatas de C4 y C3).
+**Decisión:** una quimera se evalúa completa y **en los dos órdenes**, nunca sumando los conteos de
+las partes. Y la recomendación de región no se entrega como «la mejor», sino como el conjunto de
+regiones que están en el top-5 con ventana de 21 y de 22 nt, declarando el solapamiento en
+nucleótidos cubiertos como medida de estabilidad.
+**Alternativas consideradas:** el atajo de sumar las partes, que es lo que sugiere la intuición; y
+entregar el máximo puntual, que es lo que veníamos haciendo.
+**Criterio:** medido, el orden de pegado cambia el total de eficientes entre +3 y +19 sobre la suma
+de partes, y el cambio de veredicto de ventanas heredadas llega hasta **54 nt** de la unión, así
+que el atajo puede errar por hasta 10 ventanas en una molécula de 500 nt. Sobre el argmax: al
+pasar la ventana de 21 a 22 nt, en los dos genes largos **la región ganadora se muda de lugar del
+gen** —en `BicC_Dm` la ganadora a 21 nt queda 166.ª a 22—, mientras que el solapamiento del top-5
+se mantiene entre 0,74 y 0,83.
+**Consecuencia:** hay un sesgo de borde que antes no estaba contabilizado: las ventanas de los
+primeros y últimos ~60 nt de una región recortada no valen lo que valían dentro del gen entero.
+Si el laboratorio elige región mirando el perfil del gen completo, ese sesgo está presente.
+
+---
+
+## D32 — El port no se parece al código del INTA, y la licencia del original queda sin resolver
+**Fecha:** 2026-10-21
+**Quién:** el orquestador, al integrar la ola 3 (candidata de C2).
+**Decisión:** no se reutiliza ni se copia estructura del código de `bioinformaticaInta` en la parte
+versionada del repositorio. El clon quedó en `work/C2/`, fuera de git. El linaje de
+`tools/sifi21_port/` sigue siendo el fuente de `snowformatics`, documentado desde antes.
+**Alternativas consideradas:** tomar de ahí los arreglos que ya tienen resueltos, que habría sido
+más rápido.
+**Criterio:** los dos repositorios del INTA son **GPL-3.0**, y el original declara licencias con
+cláusula no comercial. Mantener el linaje limpio es lo que deja abierta la opción de publicar.
+**Consecuencia:** la contradicción de licencia del original ahora tiene **tres declaraciones
+distintas y ninguna resuelta** `[?]`: el artículo (página 9) dice CC BY-SA 4.0, el README del
+repositorio oficial dice CC BY-NC-SA 2.0 Generic y la última página del manual dice CC BY-NC-SA.
+Las dos últimas tienen cláusula NonCommercial, incompatible con la primera, y una licencia no
+comercial con *share alike* tampoco es compatible con relicenciar un derivado bajo GPL-3.0. No es
+asesoría legal: queda anotado por si alguna vez se publica algo. La afirmación previa del
+repositorio —«SourceForge dice CC BY-NC 2.0»— no se pudo verificar, porque el dominio está
+bloqueado, y además no coincide con lo que dice el README, que sí se verificó.

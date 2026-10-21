@@ -452,3 +452,27 @@ EPILAB se alinearon localmente.
 | `tsa_gcwp01` | [GCWP01, Illinois Natural History Survey (Johnson *et al.*)](https://www.ncbi.nlm.nih.gov/nuccore/GCWP01010867.1) | transcriptoma 454 (Newbler); cinco contigs | `[E]` |
 | `mrfv_nuccore` | [71 registros de *Maize rayado fino virus* en nuccore](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=%22Maize+rayado+fino+virus%22%5BOrganism%5D) | 45 de Brasil, 4 de EE. UU., 2 de Ecuador, 1 de Costa Rica, 19 sin país; ninguno argentino | `[E]` |
 | `andrada2026_tabla1` | [Andrada *et al.* 2026, Tabla 1 (cebadores), PMC13279319](https://pmc.ncbi.nlm.nih.gov/articles/PMC13279319/) | cebadores del ARNdc (544 y 578 pb) y de la qPCR; las posiciones no están en el texto (Figura S1, no leída) | `[R]` |
+
+## Ola 3 — fuentes nuevas (2026-10-21)
+
+Las listas completas, con nivel de lectura y motivo de cada descarte, están en el `sources.json` de
+cada carpeta de `research/ola3/`. Acá van las que cambian lo que el proyecto puede afirmar.
+
+| Clave | Fuente | Qué aporta | Nivel |
+| --- | --- | --- | --- |
+| `luck2019` | Lück S *et al.* 2019, *Front Plant Sci* 10:1023, `10.3389/fpls.2019.01023` | El artículo de si-Fi21. Lo validado son 12 construcciones en cebada contra *Blumeria graminis*, con fenotipo y no transcrito; Pearson −0,61 en modo de alta eficiencia | `[E]` texto completo |
+| `sifi_manual` | `Quick_help.pdf`, 13 páginas, dentro del repositorio oficial | El manual, que no estaba leído en el proyecto: valores por defecto de cada modo, y por qué la eficiencia se apaga con desajustes | `[E]` texto completo |
+| `elbashir2001` | Elbashir S, Lendeckel W, Tuschl T 2001, *Genes Dev* 15:188-200, `10.1101/gad.862301` | La fuente empírica del tamaño de 21-22 nt, en lisado de embrión de *Drosophila melanogaster* | `[E]` texto completo |
+| `uitei2004` | Ui-Tei K *et al.* 2004, *Nucleic Acids Res* 32:936-948, `10.1093/nar/gkh247` | La fuente de la regla del nucleótido terminal: 62 blancos de seis genes. Los propios autores reportan que en *Drosophila* in vivo casi no hay preferencia de secuencia | `[E]` texto completo |
+| `chen2012` | Chen JL *et al.* 2012, *Biochemistry* 51:3508-3522, `10.1021/bi3002709` | Los parámetros de vecinos más cercanos que usa si-Fi21, medidos en 1 M NaCl y reportados a 37 °C | `[E]` texto completo |
+| `schwarz2003`, `khvorova2003`, `reynolds2004`, `tafer2008`, `bernhart2006`, `ameres2007` | *Cell* 115:199-208 y 209-216; *Nat Biotechnol* 22:326-330 y 26:578-583; *Bioinformatics* 22:614-615 | Las fuentes de principio de la asimetría y de la accesibilidad. **Sólo resumen**: sus editoriales están fuera de la lista de dominios permitidos | `[R]` resumen |
+| `santos2019` | Santos *et al.* 2019, *Viruses* 11:738, `10.3390/v11080738` | El largo de siRNA por orden de insecto, experimental. **No incluye Hemiptera** | `[E]` texto completo |
+| `zotti2026` | Zotti *et al.* 2026, *Viruses* 18:285, `10.3390/v18030285` | La correlación con distancias PAZ–RNasa III; es modelado por homología. **Tampoco incluye Hemiptera** | `[R]` texto completo |
+| `mondal2020` | Mondal, Brown y Flynt 2020, *Life Sci Alliance* 3:e202000731, `10.26508/lsa.202000731` | El único dato de Hemiptera de primera mano: pico de Dicer en **22 nt** en mosca blanca | `[E]` texto completo |
+| `sattar2016` | Sattar y Thompson 2016, *Front Plant Sci* 7:1241, `10.3389/fpls.2016.01241` | Inventario de ARN pequeños en Hemiptera; de ahí sale que **para Cicadellidae no hay distribución de tamaños publicada** | `[E]` texto completo |
+| `C4/S01`-`S03` | Los tres trabajos de *Diabrotica* del mismo grupo | El umbral de 21 nt contiguos con bioensayo y el piso de ~60 pb, medido como serie de largos | `[E]` texto completo |
+| `C4/S06` | Revisión de métodos de 2026 | La convención de ≥ 19 nt, por fin con una fuente: su fundamento es la tolerancia del RISC, no un bioensayo | `[E]` texto completo |
+| `C4/S14` | Andrada *et al.* 2026 | ARNdc de **544 y 578 pb que funciona en *Dalbulus maidis***, que es la evidencia en contra de un techo bajo de largo | `[E]` texto completo |
+| `C4/S09` | Revisión de 2025 | **No hay consenso sobre el largo óptimo** de ARNdc; silenciamiento documentado de 141 a 1.506 pb en *Leptinotarsa decemlineata* | `[E]` texto completo |
+| `C5/rpn6_2025` | El trabajo del proteasoma 26S en *S. titanus* y *E. variegatus* | El único blanco letal y esterilizante probado en dos géneros de cicadélidos de nuestra subfamilia, con la discrepancia de nomenclatura que medimos | `[E]` texto completo |
+| `lange2012` | Lange *et al.* 2012, *NAR* 40:5215 | La exactitud del plegado local contra el global para ARN largos: 0,65 contra 0,55 sobre 2.158 elementos de 90 familias de Rfam | `[E]` texto completo |
