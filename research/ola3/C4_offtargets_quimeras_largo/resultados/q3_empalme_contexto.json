@@ -1,0 +1,43 @@
+{
+  "ultima_base_ATPaseD_sel": "A",
+  "primera_base_BicC_sel": "T",
+  "hallazgos": {
+    "inicio_BicC_20nt": [
+      {
+        "ref": "OZ319706.1",
+        "pos": 38458360,
+        "hebra": "+",
+        "flanco_anterior_3nt": "CAA",
+        "flanco_posterior_3nt": "TTT"
+      }
+    ],
+    "fin_ATPaseD_20nt": [
+      {
+        "ref": "OZ319711.1",
+        "pos": 30146354,
+        "hebra": "-",
+        "flanco_anterior_3nt": "ATA",
+        "flanco_posterior_3nt": "CCG"
+      }
+    ],
+    "inicio_ATPaseD_20nt": [],
+    "fin_BicC_20nt": [
+      {
+        "ref": "OZ319706.1",
+        "pos": 38460959,
+        "hebra": "+",
+        "flanco_anterior_3nt": "CAC",
+        "flanco_posterior_3nt": "CAG"
+      }
+    ]
+  },
+  "veredicto_base_pegada": [
+    {
+      "ref": "OZ319706.1",
+      "hebra": "+",
+      "vecina_genomica": "A",
+      "base_pegada": "A",
+      "coincide": true
+    }
+  ]
+}

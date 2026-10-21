@@ -1,0 +1,322 @@
+{
+  "investigacion": "research/ola3/C4_offtargets_quimeras_largo",
+  "fecha": "2026-10-20",
+  "como_se_buscó": "Europe PMC REST (search y fullTextXML, dominio ebi.ac.uk) por términos de umbral de coincidencia, largo de ARNdc, quimeras y off-target en insectos; OpenAlex no se pudo usar por falta de clave de API en este entorno. Ninguna secuencia del corpus se envió a ningún servicio.",
+  "papers_abiertos": 21,
+  "papers_no_abiertos": 1,
+  "fuentes": [
+    {
+      "id": "S01",
+      "pmcid": "PMC3835954",
+      "titulo": "Characterization of the spectrum of insecticidal activity of a double-stranded RNA with targeted activity against Western Corn Rootworm (Diabrotica virgifera virgifera LeConte)",
+      "primer_autor": "Bachman",
+      "anio": "2013",
+      "revista": "Transgenic Research",
+      "doi": "10.1007/s11248-013-9716-5",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1. Serie de ortólogos de Snf7 de 10 coleópteros: los activos tienen >=3 coincidencias de 21 nt; los de cero coincidencias (bloque máximo 14-19 nt, 78-82 % de identidad) no son activos. Bioensayos de dieta de 12 y 21 días.",
+      "marcador": "E"
+    },
+    {
+      "id": "S02",
+      "pmcid": "PMC3469495",
+      "titulo": "Characterizing the Mechanism of Action of Double-Stranded RNA Activity against Western Corn Rootworm (Diabrotica virgifera virgifera LeConte)",
+      "primer_autor": "Bolognesi",
+      "anio": "2012",
+      "revista": "PLoS ONE",
+      "doi": "10.1371/journal.pone.0047534",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1 y Q4. Serie de largos 27-240 pb: piso de ~60 pb para actividad. Un solo bloque de 21 pb embebido en acarreador de 240 pb da CL50 de 13,8-20,3 ng/mL; el mismo 21 pb desnudo, >100 ng/mL.",
+      "marcador": "E"
+    },
+    {
+      "id": "S03",
+      "pmcid": "PMC4744748",
+      "titulo": "No impact of DvSnf7 RNA on honey bee (Apis mellifera L.) adults and larvae in dietary feeding tests",
+      "primer_autor": "Tan",
+      "anio": "2015",
+      "revista": "Environmental Toxicology and Chemistry / Setac",
+      "doi": "10.1002/etc.3075",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1. Enuncia el criterio conjunto: tramo 100 % complementario de >=21 nt contiguos embebido en ARNdc de >=60 nt. Leímos el enunciado, no el detalle del bioensayo en abeja.",
+      "marcador": "E"
+    },
+    {
+      "id": "S04",
+      "pmcid": "PMC5371955",
+      "titulo": "Comparison of RNAi Sequences in Insect-Resistant Plants to Expressed Sequences of a Beneficial Lady Beetle: A Closer Look at Off-Target Considerations",
+      "primer_autor": "Allen",
+      "anio": "2017",
+      "revista": "Insects",
+      "doi": "10.3390/insects8010027",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1. Comparación de secuencias de ARNi contra transcriptomas de un coccinélido benéfico: sin tramos idénticos mayores de 21 nt, pero un tramo de 56 nt con cuatro desajustes que los autores señalan para evaluar.",
+      "marcador": "R"
+    },
+    {
+      "id": "S05",
+      "pmcid": "PMC11942661",
+      "titulo": "In Silico Analysis of Potential Off-Target Effects of a Next-Generation dsRNA Acaricide for Varroa Mites (Varroa destructor) and Lack of Effect on a Bee-Associated Arthropod",
+      "primer_autor": "Bulgarella",
+      "anio": "2025",
+      "revista": "Insects",
+      "doi": "10.3390/insects16030317",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1 y Q2. Criterio de 21 nt sin desajustes justificado por tamaño del producto de Dicer por orden (Hemiptera: 22 nt o mezcla 21-22); clasifica los aciertos de genoma en exón, intrón y unión exón-intrón; declara que comparar contra transcriptoma es preferible.",
+      "marcador": "E"
+    },
+    {
+      "id": "S06",
+      "pmcid": "PMC13340966",
+      "titulo": "Emerging experimental and bioinformatic approaches in RNA interference‐based pest control research",
+      "primer_autor": "Cedden",
+      "anio": "2026",
+      "revista": "Insect Molecular Biology",
+      "doi": "10.1111/imb.70040",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1 y Q2. Enuncia la convención del campo: >=19 nt complementarios de un siRNA de 21 nt alcanzan para marcar off-target, hasta dos desajustes se consideran riesgosos, y las herramientas buscan contra transcriptomas de no objetivo. Declara que la posición de los desajustes y los pares G-U no se modelan.",
+      "marcador": "E"
+    },
+    {
+      "id": "S07",
+      "pmcid": "PMC12086532",
+      "titulo": "dsRNAmax: a multi-target chimeric dsRNA designer for safe and effective crop protection",
+      "primer_autor": "Fletcher",
+      "anio": "2025",
+      "revista": "NAR Genomics and Bioinformatics",
+      "doi": "10.1093/nargab/lqaf064",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1, Q3 y Q4. dsRNAmax: k-mero de 21 nt por defecto, descarte de todo k-mero con coincidencia contigua en no objetivo, ensamblado de ARNdc quiméricos, largo por defecto del constructo 300 nt.",
+      "marcador": "E"
+    },
+    {
+      "id": "S08",
+      "pmcid": "PMC6704232",
+      "titulo": "siRNA-Finder (si-Fi) Software for RNAi-Target Design and Off-Target Prediction",
+      "primer_autor": "Lück",
+      "anio": "2019",
+      "revista": "Frontiers in Plant Science",
+      "doi": "10.3389/fpls.2019.01023",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1 y Q2. Paper de si-Fi21: el tamizaje parte el disparador en x-meros y los busca con Bowtie contra base de ARNm o ADNc; informa desajustes por acierto.",
+      "marcador": "R"
+    },
+    {
+      "id": "S09",
+      "pmcid": "PMC12295715",
+      "titulo": "RNAi in Pest Control: Critical Factors Affecting dsRNA Efficacy",
+      "primer_autor": "Mendoza-Alatorre",
+      "anio": "2025",
+      "revista": "Insects",
+      "doi": "10.3390/insects16070737",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q4. Revisión: no hay consenso sobre largo óptimo; largos efectivos de 141 a 1.506 pb en Leptinotarsa decemlineata; ARNdc <27 nt rinden menos que >60 nt por captación y número de siRNA.",
+      "marcador": "E"
+    },
+    {
+      "id": "S10",
+      "pmcid": "PMC13607492",
+      "titulo": "Optimization of dsRNA Length and Target Position for Enhanced RNA Interference Efficiency Targeting the Chitinase Gene MsChi2 in Mythimna separata",
+      "primer_autor": "Bao",
+      "anio": "2026",
+      "revista": "Insects",
+      "doi": "10.3390/insects17090931",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q4. Mythimna separata, dieta con 3 µg/día, 60 larvas por tratamiento: 200 pb mejor que 60, 500 y 1.000 pb; la posición del fragmento dentro del gen también cambia la eficacia.",
+      "marcador": "E"
+    },
+    {
+      "id": "S11",
+      "pmcid": "PMC13529733",
+      "titulo": "Screening, optimization and artificial recombination of dsRNA fragments for RNAi-mediated pest resistance in Apolygus lucorum",
+      "primer_autor": "Luo",
+      "anio": "2026",
+      "revista": "Frontiers in Insect Science",
+      "doi": "10.3389/finsc.2026.1912427",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q3 y Q4. Apolygus lucorum (Hemiptera), microinyección, 30 ninfas x 3 réplicas: serie de largos 30-358 pb, fragmentos del mismo largo con eficacia muy distinta, y ARNdc recombinante Udw de 262 pb armado con tres fragmentos de genes distintos.",
+      "marcador": "E"
+    },
+    {
+      "id": "S12",
+      "pmcid": "PMC13575441",
+      "titulo": "Delivery, Persistence, and Functional Response of dsRNA in Acyrthosiphon pisum: Progress and Remaining Barriers",
+      "primer_autor": "Merkel",
+      "anio": "2026",
+      "revista": "Archives of Insect Biochemistry and Physiology",
+      "doi": "10.1002/arch.70210",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q4. Acyrthosiphon pisum: ARNdc de 481, 250 y 223 pb; el ARNdc desnudo deja de detectarse a las 3 h en extracto del áfido.",
+      "marcador": "E"
+    },
+    {
+      "id": "S13",
+      "pmcid": "PMC13607388",
+      "titulo": "What Shapes RNA Interference Responsiveness in Heteroptera (Insecta: Hemiptera)? An Evidence-Constrained Multilevel Framework for Experimental Design and Optimisation",
+      "primer_autor": "Zielińska",
+      "anio": "2026",
+      "revista": "Insects",
+      "doi": "10.3390/insects17090900",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q4. Revisión de ARNi en Heteroptera: la degradación extracelular es la restricción mejor documentada; evidencia causal de nucleasa sólo en Nezara viridula.",
+      "marcador": "E"
+    },
+    {
+      "id": "S14",
+      "pmcid": "PMC13279319",
+      "titulo": "ETH and Burs-α are necessary for the normal molting in Dalbulus maidis and Delphacodes kuscheli",
+      "primer_autor": "Andrada",
+      "anio": "2026",
+      "revista": "Frontiers in Insect Science",
+      "doi": "10.3389/finsc.2026.1811933",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1 y Q4. Dalbulus maidis y Delphacodes kuscheli: ARNdc de 578 y 544 pb por microinyección (n=40, 125 ng por insecto) con silenciamiento y mortalidad; especificidad verificada con BLASTn contra transcriptomas, sin umbral en nucleótidos. Es el paper P3 del corpus; lo abrimos por Europe PMC.",
+      "marcador": "E"
+    },
+    {
+      "id": "S15",
+      "pmcid": "PMC7409111",
+      "titulo": "Engineering Maize rayado fino virus for virus‐induced gene silencing",
+      "primer_autor": "Mlotshwa",
+      "anio": "2020",
+      "revista": "Plant Direct",
+      "doi": "10.1002/pld3.224",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q3. Vector viral MRFV: insertos de 120, 210 y 231 nt tolerados sólo en la unión helicasa/polimerasa; el mismo inserto en otra posición es letal para la infectividad. Paper P2 del corpus.",
+      "marcador": "E"
+    },
+    {
+      "id": "S16",
+      "pmcid": "PMC5345766",
+      "titulo": "Oral delivery of double-stranded RNAs induces mortality in nymphs and adults of the Asian citrus psyllid, Diaphorina citri",
+      "primer_autor": "Galdeano",
+      "anio": "2017",
+      "revista": "PLoS ONE",
+      "doi": "10.1371/journal.pone.0171847",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Consultado por Q4 (entrega oral en Diaphorina citri). No aportó un largo de ARNdc que pudiéramos extraer del texto completo; no se cita en los documentos.",
+      "marcador": "?",
+      "nota": "abierto y no citado"
+    },
+    {
+      "id": "S17",
+      "pmcid": "PMC11341793",
+      "titulo": "Detection of exogenous siRNA inside sweet corn bundle sheath cells and the RNAi dynamics in the early stage of Maize dwarf mosaic virus infection",
+      "primer_autor": "Balassa",
+      "anio": "2024",
+      "revista": "Physiology and Molecular Biology of Plants",
+      "doi": "10.1007/s12298-024-01500-2",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Consultado por Q4 (siRNA de 21 nt en maíz dulce). Fuera del eje de largo de ARNdc en insectos; no se cita.",
+      "marcador": "?",
+      "nota": "abierto y no citado"
+    },
+    {
+      "id": "S19",
+      "pmcid": "PMC10794937",
+      "titulo": "Assessment of genetically modified maize DP23211 for food and feed uses, under Regulation (EC) No 1829/2003 (application EFSA‐GMO‐NL‐2019‐163)",
+      "primer_autor": "Mullins",
+      "anio": "2024",
+      "revista": "EFSA Journal",
+      "doi": "10.2903/j.efsa.2024.8483",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Abierto buscando el criterio bioinformático de off-target de un expediente regulatorio. Descartado: el evento es de proteína (ipd072Aa) y sus criterios de similitud son de alergenicidad de proteínas, no de coincidencia en nucleótidos para ARNi.",
+      "marcador": "?",
+      "nota": "abierto y descartado"
+    },
+    {
+      "id": "S20",
+      "pmcid": "PMC13012889",
+      "titulo": "SIREN: suite for intelligent RNAi design and evaluation of nucleotide sequences",
+      "primer_autor": "Vargas-Mejía",
+      "anio": "2026",
+      "revista": "Bioinformatics Advances",
+      "doi": "10.1093/bioadv/vbag075",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q1 y Q2. SIREN: predicción de off-target acumulativa sobre transcriptomas definidos por el usuario, con modelado termodinámico.",
+      "marcador": "R"
+    },
+    {
+      "id": "S21",
+      "pmcid": "PMC12842457",
+      "titulo": "Nanomaterial-Mediated RNAi Targeting Chitin Metabolism Genes in MEAM1 Cryptic Species of Bemisia tabaci (Hemiptera: Aleyrodidae)",
+      "primer_autor": "Kong",
+      "anio": "2025",
+      "revista": "Insects",
+      "doi": "10.3390/insects17010002",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q3 y Q4. Bemisia tabaci: ARNdc de fusión de tres fragmentos de 100 pb (300 pb en total) con ~80 % de mortalidad de ninfas y silenciamiento más temprano.",
+      "marcador": "E"
+    },
+    {
+      "id": "S22",
+      "pmcid": "PMC13369902",
+      "titulo": "Rational dsRNA design, scalable production and nanodelivery to enhance spray-induced gene silencing",
+      "primer_autor": "Zhu",
+      "anio": "2026",
+      "revista": "Communications Biology",
+      "doi": "10.1038/s42003-026-10663-5",
+      "acceso": "acceso abierto; texto completo leído desde Europe PMC (fullTextXML)",
+      "uso": "Q4. Argumento de manufactura: por encima de 500 nt se comprometen el rendimiento de expresión bacteriana y la carga en nanoacarreadores.",
+      "marcador": "R"
+    },
+    {
+      "id": "S18",
+      "pmcid": null,
+      "titulo": "Risk assessment of RNAi-based pesticides to non-target organisms: Evaluating the effects of sequence similarity in the parasitoid wasp Telenomus podisi",
+      "primer_autor": "Castellanos",
+      "anio": "2022",
+      "revista": "Science of the Total Environment",
+      "doi": "10.1016/j.scitotenv.2022.154746",
+      "acceso": "cerrado. Sólo se leyó el resumen, devuelto por la resolución del DOI; el texto completo no se pudo abrir (sin copia de acceso abierto en Unpaywall, Semantic Scholar ni PMC)",
+      "uso": "Q1. Telenomus podisi alimentado con ARNdc específico de Euschistus heros: genes con 17-21 nt de coincidencia sin cambio de expresión y sin efectos letales ni subletales; con su propio ARNdc, 76,4 y 76,7 % de mortalidad. Declara que no hay consenso sobre la similitud mínima necesaria.",
+      "marcador": "R",
+      "nota": "citado explícitamente como 'sólo resumen'"
+    },
+    {
+      "id": "S23",
+      "pmcid": null,
+      "titulo": "Ingested double-stranded RNAs can act as species-specific insecticides",
+      "primer_autor": "Whyard",
+      "anio": "2009",
+      "revista": "Insect Biochemistry and Molecular Biology",
+      "doi": "10.1016/j.ibmb.2009.09.007",
+      "acceso": "cerrado. NO se pudo abrir: ni texto completo ni resumen (Unpaywall sin copia, Semantic Scholar 429, sin PMCID)",
+      "uso": "Q1. Es la fuente que S01 cita para el umbral de 19-21 nt entre especies de Drosophila. Sólo reportamos lo que S01 dice de este trabajo, nunca el trabajo en sí.",
+      "marcador": "?",
+      "nota": "no abierto; no se cita de primera mano"
+    }
+  ],
+  "fuentes_internas": [
+    {
+      "id": "I1",
+      "archivo": "research/checkpoints/checkpoint1.md",
+      "uso": "los cuatro apartados indicados: cómo leer el plot, quimeras, genoma vs transcriptoma, qué espera como entregable. Todo [R]."
+    },
+    {
+      "id": "I2",
+      "archivo": "research/ola2/W2_herramientas/REPORT.md",
+      "uso": "umbrales de dsRNA-Engineer (21/22/20 perfecto, 16 pb perfecto, 26 pb con <=2 desajustes) y el hallazgo de que 70/70 y 67/67 off-targets salen de la condición de 16 pb."
+    },
+    {
+      "id": "I3",
+      "archivo": "research/ola2/W5_secuencias_epilab/REPORT.md",
+      "uso": "§5, tamizaje de las cuatro regiones y criterio de >=19 nt; §5.1, divergencia entre aislados de MRFV."
+    },
+    {
+      "id": "I4",
+      "archivo": "pipeline/REPORT.md",
+      "uso": "§4, especificidad y curva del umbral; §5, agregación y barrido de 2.000 juegos de pesos."
+    },
+    {
+      "id": "I5",
+      "archivo": "research/R1_fundamentos/REPORT.md",
+      "uso": "§2.3 y §4, sobre qué actores opera el ARNi y silenciamiento post-transcripcional frente a transcripcional."
+    },
+    {
+      "id": "I6",
+      "archivo": "tools/sifi21_port/",
+      "uso": "motor de eficiencia y tamizaje de 21 nt, usados sin modificar; README para los parámetros de RNAplfold (-W 80 -L 40 -u 21, 22 °C)."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "n_sorteos": 20000,
+  "semilla": 20261020,
+  "datos": {
+    "MP_MRFV": {
+      "ventanas": 180,
+      "eficientes": 20,
+      "exp_cultivo": 3,
+      "solo_genoma_cultivo": 3,
+      "nt_insecto": 0
+    },
+    "CP_MRFV": {
+      "ventanas": 180,
+      "eficientes": 16,
+      "exp_cultivo": 0,
+      "solo_genoma_cultivo": 0,
+      "nt_insecto": 0
+    },
+    "BicC_Dm": {
+      "ventanas": 280,
+      "eficientes": 22,
+      "exp_cultivo": 3,
+      "solo_genoma_cultivo": 8,
+      "nt_insecto": 30
+    },
+    "ATPaseD_Dm": {
+      "ventanas": 280,
+      "eficientes": 19,
+      "exp_cultivo": 0,
+      "solo_genoma_cultivo": 0,
+      "nt_insecto": 7
+    }
+  },
+  "dominancias": [
+    [
+      "CP_MRFV",
+      "BicC_Dm"
+    ],
+    [
+      "CP_MRFV",
+      "ATPaseD_Dm"
+    ]
+  ],
+  "primeros_pct": {
+    "CP_MRFV": 67.125,
+    "MP_MRFV": 32.875
+  },
+  "ordenes_distintos": 5,
+  "ordenes_pct": {
+    "CP_MRFV > MP_MRFV > ATPaseD_Dm > BicC_Dm": 41.25,
+    "MP_MRFV > CP_MRFV > ATPaseD_Dm > BicC_Dm": 31.31,
+    "CP_MRFV > ATPaseD_Dm > MP_MRFV > BicC_Dm": 25.575,
+    "MP_MRFV > CP_MRFV > BicC_Dm > ATPaseD_Dm": 1.565,
+    "CP_MRFV > ATPaseD_Dm > BicC_Dm > MP_MRFV": 0.3
+  },
+  "pares_estables": [
+    [
+      "CP_MRFV",
+      "BicC_Dm",
+      true
+    ],
+    [
+      "CP_MRFV",
+      "ATPaseD_Dm",
+      true
+    ]
+  ],
+  "pares_dependientes": [
+    [
+      "MP_MRFV",
+      "CP_MRFV",
+      0.32875
+    ],
+    [
+      "MP_MRFV",
+      "BicC_Dm",
+      0.997
+    ],
+    [
+      "MP_MRFV",
+      "ATPaseD_Dm",
+      0.74125
+    ],
+    [
+      "BicC_Dm",
+      "ATPaseD_Dm",
+      0.01565
+    ]
+  ]
+}

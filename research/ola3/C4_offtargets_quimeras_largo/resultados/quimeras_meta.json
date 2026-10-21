@@ -1,18 +1,1 @@
-{
-  "modo": "corregido",
-  "backend": "vienna",
-  "regiones": {
-    "MP_MRFV": 200,
-    "CP_MRFV": 200,
-    "BicC_Dm": 300,
-    "ATPaseD_Dm": 300
-  },
-  "eficientes_region_suelta": {
-    "MP_MRFV": 16,
-    "CP_MRFV": 14,
-    "BicC_Dm": 17,
-    "ATPaseD_Dm": 16
-  },
-  "n_quimeras": 12,
-  "comando_run_sifi": "/Users/joaquin/.claude-science/orgs/32d3326f-8b33-43b5-b8b3-95a24706efc9/workspaces/d77b7bf9-2fe5-438b-ad79-3a3f099d0f4b/.venv/w5bio/bin/python /Users/joaquin/Documents/investigaton/chicharrita-research/tools/sifi21_port/run_sifi.py /Users/joaquin/Documents/investigaton/chicharrita-research/work/C4/quimeras/regiones.fasta /Users/joaquin/Documents/investigaton/chicharrita-research/work/C4/quimeras/quimeras.fasta --modo corregido --backend vienna --salida /Users/joaquin/Documents/investigaton/chicharrita-research/work/C4/sifi/corregido_vienna"
-}
+{"obsoleto": true, "nota": "Salida de la primera corrida (modo corregido), antes de que el script escribiera el modo en el nombre. Usar quimeras_meta_fiel_vienna.json y quimeras_meta_corregido_vienna.json."}

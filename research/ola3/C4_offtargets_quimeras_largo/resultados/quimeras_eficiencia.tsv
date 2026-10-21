@@ -1,13 +1,2 @@
-quimera	izquierda	derecha	largo_nt	corte_nt	ventanas_quimera	ef_region_izq	ef_region_der	suma_de_partes	ef_quimera_total	ef_heredadas_izq	ef_heredadas_der	ventanas_empalme	ef_empalme	delta_total_menos_suma	delta_explicado_por_empalme	ventanas_heredadas_que_cambiaron
-Q_MP_MRFV__CP_MRFV	MP_MRFV	CP_MRFV	400	200	380	16	14	30	38	19	14	20	5	8	5	5
-Q_MP_MRFV__BicC_Dm	MP_MRFV	BicC_Dm	500	200	480	16	17	33	33	19	14	20	0	0	0	10
-Q_MP_MRFV__ATPaseD_Dm	MP_MRFV	ATPaseD_Dm	500	200	480	16	16	32	49	19	16	20	14	17	14	5
-Q_CP_MRFV__MP_MRFV	CP_MRFV	MP_MRFV	400	200	380	14	16	30	33	14	17	20	2	3	2	1
-Q_CP_MRFV__BicC_Dm	CP_MRFV	BicC_Dm	500	200	480	14	17	31	29	14	14	20	1	-2	1	3
-Q_CP_MRFV__ATPaseD_Dm	CP_MRFV	ATPaseD_Dm	500	200	480	14	16	30	38	14	16	20	8	8	8	0
-Q_BicC_Dm__MP_MRFV	BicC_Dm	MP_MRFV	500	300	480	17	16	33	41	19	17	20	5	8	5	3
-Q_BicC_Dm__CP_MRFV	BicC_Dm	CP_MRFV	500	300	480	17	14	31	38	19	14	20	5	7	5	2
-Q_BicC_Dm__ATPaseD_Dm	BicC_Dm	ATPaseD_Dm	600	300	580	17	16	33	39	17	16	20	6	6	6	0
-Q_ATPaseD_Dm__MP_MRFV	ATPaseD_Dm	MP_MRFV	500	300	480	16	16	32	34	16	17	20	1	2	1	1
-Q_ATPaseD_Dm__CP_MRFV	ATPaseD_Dm	CP_MRFV	500	300	480	16	14	30	31	16	14	20	1	1	1	2
-Q_ATPaseD_Dm__BicC_Dm	ATPaseD_Dm	BicC_Dm	600	300	580	16	17	33	29	16	13	20	0	-4	0	4
+# OBSOLETO: salida de la primera corrida (modo corregido) antes de que el script escribiera el modo en el nombre.
+# Usar quimeras_eficiencia_{fiel,corregido}_vienna.tsv y sus pares. Ver NOTAS_PARA_META.md.

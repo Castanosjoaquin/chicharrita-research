@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C4 — Off-targets, quimeras y largo del ARNdc</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigathón Y-Hat · ola 3 · línea C4</p>
+    <h1>Off-targets, quimeras y largo: de las recomendaciones del investigador a criterios con evidencia</h1>
+    <p class="sub">Cuánta coincidencia hace falta para silenciar fuera del blanco, cuánto pesa
+    que un off-target caiga en el genoma y no en el transcriptoma, qué se recalcula en una
+    quimera, y de dónde sale el rango de 150 a 250 nucleótidos. Vista de lectura; la fuente de
+    verdad es <code>REPORT.md</code>.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">Las cuatro respuestas</h2>
+    <p class="lead"><strong>El único umbral de coincidencia con bioensayo detrás, en insectos, es
+    el de 21 nucleótidos contiguos perfectos. Los 19 nt que usamos son convención. Y el rango de
+    150 a 250 nt no está respaldado como techo: en nuestra propia especie blanco hay publicado
+    silenciamiento con ARNdc de 544 y 578 pares de bases.</strong></p>
+    <p><strong>Q1.</strong> Un solo bloque de 21 pb idénticos embebido en un ARNdc de 240 pb da
+    una CL50 de 13,8 a 20,3 ng/mL en <em>Diabrotica undecimpunctata howardi</em>; el mismo tramo
+    desnudo no mata. Y de diez ortólogos de Snf7, los activos tenían al menos tres coincidencias
+    de 21 nt y los de cero coincidencias —bloque máximo de 14 a 19 nt, 78 a 82 % de identidad—
+    no fueron activos. <span class="tag e">E</span> El umbral de 19 nt está enunciado como
+    convención en una revisión de 2026, con fundamento mecánico y sin experimento en insectos.
+    <span class="tag e">E</span> El de 16 pb de dsRNA-Engineer no tiene respaldo declarado.
+    <span class="tag q">?</span></p>
+    <p><strong>Q2.</strong> El criterio que entregó el investigador describe un caso real y es
+    el peor acierto del conjunto: <strong>la única coincidencia perfecta de 21 nt de las 920
+    ventanas contra todo el maíz cae en una región intergénica</strong>. Pero la asimetría va en
+    los dos sentidos: los tres aciertos sobre un gen expresado de maíz <strong>no existen en el
+    genoma</strong> porque cruzan una unión exón-exón, nueve bloques de nueve.
+    <span class="tag e">E</span></p>
+    <p><strong>Q3.</strong> El empalme es el único lugar con secuencia nueva, pero la eficiencia
+    total no es la suma salvo en la unión: la diferencia va de −4 a +19 en doce quimeras, y sólo
+    cierra sumando las ventanas heredadas que cambiaron de veredicto, <strong>hasta a 54
+    nucleótidos de la unión</strong>. Las 240 ventanas de empalme no aportaron ni un off-target
+    en bases no objetivo. <span class="tag e">E</span></p>
+    <p><strong>Q4.</strong> La evidencia sostiene un piso de unos 60 pb y no sostiene ningún
+    techo; una revisión de 2025 dice que no hay consenso sobre el largo óptimo, con
+    silenciamiento documentado de 141 a 1.506 pb en un solo insecto.
+    <span class="tag e">E</span> Que 150–250 sea razonable es lectura nuestra.
+    <span class="tag q">H</span></p>
+  </section>
+
+  <h2>Q1 · El umbral de coincidencia: qué está respaldado y qué es convención</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Evidencia experimental en insectos y umbrales declarados por herramientas. Tabla
+    completa, con entrega, n y medida, en <code>evidencia_longitud_minima.md</code>.</caption>
+    <thead>
+      <tr><th>Fuente</th><th>Sistema</th><th>Qué muestra</th><th>Estado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>S02</strong> Bolognesi 2012</td>
+          <td><em>D. undecimpunctata howardi</em>, dieta, 12 días</td>
+          <td>un solo bloque de 21 pb en acarreador de 240 pb: CL50 13,8–20,3 ng/mL; desnudo, &gt;100 ng/mL</td>
+          <td><span class="tag e">E</span> respaldado</td></tr>
+      <tr><td><strong>S01</strong> Bachman 2013</td>
+          <td><em>D. virgifera virgifera</em> y <em>L. decemlineata</em>, 10 ortólogos</td>
+          <td>activos con ≥3 coincidencias de 21 nt; inactivos con cero, aun con 78–82 % de identidad</td>
+          <td><span class="tag e">E</span> respaldado</td></tr>
+      <tr><td><strong>S18</strong> Castellanos 2022 <span class="tag">sólo resumen</span></td>
+          <td><em>Telenomus podisi</em> con ARNdc de <em>Euschistus heros</em></td>
+          <td>genes con 17–21 nt de coincidencia sin cambio de expresión ni efectos</td>
+          <td><span class="tag r">R</span></td></tr>
+      <tr><td><strong>S06</strong> Cedden 2026</td>
+          <td>revisión de métodos</td>
+          <td>≥19 nt complementarios alcanzan para marcar off-target; hasta dos desajustes; posición de los desajustes y pares G–U no se modelan</td>
+          <td><span class="tag e">E</span> como convención</td></tr>
+      <tr><td><strong>W2</strong> interno</td>
+          <td>dsRNA-Engineer</td>
+          <td>70/70 off-targets en maíz y 67/67 en abeja salen de la condición de 16 pb, ninguno de la de 21</td>
+          <td><span class="tag q">?</span> sin respaldo</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Q2 · Genoma contra transcriptoma, medido</h2>
+
+  <p>De los <strong>17 conjuntos</strong> descargados en <code>work/W4/downloads/</code>, sólo
+  <strong>dos</strong> tienen genoma y transcriptoma del mismo organismo en disco: <em>Zea
+  mays</em> y <em>Apis mellifera</em>. El genoma de <em>Dalbulus maidis</em> no está anotado y
+  para <em>Homalodisca vitripennis</em> —donde está el riesgo real— no hay genoma local. La
+  medición usa esos dos y lo dice.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Cruce de las 920 ventanas de 21 nt de las cuatro regiones contra genoma y
+    transcriptoma del mismo organismo. Filas con algún acierto; el resto son ceros.</caption>
+    <thead>
+      <tr><th>Organismo</th><th>Región</th><th>Criterio</th><th>Sólo genoma</th><th>Sólo transcriptoma</th><th>En los dos</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><em>Zea mays</em></td><td><code>BicC_Dm</code></td><td>21/21 perfecto</td><td class="num"><strong>1</strong></td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td><em>Zea mays</em></td><td><code>BicC_Dm</code></td><td>bloque ≥19 nt</td><td class="num"><strong>8</strong></td><td class="num"><strong>3</strong></td><td class="num"><strong>0</strong></td></tr>
+      <tr><td><em>Zea mays</em></td><td><code>BicC_Dm</code></td><td>21 nt, 1 desajuste</td><td class="num">8</td><td class="num">1</td><td class="num">1</td></tr>
+      <tr><td><em>Zea mays</em></td><td><code>MP_MRFV</code></td><td>bloque ≥19 nt</td><td class="num">3</td><td class="num">0</td><td class="num">3</td></tr>
+      <tr><td><em>Zea mays</em></td><td><code>MP_MRFV</code></td><td>21 nt, 1 desajuste</td><td class="num">4</td><td class="num">0</td><td class="num">1</td></tr>
+      <tr><td><em>Zea mays</em></td><td><code>CP_MRFV</code></td><td>21 nt, 1 desajuste</td><td class="num">4</td><td class="num">0</td><td class="num">4</td></tr>
+      <tr><td><em>Zea mays</em></td><td><code>ATPaseD_Dm</code></td><td>21 nt, 1 desajuste</td><td class="num">7</td><td class="num">0</td><td class="num">1</td></tr>
+      <tr><td><em>Apis mellifera</em></td><td><code>BicC_Dm</code></td><td>21 nt, 1 desajuste</td><td class="num">2</td><td class="num">0</td><td class="num">3</td></tr>
+      <tr><td><em>Apis mellifera</em></td><td><code>MP_MRFV</code></td><td>21 nt, 1 desajuste</td><td class="num">1</td><td class="num"><strong>2</strong></td><td class="num">1</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tw">
+  <table>
+    <caption>Dónde caen los 25 aciertos de las cuatro regiones en el ensamblado de maíz, por
+    cruce con el GFF de RefSeq. Se reparten en seis loci.</caption>
+    <thead><tr><th>Clase</th><th>Aciertos</th><th>Locus</th><th>Qué es</th></tr></thead>
+    <tbody>
+      <tr><td>exón</td><td class="num">3</td><td><code>NC_050100.1:138.170.650</code> (<code>LOC103626931</code>)</td><td>el gen que W5 ya había nombrado; es el mismo acierto que aparece en el transcriptoma</td></tr>
+      <tr><td>intrón</td><td class="num">3</td><td><code>NC_050100.1:71.307.242</code> (<code>LOC103626522</code>)</td><td>tres ventanas de <code>BicC_Dm</code> sobre un intrón anotado</td></tr>
+      <tr><td>intergénico</td><td class="num">18</td><td>cuatro loci en <code>NC_050098.1</code> y <code>NC_050102.1</code></td><td>tres de esos loci son el mismo 19-mero rico en GC repetido: firma de región repetida</td></tr>
+      <tr><td>intergénico, 21/21</td><td class="num">1</td><td><code>NC_050098.1:189.908.025</code></td><td><strong>la única coincidencia perfecta de 21 nt contra todo el maíz</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p class="t">El hallazgo simétrico: hay aciertos que existen sólo en el ARN</p>
+    <p>Los tres aciertos de <code>BicC_Dm</code> sobre <code>LOC100281777</code> —el único gen
+    expresado de maíz tocado en todo el conjunto— no aparecen en el genoma. Localizamos los
+    nueve bloques, tres ventanas por tres variantes de transcrito, y reconstruimos las uniones
+    exón-exón desde el GFF: <strong>los nueve cruzan una unión</strong>, en la posición 1.279 de
+    <code>NM_001154697.2</code> y en la 1.415 de las otras dos. En el ADN sus dos mitades están
+    separadas por un intrón. <span class="tag e">E</span></p>
+    <p>Por eso <strong>el genoma no es un sustituto conservador del transcriptoma</strong>:
+    pierde exactamente las ventanas de unión de exones. Y «intergénico» quiere decir «fuera de
+    todo gen anotado», no «no transcrito», que es la razón por la que la ponderación propuesta
+    le da 0,1 y no 0. <span class="tag q">H</span></p>
+  </div>
+
+  <h2>Q3 · Las doce quimeras</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Port de si-Fi21 en modo fiel, backend vienna, llamado por línea de comandos sin
+    modificarlo. «Cambiadas» son ventanas heredadas que cambiaron de veredicto respecto de su
+    región de origen.</caption>
+    <thead>
+      <tr><th>Quimera</th><th>Largo</th><th>Suma de partes</th><th>Total</th><th>Δ</th><th>Eficientes del empalme</th><th>Cambiadas</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>MP_MRFV</code> + <code>ATPaseD_Dm</code></td><td class="num">500</td><td class="num">39</td><td class="num">58</td><td class="num"><strong>+19</strong></td><td class="num">15</td><td class="num">6</td></tr>
+      <tr><td><code>CP_MRFV</code> + <code>ATPaseD_Dm</code></td><td class="num">500</td><td class="num">35</td><td class="num">45</td><td class="num">+10</td><td class="num">10</td><td class="num">0</td></tr>
+      <tr><td><code>BicC_Dm</code> + <code>MP_MRFV</code></td><td class="num">500</td><td class="num">42</td><td class="num">51</td><td class="num">+9</td><td class="num">6</td><td class="num">5</td></tr>
+      <tr><td><code>MP_MRFV</code> + <code>CP_MRFV</code></td><td class="num">400</td><td class="num">36</td><td class="num">44</td><td class="num">+8</td><td class="num">5</td><td class="num">5</td></tr>
+      <tr><td><code>BicC_Dm</code> + <code>CP_MRFV</code></td><td class="num">500</td><td class="num">38</td><td class="num">46</td><td class="num">+8</td><td class="num">6</td><td class="num">2</td></tr>
+      <tr><td><code>BicC_Dm</code> + <code>ATPaseD_Dm</code></td><td class="num">600</td><td class="num">41</td><td class="num">48</td><td class="num">+7</td><td class="num">8</td><td class="num">1</td></tr>
+      <tr><td><code>CP_MRFV</code> + <code>MP_MRFV</code></td><td class="num">400</td><td class="num">36</td><td class="num">39</td><td class="num">+3</td><td class="num">3</td><td class="num">2</td></tr>
+      <tr><td><code>ATPaseD_Dm</code> + <code>MP_MRFV</code></td><td class="num">500</td><td class="num">39</td><td class="num">42</td><td class="num">+3</td><td class="num">2</td><td class="num">3</td></tr>
+      <tr><td><code>ATPaseD_Dm</code> + <code>CP_MRFV</code></td><td class="num">500</td><td class="num">35</td><td class="num">37</td><td class="num">+2</td><td class="num">1</td><td class="num">5</td></tr>
+      <tr><td><code>MP_MRFV</code> + <code>BicC_Dm</code></td><td class="num">500</td><td class="num">42</td><td class="num">43</td><td class="num">+1</td><td class="num">1</td><td class="num">10</td></tr>
+      <tr><td><code>CP_MRFV</code> + <code>BicC_Dm</code></td><td class="num">500</td><td class="num">38</td><td class="num">36</td><td class="num"><strong>−2</strong></td><td class="num">1</td><td class="num">3</td></tr>
+      <tr><td><code>ATPaseD_Dm</code> + <code>BicC_Dm</code></td><td class="num">600</td><td class="num">41</td><td class="num">37</td><td class="num"><strong>−4</strong></td><td class="num">0</td><td class="num">4</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>La contabilidad cierra exactamente en las doce: Δ es igual a los eficientes del empalme más
+  el saldo neto de las heredadas que cambiaron, sin ningún otro término. <span class="tag e">E</span>
+  Y el orden importa: las mismas dos regiones dan +19 en un orden y +3 en el otro.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Las 46 ventanas heredadas que cambiaron de veredicto, por distancia a la unión
+    (modo fiel, doce quimeras). Mínimo 0, máximo 54, mediana 30.</caption>
+    <thead><tr><th>Distancia a la unión</th><th>Ventanas cambiadas</th></tr></thead>
+    <tbody>
+      <tr><td>0–19 nt</td><td class="num">19</td></tr>
+      <tr><td>20–39 nt</td><td class="num">10</td></tr>
+      <tr><td>40–59 nt</td><td class="num">17</td></tr>
+      <tr><td>≥60 nt</td><td class="num"><strong>0</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p class="t">Por qué 54 y no más</p>
+    <p>De los tres filtros de si-Fi21, dos son locales a la ventana y el tercero —accesibilidad
+    del sitio blanco— se calcula con RNAplfold con <strong>ventana de plegado de 80 nt</strong>
+    (<code>-W 80 -L 40 -u 21</code>), fijado en el original y reproducido por el port. Una
+    ventana de 21 nt comparte contexto de plegado con el otro gen hasta 59 nt de distancia.
+    Observamos 54. El alcance del efecto está acotado por un parámetro de la herramienta, no por
+    la biología. <span class="tag e">E</span> el número, <span class="tag q">H</span> la
+    atribución causal.</p>
+    <p>Consecuencia que va más allá de las quimeras: si una región se recorta del gen y se
+    sintetiza sola, sus ventanas de los primeros y últimos ~60 nt tampoco valen lo que valían
+    dentro del gen entero. <span class="tag q">H</span></p>
+  </div>
+
+  <p>Del lado de los off-targets: las <strong>240 ventanas de empalme no aportaron ningún
+  acierto</strong> en maíz, <em>Homalodisca vitripennis</em>, <em>Apis mellifera</em>,
+  <em>Harmonia axyridis</em> ni <em>Folsomia candida</em>. Sí 24 contra el genoma del propio
+  blanco, que es on-target, y de esos sólo 3 son 21/21: verificamos leyendo el flanco real del
+  ensamblado que <strong>el pegado reconstruye por azar el vecindario genómico</strong> —la
+  base pegada de <code>ATPaseD_Dm</code> coincide con la que precede a la región de
+  <code>BicC_Dm</code> en <code>OZ319706.1</code>—, que es la mejor demostración de por qué el
+  tamizaje va sobre la molécula completa. <span class="tag e">E</span></p>
+
+  <h2>Q4 · El largo del ARNdc</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Evidencia de largo en insectos. Tabla completa, con n y vía de entrega, en
+    <code>evidencia_longitud_minima.md</code>.</caption>
+    <thead><tr><th>Fuente</th><th>Especie</th><th>Largos</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td><strong>S02</strong> Bolognesi 2012</td><td><em>D. undecimpunctata howardi</em></td><td>27 a 240 pb</td><td>piso de ~60 pb: 0 % a 27 y 40 pb, 16 % a 50, 68 % a 60, 95–96 % de 70 a 240 <span class="tag e">E</span></td></tr>
+      <tr><td><strong>S10</strong> Bao 2026</td><td><em>Mythimna separata</em></td><td>60, 200, 500 y 1.000 pb</td><td>200 pb el mejor: 65,9 % de mortalidad y 62 % de silenciamiento; 60 y 1.000 pb peores <span class="tag e">E</span></td></tr>
+      <tr><td><strong>S11</strong> Luo 2026</td><td><em>Apolygus lucorum</em> (Hemiptera)</td><td>30 a 358 pb</td><td>310 pb → 94,4 % y 358 pb → 92,2 %; fragmentos de 132–140 pb entre 58,9 y 70,0 %, y otros del mismo largo sin efecto <span class="tag e">E</span></td></tr>
+      <tr><td><strong>S14</strong> Andrada 2026</td><td><strong><em>Dalbulus maidis</em></strong></td><td>544 y 578 pb</td><td>silenciamiento significativo y mortalidad alta, n = 40, 125 ng por insecto: <strong>más del doble del techo de 250 nt</strong> <span class="tag e">E</span></td></tr>
+      <tr><td><strong>S09</strong> Mendoza-Alatorre 2025</td><td>revisión</td><td>141 a 1.506 pb</td><td>no hay consenso sobre el largo óptimo <span class="tag e">E</span></td></tr>
+      <tr><td><strong>S12</strong> Merkel 2026</td><td><em>Acyrthosiphon pisum</em></td><td>223 a 481 pb</td><td>el ARNdc desnudo deja de detectarse a las 3 h en extracto del áfido: en Hemiptera el cuello de botella medido es la estabilidad <span class="tag e">E</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Cuánto del orden depende de pesos nuestros</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Barrido de 20.000 juegos de pesos sobre el símplex (Dirichlet uniforme, semilla
+    20261020) con los cuatro términos medidos, normalizados por 100 ventanas.
+    <code>scripts/ranking_sensibilidad.py</code>.</caption>
+    <thead><tr><th>Qué</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>pares que ningún peso no negativo puede invertir</td><td><code>CP_MRFV</code> &gt; <code>BicC_Dm</code> y <code>CP_MRFV</code> &gt; <code>ATPaseD_Dm</code>, por dominancia en las cuatro variables</td></tr>
+      <tr><td>quién queda primero</td><td><code>CP_MRFV</code> en el 67,1 % del espacio, <code>MP_MRFV</code> en el 32,9 %; nunca los otros dos</td></tr>
+      <tr><td>órdenes completos distintos</td><td>5 de los 24 posibles; el más frecuente, <code>CP_MRFV</code> &gt; <code>MP_MRFV</code> &gt; <code>ATPaseD_Dm</code> &gt; <code>BicC_Dm</code>, en el 41,3 %</td></tr>
+      <tr><td>último puesto</td><td><code>BicC_Dm</code> en el 98,4 % del espacio</td></tr>
+      <tr><td>lo que decidimos nosotros</td><td>el primer puesto: poner a <code>MP_MRFV</code> arriba exige pesar la eficiencia por encima del riesgo, y al revés para <code>CP_MRFV</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Con cuatro candidatos esto es un ejercicio de transparencia, no una demostración
+  estadística. El barrido con masa es el de <code>pipeline/</code>: 1.825 ventanas y 2.000
+  juegos de pesos, donde 124 candidatos distintos pasaron alguna vez por el top-10 y sólo 5
+  estuvieron ahí en más de la mitad de los casos. <span class="tag q">H</span></p>
+
+  <div class="note">
+    <p class="t">Huecos declarados</p>
+    <p>No hay evidencia experimental de que una coincidencia en intrón o en región intergénica
+    produzca o no efecto; no hay bioensayo de umbral de coincidencia en Hemiptera; no hay
+    experimento en insectos que mida silenciamiento en función del número y la posición de los
+    desajustes; no hay comparación publicada de una quimera contra sus partes administradas por
+    separado. Dos textos completos quedaron cerrados: de Castellanos 2022 leímos sólo el
+    resumen y Whyard 2009 no se pudo abrir, así que de ese trabajo sólo reportamos lo que
+    Bachman 2013 dice de él. <span class="tag q">?</span></p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Documentos de esta línea:</strong> <code>REPORT.md</code> ·
+    <code>evidencia_longitud_minima.md</code> · <code>genoma_vs_transcriptoma.md</code> ·
+    <code>quimeras.md</code> · <code>criterio_ranking_propuesto.md</code> ·
+    <code>sources.json</code> · <code>NOTAS_PARA_META.md</code> · <code>scripts/</code> ·
+    <code>resultados/</code>.</p>
+    <p>23 fuentes externas, 21 abiertas y leídas por Europe PMC, 1 sólo en resumen, 1 no abierta.
+    Entorno: Python 3.11.17, ViennaRNA 2.7.2, BLAST+ 2.17.0, pyahocorasick. Port de si-Fi21
+    usado sin modificar, con los md5 en <code>NOTAS_PARA_META.md</code>.</p>
+    <p>Ninguna secuencia de EPILAB salió de esta máquina. El tráfico de red fue entrante, contra
+    Europe PMC, para literatura pública.</p>
+  </div>
+</footer>
+</body>
+</html>
