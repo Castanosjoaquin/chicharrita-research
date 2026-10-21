@@ -225,6 +225,13 @@ que valida las dos implementaciones; el de un desajuste no coincide, y el exacto
 alguien quiere seguir con BLAST, hay que postfiltrar por largo y desajustes, o fijar `-word_size`
 igual al largo de la ventana con `-ungapped`.
 
+**Un corolario sobre una sigla.** Nombraste «HCP» como parámetro de BLAST. `[H]` Con alta
+probabilidad es **HSP** (*high-scoring segment pair*), que no es un parámetro sino la unidad de
+resultado: el alineamiento local que el programa devuelve. Parámetros *sobre* los HSP sí hay
+—`-max_hsps`, `-qcov_hsp_perc`, `-sorthsps`—. Lo dejamos como hipótesis y no como hecho porque la
+transcripción tiene pérdida de audio en ese tramo, y no podemos descartar que te refirieras al
+E-value o al percent identity. Va como pregunta.
+
 ---
 
 ## 4. El código del laboratorio: sifi21INTA y Apolo Rocket
@@ -255,6 +262,19 @@ que arreglaríamos.
 21. Se ve en los propios datos de ejemplo de Apolo Rocket: la suma de la curva dividida por 20 da
 entero exacto. No cambia el conteo pero sí el gráfico. `[E]`
 
+**Y tampoco reproduce la planilla, lo que cierra una hipótesis que teníamos.** Con sus valores por
+defecto, `sifi21INTA` da **138, 40, 218 y 35** sobre los cuatro genes, contra los 114, 35, 199 y 33
+declarados. No falla por poco ni en una dirección única. Un barrido de **22.176 configuraciones** de
+los parámetros que la propia librería expone no encuentra ninguna que dé los cuatro; lo que más se
+acerca es subir el umbral de estabilidad de extremos de 1,0 a **1,75**, que da 117, 35, 199 y 32,
+con dos exactos. `[E]` Lo que esto **descarta** es nuestra hipótesis de que el conteo sumara un
+registro por acierto de Bowtie y por lo tanto dependiera de la base: en esta librería el conteo es
+por ventana, verificado corriéndola contra tres bases distintas con el mismo resultado en las tres.
+**La base de datos no explica la diferencia.** `[E]` Esto es menos una crítica que una pregunta:
+con tres implementaciones del mismo criterio dando tres números distintos —la librería
+138/40/218/35, el programa original 133/32/212/42, la planilla 114/35/199/33—, lo que falta saber es
+qué versión corriste y con qué umbral de extremos.
+
 ### Lo que es arbitrario o no se valida
 
 **La elección del blanco principal es una decisión humana sin registro** —`input()` por consola en
@@ -263,6 +283,12 @@ que mira especificidad. **La elección de región tampoco se valida**: el volcad
 una consulta con región «800-100» y secuencia de largo cero, insertada igual en la base. `[E]` Y al
 fusionar alineamientos en bloques, **los desapareamientos se suman**, así que la columna de
 desapareamientos no significa lo que su nombre dice.
+
+**Y la anotación de cada región se reinterpreta como código al leerla.** Se guarda como texto
+(`reference_region.annotation TEXT`) —el `repr` de un diccionario de Python— y se recupera con
+`eval()` sobre ese texto (`databaseFunctions.py:202`). Funciona mientras lo que haya ahí lo haya
+escrito la propia plataforma; en un backend que va a recibir anotaciones de afuera, conviene que sea
+`json` y no `eval`. `[E]`
 
 ### Lo que falta, y es el hueco donde entra nuestro aporte
 
@@ -291,7 +317,34 @@ priorización auditable, no mejorar herramientas ajenas.
 
 ---
 
-## 5. Lo que estas críticas no son
+## 5. Lo que deliberadamente no criticamos
+
+Una crítica que no dice dónde se detuvo no es auditable. Cuatro cosas que miramos y dejamos pasar,
+cada una por un motivo distinto:
+
+**La ponderación por posición de los desajustes en off-targets.** El original corre
+`bowtie -a -v N -y`, conteo ciego a la posición (`sifi_pipeline.py:332`). Químicamente un desajuste
+no vale lo mismo en la región semilla (nt 2-8), que gobierna la nucleación, que en las posiciones
+10-11, donde el apareamiento es indispensable para el corte. Es una mejora legítima y pendiente,
+pero pertenece al módulo de off-targets y no al de eficiencia. `[H]`
+
+**La doble aplicación de `init_5T/A`** (`free_energy.py:366-371`), que suma la misma penalización si
+la secuencia empieza con T y otra vez si termina con A. Viene de Biopython y es el tratamiento
+simétrico correcto del dúplex. Se revisó y se descartó como crítica. `[E]`
+
+**La ventana de 21 nt y la ventana de accesibilidad u = 8.** No hay motivo para moverlas sin datos,
+y vos mismo confirmaste en el checkpoint que 21-22 nt es lo que tiene respaldo biológico.
+
+**Y una trampa de nomenclatura que no es un defecto, pero que hace fácil acusar a si-Fi21 de algo
+que no hace.** Lo que llama `RNA_DE2` —y usa por defecto— es exactamente la tabla que Biopython
+llama `RNA_DE1`; lo que llama `RNA_DE1` es la misma tabla con las claves invertidas y no se usa en
+ninguna parte. Igual con los apilamientos: define `RNA_NN1` (Freier 1986) y `RNA_NN2` (Xia 1998)
+pero **no las usa**, y el defecto es `RNA_NN3`, que es Chen 2012. Es decir que **si-Fi21 ya está en
+las tablas modernas**: la presencia de las viejas en el archivo sugiere lo contrario. `[E]`
+
+---
+
+## 6. Lo que estas críticas no son
 
 No son una lista de razones para descartar si-Fi21. Es la línea de base del campo, es lo que usan
 ustedes, y nuestro port reproduce sus cuatro conteos exacto, lo que quiere decir que entendimos el
