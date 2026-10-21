@@ -723,3 +723,37 @@ lectura mecanicista. Es una decisión nuestra y no una propiedad del original: s
 contempla 22 nt. Queda declarada acá y en el informe.
 **Estado:** abierto. Si el investigador tiene la regla del laboratorio para 22, hay que
 reemplazarla.
+
+## Ranking v2 (2026-10-21)
+
+### Dar el ancla por buena sin el genoma del vector
+**Qué se intentó:** verificar el motor contra W7 con las cinco referencias y humano, sin el genoma de
+*D. maidis*.
+**Qué pasó:** la ficha de `MP_MRFV` dio una ventana de diferencia (10 contra 11 con off-target) y
+la exposición 0,0135 contra 0,0198. Para los genes virales el genoma del vector cuenta como
+off-target (D20), así que había que bajarlo (281,7 MB) y correrlo. Con él, los cuatro conteos,
+las cuatro fichas y el barrido de 2.000 sorteos coinciden exacto.
+**Estado:** descartado como atajo; `ranking_v2.py` aborta si el ancla no cierra.
+
+### Usar los conteos de C5 (modo fiel) para los genes nuevos
+**Qué se intentó:** tomar 44 y 33 eficientes de C5 para `eth` y `burs-alpha`.
+**Qué pasó:** son del modo fiel; en el corregido son 37 y 25, la misma diferencia que W5 midió
+(14 % a 24 % entra por la rama de la regla terminal). No son comparables con los otros cuatro.
+**Estado:** descartado; el ranking usa el modo corregido en los seis.
+
+### Comparar los genes nuevos en el nivel 1
+**Qué se intentó:** ranking con las regiones de EPILAB tal como están y las nuestras para los nuevos.
+**Qué pasó:** `eth` queda segundo y `burs-alpha` cuarto, pero la comparación mezcla regiones elegidas con y sin
+ver los off-targets, y favorece a los nuevos. Con todos en su mejor región (nivel 3) quedan cuarto y quinto.
+**Estado:** el nivel 3 es el resultado; el nivel 1 se reporta como contexto.
+
+### Sumar la evidencia publicada al puntaje
+**Qué se intentó:** pensarlo; no se implementó.
+**Qué pasó:** exigiría equivalencia entre microinyección e ingesta y entre letalidad y esterilidad. No la tenemos.
+**Estado:** descartado; segundo eje descriptivo, sin puntaje (D24).
+
+### Leer la cascada como ranking de candidatos de distinto largo de región
+**Qué se intentó:** la cascada cuenta ventanas limpias y eficientes, no tasas.
+**Qué pasó:** favorece a las regiones de 300 nt: a 22 nt pone a `BicC_Dm` primero con 39 contra 30 de `MP_MRFV`, y
+a `ATPaseD_Dm` por delante de `burs-alpha`. Además, los empates se resuelven por posición, un desempate arbitrario.
+**Estado:** se reporta, y el orden de las puntas se lee con la escala absoluta.

@@ -168,3 +168,9 @@ Los resultados y su justificación están en `research/ola2/W7_ranking/`.
   es la rama del original, no un error del port. Está en `CAMBIOS.md` C1.
 - La mezcla de tablas de ADN y ARN del original existe pero no se alcanza en este
   uso: medido, cero consultas. `CAMBIOS.md` C3.
+
+## Ranking v2
+
+`ranking_v2.py` reusa el motor de `ranking.py` con seis candidatos (los cuatro de EPILAB más `eth` y `burs-alpha`),
+humano en el panel y 21 y 22 nt. Reproduce primero las anclas de W7 y aborta si no coinciden. Informe en
+`research/ola3/C7_ranking_v2/`.

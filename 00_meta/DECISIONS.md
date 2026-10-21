@@ -585,3 +585,42 @@ genes virales no se tocan: cero coincidencias perfectas contra las dos referenci
 Sobre el largo: el conteo total de eficientes se mueve menos de un punto porcentual entre 21
 y 22 nt, pero el conjunto cambia casi entero (Jaccard 0,20 a 0,39), y en `MP_MRFV` la mejor
 región se muda de 72-271 a 820-1019. Detalle en `research/ola3/C6_panel_y_largo/REPORT.md`.
+
+## D23 — *Macrosteles quadrilineatus* queda fuera del panel del ranking v2
+**Fecha:** 2026-10-21
+**Decisión:** el ranking v2 se calcula con el panel de W7 más humano y **sin** *Macrosteles
+quadrilineatus*. Modifica la parte de D22 que lo incorporaba al veto; el resto de D22 (humano y el
+largo de ventana como parámetro declarado) sigue vigente.
+**Alternativas consideradas:** (a) mantener *Macrosteles* como en D22, donde reordena la
+recomendación de `BicC_Dm`; (b) incluirlo solo como sensibilidad.
+**Criterio:** decisión del equipo, con el argumento de que la especie no está en Argentina y por
+lo tanto no es un organismo expuesto. **Ese argumento no está verificado**: una búsqueda inicial
+no encontró registros sudamericanos, pero no es un catálogo de distribución, así que es `[R]` y
+queda pendiente. Contra (a): *Macrosteles* se había incorporado como sustituto filogenético del
+resto de los Deltocephalinae, no por exposición directa, y ese uso no se descarta con su
+ausencia en Argentina; se acepta igual porque el equipo prefiere acotar el panel a organismos
+con exposición plausible.
+**Consecuencia:** las recomendaciones de región de W7 vuelven a valer contra el panel de seis
+más humano (`BicC_Dm` 2121-2420, `ATPaseD_Dm` 72-371). Las mediciones de C5 y C6 contra
+*Macrosteles* no se borran: el informe v2 las cita como límite (21 ventanas con 21/21 en el gen
+entero de `eth`; 19 en la región recomendada de `BicC_Dm`). Reabrir si el investigador dice que
+los cicadélidos hermanos cuentan como no objetivo.
+
+## D24 — El ranking v2 suma dos genes de *D. maidis*, y evidencia y diseño quedan en ejes separados
+**Fecha:** 2026-10-21
+**Decisión:** (1) `eth` y `burs-alpha` (GenBank PZ371507.1 y PZ371508.1) entran al ranking, con la
+región de 200 nt que elige la misma cascada con la que W7 recomienda regiones; (2) humano entra al
+panel con peso base 1,00; (3) todo se corre a 21 y a 22 nt; (4) la comparación entre candidatos
+es el nivel 3 (cada uno en su mejor región), no el nivel 1 (regiones de EPILAB tal como están);
+(5) la evidencia publicada de cada gen se presenta como un segundo eje descriptivo, **sin puntaje**.
+**Alternativas consideradas:** sumar la evidencia al puntaje; incluir los ortólogos de C5
+(`Rpn6`, `Ruvbl1`, `XPO1`, ATP sintasa β); comparar solo en el nivel 1.
+**Criterio:** sumar evidencia exigiría una equivalencia entre un fenotipo de microinyección y uno
+de ingesta que no tenemos. Los ortólogos no entran porque C5 midió que solo entre el 0,7 % y el
+11,1 % de sus 21-meros existen en el genoma del vector. El nivel 1 mezcla regiones elegidas por
+procedimientos distintos y favorece a los nuevos.
+**Consecuencia:** los genes nuevos quedan cuartos y quintos por diseño cuando todos están en su
+mejor región; su aporte es la evidencia y, en `burs-alpha`, el perfil de especificidad (cero
+bloques de 19 nt o más en el gen entero). Las puntas del orden (`MP_MRFV` primero, `BicC_Dm`
+segundo, `ATPaseD_Dm` último) aguantan 22 nt bajo la escala absoluta; el medio no. Detalle en
+`research/ola3/C7_ranking_v2/REPORT.md`.
