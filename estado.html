@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estado del entregable — que esta hecho y que falta</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+  table.matriz{min-width:840px}
+  table.matriz th:not(:first-child):not(:last-child), table.matriz td.num{padding-left:8px; padding-right:8px; text-align:center}
+  table.matriz td:last-child{min-width:300px}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .toc{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); margin:26px 0 10px}
+  .card{border:1px solid var(--line); background:var(--surface); padding:18px 20px; display:block;
+        color:inherit; text-decoration:none}
+  .card:hover{border-color:var(--accent)}
+  .card .id{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+  .card .t{font-weight:650; margin:0 0 7px; line-height:1.3}
+  .card .d{font-size:.91rem; color:var(--text-dim); margin:0 0 10px}
+  .card .f{font-size:.82rem; color:var(--text-dim); margin:0}
+  .card .f a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line)}
+  .mem{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:18px 0}
+  .mem a{border:1px solid var(--line); background:var(--surface); padding:12px 14px; text-decoration:none; color:inherit}
+  .mem a:hover{border-color:var(--accent)}
+  .mem .n{font-weight:650; font-size:.95rem}
+  .mem .s{font-size:.84rem; color:var(--text-dim)}
+  .paso{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 0}
+  .paso a{font-size:.84rem; border:1px solid var(--line); background:var(--surface);
+          padding:6px 11px; text-decoration:none; color:var(--text-dim)}
+  .paso a:hover{border-color:var(--accent); color:var(--accent)}
+  .paso .sep{flex-basis:100%; height:0; margin:0}
+  .paso .rotulo{font-size:.76rem; letter-spacing:.08em; text-transform:uppercase;
+                color:var(--text-dim); align-self:center; margin:0}
+</style></head><body>
+<div class="wrap">
+<header>
+  <p class="eyebrow">Investigathón Y-Hat · track chicharrita del maíz</p>
+  <h1>Qué está hecho y qué falta</h1>
+  <p class="sub">Foto del entregable al 2026-10-21. Generada con
+  <code>tools/generar_estado.py</code>, que comprueba contra el disco que cada archivo nombrado
+  existe. <strong>Esta página no es fuente de verdad</strong>: el estado se declara en
+  <a href="PLAN_DESARROLLO.md">PLAN_DESARROLLO.md</a> (§1 bis y §3 ter) y cada afirmación vive en
+  el informe que enlaza.</p>
+  <p class="sub"><a href="index.html">← Volver a la portada</a></p>
+</header>
+
+<div class="verdict">
+<p><strong>Los cinco pedidos del Checkpoint 1 están cerrados</strong>, más los dos opcionales, y las
+tres tareas de fortalecimiento de C9 tienen entregable. No queda ninguna medición grande pendiente.
+Lo que sigue son <strong>tres decisiones y dos trabajos chicos</strong>, no producir el
+entregable.</p>
+<p>Dos cosas bloquean al resto: el dato que falta para mandar el correo al investigador, y cuál es
+el análisis primario de la validación retrospectiva, porque decidirlo después de ver los datos
+anula el pre-registro.</p>
+</div>
+
+<h2>Lo que está hecho</h2>
+<p class="lead">Cada tarjeta enlaza el archivo que la respalda. Verificación automática de esta
+corrida: <strong>todos los archivos existen</strong>.</p>
+<div class="toc">
+<div class="card"><p class="t">Pedido 1 · Entender si-Fi21</p><p class="d">El port verificado contra el original, el método del artículo con la fuente de cada umbral, y la nota de método que explica que «eficiente» es un booleano por ventana de 21 nt y no un puntaje.</p><p class="f"><a href="entregables/que-significa-eficiente.md">que-significa-eficiente.md</a> · <a href="research/ola3/C1_sifi21_paper_metodo">C1_sifi21_paper_metodo</a> · <a href="tools/sifi21_port">sifi21_port</a></p></div>
+<div class="card"><p class="t">Pedido 2 · Benchmarking de las tres herramientas</p><p class="d">si-Fi21, dsRNA-Engineer y BLAST sobre los cuatro genes, en un eje común y con el panel de referencias verificado como idéntico entre las tres.</p><p class="f"><a href="research/ola2/W7_ranking/benchmark_tres_herramientas.md">benchmark_tres_herramientas.md</a></p></div>
+<div class="card"><p class="t">Pedido 3 · Ranking con criterio explícito</p><p class="d">El orden, las cinco decisiones declaradas, la ficha por candidato y el barrido de 2.000 juegos de pesos. La segunda versión suma el panel ampliado, dos genes nuevos y los dos largos de ventana.</p><p class="f"><a href="research/ola2/W7_ranking/REPORT.md">W7_ranking/REPORT.md</a> · <a href="research/ola3/C7_ranking_v2/REPORT.md">C7_ranking_v2/REPORT.md</a></p></div>
+<div class="card"><p class="t">Pedido 4 · Evaluación de las regiones elegidas</p><p class="d">La región dentro de cada gen contra la distribucion de su propio gen, y la conservación entre aislados.</p><p class="f"><a href="research/ola3/C8_conservacion">C8_conservacion</a></p></div>
+<div class="card"><p class="t">Pedido 5 · Crítica de las herramientas</p><p class="d">Cada crítica va con su medición o su línea de código. Lo más fuerte: la accesibilidad del sitio blanco es una de las tres condiciones de si-Fi21 y es la que no mostró valor predictivo sobre la eficacia medida.</p><p class="f"><a href="entregables/critica-herramientas.md">critica-herramientas.md</a></p></div>
+<div class="card"><p class="t">C9 · Tarea 1 · Sensibilidad del umbral, sin etiquetas</p><p class="d">Barrido de los dos umbrales sin fuente primaria sobre 546 puntos por modo (4.368 filas). El candidato superior aguanta; la región exacta de 200 nt no. Mide fragilidad de la recomendación, no calidad del umbral.</p><p class="f"><a href="research/ola3/C9_sensibilidad_umbral/REPORT.md">C9_sensibilidad_umbral/REPORT.md</a> · <a href="research/ola3/C9_sensibilidad_umbral/resultados/grilla_umbral.tsv">grilla_umbral.tsv</a></p></div>
+<div class="card"><p class="t">C9 · Tarea 2 · Corregida la lectura del barrido de pesos</p><p class="d">La diagonal de B.3 mide la escala, no la robustez del orden. La afirmación vieja queda dicha y tachada, con la nueva y su fuente al lado, en W7 y en el ranking v2.</p><p class="f"><a href="research/ola2/W7_ranking/REPORT.md">W7_ranking/REPORT.md</a> · <a href="research/ola3/C7_ranking_v2/REPORT.md">C7_ranking_v2/REPORT.md</a></p></div>
+<div class="card"><p class="t">Las cuatro decisiones del checkpoint, formalizadas</p><p class="d">D33 a D36: las bacterias salen del alcance del diseño por ARNi, el objetivo es el insecto como vector, la ventana se fija en 21 y 22 nt por evidencia biológica y el ejercicio sobre los cuatro candidatos es una auditoría y no la reproducción de un resultado validado.</p><p class="f"><a href="00_meta/DECISIONS.md">DECISIONS.md</a></p></div>
+<div class="card"><p class="t">C9 · Tarea 3 · Pre-registro de la validación retrospectiva</p><p class="d">Escrito antes de mirar los datos: que conjunto, que estadistico, qué contaría como éxito y como fracaso, y la decisión de reportar el intervalo y no el valor p. La validación no se corrió.</p><p class="f"><a href="research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md">PREREGISTRO_validacion_retrospectiva.md</a></p></div>
+</div>
+
+<h2>Lo que falta</h2>
+<p class="lead">Ordenado por lo que bloquea. Lo marcado con <span class="tag q">?</span> es lo que
+hay que decidir antes de seguir.</p>
+<div class="tw"><table>
+<thead><tr><th>Qué</th><th>Tipo</th><th>Por qué</th></tr></thead>
+<tbody>
+<tr><td><strong>Confirmar apellido y dominio del correo del investigador</strong> <span class="tag q">?</span></td><td>decisión del equipo</td><td>El borrador del correo está escrito y <strong>sin enviar</strong>: la transcripción automática del checkpoint escribió el apellido de varias formas y no se adivina. Es lo único que bloquea el envío (<a href="entregables/correo-investigador.md">ver borrador</a>).</td></tr>
+<tr><td><strong>Decidir el análisis primario de la validación</strong> <span class="tag q">?</span></td><td>decisión del equipo</td><td>Correlación agrupada sobre los 28 ARNdc, o dentro de cada gen. Los propios autores muestran que el gen blanco domina la razón de riesgo (efecto del gen P = 0,047, R<sup>2</sup> ajustado 0,40), así que una correlación agrupada alta podria venir del gen y no del puntaje. <strong>Bloquea la validación</strong>, y decidirlo despues de ver los datos rompe el pre-registro.</td></tr>
+<tr><td>Autorizar la publicación de las 28 secuencias de Cedden</td><td>decisión del equipo</td><td>Son datos públicos de un artículo CC BY, no secuencias de EPILAB. Están unidas a su razón de riesgo en <code>research/ola3/C9_sensibilidad_umbral/datos/</code>, <strong>sin subir al remoto</strong> a la espera de esa decision.</td></tr>
+<tr><td>Correr la validación retrospectiva</td><td>trabajo</td><td>Media hora de cómputo una vez cerrado el punto anterior. Con la fiabilidad medida del desenlace la potencia es 0,42, de modo que lo mas probable es un intervalo que incluya el cero; el pre-registro ya declara que eso <strong>no refuta el puntaje</strong>.</td></tr>
+<tr><td>Resolver la divergencia del index.html de W7</td><td>trabajo</td><td>La página y el informe de W7 ya no dicen lo mismo: 25 porcentajes del informe no aparecen en la página y solo 14 coinciden. Los dos se escribieron a mano, así que no hay fuente que gane. Hasta decidirlo, la página no se cita como fuente de cifras.</td></tr>
+<tr><td>Confirmar el criterio de commits</td><td>decisión del equipo</td><td>El prompt de C9 pide un commit por tarea y la regla general de la ola 3 dice no commitear (D5). Se siguió la instrucción específica del prompt; si se prefiere la regla general, se reescribe.</td></tr>
+</tbody></table></div>
+
+<h2>Los límites que viajan con todo lo anterior</h2>
+<p class="lead">Ninguno invalida el entregable; todos cambian cómo se leen sus números, y están
+declarados en cada informe.</p>
+<h3>No hay etiquetas de eficacia para el vector</h3><p>Ningún dato experimental de silenciamiento en <i>Dalbulus maidis</i> respalda el umbral. Por eso el barrido mide fragilidad de la recomendación y no si el umbral es correcto: lo segundo necesita etiquetas que no existen.</p>
+<h3>Los conteos absolutos no son comparables con la ola 2</h3><p>No hay RNAplfold 2.1.5 en la máquina (el que instala si-Fi21 es un ejecutable de Windows), así que todo corre con ViennaRNA 2.7.2. Las comparaciones internas de cada informe sí valen, porque usan el mismo motor de los dos lados. Cada numero declara su backend y su modo.</p>
+<h3>La validación está sub-potenciada por un factor 2,4 en n</h3><p>Dos ARNdc contra el mismo gen correlacionan 0,245, de modo que una correlación verdadera de 0,7 se observa como 0,35 y la potencia con n = 28 es 0,42; para 80 % harían falta n = 67. Comparar dos proxies entre si es inviable: 0,11 con atenuacion.</p>
+<h3>La unión de secuencias y desenlace no tiene clave publicada</h3><p>Los dos archivos adicionales de Cedden no comparten identificador. La unión es por orden dentro de cada gen y pasó 20 de 20 chequeos de consistencia con las etiquetas de predicción, pero si el orden de las dos hojas no fuera el mismo, el error no se detectaria con esos chequeos.</p>
+
+<h2>El resultado de C9 en una línea</h2>
+<p class="lead">El <strong>candidato</strong> superior es robusto al umbral y la <strong>región exacta</strong>
+no lo es. <code>MP_MRFV</code> queda primero en el 99,1 % de la grilla en modo fiel y el 98,2 % en
+modo corregido, pero su región de 200 nt coincide con la de defecto en apenas el 11,7 % y el 25,8 %
+de los puntos, y hay puntos con solapamiento cero. El par <code>ATPaseD_Dm</code> contra
+<code>CP_MRFV</code> es un empate práctico: se invierte en casi la mitad de la grilla. Lo defendible
+es entregar una <strong>región candidata, no un sitio</strong>.
+<a href="research/ola3/C9_sensibilidad_umbral/index.html">Leer C9</a>.</p>
+
+<h2>Últimos commits</h2>
+<div class="tw"><ul>
+<li><code>b7e142c</code> Pagina de estado: que esta hecho, que falta y que decisiones bloquean, generada y verificada contra el disco</li>
+<li><code>2f51229</code> Las cuatro decisiones del checkpoint (D33-D36), el correo al investigador y el plan al cierre</li>
+<li><code>68bff17</code> C9: enmienda 1 al pre-registro (hr, secuencias de Cedden, puntaje primario); datos unidos; W7 html vs md registrado</li>
+<li><code>c0e60a2</code> C9 T3: pre-registro de la validacion retrospectiva (sin correr) y plan al dia</li>
+<li><code>8188863</code> C9 T2: la diagonal de B.3 mide la escala, no la robustez; afirmacion vieja tachada, C7 regenerado</li>
+<li><code>ba36384</code> C9 T1: sensibilidad de la recomendacion a los umbrales de si-Fi21, sin etiquetas (vienna, 21 nt)</li>
+</ul></div>
+<p>Rama: <code>## main...origin/main [ahead 1]</code> — hay commits sin sincronizar.</p>
+
+<footer>
+  <p>Marcadores de evidencia: <span class="tag e">E</span> establecido ·
+  <span class="tag r">R</span> reportado · <span class="tag">H</span> hipótesis nuestra ·
+  <span class="tag q">?</span> incierto o en conflicto entre fuentes.</p>
+  <p>Las secuencias de EPILAB y cualquier dato no publicado del corpus no se suben a servicios web
+  de terceros ni al repositorio público. Todo análisis de esas secuencias corre con herramientas
+  locales.</p>
+</footer>
+</div>
+</body></html>
