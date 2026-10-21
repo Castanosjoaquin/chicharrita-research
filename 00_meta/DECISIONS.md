@@ -799,3 +799,93 @@ comercial con *share alike* tampoco es compatible con relicenciar un derivado ba
 asesoría legal: queda anotado por si alguna vez se publica algo. La afirmación previa del
 repositorio —«SourceForge dice CC BY-NC 2.0»— no se pudo verificar, porque el dominio está
 bloqueado, y además no coincide con lo que dice el README, que sí se verificó.
+
+
+---
+
+## D33 — Las bacterias salen del alcance del diseño por ARNi
+**Fecha:** 2026-10-21
+**Quién:** el equipo, al formalizar el Checkpoint 1 (sección 7 de `PLAN_DESARROLLO.md`).
+**Decisión:** ningún diseño del proyecto apunta a los mollicutes del complejo patogénico
+(*Candidatus* Phytoplasma asteris y *Spiroplasma kunkelii*). El alcance del diseño por ARNi queda
+limitado al insecto vector y a los dos genes virales.
+**Alternativas consideradas:** (a) mantener una rama exploratoria contra los mollicutes por si
+apareciera un mecanismo alternativo; (b) reencuadrarla como control indirecto vía el vector, que es
+lo que efectivamente quedó.
+**Criterio:** el mecanismo de interferencia por ARN no existe en bacterias —*«de las bacterias
+olvídense, porque son otros mecanismos»*, dicho por el investigador en el checkpoint `[E]`—, y eso
+coincide con lo que R1 §4 y R6 ya habían medido por homología en los dos mollicutes: no se
+recuperan los componentes de la maquinaria. Son dos vías independientes que dan lo mismo, así que
+no es una corrección sino una confirmación. (a) se descartó porque no hay hipótesis de mecanismo
+que explorar, y una rama sin mecanismo consume tiempo sin producir evidencia.
+**Consecuencia:** la rama del complejo patogénico que el proyecto había considerado atacar por esa
+vía se cae entera. Lo que queda de los patógenos en el entregable es el argumento de transmisión:
+se los controla matando al vector antes de que transmita, no silenciándolos. El trabajo de R6 no se
+descarta: pasa a ser el registro de por qué esa vía está cerrada, que es un descarte documentado y
+vale como resultado.
+
+---
+
+## D34 — El objetivo del diseño es el insecto como vector, no el patógeno dentro de la planta
+**Fecha:** 2026-10-21
+**Quién:** el equipo, al formalizar el Checkpoint 1.
+**Decisión:** el blanco del diseño es *Dalbulus maidis*. La estrategia de silenciar al patógeno
+dentro de la planta queda registrada como legítima pero no es la que el proyecto desarrolla.
+**Alternativas consideradas:** (a) atacar al patógeno dentro de la planta; (b) sostener las dos
+estrategias en paralelo y rankearlas juntas.
+**Criterio:** el investigador presentó las dos como legítimas y recomendó la del vector por directa
+`[R]`. A eso se suma el argumento de la **ventana de latencia**: pasan unos 20 días entre que la
+chicharrita se infecta y puede transmitir, que él confirmó, así que hay una ventana real para
+matarla antes de que contagie. (b) se descartó porque comparar candidatos de las dos estrategias en
+un mismo orden exigiría una equivalencia entre desenlaces que no tenemos —mortalidad del vector
+contra carga del patógeno en planta—; donde las dos conviven, conviven como rankings separados con
+el criterio de comparación declarado (D20).
+**Consecuencia:** los dos genes virales siguen en el ranking porque son material de EPILAB que hay
+que auditar, no porque el proyecto recomiende esa vía. La ventana de latencia pasa a ser un
+argumento del entregable y no un dato de contexto: es lo que justifica que matar al vector sirva
+aunque ya esté infectado.
+
+---
+
+## D35 — La ventana se fija en 21 y 22 nucleótidos por evidencia biológica, no por convención de la herramienta
+**Fecha:** 2026-10-21
+**Quién:** el equipo, al formalizar el Checkpoint 1.
+**Decisión:** todo cálculo del proyecto usa ventanas de 21 y 22 nt, y el fundamento que se declara
+es biológico y no heredado de si-Fi21.
+**Alternativas consideradas:** (a) usar 21 nt solo, por ser el defecto de la herramienta; (b) barrer
+largos menores (18, 19, 20 nt) como parámetro libre.
+**Criterio:** 21-22 nt es el tamaño en que la maquinaria corta y el tamaño del fragmento que después
+se aparea; por debajo de eso la molécula no funciona `[E]`. La regla de método que el investigador
+dio y que el proyecto adopta es *«tenés que tener la evidencia biológica atrás de por qué elegís
+21»*. (b) se midió igual, y el resultado sostiene la decisión en vez de contradecirla: por debajo de
+18 nt las coincidencias son indistinguibles del azar una vez corregido por composición
+(`research/ola3/C3_blast_ventana_azar/`), así que un largo menor no agrega señal, agrega ruido.
+**Consecuencia:** 21 y 22 nt dejan de ser un parámetro y pasan a ser una decisión fundada que se
+puede defender sin apelar a la herramienta. El costo es que todo resultado se reporta dos veces, a
+21 y a 22, porque el conjunto de ventanas eficientes cambia casi entero entre los dos largos aunque
+el conteo casi no cambie (C3, C7): las puntas del orden aguantan y el medio no. Y queda declarado
+que la regla de nucleótidos terminales del port a 22 nt es una generalización nuestra y no una
+regla publicada.
+
+---
+
+## D36 — El ejercicio sobre los cuatro candidatos es una auditoría, no la reproducción de un resultado validado
+**Fecha:** 2026-10-21
+**Quién:** el equipo, al formalizar el Checkpoint 1.
+**Decisión:** el trabajo sobre los cuatro diseños de la planilla de EPILAB se encuadra y se escribe
+como auditoría de una decisión vieja, no como intento de replicar un resultado.
+**Alternativas consideradas:** (a) tratar la planilla como verdad de terreno y medir cuánto nos
+acercamos a ella; (b) tratarla como un dato más entre varios candidatos.
+**Criterio:** los cuatro diseños los hizo el propio investigador hace unos dos años, **nunca se
+testearon** porque bajó la incidencia de la plaga, y no recuerda con certeza por qué eligió esas
+regiones `[R]`. No hay resultado validado que replicar: hay una decisión vieja de la que ni el autor
+está seguro. (a) se descartó porque tomar como referencia un número que nadie validó convierte
+cualquier desvío nuestro en error cuando podría ser corrección. Y el criterio con el que se nos va a
+evaluar es explícito: *«no porque tenga que ser cierto eso que decís, porque al final hay que
+evaluarlo, sino el pensamiento que nos llevó a ustedes para decidir ese ranking»*.
+**Consecuencia:** cambia qué significa que nos vaya bien. Un «la elección es mejorable, y acá está
+por qué» vale tanto como un «la elección se justifica», y un «no se puede saber con los datos que
+hay» bien fundamentado suma en vez de restar. La consecuencia de método es que cada número del
+entregable viaja con el porqué de haberlo elegido. Es también lo que vuelve defendible que el equipo
+no tenga laboratorio: auditar una decisión de diseño es exactamente lo que se puede hacer bien sin
+uno.

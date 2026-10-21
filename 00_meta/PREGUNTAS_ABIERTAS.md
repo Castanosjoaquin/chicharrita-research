@@ -1082,3 +1082,39 @@ tres cosas que el documento declara y que conviene tener registradas acá:
 ### W7 · El index.html y el REPORT.md ya no dicen lo mismo (detectado 2026-10-21)
 
 Al revisar W7 para la corrección de B.3, se comparó el `research/ola2/W7_ranking/index.html` con su `REPORT.md`: tienen estructura de secciones distinta (la página usa A.1 a B.4, el informe 1 a 6) y **25 porcentajes del informe no aparecen en la página**, con solo 14 en común. Los dos archivos se escribieron a mano (no hay generador), así que no hay una fuente que gane. Lo que se corrigió en esta sesión (§2.1 bis del informe y el pie de B.3) es la única parte sincronizada. Decisión pendiente: reescribir la página desde el informe, o generar el informe desde la página. Hasta entonces, la página no debe citarse como fuente de cifras.
+
+---
+
+## `eth` y `burs-alpha`: el paso que faltaba no es conseguir el transcriptoma (2026-10-21)
+
+Ya estaba registrado más arriba que el transcriptoma del grupo que publica en la especie es propio
+y no publicado, respaldado por una tesis de maestría de la UNNOBA de 2018. Se confirmó la cita
+exacta y se encontró algo que cambia el pendiente de C8.
+
+**La cita, completa.** Andrada *et al.* 2026 (*Frontiers in Insect Science*, PMC13279319) dicen en
+métodos que los candidatos salen de *«transcriptomic datasets assembled in our laboratory for
+Dalbulus maidis»*, y citan la tesis de V. Palacio, *Secuenciación del transcriptoma de Dalbulus
+maidis*, UNNOBA 2018 (`repositorio.unnoba.edu.ar/xmlui/handle/23601/481`), de ARN de cuerpo entero
+de individuos agrupados de varios estadios. No hay accesión de TSA ni BioProject para ese
+ensamblado; lo único depositado son las dos secuencias codificantes, **PZ371507** (`eth`) y
+**PZ371508** (`burs-alpha`). `[E]`
+
+**Lo nuevo, y es un error de método nuestro, no una falta de dato.** C8 cerró el punto diciendo que
+no ubicó contigs de los dos genes, después de que el BLAST web contra el TSA del NCBI quedara en
+cola media hora y se cancelara. Pero **los tres transcriptomas que C8 ya usa están descargados**
+—con ellos alineó `BicC_Dm` y `ATPaseD_Dm`—, así que la búsqueda que correspondía es local contra
+`GCWP01`, `GITV01` y `GHCC01`, no contra todo el TSA. Y como las consultas serían PZ371507 y
+PZ371508, que son públicas, no hay compuerta de confidencialidad que lo impida. `[H]` Es una
+corrida de minutos y no se hizo.
+
+**El orden, por costo:** (1) buscar las dos secuencias públicas localmente contra los tres
+ensamblados, con el tamizador del repositorio; si no están, eso también es informativo y declarable.
+(2) Si no aparecen, ver si la tesis de Palacio 2018 trae el ensamblado como archivo y no sólo como
+texto. (3) Pedírselo a los autores: `GHCC01`, la fuente argentina que C8 califica como la de mejor
+calidad, está depositada desde el CeBio de Pergamino (PRJNA505619) y el grupo de Andrada es de la
+UNNOBA, también en Pergamino, así que es plausible que haya contacto directo `[H]`, no verificado.
+(4) Si nada resulta, el pendiente se cierra como hueco declarado y no como tarea, igual que
+`MP_MRFV`.
+
+**Lo que no se hizo acá:** ninguna búsqueda —los transcriptomas no están en esta máquina— y no se
+abrió la tesis de Palacio, sólo su cita dentro del artículo. El paso 1 queda sin ejecutar.

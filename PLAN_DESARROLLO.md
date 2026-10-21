@@ -83,10 +83,12 @@ mitades se tocan.
 | Opcional · 21 contra 22 | **Cerrado** | `research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` y `C6_panel_y_largo/` | Nada |
 | Opcional · Genes nuevos | **Cerrado: catálogo y entrada al ranking** | `research/ola3/C5_.../catalogo_genes_blanco.md` y `C7_ranking_v2/` | Un transcriptoma que contenga `eth` y `burs-alpha`, para medir su conservación |
 
-**Lo que esto quiere decir en una línea:** el entregable ya existe y lo que queda no es
-producirlo sino **redactar dos documentos con material que ya está** (T1 y T5): las dos reescrituras
-que quedaban —el ranking con el panel ampliado y la región de `BicC_Dm`— se hicieron el 2026-10-21
-(C7 y C8). No hay ninguna medición grande pendiente.
+**Lo que esto quiere decir en una línea:** **los cinco pedidos están entregados y los dos
+opcionales también.** Las dos reescrituras que este plan listaba —el ranking con el panel ampliado
+y la región de `BicC_Dm`— se hicieron el 2026-10-21 (C7 y C8); los dos documentos que faltaban
+—T1 y T5— se escribieron el mismo día y están en `entregables/`; y el fortalecimiento que
+recomendaba §3 ter se hizo en C9. No hay ninguna medición grande pendiente. Lo que queda es de
+cierre y está en §8.
 
 El ranking v2 (`research/ola3/C7_ranking_v2/`, 2026-10-21) cerró las dos reescrituras que este
 plan listaba. Hizo lo que corresponde antes de agregar nada: **reprodujo a W7 exacto** —los cuatro
@@ -361,13 +363,17 @@ leyeron solo por resumen y registran fenotipo pero no dosis ni n.
 ## 3 ter. Recomendación: qué hacer ahora, y en qué orden
 
 Escrito el 2026-10-21, después de auditar el barrido y de calcular la potencia real de la
-validación retrospectiva. El encuadre que ordena todo: **de los cinco pedidos quedan dos
-documentos y ninguna medición grande**, así que lo que se agregue de acá en más compite con
-terminar lo que falta, no con llenar un hueco.
+validación retrospectiva. El encuadre que ordena todo: **de los cinco pedidos no queda ninguno**,
+así que lo que se agregue de acá en más compite con el tiempo de revisión, no con llenar un hueco.
+
+**Actualización del 2026-10-21, al cierre:** las opciones 1, 2 y 3 están hechas, y de la 4 está
+escrito el pre-registro pero la validación no se corrió. La tabla queda tal como se escribió,
+con el veredicto de cada fila anotado, porque el razonamiento que descartó las opciones 6 y 7 es
+parte del entregable: es la respuesta fundada a «¿por qué no entrenaron un modelo?».
 
 | Opción | Qué daría | Pros | Contras | Veredicto |
 | --- | --- | --- | --- | --- |
-| **1. Escribir T1 y T5** (nota de «eficiente» y crítica de herramientas) | Los dos únicos pedidos del investigador sin entregable | Material íntegramente medido y disperso en seis archivos; es redacción, no investigación. Cierra el pedido que él puso primero | Ninguno. Es trabajo pendiente, no una apuesta | **Hacer primero** |
+| **1. Escribir T1 y T5** (nota de «eficiente» y crítica de herramientas) | Los dos únicos pedidos del investigador sin entregable | Material íntegramente medido y disperso en seis archivos; es redacción, no investigación. Cierra el pedido que él puso primero | Ninguno. Es trabajo pendiente, no una apuesta | **Hecho el 2026-10-21** — `entregables/que-significa-eficiente.md` y `entregables/critica-herramientas.md` |
 | **2. Sensibilidad del umbral sin etiquetas** | Si mover el corte de accesibilidad de 0,1 o la brecha de 1,00 kcal/mol cambia el orden de candidatos | No necesita etiquetas ni laboratorio. La maquinaria existe (`barrido.py`, `ranking.py`). Contesta de frente «¿cómo saben que 0,1 es el valor?» con una medición | No dice si el umbral es bueno, sólo si la recomendación es frágil. Hay que no confundir las dos cosas al presentarlo | **Hacer segundo** — *hecho el 2026-10-21 en C9* |
 | **3. Corregir cómo se presenta B.3** | Que la diagonal se lea como lo que es | Una tabla y un párrafo. Evita que nos pregunten lo que ya sabemos que no se sostiene | Obliga a mostrar que el orden modal cae del 98,7 % al 33,7 % en la otra escala | **Hacer tercero** — *hecho el 2026-10-21 (W7 §2.1 bis y C7 §4)* |
 | **4. Validación retrospectiva pre-registrada** | Una cota sobre cuánto discrimina el puntaje | Es la única comprobación empírica posible sin laboratorio. Los 28 ARNdc de Cedden son CC BY y están en el repo. «Con este n no se distingue» es un resultado | **Sub-potenciada por un factor 2,4 en n**: con la fiabilidad medida del desenlace, una correlación verdadera de 0,7 se observa como 0,35 y la potencia con n = 28 es 0,42. Harían falta n = 67 | **Hacer cuarto, con tiempo acotado y el pre-registro escrito antes** — *pre-registro escrito el 2026-10-21 en `research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md`; la validación **no se corrió*** |
@@ -457,17 +463,48 @@ las dos reescrituras valen más que cualquier medición nueva.
 
 ---
 
-## 7. Decisiones a formalizar
+## 7. Decisiones a formalizar — hecho
 
-Para `00_meta/DECISIONS.md`, cuando se integre la ola 3. Quedan anotadas acá para no perderlas:
+Las cuatro decisiones que el checkpoint dejó abiertas se escribieron en `00_meta/DECISIONS.md`
+el 2026-10-21, con el mismo formato ADR que las demás:
 
-- Las bacterias salen del alcance del diseño por ARNi. El fundamento es mecanístico y está
-  confirmado por dos vías independientes.
-- El objetivo del diseño es el insecto como vector, no el patógeno dentro de la planta, con el
-  argumento de la ventana de latencia.
-- La ventana se fija en 21 y 22 nucleótidos, con la evidencia biológica como fundamento y no por
-  convención heredada de la herramienta.
-- El ejercicio sobre los cuatro candidatos es una auditoría de una decisión vieja, no la
-  reproducción de un resultado validado. Cambia qué significa que nos vaya bien: un
-  «la elección es mejorable, y acá está por qué» es un resultado, igual que un
-  «la elección se justifica».
+| | Decisión | Dónde |
+| --- | --- | --- |
+| **D33** | Las bacterias salen del alcance del diseño por ARNi | `00_meta/DECISIONS.md` |
+| **D34** | El objetivo es el insecto como vector, no el patógeno dentro de la planta | `00_meta/DECISIONS.md` |
+| **D35** | La ventana se fija en 21 y 22 nt por evidencia biológica, no por convención | `00_meta/DECISIONS.md` |
+| **D36** | El ejercicio sobre los cuatro candidatos es una auditoría, no una reproducción | `00_meta/DECISIONS.md` |
+
+Son las cuatro más estructurales del proyecto, porque no deciden un parámetro sino el encuadre: a
+qué se le apunta, con qué largo, y qué cuenta como que nos haya ido bien.
+
+---
+
+## 8. Lo que queda, al cierre del 2026-10-21
+
+Los cinco pedidos y los dos opcionales están entregados. Esto es todo lo que el plan deja abierto,
+y ninguna de las tres cosas es una medición que bloquee el entregable.
+
+**El correo al investigador, con las cinco preguntas de §5.** Está escrito en
+[`entregables/correo-investigador.md`](entregables/correo-investigador.md) y **no se envió**:
+falta confirmar la grafía del apellido y el dominio antes de mandarlo, que es la quinta pregunta de
+la lista y la única que bloquea a las otras cuatro.
+
+**La conservación de `eth` y `burs-alpha`.** Es la única medición pendiente del plan, y el
+2026-10-21 cambió de forma: el transcriptoma que contiene los dos genes **no está depositado en
+ninguna base pública**. Andrada *et al.* 2026 los identificaron sobre un ensamblado propio de la
+UNNOBA (tesis de Palacio 2018); lo único público son las dos secuencias codificantes, PZ371507 y
+PZ371508. Pero el paso que correspondía no se dio: C8 buscó con el BLAST web contra todo el TSA,
+que se colgó, **cuando los tres transcriptomas que ya usa están descargados** y la búsqueda local
+contra ellos es de minutos y sin compuerta de confidencialidad, porque las consultas son públicas.
+El camino completo, en cuatro pasos por costo, está en `00_meta/PREGUNTAS_ABIERTAS.md`. La de
+`MP_MRFV` no es una tarea pendiente sino un resultado: C8 determinó que **no se puede evaluar** con
+los registros públicos disponibles.
+
+**La validación retrospectiva.** El pre-registro está escrito
+(`research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md`) y la validación no
+se corrió. Correrla es opcional y está sub-potenciada por un factor 2,4 en n, lo que ya es un
+resultado declarado: con n = 28 la potencia es 0,42 y harían falta 67.
+
+Lo demás que figura en `00_meta/PREGUNTAS_ABIERTAS.md` bajo «pendientes internos» son huecos
+declarados que viajan con los números, no tareas del entregable.
