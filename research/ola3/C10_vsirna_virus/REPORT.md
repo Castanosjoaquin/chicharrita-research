@@ -30,6 +30,12 @@ Sí se puede, como **ablación declarada sobre datos ajenos**: los ARN pequeños
 
 Lo que **no** sería válido es pasar genomas de virus emparentados por nuestro propio filtro, quedarse con las regiones que el filtro prefiere y presentarlas como mejores. Sin un desenlace medido, eso es el mismo puntaje sin validar aplicado a más secuencias. `[H]`
 
+## ¿Conviene entonces mirar genomas de virus distintos pero parecidos?
+
+No para elegir regiones, y la razón es aritmética. Una ventana de 21 nt sólo cuenta como conservada si coincide **exacta**: un solo cambio la rompe. Con la identidad que C8 midió entre el registro estadounidense `KM523134.1` y la referencia del MRFV, que es del **93,75 %** sobre el gen y es un aislado de la *misma* especie, sólo sobrevive intacto alrededor del **26 %** de las ventanas, unas 52 de 200. Entre especies distintas del mismo género la identidad típica es bastante menor, y a 85 % quedan 3,3 % de las ventanas y a 80 % menos del 1 %. `[H]` La cuenta supone sustituciones independientes y uniformes, que es una simplificación —en un marco de lectura las sustituciones se concentran en las posiciones sinónimas—, así que sirve como orden de magnitud y no como predicción exacta.
+
+La consecuencia práctica es que **un pariente no aporta ventanas**: si está lo bastante cerca para compartir la ventana, es un aislado del mismo virus y ya entra por el eje de conservación de C8; si es otra especie, no comparte casi ninguna. Y el cuello de botella del eje de conservación no es la falta de parientes sino la falta de **aislados**: para `MP_MRFV` hay cuatro registros y dos son la referencia, que es justamente por lo que C8 lo declaró no evaluable. Los parientes no lo destraban.
+
 ## Límites de esta nota
 
 Se consultaron Europe PMC y NCBI, no Scopus ni Web of Science, y OpenAlex quedó afuera porque el conector pide una clave que no está configurada. Una ausencia en SRA y GEO no prueba que el dato no exista en un suplemento sin depositar. Las dos fuentes centrales se leyeron a texto completo; el resto de los títulos se usó sólo para delimitar el panorama y figura en `sources.json` con ese alcance. No se descargó PRJNA541035 ni se corrió ninguna comparación: esta nota contesta si los datos existen, nada más.
