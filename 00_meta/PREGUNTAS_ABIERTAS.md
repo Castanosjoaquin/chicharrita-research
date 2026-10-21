@@ -1078,3 +1078,7 @@ tres cosas que el documento declara y que conviene tener registradas acá:
   revisar. Si alguien del jurado conoce esos trabajos, la respuesta preparada es que lo que
   decimos es que **el umbral booleano fijo no está justificado con la evidencia abierta**, no que
   la accesibilidad sea biológicamente irrelevante. `[?]`
+
+### W7 · El index.html y el REPORT.md ya no dicen lo mismo (detectado 2026-10-21)
+
+Al revisar W7 para la corrección de B.3, se comparó el `research/ola2/W7_ranking/index.html` con su `REPORT.md`: tienen estructura de secciones distinta (la página usa A.1 a B.4, el informe 1 a 6) y **25 porcentajes del informe no aparecen en la página**, con solo 14 en común. Los dos archivos se escribieron a mano (no hay generador), así que no hay una fuente que gane. Lo que se corrigió en esta sesión (§2.1 bis del informe y el pie de B.3) es la única parte sincronizada. Decisión pendiente: reescribir la página desde el informe, o generar el informe desde la página. Hasta entonces, la página no debe citarse como fuente de cifras.

@@ -1,0 +1,7 @@
+# Los 28 ARNdc de Cedden 2025, con su secuencia
+
+**Qué es.** La Tabla S1 (puntajes y razón de riesgo) unida a las secuencias de los ARNdc. Las secuencias son de *Tribolium castaneum* y salen del archivo adicional 1 (hoja `Primer list 2`) de Cedden *et al.* 2025, BMC Biology 23:114, doi:10.1186/s12915-025-02219-6; los puntajes y `hr` salen del archivo adicional 2 (hoja `Fig. 2 regression`, bloque `input data`). Ambos se bajaron de Europe PMC (PMC12039203). Son datos públicos y no tienen nada que ver con las secuencias de EPILAB. `[R]`
+
+**Cómo se unieron.** Los dos archivos no comparten una clave. La unión es **por orden dentro de cada gen**, y el reparto por gen y por región coincide exacto (8 genes, 21 ORF y 7 UTR). Se comprobó que la unión es consistente con las etiquetas de predicción de `Primer list 2`: en 20 de 20 comprobaciones la secuencia «high» tiene mayor puntaje que la «low», la de «mejor accesibilidad» tiene la accesibilidad máxima del gen y la «UTR high» el puntaje máximo. Eso respalda la unión pero no la prueba: **si el orden de las dos hojas no fuera el mismo, el error no se detectaría con estos chequeos.** `[?]`
+
+**Qué miden las columnas.** `sirna_score` y `access_score` son el puntaje medio de eficacia de siRNA y el de accesibilidad de la plataforma dsRIP de los propios autores, no de si-Fi21. `hr` es la razón de riesgo de mortalidad del grupo con ARNdc frente al control con dsmGFP, calculada por log-rank; mayor que 1 significa más mortalidad, es decir más eficacia (Métodos del artículo).

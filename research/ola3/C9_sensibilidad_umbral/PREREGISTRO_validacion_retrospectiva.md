@@ -44,4 +44,12 @@ No se barre el umbral de decisión ni se construye una curva de precisión y cob
 
 ## Enmiendas
 
-(ninguna al 2026-10-21)
+**Enmienda 1 (2026-10-21, posterior al texto de arriba y anterior a cualquier correlación).** Se abrió el artículo y sus dos archivos adicionales; no se calculó ninguna correlación entre puntaje y `hr`. Cierra los dos vacíos marcados `[?]`.
+
+(a) **Qué es `hr` y en qué dirección.** Es la razón de riesgo de mortalidad del grupo tratado con el ARNdc frente al control con dsmGFP, calculada por el método de log-rank sobre larvas de *Tribolium castaneum* inyectadas; un valor mayor que 1 indica más mortalidad, es decir más eficacia (Cedden *et al.* 2025, BMC Biology 23:114, sección de Métodos). `[R]` **El signo esperado de ρ es positivo**, y queda fijado aquí. Además, las columnas `sirna` y `access` de la Tabla S1 son los puntajes de la plataforma dsRIP de los autores y no de si-Fi21.
+
+(b) **Las secuencias existen.** Están en el archivo adicional 1 (hoja `Primer list 2`), bajado de Europe PMC (PMC12039203). Se unieron a los 28 `hr` por orden dentro de cada gen, con comprobaciones internas de consistencia (20 de 20) pero sin clave publicada; la unión es `[?]`. Detalle y tabla en `datos/LEEME.md` y `datos/cedden2025_28dsrna_con_secuencia.csv`. **Consecuencia sobre el puntaje primario:** ya no hace falta el plan de reserva. El puntaje primario es la fracción de ventanas de 21 nt eficientes de cada ARNdc según si-Fi21, modo `fiel`, backend `vienna`, 22 °C y umbrales por defecto. **Se retira la columna `access` como reserva**, porque es el puntaje de accesibilidad de dsRIP y la propia regresión de los autores no le encuentra efecto (P = 0,41), así que usarla probaría algo que ya se sabe.
+
+(c) **Dos advertencias de diseño que cambian cómo se lee el resultado, escritas antes de verlo.** Primero, los 28 ARNdc no son una muestra al azar: los autores los eligieron por su puntaje (alto, bajo, mejor accesibilidad, UTR), lo que fabrica un contraste en el puntaje. Segundo, el gen blanco domina `hr` en su propia regresión (efecto del gen P = 0,047, de la región ORF P = 0,011, R² ajustado 0,40), de modo que la correlación agrupada mezcla el efecto del gen con el del puntaje. Ninguna de las dos cosas invalida el ejercicio, pero **un ρ agrupado alto no se puede atribuir al puntaje**.
+
+**Pendiente de decisión del equipo, antes de calcular:** si el análisis primario sigue siendo el ρ agrupado de arriba o pasa a ser el ρ dentro de cada gen (8 genes, 3 o 4 ARNdc cada uno, que quita el efecto del gen). Hasta que se decida, rige el texto original.
