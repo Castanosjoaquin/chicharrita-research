@@ -372,6 +372,14 @@ def construir():
           ficha(21, "CP_MRFV", True)["conservadora"]["buenos_limpios"],
           ficha(21, "eth_Dm", True)["conservadora"]["buenos_limpios"],
           ficha(21, "bursA_Dm", True)["conservadora"]["buenos_limpios"]))
+    P("`[E]` **Corrección de lectura (2026-10-21), equivalente a la de W7 §2.1 bis.** ~~Los porcentajes de arriba "
+      "(99 %, 97 %, 100 %) se leían como robustez del orden.~~ Con la escala absoluta la limpieza casi no tiene "
+      "palanca (factor 1,015–1,064 entre candidatos contra 2,38–2,50 de la eficacia; piso duro de 0,8533 en el "
+      "peor caso), de modo que el sorteo de pesos sólo puede dar vuelta un par ya casi empatado en eficacia, y esos "
+      "porcentajes **miden la escala**, no que un candidato domine a otro: hay 3 pares en conflicto de 6 y sus "
+      "cruces caen en w* ≈ 0,02, al borde del rango. Bajo la escala min-max las frecuencias de las tablas de esta "
+      "sección se aflojan. Fuente: auditoría propia registrada en `00_meta/PREGUNTAS_ABIERTAS.md`; no se volvió "
+      "a medir aquí. Detalle en [`research/ola2/W7_ranking/REPORT.md`](../../ola2/W7_ranking/REPORT.md) §2.1 bis.")
     P("`[H]` **Los genes nuevos no mejoran el ranking de diseño y eso es un resultado.** C5 ya lo había anticipado "
       "(\"ningún gen nuevo se destaca por densidad de eficientes\") y acá se confirma con el procedimiento "
       "completo: su eficacia (%s y %s) cae en el rango de las regiones de EPILAB, elegidas o movidas (%s a %s), y son genes cortos con "
@@ -508,6 +516,7 @@ def inline_html(t: str) -> str:
             continue
         p = html.escape(p, quote=False)
         p = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', p)
+        p = re.sub(r"~~(.+?)~~", r"<del>\1</del>", p)
         p = re.sub(r"\*\*([^*]+)\*\*", r"<b>\1</b>", p)
         p = re.sub(r"\*([^*]+)\*", r"<i>\1</i>", p)
         out.append(p)

@@ -291,6 +291,32 @@ y el empate de los dos últimos.
 > Para los rankings de dos candidatos vale la escala absoluta, y los números están
 > en D5.
 
+#### 2.1 bis · Corrección de lectura (2026-10-21): la diagonal de B.3 mide la escala, no la robustez del orden
+
+El cálculo de arriba no cambia. Lo que se corrige es cómo se leyó el gráfico B.3 del `index.html`,
+cuyo pie decía ~~«la diagonal se arma sola: cada candidato ocupa una posición distinta en el 99 % o
+más de los sorteos»~~, que sin la escala al lado se lee como robustez del orden. **Lectura
+corregida:** la diagonal sale de que los pesos de cruce de los tres pares en conflicto se corren
+al borde del rango (w* ≈ 0,02), y **no de que un candidato domine a otro**: en los dos paneles
+hay 3 pares en conflicto de 6. Con las regiones de EPILAB hay un cruce adentro del rango, `BicC_Dm`
+contra `ATPaseD_Dm` en w* = 0,32, que es el bloque 75/25 de A.3. `[E]` Fuente: auditoría propia
+sobre `ranking.json`, registrada en `00_meta/PREGUNTAS_ABIERTAS.md` (pendientes internos); **los
+números de esta subsección no se volvieron a medir en la sesión que la escribió**.
+
+| Orden modal | Escala absoluta | Escala min-max |
+|---|---|---|
+| Regiones propuestas, geométrica / conservadora | `MP > BicC > CP > ATPaseD` en el 98,7 % | cae al 33,7 %, con 14 órdenes distintos; `MP_MRFV` pasa de primero a tercero |
+| Tres de las cuatro variantes absolutas | coincide exactamente con el orden por eficacia sola | — |
+| `suma / conservadora / absoluta`, regiones de EPILAB | `MP > CP > ATPaseD > BicC` en el 65,9 % | — |
+
+**Cota de palanca de la limpieza.** Entre candidatos la eficacia varía un factor 2,38–2,50 y la
+limpieza 1,015–1,064. El piso duro de la limpieza, con cualquier sorteo de pesos, es 1 menos la
+fracción de ventanas de la región con algún off-target, que da 0,8533 en el peor caso
+(`BicC_Dm`, regiones de EPILAB). Por eso el sorteo de pesos **sólo puede dar vuelta un par que ya
+esté casi empatado en eficacia**; en los demás pares es inerte por construcción. `[E]` La figura
+que lo muestra es `barrido_escala.png`. La sensibilidad de la región recomendada a los umbrales
+de si-Fi21 es otra cuestión y está en `research/ola3/C9_sensibilidad_umbral/REPORT.md`.
+
 ### 2.2 Nivel 2: la región dentro de cada gen
 
 Acá el ranking deja de ser un ejercicio y pasa a ser una recomendación. Para cada
