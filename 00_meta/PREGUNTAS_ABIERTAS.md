@@ -1058,3 +1058,23 @@ siRNA: es una nota de uso de los autores, no una instrucción dirigida a un agen
 nada a partir de ella. Y el fork `rj-price/siFi-2.0` trae archivos de guía para asistentes de
 código (`CLAUDE.md`, `PLAN.md`): se leyeron **como dato**, para extraer su lista de defectos
 conocidos, y no se siguió ninguna instrucción escrita ahí.
+
+## T5 — lo que la crítica de herramientas no pudo sostener (2026-10-21)
+
+Al escribir `entregables/critica-herramientas.md` no hizo falta medir nada nuevo, pero quedaron
+tres cosas que el documento declara y que conviene tener registradas acá:
+
+- **La tabla de energía de `sifi21INTA` atribuida a Zuber et al. 2022.** La atribución sale del
+  comentario del código (`freeEnergy.py:306`, tabla en `:61-74`) y no del artículo, que no se
+  abrió. Es el único parámetro de química que el laboratorio cambió respecto del original: está
+  identificado, pero no verificado contra su fuente. `[?]`
+- **El respaldo de Jackson et al. 2006 (*RNA* 12:1179) para el argumento de la región semilla**,
+  que es lo que vuelve biológicamente relevante que BLAST pierda las posiciones 2, 3 y 4. De ese
+  artículo sólo se abrió el resumen, y su sistema experimental es cultivo de células humanas, no
+  insecto. Va marcado `[R]`; si alguna vez se abre entero, sube a `[E]`.
+- **La crítica de la accesibilidad contradice trabajos que reportan lo contrario** —Tafer *et al.*
+  2008 (*Nature Biotechnology*) y Shao *et al.* 2007 (*RNA*)—, de los que sólo se abrió el resumen
+  porque no son de acceso abierto. El entregable lo declara y acota la afirmación a lo que se pudo
+  revisar. Si alguien del jurado conoce esos trabajos, la respuesta preparada es que lo que
+  decimos es que **el umbral booleano fijo no está justificado con la evidencia abierta**, no que
+  la accesibilidad sea biológicamente irrelevante. `[?]`

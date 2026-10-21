@@ -59,11 +59,30 @@ Afectaría a cualquier extensión a secuencias desapareadas. `[E]`
 principio y el tamaño de ventana, no el corte. `[E]`
 
 **Y la condición de accesibilidad no muestra valor predictivo en los datos independientes que
-pudimos revisar**: razón de probabilidades 1,00 con intervalo [0,89–1,12] sobre 300 casos humanos
-de siRecords, y en *Tribolium castaneum* un cociente de riesgo de 0,9994 con P = 0,853, y P = 0,41
-a nivel de ARNdc. `[E]` Es la crítica de fondo más importante de esta lista, porque toca una de las
-tres patas del criterio. No afirmamos que la accesibilidad no importe: afirmamos que en los datos
-disponibles no se ve.
+pudimos revisar.** Son dos trabajos, uno humano y uno de insecto, y conviene darlos con nombre
+porque es la crítica de fondo más importante de esta lista:
+
+| Trabajo | Sistema | n | Medida | Resultado |
+| --- | --- | ---: | --- | --- |
+| Pascut, Bedogni y Tiribelli 2015, *Bioscience Reports* | siRNA humanos de siRecords, 267 genes | 300 | bases desapareadas por sitio, plegado con Mfold | razón de probabilidades **1,00 [0,89–1,12]**, P = 1,0 |
+| Cedden, Guney, Rostas y Bucher 2025, *BMC Biology* | *Tribolium castaneum*, supervivencia de larvas L5 | 29 | accesibilidad del ARNm en un modelo de Cox | cociente de riesgo **0,9994**, P = 0,853 |
+
+`[E]` El de Pascut es retrospectivo e independiente, y compara extremos —150 siRNA de eficacia
+muy alta contra 150 de eficacia baja—; tampoco encontró asociación con el índice H-b (P = 0,82)
+ni con la energía libre de apertura del blanco (P = 0,99). El de Cedden es el único contraste
+controlado que existe en insecto, y a nivel de ARNdc largo la accesibilidad tampoco fue
+significativa (P = 0,41, n = 28). Lo que vuelve el resultado más incómodo es que **en ese mismo
+modelo sí discriminaron cuatro rasgos de secuencia** —asimetría termodinámica, energía de
+autoplegado de la antisentido, %GC en las posiciones 9–14 y adenina en la posición 10, todos con
+P ≤ 0,002— con un estadístico C de Harrell de 0,76: no es que el modelo no midiera nada, es que
+la accesibilidad fue el término que no aportó.
+
+No afirmamos que la accesibilidad no importe en biología: hay trabajos que reportan lo contrario
+—Tafer *et al.* 2008 (*Nature Biotechnology*) y Shao *et al.* 2007 (*RNA*)—, de los que sólo
+pudimos abrir el resumen porque no son de acceso abierto, y los propios autores de los dos
+estudios de arriba ofrecen explicaciones para su falta de señal. `[?]` Lo que afirmamos es más
+acotado: **con la evidencia abierta que pudimos revisar, usar accesibilidad como filtro booleano
+con un umbral fijo no está justificado**, y menos como único término de una rama.
 
 ### Lo que está mal como programa
 
@@ -212,6 +231,12 @@ igual al largo de la ventana con `-ungapped`.
 
 Encontramos los dos repositorios públicos, los leímos y corrimos `sifi21INTA`. Esto es lo que
 vimos, y va con el mismo criterio que lo demás: cada punto con su línea o su medición.
+
+**Una aclaración que viaja con todo lo que sigue sobre Apolo Rocket: la plataforma no la
+ejecutamos.** Necesita un PostgreSQL con su esquema, un árbol de referencias indexadas en disco y
+una capa HTTP que no está publicada. Todo lo que decimos de ella es lectura del código, del SQL y
+de los dos volcados de ejemplo que el repositorio sí trae —de donde salen los números que citamos—,
+y no medición. `sifi21INTA`, en cambio, sí lo corrimos.
 
 ### Lo que está mal y cambia el resultado
 
