@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C10 — ¿Existen datos de ARN pequeños derivados de virus para nuestro blanco?</title>
+<style>:root{--bg:#fff;--fg:#1c1f23;--mut:#5b6470;--line:#dfe3e8;--card:#f5f7f9;--azul:#2a6fdb;
+--rojo:#c23b3b;--verde:#1f7a4d;--hot:#c23b3b1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14171a;--fg:#e6e8eb;
+--mut:#9aa4af;--line:#2b3138;--card:#1b1f24;--azul:#6aa3ff;--rojo:#ff8a8a;--verde:#5fd09a;--hot:#ff8a8a1f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:900px;margin:0 auto;padding:28px 16px 60px}
+.k{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:26px;margin:6px 0 4px;line-height:1.2}h2{font-size:19px;margin:34px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+.lead{color:var(--mut);margin:0 0 18px}
+.box{background:var(--card);border-left:3px solid var(--azul);padding:12px 16px;border-radius:6px;margin:16px 0}
+.box.ok{border-left-color:var(--verde)}.box p{margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:4px 0}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:13px}
+.tw{overflow-x:auto;margin:8px 0}
+.muted,.fine{font-size:13px;color:var(--mut)}code{font-size:.92em}
+pre{background:var(--card);padding:12px;border-radius:6px;overflow-x:auto;font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:14px 0}
+.kpi{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font-size:22px}.kpi span{font-size:13px;color:var(--mut)}
+.bar{display:inline-block;width:64px;height:8px;background:var(--line);border-radius:4px;vertical-align:middle;
+overflow:hidden;margin-right:6px}.bar i{display:block;height:100%;background:var(--azul)}
+@media (max-width:600px){main{padding:20px 16px 50px}h1{font-size:22px}}</style></head><body><main>
+<h1>C10 — ¿Existen datos de ARN pequeños derivados de virus para nuestro blanco?</h1>
+<p class="lead">2026-10-21. Detalle y reproducción en <a href="REPORT.md">REPORT.md</a>.</p>
+<p><b>La pregunta.</b> Si el hospedador fabrica ARN pequeños cortando el ARN del virus, ese mapa es una <b>observación</b> de qué ventanas se procesan de verdad y se cargan en RISC, no una predicción nuestra. Serviría como verificación externa del criterio de accesibilidad de si-Fi21, que es el único de sus tres filtros que no mostró valor predictivo sobre la eficacia medida. Esta nota contesta si esos datos existen y qué dicen.</p>
+<p><b>Qué se buscó y cómo.</b> Europe PMC (siete consultas) y NCBI por E-utilities (ocho consultas, bases <code>sra</code> y <code>gds</code>), el 2026-10-21. Los conteos crudos están en <code>datos/</code>. No se subió ninguna secuencia a ningún servicio: las consultas son por nombre de organismo y de virus.</p>
+<h2>La respuesta corta</h2>
+<p>*<i>Para el </i>Maize rayado fino virus<i> (MRFV) y para </i>Dalbulus maidis<i> no existen datos de ARN pequeños.</i>* <code>[E]</code> En SRA, MRFV como organismo devuelve <b>0</b> registros, y MRFV cruzado con estrategias de ARN pequeño (<code>miRNA-Seq</code>, <code>ncRNA-Seq</code>) también <b>0</b>. Los 16 aciertos de MRFV por texto libre son los transcriptomas de <i>D. maidis</i> que ya conocíamos, que lo nombran en los metadatos. <i>D. maidis</i> tiene 37 registros —genoma, ADN y transcriptoma— y <b>0</b> con estrategia de ARN pequeño. En GEO, cero para ambos. En Europe PMC ningún trabajo perfila ARN pequeños derivados del MRFV.</p>
+<p>Es un <b>vacío documentado</b>, no una búsqueda fallida: el método es rutinario —hay 1.706 corridas de <code>miRNA-Seq</code> en <i>Zea mays</i>— y simplemente nadie lo aplicó a este patosistema. Para nuestro blanco, la versión directa de la idea <b>no se puede correr hoy</b>.</p>
+<h2>Lo que sí existe, y por qué conviene leerlo antes de insistir</h2>
+<p>Dos trabajos abiertos perfilan ARN pequeños virales en hospedadores comparables, y los dos contestan de antemano la pregunta que motivaba el ejercicio.</p>
+<p><b>Primero: los puntos calientes no se correlacionan con la estructura del ARN.</b> En <i>Mal de Río Cuarto virus</i> (MRCV), que causa pérdidas importantes en maíz en la Argentina, los autores probaron exactamente esa hipótesis sobre trigo y su vector delfácido <i>Delphacodes kuscheli</i>, con RNAfold del paquete ViennaRNA —la misma familia de herramienta que calcula la accesibilidad en si-Fi21— y <b>no detectaron una correlación clara entre los puntos calientes y la estructura secundaria</b>. <code>[E]</code> Es una tercera línea independiente contra el criterio de accesibilidad, que se suma a las dos que el repositorio ya tenía medidas.</p>
+<p><b>Segundo, y más importante para el diseño: los puntos calientes dependen del hospedador, no sólo de la secuencia viral.</b> En MRCV no hay puntos calientes comunes a los dos hospedadores. <code>[E]</code> En <i>Rice dwarf virus</i> la misma comparación da lo mismo: el segmento más cortado es S1 en el cicadélido <i>Nephotettix cincticeps</i>, S11 en cultivo celular del vector y S9 en arroz, y los puntos calientes se agrupan en las <b>regiones terminales</b> de los segmentos. <code>[E]</code> Hay además unas 50 veces más ARN pequeños virales en arroz que en el cicadélido, lo que los autores atribuyen en parte a que los cicadélidos carecen de genes RDR. <code>[E]</code></p>
+<p>La consecuencia es directa sobre tu idea: <b>dónde corta el hospedador no es una propiedad transferible de la secuencia del virus.</b> Si eligiéramos regiones blanco copiando los puntos calientes naturales, la respuesta cambiaría según de qué hospedador se secuenciaron, y no habría forma de decidir cuál es el correcto para nuestro caso.</p>
+<p><b>Un dato colateral que toca D35.</b> En el cicadélido de <i>Rice dwarf virus</i> domina la clase de 21 nt; en arroz dominan 21 y 22 nt; en el delfácido de MRCV el pico está en 22 nt, seguido de 21 y 23. <code>[E]</code> La ventana de 21 y 22 nt que el equipo fijó por evidencia biológica queda respaldada también por estos conteos, con la salvedad de que son otros insectos y otros virus.</p>
+<h2>Qué se puede hacer con esto, y qué no</h2>
+<p>No se puede verificar el criterio de accesibilidad sobre nuestro blanco: faltan los datos y no hay forma de producirlos sin laboratorio. <code>[H]</code></p>
+<p>Sí se puede, como <b>ablación declarada sobre datos ajenos</b>: los ARN pequeños de <i>Rice dwarf virus</i> están depositados en SRA bajo el proyecto <b>PRJNA541035</b>, con hospedador cicadélido, que es lo más cercano taxonómicamente a <i>D. maidis</i> que apareció. Correr nuestro filtro sobre ese genoma viral y contrastar las ventanas que marca contra las que el cicadélido corta de verdad sería la primera prueba externa del criterio. El resultado esperable, a juzgar por los dos trabajos de arriba, es que no coincidan; eso sería un hallazgo sobre el criterio, no sobre nuestros candidatos. <code>[H]</code></p>
+<p>Lo que <b>no</b> sería válido es pasar genomas de virus emparentados por nuestro propio filtro, quedarse con las regiones que el filtro prefiere y presentarlas como mejores. Sin un desenlace medido, eso es el mismo puntaje sin validar aplicado a más secuencias. <code>[H]</code></p>
+<h2>Límites de esta nota</h2>
+<p>Se consultaron Europe PMC y NCBI, no Scopus ni Web of Science, y OpenAlex quedó afuera porque el conector pide una clave que no está configurada. Una ausencia en SRA y GEO no prueba que el dato no exista en un suplemento sin depositar. Las dos fuentes centrales se leyeron a texto completo; el resto de los títulos se usó sólo para delimitar el panorama y figura en <code>sources.json</code> con ese alcance. No se descargó PRJNA541035 ni se corrió ninguna comparación: esta nota contesta si los datos existen, nada más.</p>
+</main></body></html>
