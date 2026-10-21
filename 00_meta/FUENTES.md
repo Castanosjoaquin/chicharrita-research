@@ -437,3 +437,18 @@ que ya había bajado C6.
 | `ref_fcandida_v2` | [GCF_002217175.1 ASM221717v1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/217/175/GCF_002217175.1_ASM221717v1/) | *Folsomia candida* | fauna del suelo | 25,6 MB | `[E]` |
 | `ref_dmaidis_v2` | [GCA_975739785.1 ihDalMaid1.1, genoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/975/739/785/GCA_975739785.1_ihDalMaid1.1/) | *Dalbulus maidis* | on-target de los genes del insecto; off-target de los virales (D20) | 281,7 MB | `[E]` |
 | `fichas_epilab_v3` | `Investigathon_EpiLab_Fichas_Optativas_v3_19oct.docx.md`, raíz del repositorio (sin versionar) | EPILAB · IFIBYNE | ficha optativa del 19 al 26/10: off-target como hipótesis de riesgo, hebra guía y AGO2, largo de la región | local, leída completa | `[R]` |
+
+### Conservación entre poblaciones y aislados (2026-10-21)
+
+Fuentes públicas bajadas a disco para `research/ola3/C8_conservacion/`. Solo entró tráfico; las secuencias de
+EPILAB se alinearon localmente.
+
+| id | Fuente | Qué aporta | Marcador |
+| --- | --- | --- | --- |
+| `gca_975739835_hap2` | [GCA_975739835.1 ihDalMaid1.1 alternate haplotype](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/975/739/835/GCA_975739835.1_ihDalMaid1.1_alternate_haplotype/) | haplotipo alternativo del mismo individuo (Reino Unido), 488 Mb en 8.928 contigs; incompleto en los loci de interés | `[E]` |
+| `gca_054756405_ciap` | [GCA_054756405.1 CIAP v1](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/054/756/405/GCA_054756405.1_CIAP_v1/) | genoma ONT de una muestra de Argentina: Córdoba (2024-05-27), 585 Mb, N50 de 50,5 kb | `[E]` |
+| `tsa_gitv01` | [GITV01, transcriptoma de *D. maidis*, Ohio State (Xu y Stewart), PRJNA631706](https://www.ncbi.nlm.nih.gov/nuccore/GITV01000968.1) | transcriptoma Illumina; contigs `GITV01000968.1` y `GITV01001458.1` | `[E]` |
+| `tsa_ghcc01` | [GHCC01, transcriptoma de huevos de *D. maidis*, Argentina, PRJNA505619](https://www.ncbi.nlm.nih.gov/nuccore/GHCC01002326.1) | transcriptoma Illumina (Trinity), colecta de 2015-03-01, depositado desde el CeBio, Pergamino; contigs `GHCC01002326.1` y `GHCC01051703.1` | `[E]` |
+| `tsa_gcwp01` | [GCWP01, Illinois Natural History Survey (Johnson *et al.*)](https://www.ncbi.nlm.nih.gov/nuccore/GCWP01010867.1) | transcriptoma 454 (Newbler); cinco contigs | `[E]` |
+| `mrfv_nuccore` | [71 registros de *Maize rayado fino virus* en nuccore](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=%22Maize+rayado+fino+virus%22%5BOrganism%5D) | 45 de Brasil, 4 de EE. UU., 2 de Ecuador, 1 de Costa Rica, 19 sin país; ninguno argentino | `[E]` |
+| `andrada2026_tabla1` | [Andrada *et al.* 2026, Tabla 1 (cebadores), PMC13279319](https://pmc.ncbi.nlm.nih.gov/articles/PMC13279319/) | cebadores del ARNdc (544 y 578 pb) y de la qPCR; las posiciones no están en el texto (Figura S1, no leída) | `[R]` |

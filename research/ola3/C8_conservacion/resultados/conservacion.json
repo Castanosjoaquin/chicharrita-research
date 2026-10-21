@@ -1,0 +1,2078 @@
+{
+ "amplicones": {
+  "eth_Dm": {
+   "largo_secuencia_publica": 615,
+   "largo_amplicon": 544,
+   "dsRNA_a": {
+    "hebra_del_cebador": "antisentido",
+    "inicio": 427,
+    "fin": 446
+   },
+   "dsRNA_b": null,
+   "qPCR_a": {
+    "hebra_del_cebador": "antisentido",
+    "inicio": 503,
+    "fin": 523
+   },
+   "qPCR_b": {
+    "hebra_del_cebador": "sentido",
+    "inicio": 428,
+    "fin": 447
+   },
+   "amplicon_coordenadas": [
+    -97,
+    446
+   ],
+   "en_secuencia_publica": [
+    1,
+    446
+   ],
+   "fuera_de_la_secuencia_publica_nt": 98,
+   "qPCR_amplicon": [
+    428,
+    523
+   ]
+  },
+  "bursA_Dm": {
+   "largo_secuencia_publica": 468,
+   "largo_amplicon": 578,
+   "dsRNA_a": {
+    "hebra_del_cebador": "sentido",
+    "inicio": 79,
+    "fin": 98
+   },
+   "dsRNA_b": null,
+   "qPCR_a": null,
+   "qPCR_b": {
+    "hebra_del_cebador": "antisentido",
+    "inicio": 33,
+    "fin": 52
+   },
+   "amplicon_coordenadas": [
+    79,
+    656
+   ],
+   "en_secuencia_publica": [
+    79,
+    468
+   ],
+   "fuera_de_la_secuencia_publica_nt": 188
+  }
+ },
+ "region_probada": {
+  "21": {
+   "eth_Dm": {
+    "cubierto": [
+     1,
+     446
+    ],
+    "propuesta_v2": {
+     "region": [
+      114,
+      313
+     ],
+     "ocupa": [
+      114,
+      333
+     ],
+     "nt_dentro": 220,
+     "nt_total": 220,
+     "fraccion": 1.0,
+     "eficientes": 19,
+     "limpias_y_eficientes": 18
+    },
+    "mejor_dentro_de_lo_probado": {
+     "region": [
+      114,
+      313
+     ],
+     "eficientes": 19,
+     "limpias_y_eficientes": 18,
+     "limpieza": 0.9856,
+     "ocupa": [
+      114,
+      333
+     ],
+     "nt_dentro": 220,
+     "nt_total": 220,
+     "fraccion": 1.0
+    }
+   },
+   "bursA_Dm": {
+    "cubierto": [
+     79,
+     468
+    ],
+    "propuesta_v2": {
+     "region": [
+      13,
+      212
+     ],
+     "ocupa": [
+      13,
+      232
+     ],
+     "nt_dentro": 154,
+     "nt_total": 220,
+     "fraccion": 0.7,
+     "eficientes": 16,
+     "limpias_y_eficientes": 16
+    },
+    "mejor_dentro_de_lo_probado": {
+     "region": [
+      79,
+      278
+     ],
+     "eficientes": 14,
+     "limpias_y_eficientes": 13,
+     "limpieza": 0.9994,
+     "ocupa": [
+      79,
+      298
+     ],
+     "nt_dentro": 220,
+     "nt_total": 220,
+     "fraccion": 1.0
+    }
+   }
+  },
+  "22": {
+   "eth_Dm": {
+    "cubierto": [
+     1,
+     446
+    ],
+    "propuesta_v2": {
+     "region": [
+      193,
+      392
+     ],
+     "ocupa": [
+      193,
+      413
+     ],
+     "nt_dentro": 221,
+     "nt_total": 221,
+     "fraccion": 1.0,
+     "eficientes": 26,
+     "limpias_y_eficientes": 26
+    },
+    "mejor_dentro_de_lo_probado": {
+     "region": [
+      193,
+      392
+     ],
+     "eficientes": 26,
+     "limpias_y_eficientes": 26,
+     "limpieza": 0.985,
+     "ocupa": [
+      193,
+      413
+     ],
+     "nt_dentro": 221,
+     "nt_total": 221,
+     "fraccion": 1.0
+    }
+   },
+   "bursA_Dm": {
+    "cubierto": [
+     79,
+     468
+    ],
+    "propuesta_v2": {
+     "region": [
+      44,
+      243
+     ],
+     "ocupa": [
+      44,
+      264
+     ],
+     "nt_dentro": 186,
+     "nt_total": 221,
+     "fraccion": 0.842,
+     "eficientes": 18,
+     "limpias_y_eficientes": 18
+    },
+    "mejor_dentro_de_lo_probado": {
+     "region": [
+      105,
+      304
+     ],
+     "eficientes": 16,
+     "limpias_y_eficientes": 16,
+     "limpieza": 1.0,
+     "ocupa": [
+      105,
+      325
+     ],
+     "nt_dentro": 221,
+     "nt_total": 221,
+     "fraccion": 1.0
+    }
+   }
+  }
+ },
+ "insecto": {
+  "BicC_Dm": {
+   "n_ventanas": 2500,
+   "transcriptomas": {
+    "GCWP01 (Illinois, 454)": {
+     "con_datos": 569,
+     "conservadas": 419,
+     "variantes": 150,
+     "contigs": [
+      {
+       "hebra": "+",
+       "span": [
+        2044,
+        2467
+       ],
+       "identidad": 0.9717,
+       "puntaje": 775.0,
+       "cortes": [
+        2108
+       ],
+       "contig": "GCWP01003535.1"
+      },
+      {
+       "hebra": "+",
+       "span": [
+        2044,
+        2467
+       ],
+       "identidad": 0.9717,
+       "puntaje": 775.0,
+       "cortes": [
+        2108
+       ],
+       "contig": "GCWP01003534.1"
+      },
+      {
+       "hebra": "-",
+       "span": [
+        249,
+        433
+       ],
+       "identidad": 1.0,
+       "puntaje": 370.0,
+       "cortes": [],
+       "contig": "GCWP01004693.1"
+      },
+      {
+       "hebra": "-",
+       "span": [
+        249,
+        433
+       ],
+       "identidad": 1.0,
+       "puntaje": 370.0,
+       "cortes": [],
+       "contig": "GCWP01004692.1"
+      }
+     ]
+    },
+    "GITV01 (Ohio State, Illumina)": {
+     "con_datos": 2500,
+     "conservadas": 2353,
+     "variantes": 147,
+     "contigs": [
+      {
+       "hebra": "+",
+       "span": [
+        1,
+        2520
+       ],
+       "identidad": 0.9972,
+       "puntaje": 5005.0,
+       "cortes": [],
+       "contig": "GITV01000968.1"
+      }
+     ]
+    },
+    "GHCC01 (Argentina, Illumina)": {
+     "con_datos": 2500,
+     "conservadas": 2417,
+     "variantes": 83,
+     "contigs": [
+      {
+       "hebra": "-",
+       "span": [
+        1,
+        2520
+       ],
+       "identidad": 0.9988,
+       "puntaje": 4949.0,
+       "cortes": [
+        1409
+       ],
+       "contig": "GHCC01002326.1"
+      }
+     ]
+    }
+   },
+   "genomas": {
+    "UK hap1": {
+     "exactas": 2170,
+     "un_desajuste": 101,
+     "ausentes": 229
+    },
+    "UK hap2": {
+     "exactas": 2204,
+     "un_desajuste": 64,
+     "ausentes": 232,
+     "presentes_en_hap1": 2170,
+     "de_esas_exactas": 2157,
+     "de_esas_con_un_desajuste": 13,
+     "de_esas_ausentes": 0
+    },
+    "Cordoba CIAP": {
+     "exactas": 2088,
+     "un_desajuste": 83,
+     "ausentes": 329,
+     "presentes_en_hap1": 2170,
+     "de_esas_exactas": 2041,
+     "de_esas_con_un_desajuste": 37,
+     "de_esas_ausentes": 92
+    }
+   },
+   "fuentes_transcriptoma_por_ventana": {
+    "0": 0,
+    "1": 0,
+    "2": 1931,
+    "3": 569
+   },
+   "ventanas_conservadas_en_los_transcriptomas": 2204,
+   "ventanas_conservadas_en_Argentina": 2417,
+   "ventanas_sin_transcriptoma_suficiente": 0,
+   "variantes_en_transcriptomas": {
+    "GCWP01 (Illinois, 454)": [
+     [
+      2089,
+      2128
+     ],
+     [
+      2240,
+      2280
+     ],
+     [
+      2288,
+      2349
+     ],
+     [
+      2336,
+      2376
+     ],
+     [
+      2402,
+      2467
+     ]
+    ],
+    "GITV01 (Ohio State, Illumina)": [
+     [
+      626,
+      666
+     ],
+     [
+      1121,
+      1161
+     ],
+     [
+      1149,
+      1189
+     ],
+     [
+      1316,
+      1356
+     ],
+     [
+      2123,
+      2163
+     ],
+     [
+      2288,
+      2349
+     ]
+    ],
+    "GHCC01 (Argentina, Illumina)": [
+     [
+      239,
+      279
+     ],
+     [
+      1316,
+      1356
+     ],
+     [
+      1390,
+      1429
+     ],
+     [
+      2240,
+      2280
+     ]
+    ]
+   }
+  },
+  "ATPaseD_Dm": {
+   "n_ventanas": 471,
+   "transcriptomas": {
+    "GCWP01 (Illinois, 454)": {
+     "con_datos": 471,
+     "conservadas": 471,
+     "variantes": 0,
+     "contigs": [
+      {
+       "hebra": "+",
+       "span": [
+        1,
+        491
+       ],
+       "identidad": 1.0,
+       "puntaje": 982.0,
+       "cortes": [],
+       "contig": "GCWP01010867.1"
+      }
+     ]
+    },
+    "GITV01 (Ohio State, Illumina)": {
+     "con_datos": 471,
+     "conservadas": 450,
+     "variantes": 21,
+     "contigs": [
+      {
+       "hebra": "+",
+       "span": [
+        1,
+        491
+       ],
+       "identidad": 0.998,
+       "puntaje": 977.0,
+       "cortes": [],
+       "contig": "GITV01001458.1"
+      }
+     ]
+    },
+    "GHCC01 (Argentina, Illumina)": {
+     "con_datos": 471,
+     "conservadas": 450,
+     "variantes": 21,
+     "contigs": [
+      {
+       "hebra": "+",
+       "span": [
+        1,
+        491
+       ],
+       "identidad": 0.998,
+       "puntaje": 977.0,
+       "cortes": [],
+       "contig": "GHCC01051703.1"
+      }
+     ]
+    }
+   },
+   "genomas": {
+    "UK hap1": {
+     "exactas": 376,
+     "un_desajuste": 52,
+     "ausentes": 43
+    },
+    "UK hap2": {
+     "exactas": 0,
+     "un_desajuste": 3,
+     "ausentes": 468,
+     "presentes_en_hap1": 376,
+     "de_esas_exactas": 0,
+     "de_esas_con_un_desajuste": 3,
+     "de_esas_ausentes": 373
+    },
+    "Cordoba CIAP": {
+     "exactas": 414,
+     "un_desajuste": 12,
+     "ausentes": 45,
+     "presentes_en_hap1": 376,
+     "de_esas_exactas": 372,
+     "de_esas_con_un_desajuste": 2,
+     "de_esas_ausentes": 2
+    }
+   },
+   "fuentes_transcriptoma_por_ventana": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 471
+   },
+   "ventanas_conservadas_en_los_transcriptomas": 450,
+   "ventanas_conservadas_en_Argentina": 450,
+   "ventanas_sin_transcriptoma_suficiente": 0,
+   "variantes_en_transcriptomas": {
+    "GCWP01 (Illinois, 454)": [],
+    "GITV01 (Ohio State, Illumina)": [
+     [
+      242,
+      282
+     ]
+    ],
+    "GHCC01 (Argentina, Illumina)": [
+     [
+      242,
+      282
+     ]
+    ]
+   }
+  },
+  "eth_Dm": {
+   "n_ventanas": 595,
+   "transcriptomas": {},
+   "genomas": {
+    "UK hap1": {
+     "exactas": 539,
+     "un_desajuste": 10,
+     "ausentes": 46
+    },
+    "UK hap2": {
+     "exactas": 1,
+     "un_desajuste": 12,
+     "ausentes": 582,
+     "presentes_en_hap1": 539,
+     "de_esas_exactas": 1,
+     "de_esas_con_un_desajuste": 11,
+     "de_esas_ausentes": 527
+    },
+    "Cordoba CIAP": {
+     "exactas": 495,
+     "un_desajuste": 34,
+     "ausentes": 66,
+     "presentes_en_hap1": 539,
+     "de_esas_exactas": 495,
+     "de_esas_con_un_desajuste": 25,
+     "de_esas_ausentes": 19
+    }
+   },
+   "fuentes_transcriptoma_por_ventana": {
+    "0": 595,
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "ventanas_conservadas_en_los_transcriptomas": 0,
+   "ventanas_conservadas_en_Argentina": 0,
+   "ventanas_sin_transcriptoma_suficiente": 595,
+   "variantes_en_transcriptomas": {}
+  },
+  "bursA_Dm": {
+   "n_ventanas": 448,
+   "transcriptomas": {},
+   "genomas": {
+    "UK hap1": {
+     "exactas": 398,
+     "un_desajuste": 10,
+     "ausentes": 40
+    },
+    "UK hap2": {
+     "exactas": 0,
+     "un_desajuste": 1,
+     "ausentes": 447,
+     "presentes_en_hap1": 398,
+     "de_esas_exactas": 0,
+     "de_esas_con_un_desajuste": 1,
+     "de_esas_ausentes": 397
+    },
+    "Cordoba CIAP": {
+     "exactas": 225,
+     "un_desajuste": 124,
+     "ausentes": 99,
+     "presentes_en_hap1": 398,
+     "de_esas_exactas": 225,
+     "de_esas_con_un_desajuste": 118,
+     "de_esas_ausentes": 55
+    }
+   },
+   "fuentes_transcriptoma_por_ventana": {
+    "0": 448,
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "ventanas_conservadas_en_los_transcriptomas": 0,
+   "ventanas_conservadas_en_Argentina": 0,
+   "ventanas_sin_transcriptoma_suficiente": 448,
+   "variantes_en_transcriptomas": {}
+  }
+ },
+ "regiones_insecto": {
+  "BicC_Dm": {
+   "v2_nivel1": {
+    "region": [
+     264,
+     563
+    ],
+    "ventanas": 300,
+    "eficientes": 20,
+    "con_21_perfecto": 22,
+    "vetada": true,
+    "limpieza": 0.9304,
+    "limpias_y_eficientes": 17,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 20,
+    "eficientes_conservadas_en_Argentina": 20,
+    "eficientes_limpias_conservadas": 17,
+    "eficientes_presentes_en_hap1": 13,
+    "de_esas_exactas_en_CIAP": 13,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   },
+   "v2_recomendada": {
+    "region": [
+     2121,
+     2420
+    ],
+    "ventanas": 300,
+    "eficientes": 35,
+    "con_21_perfecto": 0,
+    "vetada": false,
+    "limpieza": 0.9852,
+    "limpias_y_eficientes": 34,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 22,
+    "eficientes_conservadas_en_Argentina": 35,
+    "eficientes_limpias_conservadas": 22,
+    "eficientes_presentes_en_hap1": 27,
+    "de_esas_exactas_en_CIAP": 14,
+    "de_esas_con_un_desajuste_en_CIAP": 4,
+    "de_esas_ausentes_en_CIAP": 9
+   },
+   "epilab": {
+    "region": [
+     264,
+     563
+    ],
+    "ventanas": 300,
+    "eficientes": 20,
+    "con_21_perfecto": 22,
+    "vetada": true,
+    "limpieza": 0.9304,
+    "limpias_y_eficientes": 17,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 20,
+    "eficientes_conservadas_en_Argentina": 20,
+    "eficientes_limpias_conservadas": 17,
+    "eficientes_presentes_en_hap1": 13,
+    "de_esas_exactas_en_CIAP": 13,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   },
+   "mejor_por_conservacion": {
+    "region": [
+     922,
+     1221
+    ],
+    "ventanas": 300,
+    "eficientes": 36,
+    "con_21_perfecto": 0,
+    "vetada": false,
+    "limpieza": 0.9814,
+    "limpias_y_eficientes": 32,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 32,
+    "eficientes_conservadas_en_Argentina": 36,
+    "eficientes_limpias_conservadas": 29,
+    "eficientes_presentes_en_hap1": 36,
+    "de_esas_exactas_en_CIAP": 36,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   },
+   "mejor_por_conservacion_sin_filtro_off_target": {
+    "region": [
+     922,
+     1221
+    ],
+    "ventanas": 300,
+    "eficientes": 36,
+    "con_21_perfecto": 0,
+    "vetada": false,
+    "limpieza": 0.9814,
+    "limpias_y_eficientes": 32,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 32,
+    "eficientes_conservadas_en_Argentina": 36,
+    "eficientes_limpias_conservadas": 29,
+    "eficientes_presentes_en_hap1": 36,
+    "de_esas_exactas_en_CIAP": 36,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   }
+  },
+  "ATPaseD_Dm": {
+   "v2_nivel1": {
+    "region": [
+     151,
+     450
+    ],
+    "ventanas": 300,
+    "eficientes": 18,
+    "con_21_perfecto": 3,
+    "vetada": true,
+    "limpieza": 0.9724,
+    "limpias_y_eficientes": 14,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 18,
+    "eficientes_conservadas_en_Argentina": 18,
+    "eficientes_limpias_conservadas": 14,
+    "eficientes_presentes_en_hap1": 18,
+    "de_esas_exactas_en_CIAP": 18,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   },
+   "v2_recomendada": {
+    "region": [
+     72,
+     371
+    ],
+    "ventanas": 300,
+    "eficientes": 21,
+    "con_21_perfecto": 0,
+    "vetada": false,
+    "limpieza": 0.9774,
+    "limpias_y_eficientes": 17,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 21,
+    "eficientes_conservadas_en_Argentina": 21,
+    "eficientes_limpias_conservadas": 17,
+    "eficientes_presentes_en_hap1": 20,
+    "de_esas_exactas_en_CIAP": 20,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   },
+   "epilab": {
+    "region": [
+     151,
+     450
+    ],
+    "ventanas": 300,
+    "eficientes": 18,
+    "con_21_perfecto": 3,
+    "vetada": true,
+    "limpieza": 0.9724,
+    "limpias_y_eficientes": 14,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 18,
+    "eficientes_conservadas_en_Argentina": 18,
+    "eficientes_limpias_conservadas": 14,
+    "eficientes_presentes_en_hap1": 18,
+    "de_esas_exactas_en_CIAP": 18,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   },
+   "mejor_por_conservacion": {
+    "region": [
+     137,
+     436
+    ],
+    "ventanas": 300,
+    "eficientes": 24,
+    "con_21_perfecto": 3,
+    "vetada": true,
+    "limpieza": 0.9684,
+    "limpias_y_eficientes": 19,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 24,
+    "eficientes_conservadas_en_Argentina": 24,
+    "eficientes_limpias_conservadas": 19,
+    "eficientes_presentes_en_hap1": 23,
+    "de_esas_exactas_en_CIAP": 23,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   },
+   "mejor_por_conservacion_sin_filtro_off_target": {
+    "region": [
+     136,
+     435
+    ],
+    "ventanas": 300,
+    "eficientes": 24,
+    "con_21_perfecto": 3,
+    "vetada": true,
+    "limpieza": 0.9664,
+    "limpias_y_eficientes": 18,
+    "eficientes_conservadas_en_todos_los_transcriptomas": 24,
+    "eficientes_conservadas_en_Argentina": 24,
+    "eficientes_limpias_conservadas": 18,
+    "eficientes_presentes_en_hap1": 23,
+    "de_esas_exactas_en_CIAP": 23,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 0
+   }
+  },
+  "eth_Dm": {
+   "v2_nivel1": {
+    "region": [
+     114,
+     313
+    ],
+    "ventanas": 200,
+    "eficientes": 19,
+    "con_21_perfecto": 0,
+    "vetada": false,
+    "limpieza": 0.9856,
+    "limpias_y_eficientes": 18,
+    "eficientes_presentes_en_hap1": 19,
+    "de_esas_exactas_en_CIAP": 17,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 2
+   },
+   "v2_recomendada": {
+    "region": [
+     114,
+     313
+    ],
+    "ventanas": 200,
+    "eficientes": 19,
+    "con_21_perfecto": 0,
+    "vetada": false,
+    "limpieza": 0.9856,
+    "limpias_y_eficientes": 18,
+    "eficientes_presentes_en_hap1": 19,
+    "de_esas_exactas_en_CIAP": 17,
+    "de_esas_con_un_desajuste_en_CIAP": 0,
+    "de_esas_ausentes_en_CIAP": 2
+   }
+  },
+  "bursA_Dm": {
+   "v2_nivel1": {
+    "region": [
+     13,
+     212
+    ],
+    "ventanas": 200,
+    "eficientes": 16,
+    "con_21_perfecto": 0,
+    "vetada": false,
+    "limpieza": 1.0,
+    "limpias_y_eficientes": 16,
+    "eficientes_presentes_en_hap1": 16,
+    "de_esas_exactas_en_CIAP": 12,
+    "de_esas_con_un_desajuste_en_CIAP": 4,
+    "de_esas_ausentes_en_CIAP": 0
+   },
+   "v2_recomendada": {
+    "region": [
+     13,
+     212
+    ],
+    "ventanas": 200,
+    "eficientes": 16,
+    "con_21_perfecto": 0,
+    "vetada": false,
+    "limpieza": 1.0,
+    "limpias_y_eficientes": 16,
+    "eficientes_presentes_en_hap1": 16,
+    "de_esas_exactas_en_CIAP": 12,
+    "de_esas_con_un_desajuste_en_CIAP": 4,
+    "de_esas_ausentes_en_CIAP": 0
+   }
+  }
+ },
+ "virus": {
+  "MP_MRFV": {
+   "n_ventanas": 1243,
+   "registros_con_alineamiento": 4,
+   "por_pais": {
+    "Brazil": 1,
+    "USA": 1,
+    "sin dato": 2
+   },
+   "cobertura_mediana": 3,
+   "cobertura_max": 4,
+   "registros": [
+    {
+     "registro": "OM964808.1",
+     "pais": "Brazil",
+     "aislado": "MRpin",
+     "span": [
+      1,
+      40
+     ],
+     "identidad": 0.975,
+     "ventanas_con_datos": 20,
+     "ventanas_identicas": 6
+    },
+    {
+     "registro": "NC_002786.2",
+     "pais": "sin dato",
+     "aislado": "Costa Rican",
+     "span": [
+      1,
+      1263
+     ],
+     "identidad": 1.0,
+     "ventanas_con_datos": 1243,
+     "ventanas_identicas": 1243
+    },
+    {
+     "registro": "AF265566.2",
+     "pais": "sin dato",
+     "aislado": "Costa Rican",
+     "span": [
+      1,
+      1263
+     ],
+     "identidad": 1.0,
+     "ventanas_con_datos": 1243,
+     "ventanas_identicas": 1243
+    },
+    {
+     "registro": "KM523134.1",
+     "pais": "USA",
+     "aislado": "US",
+     "span": [
+      1,
+      1263
+     ],
+     "identidad": 0.9375,
+     "ventanas_con_datos": 1243,
+     "ventanas_identicas": 349
+    }
+   ],
+   "resumen": {
+    "todos": {
+     "ventanas_con_al_menos_10_registros": 0,
+     "conservadas_ge_90": 0,
+     "conservadas_ge_75": 0,
+     "conservadas_ge_50": 0,
+     "mediana_fraccion": null
+    },
+    "solo_Brasil": {
+     "ventanas_con_al_menos_10_registros": 0,
+     "conservadas_ge_90": 0,
+     "conservadas_ge_75": 0,
+     "conservadas_ge_50": 0,
+     "mediana_fraccion": null
+    }
+   }
+  },
+  "CP_MRFV": {
+   "n_ventanas": 508,
+   "registros_con_alineamiento": 65,
+   "por_pais": {
+    "Brazil": 42,
+    "Costa Rica": 1,
+    "Ecuador": 2,
+    "USA": 1,
+    "sin dato": 19
+   },
+   "cobertura_mediana": 65,
+   "cobertura_max": 65,
+   "registros": [
+    {
+     "registro": "OP585540.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP BITURUNA",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.9309,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 127
+    },
+    {
+     "registro": "OP585539.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP BITURUNA",
+     "span": [
+      38,
+      528
+     ],
+     "identidad": 0.9287,
+     "ventanas_con_datos": 471,
+     "ventanas_identicas": 120
+    },
+    {
+     "registro": "OP585538.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP BITURUNA",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.9289,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 146
+    },
+    {
+     "registro": "OP585537.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP- CASCAVEL",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.937,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 140
+    },
+    {
+     "registro": "OP585536.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP ANDIRA",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.937,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 118
+    },
+    {
+     "registro": "OP585535.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP ANDIRA",
+     "span": [
+      52,
+      528
+     ],
+     "identidad": 0.935,
+     "ventanas_con_datos": 457,
+     "ventanas_identicas": 112
+    },
+    {
+     "registro": "OP559515.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.9411,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 152
+    },
+    {
+     "registro": "OP559514.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.939,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 137
+    },
+    {
+     "registro": "OP559513.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.9411,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 152
+    },
+    {
+     "registro": "OP559512.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.937,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 134
+    },
+    {
+     "registro": "OP559511.1",
+     "pais": "Brazil",
+     "aislado": "MRFV CP",
+     "span": [
+      37,
+      528
+     ],
+     "identidad": 0.9411,
+     "ventanas_con_datos": 472,
+     "ventanas_identicas": 152
+    },
+    {
+     "registro": "ON730806.1",
+     "pais": "Brazil",
+     "aislado": "F1",
+     "span": [
+      61,
+      528
+     ],
+     "identidad": 0.9359,
+     "ventanas_con_datos": 448,
+     "ventanas_identicas": 140
+    },
+    {
+     "registro": "ON730805.1",
+     "pais": "Brazil",
+     "aislado": "T8",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9219,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 142
+    },
+    {
+     "registro": "ON730804.1",
+     "pais": "Brazil",
+     "aislado": "T7",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.939,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 155
+    },
+    {
+     "registro": "ON730803.1",
+     "pais": "Brazil",
+     "aislado": "T6",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9371,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 149
+    },
+    {
+     "registro": "ON730802.1",
+     "pais": "Brazil",
+     "aislado": "T5",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9181,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 123
+    },
+    {
+     "registro": "ON730801.1",
+     "pais": "Brazil",
+     "aislado": "T4",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9276,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 143
+    },
+    {
+     "registro": "ON730800.1",
+     "pais": "Brazil",
+     "aislado": "T2",
+     "span": [
+      73,
+      528
+     ],
+     "identidad": 0.932,
+     "ventanas_con_datos": 436,
+     "ventanas_identicas": 102
+    },
+    {
+     "registro": "ON730799.1",
+     "pais": "Brazil",
+     "aislado": "T1",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.939,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 158
+    },
+    {
+     "registro": "ON730798.1",
+     "pais": "Brazil",
+     "aislado": "F7",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9371,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 146
+    },
+    {
+     "registro": "ON730797.1",
+     "pais": "Brazil",
+     "aislado": "F6",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9276,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 108
+    },
+    {
+     "registro": "ON730796.1",
+     "pais": "Brazil",
+     "aislado": "F4",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9067,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 125
+    },
+    {
+     "registro": "ON730795.1",
+     "pais": "Brazil",
+     "aislado": "F3",
+     "span": [
+      61,
+      528
+     ],
+     "identidad": 0.9295,
+     "ventanas_con_datos": 448,
+     "ventanas_identicas": 128
+    },
+    {
+     "registro": "ON730794.1",
+     "pais": "Brazil",
+     "aislado": "F2",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9276,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 119
+    },
+    {
+     "registro": "ON730793.1",
+     "pais": "Brazil",
+     "aislado": "C10",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9371,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 146
+    },
+    {
+     "registro": "ON730792.1",
+     "pais": "Brazil",
+     "aislado": "C8",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.941,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 164
+    },
+    {
+     "registro": "ON730791.1",
+     "pais": "Brazil",
+     "aislado": "C7",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9333,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 116
+    },
+    {
+     "registro": "ON730790.1",
+     "pais": "Brazil",
+     "aislado": "C6",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9143,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 104
+    },
+    {
+     "registro": "ON730789.1",
+     "pais": "Brazil",
+     "aislado": "C5",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9257,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 116
+    },
+    {
+     "registro": "ON730788.1",
+     "pais": "Brazil",
+     "aislado": "C4",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.941,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 146
+    },
+    {
+     "registro": "ON730787.1",
+     "pais": "Brazil",
+     "aislado": "C3",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9352,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 155
+    },
+    {
+     "registro": "ON730786.1",
+     "pais": "Brazil",
+     "aislado": "C2",
+     "span": [
+      73,
+      528
+     ],
+     "identidad": 0.9298,
+     "ventanas_con_datos": 436,
+     "ventanas_identicas": 110
+    },
+    {
+     "registro": "ON730785.1",
+     "pais": "Brazil",
+     "aislado": "C1",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9352,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 155
+    },
+    {
+     "registro": "ON730784.1",
+     "pais": "Brazil",
+     "aislado": "B16",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9333,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 129
+    },
+    {
+     "registro": "ON730783.1",
+     "pais": "Brazil",
+     "aislado": "B5",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9371,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 157
+    },
+    {
+     "registro": "ON730782.1",
+     "pais": "Brazil",
+     "aislado": "C18",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.941,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 146
+    },
+    {
+     "registro": "OP584703.1",
+     "pais": "Brazil",
+     "aislado": "MRFV2675.5",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9371,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 146
+    },
+    {
+     "registro": "OP584702.1",
+     "pais": "Brazil",
+     "aislado": "MRFV2675.4",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.939,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 146
+    },
+    {
+     "registro": "OP584701.1",
+     "pais": "Brazil",
+     "aislado": "MRFV2675.3",
+     "span": [
+      4,
+      528
+     ],
+     "identidad": 0.9371,
+     "ventanas_con_datos": 505,
+     "ventanas_identicas": 141
+    },
+    {
+     "registro": "OM763710.1",
+     "pais": "Brazil",
+     "aislado": "LGS.01",
+     "span": [
+      61,
+      528
+     ],
+     "identidad": 0.9316,
+     "ventanas_con_datos": 448,
+     "ventanas_identicas": 146
+    },
+    {
+     "registro": "OM763709.1",
+     "pais": "Brazil",
+     "aislado": "CPN.02",
+     "span": [
+      68,
+      528
+     ],
+     "identidad": 0.9241,
+     "ventanas_con_datos": 441,
+     "ventanas_identicas": 121
+    },
+    {
+     "registro": "OM763708.1",
+     "pais": "Brazil",
+     "aislado": "CPN.01",
+     "span": [
+      55,
+      528
+     ],
+     "identidad": 0.9262,
+     "ventanas_con_datos": 454,
+     "ventanas_identicas": 128
+    },
+    {
+     "registro": "NC_002786.2",
+     "pais": "sin dato",
+     "aislado": "Costa Rican",
+     "span": [
+      1,
+      528
+     ],
+     "identidad": 1.0,
+     "ventanas_con_datos": 508,
+     "ventanas_identicas": 508
+    },
+    {
+     "registro": "AF265566.2",
+     "pais": "sin dato",
+     "aislado": "Costa Rican",
+     "span": [
+      1,
+      528
+     ],
+     "identidad": 1.0,
+     "ventanas_con_datos": 508,
+     "ventanas_identicas": 508
+    },
+    {
+     "registro": "KM523134.1",
+     "pais": "USA",
+     "aislado": "US",
+     "span": [
+      1,
+      528
+     ],
+     "identidad": 0.9508,
+     "ventanas_con_datos": 508,
+     "ventanas_identicas": 171
+    },
+    {
+     "registro": "DQ196349.1",
+     "pais": "Ecuador",
+     "aislado": "EcuadorB",
+     "span": [
+      15,
+      527
+     ],
+     "identidad": 0.9103,
+     "ventanas_con_datos": 493,
+     "ventanas_identicas": 50
+    },
+    {
+     "registro": "DQ196348.1",
+     "pais": "Ecuador",
+     "aislado": "EcuadorA",
+     "span": [
+      15,
+      527
+     ],
+     "identidad": 0.9103,
+     "ventanas_con_datos": 493,
+     "ventanas_identicas": 50
+    },
+    {
+     "registro": "AF186179.1",
+     "pais": "sin dato",
+     "aislado": "Brazil 48",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9351,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 137
+    },
+    {
+     "registro": "AF186178.1",
+     "pais": "sin dato",
+     "aislado": "Brazil 26",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9408,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 175
+    },
+    {
+     "registro": "AF186177.1",
+     "pais": "sin dato",
+     "aislado": "Brazil 17",
+     "span": [
+      15,
+      528
+     ],
+     "identidad": 0.9377,
+     "ventanas_con_datos": 494,
+     "ventanas_identicas": 162
+    },
+    {
+     "registro": "U97730.1",
+     "pais": "sin dato",
+     "aislado": "Venezuela",
+     "span": [
+      5,
+      527
+     ],
+     "identidad": 0.9522,
+     "ventanas_con_datos": 503,
+     "ventanas_identicas": 241
+    },
+    {
+     "registro": "U97729.1",
+     "pais": "sin dato",
+     "aislado": "United States",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9466,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 168
+    },
+    {
+     "registro": "U97728.1",
+     "pais": "sin dato",
+     "aislado": "Peru C",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9256,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 139
+    },
+    {
+     "registro": "U97727.1",
+     "pais": "sin dato",
+     "aislado": "Peru B",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9179,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 92
+    },
+    {
+     "registro": "U97726.1",
+     "pais": "sin dato",
+     "aislado": "Peru A",
+     "span": [
+      5,
+      522
+     ],
+     "identidad": 0.9286,
+     "ventanas_con_datos": 498,
+     "ventanas_identicas": 129
+    },
+    {
+     "registro": "U97725.1",
+     "pais": "sin dato",
+     "aislado": "Mexico",
+     "span": [
+      5,
+      527
+     ],
+     "identidad": 0.9847,
+     "ventanas_con_datos": 503,
+     "ventanas_identicas": 348
+    },
+    {
+     "registro": "U97724.1",
+     "pais": "sin dato",
+     "aislado": "Guatemala",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9828,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 356
+    },
+    {
+     "registro": "U97723.1",
+     "pais": "sin dato",
+     "aislado": "Costa Rica C",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9695,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 341
+    },
+    {
+     "registro": "U97722.1",
+     "pais": "sin dato",
+     "aislado": "Costa Rica B",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9885,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 438
+    },
+    {
+     "registro": "U97721.1",
+     "pais": "sin dato",
+     "aislado": "Costa Rica A",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9866,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 417
+    },
+    {
+     "registro": "U97720.1",
+     "pais": "sin dato",
+     "aislado": "Colombia B",
+     "span": [
+      5,
+      527
+     ],
+     "identidad": 0.912,
+     "ventanas_con_datos": 503,
+     "ventanas_identicas": 60
+    },
+    {
+     "registro": "U97719.1",
+     "pais": "sin dato",
+     "aislado": "Colombia A",
+     "span": [
+      5,
+      527
+     ],
+     "identidad": 0.914,
+     "ventanas_con_datos": 503,
+     "ventanas_identicas": 66
+    },
+    {
+     "registro": "U97718.1",
+     "pais": "sin dato",
+     "aislado": "Bolivia B",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9275,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 142
+    },
+    {
+     "registro": "U97717.1",
+     "pais": "sin dato",
+     "aislado": "Bolivia A",
+     "span": [
+      5,
+      528
+     ],
+     "identidad": 0.9351,
+     "ventanas_con_datos": 504,
+     "ventanas_identicas": 155
+    },
+    {
+     "registro": "JN966985.1",
+     "pais": "Costa Rica",
+     "aislado": "Costa Rican",
+     "span": [
+      43,
+      528
+     ],
+     "identidad": 1.0,
+     "ventanas_con_datos": 466,
+     "ventanas_identicas": 466
+    }
+   ],
+   "resumen": {
+    "todos": {
+     "ventanas_con_al_menos_10_registros": 505,
+     "conservadas_ge_90": 11,
+     "conservadas_ge_75": 118,
+     "conservadas_ge_50": 164,
+     "mediana_fraccion": 0.154
+    },
+    "solo_Brasil": {
+     "ventanas_con_al_menos_10_registros": 505,
+     "conservadas_ge_90": 90,
+     "conservadas_ge_75": 123,
+     "conservadas_ge_50": 164,
+     "mediana_fraccion": 0.0
+    }
+   }
+  }
+ },
+ "regiones_virus": {
+  "MP_MRFV": {
+   "todos": {
+    "epilab": {
+     "region": [
+      1,
+      200
+     ],
+     "ventanas": 200,
+     "eficientes": 30,
+     "eficientes_conservadas": 0,
+     "eficientes_sin_datos": 30,
+     "eficientes_limpias_conservadas": 0
+    },
+    "v2_recomendada": {
+     "region": [
+      72,
+      271
+     ],
+     "ventanas": 200,
+     "eficientes": 38,
+     "eficientes_conservadas": 0,
+     "eficientes_sin_datos": 38,
+     "eficientes_limpias_conservadas": 0
+    },
+    "mejor_por_conservacion": {
+     "region": [
+      1,
+      200
+     ],
+     "eficientes_limpias_conservadas": 0,
+     "ventanas": 200,
+     "eficientes": 30,
+     "eficientes_conservadas": 0,
+     "eficientes_sin_datos": 30
+    }
+   },
+   "solo_Brasil": {
+    "epilab": {
+     "region": [
+      1,
+      200
+     ],
+     "ventanas": 200,
+     "eficientes": 30,
+     "eficientes_conservadas": 0,
+     "eficientes_sin_datos": 30,
+     "eficientes_limpias_conservadas": 0
+    },
+    "v2_recomendada": {
+     "region": [
+      72,
+      271
+     ],
+     "ventanas": 200,
+     "eficientes": 38,
+     "eficientes_conservadas": 0,
+     "eficientes_sin_datos": 38,
+     "eficientes_limpias_conservadas": 0
+    },
+    "mejor_por_conservacion": {
+     "region": [
+      1,
+      200
+     ],
+     "eficientes_limpias_conservadas": 0,
+     "ventanas": 200,
+     "eficientes": 30,
+     "eficientes_conservadas": 0,
+     "eficientes_sin_datos": 30
+    }
+   }
+  },
+  "CP_MRFV": {
+   "todos": {
+    "epilab": {
+     "region": [
+      201,
+      400
+     ],
+     "ventanas": 200,
+     "eficientes": 17,
+     "eficientes_conservadas": 7,
+     "eficientes_sin_datos": 0,
+     "eficientes_limpias_conservadas": 7
+    },
+    "v2_recomendada": {
+     "region": [
+      99,
+      298
+     ],
+     "ventanas": 200,
+     "eficientes": 21,
+     "eficientes_conservadas": 4,
+     "eficientes_sin_datos": 0,
+     "eficientes_limpias_conservadas": 4
+    },
+    "mejor_por_conservacion": {
+     "region": [
+      196,
+      395
+     ],
+     "eficientes_limpias_conservadas": 7,
+     "ventanas": 200,
+     "eficientes": 21,
+     "eficientes_conservadas": 7,
+     "eficientes_sin_datos": 0
+    }
+   },
+   "solo_Brasil": {
+    "epilab": {
+     "region": [
+      201,
+      400
+     ],
+     "ventanas": 200,
+     "eficientes": 17,
+     "eficientes_conservadas": 7,
+     "eficientes_sin_datos": 0,
+     "eficientes_limpias_conservadas": 7
+    },
+    "v2_recomendada": {
+     "region": [
+      99,
+      298
+     ],
+     "ventanas": 200,
+     "eficientes": 21,
+     "eficientes_conservadas": 4,
+     "eficientes_sin_datos": 0,
+     "eficientes_limpias_conservadas": 4
+    },
+    "mejor_por_conservacion": {
+     "region": [
+      196,
+      395
+     ],
+     "eficientes_limpias_conservadas": 7,
+     "ventanas": 200,
+     "eficientes": 21,
+     "eficientes_conservadas": 7,
+     "eficientes_sin_datos": 0
+    }
+   }
+  }
+ },
+ "ranking_con_region_conservada": {
+  "v2_recomendadas": {
+   "regiones": {
+    "MP_MRFV": "72-271",
+    "CP_MRFV": "99-298",
+    "BicC_Dm": "2121-2420",
+    "ATPaseD_Dm": "72-371",
+    "eth_Dm": "114-313",
+    "bursA_Dm": "13-212"
+   },
+   "geometrica_conservadora_absoluta": {
+    "frecuencia": {
+     "MP_MRFV": [
+      98.7,
+      0.2,
+      0.2,
+      0.2,
+      0.5,
+      0.2
+     ],
+     "CP_MRFV": [
+      0.8,
+      2.1,
+      96.5,
+      0.2,
+      0.3,
+      0.1
+     ],
+     "BicC_Dm": [
+      0.0,
+      97.0,
+      2.0,
+      0.9,
+      0.1,
+      0.0
+     ],
+     "ATPaseD_Dm": [
+      0.0,
+      0.0,
+      0.1,
+      0.1,
+      0.1,
+      99.7
+     ],
+     "eth_Dm": [
+      0.0,
+      0.2,
+      0.3,
+      96.8,
+      2.8,
+      0.0
+     ],
+     "bursA_Dm": [
+      0.6,
+      0.5,
+      0.9,
+      1.8,
+      96.2,
+      0.0
+     ]
+    },
+    "orden_modal": {
+     "orden": [
+      "MP_MRFV",
+      "BicC_Dm",
+      "CP_MRFV",
+      "eth_Dm",
+      "bursA_Dm",
+      "ATPaseD_Dm"
+     ],
+     "pct": 95.7
+    }
+   },
+   "cascada": {
+    "orden_modal": {
+     "orden": [
+      "MP_MRFV",
+      "BicC_Dm",
+      "CP_MRFV",
+      "eth_Dm",
+      "ATPaseD_Dm",
+      "bursA_Dm"
+     ],
+     "pct": 100.0
+    }
+   }
+  },
+  "con_BicC_por_conservacion": {
+   "regiones": {
+    "MP_MRFV": "72-271",
+    "CP_MRFV": "99-298",
+    "BicC_Dm": "922-1221",
+    "ATPaseD_Dm": "72-371",
+    "eth_Dm": "114-313",
+    "bursA_Dm": "13-212"
+   },
+   "geometrica_conservadora_absoluta": {
+    "frecuencia": {
+     "MP_MRFV": [
+      98.5,
+      0.3,
+      0.2,
+      0.3,
+      0.2,
+      0.2
+     ],
+     "CP_MRFV": [
+      0.6,
+      4.2,
+      94.8,
+      0.1,
+      0.3,
+      0.1
+     ],
+     "BicC_Dm": [
+      0.3,
+      94.8,
+      2.5,
+      0.6,
+      1.7,
+      0.1
+     ],
+     "ATPaseD_Dm": [
+      0.0,
+      0.0,
+      0.1,
+      0.1,
+      0.2,
+      99.7
+     ],
+     "eth_Dm": [
+      0.0,
+      0.1,
+      0.8,
+      97.7,
+      1.4,
+      0.0
+     ],
+     "bursA_Dm": [
+      0.5,
+      0.6,
+      1.6,
+      1.2,
+      96.0,
+      0.0
+     ]
+    },
+    "orden_modal": {
+     "orden": [
+      "MP_MRFV",
+      "BicC_Dm",
+      "CP_MRFV",
+      "eth_Dm",
+      "bursA_Dm",
+      "ATPaseD_Dm"
+     ],
+     "pct": 94.2
+    }
+   },
+   "cascada": {
+    "orden_modal": {
+     "orden": [
+      "MP_MRFV",
+      "BicC_Dm",
+      "CP_MRFV",
+      "eth_Dm",
+      "ATPaseD_Dm",
+      "bursA_Dm"
+     ],
+     "pct": 100.0
+    }
+   }
+  }
+ }
+}

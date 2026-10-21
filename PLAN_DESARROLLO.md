@@ -77,6 +77,7 @@ mitades se tocan.
 | --- | --- | --- | --- |
 | 1 · Entender si-Fi21 | **Cubierto como contenido, falta el documento** | `tools/sifi21_port/` + `research/ola3/C1_sifi21_paper_metodo/` | La nota corta y legible, para él (T1) |
 | 2 · Benchmarking de las tres | **Cerrado** | `W7_ranking/benchmark_tres_herramientas.md` | Nada del pedido |
+<<<<<<< HEAD
 | 3 · Ranking con criterio | **Cerrado, con v2** | `W7_ranking/REPORT.md` + `research/ola3/C7_ranking_v2/` | Nada |
 | 4 · Evaluación de las regiones | **Cerrado** | `W7_ranking/REPORT.md` §2.2 y §2.3, revisado en `C7_ranking_v2/` | Nada: la revisión se resolvió sacando *Macrosteles* del panel (D23) |
 | 5 · Crítica de las herramientas | **Material completo, sin documento** | Disperso en seis archivos | Juntarlo y escribirlo para él (T5) |
@@ -107,6 +108,18 @@ D23 declara: *Macrosteles* se había incorporado como **sustituto filogenético*
 Deltocephalinae, no por exposición directa, y que no esté en Argentina no descarta ese uso. Si el
 investigador dice que los cicadélidos hermanos cuentan como no objetivo, la recomendación de
 `BicC_Dm` se vuelve a caer. Es la pregunta más barata y más cara de la lista.
+=======
+| 3 · Ranking con criterio | **Cerrado, con segunda versión** | `W7_ranking/REPORT.md` §2 a §4 y `research/ola3/C7_ranking_v2/` | Nada del pedido; la v2 reproduce W7 exacto, suma humano, `eth` y `burs-alpha`, y reporta 21 y 22 nt |
+| 4 · Evaluación de las regiones | **Cerrado y revisado** | `W7_ranking/REPORT.md` §2.2 y §2.3, y `research/ola3/C8_conservacion/` | Nada del pedido; `BicC_Dm` pasa a 922-1221 por conservación (D25) y `ATPaseD_Dm` mantiene 72-371 |
+| 5 · Crítica de las herramientas | **Material completo, sin documento** | Disperso en seis archivos | Juntarlo y escribirlo para él (T5) |
+| Opcional · 21 contra 22 | **Cerrado** | `research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` y `C6_panel_y_largo/` | Nada |
+| Opcional · Genes nuevos | **Cerrado: catálogo y entrada al ranking** | `research/ola3/C5_.../catalogo_genes_blanco.md` y `C7_ranking_v2/` | Un transcriptoma que contenga `eth` y `burs-alpha`, para medir su conservación |
+
+**Lo que esto quiere decir en una línea:** el entregable ya existe y lo que queda no es
+producirlo sino **redactar dos documentos con material que ya está** (T1 y T5): las dos reescrituras
+que quedaban —el ranking con el panel ampliado y la región de `BicC_Dm`— se hicieron el 2026-10-21
+(C7 y C8). No hay ninguna medición grande pendiente.
+>>>>>>> origin/main
 
 Y una pregunta que el checkpoint dejó abierta y que ahora tiene respuesta medida: **la cuenta del
 azar que él pidió para 18, 19 y 20 nucleótidos está hecha dos veces, por dos caminos, y las dos
@@ -220,7 +233,11 @@ estabilidad del orden frente al largo de ventana. **Terminada cuando:** cada rec
 mover una región dice contra qué panel se evaluó, y el documento dice cuáles de sus conclusiones
 cambiaron respecto de la primera versión.
 
+<<<<<<< HEAD
 ### T4 · La auditoría de las regiones 1–200 — hecha, y ya revisada
+=======
+### T4 · La auditoría de las regiones 1–200 — hecha y revisada
+>>>>>>> origin/main
 
 **Estado:** hecha en `W7_ranking/REPORT.md` §2.2 y §2.3, y **revisada el 2026-10-21 en
 `research/ola3/C7_ranking_v2/`**. Para los dos genes del insecto hay región alternativa
@@ -230,6 +247,7 @@ quedar segundo. Las regiones vigentes son las de la v2: **`BicC_Dm` 2121-2420** 
 nucleótidos respecto de la 2123-2422 de W7, por la columna de humano— y **`ATPaseD_Dm` 72-371**,
 igual que en W7.
 
+<<<<<<< HEAD
 **Cómo se resolvió la revisión que este plan dejaba abierta, que importa más que el resultado.**
 La objeción era que, al agregar al panel el cicadélido más cercano a la chicharrita con genoma
 anotado, la región recomendada para `BicC_Dm` tiene 19 ventanas con coincidencia perfecta de
@@ -243,6 +261,16 @@ filogenético** del resto de los Deltocephalinae, no por exposición directa, y 
 Argentina no descarta ese uso. **Si el investigador dice que los cicadélidos hermanos cuentan
 como no objetivo, esta recomendación se vuelve a caer** y hay que reescribirla con la región
 alternativa que C6 midió, la que escapa al veto perdiendo una sola ventana eficiente.
+=======
+**La revisión, hecha el 2026-10-21.** Al agregar al panel el cicadélido más cercano a la chicharrita con genoma
+anotado, la región que W7 recomendaba para `BicC_Dm` tenía 19 ventanas con coincidencia perfecta de 21 nt contra
+las 10 de la que eligió EPILAB (C6). El equipo decidió dejar a *Macrosteles* fuera del ranking (D23), con el
+argumento de que no está en Argentina, que todavía no verificamos contra un catálogo. Con esa decisión las
+recomendaciones de W7 vuelven a valer (C7), y la conservación entre fuentes públicas (C8) cambia solo una:
+**`BicC_Dm` pasa de 2121-2420 a 922-1221** (36 eficientes, 32 idénticas en los tres transcriptomas, todas en el
+argentino; D25), sin costo en el orden de diseño; `ATPaseD_Dm` mantiene 72-371. Es conservación entre fuentes
+públicas y no entre poblaciones de campo.
+>>>>>>> origin/main
 
 **Nota de método que ya pagamos:** el número de eficientes de una región depende de si se calcula
 sobre la región recortada o sobre el gen entero, y la diferencia llega al 47 %. Hay que declarar
@@ -344,6 +372,33 @@ leyeron solo por resumen y registran fenotipo pero no dosis ni n.
 
 ---
 
+## 3 ter. Recomendación: qué hacer ahora, y en qué orden
+
+Escrito el 2026-10-21, después de auditar el barrido y de calcular la potencia real de la
+validación retrospectiva. El encuadre que ordena todo: **de los cinco pedidos quedan dos
+documentos y ninguna medición grande**, así que lo que se agregue de acá en más compite con
+terminar lo que falta, no con llenar un hueco.
+
+| Opción | Qué daría | Pros | Contras | Veredicto |
+| --- | --- | --- | --- | --- |
+| **1. Escribir T1 y T5** (nota de «eficiente» y crítica de herramientas) | Los dos únicos pedidos del investigador sin entregable | Material íntegramente medido y disperso en seis archivos; es redacción, no investigación. Cierra el pedido que él puso primero | Ninguno. Es trabajo pendiente, no una apuesta | **Hacer primero** |
+| **2. Sensibilidad del umbral sin etiquetas** | Si mover el corte de accesibilidad de 0,1 o la brecha de 1,00 kcal/mol cambia el orden de candidatos | No necesita etiquetas ni laboratorio. La maquinaria existe (`barrido.py`, `ranking.py`). Contesta de frente «¿cómo saben que 0,1 es el valor?» con una medición | No dice si el umbral es bueno, sólo si la recomendación es frágil. Hay que no confundir las dos cosas al presentarlo | **Hacer segundo** |
+| **3. Corregir cómo se presenta B.3** | Que la diagonal se lea como lo que es | Una tabla y un párrafo. Evita que nos pregunten lo que ya sabemos que no se sostiene | Obliga a mostrar que el orden modal cae del 98,7 % al 33,7 % en la otra escala | **Hacer tercero** |
+| **4. Validación retrospectiva pre-registrada** | Una cota sobre cuánto discrimina el puntaje | Es la única comprobación empírica posible sin laboratorio. Los 28 ARNdc de Cedden son CC BY y están en el repo. «Con este n no se distingue» es un resultado | **Sub-potenciada por un factor 2,4 en n**: con la fiabilidad medida del desenlace, una correlación verdadera de 0,7 se observa como 0,35 y la potencia con n = 28 es 0,42. Harían falta n = 67 | **Hacer cuarto, con tiempo acotado y el pre-registro escrito antes** |
+| **5. Curva precisión-recall barriendo el umbral** | El umbral elegido con su precisión y su cobertura | Es el método correcto, y la fila de Reynolds (88,9 % de precisión con 1,1 % de cobertura) muestra la forma que tendría | Necesita las mismas etiquetas de la opción 4, así que hereda su falta de potencia. Con n = 28 los intervalos tapan la curva | **Sólo como salida de la opción 4, no como línea propia** |
+| **6. Modelo de ML existente entrenado en humano** | Una estimación de eficacia por ventana | Existen, son buenos en su dominio (Pearson 0,55-0,58 entre conjuntos humanos, AUC 0,81-0,87) y correrlos es barato | Al cambiar de ensayo caen a AUC ≈ 0,50, que es azar; y entre humano e insecto el GC de las posiciones 9-14 invierte su signo. Sin verdad de terreno en hemípteros no hay forma de saber si acertó | **No como predictor. Sólo como ablación declarada sobre los datos CC BY de *Tribolium*** |
+| **7. Aprendizaje no supervisado para predecir eficacia** | — | — | No resuelve la falta de etiquetas: la mueve al cabezal. Un método no supervisado encuentra estructura, no puede saber que esa estructura es silenciamiento | **Descartar como predictor.** Sí vale lo label-free que ya hacemos: el eje de especificidad, que es un hecho de alineamiento y no una predicción |
+| **8. Encadenar fuentes independientes de confiabilidad** | Una lista corta con alta precisión | Es el uso correcto del techo bajo del dato: filtrar conservador en vez de ordenar fino | Sólo paga si las fuentes son de naturaleza distinta —termodinámica, alineamiento, conservación entre aislados—. Sumar proxies correlacionados infla la confianza sin agregar información | **Adoptar como criterio de presentación del ranking**, no como línea de trabajo aparte |
+
+**Lo más valioso que tenemos y todavía no usamos.** La accesibilidad del sitio blanco es una de
+las tres condiciones de si-Fi21, y es la que **no mostró valor predictivo sobre la eficacia
+medida**: OR 1,00 con intervalo [0,89–1,12] sobre 300 casos humanos de siRecords, y en *Tribolium
+castaneum* HR 0,9994 con P = 0,853. `[E]` Eso es una crítica con evidencia al criterio en el que
+el laboratorio basa su pipeline, y es exactamente lo que el investigador pidió en el punto 5. Va
+en T5 y es lo más fuerte que tenemos para decir.
+
+---
+
 ## 4. Fase 2 — nuestro valor agregado
 
 Esto es lo que ponemos encima de lo pedido, y conviene que sea explícitamente lo segundo y no lo
@@ -405,9 +460,15 @@ que ahora hay un pedido explícito del investigador que ordena las prioridades.
 | Rama | Dueño de | Entregable | Estado |
 | --- | --- | --- | --- |
 | **Método** | T1 y T5 | La nota de qué significa «eficiente» y la crítica de las herramientas | **Es lo que falta.** Dos documentos de redacción, con todo el material ya medido |
+<<<<<<< HEAD
 | **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho, y la recomendación de región ya reescrita en la v2 |
 | **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho, con segunda versión (`C7_ranking_v2/`) |
 | **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho y los dos mejores ya están en el ranking v2 |
+=======
+| **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho, y la recomendación de región ya se reescribió (C8, D25) |
+| **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho, con la segunda versión (C7) |
+| **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho y los dos mejores candidatos ya están en el ranking (C7); queda la conservación de `eth` y `burs-alpha` y la de `MP_MRFV`, que no se puede evaluar con los registros públicos (C8) |
+>>>>>>> origin/main
 
 El hito a proteger ya se pasó: **la primera corrida punta a punta sobre los cuatro candidatos
 reales, con su ficha, existe desde el 2026-10-20**. Desde acá el riesgo cambia de naturaleza —ya

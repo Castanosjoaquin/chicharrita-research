@@ -630,3 +630,22 @@ mejor región; su aporte es la evidencia y, en `burs-alpha`, el perfil de especi
 bloques de 19 nt o más en el gen entero). Las puntas del orden (`MP_MRFV` primero, `BicC_Dm`
 segundo, `ATPaseD_Dm` último) aguantan 22 nt bajo la escala absoluta; el medio no. Detalle en
 `research/ola3/C7_ranking_v2/REPORT.md`.
+
+## D25 — La región recomendada de `BicC_Dm` pasa de 2121-2420 a 922-1221, por conservación
+**Fecha:** 2026-10-21
+**Decisión:** para `BicC_Dm` se recomienda la región 922-1221 (300 nt, a 21 nt) y no 2121-2420, que era la
+de C7. Para `ATPaseD_Dm` se mantiene 72-371.
+**Alternativas consideradas:** (a) mantener 2121-2420, que tiene un eficiente menos y 12 ventanas menos con
+señal de off-target; (b) elegir por conservación sin mirar el veto; (c) usar el genoma de Córdoba (ONT) como
+criterio.
+**Criterio:** de las 35 eficientes de 2121-2420 solo 22 son idénticas en los tres transcriptomas públicos y
+9 de las 27 presentes en el genoma de referencia faltan en el de Córdoba; 922-1221 tiene 36 eficientes, 32
+idénticas en los tres, 36 de 36 en el transcriptoma argentino y 36 de 36 exactas en Córdoba, y no tiene
+coincidencias perfectas de 21 nt con el panel. (b) se descartó porque la región más conservada de
+`ATPaseD_Dm` (137-436) está vetada. (c) se descartó porque un ensamblado ONT a 20x tiene una tasa de error
+del orden de la variación que se busca: el genoma de Córdoba se reporta pero no entra al criterio.
+**Consecuencia:** cambiar la región no mueve el ranking de diseño (`BicC_Dm` sigue segundo, 94,8 % de los
+sorteos). 922-1221 es la misma región que C6 había encontrado como salida al veto de *Macrosteles*, y ahora
+aparece por un motivo independiente de ese pariente. La conservación es entre fuentes públicas (tres
+transcriptomas y un genoma de Córdoba), no entre poblaciones de campo. Detalle en
+`research/ola3/C8_conservacion/REPORT.md`.
