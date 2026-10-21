@@ -56,13 +56,45 @@ es que cada número que entreguemos tiene que venir con el porqué de haberlo el
 | # | Lo que pidió | Qué hay ya | Qué falta |
 | --- | --- | --- | --- |
 | 1 | **Leer y entender si-Fi21**: qué implica que algo sea eficiente, cómo lo calculan, qué significa la energía libre ahí | El port a Python 3 verificado contra el programa original: `tools/sifi21_port/`, los tres filtros implementados y `CAMBIOS.md` con lo que se cambió y por qué | El paper y la fuente primaria de cada umbral; qué validó el artículo y qué no; de dónde sale el criterio de 150–250 nt |
-| 2 | **Benchmarking** de si-Fi21, dsRNA-Engineer y BLAST sobre los cuatro genes | Las tres herramientas corridas, pero por separado y en informes distintos: `sifi21_reproduccion.md`, `W2_herramientas/REPORT.md`, `W5_secuencias_epilab/analisis/` | El documento único que las compara sobre los mismos cuatro genes, con la misma tabla y la misma unidad de medida |
+| 2 | **Benchmarking** de si-Fi21, dsRNA-Engineer y BLAST sobre los cuatro genes | **Hecho** en `research/ola2/W7_ranking/benchmark_tres_herramientas.md`: las tres en un eje común, con el panel de referencias verificado como idéntico y la atribución del conteo por condición | Nada del pedido. Queda el hueco declarado: los dos genes del insecto no tienen corrida de dsRNA-Engineer y no la van a tener |
 | 3 | **Un ranking** de candidatos con el criterio explicitado | **Hecho** el 2026-10-20 en `research/ola2/W7_ranking/`: el orden, las cinco decisiones declaradas, la ficha por candidato y el barrido de 2.000 juegos de pesos | Rehacerlo con lo que la ola 3 midió después, que toca su recomendación central (ver §3) |
-| 4 | **Evaluación de las regiones ya elegidas** | Medido: las cuatro regiones elegidas no son las más densas de su gen, con brechas de −19 % a −46 % | La contracara: si la región alternativa es peor en off-targets, la elección vieja se justifica. Hay que cruzarlo candidato por candidato |
-| 5 | **Crítica de las herramientas**, aunque no la implementemos | Material disperso y bueno: la regla terminal que saltea la física, las tablas de ADN dentro de un cálculo de ARN, los tres defectos operativos de si-Fi21, el conteo de dsRNA-Engineer dominado por la condición de 16 pb | El documento único de crítica y mejoras propuestas, escrito para que lo lea él |
+| 4 | **Evaluación de las regiones ya elegidas** | **Hecho** en `W7_ranking/REPORT.md` §2.2 y §2.3: la región dentro de cada gen, con la región alternativa recomendada en los dos genes del insecto y el efecto sobre el orden | Revisar la recomendación contra el panel ampliado, que la da vuelta en `BicC_Dm` (§3) |
+| 5 | **Crítica de las herramientas**, aunque no la implementemos | **Casi todo el material ya existe y está medido**: la regla terminal que saltea la física, las tablas de ADN dentro de un cálculo de ARN, los tres defectos operativos de si-Fi21, el conteo de dsRNA-Engineer dominado por la condición de 16 pb, lo que BLAST no puede hacer, y qué herramienta conviene para qué (`benchmark_tres_herramientas.md` §5) | Juntarlo en un documento único escrito para que lo lea él, con las mejoras propuestas |
 
 Y las dos extensiones opcionales que ofreció: **sumar genes nuevos** encontrados en la
 literatura, y **comparar 21 contra 22 nt**.
+
+---
+
+## 1 bis. Dónde está parado el entregable, al 2026-10-21
+
+De los cinco pedidos, **tres están cerrados, uno está casi y uno falta**. Lo cerrado no lo hizo
+esta línea de trabajo: salió de la rama del ranking (`research/ola2/W7_ranking/`, commits de
+Santino del 2026-10-20) y de la ola 3 (`research/ola3/`). Conviene leerlo junto porque las dos
+mitades se tocan.
+
+| Pedido | Estado | Dónde está | Qué falta |
+| --- | --- | --- | --- |
+| 1 · Entender si-Fi21 | **Cubierto como contenido, falta el documento** | `tools/sifi21_port/` + `research/ola3/C1_sifi21_paper_metodo/` | La nota corta y legible, para él (T1) |
+| 2 · Benchmarking de las tres | **Cerrado** | `W7_ranking/benchmark_tres_herramientas.md` | Nada del pedido |
+| 3 · Ranking con criterio | **Cerrado** | `W7_ranking/REPORT.md` §2 a §4 | Rehacerlo con el panel ampliado (T3) |
+| 4 · Evaluación de las regiones | **Cerrado, con una revisión pendiente** | `W7_ranking/REPORT.md` §2.2 y §2.3 | La recomendación de `BicC_Dm` no sobrevive al panel ampliado |
+| 5 · Crítica de las herramientas | **Material completo, sin documento** | Disperso en seis archivos | Juntarlo y escribirlo para él (T5) |
+| Opcional · 21 contra 22 | **Cerrado** | `research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` y `C6_panel_y_largo/` | Nada |
+| Opcional · Genes nuevos | **Cerrado como catálogo** | `research/ola3/C5_.../catalogo_genes_blanco.md` | Meter los dos mejores al ranking (T6) |
+
+**Lo que esto quiere decir en una línea:** el entregable ya existe y lo que queda no es
+producirlo sino **reescribir dos piezas con lo que se midió después, y redactar dos documentos
+con material que ya está**. No hay ninguna medición grande pendiente.
+
+Y una pregunta que el checkpoint dejó abierta y que ahora tiene respuesta medida: **la cuenta del
+azar que él pidió para 18, 19 y 20 nucleótidos está hecha dos veces, por dos caminos, y las dos
+coinciden aunque a primera vista parezca que no.** La rama del ranking contó cuántas *ventanas*
+tienen al menos un acierto y encontró que por debajo de 18 nt aparecen **menos** de las que
+predice el azar; la ola 3 contó el *total* de coincidencias y encontró que coincide con el azar
+una vez corregido por composición. No se contradicen: hay tantas coincidencias como predice la
+estadística, pero amontonadas sobre menos ventanas, porque caen en familias repetidas. Él tenía
+razón en lo que se ve al tamizar, y la razón no es la que parecía.
 
 ---
 
@@ -98,7 +130,9 @@ lo dicen.
 
 ### T1 · La nota de método: qué significa «eficiente»
 
-**Entrada:** C1, más `tools/sifi21_port/` y `sifi21_reproduccion.md`.
+**Entrada:** `research/ola3/C1_sifi21_paper_metodo/` —que ya tiene el artículo, el manual, la tabla
+de umbrales con su fuente y lo que el artículo validó—, más `tools/sifi21_port/` y
+`sifi21_reproduccion.md`. **El contenido está completo: lo que falta es escribirlo para él.**
 **Salida:** una nota corta, legible por alguien que no programa, que explique la ventana de 21,
 los tres filtros, qué es la energía libre acá y qué NO es —no es eficacia medida, es una regla
 de diseño—, y una tabla con el umbral de cada filtro, su fuente y si esa fuente es evidencia
@@ -106,18 +140,31 @@ empírica o convención.
 **Terminada cuando:** cada fila de la tabla tiene fuente abierta o dice «convención».
 **Por qué primero:** él lo puso primero, y sin esto el ranking no se puede defender.
 
-### T2 · El benchmarking de las tres herramientas sobre los cuatro genes
+### T2 · El benchmarking de las tres herramientas — hecho
 
-**Entrada:** las corridas que ya existen, más lo que C2 y C3 agreguen.
-**Salida:** una tabla con una fila por gen y una columna por herramienta, diciendo para cada una
-qué mide exactamente, qué devuelve sobre ese gen y en qué unidad. La parte más importante no es
-la tabla sino la advertencia que la acompaña: **las tres no miden lo mismo**. si-Fi21 clasifica
-ventanas como eficientes con un criterio termodinámico; dsRNA-Engineer cuenta coincidencias
-exactas de k-meros y su número está dominado por la condición de 16 pb; BLAST busca similitud
-local y no estima eficacia. Un benchmarking que las ponga en la misma columna sin decir esto
-sería un error de lectura, no un resultado.
-**Terminada cuando:** cada celda tiene el comando que la produjo y la versión de la herramienta,
-y existe el párrafo que explica por qué no son comparables directamente.
+**Estado:** hecho el 2026-10-20 en `research/ola2/W7_ranking/benchmark_tres_herramientas.md`.
+Lo que cerró, y por qué es más fuerte de lo que este plan pedía:
+
+- **El panel de referencias es el mismo.** Las cinco referencias no objetivo que usa
+  dsRNA-Engineer son exactamente los mismos ensamblados que los nuestros, así que las
+  diferencias de resultado son atribuibles al método y no al dato. Esa verificación es la que
+  vuelve interpretable todo lo demás.
+- **La atribución del conteo, replicada.** Para los dos genes virales, dsRNA-Engineer informa 215
+  y 87 off-targets en maíz donde nuestro tamizaje exacto no encuentra ninguna coincidencia de
+  21 nt: **el 100 % de ese riesgo viene de la condición de 16 pb y el 0 % de la de 21–22 pb**.
+  W2 ya lo había medido sobre un gen; ahora son tres.
+- **Dónde BLAST subestima.** El criterio de un desajuste medido con BLAST+ queda por debajo del
+  exacto por un factor de hasta 3,2, y la causa está identificada: `blastn-short` con palabra 11
+  no puede sembrar un 21-mero cuyo desajuste cae en la posición 11.
+- **La compuerta de confidencialidad quedó documentada como procedimiento**, no como principio:
+  se verificó byte a byte que los dos genes virales son subcadenas exactas de un registro público
+  del NCBI, se pidió autorización explícita antes de subir, y los dos genes del insecto no se
+  subieron.
+
+**El hueco, que es un resultado y va a la presentación:** la herramienta que el organizador
+señala como la de diseño y verificación de off-targets es exactamente la que no se puede usar con
+el material que el mismo organizador entregó. Y un dato operativo que lo refuerza: los fragmentos
+que recomienda miden entre 51 y 91 pb, y el laboratorio sintetiza regiones de 150 a 300.
 
 ### T3 · El ranking de los cuatro candidatos — hecho, y a revisar
 
@@ -148,23 +195,30 @@ estabilidad del orden frente al largo de ventana. **Terminada cuando:** cada rec
 mover una región dice contra qué panel se evaluó, y el documento dice cuáles de sus conclusiones
 cambiaron respecto de la primera versión.
 
-### T4 · La auditoría de las regiones 1–200
+### T4 · La auditoría de las regiones 1–200 — hecha, y con una revisión pendiente
 
-**Entrada:** lo medido en `sifi21_reproduccion.md` §2 y §3, más C4.
-**Salida:** por candidato, la región elegida contra la mejor región por densidad del mismo
-largo, y el cruce con off-targets de las dos. La pregunta a contestar es la que él mismo abrió:
-si eligió por off-targets y no por densidad, la decisión vieja se justifica y cerramos el punto;
-si la región alternativa también está limpia, la elección es mejorable y eso es un resultado
-nuestro.
-**Terminada cuando:** cada uno de los cuatro tiene veredicto —se justifica, es mejorable, o no
-se puede saber con estos datos— y el veredicto dice de qué dato depende.
-**Nota de método que ya pagamos:** el número de eficientes de una región **depende de si se
-calcula sobre la región recortada o sobre el gen entero**, y la diferencia llega al 47 %. Hay que
-fijar el procedimiento antes de comparar, y declarar cuál se usó.
+**Estado:** hecha en `W7_ranking/REPORT.md` §2.2 y §2.3. Para los dos genes del insecto hay
+región alternativa recomendada —`BicC_Dm` 2123-2422 y `ATPaseD_Dm` 72-371—, mejores en los dos
+ejes a la vez, y el informe dice explícitamente qué pasa si el laboratorio acepta moverlas: el
+orden cambia y `BicC_Dm` salta de pelear el último puesto a quedar segundo.
+
+**Lo que queda, y no es un detalle:** al agregar al panel el cicadélido más cercano a la
+chicharrita con genoma anotado, la región recomendada para `BicC_Dm` tiene 19 ventanas con
+coincidencia perfecta de 21 nt contra las 10 de la que eligió EPILAB, así que en ese eje la
+recomendación empeora las cosas. Hay salida medida —otra región del mismo gen que escapa al veto
+perdiendo una sola ventana eficiente—, pero **la recomendación tal como está escrita no
+sobrevive al panel ampliado** y hay que reescribirla.
+
+**Nota de método que ya pagamos:** el número de eficientes de una región depende de si se calcula
+sobre la región recortada o sobre el gen entero, y la diferencia llega al 47 %. Hay que declarar
+cuál se usó antes de comparar.
 
 ### T5 · La crítica de las herramientas
 
-**Entrada:** todo lo anterior, sobre todo C2.
+**Entrada:** seis archivos que ya tienen la crítica medida y dispersa: `tools/sifi21_port/CAMBIOS.md`,
+`W2_herramientas/REPORT.md` §4, `sifi21_reproduccion.md`, `benchmark_tres_herramientas.md` §5,
+`research/ola3/C2_codigo_apolo_inta/` y `research/ola3/C3_blast_ventana_azar/`. **No falta medir
+nada: falta el documento.**
 **Salida:** un documento por herramienta con lo que falla, cómo lo comprobamos y qué mejora
 propondríamos. Él fue explícito en que no hace falta implementarla. Lo que ya tenemos y entra
 acá: la rama de la regla terminal de si-Fi21 que declara eficiente un siRNA que falló los
@@ -313,16 +367,17 @@ cuánto cambian el resultado y por lo barato que le resulta contestarlas.
 Mismo presupuesto que venimos usando. Lo que cambia respecto del reparto de `SINTESIS_V2.md` es
 que ahora hay un pedido explícito del investigador que ordena las prioridades.
 
-| Rama | Dueño de | Entregable |
-| --- | --- | --- |
-| **Método** | T1 y T5 | La nota de qué significa «eficiente» y la crítica de las herramientas |
-| **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones |
-| **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad |
-| **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él |
+| Rama | Dueño de | Entregable | Estado |
+| --- | --- | --- | --- |
+| **Método** | T1 y T5 | La nota de qué significa «eficiente» y la crítica de las herramientas | **Es lo que falta.** Dos documentos de redacción, con todo el material ya medido |
+| **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho. Queda reescribir la recomendación de región contra el panel ampliado |
+| **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho. Queda la segunda versión con el panel ampliado |
+| **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho; falta meter los dos mejores candidatos al ranking |
 
-El hito a proteger es el mismo de siempre y ahora tiene nombre propio: **la primera corrida punta
-a punta sobre los cuatro candidatos reales, con su ficha**. Desde ahí hay entregable aunque no
-pase nada más.
+El hito a proteger ya se pasó: **la primera corrida punta a punta sobre los cuatro candidatos
+reales, con su ficha, existe desde el 2026-10-20**. Desde acá el riesgo cambia de naturaleza —ya
+no es llegar, es que lo que está escrito se contradiga con lo que se midió después—, y por eso
+las dos reescrituras valen más que cualquier medición nueva.
 
 ---
 
