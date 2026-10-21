@@ -3,7 +3,7 @@
   "fecha": "2026-10-20",
   "como_se_buscó": "Europe PMC REST (search y fullTextXML, dominio ebi.ac.uk) por términos de umbral de coincidencia, largo de ARNdc, quimeras y off-target en insectos; OpenAlex no se pudo usar por falta de clave de API en este entorno. Ninguna secuencia del corpus se envió a ningún servicio.",
   "papers_abiertos": 21,
-  "papers_no_abiertos": 1,
+  "papers_no_abiertos": 2,
   "fuentes": [
     {
       "id": "S01",

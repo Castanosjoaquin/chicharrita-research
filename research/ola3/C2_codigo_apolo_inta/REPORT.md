@@ -100,8 +100,9 @@ el laboratorio corrió esta librería.** En sifi21INTA el conteo de eficientes e
 invariante a la base; lo verificamos contra los cuatro genes, contra los 71 registros públicos de
 MRFV y contra el transcriptoma TSA GITV01 de *D. maidis*: 138, 40, 218 y 35 en los tres casos. Lo
 que sí cambia es la columna nueva, «eficientes sin off-targets», que para `ATPaseD_Dm` contra el
-transcriptoma cae de 35 a 12 y para los genes virales contra los aislados de MRFV cae a 0. Ninguno
-de esos valores es el de la planilla. `[E]`
+transcriptoma cae de 35 a 12, para `BicC_Dm` cae de 218 a 214 contra ese mismo transcriptoma, y
+para los genes virales contra los aislados de MRFV cae a 0. Ninguno de esos valores es el de la
+planilla. `[E]`
 
 ---
 
