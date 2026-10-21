@@ -11,7 +11,6 @@ Uso (desde la raiz del repositorio):
 """
 import html
 import re
-import subprocess
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -21,14 +20,6 @@ CSS = re.search(r"<style>(.*?)</style>",
 
 def existe(rel):
     return (RAIZ / rel).exists()
-
-
-def git(*args):
-    try:
-        return subprocess.run(["git", "-C", str(RAIZ), *args], capture_output=True,
-                              text=True, timeout=20).stdout.strip()
-    except Exception:
-        return ""
 
 
 # ---------------------------------------------------------------- contenido
@@ -147,12 +138,26 @@ filas = "\n".join(
 
 limites = "\n".join('<h3>%s</h3><p>%s</p>' % (html.escape(t), d) for t, d in LIMITES)
 
-commits = git("log", "--format=%h %s", "-6") or "(sin datos de git)"
-commits_html = "\n".join("<li><code>%s</code> %s</li>"
-                         % (html.escape(l.split(" ", 1)[0]), html.escape(l.split(" ", 1)[1]))
-                         for l in commits.split("\n") if " " in l)
-rama = git("status", "-sb").split("\n")[0] if git("status", "-sb") else ""
-sincronizado = "ahead" not in rama and "behind" not in rama
+# No se incrusta el último commit ni el estado de la rama. La página se genera antes de
+# commitearse, así que el hash que mostraría es siempre el del commit anterior y la rama
+# siempre figura como desincronizada: no puede estar al día consigo misma. Para eso está
+# `git log`, que además no miente.
+
+n_dec = sum(1 for _, k, _, _ in FALTA if k == "decision")
+n_tra = len(FALTA) - n_dec
+
+
+CUENTA = {2: "dos", 3: "tres", 4: "cuatro", 5: "cinco", 6: "seis", 7: "siete", 8: "ocho"}
+
+
+def contar(n, singular, plural):
+    """«tres decisiones», «un trabajo chico»: el número en letras hasta ocho.
+
+    El singular llega con su artículo, porque el género lo decide el sustantivo
+    y no el contador: «una decisión» pero «un trabajo».
+    """
+    return singular if n == 1 else "%s %s" % (CUENTA.get(n, str(n)), plural)
+
 
 doc = f"""<!doctype html>
 <html lang="es"><head><meta charset="utf-8">
@@ -174,7 +179,8 @@ doc = f"""<!doctype html>
 <div class="verdict">
 <p><strong>Los cinco pedidos del Checkpoint 1 están cerrados</strong>, más los dos opcionales, y las
 tres tareas de fortalecimiento de C9 tienen entregable. No queda ninguna medición grande pendiente.
-Lo que sigue son <strong>tres decisiones y dos trabajos chicos</strong>, no producir el
+Lo que sigue son <strong>{contar(n_dec, "una decisión", "decisiones")} y
+{contar(n_tra, "un trabajo chico", "trabajos chicos")}</strong>, no producir el
 entregable.</p>
 <p>Dos cosas bloquean al resto: el dato que falta para mandar el correo al investigador, y cuál es
 el análisis primario de la validación retrospectiva, porque decidirlo después de ver los datos
@@ -210,12 +216,6 @@ de los puntos, y hay puntos con solapamiento cero. El par <code>ATPaseD_Dm</code
 <code>CP_MRFV</code> es un empate práctico: se invierte en casi la mitad de la grilla. Lo defendible
 es entregar una <strong>región candidata, no un sitio</strong>.
 <a href="research/ola3/C9_sensibilidad_umbral/index.html">Leer C9</a>.</p>
-
-<h2>Últimos commits</h2>
-<div class="tw"><ul>
-{commits_html}
-</ul></div>
-<p>Rama: <code>{html.escape(rama)}</code>{" — sincronizada con el remoto." if sincronizado else " — hay commits sin sincronizar."}</p>
 
 <footer>
   <p>Marcadores de evidencia: <span class="tag e">E</span> establecido ·
