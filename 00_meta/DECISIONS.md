@@ -594,9 +594,15 @@ largo de ventana como parámetro declarado) sigue vigente.
 **Alternativas consideradas:** (a) mantener *Macrosteles* como en D22, donde reordena la
 recomendación de `BicC_Dm`; (b) incluirlo solo como sensibilidad.
 **Criterio:** decisión del equipo, con el argumento de que la especie no está en Argentina y por
-lo tanto no es un organismo expuesto. **Ese argumento no está verificado**: una búsqueda inicial
+lo tanto no es un organismo expuesto. ~~**Ese argumento no está verificado**: una búsqueda inicial
 no encontró registros sudamericanos, pero no es un catálogo de distribución, así que es `[R]` y
-queda pendiente. Contra (a): *Macrosteles* se había incorporado como sustituto filogenético del
+queda pendiente.~~ **Verificado el 2026-10-21 contra GBIF** (`taxonKey` 2039662): de 3.592
+ocurrencias, 2.929 son de Canadá y 549 de Estados Unidos, y hay cero en Argentina y cero en las
+siete consultas sudamericanas (AR, BR, CL, UY, PY, BO, PE); los únicos registros neotropicales son
+cuatro ocurrencias sueltas en México, Panamá, Jamaica y Puerto Rico. El género llega a Argentina
+con una sola ocurrencia. `[E]` La premisa fáctica se sostiene. Queda la salvedad de método: GBIF
+mide esfuerzo de muestreo y Sudamérica está submuestreada para Cicadellidae, así que lo que
+sostiene la conclusión es la proporción y la concentración norteamericana, no el cero aislado `[H]`. Contra (a): *Macrosteles* se había incorporado como sustituto filogenético del
 resto de los Deltocephalinae, no por exposición directa, y ese uso no se descarta con su
 ausencia en Argentina; se acepta igual porque el equipo prefiere acotar el panel a organismos
 con exposición plausible.

@@ -845,8 +845,17 @@ En orden de cuánto cambian lo que hacemos:
 
 ### Pendientes internos
 
-- **Verificar la distribución de *Macrosteles quadrilineatus*** con un catálogo (GBIF, Biodiversidad
-  Virtual o un catálogo de Cicadellidae argentinos) antes de dar D23 por cerrada.
+- ~~**Verificar la distribución de *Macrosteles quadrilineatus*** con un catálogo (GBIF, Biodiversidad
+  Virtual o un catálogo de Cicadellidae argentinos) antes de dar D23 por cerrada.~~ **Cerrado el
+  2026-10-21 contra GBIF** (`api.gbif.org`, `taxonKey` 2039662, consulta de ocurrencias por país):
+  de **3.592 ocurrencias**, 2.929 son de Canadá y 549 de Estados Unidos, y hay **cero en Argentina
+  y cero en todo Sudamérica** (se consultaron AR, BR, CL, UY, PY, BO y PE, las siete en 0). Los
+  registros neotropicales son cuatro, de una ocurrencia cada uno: México, Panamá, Jamaica y Puerto
+  Rico. El género sí llega al país, con **una** ocurrencia en Argentina (`taxonKey` 2039592). `[E]`
+  La premisa fáctica de D23 queda verificada. La salvedad de método: GBIF registra esfuerzo de
+  muestreo, de modo que la ausencia de registros no es prueba de ausencia, y Sudamérica está
+  submuestreada para Cicadellidae; lo que sostiene la conclusión es la razón 0 sobre 3.592 con la
+  distribución concentrada en América del Norte, no el cero aislado. `[H]`
 - **La regla terminal a 22 nt sigue siendo nuestra decisión** (posición relativa), no la del original.
 - **Las regiones propuestas de `eth` y `burs-alpha` no están verificadas contra la conservación
   dentro de *D. maidis***, igual que las de W7.

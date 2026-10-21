@@ -77,15 +77,36 @@ mitades se tocan.
 | --- | --- | --- | --- |
 | 1 · Entender si-Fi21 | **Cubierto como contenido, falta el documento** | `tools/sifi21_port/` + `research/ola3/C1_sifi21_paper_metodo/` | La nota corta y legible, para él (T1) |
 | 2 · Benchmarking de las tres | **Cerrado** | `W7_ranking/benchmark_tres_herramientas.md` | Nada del pedido |
-| 3 · Ranking con criterio | **Cerrado** | `W7_ranking/REPORT.md` §2 a §4 | Rehacerlo con el panel ampliado (T3) |
-| 4 · Evaluación de las regiones | **Cerrado, con una revisión pendiente** | `W7_ranking/REPORT.md` §2.2 y §2.3 | La recomendación de `BicC_Dm` no sobrevive al panel ampliado |
+| 3 · Ranking con criterio | **Cerrado, con v2** | `W7_ranking/REPORT.md` + `research/ola3/C7_ranking_v2/` | Nada |
+| 4 · Evaluación de las regiones | **Cerrado** | `W7_ranking/REPORT.md` §2.2 y §2.3, revisado en `C7_ranking_v2/` | Nada: la revisión se resolvió sacando *Macrosteles* del panel (D23) |
 | 5 · Crítica de las herramientas | **Material completo, sin documento** | Disperso en seis archivos | Juntarlo y escribirlo para él (T5) |
 | Opcional · 21 contra 22 | **Cerrado** | `research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` y `C6_panel_y_largo/` | Nada |
-| Opcional · Genes nuevos | **Cerrado como catálogo** | `research/ola3/C5_.../catalogo_genes_blanco.md` | Meter los dos mejores al ranking (T6) |
+| Opcional · Genes nuevos | **Cerrado, y ya en el ranking** | `C5_.../catalogo_genes_blanco.md` + `C7_ranking_v2/` | Nada |
 
-**Lo que esto quiere decir en una línea:** el entregable ya existe y lo que queda no es
-producirlo sino **reescribir dos piezas con lo que se midió después, y redactar dos documentos
-con material que ya está**. No hay ninguna medición grande pendiente.
+**Lo que esto quiere decir en una línea, al 2026-10-21:** de los cinco pedidos y los dos
+opcionales, **lo único que falta son dos documentos de redacción** —la nota legible de qué
+significa «eficiente» (T1) y la crítica unificada de las herramientas (T5)—, los dos con todo el
+material ya medido. No queda ninguna medición pendiente.
+
+El ranking v2 (`research/ola3/C7_ranking_v2/`, 2026-10-21) cerró las dos reescrituras que este
+plan listaba. Hizo lo que corresponde antes de agregar nada: **reprodujo a W7 exacto** —los cuatro
+conteos de eficientes, las cuatro fichas campo por campo y el barrido— y recién después sumó
+humano al panel, los dos genes nuevos y el cálculo a 21 y a 22 nt. Ninguna conclusión de W7 se
+cayó. Los dos genes nuevos entran sin vetos pero quedan cuartos y quintos cuando se compara a
+todos en su mejor región, y eso es por diseño: su aporte es la evidencia publicada, que se
+presenta como un eje descriptivo aparte y sin puntaje, porque sumarla al puntaje exigiría una
+equivalencia entre un fenotipo de microinyección y uno de ingesta que no tenemos (D24).
+
+**La revisión de `BicC_Dm` no se resolvió midiendo sino decidiendo, y conviene saberlo.** La
+recomendación de mover la región volvió a valer porque el equipo sacó a *Macrosteles
+quadrilineatus* del panel (D23), con el argumento de que la especie no está expuesta en Argentina.
+Ese argumento quedó **verificado el 2026-10-21 contra GBIF**: de 3.592 ocurrencias, 2.929 son de
+Canadá y 549 de Estados Unidos, y hay cero en Argentina y cero en las siete consultas
+sudamericanas. `[E]` Pero la decisión tiene un segundo flanco que sigue abierto y que el propio
+D23 declara: *Macrosteles* se había incorporado como **sustituto filogenético** del resto de los
+Deltocephalinae, no por exposición directa, y que no esté en Argentina no descarta ese uso. Si el
+investigador dice que los cicadélidos hermanos cuentan como no objetivo, la recomendación de
+`BicC_Dm` se vuelve a caer. Es la pregunta más barata y más cara de la lista.
 
 Y una pregunta que el checkpoint dejó abierta y que ahora tiene respuesta medida: **la cuenta del
 azar que él pidió para 18, 19 y 20 nucleótidos está hecha dos veces, por dos caminos, y las dos
@@ -374,9 +395,9 @@ que ahora hay un pedido explícito del investigador que ordena las prioridades.
 | Rama | Dueño de | Entregable | Estado |
 | --- | --- | --- | --- |
 | **Método** | T1 y T5 | La nota de qué significa «eficiente» y la crítica de las herramientas | **Es lo que falta.** Dos documentos de redacción, con todo el material ya medido |
-| **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho. Queda reescribir la recomendación de región contra el panel ampliado |
-| **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho. Queda la segunda versión con el panel ampliado |
-| **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho; falta meter los dos mejores candidatos al ranking |
+| **Medición** | T2 y T4 | El benchmarking de las tres herramientas y la auditoría de las cuatro regiones | Hecho, y la recomendación de región ya reescrita en la v2 |
+| **Decisión** | T3 | El ranking, las cuatro fichas y el análisis de sensibilidad | Hecho, con segunda versión (`C7_ranking_v2/`) |
+| **Evidencia** | T6 y la fase 2 | Los genes nuevos con su evidencia, el margen de conservación y las preguntas para él | Catálogo hecho y los dos mejores ya están en el ranking v2 |
 
 El hito a proteger ya se pasó: **la primera corrida punta a punta sobre los cuatro candidatos
 reales, con su ficha, existe desde el 2026-10-20**. Desde acá el riesgo cambia de naturaleza —ya
