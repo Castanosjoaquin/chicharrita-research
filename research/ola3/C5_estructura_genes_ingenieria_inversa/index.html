@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C5 &mdash; Estructura del ARN largo, genes blanco e ingenier&iacute;a inversa</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigath&oacute;n Y-Hat &middot; ola 3 &middot; l&iacute;nea C5</p>
+    <h1>Estructura del ARN largo, genes blanco en hemípteros e ingenier&iacute;a inversa</h1>
+    <p class="sub">Las tres preguntas que el investigador marc&oacute; como el l&iacute;mite del campo:
+    si se puede predecir c&oacute;mo se pliega un ARN de 800 nucle&oacute;tidos y si eso cambia la
+    eficiencia; qu&eacute; genes blanco tienen evidencia en cicad&eacute;lidos; y si su circuito de
+    ingenier&iacute;a inversa coincide con la pr&aacute;ctica publicada y con nuestro pipeline.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">Las tres respuestas</h2>
+    <p class="lead"><strong>Q1. Lo que no se puede predecir de un ARN largo es la estructura
+    <em>global</em>; la local s&iacute; se predice, y es la que usa si-Fi21. Y hay evidencia en
+    insectos: la estructura del siRNA de 21 nt predice eficacia, la accesibilidad del ARNm
+    no.</strong></p>
+    <p>Exactitud mediana de pares de bases: <strong>0,65</strong> para plegado local con alcance 150
+    contra <strong>0,55</strong> del global, sobre 2.158 elementos curados de 90 familias de Rfam, con
+    fracaso en el 11&nbsp;% contra el 22&nbsp;% de los casos; la ventaja del local crece en ARNm
+    completos. El 85&nbsp;% de los apareamientos reales cae dentro de 100 nt.
+    <span class="tag e">E</span></p>
+    <p>En el &uacute;nico experimento controlado en insectos &mdash;31 siRNA individuales a 1 &micro;g/&micro;L
+    en larvas L5 de <em>Tribolium castaneum</em> (n&nbsp;=&nbsp;20), m&aacute;s 8 genes con tres o cuatro
+    ARNdc cada uno a 1 ng/&micro;L (n&nbsp;=&nbsp;25)&mdash; result&oacute; significativa la
+    <strong>ausencia de autoplegado del antisentido</strong> y <strong>no</strong> la accesibilidad del
+    sitio blanco: P&nbsp;&gt;&nbsp;0,05 en el modelo de Cox y <strong>P&nbsp;=&nbsp;0,41</strong> en la
+    regresi&oacute;n, donde adem&aacute;s se hab&iacute;an dise&ntilde;ado ARNdc expresamente sobre la
+    regi&oacute;n m&aacute;s accesible. <span class="tag e">E</span></p>
+    <p class="lead"><strong>Q2. Treinta y seis filas de cat&aacute;logo, veinte nuevas, con un blanco
+    letal y esterilizante probado en dos g&eacute;neros de cicad&eacute;lidos de nuestra subfamilia.</strong></p>
+    <p>La subunidad reguladora del proteasoma 26S que los autores llaman <code>Rpn6</code>: 80 ng por
+    insecto por microinyecci&oacute;n, transcripto reducido entre 5,8 y 14,9 veces, supervivencia menor
+    (P&nbsp;=&nbsp;0,028 contra dsGFP en <em>Scaphoideus titanus</em>, P&nbsp;&lt;&nbsp;0,001 en
+    <em>Euscelidius variegatus</em>) y progenie de <strong>0,03 ninfas por d&iacute;a de
+    oviposici&oacute;n contra 1,5</strong> de los no tratados. <span class="tag e">E</span></p>
+    <p class="lead"><strong>Q3. El circuito es la pr&aacute;ctica est&aacute;ndar y se rompe justo donde
+    &eacute;l dijo: en la identidad.</strong></p>
+    <p>El 99&nbsp;% de identidad no se alcanza entre g&eacute;neros de cicad&eacute;lidos: medimos
+    83,6&nbsp;% de identidad de nucle&oacute;tidos entre el <code>Rpn6</code> de <em>S. titanus</em> y su
+    ort&oacute;logo en <em>Macrosteles quadrilineatus</em>, y sobre 12.540 loci recuperados la identidad
+    proteica mediana es <strong>0,866</strong>, con s&oacute;lo <strong>244 loci (1,9&nbsp;%)</strong> por
+    encima de 0,99. <span class="tag q">H</span></p>
+    <p><strong>384 o 684 no es ninguna de las dos</strong>, y ya estaba adjudicado en la memoria del
+    proyecto antes de esta corrida. C5 lo verific&oacute; de forma independiente y agrega una quinta
+    cifra con la referencia que el propio circuito recomienda: <strong>32.269 de 34.269
+    prote&iacute;nas con locus, en 12.540 loci distintos</strong>. <span class="tag e">E</span></p>
+  </section>
+
+  <h2>Q1 &mdash; Qu&eacute; se puede y qu&eacute; no se puede predecir</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Exactitudes medidas sobre conjuntos curados, no estimaciones. Las dos primeras filas
+    salen de Lange et&nbsp;al. 2012 (<em>NAR</em> 40:5215), abierto por esta investigaci&oacute;n; las dos
+    &uacute;ltimas, de las fuentes que abri&oacute; R4 §2.</caption>
+    <thead>
+      <tr><th>Qu&eacute;</th><th>M&eacute;todo</th><th>Qu&eacute; tan bien</th><th>&iquest;Aplica a 800 nt?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Plegado <strong>global</strong> de m&iacute;nima energ&iacute;a libre</td><td><code>RNAfold</code></td>
+          <td class="num">0,55 de exactitud mediana; 22&nbsp;% sin predecir</td><td>s&iacute;, pero es la peor opci&oacute;n</td></tr>
+      <tr><td>Plegado <strong>local</strong> con alcance acotado</td><td><code>Rfold</code>, <code>RNAplfold</code>, <code>LocalFold</code> (L&nbsp;=&nbsp;150)</td>
+          <td class="num">0,65 / 0,60 / 0,62; 11-15&nbsp;% sin predecir</td><td>s&iacute;, es el r&eacute;gimen correcto</td></tr>
+      <tr><td><strong>Accesibilidad</strong> de un tramo corto</td><td><code>RNAplfold -u</code> (si-Fi21: W&nbsp;=&nbsp;80, L&nbsp;=&nbsp;40, u&nbsp;=&nbsp;21)</td>
+          <td>cantidad f&iacute;sica con significado definido</td><td>s&iacute;</td></tr>
+      <tr><td>Apareamientos de <strong>largo alcance</strong> (&gt;&nbsp;150 nt)</td><td>cualquiera</td>
+          <td>el global s&oacute;lo gana en familias con alcances de 338 y 551 nt</td><td><strong>no</strong></td></tr>
+      <tr><td>Estructura secundaria con aprendizaje profundo</td><td>MXfold2, UFold, modelos de lenguaje</td>
+          <td class="num">F1 de 0,72 a 0,50 dejando una familia afuera</td><td>no cambia el panorama</td></tr>
+      <tr><td>Estructura <strong>terciaria</strong></td><td>CASP16, RhoFold+, AlphaFold3</td>
+          <td>ninguna estructura natural no vista super&oacute; TM-score 0,8</td><td><strong>no</strong></td></tr>
+      <tr><td>Estructura <strong>en condiciones reales</strong></td><td>&mdash;</td>
+          <td>no hay m&eacute;todo evaluado</td><td><strong>no</strong> <span class="tag q">?</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="calls">
+    <div class="call warn"><p class="k">Dato experimental disponible</p><p class="v">170.000 de 2.000.000</p>
+      <p class="n">Secuencias de Ribonanza con se&ntilde;al-ruido mayor que 1 en las dos qu&iacute;micas. <span class="tag r">R</span></p></div>
+    <div class="call warn"><p class="k">Largo m&aacute;ximo medido</p><p class="v">457 nt</p>
+      <p class="n">Y los insertos m&aacute;s largos dan <em>menor</em> fracci&oacute;n de secuencias con se&ntilde;al utilizable. <span class="tag r">R</span></p></div>
+    <div class="call stop"><p class="k">Plegado del ARNdc largo y eficacia</p><p class="v">sin estudios</p>
+      <p class="n">No encontramos ning&uacute;n trabajo que lo mida, en insectos ni fuera. Vac&iacute;o documentado. <span class="tag q">?</span></p></div>
+  </div>
+
+  <h2>Q2 &mdash; Los candidatos nuevos, con su ventana y su riesgo</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Criterio de eficiencia de si-Fi21 (port del repositorio, modo <em>fiel</em>, ViennaRNA
+    2.7.2) sobre secuencia p&uacute;blica. Las dos primeras filas son secuencia de <em>Dalbulus
+    maidis</em>; las dem&aacute;s usan el ort&oacute;logo de otra especie y eso es un sustituto declarado.
+    Las columnas de especificidad dan 21-meros perfectos sobre el total de ventanas.</caption>
+    <thead>
+      <tr><th>Gen (secuencia usada)</th><th>Ventanas</th><th>Eficientes</th><th>Mejor regi&oacute;n de 200 nt</th><th>En genoma de <em>D. maidis</em></th><th>En <em>H. vitripennis</em></th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>eth</code> &middot; <em>D. maidis</em> (PZ371507.1)</td><td class="num">595</td><td class="num"><strong>44</strong> (7,4&nbsp;%)</td><td class="num">194-393 &middot; 24 ef.</td><td class="num">539</td><td class="num">1</td></tr>
+      <tr><td><code>burs-&alpha;</code> &middot; <em>D. maidis</em> (PZ371508.1)</td><td class="num">448</td><td class="num"><strong>33</strong> (7,4&nbsp;%)</td><td class="num">45-244 &middot; 20 ef.</td><td class="num">398</td><td class="num">0</td></tr>
+      <tr><td><code>Rpn6</code> &middot; <em>S. titanus</em> (TSA)</td><td class="num">1393</td><td class="num"><strong>179</strong> (12,8&nbsp;%)</td><td class="num">1123-1322 &middot; 51 ef.</td><td class="num">14</td><td class="num">6</td></tr>
+      <tr><td><code>Rpn6</code> &middot; <em>E. variegatus</em> (TSA)</td><td class="num">1463</td><td class="num"><strong>112</strong> (7,7&nbsp;%)</td><td class="num">87-286 &middot; 36 ef.</td><td class="num">22</td><td class="num">6</td></tr>
+      <tr><td><code>Rpn6</code> &middot; <em>M. quadrilineatus</em> (por homolog&iacute;a)</td><td class="num">1331</td><td class="num"><strong>98</strong> (7,4&nbsp;%)</td><td class="num">289-488 &middot; 25 ef.</td><td class="num">9</td><td class="num">1</td></tr>
+      <tr><td><code>PSMD11</code> &middot; <em>M. quadrilineatus</em> (por nombre)</td><td class="num">1412</td><td class="num"><strong>162</strong> (11,5&nbsp;%)</td><td class="num">579-778 &middot; 41 ef.</td><td class="num">117</td><td class="num">19</td></tr>
+      <tr><td>ATP sintasa &beta; &middot; <em>M. quadrilineatus</em></td><td class="num">1835</td><td class="num"><strong>111</strong> (6,0&nbsp;%)</td><td class="num">78-277 &middot; 29 ef.</td><td class="num">203</td><td class="num">65</td></tr>
+      <tr><td><code>Ruvbl1</code> &middot; <em>M. quadrilineatus</em></td><td class="num">1487</td><td class="num"><strong>123</strong> (8,3&nbsp;%)</td><td class="num">1-200 &middot; 26 ef.</td><td class="num">58</td><td class="num">4</td></tr>
+      <tr><td><code>XPO1</code> &middot; <em>M. quadrilineatus</em></td><td class="num">4409</td><td class="num"><strong>397</strong> (9,0&nbsp;%)</td><td class="num">1310-1509 &middot; 43 ef.</td><td class="num">271</td><td class="num">29</td></tr>
+      <tr><td>Troponina C &middot; <em>M. quadrilineatus</em></td><td class="num">663</td><td class="num"><strong>38</strong> (5,7&nbsp;%)</td><td class="num">453-652 &middot; 21 ef.</td><td class="num">17</td><td class="num">9</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p class="t">La primera columna de especificidad no es un off-target: es la prueba de transferencia.</p>
+    <p>Los dos genes de <em>D. maidis</em> recuperan el 89-91&nbsp;% de sus ventanas en el genoma del
+    vector. Los ort&oacute;logos de otras especies, entre el <strong>0,7&nbsp;% y el 11,1&nbsp;%</strong>.
+    Un ARNdc dise&ntilde;ado sobre el ort&oacute;logo de un cicad&eacute;lido pariente no sirve para
+    <em>D. maidis</em>: hay que recuperar la secuencia del vector antes de dise&ntilde;ar.
+    <span class="tag q">H</span></p>
+  </div>
+
+  <p>Dos contraejemplos que valen tanto como los blancos: silenciar <code>uk1_LRR</code> en
+  <em>E. variegatus</em> <strong>aument&oacute;</strong> la colonizaci&oacute;n del vector por el
+  fitoplasma, y silenciar <code>NcHig</code> en <em>Nephotettix cincticeps</em>
+  <strong>aument&oacute;</strong> la infecci&oacute;n por un rabdovirus. <span class="tag r">R</span> Son
+  genes a excluir expl&iacute;citamente, y ning&uacute;n tamizaje de esencialidad o de off-targets los
+  marcar&iacute;a.</p>
+
+  <h2>Q3 &mdash; Qu&eacute; cuenta cada cifra de &laquo;genes recuperados&raquo;</h2>
+
+  <div class="tw">
+  <table>
+    <caption>El circuito produce una cuenta distinta en cada paso y todas son leg&iacute;timas. Por eso
+    &laquo;384 o 684&raquo; no se pod&iacute;a resolver eligiendo entre dos n&uacute;meros.</caption>
+    <thead><tr><th>Qu&eacute; se cuenta</th><th>Cu&aacute;ntos</th><th>Referencia</th><th>D&oacute;nde se reproduce</th></tr></thead>
+    <tbody>
+      <tr><td>Prote&iacute;nas consulta con al menos un locus</td><td class="num">2.814 de 3.904 (72,1&nbsp;%)</td><td><em>Drosophila melanogaster</em></td><td><code>pipeline/REPORT.md</code> §2</td></tr>
+      <tr><td>Prote&iacute;nas consulta con al menos un locus</td><td class="num"><strong>32.269 de 34.269 (94,2&nbsp;%)</strong></td><td><em>Macrosteles quadrilineatus</em></td><td>C5, <code>scripts/01</code> y <code>05</code></td></tr>
+      <tr><td><strong>Loci distintos</strong> tras fusionar isoformas y solapes</td><td class="num"><strong>12.540</strong></td><td><em>Macrosteles quadrilineatus</em></td><td>C5, <code>scripts/05</code></td></tr>
+      <tr><td>Loci en la tabla unificada</td><td class="num">7.416</td><td>mezcla</td><td><code>pipeline/REPORT.md</code> §3</td></tr>
+      <tr><td>Loci con fenotipo de cribado asociado</td><td class="num">6.295 (84,9&nbsp;%)</td><td><em>Tribolium castaneum</em></td><td><code>tabla_unificada.py</code></td></tr>
+      <tr><td>Candidatos de alta confianza</td><td class="num">494</td><td>&mdash;</td><td><code>objetivo_candidatos.py</code></td></tr>
+      <tr><td>Genes en el tamizaje de especificidad</td><td class="num">438</td><td>&mdash;</td><td><code>no_objetivo_correr.py</code></td></tr>
+      <tr><td>Loci con doble respaldo (cribado y ARNi en hem&iacute;ptero)</td><td class="num">62</td><td>&mdash;</td><td><code>cruzar_hemipteros.py</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p class="t">El paso 4 del circuito falla por el nombre, y est&aacute; medido.</p>
+    <p>Buscado <strong>por nombre</strong> en el proteoma anotado, el <code>Rpn6</code> de
+    <em>S. titanus</em> lleva a la subunidad 11 del proteasoma &mdash;que es la que UniProt llama
+    <code>Rpn6</code> en <em>Drosophila</em>&mdash;; buscado <strong>por homolog&iacute;a</strong>, lleva a la
+    subunidad 6. Un <code>blastx</code> contra prote&iacute;nas revisadas lo ubica en PSMD6 humano con
+    45,2&nbsp;% sobre 409 amino&aacute;cidos y en <code>Rpn7</code> de <em>Drosophila</em> con 43,4&nbsp;%,
+    contra 20,4&nbsp;% sobre 167 para PSMD11. <span class="tag q">?</span> Cu&aacute;nto cuesta
+    equivocarse: <strong>162 contra 98 ventanas eficientes</strong>, un 65&nbsp;% de diferencia en el
+    n&uacute;mero con el que se decide, y dos loci en <strong>cromosomas distintos</strong> del vector
+    (<code>OZ319707.1</code> contra <code>OZ319708.1</code>). Alineando el ort&oacute;logo contra el locus
+    recuperado, el mismo par de genes da <strong>85,7&nbsp;%</strong> de identidad de nucle&oacute;tidos
+    ponderada sobre 1.232 nt (seis bloques ex&oacute;nicos, 83,7-88,7&nbsp;%) y <strong>0,978</strong> de
+    identidad proteica: el umbral del 99&nbsp;% significa cosas opuestas seg&uacute;n cu&aacute;l se mire.</p>
+  </div>
+
+  <h2>Lo que no sabemos</h2>
+  <p>Quince fuentes quedaron en resumen y no en texto completo &mdash;contra siete abiertas enteras y
+  tres ya le&iacute;das en la ola 2&mdash;, y las filas del cat&aacute;logo que dependen de ellas no
+  llevan dosis ni <code>n</code>; la m&aacute;s importante es el &uacute;nico estudio
+  de mortalidad por ARNi en <em>E. variegatus</em>, detr&aacute;s de muro de pago <span class="tag q">?</span>.
+  Seis de los ocho c&aacute;lculos de ventanas usan el ort&oacute;logo de otra especie porque no hay
+  secuencia p&uacute;blica del gen en <em>D. maidis</em> <span class="tag q">?</span>. No se corri&oacute;
+  ortolog&iacute;a rec&iacute;proca ni evaluaci&oacute;n de par&aacute;logos. Y sobre la frase del Nobel:
+  el equipo <strong>no puede aportar nada</strong> al problema de predecir el plegado de un ARN largo
+  en condiciones reales, porque el cuello de botella es instrumental y se degrada con el largo de la
+  mol&eacute;cula.</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>L&iacute;nea C5 de la ola 3. El desarrollo completo est&aacute; en <code>REPORT.md</code>, Q1 en
+    <code>estructura_arn_largo.md</code>, el cat&aacute;logo en <code>catalogo_genes_blanco.md</code> y
+    <code>catalogo_genes_blanco.json</code>, Q3 en <code>ingenieria_inversa.md</code>, los ejecutables
+    en <code>scripts/</code> y las salidas crudas en <code>resultados/</code>.</p>
+    <p>Esta p&aacute;gina no afirma nada que no est&eacute; en el <code>REPORT.md</code> con su fuente.
+    Ninguna secuencia de EPILAB se us&oacute; ni se envi&oacute; a ning&uacute;n servicio: todo el
+    c&oacute;mputo corri&oacute; local sobre secuencia p&uacute;blica.</p>
+  </div>
+</footer>
+</body>
+</html>

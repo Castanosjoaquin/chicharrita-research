@@ -1,0 +1,64 @@
+# Busqueda de 384 y 684 en toda la historia de git (no solo en el arbol actual)
+# fecha: 2026-10-20T20:17Z
+
+$ git log --oneline -S"384" --all
+edbe03f Reestructurar W7 en dos partes: lo que eligio EPILAB, y lo que proponemos
+88acb58 W7: pagina del ranking, y cerrar el paso 8 en el plan y la propuesta
+478f165 C1: el ranking de los cuatro candidatos, con el criterio defendido y barrido
+0c810a6 plan
+5d291da La curva del grafico cubre todo el gen, en vez de cortarse dentro de las bandas
+a02ce7a Criterio de un desajuste sobre los cuatro genes, y una pagina por gen con su grafico
+dd69d01 transcripción
+810addc Aporte de yHat: pipeline, plan paso a paso y tablero del equipo
+d49b77d W6 integrada: agentes de IA en ciencia, verificadores y tres patrones para el equipo
+97576ec R6 integrada: estrategias contra los mollicutes sin RNAi directo
+1b8b30d W5 integrada: los cuatro candidatos de EPILAB, caracterizados
+52fb773 W4 integrada: inventario genomico propio, bajado del NCBI
+5e31875 W3 integrada: las dos bases del corpus, medidas organismo por organismo
+dd9ec0e W2 integrada: las dos herramientas oficiales, y S2 cerrado
+517cf4b Normalizar sources.json al esquema pedido
+f69511f Síntesis, portada y memoria del proyecto al día
+0a38b15 R3 integrada: APOLO Biotech e industria del ARN aplicado al agro
+6692bab Notas de la sesión técnica oficial del Investigathón
+
+$ git log --oneline -S"684" --all
+77e1c8d El panel ampliado y el largo de ventana: dos huecos de W7, medidos
+88acb58 W7: pagina del ranking, y cerrar el paso 8 en el plan y la propuesta
+478f165 C1: el ranking de los cuatro candidatos, con el criterio defendido y barrido
+0c810a6 plan
+661f94e R7/M3: plantas, insectos y patógenos en vuelo y microgravedad simulada
+08a242d R7/M3: plantas, insectos y patógenos en vuelo y microgravedad simulada
+5d291da La curva del grafico cubre todo el gen, en vez de cortarse dentro de las bandas
+a02ce7a Criterio de un desajuste sobre los cuatro genes, y una pagina por gen con su grafico
+dd69d01 transcripción
+810addc Aporte de yHat: pipeline, plan paso a paso y tablero del equipo
+cac249a Figuras de datos de R6
+d49b77d W6 integrada: agentes de IA en ciencia, verificadores y tres patrones para el equipo
+97576ec R6 integrada: estrategias contra los mollicutes sin RNAi directo
+1b8b30d W5 integrada: los cuatro candidatos de EPILAB, caracterizados
+52fb773 W4 integrada: inventario genomico propio, bajado del NCBI
+f69511f Síntesis, portada y memoria del proyecto al día
+71d0869 R4 integrada: frontera de ML aplicado a biotecnología de ARN
+
+# Revision commit por commit de los .md y .py que contienen la cadena:
+$ for c in $(git rev-list --all); do git grep -lE "(384|684)" $c -- "*.md" "*.py"; done | sed "s/^[0-9a-f]*://" | sort | uniq -c | sort -rn
+  51 research/R5_metodologias_ejes/notes/evidencia_verificada.md
+  51 research/R2_attention_diseno_arn/notes/verificacion_fuentes.md
+  47 research/R4_frontier_ml_rna/notes/03_material_crudo_ampliacion.md
+  45 00_meta/FUENTES.md
+  38 research/ola2/W3_bases_datos/mapeo_identificadores.md
+  38 research/ola2/W3_bases_datos/consultas/07_mapeo_ids_ejecutado.md
+  38 research/ola2/W3_bases_datos/consultas/03_datasets_api_genomas.md
+  37 research/ola2/W4_genomas/REPORT.md
+  32 research/ola2/W6_agentes_ciencia/notas/BIO_notas.md
+  32 research/ola2/W6_agentes_ciencia/REPORT.md
+  21 research/checkpoints/checkpoint1.md
+  10 research/R7_microgravedad/M3_plantas_insectos_patogenos/busquedas.md
+   8 research/R7_microgravedad/M4_mollicutes_estructura/datos/COMANDOS.md
+   8 research/R7_microgravedad/M2_arn_microgravedad/busquedas.md
+   8 prompts/C5.md
+   7 research/ola2/W7_ranking/REPORT.md
+   7 prompts/C1_ranking.md
+   7 00_meta/PREGUNTAS_ABIERTAS.md
+
+# Ningun archivo de ninguna revision usa 384 ni 684 como cantidad de genes o de loci.

@@ -1,0 +1,51 @@
+# Busqueda de las cifras 384 y 684 en el repositorio y en su historia de git
+# fecha: 2026-10-20T20:00Z
+
+$ grep -rnoE "\b(384|684)\b" --include="*.md" --include="*.json" --include="*.py" --include="*.html" --include="*.csv" . | grep -v "/work/"
+# coincidencias totales:      146
+# contextos (unicos, excluyendo sources.json/papers.json/patrones.json de otras investigaciones):
+./research/ola2/W4_genomas/REPORT.md:203:569.630 bp más cloroplasto `NC_001666.2` de 140.384 bp, que suman 710.014 bp.
+./research/ola2/W4_genomas/REPORT.md:289:`GCF_004788335.1`: una secuencia de 2.746 nt, GC **51,384 %**, **4 genes** y **5 CDS**
+./research/ola2/W3_bases_datos/consultas/03_datasets_api_genomas.md:65:| `GCF_001274875.1` | 0.396 | 0.128 | 0.169 | — | 0.216 | 0.384 | 0.991 |
+./research/ola2/W5_secuencias_epilab/genes/ATPaseD_Dm.html:167:<polygon class="area" points="58.0,202.0 58.0,146.0 59.9,146.0 61.8,146.0 63.7,146.0 65
+./research/ola2/W5_secuencias_epilab/genes/ATPaseD_Dm.html:169:<polyline class="line" points="338.9,76.0 340.8,76.0 342.7,76.0 344.5,76.0 346.4,76.0 3
+./research/ola2/W5_secuencias_epilab/genes/CP_MRFV.html:172:<polygon class="area" points="58.0,202.0 58.0,194.0 59.7,194.0 61.5,194.0 63.2,194.0 65.0,
+./research/ola2/W5_secuencias_epilab/genes/CP_MRFV.html:174:<polyline class="line" points="231.0,138.0 232.8,130.0 234.5,122.0 236.2,130.0 238.0,130.0
+./research/ola2/W5_secuencias_epilab/genes/MP_MRFV.html:169:<polygon class="area" points="58.0,202.0 58.0,171.1 58.7,171.1 59.4,171.1 60.1,171.1 60.9,
+./research/ola2/W5_secuencias_epilab/genes/MP_MRFV.html:171:<polyline class="line" points="128.6,69.4 129.3,69.4 130.0,69.4 130.8,73.8 131.5,78.2 132.
+./research/ola2/W5_secuencias_epilab/genes/BicC_Dm.html:169:<polygon class="area" points="58.0,202.0 58.0,188.4 58.4,188.4 58.7,188.4 59.1,188.4 59.4,
+./research/ola2/W5_secuencias_epilab/genes/BicC_Dm.html:171:<polyline class="line" points="110.8,188.4 111.2,188.4 111.5,188.4 111.9,188.4 112.2,188.4
+./research/ola2/W5_secuencias_epilab/genes/BicC_Dm.html:214:<rect class="tick-efic" x="384.5" y="228.0" width="1.6" height="11"/>
+./research/ola2/W7_ranking/index.html:556:<p>El veto deja material de sobra: <strong>1.384 de 2.201 regiones</strong> de
+./research/ola2/W7_ranking/index.html:940:  <p><strong>«384 o 684 genes recuperados del mapeo»: ninguno de los dos.</strong>
+./research/ola2/W7_ranking/index.html:942:  tamizaje de especificidad; «384» es probablemente una transposición de 438.
+./research/ola2/W7_ranking/REPORT.md:372:**1.384 de 2.201 en `BicC_Dm` y 92 de 172 en `ATPaseD_Dm`.** `[E]` El argumento de
+./research/ola2/W6_agentes_ciencia/index.html:272:<script id="data" type="application/json">[{"id": "PAT-01", "nombre": "Agente único de bucle de có
+./research/ola2/W6_agentes_ciencia/REPORT.md:157:| ALDE (enzima) | Genes exactos en 1 semana | 384 aleatorias + 2 rondas de ~90 (~0,01 % del espacio) 
+./research/ola2/W6_agentes_ciencia/REPORT.md:165:Los grupos serios no reemplazan el ensayo, lo racionan, con cinco estrategias y evidencias de calidad
+./research/ola2/W6_agentes_ciencia/notas/BIO_notas.md:105:**GPT-5 + nube de laboratorio de Ginkgo** (preprint bioRxiv, febrero de 2026; la nota de Ope
+./research/ola2/W6_agentes_ciencia/notas/BIO_notas.md:132:Evidencia de que funciona: ALDE llevó el rendimiento de un producto de 12 % a 93 % en la pr
+./research/ola2/W6_agentes_ciencia/notas/BIO_notas.md:209:| ALDE (enzima, rendimiento de un producto) | Genes exactos entregados en 1 semana, lo que a
+./research/ola2/W6_agentes_ciencia/notas/BIO_notas.md:274:| ALDE: 12 % → 93 % → 99 % de rendimiento con 384 aleatorias + 2 rondas de ~90 | BIO-37 
+./research/checkpoints/checkpoint1.md:373:mapeamos contra genomas que sí lo están. Encontramos del orden de **384 o 684
+./research/checkpoints/checkpoint1.md:380:> **Resuelto el 2026-10-20: no es ninguna de las dos.** `[E]` Ni 384 ni 684
+./research/checkpoints/checkpoint1.md:384:> tamizaje de especificidad. La más parecida a «384» es **438**, que es una
+./research/checkpoints/checkpoint1.md:385:> transposición de dígitos plausible en un audio; «684» no se parece a ninguna.
+./research/checkpoints/checkpoint1.md:474:3. ~~Resolver si los genes recuperados del mapeo son 384 o 684.~~ **Resuelto el
+./research/R3_apolo_biotech/index.html:447:    <text x="24" y="384" font-size="13" font-weight="700" fill="var(--crimson)" font-family="Georgia,serif"
+./research/R5_metodologias_ejes/notes/evidencia_verificada.md:26:  PacBio Revio (ERR15499462, 69.624.384.652 bases) y una de Hi-C en NovaSeq X
+./00_meta/PREGUNTAS_ABIERTAS.md:685:- **384 o 684 genes recuperados del mapeo.** `[E]` **Ninguno de los dos.** Ni 384 ni
+./00_meta/PREGUNTAS_ABIERTAS.md:686:  684 corresponde a ninguna cantidad que hayamos producido. Las cifras reales del
+./00_meta/PREGUNTAS_ABIERTAS.md:689:  tamizaje de especificidad. La más parecida a «384» es **438**, que es una
+./00_meta/PREGUNTAS_ABIERTAS.md:690:  transposición de dígitos plausible en un audio; «684» no se parece a ninguna.
+./00_meta/PREGUNTAS_ABIERTAS.md:704:  elegidas de `BicC_Dm` y `ATPaseD_Dm` y no a las dos virales, y hay 1.384 de 2.201 y
+./prompts/C1_ranking.md:246:- **384 o 684 genes recuperados del mapeo.** Se resuelve contra nuestros propios
+./prompts/C5.md:15:práctica estándar y con lo que ya hizo nuestro pipeline, incluida la discrepancia entre 384 y 684
+./prompts/C5.md:56:buscando «384» y «684».
+./prompts/C5.md:90:propios resultados si los genes recuperados son 384 o 684: el investigador dijo las dos cifras
+./prompts/C5.md:97:2. La parte computacional (ventanas eficientes por gen nuevo, el conteo de 384 o 684): con
+./prompts/C5.md:160:4. ingenieria_inversa.md — Q3, el circuito contrastado y la resolución de 384 o 684.
+./prompts/C5.md:173:- ¿La respuesta sobre 384 o 684 viene de un conteo reproducido, con el comando, y dice qué
+
+$ for c in $(git rev-list --all); do git grep -nE "\b(384|684)\b" $c -- "*.md" "*.py" "*.json"; done  # resumido con git log -S
+# git log -S 384 / -S 684 (ver 384_684_git.txt)

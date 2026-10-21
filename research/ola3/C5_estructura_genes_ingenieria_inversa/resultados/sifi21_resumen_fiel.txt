@@ -1,0 +1,61 @@
+== eth_Dmaidis_PZ371507 ==
+   largo 615, ventanas 595
+   eficientes: 44  (7.4%)
+   desglose: hebra 299, extremos 205, accesibilidad 99, termodinamico 41
+   mejor region de 200 nt: 194-393 con 24 eficientes
+
+== bursA_Dmaidis_PZ371508 ==
+   largo 468, ventanas 448
+   eficientes: 33  (7.4%)
+   desglose: hebra 237, extremos 147, accesibilidad 77, termodinamico 28
+   mejor region de 200 nt: 45-244 con 20 eficientes
+
+== Rpn6_Stitanus_GJQL01135962 ==
+   largo 1413, ventanas 1393
+   eficientes: 179  (12.8%)
+   desglose: hebra 695, extremos 480, accesibilidad 393, termodinamico 163
+   mejor region de 200 nt: 1123-1322 con 51 eficientes
+
+== Rpn6_Evariegatus_GFTU01006765 ==
+   largo 1483, ventanas 1463
+   eficientes: 112  (7.7%)
+   desglose: hebra 716, extremos 514, accesibilidad 253, termodinamico 105
+   mejor region de 200 nt: 87-286 con 36 eficientes
+
+== Rpn6_Mquadrilineatus_XM_054426723 ==
+   largo 1351, ventanas 1331
+   eficientes: 98  (7.4%)
+   desglose: hebra 670, extremos 469, accesibilidad 187, termodinamico 89
+   mejor region de 200 nt: 289-488 con 25 eficientes
+
+== PSMD11_Mquadrilineatus_XM_054432574 ==
+   largo 1432, ventanas 1412
+   eficientes: 162  (11.5%)
+   desglose: hebra 700, extremos 477, accesibilidad 368, termodinamico 139
+   mejor region de 200 nt: 579-778 con 41 eficientes
+
+== ATPsynBeta_Mquadrilineatus_XM_054410120 ==
+   largo 1855, ventanas 1835
+   eficientes: 111  (6.0%)
+   desglose: hebra 920, extremos 630, accesibilidad 257, termodinamico 99
+   mejor region de 200 nt: 78-277 con 29 eficientes
+
+== Ruvbl1_Mquadrilineatus_XM_054402769 ==
+   largo 1507, ventanas 1487
+   eficientes: 123  (8.3%)
+   desglose: hebra 743, extremos 520, accesibilidad 264, termodinamico 111
+   mejor region de 200 nt: 1-200 con 26 eficientes
+
+== XPO1_Mquadrilineatus_XM_054404977 ==
+   largo 4429, ventanas 4409
+   eficientes: 397  (9.0%)
+   desglose: hebra 2199, extremos 1502, accesibilidad 883, termodinamico 353
+   mejor region de 200 nt: 1310-1509 con 43 eficientes
+
+== TnC_Mquadrilineatus_XM_054409464 ==
+   largo 683, ventanas 663
+   eficientes: 38  (5.7%)
+   desglose: hebra 324, extremos 218, accesibilidad 85, termodinamico 28
+   mejor region de 200 nt: 453-652 con 21 eficientes
+
+escrito en work/C5/sifi21/fiel

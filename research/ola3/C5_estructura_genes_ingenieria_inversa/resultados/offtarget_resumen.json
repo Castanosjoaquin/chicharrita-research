@@ -1,0 +1,402 @@
+[
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "ATPsynBeta_Mquadrilineatus_XM_054410120",
+    "siRNA_perfecto_ge19": 336,
+    "siRNA_perfecto_21": 203,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 10
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "PSMD11_Mquadrilineatus_XM_054432574",
+    "siRNA_perfecto_ge19": 214,
+    "siRNA_perfecto_21": 117,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 10
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "Rpn6_Evariegatus_GFTU01006765",
+    "siRNA_perfecto_ge19": 91,
+    "siRNA_perfecto_21": 22,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 9
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "Rpn6_Mquadrilineatus_XM_054426723",
+    "siRNA_perfecto_ge19": 63,
+    "siRNA_perfecto_21": 9,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 6
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "Rpn6_Stitanus_GJQL01135962",
+    "siRNA_perfecto_ge19": 89,
+    "siRNA_perfecto_21": 14,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 9
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "Ruvbl1_Mquadrilineatus_XM_054402769",
+    "siRNA_perfecto_ge19": 101,
+    "siRNA_perfecto_21": 58,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 6
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "TnC_Mquadrilineatus_XM_054409464",
+    "siRNA_perfecto_ge19": 72,
+    "siRNA_perfecto_21": 17,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 10
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "XPO1_Mquadrilineatus_XM_054404977",
+    "siRNA_perfecto_ge19": 592,
+    "siRNA_perfecto_21": 271,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 11
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "bursA_Dmaidis_PZ371508",
+    "siRNA_perfecto_ge19": 410,
+    "siRNA_perfecto_21": 398,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 2
+  },
+  {
+    "base_de_datos": "GCA_975739785.1_ihDalMaid1.1_genomic.fna",
+    "consulta": "eth_Dmaidis_PZ371507",
+    "siRNA_perfecto_ge19": 553,
+    "siRNA_perfecto_21": 539,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 5
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "ATPsynBeta_Mquadrilineatus_XM_054410120",
+    "siRNA_perfecto_ge19": 1835,
+    "siRNA_perfecto_21": 1835,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 24
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "PSMD11_Mquadrilineatus_XM_054432574",
+    "siRNA_perfecto_ge19": 1412,
+    "siRNA_perfecto_21": 1412,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 3
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "Rpn6_Evariegatus_GFTU01006765",
+    "siRNA_perfecto_ge19": 34,
+    "siRNA_perfecto_21": 15,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 4
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "Rpn6_Mquadrilineatus_XM_054426723",
+    "siRNA_perfecto_ge19": 1331,
+    "siRNA_perfecto_21": 1331,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 5
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "Rpn6_Stitanus_GJQL01135962",
+    "siRNA_perfecto_ge19": 37,
+    "siRNA_perfecto_21": 18,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 6
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "Ruvbl1_Mquadrilineatus_XM_054402769",
+    "siRNA_perfecto_ge19": 1487,
+    "siRNA_perfecto_21": 1487,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 3
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "TnC_Mquadrilineatus_XM_054409464",
+    "siRNA_perfecto_ge19": 663,
+    "siRNA_perfecto_21": 663,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 4
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "XPO1_Mquadrilineatus_XM_054404977",
+    "siRNA_perfecto_ge19": 4409,
+    "siRNA_perfecto_21": 4409,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 11
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "bursA_Dmaidis_PZ371508",
+    "siRNA_perfecto_ge19": 4,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 2
+  },
+  {
+    "base_de_datos": "Macrosteles_quadrilineatus_rna.fna",
+    "consulta": "eth_Dmaidis_PZ371507",
+    "siRNA_perfecto_ge19": 52,
+    "siRNA_perfecto_21": 21,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 5
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "ATPsynBeta_Mquadrilineatus_XM_054410120",
+    "siRNA_perfecto_ge19": 124,
+    "siRNA_perfecto_21": 65,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 1
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "PSMD11_Mquadrilineatus_XM_054432574",
+    "siRNA_perfecto_ge19": 32,
+    "siRNA_perfecto_21": 19,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 11
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "Rpn6_Evariegatus_GFTU01006765",
+    "siRNA_perfecto_ge19": 18,
+    "siRNA_perfecto_21": 6,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 6
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "Rpn6_Mquadrilineatus_XM_054426723",
+    "siRNA_perfecto_ge19": 8,
+    "siRNA_perfecto_21": 1,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 28
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "Rpn6_Stitanus_GJQL01135962",
+    "siRNA_perfecto_ge19": 18,
+    "siRNA_perfecto_21": 6,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 7
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "Ruvbl1_Mquadrilineatus_XM_054402769",
+    "siRNA_perfecto_ge19": 18,
+    "siRNA_perfecto_21": 4,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 10
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "TnC_Mquadrilineatus_XM_054409464",
+    "siRNA_perfecto_ge19": 33,
+    "siRNA_perfecto_21": 9,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 13
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "XPO1_Mquadrilineatus_XM_054404977",
+    "siRNA_perfecto_ge19": 83,
+    "siRNA_perfecto_21": 29,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 19
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "bursA_Dmaidis_PZ371508",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0
+  },
+  {
+    "base_de_datos": "Homalodisca_vitripennis_rna.fna",
+    "consulta": "eth_Dmaidis_PZ371507",
+    "siRNA_perfecto_ge19": 5,
+    "siRNA_perfecto_21": 1,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 2
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "ATPsynBeta_Mquadrilineatus_XM_054410120",
+    "siRNA_perfecto_ge19": 23,
+    "siRNA_perfecto_21": 3,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 5
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "PSMD11_Mquadrilineatus_XM_054432574",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "Rpn6_Evariegatus_GFTU01006765",
+    "siRNA_perfecto_ge19": 3,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 5
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "Rpn6_Mquadrilineatus_XM_054426723",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "Rpn6_Stitanus_GJQL01135962",
+    "siRNA_perfecto_ge19": 8,
+    "siRNA_perfecto_21": 1,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 2
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "Ruvbl1_Mquadrilineatus_XM_054402769",
+    "siRNA_perfecto_ge19": 3,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 2
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "TnC_Mquadrilineatus_XM_054409464",
+    "siRNA_perfecto_ge19": 25,
+    "siRNA_perfecto_21": 2,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 34
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "XPO1_Mquadrilineatus_XM_054404977",
+    "siRNA_perfecto_ge19": 13,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 6
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "bursA_Dmaidis_PZ371508",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0
+  },
+  {
+    "base_de_datos": "Zea_mays_rna.fna",
+    "consulta": "eth_Dmaidis_PZ371507",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "ATPsynBeta_Mquadrilineatus_XM_054410120",
+    "siRNA_perfecto_ge19": 3,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 2
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "PSMD11_Mquadrilineatus_XM_054432574",
+    "siRNA_perfecto_ge19": 18,
+    "siRNA_perfecto_21": 3,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 6
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "Rpn6_Evariegatus_GFTU01006765",
+    "siRNA_perfecto_ge19": 6,
+    "siRNA_perfecto_21": 2,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 4
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "Rpn6_Mquadrilineatus_XM_054426723",
+    "siRNA_perfecto_ge19": 10,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 4
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "Rpn6_Stitanus_GJQL01135962",
+    "siRNA_perfecto_ge19": 6,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 36
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "Ruvbl1_Mquadrilineatus_XM_054402769",
+    "siRNA_perfecto_ge19": 4,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 1
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "TnC_Mquadrilineatus_XM_054409464",
+    "siRNA_perfecto_ge19": 3,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 5
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "XPO1_Mquadrilineatus_XM_054404977",
+    "siRNA_perfecto_ge19": 39,
+    "siRNA_perfecto_21": 3,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 16
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "bursA_Dmaidis_PZ371508",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0
+  },
+  {
+    "base_de_datos": "Apis_mellifera_rna.fna",
+    "consulta": "eth_Dmaidis_PZ371507",
+    "siRNA_perfecto_ge19": 0,
+    "siRNA_perfecto_21": 0,
+    "siRNA_1mm_21": null,
+    "referencias_distintas": 0
+  }
+]
