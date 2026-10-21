@@ -1,0 +1,42 @@
+{
+ "MP_MRFV_full": {
+  "total": 1243,
+  "total_sin_off": 1243,
+  "eficientes": 142,
+  "eficientes_sin_off": 142,
+  "hits_bowtie": 1243,
+  "main_targets": [
+   "< ID=MP_MRFV_full | Region=None-None | Length=None | Annotation=[] >"
+  ]
+ },
+ "CP_MRFV_full": {
+  "total": 508,
+  "total_sin_off": 508,
+  "eficientes": 39,
+  "eficientes_sin_off": 39,
+  "hits_bowtie": 508,
+  "main_targets": [
+   "< ID=CP_MRFV_full | Region=None-None | Length=None | Annotation=[] >"
+  ]
+ },
+ "BicC_Dm_full": {
+  "total": 2500,
+  "total_sin_off": 2500,
+  "eficientes": 223,
+  "eficientes_sin_off": 223,
+  "hits_bowtie": 2504,
+  "main_targets": [
+   "< ID=BicC_Dm_full | Region=None-None | Length=None | Annotation=[] >"
+  ]
+ },
+ "ATPaseD_Dm_full": {
+  "total": 471,
+  "total_sin_off": 471,
+  "eficientes": 35,
+  "eficientes_sin_off": 35,
+  "hits_bowtie": 471,
+  "main_targets": [
+   "< ID=ATPaseD_Dm_full | Region=None-None | Length=None | Annotation=[] >"
+  ]
+ }
+}

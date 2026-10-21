@@ -1,0 +1,23 @@
+{
+ "archivo": "work/C2/apolorocket/exampleData/example.efficiency.figure.html",
+ "tamano_bytes": 3618238,
+ "metodo": "Se localizo la cadena '\"name\":\"Efficient siRNAs\"' y se extrajeron solo los arreglos x e y de ese trace de Plotly con una expresion regular; el HTML no se leyo entero ni se abrio en un navegador.",
+ "trace": {
+  "nombre": "Efficient siRNAs",
+  "largo_x": 1635,
+  "largo_y": 1635,
+  "maximo": 14,
+  "suma": 3380,
+  "suma_dividido_20": 169.0
+ },
+ "comparacion_con_volcado": {
+  "archivo": "exampleData/databaseDumps/apolorocket_dump_with_references_and_results.sql",
+  "fila": "efficiency.query_id = 6 (Drosophila_melanogaster_FBtr0070438, 1634 nt), method = 'sifi21'",
+  "identico": true,
+  "lectura": "La curva que muestra la figura es exactamente el arreglo INT[] guardado en la base: la plataforma dibuja lo que guarda, y lo que guarda es la curva, no el veredicto por ventana."
+ },
+ "off_by_one": {
+  "observacion": "La suma de la curva dividida por 20 da entero exacto en las dos filas del volcado (3380/20=169, 3280/20=164).",
+  "explicacion": "Cada siRNA eficiente suma 1 en 20 posiciones y no en 21, por el range(startQueryPos, endQueryPos) de figuresFunctions.py:168. El original de si-Fi cubre las 21 (show_plot.py:237)."
+ }
+}

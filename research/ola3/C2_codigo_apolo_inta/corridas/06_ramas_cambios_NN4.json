@@ -1,0 +1,38 @@
+{
+ "MP_MRFV_full": {
+  "n_cambios": 4,
+  "ramas": {
+   "rama1_at19_at2": 1,
+   "rama2_bypass": 0,
+   "rama3_gc2": 3,
+   "rama4_rechazo": 0
+  }
+ },
+ "CP_MRFV_full": {
+  "n_cambios": 1,
+  "ramas": {
+   "rama1_at19_at2": 0,
+   "rama2_bypass": 0,
+   "rama3_gc2": 1,
+   "rama4_rechazo": 0
+  }
+ },
+ "BicC_Dm_full": {
+  "n_cambios": 9,
+  "ramas": {
+   "rama1_at19_at2": 6,
+   "rama2_bypass": 0,
+   "rama3_gc2": 3,
+   "rama4_rechazo": 0
+  }
+ },
+ "ATPaseD_Dm_full": {
+  "n_cambios": 0,
+  "ramas": {
+   "rama1_at19_at2": 0,
+   "rama2_bypass": 0,
+   "rama3_gc2": 0,
+   "rama4_rechazo": 0
+  }
+ }
+}

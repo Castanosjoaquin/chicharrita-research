@@ -1,0 +1,25 @@
+== MP_MRFV_full ==
+   largo 1263, ventanas 1243
+   eficientes: 142  (11.4%)
+   desglose: hebra 663, extremos 458, accesibilidad 299, termodinamico 131
+   mejor region de 200 nt: 75-274 con 41 eficientes
+
+== CP_MRFV_full ==
+   largo 528, ventanas 508
+   eficientes: 39  (7.7%)
+   desglose: hebra 273, extremos 178, accesibilidad 90, termodinamico 34
+   mejor region de 200 nt: 99-298 con 25 eficientes
+
+== BicC_Dm_full ==
+   largo 2520, ventanas 2500
+   eficientes: 223  (8.9%)
+   desglose: hebra 1233, extremos 843, accesibilidad 488, termodinamico 179
+   mejor region de 200 nt: 1022-1221 con 34 eficientes
+
+== ATPaseD_Dm_full ==
+   largo 491, ventanas 471
+   eficientes: 35  (7.4%)
+   desglose: hebra 233, extremos 148, accesibilidad 76, termodinamico 31
+   mejor region de 200 nt: 104-303 con 22 eficientes
+
+escrito en work/C2/runs/port_fiel

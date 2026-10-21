@@ -1,0 +1,74 @@
+[
+ {
+  "gen": "MP_MRFV_full",
+  "n": 1243,
+  "eff_port_fiel": 142,
+  "eff_inta_nn3": 142,
+  "eff_inta_nn4": 138,
+  "difs": {
+   "is_efficient": 0,
+   "thermo": 0,
+   "strand": 0,
+   "end": 0,
+   "access": 0,
+   "accval": 0
+  },
+  "ejemplos": [],
+  "nn4_gana": 0,
+  "nn4_pierde": 4
+ },
+ {
+  "gen": "CP_MRFV_full",
+  "n": 508,
+  "eff_port_fiel": 39,
+  "eff_inta_nn3": 39,
+  "eff_inta_nn4": 40,
+  "difs": {
+   "is_efficient": 0,
+   "thermo": 0,
+   "strand": 0,
+   "end": 0,
+   "access": 0,
+   "accval": 0
+  },
+  "ejemplos": [],
+  "nn4_gana": 1,
+  "nn4_pierde": 0
+ },
+ {
+  "gen": "BicC_Dm_full",
+  "n": 2500,
+  "eff_port_fiel": 223,
+  "eff_inta_nn3": 223,
+  "eff_inta_nn4": 218,
+  "difs": {
+   "is_efficient": 0,
+   "thermo": 0,
+   "strand": 0,
+   "end": 0,
+   "access": 0,
+   "accval": 0
+  },
+  "ejemplos": [],
+  "nn4_gana": 2,
+  "nn4_pierde": 7
+ },
+ {
+  "gen": "ATPaseD_Dm_full",
+  "n": 471,
+  "eff_port_fiel": 35,
+  "eff_inta_nn3": 35,
+  "eff_inta_nn4": 35,
+  "difs": {
+   "is_efficient": 0,
+   "thermo": 0,
+   "strand": 0,
+   "end": 0,
+   "access": 0,
+   "accval": 0
+  },
+  "ejemplos": [],
+  "nn4_gana": 0,
+  "nn4_pierde": 0
+ }
+]

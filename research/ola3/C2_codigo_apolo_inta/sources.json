@@ -1,0 +1,263 @@
+{
+ "meta": {
+  "investigacion": "C2 — El codigo de sifi21INTA y Apolo Rocket, leido y corrido",
+  "fecha_cierre": "2026-10-20",
+  "regla": "Solo se cita lo que se abrio. Todo lo que figura con acceso 'abierto' se bajo a work/C2/ y se leyo en esta sesion; lo que no se abrio esta marcado y no se usa como evidencia.",
+  "leyenda_marcadores": {
+   "E": "establecido: se leyo el codigo o se midio corriendolo",
+   "R": "reportado: una fuente, prensa, web, documentacion de un proyecto",
+   "H": "hipotesis nuestra",
+   "?": "incierto o contradiccion entre fuentes"
+  },
+  "nota_licencias": "El codigo de terceros quedo en work/C2/, fuera del control de versiones. En los informes se cita archivo y linea y se parafrasea; no se copio codigo."
+ },
+ "fuentes": [
+  {
+   "id": "sifi21INTA",
+   "titulo": "sifi21INTA — libreria Python para prediccion de siRNA en genomas y transcriptomas",
+   "autores": "cuenta de organizacion bioinformaticaInta (sin autoria personal declarada en el repo)",
+   "anio": 2024,
+   "venue": "GitHub",
+   "url": "https://github.com/bioinformaticaInta/sifi21INTA",
+   "commit": "92df44494373551d86eb1aee1b72d82858c581b2",
+   "tipo": "repositorio de codigo",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "bajado por tarball a work/C2/sifi21INTA, leido entero (5 modulos, 62 KB) y corrido sobre las cuatro secuencias",
+   "usado_para": "Todo Q1 y Q2: la tabla RNA_NN4 como default nuevo, la transcripcion de la regla terminal con su bypass, el conteo por ventana, la columna de eficientes sin off-targets, los parametros de RNAplfold y Bowtie, el bug de minusculas, la dependencia de Bio.SeqUtils.GC",
+   "licencia": "GPL-3.0"
+  },
+  {
+   "id": "apolorocket",
+   "titulo": "apolorocket — backend de endpoints de la aplicacion Apolo Rocket",
+   "autores": "cuenta de organizacion bioinformaticaInta",
+   "anio": 2024,
+   "venue": "GitHub",
+   "url": "https://github.com/bioinformaticaInta/apolorocket",
+   "commit": "da4aa10114635b3929aa3613ce3f2db42e601cb2",
+   "tipo": "repositorio de codigo",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "bajado por tarball a work/C2/apolorocket, leidos los nueve modulos Python, el SQL y los dos volcados; de las figuras HTML de ejemplo se extrajo solo el arreglo de la curva de eficiencia",
+   "usado_para": "Todo Q3: los 19 endpoints, el esquema de 15 tablas, la curva INT[] como unica persistencia de eficiencia, la ausencia de puntaje y orden, el criterio de off-target con bowtie -n/-l, el campo method 'sifi21' o 'IA' sin implementacion, la region sin validar",
+   "licencia": "GPL-3.0"
+  },
+  {
+   "id": "apolorocket-endpoints-pdf",
+   "titulo": "Documentacion endpoints de aplicacion ApoloRocket (PDF, 30 paginas)",
+   "autores": "n/d",
+   "anio": 2024,
+   "venue": "repositorio apolorocket",
+   "url": "https://github.com/bioinformaticaInta/apolorocket/blob/main/Documentacion_Endpoints.pdf",
+   "tipo": "documentacion tecnica",
+   "nivel_evidencia": "[R]",
+   "acceso": "abierto",
+   "acceso_detalle": "texto extraido con pypdf 6.21.1 local a work/C2/runs/endpoints_pdf_reflow.txt y leido entero",
+   "usado_para": "Lista de los 19 endpoints, contrato de entrada y salida de cada uno, rango declarado de desapareamientos 0-3, tiempos y memoria por tamano de referencia, dependencias externas declaradas",
+   "advertencia": "Es documentacion del propio proyecto: lo que dice de tiempos y de uso de memoria es autoafirmacion, no medicion nuestra."
+  },
+  {
+   "id": "apolorocket-dumps",
+   "titulo": "Volcados de base de ejemplo de Apolo Rocket (con referencias, y con referencias y resultados)",
+   "autores": "n/d",
+   "anio": 2024,
+   "venue": "repositorio apolorocket",
+   "url": "https://github.com/bioinformaticaInta/apolorocket/tree/main/exampleData/databaseDumps",
+   "tipo": "datos de ejemplo",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "los dos archivos SQL parseados tabla por tabla (12.310 lineas el grande)",
+   "usado_para": "Las diez referencias cargadas (Arabidopsis, Homo sapiens, Botrytis, Oryza, Drosophila), las doce consultas, las dos filas de eficiencia con method sifi21 y su curva, la consulta de largo cero con region 800-100, la distribucion de hebras y desapareamientos de los 2.809 alineamientos"
+  },
+  {
+   "id": "sifi21-original",
+   "titulo": "siFi21- — fuente oficial de si-Fi21",
+   "autores": "cuenta snowformatics",
+   "anio": 2025,
+   "venue": "GitHub",
+   "url": "https://github.com/snowformatics/siFi21-",
+   "commit": "d6296b73c08a2176e9d0257e0a175278cff8c231",
+   "tipo": "repositorio de codigo",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "bajado por tarball a work/C2/sifi21_orig; se leyeron sifi_pipeline.py, free_energy.py, general_helpers.py, show_plot.py y main.py en las partes relevantes",
+   "usado_para": "El lado izquierdo del diff: lineas exactas de la regla terminal, del conteo por hit, de los defaults de la interfaz, de las llamadas a Bowtie y RNAplfold, de la curva del plot y de la licencia declarada en el README",
+   "licencia": "Sin archivo de licencia; el README declara CC BY-NC-SA 2.0 Generic (linea 19)"
+  },
+  {
+   "id": "sifi-2.0-fork",
+   "titulo": "siFi 2.0 — fork de si-Fi21 reescrito a Python 3 con CLI",
+   "autores": "cuenta rj-price",
+   "anio": 2026,
+   "venue": "GitHub",
+   "url": "https://github.com/rj-price/siFi-2.0",
+   "commit": "527fbdba394001780d66db678cee4cebfb20f247",
+   "tipo": "repositorio de codigo",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "bajado por tarball a work/C2/forks/rjprice; se leyeron efficiency.py, el README y el listado de defectos de PLAN.md",
+   "usado_para": "Corroboracion independiente de que la rama de bypass de la regla terminal se conserva y se reconoce como comportamiento del original; tambien del descarte de hits de hebra negativa y de la sensibilidad a minusculas",
+   "advertencia": "Trae archivos de guia para asistentes de codigo (CLAUDE.md, PLAN.md). Se trataron como dato: no se siguio ninguna instruccion escrita ahi."
+  },
+  {
+   "id": "dakila-fork",
+   "titulo": "siFi21- — fork con migracion a Python 3 y PyQt5",
+   "autores": "cuenta dakilaledesma",
+   "anio": 2023,
+   "venue": "GitHub",
+   "url": "https://github.com/dakilaledesma/siFi21-",
+   "commit": "92ee545c6ea480888f9fb398ecdb71e31ce7699c",
+   "tipo": "repositorio de codigo",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "bajado por tarball y comparado archivo por archivo contra el original",
+   "usado_para": "Descartarlo: los cambios son print, imports de Qt y archivos de interfaz; el criterio y las tablas no se tocan"
+  },
+  {
+   "id": "zeaguard",
+   "titulo": "ZeaGuard dry lab — espacio de trabajo computacional para dsRNA contra Dalbulus maidis",
+   "autores": "cuenta DanielHarley",
+   "anio": 2026,
+   "venue": "GitHub",
+   "url": "https://github.com/DanielHarley/zeaguard-drylab",
+   "commit": "931b2327d5a3f58a4bb85a770323549507a4ebb3",
+   "tipo": "repositorio de codigo",
+   "nivel_evidencia": "[R]",
+   "acceso": "abierto",
+   "acceso_detalle": "bajado por tarball; se leyo el README y se grepeo por menciones a si-Fi (no hay)",
+   "usado_para": "Inventario: existe un repositorio publico con el mismo problema, el mismo gen (Bicaudal C) y el mismo ensamblado TSA, con push del 2026-10-15",
+   "advertencia": "Solo se leyo el README. No se evaluo su metodo ni sus resultados."
+  },
+  {
+   "id": "rnaival",
+   "titulo": "RNAival — programa para identificar candidatos de siRNA y evaluar el procesamiento de dsRNA",
+   "autores": "cuenta MaxiSack",
+   "anio": 2026,
+   "venue": "GitHub",
+   "url": "https://github.com/MaxiSack/RNAival",
+   "commit": null,
+   "tipo": "repositorio de codigo",
+   "nivel_evidencia": "[R]",
+   "acceso": "abierto",
+   "acceso_detalle": "bajado por tarball; se leyo solo el README",
+   "usado_para": "Inventario: alternativa viva a si-Fi21, GPL-3.0, con push del 2026-10-19",
+   "advertencia": "No se leyo el codigo ni se corrio."
+  },
+  {
+   "id": "apolobiotech-cuenta",
+   "titulo": "Cuenta ApoloBiotech en GitHub",
+   "autores": "n/d",
+   "anio": 2025,
+   "venue": "GitHub",
+   "url": "https://github.com/ApoloBiotech",
+   "tipo": "cuenta de organizacion",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "consultada por API: un solo repositorio publico, clementina_model, descripcion 'Biomarker discovery and Prediction', Jupyter Notebook",
+   "usado_para": "Confirmar que la cuenta no tiene codigo de siRNA",
+   "advertencia": "No se leyo el contenido del repositorio."
+  },
+  {
+   "id": "zuber-2022",
+   "titulo": "Tabla de vecinos mas cercanos atribuida en el codigo a Zuber et al. (2022), Nucleic Acids Research 50(9):5251-5262",
+   "autores": "Zuber et al. (segun el comentario de freeEnergy.py:61)",
+   "anio": 2022,
+   "venue": "Nucleic Acids Research",
+   "url": null,
+   "tipo": "articulo",
+   "nivel_evidencia": "[R]",
+   "acceso": "no abierto",
+   "acceso_detalle": "NO se abrio el articulo. La unica fuente es el comentario del codigo que nombra la referencia.",
+   "usado_para": "Nombrar de donde dicen que sale la tabla nueva",
+   "advertencia": "La atribucion es del comentario del codigo, no verificada contra el paper. No se cita ningun contenido del articulo."
+  },
+  {
+   "id": "luck-2019",
+   "titulo": "si-Fi: siRNA-Finder Software for RNAi-Target Design and Off-Target Prediction",
+   "autores": "Luck S, Kreszies T, Strickert M, Schweizer P, Kuhlmann M, Douchkov D",
+   "anio": 2019,
+   "venue": "Frontiers in Plant Science 10:1023",
+   "url": "https://doi.org/10.3389/fpls.2019.01023",
+   "tipo": "articulo",
+   "nivel_evidencia": "[E]",
+   "acceso": "no abierto en esta investigacion",
+   "acceso_detalle": "Ya fue abierto y citado por el proyecto en tools/sifi21_port/CAMBIOS.md; acá se cita de segunda mano a traves de ese documento interno y no se le atribuye ningun dato nuevo.",
+   "usado_para": "Contexto del criterio de eficiencia"
+  },
+  {
+   "id": "w5-reproduccion",
+   "titulo": "research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md (documento interno del proyecto)",
+   "autores": "equipo",
+   "anio": 2026,
+   "venue": "este repositorio",
+   "url": null,
+   "tipo": "documento interno",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "leido entero",
+   "usado_para": "Los conteos del programa original con RNAplfold 2.1.5 (133, 32, 212, 42), los conteos declarados de la planilla, la verificacion previa del port y el efecto de la version de ViennaRNA"
+  },
+  {
+   "id": "cambios-port",
+   "titulo": "tools/sifi21_port/CAMBIOS.md y README.md (documentos internos)",
+   "autores": "equipo",
+   "anio": 2026,
+   "venue": "este repositorio",
+   "url": null,
+   "tipo": "documento interno",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "leidos enteros",
+   "usado_para": "La linea base del diff: C1 (bypass de la regla terminal), C3 (tablas de ADN), C4 (temperatura), C7 (Bowtie desacoplado) y el linaje del port"
+  },
+  {
+   "id": "r3-report",
+   "titulo": "research/R3_apolo_biotech/REPORT.md (documento interno)",
+   "autores": "equipo",
+   "anio": 2026,
+   "venue": "este repositorio",
+   "url": null,
+   "tipo": "documento interno",
+   "nivel_evidencia": "[R]",
+   "acceso": "abierto",
+   "acceso_detalle": "leidas las secciones 4 y 6 y todas las menciones a Apolo Rocket",
+   "usado_para": "Las afirmaciones sobre la plataforma que se contrastan con el codigo en apolorocket_arquitectura.md"
+  },
+  {
+   "id": "github-api",
+   "titulo": "API publica de GitHub (api.github.com) y git ls-remote",
+   "autores": "n/d",
+   "anio": 2026,
+   "venue": "GitHub",
+   "url": "https://api.github.com",
+   "tipo": "API",
+   "nivel_evidencia": "[E]",
+   "acceso": "abierto",
+   "acceso_detalle": "consultada sin autenticar; las respuestas crudas quedaron en work/C2/api/",
+   "usado_para": "Licencias, fechas, listas de commits, forks y repositorios de cuenta; los punteros de rama se verificaron ademas con git ls-remote",
+   "advertencia": "El limite de 60 consultas por hora por IP se agoto dos veces durante la sesion; las consultas se espaciaron."
+  }
+ ],
+ "no_abiertas": [
+  {
+   "que": "El articulo de Zuber et al. 2022 que el codigo cita como origen de RNA_NN4",
+   "motivo": "No se busco ni se abrio: alcanzaba con registrar la atribucion del comentario. Queda como pendiente si se quiere verificar que los valores de la tabla son los del paper."
+  },
+  {
+   "que": "El enlace de Google Drive con el arbol de referencias que ofrece el PDF de endpoints",
+   "motivo": "No es un servicio de datos y no hacia falta para responder Q3; ademas no se iba a levantar la base."
+  },
+  {
+   "que": "Las seis figuras HTML de ejemplo de Apolo Rocket, completas",
+   "motivo": "Pesan entre 3,4 y 3,8 MB. Se extrajo solo el arreglo de la curva de eficiencia de una de ellas, por expresion regular."
+  },
+  {
+   "que": "El contenido de seis de los ocho forks de si-Fi21",
+   "motivo": "git ls-remote mostro que su cabeza es un commit de la historia de upstream, asi que no tienen cambios propios."
+  },
+  {
+   "que": "El contenido de ApoloBiotech/clementina_model y de los otros cinco repositorios de bioinformaticaInta",
+   "motivo": "Por descripcion y lenguaje no son de siRNA."
+  }
+ ]
+}

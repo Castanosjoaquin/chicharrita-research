@@ -1,0 +1,112 @@
+# reads processed: 1243
+# reads with at least one alignment: 1243 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 1243 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN4", "gen": "MP_MRFV_full", "db": "epilab4", "ventanas": 1243, "hits_bowtie": 1243, "blancos": 1, "eficientes": 138, "ventanas_sin_off": 1243, "eficientes_sin_off": 138, "blanco_principal": "MP_MRFV_full", "hits_blanco_principal": 1243}
+# reads processed: 1243
+# reads with at least one alignment: 1243 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 2841 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN4", "gen": "MP_MRFV_full", "db": "mrfv_all", "ventanas": 1243, "hits_bowtie": 2841, "blancos": 4, "eficientes": 138, "ventanas_sin_off": 0, "eficientes_sin_off": 0, "blanco_principal": "NC_002786.2", "hits_blanco_principal": 1243}
+# reads processed: 508
+# reads with at least one alignment: 508 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 508 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN4", "gen": "CP_MRFV_full", "db": "epilab4", "ventanas": 508, "hits_bowtie": 508, "blancos": 1, "eficientes": 40, "ventanas_sin_off": 508, "eficientes_sin_off": 40, "blanco_principal": "CP_MRFV_full", "hits_blanco_principal": 508}
+# reads processed: 508
+# reads with at least one alignment: 508 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 11019 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN4", "gen": "CP_MRFV_full", "db": "mrfv_all", "ventanas": 508, "hits_bowtie": 11019, "blancos": 65, "eficientes": 40, "ventanas_sin_off": 0, "eficientes_sin_off": 0, "blanco_principal": "AF265566.2", "hits_blanco_principal": 508}
+# reads processed: 2500
+# reads with at least one alignment: 2500 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 2504 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN4", "gen": "BicC_Dm_full", "db": "epilab4", "ventanas": 2500, "hits_bowtie": 2504, "blancos": 1, "eficientes": 218, "ventanas_sin_off": 2500, "eficientes_sin_off": 218, "blanco_principal": "BicC_Dm_full", "hits_blanco_principal": 2500}
+# reads processed: 2500
+# reads with at least one alignment: 2357 (94.28%)
+# reads that failed to align: 143 (5.72%)
+Reported 2430 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN4", "gen": "BicC_Dm_full", "db": "tsa_gitv01", "ventanas": 2500, "hits_bowtie": 2430, "blancos": 6, "eficientes": 218, "ventanas_sin_off": 2427, "eficientes_sin_off": 214, "blanco_principal": "GITV01000968.1", "hits_blanco_principal": 2353}
+# reads processed: 471
+# reads with at least one alignment: 471 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 471 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN4", "gen": "ATPaseD_Dm_full", "db": "epilab4", "ventanas": 471, "hits_bowtie": 471, "blancos": 1, "eficientes": 35, "ventanas_sin_off": 471, "eficientes_sin_off": 35, "blanco_principal": "ATPaseD_Dm_full", "hits_blanco_principal": 471}
+# reads processed: 471
+# reads with at least one alignment: 450 (95.54%)
+# reads that failed to align: 21 (4.46%)
+Reported 736 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN4", "gen": "ATPaseD_Dm_full", "db": "tsa_gitv01", "ventanas": 471, "hits_bowtie": 736, "blancos": 2, "eficientes": 35, "ventanas_sin_off": 185, "eficientes_sin_off": 12, "blanco_principal": "GITV01001458.1", "hits_blanco_principal": 450}
+# reads processed: 1243
+# reads with at least one alignment: 1243 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 1243 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN3", "gen": "MP_MRFV_full", "db": "epilab4", "ventanas": 1243, "hits_bowtie": 1243, "blancos": 1, "eficientes": 142, "ventanas_sin_off": 1243, "eficientes_sin_off": 142, "blanco_principal": "MP_MRFV_full", "hits_blanco_principal": 1243}
+# reads processed: 1243
+# reads with at least one alignment: 1243 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 2841 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN3", "gen": "MP_MRFV_full", "db": "mrfv_all", "ventanas": 1243, "hits_bowtie": 2841, "blancos": 4, "eficientes": 142, "ventanas_sin_off": 0, "eficientes_sin_off": 0, "blanco_principal": "NC_002786.2", "hits_blanco_principal": 1243}
+# reads processed: 508
+# reads with at least one alignment: 508 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 508 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN3", "gen": "CP_MRFV_full", "db": "epilab4", "ventanas": 508, "hits_bowtie": 508, "blancos": 1, "eficientes": 39, "ventanas_sin_off": 508, "eficientes_sin_off": 39, "blanco_principal": "CP_MRFV_full", "hits_blanco_principal": 508}
+# reads processed: 508
+# reads with at least one alignment: 508 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 11019 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN3", "gen": "CP_MRFV_full", "db": "mrfv_all", "ventanas": 508, "hits_bowtie": 11019, "blancos": 65, "eficientes": 39, "ventanas_sin_off": 0, "eficientes_sin_off": 0, "blanco_principal": "AF265566.2", "hits_blanco_principal": 508}
+# reads processed: 2500
+# reads with at least one alignment: 2500 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 2504 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN3", "gen": "BicC_Dm_full", "db": "epilab4", "ventanas": 2500, "hits_bowtie": 2504, "blancos": 1, "eficientes": 223, "ventanas_sin_off": 2500, "eficientes_sin_off": 223, "blanco_principal": "BicC_Dm_full", "hits_blanco_principal": 2500}
+# reads processed: 2500
+# reads with at least one alignment: 2357 (94.28%)
+# reads that failed to align: 143 (5.72%)
+Reported 2430 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN3", "gen": "BicC_Dm_full", "db": "tsa_gitv01", "ventanas": 2500, "hits_bowtie": 2430, "blancos": 6, "eficientes": 223, "ventanas_sin_off": 2427, "eficientes_sin_off": 219, "blanco_principal": "GITV01000968.1", "hits_blanco_principal": 2353}
+# reads processed: 471
+# reads with at least one alignment: 471 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 471 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN3", "gen": "ATPaseD_Dm_full", "db": "epilab4", "ventanas": 471, "hits_bowtie": 471, "blancos": 1, "eficientes": 35, "ventanas_sin_off": 471, "eficientes_sin_off": 35, "blanco_principal": "ATPaseD_Dm_full", "hits_blanco_principal": 471}
+# reads processed: 471
+# reads with at least one alignment: 450 (95.54%)
+# reads that failed to align: 21 (4.46%)
+Reported 736 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+{"tabla": "RNA_NN3", "gen": "ATPaseD_Dm_full", "db": "tsa_gitv01", "ventanas": 471, "hits_bowtie": 736, "blancos": 2, "eficientes": 35, "ventanas_sin_off": 185, "eficientes_sin_off": 12, "blanco_principal": "GITV01001458.1", "hits_blanco_principal": 450}

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C2 &mdash; El c&oacute;digo de sifi21INTA y Apolo Rocket</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style></head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigath&oacute;n Y-Hat &middot; ola 3 &middot; l&iacute;nea C2</p>
+    <h1>El c&oacute;digo de sifi21INTA y Apolo Rocket, le&iacute;do y corrido</h1>
+    <p class="sub">Qu&eacute; cambiaron respecto del si-Fi21 original, si sus valores por defecto
+    reproducen los conteos de la planilla de EPILAB, y qu&eacute; hace por dentro la plataforma.
+    Todo medido con corridas locales; el detalle y las fuentes est&aacute;n en
+    <code>REPORT.md</code>.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v">
+    <h2 id="v">Las tres respuestas</h2>
+    <p class="lead"><strong>sifi21INTA cambi&oacute; un solo par&aacute;metro qu&iacute;mico
+    &mdash;la tabla de vecinos m&aacute;s cercanos&mdash;, no reproduce los 114, 35, 199 y 33 de la
+    planilla, y el motor de eficiencia de Apolo Rocket es el criterio de si-Fi21 con su defecto
+    intacto.</strong></p>
+    <p><strong>Q1.</strong> El &uacute;nico cambio termodin&aacute;mico es el default de la tabla de
+    vecinos m&aacute;s cercanos (nearest neighbours): de <code>RNA_NN3</code> (Chen et al. 2012) a una
+    tabla que el comentario del c&oacute;digo atribuye a Zuber et al. 2022
+    (<code>freeEnergy.py:306</code>, tabla en <code>:61-74</code>, contra
+    <code>free_energy.py:278</code>). Cambi&oacute; adem&aacute;s <em>qu&eacute; se cuenta</em>: el
+    original contaba un registro por hit de Bowtie (<code>general_helpers.py:113</code>) y ahora se
+    cuenta una fila por ventana (<code>SifiPipeline.py:430-448</code>). Los umbrales, la ventana de
+    accesibilidad, los 21 nt, los 22&nbsp;&deg;C, RNAplfold, Bowtie y
+    <strong>la rama de la regla terminal que devuelve &laquo;eficiente&raquo; sin mirar la
+    termodin&aacute;mica</strong> est&aacute;n igual. <span class="tag e">E</span></p>
+    <p><strong>Q2.</strong> Corrido sobre las cuatro secuencias completas con sus valores por
+    defecto, con RNAplfold 2.7.2 y bowtie 1.3.1 locales, da <strong>138, 40, 218 y 35</strong>. Un
+    barrido de 22.176 configuraciones de la propia librer&iacute;a no encuentra ninguna que d&eacute;
+    los cuatro conteos declarados. Lo que m&aacute;s se acerca &mdash;error 4 sobre 381&mdash; no es
+    un cambio de qu&iacute;mica sino subir el umbral de estabilidad de extremos de 1,0 a
+    <strong>1,75</strong>. <span class="tag e">E</span></p>
+    <p><strong>Q3.</strong> Diecinueve funciones sobre PostgreSQL, Bowtie&nbsp;1 y ViennaRNA, en tres
+    pasos. <strong>No hay ning&uacute;n puntaje ni ning&uacute;n orden de candidatos</strong>; la
+    eficiencia no se guarda por siRNA sino como la curva del gr&aacute;fico
+    (<code>efficiency_data INT[]</code>); y el par&aacute;metro <code>method</code> est&aacute;
+    documentado como &laquo;'sifi21' or 'IA'&raquo; pero <strong>no hay ninguna
+    implementaci&oacute;n del m&eacute;todo &laquo;IA&raquo;</strong> en el backend
+    p&uacute;blico. <span class="tag e">E</span></p>
+  </section>
+
+  <div class="calls">
+    <div class="call ok">
+      <p class="k">Verificaci&oacute;n cruzada</p>
+      <p class="v">4.722 ventanas, cero diferencias</p>
+      <p class="n">Con la tabla de energ&iacute;a del original, sifi21INTA y nuestro port en modo
+      fiel coinciden ventana por ventana en los cinco t&eacute;rminos del veredicto.</p>
+    </div>
+    <div class="call stop">
+      <p class="k">Defecto medido</p>
+      <p class="v">Min&uacute;sculas &rarr; 0 eficientes</p>
+      <p class="n">La misma secuencia en min&uacute;sculas da 0 de 1.243 ventanas, en silencio.
+      Bowtie alinea igual y la corrida parece exitosa.</p>
+    </div>
+    <div class="call warn">
+      <p class="k">Hip&oacute;tesis cerrada</p>
+      <p class="v">La base no mueve el conteo</p>
+      <p class="n">Tres bases distintas, el mismo n&uacute;mero de eficientes. Lo que cambia es la
+      columna nueva, &laquo;sin off-targets&raquo;.</p>
+    </div>
+  </div>
+
+  <h2>Los cuatro n&uacute;meros</h2>
+  <div class="tw">
+    <table>
+      <caption>Conteos de siRNA eficientes sobre las cuatro secuencias completas de EPILAB. Las dos
+      columnas de la derecha usan el mismo RNAplfold y son comparables entre s&iacute;; la del
+      programa original se midi&oacute; en W5 con RNAplfold 2.1.5 y <strong>no</strong> es
+      directamente comparable.</caption>
+      <thead>
+        <tr><th>Gen</th><th>Planilla EPILAB</th><th>si-Fi21 original (2.1.5)</th>
+        <th>sifi21INTA, defaults (2.7.2)</th><th>sifi21INTA con <code>RNA_NN3</code> = port fiel</th>
+        <th>Mejor del barrido</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>MP_MRFV</code></td><td class="num">114</td><td class="num">133</td><td class="num"><strong>138</strong></td><td class="num">142</td><td class="num">117</td></tr>
+        <tr><td><code>CP_MRFV</code></td><td class="num">35</td><td class="num">32</td><td class="num"><strong>40</strong></td><td class="num">39</td><td class="num"><strong>35</strong></td></tr>
+        <tr><td><code>BicC_Dm</code></td><td class="num">199</td><td class="num">212</td><td class="num"><strong>218</strong></td><td class="num">223</td><td class="num"><strong>199</strong></td></tr>
+        <tr><td><code>ATPaseD_Dm</code></td><td class="num">33</td><td class="num">42</td><td class="num"><strong>35</strong></td><td class="num">35</td><td class="num">32</td></tr>
+        <tr><td>Error acumulado</td><td class="num">&mdash;</td><td class="num">44</td><td class="num">50</td><td class="num">58</td><td class="num"><strong>4</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>La mejor configuraci&oacute;n del barrido es la tabla de energ&iacute;a del original a
+  22&nbsp;&deg;C, con u=8 y accesibilidad 0,1, pero con el umbral de estabilidad de extremos en
+  <strong>1,75</strong> en vez de 1,0. Acierta dos de los cuatro conteos exacto. Es el mismo
+  par&aacute;metro al que hab&iacute;a apuntado el barrido de W5 sobre nuestro port, desde otra
+  implementaci&oacute;n. <span class="tag e">E</span></p>
+
+  <h2>&iquest;Son &eacute;stos los repositorios del laboratorio?</h2>
+  <p><strong>Que son el c&oacute;digo p&uacute;blico del grupo que mantiene la reescritura de si-Fi21
+  y el backend de Apolo Rocket: confirmado.</strong> <span class="tag e">E</span> El repositorio se
+  describe a s&iacute; mismo como backend de la aplicaci&oacute;n, su PDF de documentaci&oacute;n
+  apunta a su propia URL, y el c&oacute;digo es un derivado demostrable: <code>freeEnergy.py</code>
+  tiene 423 de 431 l&iacute;neas id&eacute;nticas al <code>free_energy.py</code> del original y la
+  regla terminal est&aacute; transcrita rama por rama.</p>
+  <p><strong>Que el laboratorio corri&oacute; <em>este</em> c&oacute;digo para llenar la planilla:
+  sigue siendo hip&oacute;tesis, y la medici&oacute;n la debilita.</strong>
+  <span class="tag q">H</span> En los dos repositorios no aparece ni una vez <em>Dalbulus maidis</em>,
+  ni ma&iacute;z, ni MRFV, ni EPILAB: los datos de ejemplo son <em>Arabidopsis thaliana</em>,
+  <em>Oryza sativa</em>, <em>Homo sapiens</em>, <em>Drosophila melanogaster</em> y
+  <em>Botrytis cinerea</em>, y el &uacute;nico dato de prueba de sifi21INTA es una quitina sintasa de
+  <em>Diaphorina citri</em>. Y con sus valores por defecto este c&oacute;digo queda m&aacute;s lejos
+  de la planilla que el propio si-Fi original.</p>
+
+  <h2>Lo que mueve un n&uacute;mero, y cu&aacute;nto</h2>
+  <div class="tw">
+    <table>
+      <caption>Efecto medido de cada diferencia. La tabla completa, con archivo y l&iacute;nea de los
+      dos lados, est&aacute; en <code>diff_sifi21INTA_vs_original.md</code>.</caption>
+      <thead><tr><th>Diferencia</th><th>D&oacute;nde</th><th>Efecto sobre el conteo</th></tr></thead>
+      <tbody>
+        <tr><td>Tabla de vecinos m&aacute;s cercanos nueva</td><td><code>freeEnergy.py:306</code> contra <code>free_energy.py:278</code></td><td>&minus;4, +1, &minus;5 y 0. Cambian 14 ventanas: 3 pasan a eficiente y 11 dejan de serlo, y ninguna cae en la rama del bypass</td></tr>
+        <tr><td>Conteo por ventana y no por hit de Bowtie</td><td><code>SifiPipeline.py:430-448</code> contra <code>general_helpers.py:113</code></td><td>El conteo deja de depender de la base: 138, 40, 218 y 35 contra tres bases distintas</td></tr>
+        <tr><td>Columna nueva &laquo;sin off-targets&raquo;</td><td><code>SifiPipeline.py:430-448</code></td><td><code>ATPaseD_Dm</code> pasa de 35 a 12 contra el transcriptoma de <em>D. maidis</em>; los genes virales caen a 0 contra los aislados de MRFV</td></tr>
+        <tr><td>Temperatura: sigue fija en 22&nbsp;&deg;C y sin ser par&aacute;metro</td><td><code>freeEnergy.py:446</code> y <code>SifiPipeline.py:56</code></td><td>Forzada a 25&nbsp;&deg;C en RNAplfold, los cuatro conteos suben a 146, 45, 231 y 40</td></tr>
+        <tr><td>Regla terminal con su rama que saltea la f&iacute;sica</td><td><code>Sirna.py:75-82</code> contra <code>sifi_pipeline.py:535-541</code></td><td>Ninguno: est&aacute; conservada. Tambi&eacute;n la conserva el fork independiente <code>rj-price/siFi-2.0</code></td></tr>
+        <tr><td><code>sequence.upper()</code> sin asignar</td><td><code>SifiPipeline.py:163</code> e <code>inputOutputFunctions.py:42</code></td><td>138 eficientes en may&uacute;sculas contra <strong>0</strong> en min&uacute;sculas, sin aviso</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Apolo Rocket por dentro</h2>
+  <p>El pipeline tiene tres pasos y este orden: blancos principales con Bowtie contra una o varias
+  referencias, eficiencia con RNAplfold y el criterio de si-Fi, y off-targets sobre una regi&oacute;n
+  que el usuario elige. Las referencias no viven en la base sino en un &aacute;rbol de directorios en
+  disco; la secuencia consulta entra como texto dentro del JSON. Quince tablas en PostgreSQL, sin
+  m&aacute;s &iacute;ndices que las claves. <span class="tag e">E</span></p>
+  <div class="tw">
+    <table>
+      <caption>Lo que el c&oacute;digo dice sobre las afirmaciones de R3. El detalle est&aacute; en
+      <code>apolorocket_arquitectura.md</code>.</caption>
+      <thead><tr><th>Afirmaci&oacute;n de R3</th><th>Veredicto</th><th>Fundamento</th></tr></thead>
+      <tbody>
+        <tr><td>Nadie public&oacute; el criterio que convierte los reportes en un orden defendible</td><td><strong>Confirmado, y m&aacute;s fuerte</strong></td><td>En el backend p&uacute;blico no existe ning&uacute;n puntaje ni orden; lo &uacute;nico ordenable es el n&uacute;mero de blanco, que es orden de inserci&oacute;n</td></tr>
+        <tr><td>Eval&uacute;a m&aacute;s de 140 organismos a la vez</td><td>Compatible, no verificable</td><td>La lista de referencias no tiene tope, pero el bucle corre Bowtie una vez por referencia, en serie, y el propio PDF dice que siguen trabajando en la eficiencia de ese paso</td></tr>
+        <tr><td>Emite reportes autom&aacute;ticos</td><td>Matizado</td><td>Lo que emite son figuras HTML de Plotly y JSON para tablas paginadas; no hay generaci&oacute;n de informe</td></tr>
+        <tr><td>Corre en la nube</td><td>Ni confirmado ni contradicho</td><td>El repositorio no dice nada de despliegue; trae una base en <code>localhost</code> y referencias en disco local</td></tr>
+        <tr><td>(R3 no lo menciona)</td><td><strong>Hallazgo nuevo</strong></td><td>El motor de eficiencia es si-Fi21 verbatim: <code>Sirna.py</code> y <code>freeEnergy.py</code> son los mismos archivos que en sifi21INTA, con el mismo md5 en el segundo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p class="t">Lo que no se corri&oacute;</p>
+    <p>Apolo Rocket necesita PostgreSQL con el esquema cargado, el &aacute;rbol de referencias
+    indexadas en disco y una capa HTTP que no est&aacute; publicada. Se ley&oacute; el c&oacute;digo,
+    el PDF de endpoints y los dos volcados de base de ejemplo, y de ah&iacute; salen todos los
+    n&uacute;meros de Q3. Tampoco se consigui&oacute; RNAplfold 2.1.5, el que trae si-Fi: por eso la
+    comparaci&oacute;n contra la corrida del programa original queda confundida por la versi&oacute;n
+    de ViennaRNA, y eso queda como vac&iacute;o declarado.</p>
+  </div>
+
+  <h2>Licencias</h2>
+  <p>Los dos repositorios del INTA traen el texto completo de la GNU GPL versi&oacute;n 3, id&eacute;ntico
+  en los dos. <span class="tag e">E</span> Leer el c&oacute;digo para entender el algoritmo no
+  contamina nada: el copyleft alcanza la distribuci&oacute;n de obras derivadas. Por eso el
+  c&oacute;digo de terceros qued&oacute; en <code>work/C2/</code>, fuera del control de versiones, y
+  por eso ac&aacute; se cita archivo y l&iacute;nea y se parafrasea. Nuestro port no hereda nada,
+  porque deriva del fuente de <code>snowformatics</code> y su linaje est&aacute; documentado desde
+  antes.</p>
+  <p>Queda una contradicci&oacute;n anotada: <strong>el si-Fi21 original no est&aacute; bajo GPL</strong>.
+  Su repositorio no trae archivo de licencia y su README declara, en la l&iacute;nea 19, una licencia
+  Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Generic, que no es compatible con
+  relicenciar un derivado bajo GPL-3.0. No es asesor&iacute;a legal; es una advertencia con fuente, por
+  si alguna vez se publica algo. <span class="tag q">?</span></p>
+
+  <h2>La cr&iacute;tica, que el investigador pidi&oacute; expl&iacute;citamente</h2>
+  <p>Lo que est&aacute; mal y cambia un resultado: el bypass de la regla terminal, y el manejo de
+  may&uacute;sculas, que entrega cero eficientes con cara de resultado v&aacute;lido. Lo que es
+  arbitrario: la elecci&oacute;n del blanco principal sigue siendo una decisi&oacute;n humana sin
+  registro &mdash;<code>input()</code> por consola, o una lista de n&uacute;meros en el JSON&mdash; y
+  de ella depende por completo la &uacute;nica columna que mira especificidad. Lo que es fr&aacute;gil:
+  el paquete aborta con Biopython actual, la anotaci&oacute;n se recupera con <code>eval()</code>
+  sobre un campo de texto de la base, las coordenadas de regi&oacute;n no se validan &mdash;el volcado
+  de ejemplo trae una consulta de largo cero&mdash; y las credenciales de la base est&aacute;n en claro
+  en el repositorio p&uacute;blico. <span class="tag e">E</span></p>
+  <p>Y lo que no est&aacute;, que es el hueco: no hay priorizaci&oacute;n. En el esquema de la base
+  est&aacute; incluso el lugar donde enchufarla, con nombre: la columna <code>method</code> de la tabla
+  <code>efficiency</code>, documentada como &laquo;'sifi21' or 'IA'&raquo;, sin implementaci&oacute;n.
+  Las mejoras que propondr&iacute;amos &mdash;persistir el veredicto por ventana, ponderar los
+  desapareamientos por posici&oacute;n, normalizar may&uacute;sculas, validar coordenadas y exponer la
+  temperatura&mdash; est&aacute;n en el reporte y no se implementaron: D7/D8 dice que nuestro aporte es
+  la priorizaci&oacute;n auditable, no mejorar herramientas ajenas.</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>L&iacute;nea C2 de la ola 3. El desarrollo completo est&aacute; en <code>REPORT.md</code>, el
+    diff archivo por archivo en <code>diff_sifi21INTA_vs_original.md</code>, la arquitectura de la
+    plataforma en <code>apolorocket_arquitectura.md</code>, las corridas con su comando y su salida en
+    <code>corridas/</code>, el inventario en <code>repos_inventario.json</code> y las fuentes en
+    <code>sources.json</code>.</p>
+    <p>Esta p&aacute;gina es la vista de lectura: no afirma nada que el <code>REPORT.md</code> no tenga
+    con su fuente. El c&oacute;digo de terceros qued&oacute; en <code>work/C2/</code>, fuera del
+    control de versiones. Ninguna secuencia de EPILAB se envi&oacute; a un servicio de terceros.</p>
+  </div>
+</footer>
+</body>
+</html>

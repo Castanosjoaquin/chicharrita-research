@@ -1,0 +1,12 @@
+{
+ "MP_MRFV_full": {
+  "ventanas": 1243,
+  "eficientes": 138,
+  "hits": 1243
+ },
+ "MP_MRFV_full_lower": {
+  "ventanas": 1243,
+  "eficientes": 0,
+  "hits": 1243
+ }
+}

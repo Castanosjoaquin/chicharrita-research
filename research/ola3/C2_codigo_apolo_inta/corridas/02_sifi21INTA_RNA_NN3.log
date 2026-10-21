@@ -1,0 +1,169 @@
+# reads processed: 1243
+# reads with at least one alignment: 1243 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 1243 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+# reads processed: 508
+# reads with at least one alignment: 508 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 508 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+# reads processed: 2500
+# reads with at least one alignment: 2500 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 2504 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+# reads processed: 471
+# reads with at least one alignment: 471 (100.00%)
+# reads that failed to align: 0 (0.00%)
+Reported 471 alignments
+/Users/joaquin/.claude-science/conda/envs/c2sifi/lib/python3.11/site-packages/Bio/SeqUtils/__init__.py:144: BiopythonDeprecationWarning: GC is deprecated; please use gc_fraction instead.
+  warnings.warn(
+
+#####################################################
+Step 1: Run BOWTIE alignment
+Selected Database: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/db/epilab4
+Query file: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/MP_MRFV_full.fasta
+#####################################################
+
+
+#####################################################
+Step 2: Select main target for siRNAs prediction
+#####################################################
+
+Select main targets observing the figure: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/MP_MRFV_full/MP_MRFV_full_mainTargets_selection_plot.html (insert several numbers comma separated): 1
+Main target selected: [< ID=MP_MRFV_full | Region=None-None | Length=None | Annotation=[] >]
+
+
+#####################################################
+Step 3: Calculate efficiency
+Using default method and parameters
+#####################################################
+
+
+#####################################################
+Step 4: Results
+#####################################################
+
+Created JSON output file: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/MP_MRFV_full/MP_MRFV_full.json
+
+Summary table:
+| Total | Total without off targets | Efficients | Efficients without off targets |
+|---------------------------------------------------------------------------------|
+|  1243   |             1243            |    142      |               142               |
+|---------------------------------------------------------------------------------|
+
+Efficiency figure created: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/MP_MRFV_full/MP_MRFV_full_efficiency_plot.html
+
+
+#####################################################
+Step 1: Run BOWTIE alignment
+Selected Database: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/db/epilab4
+Query file: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/CP_MRFV_full.fasta
+#####################################################
+
+
+#####################################################
+Step 2: Select main target for siRNAs prediction
+#####################################################
+
+Select main targets observing the figure: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/CP_MRFV_full/CP_MRFV_full_mainTargets_selection_plot.html (insert several numbers comma separated): 1
+Main target selected: [< ID=CP_MRFV_full | Region=None-None | Length=None | Annotation=[] >]
+
+
+#####################################################
+Step 3: Calculate efficiency
+Using default method and parameters
+#####################################################
+
+
+#####################################################
+Step 4: Results
+#####################################################
+
+Created JSON output file: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/CP_MRFV_full/CP_MRFV_full.json
+
+Summary table:
+| Total | Total without off targets | Efficients | Efficients without off targets |
+|---------------------------------------------------------------------------------|
+|  508   |             508            |    39      |               39               |
+|---------------------------------------------------------------------------------|
+
+Efficiency figure created: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/CP_MRFV_full/CP_MRFV_full_efficiency_plot.html
+
+
+#####################################################
+Step 1: Run BOWTIE alignment
+Selected Database: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/db/epilab4
+Query file: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/BicC_Dm_full.fasta
+#####################################################
+
+
+#####################################################
+Step 2: Select main target for siRNAs prediction
+#####################################################
+
+Select main targets observing the figure: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/BicC_Dm_full/BicC_Dm_full_mainTargets_selection_plot.html (insert several numbers comma separated): 1
+Main target selected: [< ID=BicC_Dm_full | Region=None-None | Length=None | Annotation=[] >]
+
+
+#####################################################
+Step 3: Calculate efficiency
+Using default method and parameters
+#####################################################
+
+
+#####################################################
+Step 4: Results
+#####################################################
+
+Created JSON output file: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/BicC_Dm_full/BicC_Dm_full.json
+
+Summary table:
+| Total | Total without off targets | Efficients | Efficients without off targets |
+|---------------------------------------------------------------------------------|
+|  2500   |             2500            |    223      |               223               |
+|---------------------------------------------------------------------------------|
+
+Efficiency figure created: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/BicC_Dm_full/BicC_Dm_full_efficiency_plot.html
+
+
+#####################################################
+Step 1: Run BOWTIE alignment
+Selected Database: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/db/epilab4
+Query file: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/ATPaseD_Dm_full.fasta
+#####################################################
+
+
+#####################################################
+Step 2: Select main target for siRNAs prediction
+#####################################################
+
+Select main targets observing the figure: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/ATPaseD_Dm_full/ATPaseD_Dm_full_mainTargets_selection_plot.html (insert several numbers comma separated): 1
+Main target selected: [< ID=ATPaseD_Dm_full | Region=None-None | Length=None | Annotation=[] >]
+
+
+#####################################################
+Step 3: Calculate efficiency
+Using default method and parameters
+#####################################################
+
+
+#####################################################
+Step 4: Results
+#####################################################
+
+Created JSON output file: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/ATPaseD_Dm_full/ATPaseD_Dm_full.json
+
+Summary table:
+| Total | Total without off targets | Efficients | Efficients without off targets |
+|---------------------------------------------------------------------------------|
+|  471   |             471            |    35      |               35               |
+|---------------------------------------------------------------------------------|
+
+Efficiency figure created: /Users/joaquin/Documents/investigaton/chicharrita-research/work/C2/runs/out/nn3/ATPaseD_Dm_full/ATPaseD_Dm_full_efficiency_plot.html
+
+RESUMEN RNA_NN3 {"MP_MRFV_full": 142, "CP_MRFV_full": 39, "BicC_Dm_full": 223, "ATPaseD_Dm_full": 35}
