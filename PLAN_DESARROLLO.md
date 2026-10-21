@@ -5,6 +5,9 @@ investigador invitado. Todo lo que sale de ahí es `[R]` —es lo que dijo una p
 reunión, con dos tramos de audio perdido—, salvo lo que él presenta como mecanismo consolidado,
 que va como `[E]`. Lo que este plan agrega como criterio propio va marcado `[H]`.
 
+**Estado.** Escrito el 2026-10-20 a partir del checkpoint; actualizado el 2026-10-21 con lo que
+devolvieron las cinco investigaciones de la ola 3 y con el ranking que se produjo en paralelo.
+
 **Qué es este documento.** El orden de trabajo que sale del checkpoint: qué pidió el
 investigador, qué de eso ya está hecho en el repositorio, qué falta, y en qué secuencia
 conviene hacerlo. No reemplaza a `SINTESIS_V2.md`, que sigue siendo el panorama del proyecto;
@@ -54,7 +57,7 @@ es que cada número que entreguemos tiene que venir con el porqué de haberlo el
 | --- | --- | --- | --- |
 | 1 | **Leer y entender si-Fi21**: qué implica que algo sea eficiente, cómo lo calculan, qué significa la energía libre ahí | El port a Python 3 verificado contra el programa original: `tools/sifi21_port/`, los tres filtros implementados y `CAMBIOS.md` con lo que se cambió y por qué | El paper y la fuente primaria de cada umbral; qué validó el artículo y qué no; de dónde sale el criterio de 150–250 nt |
 | 2 | **Benchmarking** de si-Fi21, dsRNA-Engineer y BLAST sobre los cuatro genes | Las tres herramientas corridas, pero por separado y en informes distintos: `sifi21_reproduccion.md`, `W2_herramientas/REPORT.md`, `W5_secuencias_epilab/analisis/` | El documento único que las compara sobre los mismos cuatro genes, con la misma tabla y la misma unidad de medida |
-| 3 | **Un ranking** de candidatos con el criterio explicitado | El motor de decisión existe y está probado: `pipeline/motor.py`, media geométrica ponderada, barrido de 2.000 juegos de pesos | Nunca se corrió sobre los cuatro candidatos reales. Es el entregable central y está pendiente |
+| 3 | **Un ranking** de candidatos con el criterio explicitado | **Hecho** el 2026-10-20 en `research/ola2/W7_ranking/`: el orden, las cinco decisiones declaradas, la ficha por candidato y el barrido de 2.000 juegos de pesos | Rehacerlo con lo que la ola 3 midió después, que toca su recomendación central (ver §3) |
 | 4 | **Evaluación de las regiones ya elegidas** | Medido: las cuatro regiones elegidas no son las más densas de su gen, con brechas de −19 % a −46 % | La contracara: si la región alternativa es peor en off-targets, la elección vieja se justifica. Hay que cruzarlo candidato por candidato |
 | 5 | **Crítica de las herramientas**, aunque no la implementemos | Material disperso y bueno: la regla terminal que saltea la física, las tablas de ADN dentro de un cálculo de ARN, los tres defectos operativos de si-Fi21, el conteo de dsRNA-Engineer dominado por la condición de 16 pb | El documento único de crítica y mejoras propuestas, escrito para que lo lea él |
 
@@ -63,10 +66,11 @@ literatura, y **comparar 21 contra 22 nt**.
 
 ---
 
-## 2. Fase 0 — la investigación que ya está en marcha
+## 2. Fase 0 — la investigación de la ola 3, terminada
 
 Cinco investigaciones en paralelo, con la misma estructura de prompts de las olas anteriores,
-en `prompts/C1.md` a `prompts/C5.md`, escribiendo en `research/ola3/`.
+en `prompts/C1.md` a `prompts/C5.md`. Se lanzaron el 2026-10-20 y terminaron el mismo día; sus
+entregables están en `research/ola3/`. Lo que devolvieron está resumido en §3 bis.
 
 | | Qué responde | Alimenta a |
 | --- | --- | --- |
@@ -115,21 +119,34 @@ sería un error de lectura, no un resultado.
 **Terminada cuando:** cada celda tiene el comando que la produjo y la versión de la herramienta,
 y existe el párrafo que explica por qué no son comparables directamente.
 
-### T3 · El ranking de los cuatro candidatos — el entregable central
+### T3 · El ranking de los cuatro candidatos — hecho, y a revisar
 
-**Entrada:** T1, T2, C4, y el motor de `pipeline/`.
-**Salida:** el orden de los cuatro candidatos, con el criterio escrito antes de mirar el
-resultado, la ficha por candidato —qué lo sube, qué lo baja, qué no se pudo evaluar y qué dato
-falta— y el análisis de cuánto del orden es la evidencia y cuánto es la elección de pesos que
-hicimos nosotros. Eso último ya lo sabemos hacer: sobre un gen público, de 124 candidatos que
-pasaron alguna vez por el top-10 con 2.000 juegos de pesos al azar, solo 5 estuvieron ahí en más
-de la mitad de los casos. **Lo defendible no es «el mejor», son los que aguantan el barrido.**
-**Terminada cuando:** existen las cuatro fichas y el análisis de sensibilidad, y el criterio
-está escrito y fechado antes del resultado.
-**Riesgo conocido:** `pipeline/REPORT.md` §10 dice que faltan dos respuestas del investigador
-—el umbral de identidad para el filtro de especificidad y los pesos de los criterios—. No son
-bloqueantes: se elige un valor por defecto, se declara, y el barrido muestra qué cambia si él
-prefiere otro. Eso es mejor que esperar.
+**Estado:** existe desde el 2026-10-20 en `research/ola2/W7_ranking/`. El orden es
+`MP_MRFV` > `CP_MRFV` > {`BicC_Dm`, `ATPaseD_Dm`}, y lo que aguanta el barrido de pesos es la
+primera mitad: los dos genes del insecto no se distinguen entre sí, su orden relativo se da
+vuelta según los pesos, y decir «`BicC_Dm` es tercero» sería reportar una elección de pesos y no
+una medición. Lo que separa a los virales de los del insecto no es el puntaje sino una
+compuerta: las regiones elegidas de los dos genes del insecto contienen ventanas con
+coincidencia perfecta de 21 nt en el transcriptoma de un cicadélido no objetivo, y las virales
+no contienen ninguna. Están además las cuatro fichas y las cinco decisiones de agregación, cada
+una con su alternativa y su consecuencia.
+
+**Lo que queda por hacer, y no es cosmético.** Dos mediciones posteriores tocan su recomendación
+central de mover la región dentro de los dos genes del insecto:
+
+- Al agregar al panel el cicadélido más cercano a la chicharrita con genoma anotado, la región
+  que el ranking propone para `BicC_Dm` tiene **19 ventanas con coincidencia perfecta de 21 nt**
+  contra las 10 de la región que eligió EPILAB: en ese eje la recomendación empeora las cosas.
+  Hay salida medida —otra región del mismo gen que escapa al veto perdiendo una sola ventana
+  eficiente— pero la recomendación tal como está escrita no sobrevive (`research/ola3/C6_panel_y_largo/`).
+- El benchmark de 21 contra 22 nt muestra que el conteo de eficientes casi no cambia, pero **el
+  conjunto de ventanas eficientes cambia casi entero**, y en los dos genes largos la región
+  elegida se muda al pasar de 21 a 22 (`research/ola3/C3_blast_ventana_azar/`).
+
+**Tarea:** una segunda versión del ranking que incorpore el panel ampliado y declare la
+estabilidad del orden frente al largo de ventana. **Terminada cuando:** cada recomendación de
+mover una región dice contra qué panel se evaluó, y el documento dice cuáles de sus conclusiones
+cambiaron respecto de la primera versión.
 
 ### T4 · La auditoría de las regiones 1–200
 
@@ -164,6 +181,77 @@ crítica sin evidencia no entra.
 **21 contra 22 nt** (de C3) y **genes nuevos de la literatura** (de C5). Van al final porque son
 opcionales, pero la de genes nuevos es la que él más valoró: dijo que la búsqueda de candidatos
 es *«el estado del arte del problema»*. Si entra uno solo al ranking con su evidencia, ya suma.
+
+---
+
+## 3 bis. Lo que la ola 3 devolvió
+
+Las cinco investigaciones terminaron el 2026-10-20 y están en `research/ola3/`. Siete resultados
+cambian algo de lo que este plan daba por sentado. Cada uno lleva el aviso de con qué
+profundidad se midió, porque varias piezas quedaron limitadas por el entorno.
+
+**El GitHub del laboratorio se confirmó, y con él el parámetro que cambiaron.** `sifi21INTA` es
+una reescritura de si-Fi21 en Python 3 y `apolorocket` es el backend que la usa: `Sirna.py` y
+`freeEnergy.py` son el mismo archivo en los dos repositorios. El único parámetro de química que
+tocaron es la tabla de vecinos más cercanos, que pasó de la de Chen 2012 a una que el comentario
+del código atribuye a Zuber 2022 `[R]` —el artículo de Zuber no se abrió, así que la atribución
+es del comentario y no está verificada—. Todo lo demás del criterio quedó igual, **incluida la
+rama de la regla terminal que declara eficiente un siRNA que falló la termodinámica**, transcrita
+literal. `[E]`
+
+**Pero sigue sin reproducir la planilla.** `sifi21INTA` con sus valores por defecto da 138, 40,
+218 y 35 contra los 114, 35, 199 y 33 declarados, y un barrido de 22.176 configuraciones no
+encuentra ninguna que dé los cuatro. Lo que más se acerca es subir el umbral de estabilidad de
+extremos de 1,0 a 1,75. Y una hipótesis que teníamos quedó descartada: en esta librería el
+conteo es por ventana y no por acierto de Bowtie, así que **la base de datos no explica la
+diferencia**. Con la salvedad de que no hay RNAplfold 2.1.5 en esta máquina, así que la
+comparación contra la corrida del programa original está confundida por la versión de ViennaRNA.
+
+**Apolo Rocket no ordena nada.** Leído entero: diecinueve funciones sobre PostgreSQL, Bowtie y
+ViennaRNA, sin ningún puntaje ni ningún criterio de orden, y la eficiencia no se guarda por
+siRNA sino como la curva del gráfico, de modo que no se puede auditar qué ventana fue eficiente.
+Hay un parámetro `method` documentado como «'sifi21' or 'IA'» **sin ninguna implementación del
+método IA**. `[E]` No se corrió la plataforma: requiere una base y una capa HTTP no publicadas,
+así que esto es lectura de código, no medición.
+
+**«Identidad» no es un filtro de eficiencia.** El investigador la nombró como tercer término del
+criterio; el artículo no tiene ningún filtro de identidad dentro de la regla. Entra por dos vías
+distintas: el presupuesto de desajustes de BOWTIE, que por defecto es cero, y un experimento del
+propio artículo donde la eficacia cae por debajo del 92 % de similitud. Y los dos umbrales
+numéricos de la regla —1 kcal/mol y 0,1— **no tienen fuente primaria que los fije**: el artículo
+los enuncia como valores de la herramienta. `[E]`
+
+**BLAST no sirve para este tamizaje, y ahora está medido.** Sobre 3.150 consultas con desajustes
+plantados en cada posición, ninguna configuración detecta los 21-meros con un desajuste en todas
+las posiciones: el techo es 0,762 y el `megablast` por defecto da cero. La causa no es la semilla
+sino que la extensión recorta un desajuste cercano al extremo en vez de cruzarlo. Para esto hace
+falta coincidencia exacta con presupuesto de desajustes, que es lo que ya hacen Bowtie y el
+tamizador del repositorio. Y «HCP» es casi con seguridad «HSP», que no es un parámetro sino la
+unidad de resultado de BLAST `[H]`.
+
+**El argumento del azar es más fino de lo que parecía.** El total de coincidencias en un genoma
+real **es el que predice el modelo** una vez corregido por composición: razones
+observado/esperado de 1,000 a 1,235 para k de 16 a 20. Donde el azar falla es en la
+distribución: con k = 16 predice que el 36,4 % de las ventanas tendría alguna coincidencia y lo
+observado es 15,9 %, porque las coincidencias no se reparten, se amontonan sobre los k-meros de
+familias repetidas. **Hay las mismas coincidencias que predice la estadística, repartidas entre
+menos ventanas.** Eso explica el salto de 16 a 17 de nuestra tabla.
+
+**Los 150–250 nt no salen de la literatura, y hay evidencia en contra en nuestra propia
+especie.** Un trabajo de 2026 silenció dos genes en *Dalbulus maidis* con ARNdc de 578 y 544 pb,
+con reducción del transcrito y mortalidad alta. Lo que la evidencia sí sostiene es el piso, de
+unos 60 pb. Una revisión de 2025 dice que no hay consenso sobre el largo óptimo. Lectura
+nuestra `[H]`: el rango del laboratorio es una convención razonable y compatible con la
+evidencia, no una conclusión de ella.
+
+**Y aparecieron genes nuevos con evidencia mejor que la de los candidatos actuales.** Dos con
+evidencia funcional en la propia especie objetivo, `eth` y `burs-alpha`, con knockdown del 90 al
+95 % y supervivencia del 10 % al día 4 contra más del 95 % del control; tienen ARNm público de
+*D. maidis*, así que se les pudo calcular la ventana sobre la secuencia correcta: 44 y 33 siRNA
+eficientes. Y uno letal y esterilizante probado en dos géneros de cicadélidos de la misma
+subfamilia, con una advertencia nuestra: por secuencia, el transcrito que usaron pertenece a otra
+familia de proteínas que la que el trabajo nombra `[?]`. De 36 filas del catálogo, 15 se
+leyeron solo por resumen y registran fenotipo pero no dosis ni n.
 
 ---
 

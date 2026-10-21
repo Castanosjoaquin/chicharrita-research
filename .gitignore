@@ -33,3 +33,6 @@ research/R7_microgravedad/M4_mollicutes_estructura/datos/ft_*
 research/R7_microgravedad/M4_mollicutes_estructura/datos/*.fasta
 research/R7_microgravedad/M4_mollicutes_estructura/datos/*.faa
 research/R7_microgravedad/M4_mollicutes_estructura/datos/afdb_bulk_*.jsonl
+
+# Ola 3: bytecode de los scripts de investigacion
+research/ola3/*/scripts/__pycache__/
