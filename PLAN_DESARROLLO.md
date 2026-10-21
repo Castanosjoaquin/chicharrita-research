@@ -199,7 +199,7 @@ coincidencia perfecta de 21 nt en el transcriptoma de un cicadélido no objetivo
 no contienen ninguna. Están además las cuatro fichas y las cinco decisiones de agregación, cada
 una con su alternativa y su consecuencia.
 
-**Lo que queda por hacer, y no es cosmético.** Dos mediciones posteriores tocan su recomendación
+**Lo que motivó la segunda versión.** Dos mediciones posteriores tocaron su recomendación
 central de mover la región dentro de los dos genes del insecto:
 
 - Al agregar al panel el cicadélido más cercano a la chicharrita con genoma anotado, la región
@@ -220,19 +220,29 @@ estabilidad del orden frente al largo de ventana. **Terminada cuando:** cada rec
 mover una región dice contra qué panel se evaluó, y el documento dice cuáles de sus conclusiones
 cambiaron respecto de la primera versión.
 
-### T4 · La auditoría de las regiones 1–200 — hecha, y con una revisión pendiente
+### T4 · La auditoría de las regiones 1–200 — hecha, y ya revisada
 
-**Estado:** hecha en `W7_ranking/REPORT.md` §2.2 y §2.3. Para los dos genes del insecto hay
-región alternativa recomendada —`BicC_Dm` 2123-2422 y `ATPaseD_Dm` 72-371—, mejores en los dos
-ejes a la vez, y el informe dice explícitamente qué pasa si el laboratorio acepta moverlas: el
-orden cambia y `BicC_Dm` salta de pelear el último puesto a quedar segundo.
+**Estado:** hecha en `W7_ranking/REPORT.md` §2.2 y §2.3, y **revisada el 2026-10-21 en
+`research/ola3/C7_ranking_v2/`**. Para los dos genes del insecto hay región alternativa
+recomendada, mejor en los dos ejes a la vez, y el informe dice explícitamente qué pasa si el
+laboratorio acepta moverlas: el orden cambia y `BicC_Dm` salta de pelear el último puesto a
+quedar segundo. Las regiones vigentes son las de la v2: **`BicC_Dm` 2121-2420** —corrida dos
+nucleótidos respecto de la 2123-2422 de W7, por la columna de humano— y **`ATPaseD_Dm` 72-371**,
+igual que en W7.
 
-**Lo que queda, y no es un detalle:** al agregar al panel el cicadélido más cercano a la
-chicharrita con genoma anotado, la región recomendada para `BicC_Dm` tiene 19 ventanas con
-coincidencia perfecta de 21 nt contra las 10 de la que eligió EPILAB, así que en ese eje la
-recomendación empeora las cosas. Hay salida medida —otra región del mismo gen que escapa al veto
-perdiendo una sola ventana eficiente—, pero **la recomendación tal como está escrita no
-sobrevive al panel ampliado** y hay que reescribirla.
+**Cómo se resolvió la revisión que este plan dejaba abierta, que importa más que el resultado.**
+La objeción era que, al agregar al panel el cicadélido más cercano a la chicharrita con genoma
+anotado, la región recomendada para `BicC_Dm` tiene 19 ventanas con coincidencia perfecta de
+21 nt contra las 10 de la que eligió EPILAB, de modo que en ese eje la recomendación empeoraba
+las cosas (`C6_panel_y_largo/`). **No se resolvió midiendo sino decidiendo:** el equipo sacó a
+*Macrosteles quadrilineatus* del panel (D23), y con ese panel la recomendación vuelve a valer.
+La premisa fáctica de esa decisión quedó verificada contra GBIF —cero ocurrencias en Argentina y
+en Sudamérica sobre 3.592, concentradas en Canadá y Estados Unidos `[E]`—, pero el segundo flanco
+sigue abierto y el propio D23 lo declara: la especie se había incorporado como **sustituto
+filogenético** del resto de los Deltocephalinae, no por exposición directa, y su ausencia en
+Argentina no descarta ese uso. **Si el investigador dice que los cicadélidos hermanos cuentan
+como no objetivo, esta recomendación se vuelve a caer** y hay que reescribirla con la región
+alternativa que C6 midió, la que escapa al veto perdiendo una sola ventana eficiente.
 
 **Nota de método que ya pagamos:** el número de eficientes de una región depende de si se calcula
 sobre la región recortada o sobre el gen entero, y la diferencia llega al 47 %. Hay que declarar
