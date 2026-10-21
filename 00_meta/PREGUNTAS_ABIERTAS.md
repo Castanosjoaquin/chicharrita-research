@@ -866,6 +866,20 @@ En orden de cuánto cambian lo que hacemos:
   los sorteos, **pasa a tercero**. `[E]` Lo que hay que corregir no es el cálculo, que está bien y
   tiene las dos escalas: es la lectura de que «la diagonal se arma sola», que sin la escala al lado
   se lee como robustez y es sensibilidad al rango de los ejes. Afecta a W7 y al v2 por igual.
+- **Cuánta palanca puede llegar a tener la limpieza, medido como cota** (misma auditoría). Como el
+  riesgo por ventana es un **máximo** ponderado y los pesos viven en el simplex, la exposición de
+  una región no puede superar la fracción de sus ventanas con algún off-target, cualquiera sea el
+  sorteo. Eso da un piso duro de limpieza por candidato, con las regiones de EPILAB: `MP_MRFV`
+  0,9450, `CP_MRFV` 0,9750, `BicC_Dm` 0,8533 y `ATPaseD_Dm` 0,9300. `[E]` Entonces la palanca
+  máxima concebible de la limpieza en la media geométrica es log(1/0,8533) = 0,159, contra una
+  dispersión de la eficacia de log(0,1500/0,0600) = 0,916: **un factor 5,8 a favor de la eficacia,
+  y eso en el peor caso; con los pesos base la dispersión real de la limpieza es 0,062, quince
+  veces menor**. `[E]` La consecuencia práctica, que es la que hay que tener presente al leer el
+  barrido: **sortear los pesos por referencia y por criterio sólo puede cambiar el orden de un par
+  que ya esté casi empatado en eficacia.** Es exactamente el caso de `BicC_Dm` contra `ATPaseD_Dm`
+  —log(0,0667/0,0600) = 0,106, del mismo tamaño que su brecha de limpieza, log(0,9804/0,9334) =
+  0,049, y de ahí sale el cruce en w* = 0,32—. En los demás pares el sorteo es inerte por
+  construcción, no por casualidad. `[H]` la lectura, `[E]` los números.
 - ~~**Verificar la distribución de *Macrosteles quadrilineatus*** con un catálogo (GBIF, Biodiversidad
   Virtual o un catálogo de Cicadellidae argentinos) antes de dar D23 por cerrada.~~ **Cerrado el
   2026-10-21 contra GBIF** (`api.gbif.org`, `taxonKey` 2039662, consulta de ocurrencias por país):
