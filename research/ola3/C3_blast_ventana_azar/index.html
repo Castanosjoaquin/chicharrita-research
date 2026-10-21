@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C3 — BLAST para 21 nt, el largo de la ventana, y qué parte es azar</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f5f6;
+    --surface-2:#eceef0;
+    --text:#16191c;
+    --text-dim:#565d64;
+    --line:#d4d8dc;
+    --accent:#1d5c4a;
+    --accent-soft:#e3efea;
+    --warn:#8a4b1c;
+    --warn-soft:#f6ece3;
+    --stop:#8a2b2b;
+    --stop-soft:#f7e8e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121417;
+      --surface:#1b1e22;
+      --surface-2:#23272c;
+      --text:#e8eaec;
+      --text-dim:#a0a7ae;
+      --line:#343a40;
+      --accent:#6fc4a7;
+      --accent-soft:#1c2b26;
+      --warn:#d79a68;
+      --warn-soft:#2a221b;
+      --stop:#dd8b8b;
+      --stop-soft:#2b1d1d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:0 16px}
+  header{border-bottom:1px solid var(--line); padding:44px 0 32px; margin-bottom:40px}
+  .eyebrow{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin:0 0 10px}
+  h1{font-size:1.95rem; line-height:1.22; font-weight:650; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--text-dim); margin:0; max-width:62ch}
+  h2{font-size:1.3rem; font-weight:650; margin:48px 0 14px; letter-spacing:-.01em;
+     padding-top:18px; border-top:1px solid var(--line)}
+  h3{font-size:1.02rem; font-weight:650; margin:28px 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+  strong{font-weight:650}
+  em{font-style:italic}
+  a{color:var(--accent)}
+
+  .verdict{background:var(--surface); border:1px solid var(--line);
+           border-left:4px solid var(--accent); padding:22px 24px; margin:0 0 8px}
+  .verdict h2{margin:0 0 14px; border-top:none; padding-top:0; font-size:1.15rem}
+  .verdict p:last-child{margin-bottom:0}
+
+  .calls{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:26px 0 8px}
+  .call{border:1px solid var(--line); background:var(--surface); padding:16px 18px}
+  .call .k{font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--text-dim); margin:0 0 6px}
+  .call .v{font-weight:650; margin:0 0 6px; line-height:1.3}
+  .call .n{font-size:.9rem; color:var(--text-dim); margin:0}
+  .call.stop{border-left:3px solid var(--stop)}
+  .call.warn{border-left:3px solid var(--warn)}
+  .call.ok{border-left:3px solid var(--accent)}
+
+  figure{margin:24px 0 10px}
+  figure svg{display:block; width:100%; height:auto; background:var(--surface); border:1px solid var(--line)}
+  figcaption{font-size:.88rem; color:var(--text-dim); margin-top:10px; max-width:70ch}
+
+  .tw{overflow-x:auto; margin:18px 0 10px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; min-width:680px; font-size:.92rem}
+  caption{text-align:left; font-size:.88rem; color:var(--text-dim); padding:12px 14px; border-bottom:1px solid var(--line); background:var(--surface)}
+  th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--surface-2); font-weight:650; font-size:.84rem; letter-spacing:.02em}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{white-space:nowrap}
+
+  .tag{display:inline-block; font-size:.74rem; font-weight:650; padding:2px 7px;
+       border:1px solid var(--line); background:var(--surface-2); color:var(--text-dim); line-height:1.5}
+  .tag.e{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+  .tag.r{background:var(--warn-soft); color:var(--warn); border-color:transparent}
+  .tag.q{background:var(--stop-soft); color:var(--stop); border-color:transparent}
+
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  .note{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+        padding:16px 18px; margin:22px 0}
+  .note p:last-child{margin-bottom:0}
+  .note .t{font-weight:650; margin:0 0 7px}
+  footer{border-top:1px solid var(--line); margin-top:52px; padding:24px 0 48px;
+         font-size:.88rem; color:var(--text-dim)}
+  footer p{margin:0 0 7px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Investigath&oacute;n Y-Hat &middot; ola 3 &middot; l&iacute;nea C3</p>
+    <h1>BLAST para ventanas de 21&nbsp;nt, el largo de la ventana, y qu&eacute; parte de las coincidencias es azar</h1>
+    <p class="sub">Tres cuestiones de tamizaje de off-targets que plante&oacute; el investigador del
+    laboratorio, resueltas con medici&oacute;n propia sobre BLAST+ 2.17.0, el port de si-Fi21 y una
+    b&uacute;squeda exacta de k-meros sobre un genoma de 972&nbsp;Mb. Esta es la vista de lectura; la
+    fuente de verdad es <code>REPORT.md</code>.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="verdict" aria-labelledby="v1">
+    <h2 id="v1">Q1 &mdash; Qu&eacute; par&aacute;metro, y qu&eacute; configuraci&oacute;n</h2>
+    <p class="lead"><strong>El par&aacute;metro que decide sobre una ventana de 21&nbsp;nt no es el
+    E-value ni el percent identity: es <code>-word_size</code>. Y ninguna configuraci&oacute;n de BLAST
+    recupera un 21-mero con un desajuste en las 21 posiciones.</strong></p>
+    <p>&laquo;HCP&raquo; es casi con seguridad &laquo;HSP&raquo;, pero HSP no es un par&aacute;metro:
+    es la unidad de resultado. El texto de ayuda de <code>blastn</code> 2.17.0 usa la sigla en
+    <code>-max_hsps</code>, <code>-qcov_hsp_perc</code> y <code>-sorthsps</code>, y ninguno de los
+    tres es el que manda ac&aacute;. <span class="tag q">H</span> la identificaci&oacute;n,
+    <span class="tag e">E</span> los par&aacute;metros.</p>
+    <p>Un 21-mero con el desajuste en la posici&oacute;n <em>p</em> queda partido en dos bloques
+    exactos de <em>p</em>&minus;1 y 21&minus;<em>p</em> nucle&oacute;tidos. Si ninguno llega al tama&ntilde;o
+    de palabra, BLAST no siembra. El <code>megablast</code> por defecto usa palabra <strong>28</strong>
+    y da <strong>cero en las 21 posiciones</strong>; <code>-task blastn</code> usa 11 y pierde
+    exactamente la posici&oacute;n 11. Hace falta <code>word_size &le; 10</code>, y bajar de 10 no
+    agrega nada. <span class="tag e">E</span></p>
+    <p>El techo medido sobre 3.150 consultas es <strong>0,762</strong> con <code>-task blastn</code>
+    y <strong>0,619</strong> con cualquier <code>blastn-short</code>. Lo que falta no es semilla:
+    la extensi&oacute;n con corte X <strong>recorta un desajuste cercano al extremo en vez de
+    cruzarlo</strong>, porque cruzarlo no paga. Con premio 1 y penalidad &minus;3 hacen falta cuatro
+    calces del otro lado y se pierden las posiciones 1-4 y 18-21; con premio 2 alcanzan dos y se
+    pierden 1, 2, 20 y 21. <strong>La f&oacute;rmula predice las dos columnas enteras.</strong>
+    <span class="tag e">E</span></p>
+    <p>Y a escala de genoma el E-value s&iacute; decide: contra los 972&nbsp;Mb de
+    <em>Dalbulus maidis</em>, pedir <code>-evalue 0.05</code> &mdash;el valor por defecto del
+    formulario web del NCBI&mdash; lleva la sensibilidad de <strong>0,619 a 0,000</strong>.
+    <span class="tag e">E</span></p>
+  </section>
+
+  <section class="verdict" aria-labelledby="v2">
+    <h2 id="v2">Q2 &mdash; 21 o 22, y por qu&eacute; no menos</h2>
+    <p class="lead"><strong>El largo lo fija la geometr&iacute;a de la enzima, no una convenci&oacute;n.
+    Y el marco de referencia que el campo usa para elegir 21&nbsp;nt no incluye un solo
+    hem&iacute;ptero.</strong></p>
+    <p>Dicer corta a una distancia fija del extremo del d&uacute;plex porque el dominio PAZ lo ancla y
+    los centros cataliticos est&aacute;n a una separaci&oacute;n f&iacute;sica determinada: el modelo de la
+    regla molecular. En insectos el largo es 20, 21 o 22 seg&uacute;n el orden, y est&aacute; medido:
+    d&iacute;pteros y coleopteros 21, himen&oacute;pteros y ort&oacute;pteros 22, lepid&oacute;pteros 20.
+    <span class="tag e">E</span></p>
+    <p>Ninguno de los dos trabajos que sostienen eso incluye Hemiptera &mdash;verificado sobre los
+    textos completos&mdash;. Lo que hay de Hemiptera apunta a los dos lados: en la mosca blanca
+    <em>Bemisia tabaci</em> el pico de productos de Dicer est&aacute; en <strong>22&nbsp;nt</strong>; en
+    un psilido el ARNdc se procesa a 21 y en un delf&aacute;cido los siRNA virales son de 21-22.
+    <strong>Para Cicadellidae, la familia de la chicharrita, no hay ninguna distribuci&oacute;n de
+    tama&ntilde;os publicada que hayamos podido encontrar.</strong> <span class="tag e">E</span> el
+    vac&iacute;o en lo revisado.</p>
+    <p>En el benchmark computacional el conteo de ventanas eficientes cambia menos del 11&nbsp;%
+    al pasar de 21 a 22&nbsp;nt, pero <strong>en los dos genes largos la regi&oacute;n elegida se muda
+    de lugar del gen</strong>: la ganadora de BicC_Dm a 21&nbsp;nt cae al puesto <strong>166</strong>
+    en el ranking a 22. <span class="tag e">E</span></p>
+  </section>
+
+  <section class="verdict" aria-labelledby="v3">
+    <h2 id="v3">Q3 &mdash; Cu&aacute;ntas coincidencias da el azar y cu&aacute;ntas hay de verdad</h2>
+    <p class="lead"><strong>La intuici&oacute;n falla en el total y acierta en la distribuci&oacute;n: hay
+    las mismas coincidencias que predice la estad&iacute;stica, repartidas entre menos
+    ventanas.</strong></p>
+    <p>Para secuencias con la composici&oacute;n de nuestros genes pero sin homolog&iacute;a &mdash;control
+    barajado que conserva los dinucle&oacute;tidos&mdash;, el total de coincidencias exactas en el
+    genoma de <em>D. maidis</em> es el que predice un Markov de orden 5 ajustado a la propia
+    referencia: razones observado/esperado de <strong>1,235, 1,197, 1,016, 1,035 y 1,000</strong> para
+    k de 16 a 20. <strong>La cuenta de probabilidad pura no est&aacute; rota: est&aacute; sin corregir por
+    composici&oacute;n, y el error es un factor chico.</strong> <span class="tag e">E</span></p>
+    <p>Pero con k&nbsp;=&nbsp;16 el azar predice que el <strong>36,4&nbsp;%</strong> de las ventanas
+    tendr&iacute;a al menos una coincidencia y lo observado es <strong>15,9&nbsp;%</strong>, con el total
+    igual. La varianza del conteo es <strong>66 veces la media</strong> y un solo 16-mero del
+    control aparece <strong>325 veces</strong>: las coincidencias se amontonan sobre los k-meros
+    que caen en familias repetidas. <span class="tag e">E</span></p>
+    <p>El conjunto real contra el genoma del propio vector da razones de hasta
+    <strong>4.840</strong>: eso no es azar ni off-target, es <strong>on-target</strong>, porque dos
+    de los cuatro genes son de la chicharrita y sus ventanas se encuentran a s&iacute; mismas.
+    <span class="tag e">E</span></p>
+  </section>
+
+  <h2>Los valores por defecto, medidos en el binario</h2>
+
+  <p>El ap&eacute;ndice oficial que los lista (<code>NBK279684</code>) <strong>no se pudo abrir</strong>:
+  el dominio devuelve una p&aacute;gina de reCAPTCHA a un cliente program&aacute;tico, y no se false&oacute; el
+  user-agent para esquivarla. Se midieron sobre el binario, que es evidencia m&aacute;s fuerte: se arma
+  un par consulta/sujeto donde el &uacute;nico calce exacto posible es un bloque plantado, porque el
+  fondo de la consulta usa s&oacute;lo {A,C} y el del sujeto s&oacute;lo {G,T}. Hace falta
+  <code>-strand plus</code>: sin eso la hebra menos de la consulta calza con el fondo del sujeto.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Valores por defecto por tarea, medidos con BLAST+ 2.17.0+ sobre bloques plantados.
+    El tama&ntilde;o de palabra es el menor bloque exacto que produce un acierto; el premio y la
+    penalidad salen del puntaje crudo.</caption>
+    <thead>
+      <tr><th>Par&aacute;metro</th><th><code>megablast</code></th><th><code>blastn</code></th><th><code>blastn-short</code></th><th>Qu&eacute; le hace a 21&nbsp;nt</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>-word_size</code></td><td class="num"><strong>28</strong></td><td class="num"><strong>11</strong></td><td class="num"><strong>7</strong></td><td>el que decide: con 28 &gt; 21 no hay semilla posible</td></tr>
+      <tr><td><code>-reward</code> / <code>-penalty</code></td><td class="num">1 / &minus;2</td><td class="num">2 / &minus;3</td><td class="num">1 / &minus;3</td><td>deciden si la extensi&oacute;n cruza el desajuste o lo recorta</td></tr>
+      <tr><td><code>-gapopen</code> / <code>-gapextend</code></td><td class="num">lineal, 2,5 por posici&oacute;n</td><td class="num">5 / 2</td><td class="num">5 / 2</td><td>irrelevante con <code>-ungapped</code>, que es lo correcto</td></tr>
+      <tr><td><code>-evalue</code></td><td class="num">10</td><td class="num">10</td><td class="num">1000</td><td>decide, y mucho, cuando la base es grande</td></tr>
+      <tr><td><code>-perc_identity</code></td><td>sin filtro</td><td>sin filtro</td><td>sin filtro</td><td>enga&ntilde;oso: filtra sobre el HSP, no sobre los 21&nbsp;nt</td></tr>
+      <tr><td><code>-qcov_hsp_perc</code></td><td>sin filtro</td><td>sin filtro</td><td>sin filtro</td><td>es el que <em>deber&iacute;a</em> usarse para exigir cobertura</td></tr>
+      <tr><td><code>-max_hsps</code></td><td>sin l&iacute;mite</td><td>sin l&iacute;mite</td><td>sin l&iacute;mite</td><td>no pierde copias dentro de un mismo sujeto</td></tr>
+      <tr><td><code>-max_target_seqs</code></td><td class="num">500</td><td class="num">500</td><td class="num">500</td><td>trunca en silencio con muchos transcriptos</td></tr>
+      <tr><td><code>-dust</code></td><td><code>20 64 1</code></td><td><code>20 64 1</code></td><td><code>no</code></td><td>puede enmascarar una ventana repetitiva</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p class="t">La letra chica de los huecos de <code>megablast</code></p>
+    <p>Los puntajes de deleciones de 1, 2 y 3&nbsp;nt son 57, 54 y 50. Ning&uacute;n modelo af&iacute;n de
+    enteros los reproduce los tres; un costo <strong>lineal de 2,5 por posici&oacute;n</strong> s&iacute;,
+    con truncamiento. Reportamos eso y no un par apertura/extensi&oacute;n. Para las otras dos tareas el
+    modelo af&iacute;n cierra con las tres ecuaciones. <span class="tag e">E</span></p>
+  </div>
+
+  <h2>Sensibilidad por posici&oacute;n del desajuste</h2>
+
+  <p>50 21-meros de la propia base, un desajuste plantado en cada posici&oacute;n con cada una de las
+  tres bases alternativas, 3.150 consultas, y se exige que el acierto caiga en el
+  <strong>locus de origen</strong>. El control de verdad terreno es exacto: por construcci&oacute;n cada
+  consulta tiene distancia de Hamming 1 con la referencia, verificado por comparaci&oacute;n de
+  subcadenas antes de correr nada.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Fracci&oacute;n de consultas con un HSP de 21&nbsp;nt y un desajuste en el locus de origen.
+    Base sint&eacute;tica uniforme de 5&nbsp;Mb, n&nbsp;=&nbsp;150 por posici&oacute;n. El patr&oacute;n es id&eacute;ntico
+    contra el transcriptoma de ma&iacute;z y el genoma de <em>D. maidis</em>.</caption>
+    <thead>
+      <tr><th>Posici&oacute;n</th><th>C1 <code>megablast</code></th><th>C2 <code>blastn</code></th><th>C3 <code>short</code> ws&nbsp;7</th><th>C4 <code>short</code> ws&nbsp;11</th><th>C5 <code>short</code> ws&nbsp;10</th><th>C10 ws&nbsp;21 (control)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1 y 2</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td></tr>
+      <tr><td>3 y 4</td><td class="num">0,00</td><td class="num"><strong>1,00</strong></td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td></tr>
+      <tr><td>5 a 10</td><td class="num">0,00</td><td class="num"><strong>1,00</strong></td><td class="num"><strong>1,00</strong></td><td class="num"><strong>1,00</strong></td><td class="num"><strong>1,00</strong></td><td class="num">0,00</td></tr>
+      <tr><td><strong>11</strong></td><td class="num">0,00</td><td class="num"><strong>0,00</strong></td><td class="num"><strong>1,00</strong></td><td class="num"><strong>0,00</strong></td><td class="num"><strong>1,00</strong></td><td class="num">0,00</td></tr>
+      <tr><td>12 a 17</td><td class="num">0,00</td><td class="num">0,99 &ndash; 1,00</td><td class="num"><strong>1,00</strong></td><td class="num"><strong>1,00</strong></td><td class="num"><strong>1,00</strong></td><td class="num">0,00</td></tr>
+      <tr><td>18 y 19</td><td class="num">0,00</td><td class="num"><strong>1,00</strong></td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td></tr>
+      <tr><td>20 y 21</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td><td class="num">0,00</td></tr>
+      <tr><td><strong>global</strong></td><td class="num"><strong>0,000</strong></td><td class="num"><strong>0,762</strong></td><td class="num"><strong>0,619</strong></td><td class="num"><strong>0,571</strong></td><td class="num"><strong>0,619</strong></td><td class="num"><strong>0,000</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>21 contra 22&nbsp;nt sobre los cuatro genes</h2>
+
+  <p>Con el criterio de eficiencia del port de si-Fi21 <strong>sin modificar</strong>
+  (<code>sirna_size</code> s&iacute; es par&aacute;metro), modo corregido, ViennaRNA 2.7.2. Los conteos
+  absolutos no son comparables con los de W5, que us&oacute; RNAplfold 2.1.5; lo que se compara ac&aacute;
+  es 21 contra 22 con el mismo backend.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Ventanas eficientes, solapamiento y regi&oacute;n m&aacute;s densa de 200&nbsp;nt a cada largo.
+    El &uacute;ltimo campo es el puesto que ocupa, en el ranking a 22&nbsp;nt, la regi&oacute;n que gana a
+    21&nbsp;nt.</caption>
+    <thead>
+      <tr><th>Gen</th><th>Largo</th><th>Efic. 21</th><th>Efic. 22</th><th>Jaccard de nt cubiertos</th><th>&rho; de Spearman</th><th>Mejor regi&oacute;n 21</th><th>Mejor regi&oacute;n 22</th><th>Puesto</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ATPaseD_Dm</td><td class="num">491</td><td class="num">29</td><td class="num">32</td><td class="num">0,813</td><td class="num">0,960</td><td class="num">272-471</td><td class="num">87-286</td><td class="num">&mdash;</td></tr>
+      <tr><td>CP_MRFV</td><td class="num">528</td><td class="num">30</td><td class="num">29</td><td class="num">0,735</td><td class="num">0,925</td><td class="num">99-298</td><td class="num">77-276</td><td class="num">6.&ordm;</td></tr>
+      <tr><td>MP_MRFV</td><td class="num">1.263</td><td class="num">123</td><td class="num">123</td><td class="num">0,826</td><td class="num">0,740</td><td class="num">72-271</td><td class="num"><strong>820-1019</strong></td><td class="num"><strong>23.&ordm;</strong></td></tr>
+      <tr><td>BicC_Dm</td><td class="num">2.520</td><td class="num">171</td><td class="num">174</td><td class="num">0,778</td><td class="num">0,927</td><td class="num">1022-1221</td><td class="num"><strong>2013-2212</strong></td><td class="num"><strong>166.&ordm;</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Esperado contra observado, k de 16 a 22</h2>
+
+  <p>B&uacute;squeda <strong>exacta</strong>, no heur&iacute;stica: el esc&aacute;ner codifica la secuencia a 2 bits,
+  filtra candidatos con una tabla de 4<sup>12</sup> entradas y verifica a largo completo. S&oacute;lo
+  sostiene un bloque de 8&nbsp;Mb por vez, as&iacute; que el genoma de 972&nbsp;Mb entra en memoria y se
+  recorre en 61&nbsp;s.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Conjunto barajado, que conserva los dinucle&oacute;tidos de cada gen y no tiene
+    homolog&iacute;a. Totales sobre ~4.740 ventanas. E<sub>u</sub> es el uniforme 2N/4<sup>k</sup>;
+    E<sub>m5</sub> el Markov de orden 5 ajustado a la propia referencia.</caption>
+    <thead>
+      <tr><th>Referencia</th><th>k</th><th>Observado</th><th>E<sub>u</sub></th><th>E<sub>m5</sub></th><th>obs/E<sub>u</sub></th><th>obs/E<sub>m5</sub></th></tr>
+    </thead>
+    <tbody>
+      <tr><td rowspan="5"><em>D. maidis</em>, genoma<br><span class="tag">972 Mb de ADN</span></td><td class="num">16</td><td class="num">1.979</td><td class="num">2.146,7</td><td class="num">1.602,8</td><td class="num">0,92</td><td class="num">1,235</td></tr>
+      <tr><td class="num">17</td><td class="num">473</td><td class="num">536,2</td><td class="num">395,1</td><td class="num">0,88</td><td class="num">1,197</td></tr>
+      <tr><td class="num">18</td><td class="num">99</td><td class="num">133,9</td><td class="num">97,4</td><td class="num">0,74</td><td class="num"><strong>1,016</strong></td></tr>
+      <tr><td class="num">19</td><td class="num">25</td><td class="num">33,5</td><td class="num">24,2</td><td class="num">0,75</td><td class="num"><strong>1,035</strong></td></tr>
+      <tr><td class="num">20</td><td class="num">6</td><td class="num">8,4</td><td class="num">6,0</td><td class="num">0,72</td><td class="num"><strong>1,000</strong></td></tr>
+      <tr><td rowspan="3"><em>Z. mays</em>, transcriptoma<br><span class="tag">163 Mb de ARN</span></td><td class="num">16</td><td class="num">616</td><td class="num">356,8</td><td class="num">525,7</td><td class="num">1,73</td><td class="num">1,17</td></tr>
+      <tr><td class="num">17</td><td class="num">157</td><td class="num">89,1</td><td class="num">135,0</td><td class="num">1,76</td><td class="num">1,16</td></tr>
+      <tr><td class="num">18</td><td class="num">52</td><td class="num">22,2</td><td class="num">34,6</td><td class="num">2,34</td><td class="num">1,50</td></tr>
+      <tr><td rowspan="3"><em>A. mellifera</em>, transcriptoma<br><span class="tag">99 Mb de ARN</span></td><td class="num">16</td><td class="num">202</td><td class="num">216,9</td><td class="num">198,4</td><td class="num">0,93</td><td class="num"><strong>1,02</strong></td></tr>
+      <tr><td class="num">17</td><td class="num">42</td><td class="num">54,2</td><td class="num">49,6</td><td class="num">0,78</td><td class="num">0,85</td></tr>
+      <tr><td class="num">18</td><td class="num">9</td><td class="num">13,5</td><td class="num">12,4</td><td class="num">0,67</td><td class="num">0,73</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p class="t">Los k &ge; 21 no se pueden leer</p>
+    <p>Las razones de 9, 19 o 5 que aparecen a 21 y 22&nbsp;nt salen de contar 1, 2 o 4
+    coincidencias contra un esperado de 0,05 a 2. Son ruido, no se&ntilde;al, y no sostienen ninguna
+    conclusi&oacute;n. Todo Q3 se apoya en k de 16 a 20. <span class="tag e">E</span></p>
+  </div>
+
+  <h2>Por qu&eacute; el salto de nuestra tabla est&aacute; en 17</h2>
+
+  <p>La tabla de <code>pipeline/REPORT.md</code> &sect;4.1 no cuenta k-meros: cuenta ventanas de
+  21&nbsp;nt con alg&uacute;n bloque contiguo de &ge;&nbsp;k&nbsp;nt en la referencia. Una ventana de 21
+  contiene 21&minus;k+1 sub-ventanas, as&iacute; que el esperado por ventana es
+  &lambda;(k)&nbsp;=&nbsp;(21&minus;k+1)&middot;2N/4<sup>k</sup> y la fracci&oacute;n tocada es
+  1&minus;e<sup>&minus;&lambda;</sup>, que es casi &lambda; mientras &lambda; es chico y se satura
+  cuando pasa de 1.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Genoma de <em>D. maidis</em>. La columna del control barajado es azar puro; la de
+    ventanas reales incluye on-target y por eso se estanca.</caption>
+    <thead>
+      <tr><th>k</th><th>&lambda; uniforme</th><th>Sobrevive, Poisson</th><th>Sobrevive, control barajado</th><th>Sobrevive, ventanas reales</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">16</td><td class="num">2,72</td><td class="num">6,6&nbsp;%</td><td class="num"><strong>54,5&nbsp;%</strong></td><td class="num">25,9&nbsp;%</td></tr>
+      <tr><td class="num">17</td><td class="num">0,57</td><td class="num">56,8&nbsp;%</td><td class="num"><strong>82,8&nbsp;%</strong></td><td class="num">36,8&nbsp;%</td></tr>
+      <tr><td class="num">18</td><td class="num">0,11</td><td class="num">89,3&nbsp;%</td><td class="num"><strong>95,6&nbsp;%</strong></td><td class="num">41,8&nbsp;%</td></tr>
+      <tr><td class="num">19</td><td class="num">0,021</td><td class="num">97,9&nbsp;%</td><td class="num"><strong>98,9&nbsp;%</strong></td><td class="num">43,9&nbsp;%</td></tr>
+      <tr><td class="num">20</td><td class="num">0,0035</td><td class="num">99,6&nbsp;%</td><td class="num"><strong>99,8&nbsp;%</strong></td><td class="num">45,2&nbsp;%</td></tr>
+      <tr><td class="num">21</td><td class="num">0,00044</td><td class="num">100,0&nbsp;%</td><td class="num"><strong>99,9&nbsp;%</strong></td><td class="num">46,1&nbsp;%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Entre 21 y 18&nbsp;nt la curva parece plana porque &lambda; va de 0,0004 a 0,11. Entre 17 y 16,
+  &lambda; va de 0,57 a 2,72 y la supervivencia cae de 82,8&nbsp;% a 54,5&nbsp;%.
+  <strong>El salto est&aacute; donde &lambda; cruza 1, y para una referencia de 10<sup>8</sup> a
+  10<sup>9</sup> bases eso cae exactamente entre 16 y 17.</strong> Con los 752&nbsp;MB del
+  cat&aacute;logo de 25 especies del pipeline la cuenta da 12,2&nbsp;%, 64,6&nbsp;% y 91,6&nbsp;% a 16, 17
+  y 18&nbsp;nt, que es la forma de su tabla medida (7,4&nbsp;%, 36,2&nbsp;%, 66,7&nbsp;%).
+  <span class="tag e">E</span> la cuenta, <span class="tag q">H</span> la correspondencia, porque
+  el conjunto no es el mismo.</p>
+
+  <h2>Qu&eacute; se puede enganchar al ranking</h2>
+
+  <div class="calls">
+    <div class="call ok">
+      <p class="k">Columna nueva</p>
+      <p class="v">Raz&oacute;n observado/esperado</p>
+      <p class="n">Coincidencias exactas de la ventana sobre las esperadas bajo Markov de orden 5
+      ajustado a esa referencia. Adimensional, comparable entre referencias de tama&ntilde;o distinto,
+      y separa homolog&iacute;a de composici&oacute;n en un solo n&uacute;mero. El esc&aacute;ner ya est&aacute; escrito y
+      procesa 972&nbsp;Mb en 61&nbsp;s.</p>
+    </div>
+    <div class="call ok">
+      <p class="k">Columna nueva</p>
+      <p class="v">Bandera de repetici&oacute;n</p>
+      <p class="n">Apariciones de la ventana en el genoma del propio vector. De 15 21-meros
+      tomados al azar del genoma de <em>D. maidis</em>, uno aparec&iacute;a <strong>68 veces</strong> y
+      nueve una sola vez. Un candidato en familia repetida tiene problemas de especificidad que el
+      conteo en otras especies no ve.</p>
+    </div>
+    <div class="call warn">
+      <p class="k">Advertencia de m&eacute;todo</p>
+      <p class="v">Un cero de BLAST no es un cero medido</p>
+      <p class="n">Si el tamizaje se corre con BLAST hay que declarar que la sensibilidad por
+      posici&oacute;n no es uniforme: con <code>blastn-short</code> se pierden las posiciones 1-4 y
+      18-21, y la 2, 3 y 4 est&aacute;n en la regi&oacute;n semilla.</p>
+    </div>
+    <div class="call stop">
+      <p class="k">Advertencia de m&eacute;todo</p>
+      <p class="v">El BLAST web da cero por construcci&oacute;n</p>
+      <p class="n">Megablast con palabra 28 no puede sembrar una consulta de 21&nbsp;nt, y
+      Expect&nbsp;0,05 descarta los HSP de 20-21&nbsp;nt contra una base grande. Las dos cosas est&aacute;n
+      medidas.</p>
+    </div>
+  </div>
+
+  <h2>Qu&eacute; no pudimos hacer</h2>
+
+  <ul>
+    <li>El ap&eacute;ndice oficial de par&aacute;metros de BLAST+ (<code>NBK279684</code>) devuelve reCAPTCHA
+    a un cliente program&aacute;tico. No se false&oacute; el user-agent ni se us&oacute; espejo; se reemplaz&oacute; por
+    medici&oacute;n sobre el binario.</li>
+    <li>Macrae 2006 y Jackson 2006 est&aacute;n cerrados: s&oacute;lo resumen. Los dos datos de Hemiptera que
+    no son la mosca blanca se citan v&iacute;a revisi&oacute;n, sin abrir el primario.</li>
+    <li>En el genoma no se corrieron las configuraciones con palabra &le;&nbsp;8 por costo de
+    c&oacute;mputo, y la sensibilidad en las dos referencias reales se midi&oacute; con 15 fuentes por
+    posici&oacute;n en vez de 150.</li>
+    <li>El benchmark de Q2 usa ViennaRNA 2.7.2 y no el RNAplfold 2.1.5 de si-Fi21, as&iacute; que sus
+    conteos absolutos no son comparables con los verificados en W5.</li>
+  </ul>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>L&iacute;nea C3 de la ola 3. El desarrollo completo est&aacute; en <code>REPORT.md</code>, el detalle
+    de cada pregunta en <code>blast_parametros.md</code>, <code>ventana_21_vs_22.md</code> y
+    <code>azar_vs_real.md</code>, los scripts ejecutables en <code>scripts/</code> y las salidas
+    crudas, con el comando que produjo cada n&uacute;mero, en <code>resultados/</code>.</p>
+    <p>Esta p&aacute;gina no afirma nada que el <code>.md</code> no tenga con su fuente. Ninguna
+    secuencia de EPILAB se envi&oacute; a un servicio de terceros: todo el an&aacute;lisis corri&oacute; con
+    BLAST+ 2.17.0 y ViennaRNA 2.7.2 locales.</p>
+  </div>
+</footer>
+</body>
+</html>

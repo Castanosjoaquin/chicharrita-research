@@ -126,13 +126,14 @@ def main():
     sal.mkdir(parents=True, exist_ok=True)
 
     genes = leer_genes(GENES)
+    import numpy as _np  # noqa
     print("genes:", [(n, len(s)) for n, s in genes], flush=True)
 
     # consultas: ventanas reales + control barajado por dinucleotidos
     ventanas = {k: [] for k in KS}
     meta = {k: [] for k in KS}      # (gen, conjunto, pos)
     for nombre, s in genes:
-        sb = barajar_dinuc(s, semilla=abs(hash(nombre)) % 10 ** 6)
+        sb = barajar_dinuc(s, semilla=sum(ord(c) for c in nombre))  # determinista entre corridas
         for etiqueta, sec in (("real", s), ("barajado", sb)):
             for k in KS:
                 for i in range(len(sec) - k + 1):
@@ -141,6 +142,8 @@ def main():
                     meta[k].append((nombre, etiqueta, i + 1))
     print("ventanas por k:", {k: len(ventanas[k]) for k in KS}, flush=True)
 
+    (sal / "q3_meta_ventanas.json").write_text(json.dumps(
+        {str(k): meta[k] for k in KS}, ensure_ascii=False))
     cons = kmers.Consultas(ventanas)
     filas = []
     detalle = {}
@@ -153,6 +156,11 @@ def main():
         r = kmers.escanear(str(ruta), cons, bloque=a.bloque)
         dt = time.time() - t0
         print("   %.1f s, %d registros, %d bases" % (dt, r["registros"], r["bases"]), flush=True)
+        np.savez_compressed(
+            sal / ("q3_observado_%s.npz" % etiqueta),
+            **{("obs_k%d" % k): r["observado"][k] for k in KS},
+            **{("nrec_k%d" % k): r["registros_distintos"][k] for k in KS},
+            neff=np.array([r["neff"][k] for k in KS]), ks=np.array(KS))
         mc = r["mcount"]
         gc = (mc[1][1] + mc[1][2]) / mc[1].sum()
         detalle[etiqueta] = {"descripcion": desc, "archivo": str(ruta),

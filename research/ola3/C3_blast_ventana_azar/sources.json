@@ -1,0 +1,156 @@
+[
+  {
+    "id": "S1",
+    "tipo": "documentacion de software",
+    "cita": "BLAST+ 2.17.0+ (build 22-ago-2026), texto de ayuda de `blastn` (`blastn -help`)",
+    "ubicacion": "resultados/blastn_help_2.17.0.txt (381 lineas, capturado 2026-10-20)",
+    "acceso": "completo",
+    "uso": "Q1. Valores por defecto documentados de -evalue (10; 1000 para blastn-short, lineas 64-65), -dust ('20 64 1'; 'no' para blastn-short, lineas 221-223), -soft_masking (true, 232-234), -max_target_seqs (500, 314-317), -strand (both, 48-50), definicion de word_size como 'length of best perfect match' (66-67), y las tres apariciones de la sigla HSP en -max_hsps (300-301), -qcov_hsp_perc (298-299) y -sorthsps (213).",
+    "marcador": "E"
+  },
+  {
+    "id": "S2",
+    "tipo": "medicion propia sobre binario",
+    "cita": "Exportacion de estrategia de busqueda de BLAST+ 2.17.0 (`-export_search_strategy`) para las cuatro tareas de blastn",
+    "ubicacion": "work/C3/tmp/strat_{megablast,blastn,blastn-short,dc-megablast}.asn",
+    "acceso": "completo",
+    "uso": "Q1. Confirma blastn-short: EvalueThreshold 1e3, MatchReward 1, MismatchPenalty -3, WordSize 7, DustFiltering FALSE; y dc-megablast: MBTemplateLength 18, WordSize 11, WindowSize 40.",
+    "marcador": "E"
+  },
+  {
+    "id": "S3",
+    "tipo": "documentacion oficial",
+    "cita": "BLAST Command Line Applications User Manual, apendice (tabla C2 de opciones de blastn), NCBI Bookshelf NBK279684",
+    "ubicacion": "https://www.ncbi.nlm.nih.gov/books/NBK279684/",
+    "acceso": "no_abierto",
+    "motivo": "El dominio responde con una pagina de reCAPTCHA de Google a un cliente programatico (21.299 bytes, 36 ocurrencias de 'captcha'). No se falseo el user-agent para esquivar la verificacion y no se uso ningun espejo. Reemplazado por medicion directa sobre el binario (S1, S2 y el script q1_blast_mismatch.py parte A).",
+    "marcador": "?"
+  },
+  {
+    "id": "S4",
+    "tipo": "documentacion oficial",
+    "cita": "BLASTHelp documentation, sitio de documentacion de BLAST del NCBI",
+    "ubicacion": "https://blast.ncbi.nlm.nih.gov/doc/blast-help/ y .../urlapi.html; listado de https://ftp.ncbi.nlm.nih.gov/blast/documents/",
+    "acceso": "completo",
+    "uso": "Descartada. Se abrieron para buscar la tabla de valores por defecto por tarea y no la contienen: el sitio cubre la API de URL y los formatos de base de datos, y el directorio FTP de documentos solo tiene blastdb.html, filter.html y posters.",
+    "marcador": "E"
+  },
+  {
+    "id": "S5",
+    "tipo": "articulo revisado por pares",
+    "cita": "Zotti MJ, Wegner J, Farias BF, Smagghe G. Molecular Ruler Variation in Insect Dicer-2 Suggests a Structural Basis for Species-Dependent siRNA Length and Antiviral Defense Diversity. Viruses 2026;18(3):285.",
+    "doi": "10.3390/v18030285",
+    "acceso": "completo (texto de PMC, PMC13030778)",
+    "uso": "Q2. Distancias PAZ-RNasa III modeladas por homologia sobre PDB 7V6C: D. melanogaster 60,3 A (~21 nt), T. castaneum 59,8 A (~21), B. terrestris 62,2 A (~22), L. migratoria 62,3 A (~22), T. ni 58,3 A (~20); diferencias de 1-2 A entre especies. Verificado tambien que el texto no contiene 'Hemipter', 'aphid', 'whitefly', 'planthopper' ni 'leafhopper' (0 ocurrencias de cada una).",
+    "marcador": "R",
+    "nota": "Son modelos por homologia, no estructuras experimentales; los propios autores piden confirmacion por secuenciacion comparada."
+  },
+  {
+    "id": "S6",
+    "tipo": "articulo revisado por pares",
+    "cita": "Santos D, Mingels L, Vogel E, Wang L, Christiaens O, Cappelle K, Wynant N, Gansemans Y, Van Nieuwerburgh F, Smagghe G, Swevers L, Vanden Broeck J. Generation of Virus- and dsRNA-Derived siRNAs with Species-Dependent Length in Insects. Viruses 2019;11:738.",
+    "doi": "10.3390/v11080738",
+    "acceso": "parcial (PDF descargado; se leyeron resumen y primera pagina)",
+    "uso": "Q2. Fuente experimental primaria de la variacion de largo por orden: seis especies de cinco ordenes (Lepidoptera, Orthoptera, Hymenoptera, Coleoptera, Diptera). Hemiptera NO esta entre los ordenes estudiados.",
+    "marcador": "E"
+  },
+  {
+    "id": "S7",
+    "tipo": "articulo revisado por pares",
+    "cita": "Macrae IJ, Zhou K, Li F, Repic A, Brooks AN, Cande WZ, Adams PD, Doudna JA. Structural Basis for Double-Stranded RNA Processing by Dicer. Science 2006;311:195-198.",
+    "doi": "10.1126/science.1121638",
+    "acceso": "solo_resumen",
+    "motivo": "Cerrado. Unpaywall sin localizacion abierta, Semantic Scholar sin PDF, sin PMCID, CrossRef sin enlaces TDM, el DOI resuelve con 403.",
+    "uso": "Q2. Modelo de la regla molecular: la distancia PAZ-RNasa III de 65 A coincide con lo que ocupan 25 pb, de modo que Dicer corta a una distancia fija del extremo de la helice.",
+    "marcador": "R",
+    "nota": "El numero de 65 A viene del resumen, no del texto completo. El concepto de regla molecular es consenso del campo."
+  },
+  {
+    "id": "S8",
+    "tipo": "articulo revisado por pares",
+    "cita": "Mondal M, Brown JK, Flynt A. Exploiting somatic piRNAs in Bemisia tabaci enables novel gene silencing through RNA feeding. Life Science Alliance 2020;3(10):e202000731.",
+    "doi": "10.26508/lsa.202000731",
+    "acceso": "completo (PDF, texto extraido)",
+    "uso": "Q2, el unico dato de Hemiptera de primera mano que abrimos. Distribucion bimodal de ARN pequenos con pico en 22 nt (productos de Dicer: siRNA y miRNA) y en 29-30 nt (piRNA); el analisis de solapamiento con voladizo de 2 nt muestra que las lecturas de 22 nt son las de mayor evidencia de procesamiento por Dicer y probablemente el tamano del producto de Dicer-2. Alrededor del 56 % de los productos de Dicer son miRNA, y los piRNA son mas abundantes que los siRNA en esta especie.",
+    "marcador": "E"
+  },
+  {
+    "id": "S9",
+    "tipo": "revision revisada por pares",
+    "cita": "Sattar S, Thompson GA. Small RNA Regulators of Plant-Hemipteran Interactions: Micromanagers with Versatile Roles. Front. Plant Sci. 2016;7:1241.",
+    "doi": "10.3389/fpls.2016.01241",
+    "acceso": "completo (PDF, texto extraido)",
+    "uso": "Q2. Tamanos de referencia en insectos (miRNA ~22 nt, endo-siRNA 21 nt, piRNA 24-30 nt, atribuido a Golden et al. 2008); ARNdc procesado a siRNA de 21 nt en el psilido Bactericera cockerelli (atribuido a Wuriyanghan et al. 2011); viRNA de HiPV de 21-22 nt con rango 18-30 nt en el delfacido Laodelphax striatellus (atribuido a Li J. et al. 2014); inventario de estudios de ARN pequenos en Hemiptera, del que surge que el unico cicadelido con perfil publicado es Homalodisca vitripennis y que lo publicado de el es perfilado de miRNA y mapeo de viRNA, no distribucion de tamanos de productos de Dicer.",
+    "marcador": "R",
+    "nota": "Los datos de psilido y delfacido se usan como cita secundaria: no abrimos los trabajos primarios (Wuriyanghan 2011, Li J. 2014)."
+  },
+  {
+    "id": "S10",
+    "tipo": "articulo revisado por pares",
+    "cita": "Jackson AL, Burchard J, Schelter J, Chau BN, Cleary M, Lim L, Linsley PS. Widespread siRNA 'off-target' transcript silencing mediated by seed region sequence complementarity. RNA 2006;12(7):1179-1187.",
+    "doi": "10.1261/rna.25706",
+    "acceso": "solo_resumen",
+    "motivo": "PMC devuelve solo el resumen (2.608 caracteres); el PDF del editor esta en http y la obtencion exige https.",
+    "uso": "Q1 y cierre de juicio. Los transcriptos silenciados no buscados muestran complementariedad en el 3'UTR con la region semilla del siRNA, y meter desajustes en la semilla no apaga el off-target sino que lo reemplaza por otro conjunto.",
+    "marcador": "R",
+    "nota": "Sistema experimental: cultivo de celulas humanas. No hay evidencia equivalente en insecto entre lo que abrimos. La definicion de region semilla como posiciones 2-8 de la hebra guia aparece en los fragmentos de ese articulo devueltos por la busqueda, no en el resumen."
+  },
+  {
+    "id": "S11",
+    "tipo": "articulo revisado por pares",
+    "cita": "Sabin LR, Zheng Q, Thekkat P, Yang J, Hannon GJ, Gregory BD, Tudor M, Cherry S. Dicer-2 Processes Diverse Viral RNA Species. PLoS ONE 2013;8:e55458.",
+    "doi": "10.1371/journal.pone.0055458",
+    "acceso": "no_abierto",
+    "motivo": "Descartado por redundante: el dato que aportaria (Dcr-2 de Drosophila genera predominantemente productos de 21 nt) ya esta en S5 y S6, que si abrimos.",
+    "marcador": "?"
+  },
+  {
+    "id": "S12",
+    "tipo": "articulo revisado por pares",
+    "cita": "Trabajo sobre el dominio PAZ de Dicer 2 de Aedes aegypti y la fidelidad de tamano de los vsiRNA (PMC12001973 / preprint bioRxiv 2024.06.20.599909)",
+    "acceso": "no_abierto",
+    "motivo": "Apareci\u00f3 en la busqueda y es pertinente al mecanismo de la regla molecular en un insecto, pero no agrega nada a Hemiptera, que es el vacio que nos importaba. No se abrio y por lo tanto no se cita ningun numero suyo.",
+    "marcador": "?"
+  },
+  {
+    "id": "I1",
+    "tipo": "documento interno del repositorio",
+    "cita": "research/checkpoints/checkpoint1.md, apartados 'Off-targets, BLAST y mismatches' (lineas 231-245), 'Nuestro experimento con ventanas mas cortas' (247-257) y 'Por que 21 y no menos' (259-279)",
+    "acceso": "completo",
+    "uso": "Origen de las tres preguntas. Todo su contenido es [R]: lo dijo una persona, con dos tramos de perdida de audio.",
+    "marcador": "R"
+  },
+  {
+    "id": "I2",
+    "tipo": "documento interno del repositorio",
+    "cita": "research/ola2/W2_herramientas/REPORT.md (secciones 2.1 a 2.4 y tabla de seccion 3) y herramientas.json",
+    "acceso": "completo",
+    "uso": "Q1. Valores por defecto ya verificados en el binario por W2; defectos del formulario web (Megablast, palabra 28, Expect 0,05, casilla de ajuste automatico para consultas cortas); cuantificacion de que -perc_identity filtra sobre el HSP y no sobre la consulta; y los parametros que usa de verdad cada herramienta del corpus (dsRNAEngineer con Bowtie, length y mismatch; BLAST solo en screen-target con E-value de una lista cerrada de 1e-5 a 1e-1).",
+    "marcador": "E"
+  },
+  {
+    "id": "I3",
+    "tipo": "documento interno del repositorio",
+    "cita": "pipeline/REPORT.md seccion 4.1, tabla de supervivencia por corte de 15 a 21 nt sobre 10.950 ventanas de 438 genes",
+    "acceso": "completo",
+    "uso": "Q3. Es la tabla cuyo salto de 16 a 17 se explica con la medicion.",
+    "marcador": "H",
+    "nota": "El REPORT del pipeline marca esa tabla como [H]."
+  },
+  {
+    "id": "I4",
+    "tipo": "codigo interno del repositorio",
+    "cita": "tools/sifi21_port/ (README.md, sifi_core.py, offtarget_21nt.py)",
+    "acceso": "completo",
+    "uso": "Q2. Se importa sifi_core sin modificarlo. Verificado en el fuente que sirna_size es parametro (DEFAULTS, SifiEngine.__init__, primitives, apply_rules) y que en offtarget_21nt.py SIZE=21 y MIN_BLOCK=19 son constantes de modulo. Los conteos verificados contra el original con RNAplfold 2.1.5 (42, 32, 133, 212) estan en el README.",
+    "marcador": "E"
+  },
+  {
+    "id": "I5",
+    "tipo": "datos locales",
+    "cita": "work/W5/ref/ y work/W5/db/: genoma GCA_975739785.1 (ihDalMaid1.1, Dalbulus maidis), transcriptomas RefSeq GCF_902167145.1 (Zea mays), GCF_003254395.2 (Apis mellifera); inventario en research/ola2/W4_genomas/REPORT.md",
+    "acceso": "completo",
+    "uso": "Q1 y Q3. Tamanos verificados por nuestra propia pasada: 972.225.736 bases en 141 registros, 162.712.215 en 76.549, 98.645.700 en 27.887.",
+    "marcador": "E"
+  }
+]

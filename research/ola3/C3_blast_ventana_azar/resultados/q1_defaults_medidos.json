@@ -1,0 +1,78 @@
+{
+ "megablast": {
+  "word_size_medido": 28,
+  "reward_medido": 1.0,
+  "penalty_medido": -2.0,
+  "puntajes_hueco": {
+   "1": 57,
+   "2": 54,
+   "3": 50
+  },
+  "gapextend_medido": 2.0,
+  "gapopen_medido": 1.0,
+  "modelo_de_hueco_coherente_con_g3": false,
+  "hsp_de_40nt_reportados_en_un_sujeto": 3,
+  "menor_cobertura_reportada_pct": 26.0,
+  "menor_identidad_reportada_pct": 95.082,
+  "acierto_identidad_90pct": null
+ },
+ "blastn": {
+  "word_size_medido": 11,
+  "reward_medido": 2.0,
+  "penalty_medido": -3.0,
+  "puntajes_hueco": {
+   "1": 113,
+   "2": 109,
+   "3": 105
+  },
+  "gapextend_medido": 2.0,
+  "gapopen_medido": 5.0,
+  "modelo_de_hueco_coherente_con_g3": true,
+  "hsp_de_40nt_reportados_en_un_sujeto": 3,
+  "menor_cobertura_reportada_pct": 20.0,
+  "menor_identidad_reportada_pct": 95.082,
+  "acierto_identidad_90pct": null
+ },
+ "blastn-short": {
+  "word_size_medido": 7,
+  "reward_medido": 1.0,
+  "penalty_medido": -3.0,
+  "puntajes_hueco": {
+   "1": 53,
+   "2": 50,
+   "3": 47
+  },
+  "gapextend_medido": 2.0,
+  "gapopen_medido": 5.0,
+  "modelo_de_hueco_coherente_con_g3": true,
+  "hsp_de_40nt_reportados_en_un_sujeto": 3,
+  "menor_cobertura_reportada_pct": 3.0,
+  "menor_identidad_reportada_pct": 90.0,
+  "acierto_identidad_90pct": {
+   "largo": 90,
+   "pident": 90.0,
+   "qcovhsp": 43.0
+  }
+ },
+ "dc-megablast": {
+  "word_size_medido": 36,
+  "reward_medido": 2.0,
+  "penalty_medido": -3.0,
+  "puntajes_hueco": {
+   "1": null,
+   "2": null,
+   "3": null
+  },
+  "gapextend_medido": null,
+  "gapopen_medido": null,
+  "modelo_de_hueco_coherente_con_g3": null,
+  "hsp_de_40nt_reportados_en_un_sujeto": 3,
+  "menor_cobertura_reportada_pct": 20.0,
+  "menor_identidad_reportada_pct": 90.0,
+  "acierto_identidad_90pct": {
+   "largo": 90,
+   "pident": 90.0,
+   "qcovhsp": 43.0
+  }
+ }
+}
