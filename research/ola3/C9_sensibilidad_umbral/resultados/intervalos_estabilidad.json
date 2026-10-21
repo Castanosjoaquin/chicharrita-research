@@ -1,0 +1,44 @@
+{
+  "fiel": {
+    "top_candidate": "MP_MRFV",
+    "acc_top_interval": [
+      0.05,
+      0.3
+    ],
+    "acc_region_interval": [
+      0.09,
+      0.11
+    ],
+    "end_top_interval": [
+      0.0,
+      1.9
+    ],
+    "end_region_interval": [
+      0.0,
+      1.9
+    ],
+    "frac_grid_top_same": 0.991,
+    "frac_grid_region_same": 0.117
+  },
+  "corregido": {
+    "top_candidate": "MP_MRFV",
+    "acc_top_interval": [
+      0.05,
+      0.3
+    ],
+    "acc_region_interval": [
+      0.06,
+      0.13
+    ],
+    "end_top_interval": [
+      0.0,
+      2.0
+    ],
+    "end_region_interval": [
+      0.0,
+      2.0
+    ],
+    "frac_grid_top_same": 0.982,
+    "frac_grid_region_same": 0.258
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "fiel|ATPaseD_Dm|BicC_Dm": {
+    "base": -0.06000000000000001,
+    "flip": 0.004,
+    "tie": 0.026,
+    "reversed_": 0.004
+  },
+  "fiel|ATPaseD_Dm|CP_MRFV": {
+    "base": -0.015,
+    "flip": 0.474,
+    "tie": 0.156,
+    "reversed_": 0.474
+  },
+  "fiel|ATPaseD_Dm|MP_MRFV": {
+    "base": -0.09499999999999999,
+    "flip": 0.0,
+    "tie": 0.0,
+    "reversed_": 0.0
+  },
+  "fiel|BicC_Dm|CP_MRFV": {
+    "base": 0.04500000000000001,
+    "flip": 0.015,
+    "tie": 0.011,
+    "reversed_": 0.015
+  },
+  "fiel|BicC_Dm|MP_MRFV": {
+    "base": -0.034999999999999976,
+    "flip": 0.0,
+    "tie": 0.009,
+    "reversed_": 0.0
+  },
+  "fiel|CP_MRFV|MP_MRFV": {
+    "base": -0.07999999999999999,
+    "flip": 0.0,
+    "tie": 0.0,
+    "reversed_": 0.0
+  },
+  "corregido|ATPaseD_Dm|BicC_Dm": {
+    "base": -0.03,
+    "flip": 0.027,
+    "tie": 0.027,
+    "reversed_": 0.027
+  },
+  "corregido|ATPaseD_Dm|CP_MRFV": {
+    "base": -0.009999999999999995,
+    "flip": 0.489,
+    "tie": 0.234,
+    "reversed_": 0.489
+  },
+  "corregido|ATPaseD_Dm|MP_MRFV": {
+    "base": -0.095,
+    "flip": 0.0,
+    "tie": 0.002,
+    "reversed_": 0.0
+  },
+  "corregido|BicC_Dm|CP_MRFV": {
+    "base": 0.020000000000000004,
+    "flip": 0.059,
+    "tie": 0.031,
+    "reversed_": 0.059
+  },
+  "corregido|BicC_Dm|MP_MRFV": {
+    "base": -0.065,
+    "flip": 0.005,
+    "tie": 0.013,
+    "reversed_": 0.005
+  },
+  "corregido|CP_MRFV|MP_MRFV": {
+    "base": -0.085,
+    "flip": 0.0,
+    "tie": 0.0,
+    "reversed_": 0.0
+  }
+}

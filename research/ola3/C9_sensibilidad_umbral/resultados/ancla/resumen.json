@@ -1,0 +1,78 @@
+[
+  {
+    "largo": 491,
+    "ventanas": 471,
+    "eficientes": 35,
+    "solo_termodinamico": 31,
+    "seleccion_hebra": 233,
+    "estabilidad_extremos": 148,
+    "accesibilidad": 76,
+    "modo": "fiel",
+    "temp_c": 22.0,
+    "backend": "vienna",
+    "tablas_mismatch_usadas": {},
+    "nombre": "ATPaseD_Dm_full",
+    "mejor_region_200nt": {
+      "inicio": 104,
+      "fin": 303,
+      "eficientes": 22
+    }
+  },
+  {
+    "largo": 2520,
+    "ventanas": 2500,
+    "eficientes": 223,
+    "solo_termodinamico": 179,
+    "seleccion_hebra": 1233,
+    "estabilidad_extremos": 843,
+    "accesibilidad": 488,
+    "modo": "fiel",
+    "temp_c": 22.0,
+    "backend": "vienna",
+    "tablas_mismatch_usadas": {},
+    "nombre": "BicC_Dm_full",
+    "mejor_region_200nt": {
+      "inicio": 1022,
+      "fin": 1221,
+      "eficientes": 34
+    }
+  },
+  {
+    "largo": 528,
+    "ventanas": 508,
+    "eficientes": 39,
+    "solo_termodinamico": 34,
+    "seleccion_hebra": 273,
+    "estabilidad_extremos": 178,
+    "accesibilidad": 90,
+    "modo": "fiel",
+    "temp_c": 22.0,
+    "backend": "vienna",
+    "tablas_mismatch_usadas": {},
+    "nombre": "CP_MRFV_full",
+    "mejor_region_200nt": {
+      "inicio": 99,
+      "fin": 298,
+      "eficientes": 25
+    }
+  },
+  {
+    "largo": 1263,
+    "ventanas": 1243,
+    "eficientes": 142,
+    "solo_termodinamico": 131,
+    "seleccion_hebra": 663,
+    "estabilidad_extremos": 458,
+    "accesibilidad": 299,
+    "modo": "fiel",
+    "temp_c": 22.0,
+    "backend": "vienna",
+    "tablas_mismatch_usadas": {},
+    "nombre": "MP_MRFV_full",
+    "mejor_region_200nt": {
+      "inicio": 75,
+      "fin": 274,
+      "eficientes": 41
+    }
+  }
+]
