@@ -1,0 +1,34 @@
+[
+ {
+  "referencia": "de Haro LA, Dumón AD, Mattio MF, Argüello Caro EB, Llauger G, Zavallo D, Blanc H, Mongelli VC, Truol G, Saleh M-C, Asurmendi S, del Vas M (2017). Mal de Río Cuarto Virus Infection Triggers the Production of Distinctive Viral-Derived siRNA Profiles in Wheat and Its Planthopper Vector. Front Plant Sci 8:766. doi:10.3389/fpls.2017.00766",
+  "url": "https://doi.org/10.3389/fpls.2017.00766",
+  "nivel_lectura": "texto completo (PDF, 11 páginas; leídas 1-3, 5-6, 9-10)",
+  "que_se_uso": "Fuente central 1. Dos hallazgos que condicionan la idea de usar puntos calientes naturales como selector de region blanco: (a) los autores probaron la correlacion entre puntos calientes y estructura secundaria con RNAfold del paquete ViennaRNA y no detectaron correlacion clara; (b) no hay puntos calientes comunes a los dos hospedadores (trigo y el delfacido Delphacodes kuscheli), o sea que el mapa depende del hospedador y no solo de la secuencia viral. Tambien: clases de tamaño con pico en 22 nt en D. kuscheli, seguido de 21 y 23 nt. Contexto: MRCV es un Fijivirus (Reoviridae) que causa perdidas importantes en maiz en la Argentina; este estudio uso trigo, no maiz.",
+  "nivel_evidencia": "E",
+  "acceso": "abierto"
+ },
+ {
+  "referencia": "Wang Y, Qu R, Li Y, et al. (2019). Rice Dwarf Virus Small RNA Profiles in Rice and Leafhopper Reveal Distinct Patterns in Cross-Kingdom Hosts. Viruses 11(9):847. doi:10.3390/v11090847. PMCID PMC6784124",
+  "url": "https://doi.org/10.3390/v11090847",
+  "nivel_lectura": "texto completo (XML de PMC)",
+  "que_se_uso": "Fuente central 2, y la unica encontrada con un cicadelido verdadero como hospedador (Nephotettix cincticeps). Confirma la dependencia del hospedador: el segmento mas cortado es S1 en el cicadelido, S11 en cultivo celular del vector y S9 en arroz, con puntos calientes agrupados en las regiones terminales de los segmentos. Unas 50 veces mas ARN pequeños virales en arroz que en el cicadelido, atribuido en parte a la ausencia de genes RDR en cicadelidos. Clases de tamaño: 21 nt domina en el cicadelido, 21 y 22 nt en arroz. Datos crudos depositados en SRA bajo PRJNA541035, que es la via concreta para una ablacion declarada.",
+  "nivel_evidencia": "E",
+  "acceso": "abierto"
+ },
+ {
+  "referencia": "Búsqueda sistemática en NCBI por E-utilities (bases sra y gds), 2026-10-21. Ocho consultas, conteos en datos/ncbi_srna_busqueda.json",
+  "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+  "nivel_lectura": "consulta propia, conteos verificados",
+  "que_se_uso": "Establece el vacio: Maize rayado fino virus como organismo en SRA da 0; cruzado con miRNA-Seq o ncRNA-Seq da 0; Dalbulus maidis da 37 registros pero 0 con estrategia de ARN pequeño; GEO da 0 para ambos. Como referencia de que el metodo es rutinario, Zea mays con miRNA-Seq da 1.706.",
+  "nivel_evidencia": "E",
+  "acceso": "abierto"
+ },
+ {
+  "referencia": "Búsqueda sistemática en Europe PMC, 2026-10-21. Siete consultas, resultados en datos/epmc_vsirna.json",
+  "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/",
+  "nivel_lectura": "titulos y metadatos de 7 consultas; solo las dos fuentes centrales se leyeron a texto completo",
+  "que_se_uso": "Delimita el panorama: ningun trabajo perfila ARN pequeños derivados del MRFV. Se usaron los titulos para localizar los sustitutos y descartar el resto. Trabajos vistos y no leidos a fondo, con el motivo: perfiles de ARN pequeños en otros patosistemas (tomate, vid, arroz, mosquito, Hevea, Bombyx) descartados por hospedador y virus no comparables; revisiones generales de ARN pequeños virales descartadas por no aportar datos posicionales; 'Identification of the Coexisting Virus-Derived siRNA in Maize and Rice Infected by Rice Black-Streaked Dwarf Virus' (doi:10.1094/pdis-11-23-2301-re) es relevante por ser maiz pero quedo sin leer por estar cerrado.",
+  "nivel_evidencia": "E",
+  "acceso": "abierto"
+ }
+]
