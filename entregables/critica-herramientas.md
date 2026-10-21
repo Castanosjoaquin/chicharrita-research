@@ -117,12 +117,29 @@ y es **cero en las doce celdas**; si lo estuviera por la de 16 pb, nuestro conte
 serlo, y lo es. Esto replica sobre dos genes nuevos y cinco referencias lo que ya habíamos medido
 sobre un gen público.
 
-**Y la condición de 16 pb es ruido.** Medimos las coincidencias esperadas por azar: sobre los
-cuatro genes y las cinco referencias no objetivo, a 16 nucleótidos se observan **860 ventanas
-comprometidas contra 909 esperadas** por un nulo que conserva la composición de cada referencia
-(y 1.143 por azar uniforme) — una razón de **0,75**, es decir **por debajo del azar**. Recién en
-17 nt la razón llega a 0,97 y empieza a tener sentido leerla como señal. Un número que aparecería
-igual, o más, con secuencia aleatoria no es una medida de riesgo. `[E]`
+**Y la condición de 16 pb es indistinguible del azar.** Medimos, sobre los cuatro genes y las
+cinco referencias no objetivo, cuántas ventanas quedan comprometidas de verdad y cuántas predicen
+tres modelos nulos. `[E]`
+
+| Largo | Observado | Esperado por composición | Observado / composición | Observado / nulo barajado |
+| ---: | ---: | ---: | ---: | ---: |
+| 16 nt | 860 | 909 | **0,95** | 0,98 |
+| 17 nt | 283 | 231 | 1,23 | 1,30 |
+| 18 nt | 112 | 58 | 1,95 | 2,00 |
+| 19 nt | 68 | 14 | 4,76 | 7,56 |
+
+A **16 nucleótidos lo observado está a la par de lo que daría secuencia aleatoria** con la misma
+composición: 0,95 contra el nulo de composición y 0,98 contra un nulo barajado que conserva la
+composición exacta de cada referencia. La señal recién aparece de 18 nt en adelante, donde lo
+observado casi duplica lo esperado, y se dispara en 19. Un número que aparecería igual con
+secuencia aleatoria no es una medida de riesgo, y esa es exactamente la condición de la que
+dsRNA-Engineer saca el 100 % de lo que informa.
+
+> Nota de lectura, porque la tabla de origen (`research/ola2/W7_ranking/azar_por_k.md`) puede
+> confundir: la columna de razón que esa tabla destaca está calculada contra el **azar uniforme**
+> —0,75 a 16 nt y 0,97 a 17—, que se queda corto por un factor de 1,7 a 4,3 porque ignora el sesgo
+> de composición. Las razones que usamos acá son contra los nulos que sí lo corrigen, que son los
+> que corresponden para decidir si algo es señal. `[E]`
 
 **Mezcla dos preguntas distintas en un solo número.** Suma sin ponderar sus tres condiciones y
 cuenta **líneas de Bowtie**, no ventanas distintas, así que el número confunde «cuántas ventanas

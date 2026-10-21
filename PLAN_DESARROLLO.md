@@ -263,8 +263,9 @@ propondríamos sin implementarlas, como él pidió.
 Las cuatro que más pesan: **la accesibilidad del sitio blanco no muestra valor predictivo sobre la
 eficacia medida** (OR 1,00 [0,89–1,12] en 300 casos humanos; HR 0,9994 con P = 0,853 en
 *Tribolium*), y es una de las tres patas del criterio; **el 100 % del riesgo que informa
-dsRNA-Engineer viene de su condición de 16 pb**, que a su vez está por debajo del azar (860
-observadas contra 909 esperadas por composición); **BLAST no puede hacer este tamizaje**, con un
+dsRNA-Engineer viene de su condición de 16 pb**, que a su vez es indistinguible del azar (860
+ventanas observadas contra 909 esperadas por un nulo que conserva la composición, razón 0,95, y
+0,98 contra un nulo barajado; la señal recién aparece de 18 nt en adelante); **BLAST no puede hacer este tamizaje**, con un
 techo medido de 0,762 de sensibilidad y cero con los valores por defecto de `megablast`; y en el
 código del laboratorio, **una secuencia en minúsculas produce cero eficientes en silencio**, medido
 138 contra 0 sobre el mismo gen.
