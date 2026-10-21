@@ -137,9 +137,11 @@ dsRNA-Engineer saca el 100 % de lo que informa.
 
 > Nota de lectura, porque la tabla de origen (`research/ola2/W7_ranking/azar_por_k.md`) puede
 > confundir: la columna de razón que esa tabla destaca está calculada contra el **azar uniforme**
-> —0,75 a 16 nt y 0,97 a 17—, que se queda corto por un factor de 1,7 a 4,3 porque ignora el sesgo
-> de composición. Las razones que usamos acá son contra los nulos que sí lo corrigen, que son los
-> que corresponden para decidir si algo es señal. `[E]`
+> —0,75 a 16 nt y 0,97 a 17—. El uniforme espera de más, porque ignora que las referencias no
+> tienen las cuatro bases en igual proporción: en esta tabla espera entre **1,26 y 1,28 veces** lo
+> que espera el nulo de composición, de forma pareja en todos los largos. Por eso las razones
+> contra el uniforme salen más bajas, y son las que corrigen composición —0,95 a 16 nt y 1,23 a
+> 17— las que corresponden para decidir si algo es señal. `[E]`
 
 **Mezcla dos preguntas distintas en un solo número.** Suma sin ponderar sus tres condiciones y
 cuenta **líneas de Bowtie**, no ventanas distintas, así que el número confunde «cuántas ventanas
