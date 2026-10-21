@@ -17,6 +17,7 @@ toca llevar a `00_meta/`.
 | [`C4_offtargets_quimeras_largo/`](C4_offtargets_quimeras_largo/REPORT.md) | Cuánta coincidencia hace falta para silenciar fuera del blanco, cómo pesar genoma contra transcriptoma, qué aportan los empalmes de las quimeras y de dónde sale (o no) el rango de 150–250 nt. |
 | [`C5_estructura_genes_ingenieria_inversa/`](C5_estructura_genes_ingenieria_inversa/REPORT.md) | Qué se puede predecir de la estructura de un ARN largo y qué no; un catálogo de 36 filas de genes blanco, 20 nuevas; y el circuito de ingeniería inversa corrido entero. |
 | [`C6_panel_y_largo/`](C6_panel_y_largo/REPORT.md) | *(De otra sesión, no de estos cinco prompts.)* El panel de no objetivo ampliado y el largo de ventana, medidos contra la recomendación del ranking. |
+| [`C7_ranking_v2/`](C7_ranking_v2/REPORT.md) | *(Segunda versión de W7.)* El ranking con los cuatro de EPILAB y dos genes nuevos de *D. maidis* (`eth`, `burs-alpha`), a 21 y 22 nt, sin *Macrosteles* (D23). Reproduce W7 exacto; los genes nuevos quedan cuarto y quinto por diseño; las puntas del orden aguantan 22 nt y el medio no. |
 
 ## Lo que hay que leer antes de usar estos números
 

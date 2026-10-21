@@ -827,3 +827,29 @@ En orden de cuánto cambian lo que hacemos:
   ranking con ocho referencias hay que volver a bajar las seis originales (379 MB).
 - **El criterio de un desajuste no se corrió contra las dos referencias nuevas**, para no
   inflar el autómata. Sólo bloque perfecto y 21/21.
+
+## Ranking v2 (2026-10-21) — lo que abre
+
+### Para el investigador
+
+- **¿Una sola ventana de 21 nt con coincidencia perfecta en un cicadélido no objetivo debe vetar la
+  molécula completa?** En `eth` hay una (posición 347, *H. vitripennis*, no eficiente). La región
+  propuesta la evita a costa de 3 ventanas eficientes; la molécula de 544 pb que se probó la
+  contiene. Es el único punto que separa a `eth` de `burs-alpha`.
+- **¿Qué porción del transcrito cubren los amplicones publicados de `eth` (544 pb) y `burs-alpha`
+  (578 pb)?** Nuestras regiones de 200 nt son una extrapolación de esas moléculas. Las posiciones
+  exactas no se leyeron en esta sesión; hay que abrir la tabla 1 del artículo (Andrada *et al.* 2026).
+- **¿Qué cuenta como organismo no objetivo entre los cicadélidos?** D23 deja fuera a *Macrosteles*
+  con el argumento de que no está en Argentina; si los hermanos nativos cuentan, hay que
+  reincorporarlo o buscar un sustituto.
+
+### Pendientes internos
+
+- **Verificar la distribución de *Macrosteles quadrilineatus*** con un catálogo (GBIF, Biodiversidad
+  Virtual o un catálogo de Cicadellidae argentinos) antes de dar D23 por cerrada.
+- **La regla terminal a 22 nt sigue siendo nuestra decisión** (posición relativa), no la del original.
+- **Las regiones propuestas de `eth` y `burs-alpha` no están verificadas contra la conservación
+  dentro de *D. maidis***, igual que las de W7.
+- **El largo de siRNA en hemípteros no tiene perfil publicado**: el ranking reporta 21 y 22 y no elige.
+- **Qué hebra carga AGO2 no está modelado** (ficha del investigador, 19-26/10): si-Fi21 filtra por
+  estabilidad de extremos 5′, pero la elección de hebra depende de más factores.

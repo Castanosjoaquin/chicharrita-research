@@ -119,7 +119,7 @@ sería un error de lectura, no un resultado.
 **Terminada cuando:** cada celda tiene el comando que la produjo y la versión de la herramienta,
 y existe el párrafo que explica por qué no son comparables directamente.
 
-### T3 · El ranking de los cuatro candidatos — hecho, y a revisar
+### T3 · El ranking de los cuatro candidatos — hecho, con segunda versión
 
 **Estado:** existe desde el 2026-10-20 en `research/ola2/W7_ranking/`. El orden es
 `MP_MRFV` > `CP_MRFV` > {`BicC_Dm`, `ATPaseD_Dm`}, y lo que aguanta el barrido de pesos es la
@@ -142,6 +142,10 @@ central de mover la región dentro de los dos genes del insecto:
 - El benchmark de 21 contra 22 nt muestra que el conteo de eficientes casi no cambia, pero **el
   conjunto de ventanas eficientes cambia casi entero**, y en los dos genes largos la región
   elegida se muda al pasar de 21 a 22 (`research/ola3/C3_blast_ventana_azar/`).
+
+**Estado (2026-10-21): la segunda versión está hecha** en `research/ola3/C7_ranking_v2/`. Con la decisión del equipo de
+no usar *Macrosteles* (D23), la v2 reproduce W7 exacto, suma humano, `eth` y `burs-alpha`, y reporta el orden a 21 y a 22 nt:
+las puntas aguantan y el medio no. La tarea original era:
 
 **Tarea:** una segunda versión del ranking que incorpore el panel ampliado y declare la
 estabilidad del orden frente al largo de ventana. **Terminada cuando:** cada recomendación de

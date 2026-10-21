@@ -421,3 +421,19 @@ tráfico: las secuencias de EPILAB nunca salieron de la máquina.
 | --- | --- | --- | --- | --- |
 | `ref_macrosteles` | [GCF_028750875.1 UCM_ALF_1.0, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/750/875/GCF_028750875.1_UCM_ALF_1.0/) | *Macrosteles quadrilineatus* | Cicadellidae, subfamilia Deltocephalinae: **el pariente con genoma anotado más cercano a *Dalbulus maidis***, y a su vez vector de fitoplasmas. 36.629 secuencias, 102,7 Mb. Es el que da 101 ventanas con 21/21 en `BicC_Dm` y 12 en `ATPaseD_Dm`. | `[E]` |
 | `ref_humano` | [GCF_000001405.40 GRCh38.p14, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.40_GRCh38.p14/) | *Homo sapiens* | Lo nombró el investigador en el checkpoint y lo pide `CLAUDE.md`. 186.185 secuencias, 718,6 Mb. **Cero coincidencias perfectas en los cuatro genes.** | `[E]` |
+
+### Ranking v2 (2026-10-21)
+
+Referencias bajadas a disco para `research/ola3/C7_ranking_v2/`, todas públicas, del FTP de NCBI.
+Sólo entró tráfico: las secuencias de EPILAB nunca salieron de la máquina. La de humano es la copia
+que ya había bajado C6.
+
+| id | Accesión | Organismo | Rol | Tamaño | Marcador |
+| --- | --- | --- | --- | --- | --- |
+| `ref_maiz_v2` | [GCF_902167145.1 Zm-B73-REFERENCE-NAM-5.0, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/) | *Zea mays* | el cultivo que se protege | 37,8 MB | `[E]` |
+| `ref_haxyridis_v2` | [GCF_914767665.1 icHarAxyr1.1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/914/767/665/GCF_914767665.1_icHarAxyr1.1/) | *Harmonia axyridis* | enemigo natural | 14,0 MB | `[E]` |
+| `ref_amel_v2` | [GCF_003254395.2 Amel_HAv3.1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/254/395/GCF_003254395.2_Amel_HAv3.1/) | *Apis mellifera* | polinizador | 19,5 MB | `[E]` |
+| `ref_hvit_v2` | [GCF_021130785.1 UT_GWSS_2.1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/130/785/GCF_021130785.1_UT_GWSS_2.1/) | *Homalodisca vitripennis* | cicadélido no objetivo | 19,0 MB | `[E]` |
+| `ref_fcandida_v2` | [GCF_002217175.1 ASM221717v1, transcriptoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/217/175/GCF_002217175.1_ASM221717v1/) | *Folsomia candida* | fauna del suelo | 25,6 MB | `[E]` |
+| `ref_dmaidis_v2` | [GCA_975739785.1 ihDalMaid1.1, genoma](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/975/739/785/GCA_975739785.1_ihDalMaid1.1/) | *Dalbulus maidis* | on-target de los genes del insecto; off-target de los virales (D20) | 281,7 MB | `[E]` |
+| `fichas_epilab_v3` | `Investigathon_EpiLab_Fichas_Optativas_v3_19oct.docx.md`, raíz del repositorio (sin versionar) | EPILAB · IFIBYNE | ficha optativa del 19 al 26/10: off-target como hipótesis de riesgo, hebra guía y AGO2, largo de la región | local, leída completa | `[R]` |
