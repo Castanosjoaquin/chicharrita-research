@@ -476,3 +476,16 @@ cada carpeta de `research/ola3/`. Acá van las que cambian lo que el proyecto pu
 | `C4/S09` | Revisión de 2025 | **No hay consenso sobre el largo óptimo** de ARNdc; silenciamiento documentado de 141 a 1.506 pb en *Leptinotarsa decemlineata* | `[E]` texto completo |
 | `C5/rpn6_2025` | El trabajo del proteasoma 26S en *S. titanus* y *E. variegatus* | El único blanco letal y esterilizante probado en dos géneros de cicadélidos de nuestra subfamilia, con la discrepancia de nomenclatura que medimos | `[E]` texto completo |
 | `lange2012` | Lange *et al.* 2012, *NAR* 40:5215 | La exactitud del plegado local contra el global para ARN largos: 0,65 contra 0,55 sobre 2.158 elementos de 90 familias de Rfam | `[E]` texto completo |
+
+
+## Actualización de apertura (Fase 2 del checkpoint 2, 2026-10-22)
+
+- Rossi *et al.* 2024, *J Pest Sci* 97:455–467, doi 10.1007/s10340-023-01670-0 — abierta completa (PDF en el repo).
+- Mitter *et al.* 2017, *Nature Plants*, doi 10.1038/nplants.2016.207 — abierta completa (PDF en el repo).
+- Andrada *et al.* 2026, *Front Insect Sci*, doi 10.3389/finsc.2026.1811933 — abierta completa (PDF en el repo; figura 5 renderizada).
+- Jones, Bernal y Medina 2021, preprint bioRxiv 2021.09.29.462424 — abierta completa (texto en bioRxiv, leído 2026-10-22). **Corrige S18**, que decía «texto completo no accesible».
+- Hoang *et al.* 2022, *Int J Mol Sci*, doi 10.3390/ijms23126639 (PMC9224206) — abierta completa, revisión. Antes sólo aparecía en `sources.json`.
+- Revisión de RNAi en insectos, 2024, PMC10968014 — abierta completa, revisión.
+- Gan *et al.* 2010, *Plant Cell Rep*, doi 10.1007/s00299-010-0911-z — abierta, sólo resumen leído en la Fase 2.
+- Dalaisón-Fuentes *et al.* 2022, doi 10.1002/ps.6937 — sólo resumen (PubMed); texto completo no es de acceso abierto.
+- Dalaisón-Fuentes *et al.* 2023, doi 10.1016/j.pestbp.2023.105618 — no abierta; no se cita su contenido.
