@@ -20,7 +20,7 @@ Los **28 ARNdc** de ocho genes, con el empalme por orden que sigue declarado `[?
 
 ## La curva precisión-recall
 
-La base manda: de los 29 siRNA, **24 son positivos** por el criterio pre-registrado, así que un clasificador que diga «todos eficientes» acierta el **82,8 %**. Barriendo el umbral de accesibilidad de 0,02 a 0,30, la precisión del filtro va de 0,875 a 0,500 y **en ningún punto supera esa base de forma apreciable**: en el umbral por defecto de 0,1 marca 5 siRNA, acierta 4, y da precisión 0,800 con cobertura del 17 %. Los intervalos de Wilson de esas precisiones van de [0,53, 0,98] en el mejor punto a [0,10, 0,91] en el peor, o sea que **el dato no distingue nada**. `[E]`
+La base manda: de los 29 siRNA, **24 son positivos** por el criterio pre-registrado, así que un clasificador que diga «todos eficientes» acierta el **82,8 %**. Barriendo el umbral de accesibilidad de 0,02 a 0,30, la precisión del filtro va de 0,875 a 0,500 y **sólo supera esa base en el extremo bajo del barrido**: en 0,02 llega a 0,875 contra 0,828, una diferencia de 4,7 puntos cuyo intervalo de Wilson [0,529, 0,978] contiene a la propia base, y ese umbral está muy por debajo de cualquier valor defendible. En el umbral por defecto de 0,1 marca 5 siRNA, acierta 4, y da precisión 0,800 con cobertura del 17 %. Los intervalos de Wilson de esas precisiones van de [0,53, 0,98] en el mejor punto a [0,10, 0,91] en el peor, o sea que **el dato no distingue nada**. `[E]`
 
 El falso positivo nunca se filtra: sobrevive a todos los umbrales del barrido.
 

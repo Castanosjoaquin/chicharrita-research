@@ -71,7 +71,7 @@ HECHO = [
     ("Validación retrospectiva corrida: no concluyente",
      "Pre-registro con tres enmiendas fechadas y la validación corrida el 2026-10-21. Primario: los 31 "
      "siRNA de <i>Tc-gawky</i>, n = 29, ρ = +0,142 con IC95 [−0,247, +0,492]; confirmatorio sobre los 28 "
-     "ARNdc, ρ = +0,236. La curva precisión-recall no supera la base de 82,8 % en ningún umbral. "
+     "ARNdc, ρ = +0,236. La curva precisión-recall sólo supera la base de 82,8 % en el umbral más bajo del barrido (0,02: precisión 0,875, con IC95 [0,529, 0,978] que contiene la base), y en el umbral por defecto de 0,1 queda por debajo (0,800). "
      "<b>Un nulo no refuta el puntaje</b>, y eso estaba declarado antes de mirar los datos.",
      ["research/ola3/C9_sensibilidad_umbral/RESULTADOS_validacion_retrospectiva.md",
       "research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md"]),

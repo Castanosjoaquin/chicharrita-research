@@ -501,8 +501,12 @@ falta confirmar la grafía del apellido y el dominio antes de mandarlo, que es l
 la lista y la única que bloquea a las otras cuatro.
 
 **La conservación de `eth` y `burs-alpha`.** Es la única medición pendiente del plan, y el
-2026-10-21 cambió de forma: el transcriptoma que contiene los dos genes **no está depositado en
-ninguna base pública**. Andrada *et al.* 2026 los identificaron sobre un ensamblado propio de la
+2026-10-21 cambió de forma. ~~el transcriptoma que contiene los dos genes **no está depositado en
+ninguna base pública**.~~ **Corrección (C11, mismo día):** la búsqueda local con `blastn` encuentra
+secuencia de ambos genes en el TSA de Pergamino (GHCC01): `eth` en el contig `GHCC01027218.1` con los
+615 nt de la consulta en cadena reversa, y `burs-alpha` en `GHCC01014529.1` con 439 de 468 nt en
+cadena directa, las dos verificadas letra por letra. Los hits del TSA de Ohio (GITV01) no están
+verificados. Ver `research/ola3/C11_conservacion_eth_bursa/REPORT.md`. Andrada *et al.* 2026 los identificaron sobre un ensamblado propio de la
 UNNOBA (tesis de Palacio 2018); lo único público son las dos secuencias codificantes, PZ371507 y
 PZ371508. Pero el paso que correspondía no se dio: C8 buscó con el BLAST web contra todo el TSA,
 que se colgó, **cuando los tres transcriptomas que ya usa están descargados** y la búsqueda local
@@ -518,7 +522,7 @@ los 31 siRNA de *Tc-gawky* (enmienda 2: empalme por clave real 31/31, unidad de 
 los 28 ARNdc quedaron como confirmatorio. **Veredicto con el criterio fijado de antemano: no
 concluyente** —ρ = +0,142 con IC95 [−0,247, +0,492] sobre n = 29, y el confirmatorio ρ = +0,236
 [−0,161, +0,568]—, que es el resultado que el propio pre-registro declaró como más probable. La curva
-precisión-recall no supera la base de 82,8 % en ningún umbral. Lo que esto agrega es una medición donde
+precisión-recall sólo supera la base de 82,8 % en el umbral más bajo del barrido (0,02: precisión 0,875, con IC95 [0,529, 0,978] que contiene la base), y en el umbral por defecto de 0,1 queda por debajo (0,800). Lo que esto agrega es una medición donde
 antes había un cálculo de potencia: **con los datos abiertos que existen no se puede distinguir un
 criterio útil de uno inútil**. Salvedad de encuadre: los dos conjuntos ya estaban citados en
 `entregables/critica-herramientas.md`, así que es un reanálisis de una línea ya contada y no una nueva.
