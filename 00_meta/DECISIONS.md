@@ -900,3 +900,47 @@ uno.
 **Alternativas consideradas:** (a) seguir con el paso que falta (diseño sobre el contig de *D. maidis*, tras la búsqueda inversa); (b) ampliar a más especies o más familias; (c) cerrar.
 **Criterio:** la inferencia de función por homología funciona (concordancia de anotación entre cicadélidos 76–86 % según la identidad, C12 A; poliproteína del MRFV transferida a 11 de 11 marafivirus, C12 B). El diseño a partir de otra especie no: 2 de 11 familias pasan el criterio de nucleótido (Fase 2) y las ventanas de 21 nt compartidas con parientes virales son ≤ 0,66 % (C12 B). Esto coincide con C5 (0,7–11,1 %), así que la Fase 2 confirma y extiende, no descubre. Lo que falta no se resuelve con más cómputo sino con más secuencia de *D. maidis* y más aislados del MRFV. `[R]`
 **Consecuencia:** quedan declarados como no hechos la búsqueda inversa desde *D. maidis*, el uso del genoma en el paso de nucleótido y el chequeo de ventanas contra *Apis mellifera*. Se retoman sólo si aparece anotación del genoma o un investigador los pide.
+
+---
+
+## D38 — El entregable presenta dos listas, una por mecanismo: se aplica D34 y no se reordena en una lista única
+**Fecha:** 2026-10-22
+**Quién:** el equipo, con la decisión del usuario sobre la opción A propuesta en la Fase 1 del plan del checkpoint 2.
+**Decisión:** el ranking del entregable se presenta en dos listas. La lista del insecto (*Dalbulus maidis* como blanco) contiene `BicC_Dm`, `eth_Dm`, `bursA_Dm` y `ATPaseD_Dm`. La lista del virus dentro de la planta contiene `MP_MRFV` y `CP_MRFV`. Cada lista lleva su evidencia y su incertidumbre, y una frase de por qué no se comparan entre sí. Dentro de cada lista, un orden se reporta sólo si se sostiene en las escalas absoluta y min-max y a los dos largos (21 y 22 nt); lo que no se sostiene se dice «no se distinguen».
+**Alternativas consideradas:** (a) una lista única con una columna cualitativa de «se entiende cómo llegaría el ARN» (opción B de la Fase 1), que exige un juicio nuestro sin medición; (b) dejar la lista única con una advertencia (opción C), que mantiene la tensión sin resolver y contradice D34.
+**Criterio:** D34 ya había decidido que el blanco es el insecto y que, donde las dos estrategias conviven, lo hacen como rankings separados con el criterio declarado (D20). Una lista única con `MP_MRFV` primero es el artefacto que D20 describe. El orden dentro del grupo del insecto no es robusto: `eth_Dm` precede a `bursA_Dm` en escala absoluta a los dos largos, pero el par es inestable en min-max y no se toma como orden firme, y `bursA_Dm` frente a `ATPaseD_Dm` depende de si el método cuenta ventanas (cascada) o tasas. Ver `docs/plan_checkpoint2/salidas/F1_decision_ranking.md` §2.
+**Consecuencia:** la Fase 5 reescribe `entregables/para-el-investigador.md` en dos listas. `MP_MRFV` deja de figurar como primero de un ranking general. El último puesto de `ATPaseD_Dm` se reporta con la salvedad del método. La comparación entre las dos listas se hace por criterio declarado, no por número.
+
+**Enmienda (2026-10-22):** se corrige la lectura del par `eth_Dm`–`bursA_Dm`. El texto original decía que no se distinguían; ese enunciado era consecuencia de exigir que el orden se sostenga en las dos escalas, no un resultado de los datos. Con escala absoluta `eth_Dm` precede a `bursA_Dm` en 76,1 a 100 % de los sorteos (21 nt) y en 84,3 a 100 % (22 nt). Con min-max el par es inestable. La regla de esta decisión no cambia; el orden se reporta como no firme, con la escala absoluta a favor de `eth_Dm`. Fuente: `research/ola3/C7_ranking_v2/resultados/por_estrategia.json`.
+
+---
+
+## D39 — Se introduce el marcador [M] para resultados medidos por nosotros; [E] queda reservado a consenso en literatura revisada
+**Fecha:** 2026-10-22
+**Quién:** el equipo, con la decisión del usuario sobre la opción (i) propuesta en la Fase 1.
+**Decisión:** `CLAUDE.md` incorpora `[M]` («medido por nosotros»): conteo, tasa, frecuencia o concordancia calculados por el equipo, reproducibles desde el repo, con script, entrada y salida con ruta. Si la entrada es un dato no publicado que no se versiona, se declara «con insumos locales». `[M]` rotula el número, y su lectura va en `[H]`. Un resultado computacional propio nunca es `[E]`. `00_meta/GLOSARIO.md` recibe la nueva definición. En las frases del entregable, «ventana eficiente» se reemplaza por «ventana que pasa el filtro de si-Fi21».
+**Alternativas consideradas:** (ii) rotular todo lo propio como `[H]`, sin categoría nueva. Se descartó porque un conteo exacto quedaría con la misma etiqueta que una idea sin respaldo.
+**Criterio:** la guía del checkpoint 2 dice que una coincidencia de secuencia, una puntuación o un resultado in silico es una hipótesis para validar, no una prueba directa de eficacia (`Guia_Checkpoint2_Estudiantes.pdf`, texto de la regla de trabajo). `CLAUDE.md` define `[E]` como consenso en literatura revisada por pares, así que usarlo junto a resultados propios contradice su propia definición.
+**Consecuencia:** `CLAUDE.md` y `00_meta/GLOSARIO.md` cambian (sin commit). La regla de reemplazo para `entregables/para-el-investigador.md` (11 líneas con `[E]`) está definida en la salida de la Fase 1 y se aplica en la Fase 5. Hasta entonces, el entregable usa `[E]` donde debería usar `[M]`, y eso figura como pendiente.
+
+
+---
+
+## D40 — El diseño presenta matar y esterilizar como dos ejes separados, sin ordenarlos entre sí
+**Fecha:** 2026-10-22
+**Quién:** el equipo, por decisión del usuario en la Fase 3 del plan del checkpoint 2.
+**Decisión:** el objetivo fenotípico se presenta como dos ejes con su evidencia, sin elegir uno. Eje letal: `eth` y `burs-α` (letalidad y falla de muda en *D. maidis* según Andrada *et al.* 2026, P3). Eje reproductivo: `BicC` (reducción de oviposición según el resumen de Dalaisón-Fuentes *et al.* 2022, P11). `ATPaseD` se registra como letal por ingesta, con control GFP (Jones *et al.* 2021, P8).
+**Alternativas consideradas:** (a) matar como eje principal (la letalidad está publicada para dos genes); (b) esterilizar como eje principal (BicC es el único con una medición de reproducción); (c) dos ejes separados, elegido.
+**Criterio:** ninguna fuente abierta mide letalidad y reproducción en el mismo gen de *D. maidis*. Para `BicC` el resumen no reporta letalidad, y para `eth` y `burs-α` no hay medición de descendencia (Andrada lo deja como trabajo futuro). Ordenar «matar» contra «esterilizar» exigiría una equivalencia que no tenemos, como en D20.
+**Consecuencia:** el orden del ranking (D38) no cambia por este eje. La Fase 3 y la Fase 4 presentan el objetivo como límite declarado. Queda pendiente, para el investigador, cuál de los dos desenlaces le importa para la población en campo.
+
+---
+
+## D41 — Las 28 secuencias de Cedden se dejan publicadas, con la advertencia de la unión
+**Fecha:** 2026-10-22
+**Quién:** el equipo, por decisión del usuario en la Fase 5 del plan del checkpoint 2.
+**Decisión:** la tabla `research/ola3/C9_sensibilidad_umbral/datos/cedden2025_28dsrna_con_secuencia.csv` se deja publicada tal como está. Son datos de un artículo con licencia CC BY (Cedden *et al.* 2025, PMC12039203), de *Tribolium castaneum*, y no tienen relación con las secuencias de EPILAB. No se toca el historial ni el remoto.
+**Hecho que motivó la decisión:** el plan y el generador de estado decían que el CSV estaba «sin subir al remoto». No era así: ya está en `origin/main` desde el commit `6b8a800` (2026-10-21).
+**Alternativas consideradas:** (a) dejarlo publicado y declararlo, elegida; (b) quitarlo del árbol con un commit nuevo, que lo deja en el historial y deja sin dato de entrada a la validación retrospectiva; (c) reescribir el historial, que es destructivo e irreversible para quien ya clonó el repositorio.
+**Criterio:** los datos son públicos y con licencia abierta, y retirar algo ya publicado no lo borra de las copias existentes. La salvaguarda real es la advertencia de que la unión no tiene clave: los dos archivos adicionales de Cedden no comparten identificador, la unión es por orden dentro de cada gen y pasó 20 de 20 chequeos de consistencia, pero esos chequeos no prueban que el orden sea el mismo.
+**Consecuencia:** el LEEME de `datos/` declara el estado de publicación; el estado deja de listarlo como pendiente. Los archivos adicionales originales (`MOESM1` y `MOESM2`) no están en disco, así que cualquier verificación de la unión contra el original requiere bajarlos de Europe PMC.

@@ -1,8 +1,8 @@
 # Correo al investigador — borrador
 
-**Estado: sin enviar.** Antes de mandarlo falta confirmar la grafía del apellido y el dominio
-del correo (pregunta 5 de `PLAN_DESARROLLO.md` §5): la transcripción automática del checkpoint lo
-escribió de varias formas, y no vamos a adivinarlo. Es lo único que bloquea el envío.
+**Estado: enviado.** Lo confirmó el usuario. La fecha de envío y el texto realmente enviado no están registrados (por confirmar). La grafía del apellido y el dominio ya no bloquean nada.
+
+**Nota (Fase 5, 2026-10-22).** La pregunta 5 de este borrador dice que los candidatos nuevos están «sesgados a esterilidad». El catálogo corregido registra letalidad para `eth` y `burs-alpha` y reducción de oviposición para `BicC` (ver `docs/plan_checkpoint2/salidas/F1_decision_ranking.md` §8). El borrador no se edita: si el texto enviado dice lo mismo, conviene corregirlo en el próximo mensaje.
 
 **Criterio de selección.** Entre `00_meta/PREGUNTAS_ABIERTAS.md` y §5 del plan hay dieciocho
 preguntas acumuladas. Mandarle dieciocho es garantizar que no conteste ninguna. Acá van **siete

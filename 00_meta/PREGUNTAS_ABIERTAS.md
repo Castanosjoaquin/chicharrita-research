@@ -1118,3 +1118,49 @@ UNNOBA, también en Pergamino, así que es plausible que haya contacto directo `
 
 **Lo que no se hizo acá:** ninguna búsqueda —los transcriptomas no están en esta máquina— y no se
 abrió la tesis de Palacio, sólo su cita dentro del artículo. El paso 1 queda sin ejecutar.
+
+
+## Pendientes de la Fase 1 del checkpoint 2 (2026-10-22)
+
+- **Matar contra esterilizar sobre `eth` y `burs-alpha`.** El ranking no tiene eje de fenotipo, y `tablero/orden.html` sólo cubre `BicC` y la V-ATPasa. No se puede afirmar si el orden de los candidatos del insecto cambia según el objetivo. Pendiente de decisión del equipo sobre si se agrega ese eje o se deja como límite declarado.
+- **Criterio para comparar regiones de 200 y 300 nt.** La cascada cuenta ventanas y favorece a las regiones de 300 nt; las escalas continuas cuentan tasas. Con eso, `ATPaseD_Dm` frente a `bursA_Dm` cambia de orden según el método. Hay que elegir un criterio antes de reportar ese par.
+- **Escala z.** La fase pedía comparar z contra min-max. El código tiene sólo absoluta y min-max; la z no se calculó.
+- **Brief de la Fase 1.** El texto de la fase dice que C5 sesga `eth` y `burs-alpha` a esterilidad. El catálogo registra letalidad para los dos (DM-05, DM-06); la esterilidad es de `BicC` (DM-01). Corregir en la Fase 3 o 4 antes de usar esa frase.
+- **Fuentes de fenotipo de la Fase 1.** Las cifras de DM-01, DM-03, DM-05 y DM-06 se citan a través de `catalogo_genes_blanco.md`. Los artículos no se reabrieron en esta fase.
+
+- **Corrección del catálogo y de C7 (pendiente, Fase 5 o antes).** DM-05 (`eth`) y C7 §6 dan 10 % de supervivencia a día 4, cifra que el texto atribuye a `burs-alpha`. La cifra de `eth` no está en el texto y hay que leerla de la figura 5A. DM-06 (`burs-alpha`) sí tiene 10 %. DM-01 (`BicC`) dice «esterilidad» y «>170 veces al día 7», y el resumen no lo dice. DM-03 (`ATPaseD`) no registra el control GFP (≈37 %). Ver `docs/plan_checkpoint2/salidas/F1_decision_ranking.md` §8.
+- **FUENTES S18 (Jones 2021).** Dice «texto completo no accesible»; el texto se leyó el 2026-10-22 desde bioRxiv.
+- **Figura 5A de Andrada 2026 (P3).** La supervivencia de `ds-eth` a día 4 no está en el texto y no se pudo leer de forma verificable. Hay que leerla con la figura en pantalla o con los datos de la fuente antes de citar una cifra.
+
+## Preguntas de la Fase 2 (2026-10-22)
+
+- Qué célula del insecto recibe el dsRNA por ingesta: ninguna fuente abierta lo identifica. Pregunta para el investigador y para la literatura de dsRNasas.
+- Cuánto reduce la degradación por dsRNasas en la saliva de hemípteros la eficacia oral: sin cuantificar en fuentes abiertas. Dalaisón-Fuentes 2023 no está abierto.
+- Dalaisón-Fuentes 2022: falta el texto completo para verificar el día del efecto, la letalidad y el término «esterilidad».
+- Gan 2010: falta leer el texto completo del PDF del repo.
+- MRFV: no hay ensayos de spray ni de ARN pequeños en maíz en fuentes abiertas.
+
+## Datos que faltan para completar la Fase 1 (2026-10-22)
+
+- **Dato por ventana no está en disco.** El barrido completo con escala z (y cualquier recálculo del ranking) necesita las tablas por ventana de eficiencia y de off-target. `ranking_v2.json` sólo guarda conteos por región y frecuencias del barrido. `work/sifi_v2/` no existe y los FASTA de EPILAB (`work/sifi_v2/fasta/`) están fuera del control de versiones. Para recalcular hay que reconstruir `work/sifi_v2/` con `tools/sifi21_port/ranking_v2.py` a partir de las secuencias de EPILAB (`YHat-Biotech/Sequences_EPILAB.xlsx`) y de las siete referencias de C7 §9, todo local. Pregunta: ¿se reconstruye ese directorio o se declara la escala z fuera de alcance? El barrido reducido que se hizo sólo sobre eficacia no está calibrado (hasta 38 puntos porcentuales de diferencia con el guardado) y no se reporta como resultado.
+- **Texto completo de Dalaisón-Fuentes 2022 (BicC).** No es de acceso abierto. Sin él no se puede verificar el día del efecto, la letalidad ni el término «esterilidad» de DM-01.
+- **Cifra de supervivencia de `ds-eth` (Andrada 2026, figura 5A).** No está en el texto; hay que leerla con la figura en pantalla.
+
+## Preguntas de la Fase 3 (2026-10-22)
+
+- **Respuesta del investigador al correo.** No se sabe si contestó. Si hay respuesta, hace falta el texto (sobre todo la pregunta de matar o esterilizar) antes de la Fase 4.
+- **Latencia del MRFV.** La fuente abierta (Jones y Medina 2020) da 18 a 22 días para *Spiroplasma kunkelii*, no para el virus. D34 usa «unos 20 días» dicho por el investigador; falta una fuente para MRFV.
+- **Duración del efecto en *D. maidis*.** Los ensayos abiertos miden 4 a 5 días; la ventana de latencia es de unos 20. Pregunta para el investigador: ¿hay seguimientos más largos?
+- **Varianza del knockdown entre dsRNA independientes del mismo gen en *D. maidis*.** Sin ese dato no se puede fijar n ni umbrales numéricos.
+- **Gen blanco a ensayar.** Propuesta conceptual: `eth` o `burs-α` para el eje letal y `BicC` para el reproductivo. La elección es del investigador.
+- **Método para detectar siRNA en *D. maidis*** y **comparación de dsRNA libre contra formulado en insectos**: sin método ni estudio abierto.
+- **Techo de 0,245.** Cálculo del repo sobre iBeetle (*Tribolium*, letalidad); los datos están fuera del repo (`~/yhat/data/ibeetle`) y no se reprodujo. Pendiente de reproducir o declarar sólo como `[H]`.
+- **Límite del ensayo de región.** Un ensayo con dos regiones de `BicC` sólo acota la fragilidad de la región; no valida si-Fi21 ni evalúa el veto por *H. vitripennis*.
+
+## Escala para ordenar pares dentro de un grupo (2026-10-22)
+
+- `eth_Dm` precede a `bursA_Dm` en escala absoluta (76–100 % de los sorteos) pero el par es inestable en min-max, que estira una diferencia de limpieza de unos 0,015. La regla de D38 pide que el orden se sostenga en las dos escalas; si se exigiera sólo la absoluta, el orden sería `eth_Dm` > `bursA_Dm`. Pregunta de método para el equipo, no para el investigador. Ver `docs/plan_checkpoint2/salidas/F1_decision_ranking.md` §2.
+
+## Resuelto en la Fase 5 (2026-10-22)
+
+- **Grafía del apellido y dominio del correo** (ítem 6 de la lista anterior): resuelto, el correo se envió según confirmó el usuario. Queda abierto sólo registrar la fecha y el texto enviado.- **CSV de Cedden** (28 secuencias): resuelto por D41. Ya estaba en el remoto desde el 2026-10-21 y se deja publicado con la advertencia de que la unión no tiene clave. Los archivos adicionales originales (`MOESM1` y `MOESM2`) no están en disco.

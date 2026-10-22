@@ -449,8 +449,7 @@ cuánto cambian el resultado y por lo barato que le resulta contestarlas.
    usamos un valor declarado y mostramos el barrido.
 4. **¿Cuál de los transcriptomas del vector usan, y nos lo pasan?** De eso depende que las
    posiciones de la planilla sean reproducibles con datos públicos.
-5. **Confirmación de la grafía del apellido y del dominio del correo** antes de escribirle. La
-   transcripción automática lo escribió de varias formas.
+5. ~~**Confirmación de la grafía del apellido y del dominio del correo**~~ **Resuelto (Fase 5):** el correo ya se envió; la grafía dejó de bloquear.
 
 ---
 
@@ -495,10 +494,7 @@ qué se le apunta, con qué largo, y qué cuenta como que nos haya ido bien.
 Los cinco pedidos y los dos opcionales están entregados. Esto es todo lo que el plan deja abierto,
 y ninguna de las tres cosas es una medición que bloquee el entregable.
 
-**El correo al investigador, con las cinco preguntas de §5.** Está escrito en
-[`entregables/correo-investigador.md`](entregables/correo-investigador.md) y **no se envió**:
-falta confirmar la grafía del apellido y el dominio antes de mandarlo, que es la quinta pregunta de
-la lista y la única que bloquea a las otras cuatro.
+**El correo al investigador.** Está escrito en [`entregables/correo-investigador.md`](entregables/correo-investigador.md) y **se envió** (lo confirmó el usuario; la fecha y el texto realmente enviado están por confirmar). La grafía del apellido ya no bloquea nada. Queda por reconciliar el número de preguntas: el borrador tiene siete y este párrafo decía cinco.
 
 **La conservación de `eth` y `burs-alpha`.** Es la única medición pendiente del plan, y el
 2026-10-21 cambió de forma. ~~el transcriptoma que contiene los dos genes **no está depositado en
@@ -534,3 +530,7 @@ Resultados en `RESULTADOS_validacion_retrospectiva.md`.
 
 Lo demás que figura en `00_meta/PREGUNTAS_ABIERTAS.md` bajo «pendientes internos» son huecos
 declarados que viajan con los números, no tareas del entregable.
+
+## 9. Checkpoint 2 (2026-10-22)
+
+El plan de seis fases vive en `docs/plan_checkpoint2/` (índice `PLAN_CHECKPOINT2.md`). Al 2026-10-22 están hechas las fases 1 a 4, con sus salidas en `docs/plan_checkpoint2/salidas/`: F1 (ranking y etiquetas, con los ADR D38 y D39), F2 (entrega y mecanismo), F3 (hipótesis, alternativas y esbozo de validación, con D40) y F4 (checklist de la guía). La página de siete casillas es `entregables/checkpoint2-una-pagina.md`. Lo que queda, y por quién, está en `docs/plan_checkpoint2/salidas/PENDIENTES_FASES_1_A_3.md`. La Fase 5 reordena el entregable y el estado; la Fase 6 es el ensayo de la reunión.

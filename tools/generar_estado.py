@@ -91,19 +91,34 @@ HECHO = [
      "Escrito antes de mirar los datos: que conjunto, que estadistico, qué contaría como éxito y como "
      "fracaso, y la decisión de reportar el intervalo y no el valor p. La validación no se corrió.",
      ["research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md"]),
+    ("Checkpoint 2 · Página de siete casillas",
+     "La página que se lee en diez minutos, con las siete casillas de la guía, un protagonista (dos listas por mecanismo, D38) y las cifras verificadas contra sus archivos.",
+     ["entregables/checkpoint2-una-pagina.md", "docs/plan_checkpoint2/salidas/F4_checklist_guia.md"]),
+    ("Checkpoint 2 · Entrega y mecanismo (Fase 2)",
+     "Qué dicen las fuentes abiertas sobre la entrega oral y el mecanismo de RNAi en insectos, con el estado de apertura de cada fuente. Las que no se pudieron abrir se declaran y no se citan.",
+     ["docs/plan_checkpoint2/salidas/F2_entrega_y_mecanismo.md"]),
+    ("Checkpoint 2 · Hipótesis, alternativas y validación (Fase 3)",
+     "Diseño conceptual: pregunta, hipótesis con la condición que la refutaría, cinco alternativas, controles y una tabla de interpretación con el criterio de descarte escrito de antemano. No es una recomendación experimental.",
+     ["docs/plan_checkpoint2/salidas/F3_hipotesis_alternativas_validacion.md"]),
+    ("Checkpoint 2 · Decisiones de ranking y de etiquetas (Fase 1)",
+     "D38 (dos listas por mecanismo), D39 (marcador [M] para lo medido por nosotros) y D40 (matar y esterilizar como dos ejes). Incluye la corrección de la lectura del par eth–burs-α.",
+     ["docs/plan_checkpoint2/salidas/F1_decision_ranking.md", "00_meta/DECISIONS.md"]),
+    ("Las 28 secuencias de Cedden: se dejan publicadas y declaradas (D41)",
+     "La tabla unida a su razón de riesgo ya estaba en el remoto desde el 2026-10-21. Son datos públicos CC BY y no secuencias de EPILAB. "
+     "Se decidió dejarla publicada con la advertencia de que la unión no tiene clave publicada.",
+     ["research/ola3/C9_sensibilidad_umbral/datos/LEEME.md", "00_meta/DECISIONS.md"]),
 ]
 
 FALTA = [
-    ("Confirmar apellido y dominio del correo del investigador", "decision", True,
-     "El borrador del correo está escrito y <strong>sin enviar</strong>: la transcripción automática del "
-     "checkpoint escribió el apellido de varias formas y no se adivina. Es lo único que bloquea el envío "
-     "(<a href=\"entregables/correo-investigador.md\">ver borrador</a>)."),
-    ("Autorizar la publicación de las 28 secuencias de Cedden", "decision", False,
-     "Son datos públicos de un artículo CC BY, no secuencias de EPILAB. Están unidas a su razón de riesgo "
-     "en <code>research/ola3/C9_sensibilidad_umbral/datos/</code>, <strong>sin subir al remoto</strong> a la espera de esa decision."),
+    ("Fecha y texto del correo enviado", "decision", True,
+     "El correo se envió, como confirmó el usuario, pero el repo no registra la fecha ni el texto enviado. "
+     "El borrador tiene siete preguntas y <code>PLAN_DESARROLLO.md</code> §8 decía cinco."),
     ("Confirmar el criterio de commits", "decision", False,
      "El prompt de C9 pide un commit por tarea y la regla general de la ola 3 dice no commitear (D5). Se "
      "siguió la instrucción específica del prompt; si se prefiere la regla general, se reescribe."),
+    ("Escala para ordenar pares dentro de un grupo", "decision", False,
+     "<code>eth</code> y <code>burs-α</code>: el orden cambia entre escala absoluta y min-max. La regla de D38 "
+     "exige que el orden se sostenga en las dos. Pregunta de método para el equipo."),
 ]
 
 LIMITES = [

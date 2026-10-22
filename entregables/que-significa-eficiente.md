@@ -1,5 +1,7 @@
 # Qué significa que un siRNA sea «eficiente»
 
+> **Nota de lectura (Fase 5, 2026-10-22).** «Eficiente» es el nombre de un booleano por ventana de 21 nt: la ventana pasa o no pasa las tres condiciones de si-Fi21. No mide eficacia. En la página de siete casillas y en el entregable se dice «ventana que pasa el filtro de si-Fi21».
+
 **Para qué es esta nota.** En el checkpoint 1 lo primero que nos pediste fue entender si-Fi21:
 qué implica que algo sea eficiente, cómo se calcula y qué significa la energía libre en ese
 contexto. Esto es la respuesta, escrita para leerse sin abrir código. Todo lo que afirma sale del

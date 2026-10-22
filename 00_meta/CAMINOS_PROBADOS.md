@@ -919,3 +919,25 @@ números. El item se sacó de `tools/generar_estado.py`.
 **Qué se descartó y por qué.** Diseñar a partir de otro género: 2 de 11 familias superan 300 nt con 90 %. Usar un virus pariente del MRFV como fuente de ventanas: ≤ 0,66 % del genoma compartido. Cruzar por símbolo de gen: el `Rpn6` de *Drosophila* es PSMD11 y PSMD6 se llama `Rpn7`.
 
 **Lecciones de proceso.** Un primer cálculo de pares recíprocos dio 0 por identificadores sin normalizar (`ref|XP_..|` contra `sp|..`). El `blastp` completo entre dos proteomas de ~30.000 proteínas era demasiado lento en la máquina local y se recortó a una submuestra declarada. Un `git rebase --abort` sin comparar `orig-head` con HEAD sacó 32 archivos del disco: antes de abortar un rebase hay que verificar que `orig-head` coincide con HEAD.
+
+
+## Escala min-max para ordenar un grupo de dos candidatos (2026-10-22)
+
+Se intentó usar la escala min-max para ordenar el grupo viral (`MP_MRFV` y `CP_MRFV`) y el del insecto dentro de las regiones recomendadas. Con dos candidatos, la escala manda uno a 0 y otro a 1 en cada eje, y el resultado es una moneda determinada por la escala (51,5 % a 21 nt en el grupo viral). Descartado para ordenar pares; se conserva sólo como sensibilidad. Detalle en `docs/plan_checkpoint2/salidas/F1_decision_ranking.md` §3.
+
+## Orden de `bursA_Dm` y `ATPaseD_Dm` según el método (2026-10-22)
+
+Con escalas continuas, `bursA_Dm` queda por delante de `ATPaseD_Dm` a los dos largos (100 % de los sorteos). La cascada, que cuenta ventanas limpias y eficientes, invierte el par. Se descarta reportar ese par como orden firme. Ver `docs/plan_checkpoint2/salidas/F1_decision_ranking.md` §2.
+
+## Fase 3 del checkpoint 2 (2026-10-22): lo que se descartó al armar el diseño
+
+- **Citar «0 de 20 genes» como prueba de que la región no discrimina.** Descartado: W7 §1.1 muestra que mide la media de un puntaje con un nulo de bloques de 30 ventanas, y es una afirmación sobre el nulo tanto como sobre la biología.
+- **Fijar tamaño de muestra y umbrales de knockdown.** Descartado: falta la varianza entre dsRNA del mismo gen en *D. maidis*.
+- **Usar «unos 20 días» como latencia del MRFV.** Descartado: la fuente abierta es de *S. kunkelii*.
+- **Control de región alternativa y control libre contra formulado con respaldo.** No tienen fuente abierta; quedan como `[H]` y `[?]`.
+- **Plantear matar o esterilizar como eje único.** Descartado por D40: ninguna fuente abierta mide los dos desenlaces en el mismo gen.
+
+## Fase 5 (2026-10-22): correcciones que salieron del reordenamiento
+
+- **Pregunta 3 del entregable.** La versión que decía que `eth` y `burs-alpha` no estaban en ningún transcriptoma público fue corregida por C11 (2026-10-21). El texto tachado se quitó de `para-el-investigador.md`; la historia queda aquí.
+- **Lectura del par `eth`–`burs-alpha`.** Se había escrito que no se distinguían. Ese enunciado dependía de exigir que el orden se sostenga en las dos escalas, y se corrigió (D38, enmienda de 2026-10-22).
