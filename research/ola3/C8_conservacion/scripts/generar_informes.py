@@ -359,7 +359,10 @@ def construir():
       "(137-436) tiene 24 eficientes pero está vetada por *H. vitripennis*, así que la conservación no la recomienda." % (
           AT["v2_recomendada"]["eficientes"], AT["v2_recomendada"]["eficientes_presentes_en_hap1"]))
     H(3, "`eth` y `burs-alpha`: sin transcriptoma, solo una descripción")
-    P("No ubicamos contigs de estos dos genes en los transcriptomas: la búsqueda contra el TSA de NCBI (con las secuencias públicas "
+    P("~~No ubicamos contigs de estos dos genes en los transcriptomas~~ **Superado por C11 (2026-10-21):** la búsqueda local "
+      "encuentra secuencia de ambos en el TSA de Pergamino (GHCC01), verificada letra por letra en el tramo alineado; los hits "
+      "de Ohio (GITV01) no están verificados. Ver `research/ola3/C11_conservacion_eth_bursa/REPORT.md`. Lo que sigue, tal como se escribió: "
+      "La búsqueda contra el TSA de NCBI (con las secuencias públicas "
       "PZ371507 y PZ371508, no con las de EPILAB) quedó en cola más de media hora sin resultado y se canceló. Su conservación "
       "solo se puede describir con el genoma de Córdoba, que es la fuente menos confiable. No se afirma conservación ni "
       "variación: se reporta lo que aparece. Es un pendiente concreto: un transcriptoma de *D. maidis* que contenga `eth` y "

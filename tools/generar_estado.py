@@ -10,8 +10,8 @@ Uso (desde la raiz del repositorio):
     python tools/generar_estado.py
 """
 import html
+import json
 import re
-import subprocess
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -21,14 +21,6 @@ CSS = re.search(r"<style>(.*?)</style>",
 
 def existe(rel):
     return (RAIZ / rel).exists()
-
-
-def git(*args):
-    try:
-        return subprocess.run(["git", "-C", str(RAIZ), *args], capture_output=True,
-                              text=True, timeout=20).stdout.strip()
-    except Exception:
-        return ""
 
 
 # ---------------------------------------------------------------- contenido
@@ -60,6 +52,13 @@ HECHO = [
      "recomendación, no calidad del umbral.",
      ["research/ola3/C9_sensibilidad_umbral/REPORT.md",
       "research/ola3/C9_sensibilidad_umbral/resultados/grilla_umbral.tsv"]),
+    ("C9 · Tarea 1 bis · El mismo barrido, sobre la región que proponemos",
+     "El barrido anterior elegía en cada punto la ventana libre de 200 nt, que no es la regla con "
+     "la que se eligieron las regiones del entregable. Repetido sobre la región propuesta y con el "
+     "veto aplicado, a 21 y 22 nt y sobre los seis candidatos: el candidato superior sale más "
+     "robusto, y el empate del tercer puesto se deshace y aparece en otros pares.",
+     ["research/ola3/C9_sensibilidad_umbral/REPORT.md",
+      "research/ola3/C9_sensibilidad_umbral/resultados/grilla_region_propuesta.tsv"]),
     ("C9 · Tarea 2 · Corregida la lectura del barrido de pesos",
      "La diagonal de B.3 mide la escala, no la robustez del orden. La afirmación vieja queda dicha y "
      "tachada, con la nueva y su fuente al lado, en W7 y en el ranking v2.",
@@ -69,6 +68,19 @@ HECHO = [
      "vector, la ventana se fija en 21 y 22 nt por evidencia biológica y el ejercicio sobre los cuatro "
      "candidatos es una auditoría y no la reproducción de un resultado validado.",
      ["00_meta/DECISIONS.md"]),
+    ("Validación retrospectiva corrida: no concluyente",
+     "Pre-registro con tres enmiendas fechadas y la validación corrida el 2026-10-21. Primario: los 31 "
+     "siRNA de <i>Tc-gawky</i>, n = 29, ρ = +0,142 con IC95 [−0,247, +0,492]; confirmatorio sobre los 28 "
+     "ARNdc, ρ = +0,236. La curva precisión-recall sólo supera la base de 82,8 % en el umbral más bajo del barrido (0,02: precisión 0,875, con IC95 [0,529, 0,978] que contiene la base), y en el umbral por defecto de 0,1 queda por debajo (0,800). "
+     "<b>Un nulo no refuta el puntaje</b>, y eso estaba declarado antes de mirar los datos.",
+     ["research/ola3/C9_sensibilidad_umbral/RESULTADOS_validacion_retrospectiva.md",
+      "research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md"]),
+    ("C10 · ¿Hay datos de ARN pequeños virales para nuestro blanco?",
+     "No, y es un vacío documentado: cero registros en SRA y GEO para el <i>Maize rayado fino virus</i> y "
+     "para <i>Dalbulus maidis</i> con estrategia de ARN pequeño. Los dos sustitutos abiertos que sí existen "
+     "muestran que los puntos calientes no siguen la estructura del ARN y dependen del hospedador, lo que "
+     "desaconseja copiarlos como selector de región blanco.",
+     ["research/ola3/C10_vsirna_virus/REPORT.md", "research/ola3/C10_vsirna_virus/sources.json"]),
     ("C9 · Tarea 3 · Pre-registro de la validación retrospectiva",
      "Escrito antes de mirar los datos: que conjunto, que estadistico, qué contaría como éxito y como "
      "fracaso, y la decisión de reportar el intervalo y no el valor p. La validación no se corrió.",
@@ -80,22 +92,9 @@ FALTA = [
      "El borrador del correo está escrito y <strong>sin enviar</strong>: la transcripción automática del "
      "checkpoint escribió el apellido de varias formas y no se adivina. Es lo único que bloquea el envío "
      "(<a href=\"entregables/correo-investigador.md\">ver borrador</a>)."),
-    ("Decidir el análisis primario de la validación", "decision", True,
-     "Correlación agrupada sobre los 28 ARNdc, o dentro de cada gen. Los propios autores muestran que el "
-     "gen blanco domina la razón de riesgo (efecto del gen P = 0,047, R<sup>2</sup> ajustado 0,40), así que una "
-     "correlación agrupada alta podria venir del gen y no del puntaje. <strong>Bloquea la validación</strong>, y "
-     "decidirlo despues de ver los datos rompe el pre-registro."),
     ("Autorizar la publicación de las 28 secuencias de Cedden", "decision", False,
      "Son datos públicos de un artículo CC BY, no secuencias de EPILAB. Están unidas a su razón de riesgo "
      "en <code>research/ola3/C9_sensibilidad_umbral/datos/</code>, <strong>sin subir al remoto</strong> a la espera de esa decision."),
-    ("Correr la validación retrospectiva", "trabajo", False,
-     "Media hora de cómputo una vez cerrado el punto anterior. Con la fiabilidad medida del desenlace la "
-     "potencia es 0,42, de modo que lo mas probable es un intervalo que incluya el cero; el pre-registro ya "
-     "declara que eso <strong>no refuta el puntaje</strong>."),
-    ("Resolver la divergencia del index.html de W7", "trabajo", False,
-     "La página y el informe de W7 ya no dicen lo mismo: 25 porcentajes del informe no aparecen en la página "
-     "y solo 14 coinciden. Los dos se escribieron a mano, así que no hay fuente que gane. Hasta decidirlo, "
-     "la página no se cita como fuente de cifras."),
     ("Confirmar el criterio de commits", "decision", False,
      "El prompt de C9 pide un commit por tarea y la regla general de la ola 3 dice no commitear (D5). Se "
      "siguió la instrucción específica del prompt; si se prefiere la regla general, se reescribe."),
@@ -119,6 +118,36 @@ LIMITES = [
      "cada gen y pasó 20 de 20 chequeos de consistencia con las etiquetas de predicción, pero si el orden "
      "de las dos hojas no fuera el mismo, el error no se detectaria con esos chequeos."),
 ]
+
+
+RANKING = "research/ola3/C7_ranking_v2/resultados/ranking_v2.json"
+ORDEN_GENES = ["MP_MRFV", "BicC_Dm", "CP_MRFV", "eth_Dm", "bursA_Dm", "ATPaseD_Dm"]
+NUEVOS = {"eth_Dm", "bursA_Dm"}   # los dos que agrego C5; no tienen region de planilla
+SIN_PLANILLA = "gen nuevo: no estaba en la planilla"
+
+
+def tabla_regiones():
+    """Las seis regiones, leidas del JSON del ranking v2 en vez de copiadas a mano."""
+    if not existe(RANKING):
+        return ('<p class="lead" style="color:var(--stop)">No se encontró %s en disco.</p>'
+                % html.escape(RANKING))
+    d = json.loads((RAIZ / RANKING).read_text(encoding="utf-8"))
+    filas = []
+    for g in ORDEN_GENES:
+        planilla = d["k"]["21"]["regiones"][g]
+        prop21 = d["k"]["21"]["regiones_recomendadas"][g]
+        prop22 = d["k"]["22"]["regiones_recomendadas"][g]
+        nueva = g not in NUEVOS
+        filas.append(
+            "<tr><td><code>%s</code></td><td>%s</td><td><strong>%s</strong></td>"
+            "<td>%s</td><td>%s</td></tr>"
+            % (html.escape(g),
+               html.escape(planilla) if nueva else "—",
+               html.escape(prop21), html.escape(prop22),
+               "" if nueva else SIN_PLANILLA))
+    return ('<div class="tw"><table>\n<thead><tr><th>Gen</th><th>Región de la planilla</th>'
+            "<th>La que proponemos, 21 nt</th><th>22 nt</th><th></th></tr></thead>\n"
+            "<tbody>\n%s\n</tbody></table></div>" % "\n".join(filas))
 
 
 def tarjeta(titulo, desc, rutas):
@@ -149,14 +178,30 @@ filas = "\n".join(
        d)
     for t, k, urg, d in FALTA)
 
+regiones = tabla_regiones()
+
 limites = "\n".join('<h3>%s</h3><p>%s</p>' % (html.escape(t), d) for t, d in LIMITES)
 
-commits = git("log", "--format=%h %s", "-6") or "(sin datos de git)"
-commits_html = "\n".join("<li><code>%s</code> %s</li>"
-                         % (html.escape(l.split(" ", 1)[0]), html.escape(l.split(" ", 1)[1]))
-                         for l in commits.split("\n") if " " in l)
-rama = git("status", "-sb").split("\n")[0] if git("status", "-sb") else ""
-sincronizado = "ahead" not in rama and "behind" not in rama
+# No se incrusta el último commit ni el estado de la rama. La página se genera antes de
+# commitearse, así que el hash que mostraría es siempre el del commit anterior y la rama
+# siempre figura como desincronizada: no puede estar al día consigo misma. Para eso está
+# `git log`, que además no miente.
+
+n_dec = sum(1 for _, k, _, _ in FALTA if k == "decision")
+n_tra = len(FALTA) - n_dec
+
+
+CUENTA = {2: "dos", 3: "tres", 4: "cuatro", 5: "cinco", 6: "seis", 7: "siete", 8: "ocho"}
+
+
+def contar(n, singular, plural):
+    """«tres decisiones», «un trabajo chico»: el número en letras hasta ocho.
+
+    El singular llega con su artículo, porque el género lo decide el sustantivo
+    y no el contador: «una decisión» pero «un trabajo».
+    """
+    return singular if n == 1 else "%s %s" % (CUENTA.get(n, str(n)), plural)
+
 
 doc = f"""<!doctype html>
 <html lang="es"><head><meta charset="utf-8">
@@ -178,7 +223,8 @@ doc = f"""<!doctype html>
 <div class="verdict">
 <p><strong>Los cinco pedidos del Checkpoint 1 están cerrados</strong>, más los dos opcionales, y las
 tres tareas de fortalecimiento de C9 tienen entregable. No queda ninguna medición grande pendiente.
-Lo que sigue son <strong>tres decisiones y dos trabajos chicos</strong>, no producir el
+Lo que sigue son <strong>{contar(n_dec, "una decisión", "decisiones")} y
+{contar(n_tra, "un trabajo chico", "trabajos chicos")}</strong>, no producir el
 entregable.</p>
 <p>Dos cosas bloquean al resto: el dato que falta para mandar el correo al investigador, y cuál es
 el análisis primario de la validación retrospectiva, porque decidirlo después de ver los datos
@@ -206,20 +252,35 @@ hay que decidir antes de seguir.</p>
 declarados en cada informe.</p>
 {limites}
 
-<h2>El resultado de C9 en una línea</h2>
-<p class="lead">El <strong>candidato</strong> superior es robusto al umbral y la <strong>región exacta</strong>
-no lo es. <code>MP_MRFV</code> queda primero en el 99,1 % de la grilla en modo fiel y el 98,2 % en
-modo corregido, pero su región de 200 nt coincide con la de defecto en apenas el 11,7 % y el 25,8 %
-de los puntos, y hay puntos con solapamiento cero. El par <code>ATPaseD_Dm</code> contra
-<code>CP_MRFV</code> es un empate práctico: se invierte en casi la mitad de la grilla. Lo defendible
-es entregar una <strong>región candidata, no un sitio</strong>.
-<a href="research/ola3/C9_sensibilidad_umbral/index.html">Leer C9</a>.</p>
+<h2>Las regiones que proponemos</h2>
+<p class="lead">Lo que cambia respecto de la planilla de EPILAB no es el conjunto de genes sino
+<strong>qué tramo de cada uno se sintetiza</strong>. La tabla se arma leyendo
+<code>ranking_v2.json</code>, no a mano. Los dos genes del insecto van a 300 nt, que es el largo
+del amplicón de la planilla; los otros cuatro, a 200.</p>
+{regiones}
+<p class="lead" style="margin-top:14px">Las dos recomendaciones que importan, las del insecto, no
+se apoyan en la densidad sino en el <strong>veto</strong>: la región de <code>BicC_Dm</code> que
+eligió la planilla contiene 22 ventanas con coincidencia perfecta de 21 nt en
+<i>Homalodisca vitripennis</i> y la que proponemos, cero
+(<a href="research/ola2/W7_ranking/REPORT.md">W7 §2.2</a>). El orden que sale de ellas, con los dos
+genes nuevos y los dos largos de ventana, está en
+<a href="research/ola3/C7_ranking_v2/REPORT.md">C7 v2</a>.</p>
 
-<h2>Últimos commits</h2>
-<div class="tw"><ul>
-{commits_html}
-</ul></div>
-<p>Rama: <code>{html.escape(rama)}</code>{" — sincronizada con el remoto." if sincronizado else " — hay commits sin sincronizar."}</p>
+<h2>El resultado de C9 en una línea</h2>
+<p class="lead">El <strong>candidato</strong> superior es robusto al umbral y las
+<strong>coordenadas exactas</strong> no lo son. Reeligiendo la región con la regla del ranking
+—largo propio del gen y veto aplicado— <code>MP_MRFV</code> queda primero en el
+<strong>100 %</strong> de la grilla a 21 nt y en el 98,0–99,6 % a 22 nt. Lo que no aguanta es
+congelar las coordenadas: con las regiones fijas y el umbral moviéndose queda primero en el 62 %.
+Lo defendible es entregar una <strong>región candidata, no un sitio</strong>, y declarar con qué
+umbral se corrió.</p>
+<p class="lead">El par <code>ATPaseD_Dm</code> contra <code>CP_MRFV</code> <strong>no</strong> es
+un empate práctico a 21 nt: se da vuelta en el 3,3 % de la grilla. El 48,9 % que decía la primera
+versión de C9 salía de medir la ventana libre de 200 nt, que en <code>ATPaseD_Dm</code> cae sobre
+una región <strong>vetada</strong>. Los empates que sí quedan son <code>CP_MRFV</code> contra
+<code>burs-alpha</code> y <code>eth</code> contra <code>burs-alpha</code>: el orden de los tres
+últimos puestos no se sostiene.
+<a href="research/ola3/C9_sensibilidad_umbral/index.html">Leer C9</a>.</p>
 
 <footer>
   <p>Marcadores de evidencia: <span class="tag e">E</span> establecido ·
