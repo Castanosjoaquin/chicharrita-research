@@ -70,3 +70,11 @@ El prompt de C9 pide un commit por tarea; la regla general de ola 3 dice «no ha
 Los TSV del ancla se commitearon con la columna `seq` que escribe `run_sifi.py`: un 21-mero por ventana, solapados de a 1 nt, de modo que el gen completo se reconstruye por concatenación. Dos de los cuatro genes son de EPILAB y el remoto es público. Se detectó revisando el diff **antes** de pushear, los tres commits locales se reescribieron con los archivos ya limpios, y la columna se quita ahora con `scripts/limpiar_ancla.py`, que además verifica que no quede ninguna racha de 21 nt o más en `resultados/`.
 
 **Regla general que conviene subir a `00_meta/`:** cualquier salida por ventana de si-Fi21 que se versione tiene que pasar por un chequeo de rachas de 21 nt o más, porque el formato TSV del port incluye la secuencia por defecto. Es el mismo riesgo para `informe_html.py` y para cualquier TSV de `work/` que se mueva a `research/`.
+
+## Para integrar tras la validación retrospectiva (2026-10-21)
+
+**Hallazgo de encuadre que afecta a un entregable ya escrito.** Los dos conjuntos de la validación —los 29 siRNA y los 28 ARNdc de Cedden 2025— **ya están citados** en `entregables/critica-herramientas.md` como la línea de evidencia en insecto contra el criterio de accesibilidad. La validación es por lo tanto un **reanálisis de una línea ya contada**, con otro predictor (el booleano de si-Fi21 en vez del puntaje de accesibilidad de los autores), no una línea nueva. Conviene que la crítica lo diga, para que nadie sume tres líneas independientes donde hay dos que comparten el desenlace de los mismos animales. No se editó `entregables/critica-herramientas.md` porque es entregable de otra línea de trabajo; queda propuesto acá.
+
+**Decisión candidata.** Presentar el ranking declarando la tensión medida: el eje que ordena es la eficacia, que no tiene vínculo demostrado con la eficacia medida, y el eje que es un hecho de alineamiento (la limpieza) casi no tiene palanca sobre el orden. Plantearlo nosotros antes de que lo pregunten.
+
+**Hipótesis para trabajo futuro, no hallazgo.** El conteo ordinal de condiciones (0 a 3) correlacionó mejor que el booleano (ρ = +0,325 contra +0,142) sobre el mismo desenlace, lo que es compatible con que el `and` de las tres condiciones tire información. Los intervalos se solapan casi del todo; con n = 29 no se puede distinguir.
