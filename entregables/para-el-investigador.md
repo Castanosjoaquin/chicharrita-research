@@ -54,7 +54,7 @@ Van en orden de cuánto cambian el resultado. Las cuatro primeras se pueden cont
 
 **2. ¿La región 1–200 la elegiste por off-targets o por densidad de siRNA?** Lo medimos: en uno de los genes la región elegida tiene menos de la mitad de ventanas eficientes que la mejor región del mismo largo. Si fue por off-targets, el criterio se sostiene y lo decimos así.
 
-**3. ¿Qué transcriptoma de *D. maidis* usan, y nos lo podrían pasar?** De eso depende que las posiciones de la planilla sean reproducibles con datos públicos, y que podamos medir conservación de `eth` y `burs-alpha`, que no están en ninguno de los tres transcriptomas públicos.
+**3. ¿Qué transcriptoma de *D. maidis* usan, y nos lo podrían pasar?** De eso depende que las posiciones de la planilla sean reproducibles con datos públicos, y que podamos medir conservación de `eth` y `burs-alpha`. ~~que no están en ninguno de los tres transcriptomas públicos.~~ **Corrección (C11, 2026-10-21):** la búsqueda local encuentra secuencia de ambos en el transcriptoma de Pergamino (GHCC01), con identidad completa en el tramo alineado; los hits de Ohio (GITV01) no están verificados. Lo que falta es verificar que sean el mismo transcrito y no un parálogo.
 
 **4. ¿Qué pesos le darías a cada criterio, y qué peso tiene un hemíptero no objetivo frente al maíz?** El segundo es el único parámetro que no nos corresponde fijar: decide si uno de los candidatos del insecto queda último.
 
