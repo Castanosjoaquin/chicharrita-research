@@ -10,6 +10,7 @@ Uso (desde la raiz del repositorio):
     python tools/generar_estado.py
 """
 import html
+import json
 import re
 from pathlib import Path
 
@@ -51,6 +52,13 @@ HECHO = [
      "recomendación, no calidad del umbral.",
      ["research/ola3/C9_sensibilidad_umbral/REPORT.md",
       "research/ola3/C9_sensibilidad_umbral/resultados/grilla_umbral.tsv"]),
+    ("C9 · Tarea 1 bis · El mismo barrido, sobre la región que proponemos",
+     "El barrido anterior elegía en cada punto la ventana libre de 200 nt, que no es la regla con "
+     "la que se eligieron las regiones del entregable. Repetido sobre la región propuesta y con el "
+     "veto aplicado, a 21 y 22 nt y sobre los seis candidatos: el candidato superior sale más "
+     "robusto, y el empate del tercer puesto se deshace y aparece en otros pares.",
+     ["research/ola3/C9_sensibilidad_umbral/REPORT.md",
+      "research/ola3/C9_sensibilidad_umbral/resultados/grilla_region_propuesta.tsv"]),
     ("C9 · Tarea 2 · Corregida la lectura del barrido de pesos",
      "La diagonal de B.3 mide la escala, no la robustez del orden. La afirmación vieja queda dicha y "
      "tachada, con la nueva y su fuente al lado, en W7 y en el ranking v2.",
@@ -108,6 +116,36 @@ LIMITES = [
 ]
 
 
+RANKING = "research/ola3/C7_ranking_v2/resultados/ranking_v2.json"
+ORDEN_GENES = ["MP_MRFV", "BicC_Dm", "CP_MRFV", "eth_Dm", "bursA_Dm", "ATPaseD_Dm"]
+NUEVOS = {"eth_Dm", "bursA_Dm"}   # los dos que agrego C5; no tienen region de planilla
+SIN_PLANILLA = "gen nuevo: no estaba en la planilla"
+
+
+def tabla_regiones():
+    """Las seis regiones, leidas del JSON del ranking v2 en vez de copiadas a mano."""
+    if not existe(RANKING):
+        return ('<p class="lead" style="color:var(--stop)">No se encontró %s en disco.</p>'
+                % html.escape(RANKING))
+    d = json.loads((RAIZ / RANKING).read_text(encoding="utf-8"))
+    filas = []
+    for g in ORDEN_GENES:
+        planilla = d["k"]["21"]["regiones"][g]
+        prop21 = d["k"]["21"]["regiones_recomendadas"][g]
+        prop22 = d["k"]["22"]["regiones_recomendadas"][g]
+        nueva = g not in NUEVOS
+        filas.append(
+            "<tr><td><code>%s</code></td><td>%s</td><td><strong>%s</strong></td>"
+            "<td>%s</td><td>%s</td></tr>"
+            % (html.escape(g),
+               html.escape(planilla) if nueva else "—",
+               html.escape(prop21), html.escape(prop22),
+               "" if nueva else SIN_PLANILLA))
+    return ('<div class="tw"><table>\n<thead><tr><th>Gen</th><th>Región de la planilla</th>'
+            "<th>La que proponemos, 21 nt</th><th>22 nt</th><th></th></tr></thead>\n"
+            "<tbody>\n%s\n</tbody></table></div>" % "\n".join(filas))
+
+
 def tarjeta(titulo, desc, rutas):
     faltantes = [r for r in rutas if not existe(r)]
     def etiqueta(r):
@@ -135,6 +173,8 @@ filas = "\n".join(
        'decisión del equipo' if k == 'decision' else 'trabajo',
        d)
     for t, k, urg, d in FALTA)
+
+regiones = tabla_regiones()
 
 limites = "\n".join('<h3>%s</h3><p>%s</p>' % (html.escape(t), d) for t, d in LIMITES)
 
@@ -208,13 +248,34 @@ hay que decidir antes de seguir.</p>
 declarados en cada informe.</p>
 {limites}
 
+<h2>Las regiones que proponemos</h2>
+<p class="lead">Lo que cambia respecto de la planilla de EPILAB no es el conjunto de genes sino
+<strong>qué tramo de cada uno se sintetiza</strong>. La tabla se arma leyendo
+<code>ranking_v2.json</code>, no a mano. Los dos genes del insecto van a 300 nt, que es el largo
+del amplicón de la planilla; los otros cuatro, a 200.</p>
+{regiones}
+<p class="lead" style="margin-top:14px">Las dos recomendaciones que importan, las del insecto, no
+se apoyan en la densidad sino en el <strong>veto</strong>: la región de <code>BicC_Dm</code> que
+eligió la planilla contiene 22 ventanas con coincidencia perfecta de 21 nt en
+<i>Homalodisca vitripennis</i> y la que proponemos, cero
+(<a href="research/ola2/W7_ranking/REPORT.md">W7 §2.2</a>). El orden que sale de ellas, con los dos
+genes nuevos y los dos largos de ventana, está en
+<a href="research/ola3/C7_ranking_v2/REPORT.md">C7 v2</a>.</p>
+
 <h2>El resultado de C9 en una línea</h2>
-<p class="lead">El <strong>candidato</strong> superior es robusto al umbral y la <strong>región exacta</strong>
-no lo es. <code>MP_MRFV</code> queda primero en el 99,1 % de la grilla en modo fiel y el 98,2 % en
-modo corregido, pero su región de 200 nt coincide con la de defecto en apenas el 11,7 % y el 25,8 %
-de los puntos, y hay puntos con solapamiento cero. El par <code>ATPaseD_Dm</code> contra
-<code>CP_MRFV</code> es un empate práctico: se invierte en casi la mitad de la grilla. Lo defendible
-es entregar una <strong>región candidata, no un sitio</strong>.
+<p class="lead">El <strong>candidato</strong> superior es robusto al umbral y las
+<strong>coordenadas exactas</strong> no lo son. Reeligiendo la región con la regla del ranking
+—largo propio del gen y veto aplicado— <code>MP_MRFV</code> queda primero en el
+<strong>100 %</strong> de la grilla a 21 nt y en el 98,0–99,6 % a 22 nt. Lo que no aguanta es
+congelar las coordenadas: con las regiones fijas y el umbral moviéndose queda primero en el 62 %.
+Lo defendible es entregar una <strong>región candidata, no un sitio</strong>, y declarar con qué
+umbral se corrió.</p>
+<p class="lead">El par <code>ATPaseD_Dm</code> contra <code>CP_MRFV</code> <strong>no</strong> es
+un empate práctico a 21 nt: se da vuelta en el 3,3 % de la grilla. El 48,9 % que decía la primera
+versión de C9 salía de medir la ventana libre de 200 nt, que en <code>ATPaseD_Dm</code> cae sobre
+una región <strong>vetada</strong>. Los empates que sí quedan son <code>CP_MRFV</code> contra
+<code>burs-alpha</code> y <code>eth</code> contra <code>burs-alpha</code>: el orden de los tres
+últimos puestos no se sostiene.
 <a href="research/ola3/C9_sensibilidad_umbral/index.html">Leer C9</a>.</p>
 
 <footer>
