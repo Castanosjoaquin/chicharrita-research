@@ -908,3 +908,14 @@ documento con su resumen contando cifras **produce falsos positivos por diseño*
 las fuentes en archivos hermanos ni distingue un número tachado de uno afirmado. Para comparar un
 informe con su página hay que comparar **afirmaciones sobre la misma magnitud**, no inventarios de
 números. El item se sacó de `tools/generar_estado.py`.
+
+
+---
+
+## Fase 2 y C12 (2026-10-22): diseño nuevo por homología y su validación
+
+**Qué se intentó.** Resolver por secuencia la ortología de los genes del catálogo de C5 en *M. quadrilineatus* y medir cuántos llegan a un ortólogo con nucleótido suficiente en *D. maidis*; después validar la regla de homología entre cicadélidos (A) y con marafivirus parientes del MRFV (B). Detalle en `research/ola3/C11_diseno_nuevo/` y `research/ola3/C12_validacion_homologia/`.
+
+**Qué se descartó y por qué.** Diseñar a partir de otro género: 2 de 11 familias superan 300 nt con 90 %. Usar un virus pariente del MRFV como fuente de ventanas: ≤ 0,66 % del genoma compartido. Cruzar por símbolo de gen: el `Rpn6` de *Drosophila* es PSMD11 y PSMD6 se llama `Rpn7`.
+
+**Lecciones de proceso.** Un primer cálculo de pares recíprocos dio 0 por identificadores sin normalizar (`ref|XP_..|` contra `sp|..`). El `blastp` completo entre dos proteomas de ~30.000 proteínas era demasiado lento en la máquina local y se recortó a una submuestra declarada. Un `git rebase --abort` sin comparar `orig-head` con HEAD sacó 32 archivos del disco: antes de abortar un rebase hay que verificar que `orig-head` coincide con HEAD.

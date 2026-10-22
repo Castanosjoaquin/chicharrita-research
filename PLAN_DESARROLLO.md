@@ -530,5 +530,7 @@ Resultados en `RESULTADOS_validacion_retrospectiva.md`.
 
 **Fase 2 (diseño nuevo), resultado del 2026-10-22.** Veredicto **(b): viable sólo para 2 genes nominales**. De 14 familias del catálogo de C5, 11 tienen ortólogo recíproco por secuencia en el proteoma de *M. quadrilineatus*. De esas 11, sólo ATP synthase beta y actina muscular superan el criterio de nucleótido (≥ 300 nt con ≥ 90 % de identidad contra los TSA de *D. maidis*), y la actina es multigénica. Criterio en `research/ola3/C11_diseno_nuevo/criterio.md`; resultado en `research/ola3/C11_diseno_nuevo/REPORT.md`. Pendiente: el `tblastn` inverso desde *D. maidis* para confirmar la ortología del contig.
 
+**C12 (2026-10-22), cierre del mapeo por homología (D37).** Dos validaciones: la concordancia de anotación entre cicadélidos sube de 76 % a 86 % con la identidad y no llega a 100 %; la función de la poliproteína del MRFV se transfiere a 11 de 11 marafivirus, la del MP a 2 de 11, y las ventanas de 21 nt compartidas son ≤ 0,66 %. Conclusión: la homología sirve para inferir función, no para diseñar sobre otra especie. Ver `research/ola3/C12_validacion_homologia/`.
+
 Lo demás que figura en `00_meta/PREGUNTAS_ABIERTAS.md` bajo «pendientes internos» son huecos
 declarados que viajan con los números, no tareas del entregable.

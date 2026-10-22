@@ -889,3 +889,14 @@ hay» bien fundamentado suma en vez de restar. La consecuencia de método es que
 entregable viaja con el porqué de haberlo elegido. Es también lo que vuelve defendible que el equipo
 no tenga laboratorio: auditar una decisión de diseño es exactamente lo que se puede hacer bien sin
 uno.
+
+
+---
+
+## D37 — El mapeo por homología se cierra como mapa de límites, no como ruta de genes nuevos
+**Fecha:** 2026-10-22
+**Quién:** el equipo, tras la Fase 2 y C12.
+**Decisión:** no se sigue desarrollando el mapeo por homología como fuente de genes blanco nuevos para *D. maidis*. Se conserva como (a) criterio para inferir qué hace un gen, con su tasa de acierto medida, y (b) mapa documentado de qué no se puede diseñar con datos públicos. El diseño sigue haciéndose sobre secuencias propias del vector.
+**Alternativas consideradas:** (a) seguir con el paso que falta (diseño sobre el contig de *D. maidis*, tras la búsqueda inversa); (b) ampliar a más especies o más familias; (c) cerrar.
+**Criterio:** la inferencia de función por homología funciona (concordancia de anotación entre cicadélidos 76–86 % según la identidad, C12 A; poliproteína del MRFV transferida a 11 de 11 marafivirus, C12 B). El diseño a partir de otra especie no: 2 de 11 familias pasan el criterio de nucleótido (Fase 2) y las ventanas de 21 nt compartidas con parientes virales son ≤ 0,66 % (C12 B). Esto coincide con C5 (0,7–11,1 %), así que la Fase 2 confirma y extiende, no descubre. Lo que falta no se resuelve con más cómputo sino con más secuencia de *D. maidis* y más aislados del MRFV. `[R]`
+**Consecuencia:** quedan declarados como no hechos la búsqueda inversa desde *D. maidis*, el uso del genoma en el paso de nucleótido y el chequeo de ventanas contra *Apis mellifera*. Se retoman sólo si aparece anotación del genoma o un investigador los pide.
