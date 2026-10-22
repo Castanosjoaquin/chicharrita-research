@@ -1,0 +1,1237 @@
+{
+ "MRFV_srna": {
+  "hits": 16,
+  "rows": [
+   {
+    "title": "Virus-induced gene silencing as a tool for functional genomics in weeds: Challenges and future directions.",
+    "year": "2026",
+    "doi": "10.1590/1678-4685-gmb-2025-0252",
+    "pmcid": "PMC13544622",
+    "oa": "Y",
+    "journal": "Genetics and molecular biology"
+   },
+   {
+    "title": "Perspicacious insights into plant-virus-vector interactions applying omics.",
+    "year": "2024",
+    "doi": "10.1186/s12864-024-10758-5",
+    "pmcid": "PMC11403853",
+    "oa": "Y",
+    "journal": "BMC genomics"
+   },
+   {
+    "title": "Assessing the Functionality of RNA Interference (RNAi) in the Phloem-feeding Maize pest  <i>Dalbulus maidis</i>",
+    "year": "2021",
+    "doi": "10.1101/2021.09.29.462424",
+    "pmcid": null,
+    "oa": "N",
+    "journal": null
+   },
+   {
+    "title": "Transcriptome of the Maize Leafhopper (<i>Dalbulus maidis</i>) and Its Transcriptional Response to Maize Rayado Fino Virus (MRFV), Which It Transmits in a Persistent, Propagative Manner.",
+    "year": "2021",
+    "doi": "10.1128/spectrum.00612-21",
+    "pmcid": "PMC8612151",
+    "oa": "Y",
+    "journal": "Microbiology spectrum"
+   },
+   {
+    "title": "Engineering <i>Maize rayado fino virus</i> for virus-induced gene silencing.",
+    "year": "2020",
+    "doi": "10.1002/pld3.224",
+    "pmcid": "PMC7409111",
+    "oa": "Y",
+    "journal": "Plant direct"
+   },
+   {
+    "title": "High-Throughput Sequencing Indicates a Novel Marafivirus in Grapevine Showing Vein-Clearing Symptoms.",
+    "year": "2021",
+    "doi": "10.3390/plants10071487",
+    "pmcid": "PMC8309299",
+    "oa": "Y",
+    "journal": "Plants (Basel, Switzerland)"
+   },
+   {
+    "title": "Virome analyses of Hevea brasiliensis using small RNA deep sequencing and PCR techniques reveal the presence of a potential new virus.",
+    "year": "2018",
+    "doi": "10.1186/s12985-018-1095-3",
+    "pmcid": "PMC6258436",
+    "oa": "Y",
+    "journal": "Virology journal"
+   },
+   {
+    "title": "Inoculation of Maize with Sugarcane Mosaic Virus Constructs and Application for RNA Interference in Fall Armyworms.",
+    "year": "2023",
+    "doi": "10.21769/bioprotoc.4760",
+    "pmcid": "PMC10367001",
+    "oa": "Y",
+    "journal": "Bio-protocol"
+   },
+   {
+    "title": "In silico approach to reveal viral populations in grapevine cultivar Tannat using transcriptome data.",
+    "year": "2015",
+    "doi": "10.1038/srep15841",
+    "pmcid": "PMC4623741",
+    "oa": "Y",
+    "journal": "Scientific reports"
+   },
+   {
+    "title": "Cumulative Subject Index for 2010",
+    "year": "2010",
+    "doi": null,
+    "pmcid": "PMC7134213",
+    "oa": "Y",
+    "journal": "Virus research"
+   },
+   {
+    "title": "Cumulative Subject Index for 2007",
+    "year": "2007",
+    "doi": null,
+    "pmcid": "PMC7134153",
+    "oa": "Y",
+    "journal": "Virus research"
+   },
+   {
+    "title": "Cumulative Contents for 2010",
+    "year": "2010",
+    "doi": null,
+    "pmcid": "PMC7134101",
+    "oa": "Y",
+    "journal": "Virus research"
+   },
+   {
+    "title": "Cumulative Contents for 2007",
+    "year": "2007",
+    "doi": null,
+    "pmcid": "PMC7134105",
+    "oa": "Y",
+    "journal": "Virus research"
+   },
+   {
+    "title": "Cumulative Author Index for 2010",
+    "year": "2010",
+    "doi": null,
+    "pmcid": "PMC7133888",
+    "oa": "Y",
+    "journal": "Virus research"
+   },
+   {
+    "title": "Cumulative Author Index for 2007",
+    "year": "2007",
+    "doi": null,
+    "pmcid": "PMC7134203",
+    "oa": "Y",
+    "journal": "Virus research"
+   },
+   {
+    "title": "The Positive Sense Single Stranded RNA Viruses",
+    "year": "2005",
+    "doi": null,
+    "pmcid": "PMC7332303",
+    "oa": "Y",
+    "journal": "Virus Taxonomy"
+   }
+  ]
+ },
+ "MRFV_any": {
+  "hits": 137,
+  "rows": [
+   {
+    "title": "Comprehensive analysis of biochemical compounds, chemical elements and metabolites modifications in maize plants infected with maize rayado fino virus (MRFV)",
+    "year": "2024",
+    "doi": null,
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Physiological and Molecular Plant Pathology."
+   },
+   {
+    "title": "Simultaneous infection of Leptodelphax maculigera (Hemiptera: Delphacidae) by Maize rayado fino virus (MRFV) and Maize bushy stunt phytoplasma (MPSP) detected\u00a0in Rio Grande do Sul, Brazil.",
+    "year": "2024",
+    "doi": "10.21203/rs.3.rs-4455424/v1",
+    "pmcid": null,
+    "oa": "N",
+    "journal": null
+   },
+   {
+    "title": "Distribution of Dalbulus maidis (DeLong) (Hemiptera: Cicadellidae) and incidence of maize rayado fino virus and Candidatus Phytoplasma asteris in corn succession planting systems.",
+    "year": "2023",
+    "doi": "10.1002/ps.7408",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Pest management science"
+   },
+   {
+    "title": "Coat protein expression strategy of maize rayado fino virus and evidence for requirement of CP1 for leafhopper transmission.",
+    "year": "2022",
+    "doi": "10.1016/j.virol.2022.02.003",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Virology"
+   },
+   {
+    "title": "The endopeptidase of the maize-affecting Marafivirus type member maize rayado fino virus doubles as a deubiquitinase.",
+    "year": "2021",
+    "doi": "10.1016/j.jbc.2021.100957",
+    "pmcid": "PMC8348309",
+    "oa": "Y",
+    "journal": "The Journal of biological chemistry"
+   },
+   {
+    "title": "Engineering <i>Maize rayado fino virus</i> for virus-induced gene silencing.",
+    "year": "2020",
+    "doi": "10.1002/pld3.224",
+    "pmcid": "PMC7409111",
+    "oa": "Y",
+    "journal": "Plant direct"
+   },
+   {
+    "title": "Transcriptome of the Maize Leafhopper (<i>Dalbulus maidis</i>) and Its Transcriptional Response to Maize Rayado Fino Virus (MRFV), Which It Transmits in a Persistent, Propagative Manner.",
+    "year": "2021",
+    "doi": "10.1128/spectrum.00612-21",
+    "pmcid": "PMC8612151",
+    "oa": "Y",
+    "journal": "Microbiology spectrum"
+   },
+   {
+    "title": "Infectious Maize rayado fino virus from Cloned cDNA",
+    "year": "2015",
+    "doi": null,
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Phytopathology"
+   },
+   {
+    "title": "Infectious Maize rayado fino virus from Cloned cDNA.",
+    "year": "2015",
+    "doi": "10.1094/phyto-09-14-0250-r",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Phytopathology"
+   },
+   {
+    "title": "ORF43 of maize rayado fino virus is dispensable for systemic infection of maize and transmission by leafhoppers.",
+    "year": "2016",
+    "doi": "10.1007/s11262-016-1287-0",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Virus genes"
+   },
+   {
+    "title": "Quantitative trait loci for resistance to Maize rayado fino virus",
+    "year": "2014",
+    "doi": "10.1007/s11032-014-0091-6",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Molecular breeding : new strategies in plant improvement"
+   },
+   {
+    "title": "Dalbulus maidis (Hemiptera: Cicadellidae) spatio-temporal dynamics and infection prevalence with the corn stunt mollicutes and virus in Santa Catarina, Brazil",
+    "year": "2026",
+    "doi": null,
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Crop Protection"
+   },
+   {
+    "title": "Identification of resistance to Maize rayado fino virus in maize inbred lines",
+    "year": "2013",
+    "doi": null,
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Plant disease"
+   },
+   {
+    "title": "Identification of Resistance to Maize rayado fino virus in Maize Inbred Lines.",
+    "year": "2013",
+    "doi": "10.1094/pdis-01-13-0037-re",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Plant disease"
+   },
+   {
+    "title": "A proposed new virus in the genus Marafivirus detected from Oriental persimmon 'Kumemaru'.",
+    "year": "2026",
+    "doi": "10.1007/s00705-026-06641-1",
+    "pmcid": "PMC13179273",
+    "oa": "Y",
+    "journal": "Archives of virology"
+   },
+   {
+    "title": "Presence of a polyA tail at the 3' end of maize rayado fino virus RNA.",
+    "year": "2011",
+    "doi": "10.1007/s00705-010-0880-0",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Archives of virology"
+   },
+   {
+    "title": "Mutations in the alpha-helical region of the amino terminus of the Maize rayado fino virus capsid protein and CP:RNA ratios affect virus-like particle encapsidation of RNAs.",
+    "year": "2015",
+    "doi": "10.1016/j.virusres.2014.07.033",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Virus research"
+   },
+   {
+    "title": "Maize rayado fino virus capsid proteins assemble into virus-like particles in Escherichia coli",
+    "year": "2010",
+    "doi": null,
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Virus research"
+   },
+   {
+    "title": "Maize rayado fino virus capsid proteins assemble into virus-like particles in Escherichia coli.",
+    "year": "2010",
+    "doi": "10.1016/j.virusres.2009.11.002",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Virus research"
+   },
+   {
+    "title": "Analysis of the solvent accessibility of cysteine residues on Maize rayado fino virus virus-like particles produced in Nicotiana benthamiana plants and cross-linking of peptides to VLPs.",
+    "year": "2013",
+    "doi": "10.3791/50084",
+    "pmcid": "PMC3601204",
+    "oa": "N",
+    "journal": "Journal of visualized experiments : JoVE"
+   },
+   {
+    "title": "Escape Behaviour of Dalbulus maidis (DeLong and Wolcott): Subsidies for Insecticide Application and Field Sampling",
+    "year": "2025",
+    "doi": null,
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Journal of Applied Entomology"
+   },
+   {
+    "title": "Maize rayado fino virus virus-like particles expressed in tobacco plants: A new platform for cysteine selective bioconjugation peptide display.",
+    "year": "2011",
+    "doi": "10.1016/j.jviromet.2011.09.013",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Journal of virological methods"
+   },
+   {
+    "title": "<i>Leptodelphax maculigera</i> (Hemiptera: Delphacidae) Harbors the Corn Stunt Complex Pathogens.",
+    "year": "2024",
+    "doi": "10.1094/pdis-01-24-0142-sc",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Plant disease"
+   },
+   {
+    "title": "Colonization and Age Structure of Dalbulus maidis Population in Maize Crops During the Vegetative Stage in the Brazilian Cerrado.",
+    "year": "2026",
+    "doi": "10.1007/s13744-026-01388-5",
+    "pmcid": "PMC13099691",
+    "oa": "Y",
+    "journal": "Neotropical entomology"
+   },
+   {
+    "title": "Incidence of and yield loss caused by maize rayado fino virus in maize cultivars in Ecuador",
+    "year": "2007",
+    "doi": "10.1007/s10681-006-3889-4",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Euphytica."
+   }
+  ]
+ },
+ "marafi_srna": {
+  "hits": 45,
+  "rows": [
+   {
+    "title": "A Validation Study of a High-Throughput Sequencing Workflow for the Detection of Grapevine Viruses and Viroids.",
+    "year": "2026",
+    "doi": "10.3390/pathogens15090998",
+    "pmcid": "PMC13610249",
+    "oa": "Y",
+    "journal": "Pathogens (Basel, Switzerland)"
+   },
+   {
+    "title": "Multiple Infections with Viruses of the Family &lt;i&gt;Tymoviridae&lt;/i&gt; in Czech Grapevines.",
+    "year": "2024",
+    "doi": "10.3390/v16030343",
+    "pmcid": "PMC10975331",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Perspicacious insights into plant-virus-vector interactions applying omics.",
+    "year": "2024",
+    "doi": "10.1186/s12864-024-10758-5",
+    "pmcid": "PMC11403853",
+    "oa": "Y",
+    "journal": "BMC genomics"
+   },
+   {
+    "title": "Botrytis virus X ORF2 suppresses RNA silencing in a trigger-restricted manner and is associated with altered Dicer-like gene expression in Botrytis cinerea",
+    "year": "2026",
+    "doi": null,
+    "pmcid": "PMC13668195",
+    "oa": "Y",
+    "journal": "The Journal of general virology"
+   },
+   {
+    "title": "High-Throughput Sequencing Indicates a Novel Marafivirus in Grapevine Showing Vein-Clearing Symptoms.",
+    "year": "2021",
+    "doi": "10.3390/plants10071487",
+    "pmcid": "PMC8309299",
+    "oa": "Y",
+    "journal": "Plants (Basel, Switzerland)"
+   },
+   {
+    "title": "In-depth analysis of 17,115 rice transcriptomes reveals extensive viral diversity in rice plants.",
+    "year": "2025",
+    "doi": "10.1038/s41467-025-56769-y",
+    "pmcid": "PMC11822035",
+    "oa": "Y",
+    "journal": "Nature communications"
+   },
+   {
+    "title": "Comprehensive genome characterization and expression analysis of the &lt;i&gt;DUF4228&lt;/i&gt; gene family in Sorghum (&lt;i&gt;Sorghum bicolor&lt;/i&gt; L.) under salt stress conditions.",
+    "year": "2026",
+    "doi": "10.7717/peerj.21175",
+    "pmcid": "PMC13131349",
+    "oa": "Y",
+    "journal": "PeerJ"
+   },
+   {
+    "title": "A novel weevil-transmitted tymovirus found in mixed infection on hollyhock.",
+    "year": "2023",
+    "doi": "10.1186/s12985-023-01976-6",
+    "pmcid": "PMC9885571",
+    "oa": "Y",
+    "journal": "Virology journal"
+   },
+   {
+    "title": "Engineering <i>Maize rayado fino virus</i> for virus-induced gene silencing.",
+    "year": "2020",
+    "doi": "10.1002/pld3.224",
+    "pmcid": "PMC7409111",
+    "oa": "Y",
+    "journal": "Plant direct"
+   },
+   {
+    "title": "The First Virome of a Russian Vineyard.",
+    "year": "2023",
+    "doi": "10.3390/plants12183292",
+    "pmcid": "PMC10534617",
+    "oa": "Y",
+    "journal": "Plants (Basel, Switzerland)"
+   },
+   {
+    "title": "Molecular Mechanism Underlying Derepressed Male Production in Hexaploid Persimmon.",
+    "year": "2020",
+    "doi": "10.3389/fpls.2020.567249",
+    "pmcid": "PMC7783364",
+    "oa": "Y",
+    "journal": "Frontiers in plant science"
+   },
+   {
+    "title": "High-Throughput Sequencing for Deciphering the Virome of Alfalfa (<i>Medicago sativa</i> L.).",
+    "year": "2020",
+    "doi": "10.3389/fmicb.2020.553109",
+    "pmcid": "PMC7518122",
+    "oa": "Y",
+    "journal": "Frontiers in microbiology"
+   },
+   {
+    "title": "First Report of Peach Leaf Pitting-Associated Virus in Peach Trees Exhibiting Calico in Korea",
+    "year": "2019",
+    "doi": "10.1094/pdis-03-19-0630-pdn",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Plant disease"
+   },
+   {
+    "title": "Application of High-Throughput Sequencing for Comprehensive Virome Profiling in Grapevines Shows Yellows in Iran.",
+    "year": "2024",
+    "doi": "10.3390/v16020204",
+    "pmcid": "PMC10891595",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "High-Throughput Sequencing of Small RNAs for Diagnostics of Grapevine Viruses and Viroids in Russia.",
+    "year": "2021",
+    "doi": "10.3390/v13122432",
+    "pmcid": "PMC8709451",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Virome analyses of Hevea brasiliensis using small RNA deep sequencing and PCR techniques reveal the presence of a potential new virus.",
+    "year": "2018",
+    "doi": "10.1186/s12985-018-1095-3",
+    "pmcid": "PMC6258436",
+    "oa": "Y",
+    "journal": "Virology journal"
+   },
+   {
+    "title": "Survey and Diversity of <i>Grapevine Pinot gris virus</i> in Algeria and Comprehensive High-Throughput Small RNA Sequencing Analysis of Two Isolates from <i>Vitis vinifera</i> cv. Sabel Revealing High Viral Diversity.",
+    "year": "2020",
+    "doi": "10.3390/genes11091110",
+    "pmcid": "PMC7563602",
+    "oa": "Y",
+    "journal": "Genes"
+   },
+   {
+    "title": "Recent advances in characterization and diagnosis of stone fruit tree viruses.",
+    "year": "2025",
+    "doi": "10.1007/s12298-025-01637-8",
+    "pmcid": "PMC12534652",
+    "oa": "N",
+    "journal": "Physiology and molecular biology of plants : an international journal of functional plant biology"
+   },
+   {
+    "title": "Integrating CRISPR-Cas and Next Generation Sequencing in Plant Virology.",
+    "year": "2021",
+    "doi": "10.3389/fgene.2021.735489",
+    "pmcid": "PMC8572880",
+    "oa": "Y",
+    "journal": "Frontiers in genetics"
+   },
+   {
+    "title": "Detection and molecular characterisation of Grapevine Syrah virus-1 isolates from Central Europe.",
+    "year": "2015",
+    "doi": "10.1007/s11262-015-1201-1",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Virus genes"
+   },
+   {
+    "title": "Recent Advances on Detection and Characterization of Fruit Tree Viruses Using High-Throughput Sequencing Technologies.",
+    "year": "2018",
+    "doi": "10.3390/v10080436",
+    "pmcid": "PMC6116224",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Analyses of virus/viroid communities in nectarine trees by next-generation sequencing and insight into viral synergisms implication in host disease symptoms.",
+    "year": "2019",
+    "doi": "10.1038/s41598-019-48714-z",
+    "pmcid": "PMC6706421",
+    "oa": "Y",
+    "journal": "Scientific reports"
+   },
+   {
+    "title": "Transcriptome profiling reveals infection strategy of an insect maculavirus.",
+    "year": "2018",
+    "doi": "10.1093/dnares/dsx056",
+    "pmcid": "PMC6014269",
+    "oa": "Y",
+    "journal": "DNA research : an international journal for rapid publication of reports on genes and genomes"
+   },
+   {
+    "title": "Transcriptome of the Maize Leafhopper (<i>Dalbulus maidis</i>) and Its Transcriptional Response to Maize Rayado Fino Virus (MRFV), Which It Transmits in a Persistent, Propagative Manner.",
+    "year": "2021",
+    "doi": "10.1128/spectrum.00612-21",
+    "pmcid": "PMC8612151",
+    "oa": "Y",
+    "journal": "Microbiology spectrum"
+   },
+   {
+    "title": "Characterisation of the Viral Community Associated with the Alfalfa Weevil (<i>Hypera postica</i>) and Its Host Plant, Alfalfa (<i>Medicago sativa</i>).",
+    "year": "2021",
+    "doi": "10.3390/v13050791",
+    "pmcid": "PMC8145008",
+    "oa": "Y",
+    "journal": "Viruses"
+   }
+  ]
+ },
+ "tymo_srna": {
+  "hits": 184,
+  "rows": [
+   {
+    "title": "DMS-MaPseq and DREEM Analyses Implicate the Critical Role of RNA Structural Dynamics in Turnip Yellow Mosaic Virus Pathogenicity.",
+    "year": "2026",
+    "doi": "10.1002/advs.75614",
+    "pmcid": "PMC13335997",
+    "oa": "Y",
+    "journal": "Advanced science (Weinheim, Baden-Wurttemberg, Germany)"
+   },
+   {
+    "title": "Potato Virus Y NIb Multifunctional Protein Suppresses Antiviral Defense by Interacting with Several Protein Components of the RNA Silencing Pathway.",
+    "year": "2026",
+    "doi": "10.3390/ijms27031208",
+    "pmcid": "PMC12898360",
+    "oa": "Y",
+    "journal": "International journal of molecular sciences"
+   },
+   {
+    "title": "Multiple Infections with Viruses of the Family &lt;i&gt;Tymoviridae&lt;/i&gt; in Czech Grapevines.",
+    "year": "2024",
+    "doi": "10.3390/v16030343",
+    "pmcid": "PMC10975331",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Highly Divergent Partiti-like and Narna-like Viral RNA Sequences Detected in &lt;i&gt;Pintomyia fischeri&lt;/i&gt; from S\u00e3o Paulo, Brazil: An Exploratory Metatranscriptomic Report.",
+    "year": "2026",
+    "doi": "10.3390/microorganisms14081723",
+    "pmcid": "PMC13515979",
+    "oa": "Y",
+    "journal": "Microorganisms"
+   },
+   {
+    "title": "DsRNA as pathogen-associated molecular pattern in innate immunity and multiple functions of the RNAi machinery complicate the use of RNAi in pest control.",
+    "year": "2025",
+    "doi": "10.3389/finsc.2025.1749008",
+    "pmcid": "PMC12855433",
+    "oa": "Y",
+    "journal": "Frontiers in insect science"
+   },
+   {
+    "title": "A novel weevil-transmitted tymovirus found in mixed infection on hollyhock.",
+    "year": "2023",
+    "doi": "10.1186/s12985-023-01976-6",
+    "pmcid": "PMC9885571",
+    "oa": "Y",
+    "journal": "Virology journal"
+   },
+   {
+    "title": "Small RNA sequencing of field Culex mosquitoes identifies patterns of viral infection and the mosquito immune response.",
+    "year": "2023",
+    "doi": "10.1038/s41598-023-37571-6",
+    "pmcid": "PMC10313667",
+    "oa": "Y",
+    "journal": "Scientific reports"
+   },
+   {
+    "title": "Identification and Full Genome Analysis of the First Putative Virus of Sea Buckthorn (&lt;i&gt;Hippophae rhamnoides&lt;/i&gt; L.).",
+    "year": "2022",
+    "doi": "10.3390/microorganisms10101933",
+    "pmcid": "PMC9609781",
+    "oa": "Y",
+    "journal": "Microorganisms"
+   },
+   {
+    "title": "Role of Plant Virus Movement Proteins in Suppression of Host RNAi Defense.",
+    "year": "2023",
+    "doi": "10.3390/ijms24109049",
+    "pmcid": "PMC10219291",
+    "oa": "Y",
+    "journal": "International journal of molecular sciences"
+   },
+   {
+    "title": "Salicylic acid and RNA interference mediate antiviral immunity of plant stem cells.",
+    "year": "2023",
+    "doi": "10.1073/pnas.2302069120",
+    "pmcid": "PMC10589665",
+    "oa": "Y",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America"
+   },
+   {
+    "title": "CRISPR/Cas9-mediated mutagenesis of Ago2 and Siwi in silkworm cultured cells.",
+    "year": "2021",
+    "doi": "10.1016/j.gene.2020.145314",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Gene"
+   },
+   {
+    "title": "High-Throughput Sequencing Indicates a Novel Marafivirus in Grapevine Showing Vein-Clearing Symptoms.",
+    "year": "2021",
+    "doi": "10.3390/plants10071487",
+    "pmcid": "PMC8309299",
+    "oa": "Y",
+    "journal": "Plants (Basel, Switzerland)"
+   },
+   {
+    "title": "Potential for small RNA production against Bombyx mori latent virus in Bombyx mori ovaries.",
+    "year": "2021",
+    "doi": "10.1002/arch.21761",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Archives of insect biochemistry and physiology"
+   },
+   {
+    "title": "A Validation Study of a High-Throughput Sequencing Workflow for the Detection of Grapevine Viruses and Viroids.",
+    "year": "2026",
+    "doi": "10.3390/pathogens15090998",
+    "pmcid": "PMC13610249",
+    "oa": "Y",
+    "journal": "Pathogens (Basel, Switzerland)"
+   },
+   {
+    "title": "Virome analyses of Hevea brasiliensis using small RNA deep sequencing and PCR techniques reveal the presence of a potential new virus.",
+    "year": "2018",
+    "doi": "10.1186/s12985-018-1095-3",
+    "pmcid": "PMC6258436",
+    "oa": "Y",
+    "journal": "Virology journal"
+   },
+   {
+    "title": "Mycologists and Virologists Align: Proposing &lt;i&gt;Botrytis cinerea&lt;/i&gt; for Global Mycovirus Studies.",
+    "year": "2024",
+    "doi": "10.3390/v16091483",
+    "pmcid": "PMC11437445",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "A hormone-activated mobile RNAi pathway defends plant stem cells from virus infection",
+    "year": "2022",
+    "doi": "10.1101/2022.12.18.520928",
+    "pmcid": null,
+    "oa": "Y",
+    "journal": null
+   },
+   {
+    "title": "TYMV and TRV infect Arabidopsis thaliana by expressing weak suppressors of RNA silencing and inducing host RNASE THREE LIKE1.",
+    "year": "2023",
+    "doi": "10.1371/journal.ppat.1010482",
+    "pmcid": "PMC9901757",
+    "oa": "Y",
+    "journal": "PLoS pathogens"
+   },
+   {
+    "title": "Effects of insect-specific viruses on transmission, infection, and replication of arboviruses in co-infected mosquitoes: a systematic review.",
+    "year": "2026",
+    "doi": "10.1186/s13071-026-07495-x",
+    "pmcid": "PMC13543357",
+    "oa": "Y",
+    "journal": "Parasites & vectors"
+   },
+   {
+    "title": "Advances in understanding plant-pathogen interactions: insights from tomato as a model system.",
+    "year": "2024",
+    "doi": "10.1007/s13337-024-00889-4",
+    "pmcid": "PMC11502661",
+    "oa": "N",
+    "journal": "Virusdisease"
+   },
+   {
+    "title": "Non-retroviral Endogenous Viral Elements in Tephritid Fruit Flies Reveal Former Viral Infections Not Related to Known Circulating Viruses.",
+    "year": "2023",
+    "doi": "10.1007/s00248-023-02310-x",
+    "pmcid": "PMC10689555",
+    "oa": "Y",
+    "journal": "Microbial ecology"
+   },
+   {
+    "title": "[Persistent virus in the silkworm cell lines: Bombyx mori latent virus].",
+    "year": "2019",
+    "doi": "10.2222/jsv.68.137",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Uirusu"
+   },
+   {
+    "title": "Promising Biotechnological Applications of the Artificial Derivatives Designed and Constructed from Plant microRNA Genes.",
+    "year": "2025",
+    "doi": "10.3390/plants14030325",
+    "pmcid": "PMC11819897",
+    "oa": "Y",
+    "journal": "Plants (Basel, Switzerland)"
+   },
+   {
+    "title": "Molecular gatekeepers: eukaryotic translation factors decoding plant-virus dynamics for resistance engineering.",
+    "year": "2026",
+    "doi": "10.1007/s44154-025-00273-2",
+    "pmcid": "PMC12847506",
+    "oa": "Y",
+    "journal": "Stress biology"
+   },
+   {
+    "title": "Engineering <i>Maize rayado fino virus</i> for virus-induced gene silencing.",
+    "year": "2020",
+    "doi": "10.1002/pld3.224",
+    "pmcid": "PMC7409111",
+    "oa": "Y",
+    "journal": "Plant direct"
+   }
+  ]
+ },
+ "dalbulus_srna": {
+  "hits": 9,
+  "rows": [
+   {
+    "title": "Perspicacious insights into plant-virus-vector interactions applying omics.",
+    "year": "2024",
+    "doi": "10.1186/s12864-024-10758-5",
+    "pmcid": "PMC11403853",
+    "oa": "Y",
+    "journal": "BMC genomics"
+   },
+   {
+    "title": "Extended phenotype of phytoplasmas in eukaryotic systems: mechanisms and ecological implications.",
+    "year": "2026",
+    "doi": "10.3389/fpls.2026.1774394",
+    "pmcid": "PMC13106440",
+    "oa": "Y",
+    "journal": "Frontiers in plant science"
+   },
+   {
+    "title": "Assessing the Functionality of RNA Interference (RNAi) in the Phloem-feeding Maize pest  <i>Dalbulus maidis</i>",
+    "year": "2021",
+    "doi": "10.1101/2021.09.29.462424",
+    "pmcid": null,
+    "oa": "N",
+    "journal": null
+   },
+   {
+    "title": "Recent advances in understanding of the mechanisms of RNA interference in insects.",
+    "year": "2025",
+    "doi": "10.1111/imb.12941",
+    "pmcid": "PMC11695441",
+    "oa": "N",
+    "journal": "Insect molecular biology"
+   },
+   {
+    "title": "Transcriptome of the Maize Leafhopper (<i>Dalbulus maidis</i>) and Its Transcriptional Response to Maize Rayado Fino Virus (MRFV), Which It Transmits in a Persistent, Propagative Manner.",
+    "year": "2021",
+    "doi": "10.1128/spectrum.00612-21",
+    "pmcid": "PMC8612151",
+    "oa": "Y",
+    "journal": "Microbiology spectrum"
+   },
+   {
+    "title": "A life-and-death struggle: interaction of insects with entomopathogenic fungi across various infection stages.",
+    "year": "2023",
+    "doi": "10.3389/fimmu.2023.1329843",
+    "pmcid": "PMC10800808",
+    "oa": "Y",
+    "journal": "Frontiers in immunology"
+   },
+   {
+    "title": "Engineering <i>Maize rayado fino virus</i> for virus-induced gene silencing.",
+    "year": "2020",
+    "doi": "10.1002/pld3.224",
+    "pmcid": "PMC7409111",
+    "oa": "Y",
+    "journal": "Plant direct"
+   },
+   {
+    "title": "Subject Index",
+    "year": "2007",
+    "doi": null,
+    "pmcid": "PMC7130489",
+    "oa": "Y",
+    "journal": "Advances in virus research"
+   },
+   {
+    "title": "Abstracts of the Fifth International Symposium on Molecular Insect Science : May 20\u201324, 2006, Tucson, Arizona USA, Organizing Committee",
+    "year": "2006",
+    "doi": null,
+    "pmcid": "PMC2990333",
+    "oa": "Y",
+    "journal": "Journal of insect science (Online)"
+   }
+  ]
+ },
+ "leafhopper": {
+  "hits": 35,
+  "rows": [
+   {
+    "title": "SRBSDV-derived small interfering RNAs modulate insect vector reproduction and viral replication in Sogatella furcifera.",
+    "year": "2026",
+    "doi": "10.1038/s42003-026-09936-w",
+    "pmcid": "PMC13233864",
+    "oa": "Y",
+    "journal": "Communications biology"
+   },
+   {
+    "title": "Active but not passive passengers: Persistent-propagative plant viruses manipulate insect vectors for efficient transmission.",
+    "year": "2026",
+    "doi": "10.1371/journal.ppat.1014368",
+    "pmcid": "PMC13308789",
+    "oa": "Y",
+    "journal": "PLoS pathogens"
+   },
+   {
+    "title": "Reduced cold tolerance of viral-infected leafhoppers attenuates viral persistent epidemics.",
+    "year": "2024",
+    "doi": "10.1128/mbio.03211-23",
+    "pmcid": "PMC11077983",
+    "oa": "Y",
+    "journal": "mBio"
+   },
+   {
+    "title": "Diversity and transmissibility of RNA viruses in the small brown planthopper, &lt;i&gt;Laodelphax striatellus&lt;/i&gt;.",
+    "year": "2024",
+    "doi": "10.1128/jvi.00191-24",
+    "pmcid": "PMC11650995",
+    "oa": "N",
+    "journal": "Journal of virology"
+   },
+   {
+    "title": "Insect-Specific Viruses and Their Emerging Role in Plant Disease Mitigation.",
+    "year": "2025",
+    "doi": "10.3390/v17091269",
+    "pmcid": "PMC12474051",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Characterization of Two Novel Insect-Specific Viruses Discovered in the Green Leafhopper, <i>Cicadella viridis</i>.",
+    "year": "2022",
+    "doi": "10.3390/insects13040378",
+    "pmcid": "PMC9032321",
+    "oa": "Y",
+    "journal": "Insects"
+   },
+   {
+    "title": "Rice Dwarf Virus Small RNA Profiles in Rice and Leafhopper Reveal Distinct Patterns in Cross-Kingdom Hosts.",
+    "year": "2019",
+    "doi": "10.3390/v11090847",
+    "pmcid": "PMC6784124",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Metatranscriptomic Sequencing Suggests the Presence of Novel RNA Viruses in Rice Transmitted by Brown Planthopper.",
+    "year": "2021",
+    "doi": "10.3390/v13122464",
+    "pmcid": "PMC8708968",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "The Use of Engineered Plant Viruses in a <i>Trans-</i>Kingdom Silencing Strategy Against Their Insect Vectors.",
+    "year": "2020",
+    "doi": "10.3389/fpls.2020.00917",
+    "pmcid": "PMC7360853",
+    "oa": "Y",
+    "journal": "Frontiers in plant science"
+   },
+   {
+    "title": "A Review of Vector-Borne Rice Viruses.",
+    "year": "2022",
+    "doi": "10.3390/v14102258",
+    "pmcid": "PMC9609659",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Discovery of aphid-transmitted Rice tiller inhibition virus from native plants through metagenomic sequencing.",
+    "year": "2023",
+    "doi": "10.1371/journal.ppat.1011238",
+    "pmcid": "PMC10076042",
+    "oa": "Y",
+    "journal": "PLoS pathogens"
+   },
+   {
+    "title": "Small interfering RNA pathway modulates persistent infection of a plant virus in its insect vector.",
+    "year": "2016",
+    "doi": "10.1038/srep20699",
+    "pmcid": "PMC4750021",
+    "oa": "Y",
+    "journal": "Scientific reports"
+   },
+   {
+    "title": "Loss of vitellogenin receptor function results in yolk depletion, virome expansion, and reduced bacterial load within the oocytes of Rhodnius prolixus.",
+    "year": "2026",
+    "doi": "10.1186/s12915-026-02622-7",
+    "pmcid": "PMC13340397",
+    "oa": "Y",
+    "journal": "BMC biology"
+   },
+   {
+    "title": "A Review on Transcriptional Responses of Interactions between Insect Vectors and Plant Viruses.",
+    "year": "2022",
+    "doi": "10.3390/cells11040693",
+    "pmcid": "PMC8870222",
+    "oa": "Y",
+    "journal": "Cells"
+   },
+   {
+    "title": "<i>Mal de R\u00edo Cuarto Virus</i> Infection Triggers the Production of Distinctive Viral-Derived siRNA Profiles in Wheat and Its Planthopper Vector.",
+    "year": "2017",
+    "doi": "10.3389/fpls.2017.00766",
+    "pmcid": "PMC5423983",
+    "oa": "Y",
+    "journal": "Frontiers in plant science"
+   },
+   {
+    "title": "Diversity of RNA viruses in agricultural insects.",
+    "year": "2023",
+    "doi": "10.1016/j.csbj.2023.08.036",
+    "pmcid": "PMC10497914",
+    "oa": "Y",
+    "journal": "Computational and structural biotechnology journal"
+   },
+   {
+    "title": "Rice Stripe Mosaic Virus, a Novel Cytorhabdovirus Infecting Rice via Leafhopper Transmission.",
+    "year": "2016",
+    "doi": "10.3389/fmicb.2016.02140",
+    "pmcid": "PMC5210121",
+    "oa": "Y",
+    "journal": "Frontiers in microbiology"
+   },
+   {
+    "title": "Nanoparticles and Nanocarriers for Managing Plant Viral Diseases.",
+    "year": "2025",
+    "doi": "10.3390/plants14203118",
+    "pmcid": "PMC12567292",
+    "oa": "Y",
+    "journal": "Plants (Basel, Switzerland)"
+   },
+   {
+    "title": "Combined Omics Approaches Reveal Distinct Mechanisms of Resistance and/or Susceptibility in Sugar Beet Double Haploid Genotypes at Early Stages of Beet Curly Top Virus Infection.",
+    "year": "2023",
+    "doi": "10.3390/ijms241915013",
+    "pmcid": "PMC10573692",
+    "oa": "Y",
+    "journal": "International journal of molecular sciences"
+   },
+   {
+    "title": "Maize lethal necrosis and the molecular basis of variability in concentrations of the causal viruses in co-infected maize plant.",
+    "year": "2019",
+    "doi": "10.5897/jgmv2019.0073",
+    "pmcid": "PMC7753892",
+    "oa": "Y",
+    "journal": "Journal of general and molecular virology"
+   },
+   {
+    "title": "OsRDR6 plays role in host defense against double-stranded RNA virus, Rice Dwarf Phytoreovirus.",
+    "year": "2015",
+    "doi": "10.1038/srep11324",
+    "pmcid": "PMC4499934",
+    "oa": "Y",
+    "journal": "Scientific reports"
+   },
+   {
+    "title": "Identification and Full Genome Analysis of the First Putative Virus of Sea Buckthorn (&lt;i&gt;Hippophae rhamnoides&lt;/i&gt; L.).",
+    "year": "2022",
+    "doi": "10.3390/microorganisms10101933",
+    "pmcid": "PMC9609781",
+    "oa": "Y",
+    "journal": "Microorganisms"
+   },
+   {
+    "title": "Regulatory Roles of Small Non-coding RNAs in Sugar Beet Resistance Against <i>Beet curly top virus</i>.",
+    "year": "2021",
+    "doi": "10.3389/fpls.2021.780877",
+    "pmcid": "PMC8786109",
+    "oa": "Y",
+    "journal": "Frontiers in plant science"
+   },
+   {
+    "title": "Diversity and infectivity of the RNA virome among different cryptic species of an agriculturally important insect vector: whitefly Bemisia tabaci.",
+    "year": "2021",
+    "doi": "10.1038/s41522-021-00216-5",
+    "pmcid": "PMC8119434",
+    "oa": "Y",
+    "journal": "NPJ biofilms and microbiomes"
+   },
+   {
+    "title": "Small Interfering RNA Pathway Modulates Initial Viral Infection in Midgut Epithelium of Insect after Ingestion of Virus.",
+    "year": "2016",
+    "doi": "10.1128/jvi.01835-15",
+    "pmcid": "PMC4702677",
+    "oa": "N",
+    "journal": "Journal of virology"
+   }
+  ]
+ },
+ "maize_vsirna": {
+  "hits": 125,
+  "rows": [
+   {
+    "title": "Identification of the Coexisting Virus-Derived siRNA in Maize and Rice Infected by Rice Black-Streaked Dwarf Virus.",
+    "year": "2024",
+    "doi": "10.1094/pdis-11-23-2301-re",
+    "pmcid": null,
+    "oa": "N",
+    "journal": "Plant disease"
+   },
+   {
+    "title": "A plant virus-derived siRNA modulates wing dimorphism and fertility of vector insects to enhance virus spread.",
+    "year": "2026",
+    "doi": "10.1016/j.jare.2026.01.061",
+    "pmcid": "PMC13453899",
+    "oa": "Y",
+    "journal": "Journal of advanced research"
+   },
+   {
+    "title": "The dehydrin protein COR15 enhances antiviral RNA silencing by preventing viral protein-mediated SGS3 degradation and promoting SGS3 condensate formation.",
+    "year": "2026",
+    "doi": "10.1016/j.xplc.2026.101879",
+    "pmcid": "PMC13589549",
+    "oa": "Y",
+    "journal": "Plant communications"
+   },
+   {
+    "title": "Profiling of small RNAs derived from tomato brown rugose fruit virus in infected <i>Solanum lycopersicum</i> plants by deep sequencing.",
+    "year": "2024",
+    "doi": "10.3389/fmicb.2024.1504861",
+    "pmcid": "PMC11821604",
+    "oa": "Y",
+    "journal": "Frontiers in microbiology"
+   },
+   {
+    "title": "First Complete Genome Sequence of Palo Verde Broom Emaravirus, Virus-Derived siRNA Signatures, and Phytohormone-Metabolite Profiling of Witches' Broom-Affected Palo Verde Trees.",
+    "year": "2025",
+    "doi": "10.3390/v17081122",
+    "pmcid": "PMC12390736",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Plant virus transmission during seed development and implications to plant defense system.",
+    "year": "2024",
+    "doi": "10.3389/fpls.2024.1385456",
+    "pmcid": "PMC11109449",
+    "oa": "Y",
+    "journal": "Frontiers in plant science"
+   },
+   {
+    "title": "Begomoviral pre-coat protein boosts potato virus X in mixed infection through interfering with antiviral RNAi response.",
+    "year": "2025",
+    "doi": "10.1186/s12985-025-03005-0",
+    "pmcid": "PMC12836990",
+    "oa": "Y",
+    "journal": "Virology journal"
+   },
+   {
+    "title": "Active but not passive passengers: Persistent-propagative plant viruses manipulate insect vectors for efficient transmission.",
+    "year": "2026",
+    "doi": "10.1371/journal.ppat.1014368",
+    "pmcid": "PMC13308789",
+    "oa": "Y",
+    "journal": "PLoS pathogens"
+   },
+   {
+    "title": "The biogenesis, regulation and functions of transitive siRNA in plants.",
+    "year": "2024",
+    "doi": "10.3724/abbs.2024160",
+    "pmcid": "PMC11802348",
+    "oa": "Y",
+    "journal": "Acta biochimica et biophysica Sinica"
+   },
+   {
+    "title": "Viromes of Monocotyledonous Weeds Growing in Crop Fields Reveal Infection by Several Viruses Suggesting Their Virus Reservoir Role.",
+    "year": "2024",
+    "doi": "10.3390/plants13182664",
+    "pmcid": "PMC11435186",
+    "oa": "Y",
+    "journal": "Plants (Basel, Switzerland)"
+   },
+   {
+    "title": "Revealing the role of the &lt;i&gt;AGO4&lt;/i&gt; gene against rice &lt;i&gt;hoja blanca&lt;/i&gt; virus: from transformation to protein structure.",
+    "year": "2025",
+    "doi": "10.3389/fpls.2025.1517321",
+    "pmcid": "PMC11985844",
+    "oa": "Y",
+    "journal": "Frontiers in plant science"
+   },
+   {
+    "title": "Antiviral RNA interference in plants: Increasing complexity and integration with other biological processes.",
+    "year": "2025",
+    "doi": "10.1016/j.xplc.2025.101490",
+    "pmcid": "PMC12546453",
+    "oa": "Y",
+    "journal": "Plant communications"
+   },
+   {
+    "title": "Potyviral Helper-Component Protease: Multifaced Functions and Interactions with Host Proteins.",
+    "year": "2024",
+    "doi": "10.3390/plants13091236",
+    "pmcid": "PMC11085613",
+    "oa": "Y",
+    "journal": "Plants (Basel, Switzerland)"
+   },
+   {
+    "title": "Phytohormones and emerging plant growth regulators in tailoring plant immunity against viral infections.",
+    "year": "2025",
+    "doi": "10.1111/ppl.70171",
+    "pmcid": "PMC11932968",
+    "oa": "Y",
+    "journal": "Physiologia plantarum"
+   },
+   {
+    "title": "Barley yellow dwarf virus-GAV-derived vsiRNAs are involved in the production of wheat leaf yellowing symptoms by targeting chlorophyll synthase.",
+    "year": "2020",
+    "doi": "10.1186/s12985-020-01434-7",
+    "pmcid": "PMC7576850",
+    "oa": "Y",
+    "journal": "Virology journal"
+   },
+   {
+    "title": "BioCNT-TLS engineered systemic mobile resistome for sustainable crop protection.",
+    "year": "2026",
+    "doi": "10.3389/fpls.2026.1903346",
+    "pmcid": "PMC13549130",
+    "oa": "Y",
+    "journal": "Frontiers in plant science"
+   },
+   {
+    "title": "Methionine Synthase Positively Regulates Plant Defence to Both RNA and DNA Viruses and Is Useful for Developing Broad-Spectrum Antiviral Resistance in Crops.",
+    "year": "2026",
+    "doi": "10.1111/pbi.70618",
+    "pmcid": "PMC13205620",
+    "oa": "Y",
+    "journal": "Plant biotechnology journal"
+   },
+   {
+    "title": "AGO2a but not AGO2b mediates antiviral defense against infection of wild-type cucumber mosaic virus in tomato.",
+    "year": "2023",
+    "doi": "10.1093/hr/uhad043",
+    "pmcid": "PMC10177002",
+    "oa": "Y",
+    "journal": "Horticulture research"
+   },
+   {
+    "title": "DEAD-box RNA helicase RH20 positively regulates RNAi-based antiviral immunity in plants by associating with SGS3/RDR6 bodies.",
+    "year": "2024",
+    "doi": "10.1111/pbi.14448",
+    "pmcid": "PMC11606427",
+    "oa": "Y",
+    "journal": "Plant biotechnology journal"
+   },
+   {
+    "title": "A plant virus manipulates the long-winged morph of insect vectors.",
+    "year": "2024",
+    "doi": "10.1073/pnas.2315341121",
+    "pmcid": "PMC10801844",
+    "oa": "Y",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America"
+   },
+   {
+    "title": "Virus-Derived Small Interfering RNAs Affect the Accumulations of Viral and Host Transcripts in Maize.",
+    "year": "2018",
+    "doi": "10.3390/v10120664",
+    "pmcid": "PMC6315483",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Liquid-liquid phase separation at the frontline of plant-pathogen battles.",
+    "year": "2026",
+    "doi": "10.1016/j.xplc.2025.101633",
+    "pmcid": "PMC12983261",
+    "oa": "Y",
+    "journal": "Plant communications"
+   },
+   {
+    "title": "Maize Lethal Necrosis disease: review of molecular and genetic resistance mechanisms, socio-economic impacts, and mitigation strategies in sub-Saharan Africa.",
+    "year": "2022",
+    "doi": "10.1186/s12870-022-03932-y",
+    "pmcid": "PMC9686106",
+    "oa": "Y",
+    "journal": "BMC plant biology"
+   },
+   {
+    "title": "Heat Stress Induces Partial Resistance to Tomato Bushy Stunt Virus in &lt;i&gt;Nicotiana benthamiana&lt;/i&gt; Via Combined Stress Pathways.",
+    "year": "2025",
+    "doi": "10.3390/v17091250",
+    "pmcid": "PMC12474339",
+    "oa": "Y",
+    "journal": "Viruses"
+   },
+   {
+    "title": "Virus and Viroid-Derived Small RNAs as Modulators of Host Gene Expression: Molecular Insights Into Pathogenesis.",
+    "year": "2020",
+    "doi": "10.3389/fmicb.2020.614231",
+    "pmcid": "PMC7874048",
+    "oa": "Y",
+    "journal": "Frontiers in microbiology"
+   }
+  ]
+ }
+}

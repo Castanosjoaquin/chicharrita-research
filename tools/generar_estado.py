@@ -68,6 +68,12 @@ HECHO = [
      "vector, la ventana se fija en 21 y 22 nt por evidencia biológica y el ejercicio sobre los cuatro "
      "candidatos es una auditoría y no la reproducción de un resultado validado.",
      ["00_meta/DECISIONS.md"]),
+    ("C10 · ¿Hay datos de ARN pequeños virales para nuestro blanco?",
+     "No, y es un vacío documentado: cero registros en SRA y GEO para el <i>Maize rayado fino virus</i> y "
+     "para <i>Dalbulus maidis</i> con estrategia de ARN pequeño. Los dos sustitutos abiertos que sí existen "
+     "muestran que los puntos calientes no siguen la estructura del ARN y dependen del hospedador, lo que "
+     "desaconseja copiarlos como selector de región blanco.",
+     ["research/ola3/C10_vsirna_virus/REPORT.md", "research/ola3/C10_vsirna_virus/sources.json"]),
     ("C9 · Tarea 3 · Pre-registro de la validación retrospectiva",
      "Escrito antes de mirar los datos: que conjunto, que estadistico, qué contaría como éxito y como "
      "fracaso, y la decisión de reportar el intervalo y no el valor p. La validación no se corrió.",
