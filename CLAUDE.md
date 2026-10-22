@@ -13,9 +13,17 @@ computacional e innovación abierta.
 ### Evidencia
 - Toda afirmación técnica lleva fuente. Sin fuente, no entra al reporte.
 - Etiquetá cada afirmación relevante con uno de estos marcadores:
-  - `[E]` establecido: consenso en literatura revisada por pares.
+  - `[E]` establecido: consenso en literatura revisada por pares. Un resultado
+    computacional propio nunca es `[E]`, aunque la herramienta sea estándar.
   - `[R]` reportado: una o pocas fuentes, preprint, nota técnica, patente, web de empresa.
-  - `[H]` hipótesis nuestra: idea del equipo, todavía sin respaldo.
+  - `[M]` medido por nosotros: conteo, tasa, frecuencia o concordancia calculados por el
+    equipo, reproducibles desde el repo (script, entrada y salida con ruta). Si la entrada
+    es un dato no publicado que no se versiona (p. ej. secuencias de EPILAB), se declara
+    «con insumos locales». `[M]` rotula el número, no su lectura: la interpretación va en
+    `[H]`. Un resultado in silico es una hipótesis sobre eficacia, no una prueba (Guía del
+    checkpoint 2).
+  - `[H]` hipótesis nuestra: idea del equipo, todavía sin respaldo; incluye toda lectura
+    o recomendación que se derive de un `[M]`.
   - `[?]` incierto / contradicción entre fuentes.
 - Prohibido citar una fuente que no abriste. Nada de DOIs, títulos o números
   reconstruidos de memoria. Si no pudiste abrir la fuente, anotala en

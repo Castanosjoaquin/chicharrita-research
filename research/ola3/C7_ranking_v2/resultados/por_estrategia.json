@@ -1,0 +1,1330 @@
+{
+ "insecto_recomendados|k21": {
+  "grupo": "insecto, regiones recomendadas",
+  "k": 21,
+  "candidatos": [
+   "BicC_Dm",
+   "ATPaseD_Dm",
+   "eth_Dm",
+   "bursA_Dm"
+  ],
+  "combinaciones": {
+   "geometrica/mecanicista/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 100.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 99.8,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 100.0,
+     "BicC_Dm>bursA_Dm": 100.0,
+     "ATPaseD_Dm>eth_Dm": 0.1,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 99.8
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/mecanicista/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 86.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 5.0,
+     "bursA_Dm": 9.1
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 67.7,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 91.9,
+     "BicC_Dm>bursA_Dm": 88.0,
+     "ATPaseD_Dm>eth_Dm": 5.0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 72.6
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 98.3,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.1,
+     "bursA_Dm": 1.6
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 96.3,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 99.9,
+     "BicC_Dm>eth_Dm": 99.6,
+     "BicC_Dm>bursA_Dm": 98.3,
+     "ATPaseD_Dm>eth_Dm": 0.1,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 96.4
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 53.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 11.9,
+     "bursA_Dm": 35.1
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 39.5,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 91.3,
+     "BicC_Dm>eth_Dm": 72.3,
+     "BicC_Dm>bursA_Dm": 54.1,
+     "ATPaseD_Dm>eth_Dm": 1.6,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 51.4
+    },
+    "cobertura_ordenes_pct": 100.1
+   },
+   "suma/mecanicista/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 98.8,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.2,
+     "bursA_Dm": 1.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 96.1,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 99.9,
+     "BicC_Dm>eth_Dm": 99.3,
+     "BicC_Dm>bursA_Dm": 98.8,
+     "ATPaseD_Dm>eth_Dm": 0.3,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 96.3
+    },
+    "cobertura_ordenes_pct": 99.9
+   },
+   "suma/mecanicista/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 83.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 3.0,
+     "bursA_Dm": 14.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 60.5,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 99.9,
+     "BicC_Dm>eth_Dm": 91.4,
+     "BicC_Dm>bursA_Dm": 83.8,
+     "ATPaseD_Dm>eth_Dm": 4.0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 63.5
+    },
+    "cobertura_ordenes_pct": 99.9
+   },
+   "suma/conservadora/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 86.2,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.6,
+     "bursA_Dm": 13.2
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 75.6,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 98.9,
+     "BicC_Dm>eth_Dm": 96.4,
+     "BicC_Dm>bursA_Dm": 86.5,
+     "ATPaseD_Dm>eth_Dm": 0.1,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 76.1
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/conservadora/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 56.6,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.8,
+     "bursA_Dm": 42.5
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 36.1,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 94.8,
+     "BicC_Dm>eth_Dm": 85.9,
+     "BicC_Dm>bursA_Dm": 56.7,
+     "ATPaseD_Dm>eth_Dm": 1.6,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 36.9
+    },
+    "cobertura_ordenes_pct": 99.8
+   },
+   "cascada/mecanicista": {
+    "primero_pct": {
+     "BicC_Dm": 100.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "ATPaseD_Dm",
+     "bursA_Dm"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 100.0,
+     "BicC_Dm>bursA_Dm": 100.0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 100.0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/conservadora": {
+    "primero_pct": {
+     "BicC_Dm": 100.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "ATPaseD_Dm",
+     "bursA_Dm"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 100.0,
+     "BicC_Dm>bursA_Dm": 100.0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 100.0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   }
+  }
+ },
+ "insecto|k21": {
+  "grupo": "insecto, regiones de EPILAB",
+  "k": 21,
+  "candidatos": [
+   "BicC_Dm",
+   "ATPaseD_Dm",
+   "eth_Dm",
+   "bursA_Dm"
+  ],
+  "combinaciones": {
+   "geometrica/mecanicista/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 99.8,
+     "bursA_Dm": 0.1
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 99.8,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 0.1,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 99.8
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/mecanicista/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 71.6,
+     "bursA_Dm": 28.4
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 71.6,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 13.2,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 5.0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 71.6
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 96.4,
+     "bursA_Dm": 3.6
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 78.8,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 78.9,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 96.4
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 74.7,
+     "bursA_Dm": 25.3
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 46.6,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 49.8,
+     "BicC_Dm>eth_Dm": 1.9,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 1.1,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 74.7
+    },
+    "cobertura_ordenes_pct": 99.9
+   },
+   "suma/mecanicista/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 96.3,
+     "bursA_Dm": 3.6
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 96.3,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 99.8,
+     "BicC_Dm>eth_Dm": 0.5,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0.3,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 96.3
+    },
+    "cobertura_ordenes_pct": 99.8
+   },
+   "suma/mecanicista/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 73.8,
+     "bursA_Dm": 26.2
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 73.8,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.1,
+     "BicC_Dm>eth_Dm": 9.7,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 4.0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 73.8
+    },
+    "cobertura_ordenes_pct": 100.1
+   },
+   "suma/conservadora/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 76.2,
+     "bursA_Dm": 23.9
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 47.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 30.3,
+     "BicC_Dm>eth_Dm": 0.1,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0.1,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 76.1
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/conservadora/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 73.7,
+     "bursA_Dm": 26.4
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 50.1,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 25.7,
+     "BicC_Dm>eth_Dm": 0.8,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0.6,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 73.6
+    },
+    "cobertura_ordenes_pct": 100.1
+   },
+   "cascada/mecanicista": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 100.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/conservadora": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 100.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   }
+  }
+ },
+ "virus|k21": {
+  "grupo": "virus, regiones de EPILAB",
+  "k": 21,
+  "candidatos": [
+   "MP_MRFV",
+   "CP_MRFV"
+  ],
+  "combinaciones": {
+   "geometrica/mecanicista/absoluta": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/mecanicista/minmax": {
+    "primero_pct": {
+     "MP_MRFV": 51.5,
+     "CP_MRFV": 48.5
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 51.5,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 51.5
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/absoluta": {
+    "primero_pct": {
+     "MP_MRFV": 98.4,
+     "CP_MRFV": 1.6
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 98.4,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 98.4
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/minmax": {
+    "primero_pct": {
+     "MP_MRFV": 51.5,
+     "CP_MRFV": 48.5
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 51.5,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 51.5
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/mecanicista/absoluta": {
+    "primero_pct": {
+     "MP_MRFV": 98.6,
+     "CP_MRFV": 1.4
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 98.6,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 98.6
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/mecanicista/minmax": {
+    "primero_pct": {
+     "MP_MRFV": 51.5,
+     "CP_MRFV": 48.5
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 51.5,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 51.5
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/conservadora/absoluta": {
+    "primero_pct": {
+     "MP_MRFV": 88.5,
+     "CP_MRFV": 11.6
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 88.5,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 88.5
+    },
+    "cobertura_ordenes_pct": 100.1
+   },
+   "suma/conservadora/minmax": {
+    "primero_pct": {
+     "MP_MRFV": 51.5,
+     "CP_MRFV": 48.5
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 51.5,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 51.5
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/mecanicista": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/conservadora": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   }
+  }
+ },
+ "insecto_recomendados|k22": {
+  "grupo": "insecto, regiones recomendadas",
+  "k": 22,
+  "candidatos": [
+   "BicC_Dm",
+   "ATPaseD_Dm",
+   "eth_Dm",
+   "bursA_Dm"
+  ],
+  "combinaciones": {
+   "geometrica/mecanicista/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 96.6,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 3.4,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 96.6,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 99.9,
+     "BicC_Dm>eth_Dm": 96.6,
+     "BicC_Dm>bursA_Dm": 99.8,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/mecanicista/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 24.1,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 75.9,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "BicC_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 45.2,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 90.7,
+     "BicC_Dm>eth_Dm": 24.1,
+     "BicC_Dm>bursA_Dm": 69.3,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 93.5,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 5.3,
+     "bursA_Dm": 1.2
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 91.9,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 99.8,
+     "BicC_Dm>eth_Dm": 94.5,
+     "BicC_Dm>bursA_Dm": 98.3,
+     "ATPaseD_Dm>eth_Dm": 0.9,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 97.2
+    },
+    "cobertura_ordenes_pct": 100.1
+   },
+   "geometrica/conservadora/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 49.6,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 29.2,
+     "bursA_Dm": 21.1
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "bursA_Dm",
+     "eth_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 19.1,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 91.3,
+     "BicC_Dm>eth_Dm": 62.8,
+     "BicC_Dm>bursA_Dm": 63.8,
+     "ATPaseD_Dm>eth_Dm": 20.9,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 47.9
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/mecanicista/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 83.3,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 16.6,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 83.3,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 99.5,
+     "BicC_Dm>eth_Dm": 83.3,
+     "BicC_Dm>bursA_Dm": 97.6,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 99.9
+    },
+    "cobertura_ordenes_pct": 99.9
+   },
+   "suma/mecanicista/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 26.6,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 73.5,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "BicC_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 44.8,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 94.2,
+     "BicC_Dm>eth_Dm": 26.6,
+     "BicC_Dm>bursA_Dm": 71.4,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.1
+    },
+    "cobertura_ordenes_pct": 100.1
+   },
+   "suma/conservadora/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 75.9,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 14.6,
+     "bursA_Dm": 9.5
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 69.7,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 98.3,
+     "BicC_Dm>eth_Dm": 82.5,
+     "BicC_Dm>bursA_Dm": 87.3,
+     "ATPaseD_Dm>eth_Dm": 4.9,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 84.3
+    },
+    "cobertura_ordenes_pct": 100.1
+   },
+   "suma/conservadora/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 49.5,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 20.6,
+     "bursA_Dm": 29.9
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 36.5,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 93.3,
+     "BicC_Dm>eth_Dm": 68.4,
+     "BicC_Dm>bursA_Dm": 63.7,
+     "ATPaseD_Dm>eth_Dm": 14.1,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 56.9
+    },
+    "cobertura_ordenes_pct": 99.8
+   },
+   "cascada/mecanicista": {
+    "primero_pct": {
+     "BicC_Dm": 100.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "ATPaseD_Dm",
+     "bursA_Dm"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 100.0,
+     "BicC_Dm>bursA_Dm": 100.0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 100.0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/conservadora": {
+    "primero_pct": {
+     "BicC_Dm": 100.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 0.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "BicC_Dm",
+     "eth_Dm",
+     "ATPaseD_Dm",
+     "bursA_Dm"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 100.0,
+     "BicC_Dm>eth_Dm": 100.0,
+     "BicC_Dm>bursA_Dm": 100.0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 100.0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   }
+  }
+ },
+ "insecto|k22": {
+  "grupo": "insecto, regiones de EPILAB",
+  "k": 22,
+  "candidatos": [
+   "BicC_Dm",
+   "ATPaseD_Dm",
+   "eth_Dm",
+   "bursA_Dm"
+  ],
+  "combinaciones": {
+   "geometrica/mecanicista/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 100.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 99.3,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 0.7,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/mecanicista/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 100.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 50.4,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 50.4,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 97.2,
+     "bursA_Dm": 2.8
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 97.2,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 0.1,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0.1,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 97.2
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 77.6,
+     "bursA_Dm": 22.4
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 76.2,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 2.0,
+     "BicC_Dm>eth_Dm": 0.1,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 1.0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 77.6
+    },
+    "cobertura_ordenes_pct": 100.1
+   },
+   "suma/mecanicista/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 100.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 90.4,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 9.6,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/mecanicista/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 100.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "BicC_Dm",
+     "ATPaseD_Dm"
+    ],
+    "orden_modal_pct": 68.2,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 68.2,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/conservadora/absoluta": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 84.3,
+     "bursA_Dm": 15.7
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 83.9,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 0.5,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0.1,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 84.3
+    },
+    "cobertura_ordenes_pct": 99.9
+   },
+   "suma/conservadora/minmax": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 74.6,
+     "bursA_Dm": 25.4
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 73.5,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 1.7,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0.9,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 74.6
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/mecanicista": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 100.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 0,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/conservadora": {
+    "primero_pct": {
+     "BicC_Dm": 0.0,
+     "ATPaseD_Dm": 0.0,
+     "eth_Dm": 100.0,
+     "bursA_Dm": 0.0
+    },
+    "orden_modal": [
+     "eth_Dm",
+     "bursA_Dm",
+     "ATPaseD_Dm",
+     "BicC_Dm"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "BicC_Dm>ATPaseD_Dm": 0,
+     "BicC_Dm>eth_Dm": 0,
+     "BicC_Dm>bursA_Dm": 0,
+     "ATPaseD_Dm>eth_Dm": 0,
+     "ATPaseD_Dm>bursA_Dm": 0,
+     "eth_Dm>bursA_Dm": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   }
+  }
+ },
+ "virus|k22": {
+  "grupo": "virus, regiones de EPILAB",
+  "k": 22,
+  "candidatos": [
+   "MP_MRFV",
+   "CP_MRFV"
+  ],
+  "combinaciones": {
+   "geometrica/mecanicista/absoluta": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/mecanicista/minmax": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/absoluta": {
+    "primero_pct": {
+     "MP_MRFV": 96.9,
+     "CP_MRFV": 3.1
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 96.9,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 96.9
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "geometrica/conservadora/minmax": {
+    "primero_pct": {
+     "MP_MRFV": 51.5,
+     "CP_MRFV": 48.5
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 51.5,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 51.5
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/mecanicista/absoluta": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/mecanicista/minmax": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "suma/conservadora/absoluta": {
+    "primero_pct": {
+     "MP_MRFV": 78.5,
+     "CP_MRFV": 21.4
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 78.5,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 78.5
+    },
+    "cobertura_ordenes_pct": 99.9
+   },
+   "suma/conservadora/minmax": {
+    "primero_pct": {
+     "MP_MRFV": 51.5,
+     "CP_MRFV": 48.5
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 51.5,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 51.5
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/mecanicista": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   },
+   "cascada/conservadora": {
+    "primero_pct": {
+     "MP_MRFV": 100.0,
+     "CP_MRFV": 0.0
+    },
+    "orden_modal": [
+     "MP_MRFV",
+     "CP_MRFV"
+    ],
+    "orden_modal_pct": 100.0,
+    "pares_pct": {
+     "MP_MRFV>CP_MRFV": 100.0
+    },
+    "cobertura_ordenes_pct": 100.0
+   }
+  }
+ }
+}

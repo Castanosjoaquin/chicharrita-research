@@ -1,0 +1,1 @@
+resumen_por_estrategia.py relee ranking_v2.json y reagrupa los barridos de 2.000 sorteos por par y por escala (no recalcula puntajes); escribe por_estrategia.json. Fase 1 del checkpoint 2, 2026-10-22.

@@ -1,8 +1,10 @@
 # Glosario
 
 Término, definición en una línea, por qué nos importa. Marcadores de evidencia
-según `CLAUDE.md`: `[E]` establecido, `[R]` reportado, `[H]` hipótesis nuestra,
-`[?]` incierto o en conflicto entre fuentes.
+según `CLAUDE.md`: `[E]` establecido, `[R]` reportado, `[M]` medido por nosotros
+(reproducible desde el repo), `[H]` hipótesis nuestra, `[?]` incierto o en conflicto
+entre fuentes. Las entradas de esta primera pasada, que son consenso de libro de texto,
+conservan `[E]`; `[M]` no aplica a definiciones.
 
 Este archivo se arma en dos pasadas. La primera es el núcleo conceptual que
 cualquier libro de texto de biología molecular comparte, escrito por el
