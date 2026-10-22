@@ -75,6 +75,9 @@ HECHO = [
      "<b>Un nulo no refuta el puntaje</b>, y eso estaba declarado antes de mirar los datos.",
      ["research/ola3/C9_sensibilidad_umbral/RESULTADOS_validacion_retrospectiva.md",
       "research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md"]),
+    ("Fase 2 · ¿Cuántos genes blanco llegan a un ortólogo utilizable en <i>D. maidis</i>?",
+     "Veredicto (b): viable sólo para 2 genes nominales. Ortología recíproca por secuencia resuelta en 11 de 14 familias (Swiss-Prot de artrópodos contra el proteoma de <i>M. quadrilineatus</i>). Sólo ATP synthase beta y actina superan el criterio de nucleótido (≥ 300 nt con ≥ 90 %) contra los TSA de <i>D. maidis</i>, y la actina es multigénica. Criterio fijado antes de buscar.",
+     ["research/ola3/C11_diseno_nuevo/REPORT.md", "research/ola3/C11_diseno_nuevo/criterio.md", "research/ola3/C11_diseno_nuevo/sources.json"]),
     ("C10 · ¿Hay datos de ARN pequeños virales para nuestro blanco?",
      "No, y es un vacío documentado: cero registros en SRA y GEO para el <i>Maize rayado fino virus</i> y "
      "para <i>Dalbulus maidis</i> con estrategia de ARN pequeño. Los dos sustitutos abiertos que sí existen "

@@ -528,5 +528,7 @@ criterio útil de uno inútil**. Salvedad de encuadre: los dos conjuntos ya esta
 `entregables/critica-herramientas.md`, así que es un reanálisis de una línea ya contada y no una nueva.
 Resultados en `RESULTADOS_validacion_retrospectiva.md`.
 
+**Fase 2 (diseño nuevo), resultado del 2026-10-22.** Veredicto **(b): viable sólo para 2 genes nominales**. De 14 familias del catálogo de C5, 11 tienen ortólogo recíproco por secuencia en el proteoma de *M. quadrilineatus*. De esas 11, sólo ATP synthase beta y actina muscular superan el criterio de nucleótido (≥ 300 nt con ≥ 90 % de identidad contra los TSA de *D. maidis*), y la actina es multigénica. Criterio en `research/ola3/C11_diseno_nuevo/criterio.md`; resultado en `research/ola3/C11_diseno_nuevo/REPORT.md`. Pendiente: el `tblastn` inverso desde *D. maidis* para confirmar la ortología del contig.
+
 Lo demás que figura en `00_meta/PREGUNTAS_ABIERTAS.md` bajo «pendientes internos» son huecos
 declarados que viajan con los números, no tareas del entregable.
