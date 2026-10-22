@@ -1,0 +1,163 @@
+{
+ "transcrito": "XM_008199034.3 (Tribolium castaneum gawky, 12405 nt)",
+ "motor": "ViennaRNA 2.7.2, backend vienna, 22 C, u=8, ventana 21 nt",
+ "excluidos": [
+  "si1441",
+  "si2443"
+ ],
+ "motivo_exclusion": "secuencia ausente en las 7 variantes de ARNm y en el cromosoma de la anotacion actual",
+ "no_estimables_conservados": [
+  "si124",
+  "si808",
+  "si2826",
+  "si4138",
+  "si4763"
+ ],
+ "primario": {
+  "predictor": "booleano is_efficient modo fiel, umbrales por defecto",
+  "n": 29,
+  "rho": 0.142,
+  "ic95": [
+   -0.247,
+   0.492
+  ],
+  "veredicto": "NO CONCLUYENTE"
+ },
+ "sensibilidades": {
+  "booleano_corregido": {
+   "rho": 0.024,
+   "ic95": [
+    -0.356,
+    0.397
+   ]
+  },
+  "conteo_ordinal": {
+   "rho": 0.325,
+   "ic95": [
+    -0.058,
+    0.625
+   ]
+  },
+  "sin_no_estimables": {
+   "rho": 0.242,
+   "ic95": [
+    -0.191,
+    0.596
+   ],
+   "n": 24
+  }
+ },
+ "confirmatorio_28_dsrna": {
+  "agrupado_fiel": {
+   "rho": 0.236,
+   "ic95": [
+    -0.161,
+    0.568
+   ],
+   "n": 28
+  },
+  "agrupado_corregido": {
+   "rho": 0.304,
+   "ic95": [
+    -0.089,
+    0.616
+   ]
+  },
+  "dentro_de_gen_fiel_promedio": 0.263
+ },
+ "precision_recall": {
+  "base_precision": 0.8275862068965517,
+  "pr": [
+   {
+    "umbral": 0.02,
+    "marcados": 8,
+    "vp": 7,
+    "fp": 1,
+    "precision": 0.875,
+    "ic_lo": 0.529,
+    "ic_hi": 0.978,
+    "cobertura": 0.292
+   },
+   {
+    "umbral": 0.05,
+    "marcados": 6,
+    "vp": 5,
+    "fp": 1,
+    "precision": 0.833,
+    "ic_lo": 0.436,
+    "ic_hi": 0.97,
+    "cobertura": 0.208
+   },
+   {
+    "umbral": 0.08,
+    "marcados": 5,
+    "vp": 4,
+    "fp": 1,
+    "precision": 0.8,
+    "ic_lo": 0.376,
+    "ic_hi": 0.964,
+    "cobertura": 0.167
+   },
+   {
+    "umbral": 0.1,
+    "marcados": 5,
+    "vp": 4,
+    "fp": 1,
+    "precision": 0.8,
+    "ic_lo": 0.376,
+    "ic_hi": 0.964,
+    "cobertura": 0.167
+   },
+   {
+    "umbral": 0.12,
+    "marcados": 4,
+    "vp": 3,
+    "fp": 1,
+    "precision": 0.75,
+    "ic_lo": 0.301,
+    "ic_hi": 0.954,
+    "cobertura": 0.125
+   },
+   {
+    "umbral": 0.15,
+    "marcados": 3,
+    "vp": 2,
+    "fp": 1,
+    "precision": 0.667,
+    "ic_lo": 0.208,
+    "ic_hi": 0.939,
+    "cobertura": 0.083
+   },
+   {
+    "umbral": 0.2,
+    "marcados": 3,
+    "vp": 2,
+    "fp": 1,
+    "precision": 0.667,
+    "ic_lo": 0.208,
+    "ic_hi": 0.939,
+    "cobertura": 0.083
+   },
+   {
+    "umbral": 0.25,
+    "marcados": 2,
+    "vp": 1,
+    "fp": 1,
+    "precision": 0.5,
+    "ic_lo": 0.095,
+    "ic_hi": 0.905,
+    "cobertura": 0.042
+   },
+   {
+    "umbral": 0.3,
+    "marcados": 2,
+    "vp": 1,
+    "fp": 1,
+    "precision": 0.5,
+    "ic_lo": 0.095,
+    "ic_hi": 0.905,
+    "cobertura": 0.042
+   }
+  ]
+ }
+}
