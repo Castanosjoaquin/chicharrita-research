@@ -375,7 +375,9 @@ validación retrospectiva. El encuadre que ordena todo: **de los cinco pedidos n
 así que lo que se agregue de acá en más compite con el tiempo de revisión, no con llenar un hueco.
 
 **Actualización del 2026-10-21, al cierre:** las opciones 1, 2 y 3 están hechas, y de la 4 está
-escrito el pre-registro pero la validación no se corrió. La tabla queda tal como se escribió,
+escrito el pre-registro ~~pero la validación no se corrió~~ **y la validación se corrió el 2026-10-21**
+(`research/ola3/C9_sensibilidad_umbral/RESULTADOS_validacion_retrospectiva.md`): el veredicto con el
+criterio pre-registrado es **no concluyente** (ρ = +0,142, IC95 [−0,247, +0,492], n = 29). La tabla queda tal como se escribió,
 con el veredicto de cada fila anotado, porque el razonamiento que descartó las opciones 6 y 7 es
 parte del entregable: es la respuesta fundada a «¿por qué no entrenaron un modelo?».
 
@@ -384,7 +386,7 @@ parte del entregable: es la respuesta fundada a «¿por qué no entrenaron un mo
 | **1. Escribir T1 y T5** (nota de «eficiente» y crítica de herramientas) | Los dos únicos pedidos del investigador sin entregable | Material íntegramente medido y disperso en seis archivos; es redacción, no investigación. Cierra el pedido que él puso primero | Ninguno. Es trabajo pendiente, no una apuesta | **Hecho el 2026-10-21** — `entregables/que-significa-eficiente.md` y `entregables/critica-herramientas.md` |
 | **2. Sensibilidad del umbral sin etiquetas** | Si mover el corte de accesibilidad de 0,1 o la brecha de 1,00 kcal/mol cambia el orden de candidatos | No necesita etiquetas ni laboratorio. La maquinaria existe (`barrido.py`, `ranking.py`). Contesta de frente «¿cómo saben que 0,1 es el valor?» con una medición | No dice si el umbral es bueno, sólo si la recomendación es frágil. Hay que no confundir las dos cosas al presentarlo | **Hacer segundo** — *hecho el 2026-10-21 en C9* |
 | **3. Corregir cómo se presenta B.3** | Que la diagonal se lea como lo que es | Una tabla y un párrafo. Evita que nos pregunten lo que ya sabemos que no se sostiene | Obliga a mostrar que el orden modal cae del 98,7 % al 33,7 % en la otra escala | **Hacer tercero** — *hecho el 2026-10-21 (W7 §2.1 bis y C7 §4)* |
-| **4. Validación retrospectiva pre-registrada** | Una cota sobre cuánto discrimina el puntaje | Es la única comprobación empírica posible sin laboratorio. Los 28 ARNdc de Cedden son CC BY y están en el repo. «Con este n no se distingue» es un resultado | **Sub-potenciada por un factor 2,4 en n**: con la fiabilidad medida del desenlace, una correlación verdadera de 0,7 se observa como 0,35 y la potencia con n = 28 es 0,42. Harían falta n = 67 | **Hacer cuarto, con tiempo acotado y el pre-registro escrito antes** — *pre-registro escrito el 2026-10-21 en `research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md`; la validación **no se corrió*** |
+| **4. Validación retrospectiva pre-registrada** | Una cota sobre cuánto discrimina el puntaje | Es la única comprobación empírica posible sin laboratorio. Los 28 ARNdc de Cedden son CC BY y están en el repo. «Con este n no se distingue» es un resultado | **Sub-potenciada por un factor 2,4 en n**: con la fiabilidad medida del desenlace, una correlación verdadera de 0,7 se observa como 0,35 y la potencia con n = 28 es 0,42. Harían falta n = 67 | ~~**Hacer cuarto, con tiempo acotado y el pre-registro escrito antes**~~ — ***hecho el 2026-10-21***: pre-registro con tres enmiendas fechadas y validación corrida. Veredicto **no concluyente** (ρ = +0,142, IC95 [−0,247, +0,492], n = 29) |
 | **5. Curva precisión-recall barriendo el umbral** | El umbral elegido con su precisión y su cobertura | Es el método correcto, y la fila de Reynolds (88,9 % de precisión con 1,1 % de cobertura) muestra la forma que tendría | Necesita las mismas etiquetas de la opción 4, así que hereda su falta de potencia. Con n = 28 los intervalos tapan la curva | **Sólo como salida de la opción 4, no como línea propia** |
 | **6. Modelo de ML existente entrenado en humano** | Una estimación de eficacia por ventana | Existen, son buenos en su dominio (Pearson 0,55-0,58 entre conjuntos humanos, AUC 0,81-0,87) y correrlos es barato | Al cambiar de ensayo caen a AUC ≈ 0,50, que es azar; y entre humano e insecto el GC de las posiciones 9-14 invierte su signo. Sin verdad de terreno en hemípteros no hay forma de saber si acertó | **No como predictor. Sólo como ablación declarada sobre los datos CC BY de *Tribolium*** |
 | **7. Aprendizaje no supervisado para predecir eficacia** | — | — | No resuelve la falta de etiquetas: la mueve al cabezal. Un método no supervisado encuentra estructura, no puede saber que esa estructura es silenciamiento | **Descartar como predictor.** Sí vale lo label-free que ya hacemos: el eje de especificidad, que es un hecho de alineamiento y no una predicción |
@@ -510,9 +512,17 @@ El camino completo, en cuatro pasos por costo, está en `00_meta/PREGUNTAS_ABIER
 los registros públicos disponibles.
 
 **La validación retrospectiva.** El pre-registro está escrito
-(`research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md`) y la validación no
-se corrió. Correrla es opcional y está sub-potenciada por un factor 2,4 en n, lo que ya es un
-resultado declarado: con n = 28 la potencia es 0,42 y harían falta 67.
+(`research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md`) con tres enmiendas
+fechadas, y ~~la validación no se corrió~~ **se corrió el 2026-10-21**. El conjunto primario pasó a ser
+los 31 siRNA de *Tc-gawky* (enmienda 2: empalme por clave real 31/31, unidad de 21 nt y un solo gen) y
+los 28 ARNdc quedaron como confirmatorio. **Veredicto con el criterio fijado de antemano: no
+concluyente** —ρ = +0,142 con IC95 [−0,247, +0,492] sobre n = 29, y el confirmatorio ρ = +0,236
+[−0,161, +0,568]—, que es el resultado que el propio pre-registro declaró como más probable. La curva
+precisión-recall no supera la base de 82,8 % en ningún umbral. Lo que esto agrega es una medición donde
+antes había un cálculo de potencia: **con los datos abiertos que existen no se puede distinguir un
+criterio útil de uno inútil**. Salvedad de encuadre: los dos conjuntos ya estaban citados en
+`entregables/critica-herramientas.md`, así que es un reanálisis de una línea ya contada y no una nueva.
+Resultados en `RESULTADOS_validacion_retrospectiva.md`.
 
 Lo demás que figura en `00_meta/PREGUNTAS_ABIERTAS.md` bajo «pendientes internos» son huecos
 declarados que viajan con los números, no tareas del entregable.

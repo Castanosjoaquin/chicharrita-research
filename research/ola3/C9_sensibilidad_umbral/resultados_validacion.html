@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resultados de la validación retrospectiva pre-registrada</title>
+<style>:root{--bg:#fff;--fg:#1c1f23;--mut:#5b6470;--line:#dfe3e8;--card:#f5f7f9;--azul:#2a6fdb;
+--rojo:#c23b3b;--verde:#1f7a4d;--hot:#c23b3b1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14171a;--fg:#e6e8eb;
+--mut:#9aa4af;--line:#2b3138;--card:#1b1f24;--azul:#6aa3ff;--rojo:#ff8a8a;--verde:#5fd09a;--hot:#ff8a8a1f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:900px;margin:0 auto;padding:28px 16px 60px}
+.k{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:26px;margin:6px 0 4px;line-height:1.2}h2{font-size:19px;margin:34px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+.lead{color:var(--mut);margin:0 0 18px}
+.box{background:var(--card);border-left:3px solid var(--azul);padding:12px 16px;border-radius:6px;margin:16px 0}
+.box.ok{border-left-color:var(--verde)}.box p{margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:4px 0}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:13px}
+.tw{overflow-x:auto;margin:8px 0}
+.muted,.fine{font-size:13px;color:var(--mut)}code{font-size:.92em}
+pre{background:var(--card);padding:12px;border-radius:6px;overflow-x:auto;font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:14px 0}
+.kpi{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font-size:22px}.kpi span{font-size:13px;color:var(--mut)}
+.bar{display:inline-block;width:64px;height:8px;background:var(--line);border-radius:4px;vertical-align:middle;
+overflow:hidden;margin-right:6px}.bar i{display:block;height:100%;background:var(--azul)}
+@media (max-width:600px){main{padding:20px 16px 50px}h1{font-size:22px}}</style></head><body><main>
+<h1>Resultados de la validación retrospectiva pre-registrada</h1>
+<p class="lead">2026-10-21. Detalle y reproducción en <a href="RESULTADOS_validacion_retrospectiva.md">RESULTADOS_validacion_retrospectiva.md</a>.</p>
+<p><b>Veredicto, con el criterio fijado de antemano: NO CONCLUYENTE.</b> Es el resultado que el pre-registro declaró como más probable, y el propio documento ya dejó escrito por qué <b>un nulo no refuta el puntaje</b>. No se cambió ninguna decisión después de ver los datos: las tres enmiendas están fechadas y commiteadas antes de calcular la primera asociación (<code>fd0e357</code> y anteriores).</p>
+<p><b>Motor.</b> ViennaRNA 2.7.2, backend <code>vienna</code>, 22 °C, <code>u = 8</code>, ventana de 21 nt. Los conteos absolutos no son comparables con los de la ola 2; las comparaciones internas sí.</p>
+<h2>El análisis primario</h2>
+<p>Sobre los <b>31 siRNA de 21 nt</b> contra <i>Tc-gawky</i>, ubicados por coincidencia exacta en el transcrito <code>XM_008199034.3</code> (12.405 nt). Dos quedaron excluidos por no existir en ninguna variante de ARNm ni en el cromosoma de la anotación actual (<code>si1441</code> y <code>si2443</code>), de modo que <b>n = 29</b>. El motivo es independiente del desenlace: uno tiene razón de riesgo 4,23 y el otro 33,2.</p>
+<p>El booleano de si-Fi21 marca <b>5 de 29</b> siRNA como eficientes. Su correlación de rangos con la razón de riesgo es <b>ρ = +0,142, con intervalo de confianza del 95 % de [−0,247, +0,492]</b>. El intervalo contiene el cero, así que no se cumple el criterio de «compatible con utilidad»; y contiene también el 0,35 que se observaría si la correlación verdadera fuera 0,7, así que tampoco se cumple el de «fracaso acotado». Cae en la tercera casilla, la que el documento anticipó. <code>[E]</code></p>
+<p>Las tres sensibilidades declaradas apuntan en la misma dirección y ninguna excluye el cero: el booleano en modo corregido da ρ = +0,024 [−0,356, +0,397]; el conteo ordinal de condiciones satisfechas, que es el predictor más informativo de los tres, da ρ = +0,325 [−0,058, +0,625]; y quitando los cinco no estimables, ρ = +0,242 [−0,191, +0,596] con n = 24. <code>[E]</code></p>
+<h2>El análisis confirmatorio</h2>
+<p>Los <b>28 ARNdc</b> de ocho genes, con el empalme por orden que sigue declarado <code>[?]</code>, dan ρ = +0,236 [−0,161, +0,568] en modo fiel y ρ = +0,304 [−0,089, +0,616] en corregido. Dentro de cada gen el promedio es +0,263, con un rango de −0,50 a +1,00 sobre ocho genes de tres o cuatro ARNdc cada uno, que es demasiado poco por grupo para leerlo. <code>[E]</code></p>
+<p><b>Lo único que se puede decir con los dos conjuntos juntos:</b> las seis estimaciones son positivas, entre +0,02 y +0,33, y las seis incluyen el cero. La consistencia de signo es débilmente alentadora y no es evidencia: con esta potencia, seis estimaciones del mismo signo sobre datos del mismo trabajo no son seis pruebas independientes.</p>
+<h2>La curva precisión-recall</h2>
+<p>La base manda: de los 29 siRNA, <b>24 son positivos</b> por el criterio pre-registrado, así que un clasificador que diga «todos eficientes» acierta el <b>82,8 %</b>. Barriendo el umbral de accesibilidad de 0,02 a 0,30, la precisión del filtro va de 0,875 a 0,500 y <b>en ningún punto supera esa base de forma apreciable</b>: en el umbral por defecto de 0,1 marca 5 siRNA, acierta 4, y da precisión 0,800 con cobertura del 17 %. Los intervalos de Wilson de esas precisiones van de [0,53, 0,98] en el mejor punto a [0,10, 0,91] en el peor, o sea que <b>el dato no distingue nada</b>. <code>[E]</code></p>
+<p>El falso positivo nunca se filtra: sobrevive a todos los umbrales del barrido.</p>
+<p><img src="validacion_retrospectiva.png" alt="Resultados de la validación" style="max-width:100%;height:auto"></p>
+<h2>Lo que este resultado sí establece, y lo que no</h2>
+<p><b>No establece</b> que el criterio de si-Fi21 no sirva. Con n = 29, cinco negativos y la atenuación por fiabilidad del desenlace, un criterio bueno y uno inútil producen intervalos casi indistinguibles. Ése era el punto del cálculo de potencia que motivó el pre-registro.</p>
+<p><b>Sí establece tres cosas de método, y las tres son reportables.</b> Primero, que el conjunto etiquetado abierto más grande que existe en insectos <b>no alcanza</b> para validar ni para refutar el filtro, y ahora está medido y no argumentado. Segundo, que la restricción de rango que W6/ANA había anticipado es real y visible en el dato: <b>ningún siRNA del conjunto tiene razón de riesgo cercana a 1</b>, los autores probaron cosas que mataban mucho o nada. Tercero, que con una base de positivos del 83 % la pregunta «¿cuántos de los que mando a testear andan?» no se puede contestar acá, porque casi todos andan.</p>
+<h2>Qué implica para lo que ya habíamos encontrado</h2>
+<p><b>Primero, una corrección de encuadre que hay que hacer antes de presentar esto.</b> Los dos conjuntos que acabamos de analizar <b>ya estaban citados</b> en <code>entregables/critica-herramientas.md</code> como la línea de evidencia en insecto: la tabla de esa crítica trae a Cedden 2025 con <i>Tribolium castaneum</i>, n = 29 y cociente de riesgo 0,9994 (P = 0,853) para la accesibilidad en un modelo de Cox, y el texto menciona además que a nivel de ARNdc largo tampoco fue significativa (P = 0,41, n = 28). Son los mismos 29 siRNA y los mismos 28 ARNdc. <b>Esta validación no agrega una línea independiente: es un reanálisis de una línea que ya teníamos.</b> Lo que cambia es el predictor —los autores probaron <i>su</i> puntaje de accesibilidad en <i>su</i> modelo; nosotros probamos el <b>booleano compuesto de si-Fi21</b> contra el mismo desenlace— y la conclusión coincide. Decir en la reunión que hay tres líneas independientes contra la accesibilidad sería falso: dos comparten el desenlace de los mismos animales. <code>[E]</code></p>
+<p>Con eso dicho, el resultado <b>refuerza</b> la crítica de T5 sin ampliarla, <b>agrega</b> una cosa nueva y <b>no toca</b> otras.</p>
+<p><b>Refuerza, con una salvedad de peso.</b> La crítica de T5 decía que usar accesibilidad como filtro booleano con umbral fijo no está justificado. Ahora, sobre ese mismo desenlace, el filtro completo de si-Fi21 en su umbral por defecto da una precisión de 0,800 contra una base de 0,828: <b>no mejora a no filtrar</b>. La salvedad es que el intervalo de esa precisión, [0,376, 0,964], no excluye casi nada, así que el refuerzo es de dirección y no de magnitud.</p>
+<p><b>Agrega una cosa que antes era argumento y ahora es medición.</b> Hasta hoy «la validación está sub-potenciada» era un cálculo de potencia hecho antes de correr nada. Ahora está corrida: el intervalo del primario va de −0,247 a +0,492 y contiene tanto el cero como el valor que se esperaría si el puntaje fuera bueno. La afirmación «con los datos abiertos que existen no se puede distinguir un criterio útil de uno inútil» pasó de predicción a resultado observado, y eso es defendible frente a quien pregunte por qué no validamos. <code>[E]</code></p>
+<p><b>No toca el segundo eje del ranking.</b> La limpieza es un hecho de alineamiento —que una ventana exista o no en un transcriptoma no es una predicción— y nada de esto la afecta. Tampoco toca el benchmark de las tres herramientas, cuyo resultado central es de especificidad y no de eficacia: las dos implementaciones independientes de off-target coinciden exactamente en las 20 celdas, y eso sigue en pie.</p>
+<p><b>Lo incómodo, que conviene decir antes de que lo pregunten.</b> Juntando esto con lo que midió C9, el cuadro es: el eje que <b>ordena</b> el ranking es la eficacia —la limpieza varía un factor 1,015–1,064 entre candidatos contra 2,38–2,50 de la eficacia, así que casi no tiene palanca—, y es justamente el eje cuyo vínculo con la eficacia medida <b>no está demostrado</b>. El eje que sí es un hecho duro casi no mueve el orden. No invalida el entregable, porque el entregable nunca afirmó predecir eficacia y declara su incertidumbre; pero es la tensión central de la propuesta y es mejor plantearla nosotros. <code>[H]</code></p>
+<p><b>Una pista menor, que no da para conclusión.</b> El conteo ordinal de condiciones satisfechas (0 a 3) correlacionó mejor que el booleano: ρ = +0,325 contra +0,142. Es compatible con la idea de que combinar las tres condiciones con un <code>and</code> tira información que un puntaje graduado conservaría, que es una de las mejoras propuestas en T5. Pero los dos intervalos se solapan casi por completo y con n = 29 la diferencia <b>no es distinguible</b>: vale como hipótesis para un trabajo futuro, no como hallazgo. <code>[H]</code></p>
+<h2>Límites</h2>
+<p>La prueba <b>no es independiente de lo publicado</b>: los autores ya analizaron sus propios descriptores sobre estos mismos 31 siRNA, y dos de los tres que les resultaron predictivos se solapan conceptualmente con las condiciones de si-Fi21. El transcrito de RefSeq y la referencia de los autores difieren por inserciones —los desplazamientos entre la posición del nombre y la hallada van de 280 a 309—, así que cada siRNA se ubicó por secuencia y no por coordenada. El confirmatorio calcula la accesibilidad dentro del fragmento de ~300 pb y no en el contexto del ARNm completo, que es una aproximación heredada del texto original del pre-registro. Todo es <i>Tribolium castaneum</i>, un coleóptero: no hay validación en hemípteros.</p>
+<h2>Archivos</h2>
+<p><code>resultados/validacion_31sirna.tsv</code> (las 29 filas con predictor y desenlace), <code>resultados/validacion_resumen.json</code> (todas las estimaciones y la curva), <code>validacion_retrospectiva.png</code>.</p>
+</main></body></html>

@@ -68,6 +68,13 @@ HECHO = [
      "vector, la ventana se fija en 21 y 22 nt por evidencia biológica y el ejercicio sobre los cuatro "
      "candidatos es una auditoría y no la reproducción de un resultado validado.",
      ["00_meta/DECISIONS.md"]),
+    ("Validación retrospectiva corrida: no concluyente",
+     "Pre-registro con tres enmiendas fechadas y la validación corrida el 2026-10-21. Primario: los 31 "
+     "siRNA de <i>Tc-gawky</i>, n = 29, ρ = +0,142 con IC95 [−0,247, +0,492]; confirmatorio sobre los 28 "
+     "ARNdc, ρ = +0,236. La curva precisión-recall no supera la base de 82,8 % en ningún umbral. "
+     "<b>Un nulo no refuta el puntaje</b>, y eso estaba declarado antes de mirar los datos.",
+     ["research/ola3/C9_sensibilidad_umbral/RESULTADOS_validacion_retrospectiva.md",
+      "research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md"]),
     ("C10 · ¿Hay datos de ARN pequeños virales para nuestro blanco?",
      "No, y es un vacío documentado: cero registros en SRA y GEO para el <i>Maize rayado fino virus</i> y "
      "para <i>Dalbulus maidis</i> con estrategia de ARN pequeño. Los dos sustitutos abiertos que sí existen "
@@ -93,10 +100,6 @@ FALTA = [
     ("Autorizar la publicación de las 28 secuencias de Cedden", "decision", False,
      "Son datos públicos de un artículo CC BY, no secuencias de EPILAB. Están unidas a su razón de riesgo "
      "en <code>research/ola3/C9_sensibilidad_umbral/datos/</code>, <strong>sin subir al remoto</strong> a la espera de esa decision."),
-    ("Correr la validación retrospectiva", "trabajo", False,
-     "Media hora de cómputo una vez cerrado el punto anterior. Con la fiabilidad medida del desenlace la "
-     "potencia es 0,42, de modo que lo mas probable es un intervalo que incluya el cero; el pre-registro ya "
-     "declara que eso <strong>no refuta el puntaje</strong>."),
     ("Confirmar el criterio de commits", "decision", False,
      "El prompt de C9 pide un commit por tarea y la regla general de la ola 3 dice no commitear (D5). Se "
      "siguió la instrucción específica del prompt; si se prefiere la regla general, se reescribe."),
