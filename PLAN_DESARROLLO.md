@@ -233,7 +233,15 @@ tiene palanca con la escala absoluta, no de que el orden sea robusto (W7 §2.1 b
 afirmación vieja tachada). Y se midió, sin etiquetas y con el backend `vienna`, cuánto depende la
 recomendación de los dos umbrales sin fuente primaria: el candidato superior (`MP_MRFV`) se
 mantiene en el 98–99 % de la grilla, pero la región exacta de 200 nt no, y el par
-`ATPaseD_Dm`/`CP_MRFV` es un empate práctico. Mide fragilidad, no calidad del umbral.
+`ATPaseD_Dm`/`CP_MRFV` es un empate práctico **si se lo mide con la ventana libre de 200**.
+Mide fragilidad, no calidad del umbral. **T1 bis, misma fecha:** el barrido se repitió sobre
+la región que de verdad proponemos y con el veto de off-target aplicado, a 21 y 22 nt y sobre
+los seis candidatos del ranking v2. Reeligiendo la región con la regla del ranking, `MP_MRFV`
+queda primero en el **100 %** de la grilla a 21 nt y el par `ATPaseD_Dm`/`CP_MRFV` **deja de
+estar empatado** (se invierte en el 3,3 %, no en el 48,9 %), porque la ventana libre de
+`ATPaseD_Dm` cae sobre una región vetada. Lo frágil pasa a ser congelar las coordenadas: con
+las regiones fijas y el umbral moviéndose, `MP_MRFV` queda primero en apenas el 62 %. Los
+empates que quedan son otros pares: `CP_MRFV`/`burs-alpha` y `eth`/`burs-alpha`.
 Ver `research/ola3/C9_sensibilidad_umbral/REPORT.md`.
 
 ### T4 · La auditoría de las regiones 1–200 — hecha y revisada

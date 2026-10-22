@@ -6,6 +6,20 @@ Aportes para que el orquestador integre a `00_meta/`. No se editó `00_meta/`.
 
 **D-C9-1.** La recomendación se presenta a dos niveles: el *candidato* es robusto a los umbrales de si-Fi21 sin fuente primaria (`MP_MRFV` primero en 98,2–99,1 % de la grilla, backend `vienna`), y la *región de 200 nt* no lo es (coincidencia exacta con la de defecto en 11,7 % fiel y 25,8 % corregido). Consecuencia: se entrega una región candidata, no un sitio. Alternativa descartada: afirmar «el umbral no cambia la recomendación», que es falsa a nivel de ventana.
 
+**D-C9-4 (T1 bis).** El barrido de umbrales se mide sobre la **regla** con la que se elige la
+región (largo propio del gen más veto duro de 21/21), y no sobre la ventana libre de 200. Con
+la ventana libre el barrido compara densidades sobre denominadores distintos —200 en los
+virales contra 300 en los del insecto— y, en `ATPaseD_Dm`, elige una región vetada (272–471,
+que contiene 392–394). Consecuencia: el par `ATPaseD_Dm`/`CP_MRFV` **no** es un empate
+práctico a 21 nt (3,3 % de inversión en modo corregido, contra 48,9 % con la ventana libre), y
+la afirmación vieja queda acotada y tachada en el REPORT. Alternativa descartada: dejar la
+afirmación como estaba, que contradice al ranking sin decir que mide otra cosa.
+
+**D-C9-5 (T1 bis).** Lo que se entrega es el resultado de correr una regla con un umbral
+declarado, no un par de coordenadas. Medido: congelando las regiones del entregable y moviendo
+el umbral, `MP_MRFV` queda primero en el 62 % de la grilla a 21 nt; reeligiendo con la regla,
+en el 100 %. Consecuencia: todo informe que dé coordenadas dice con qué umbral se corrió.
+
 **D-C9-2.** El pre-registro vive en `research/ola3/C9_sensibilidad_umbral/` y no en `entregables/`, porque es un documento de método que debe quedar fijado antes de cualquier resultado, y no un entregable al investigador. Si el equipo prefiere moverlo a `entregables/`, hacerlo con `git mv` para conservar la fecha de escritura.
 
 **D-C9-3.** Panel de referencias: no se usó. El barrido varía umbrales de eficiencia, que no dependen del panel; por eso no hizo falta bajar GRCh38.
@@ -21,6 +35,22 @@ La grilla se evaluó con `apply_rules` ventana por ventana sobre primitivas calc
 3. El «Rehacerlo con lo que la ola 3 midió después» de la fila 3 del plan estaba desactualizado (C7 ya lo hizo); se tachó.
 4. Los números de la corrección de B.3 (98,7 % → 33,7 %, 65,9 %, w* = 0,32, factores 2,38–2,50 y 1,015–1,064, piso 0,8533) **se citan de la auditoría ya registrada en `PREGUNTAS_ABIERTAS.md` y no se volvieron a medir** aquí.
 
+## Hallazgos de T1 bis
+
+1. **`MP_MRFV` tiene una segunda región que compite de cerca y no estaba nombrada.** A 21 nt y
+   modo corregido, reeligiendo con la regla, la familia alrededor de 490–689 gana en el 67 % de
+   la grilla y 72–271 en el 30 %. En el punto por defecto son 38 ventanas eficientes contra 32.
+   Hay que mirarla antes de comprometerse con un solo fragmento.
+2. **El conversor `inline()` de `generar_index.py` no convierte un `~~tachado~~` que contenga
+   code spans**, porque parte el texto en los backticks antes de buscar el tachado. El mismo
+   patrón está en el generador de C7, donde se agregó el soporte de `~~`. Acá se esquivó
+   sacando los backticks de adentro del tachado; el arreglo de verdad es ordenar las dos
+   pasadas. Pendiente.
+3. **La regla barrida reencuentra la región del entregable en 4 de 6 genes** (21 nt, corregido)
+   y difiere 2 nt en `BicC_Dm` y 32 en `burs-alpha`, porque barre la cascada reducida (veto más
+   densidad) y no el conteo de «eficientes limpios» de la cascada completa. Para cerrar esa
+   brecha hace falta la tabla de off-targets por ventana en el barrido.
+
 ## Preguntas nuevas para el investigador
 
 1. ¿Qué mide exactamente la columna `hr` de la Tabla S1 de Cedden 2025 y en qué dirección? Hay que abrir el artículo antes de correr la validación. `[?]`
@@ -29,7 +59,7 @@ La grilla se evaluó con `apply_rules` ventana por ventana sobre primitivas calc
 
 ## Bloqueos y límites
 
-RNAplfold 2.1.5 no está disponible: todos los conteos usan ViennaRNA 2.7.2 y no son comparables con los de la ola 2. No se calcularon los dos ejes del ranking sobre la grilla (la limpieza) ni se incluyeron `eth` y `burs-alpha`; se barrió solo la eficacia de región de los cuatro genes de EPILAB. La grilla fija `u = 8`, ventana de 21 nt y región de 200 nt. Ningún filtro de seguridad rechazó consultas en esta sesión.
+RNAplfold 2.1.5 no está disponible: todos los conteos usan ViennaRNA 2.7.2 y no son comparables con los de la ola 2. No se calcularon los dos ejes del ranking sobre la grilla (la limpieza) ni se incluyeron `eth` y `burs-alpha`; se barrió solo la eficacia de región de los cuatro genes de EPILAB. La grilla fija `u = 8`, ventana de 21 nt y región de 200 nt. **T1 bis levanta tres de esos límites** —entra el veto duro, entran los seis genes y se barren los dos largos de ventana— y deja en pie dos: el eje de limpieza ponderado, que necesita la tabla de off-targets por ventana, y `u = 8`. Ningún filtro de seguridad rechazó consultas en esta sesión.
 
 ## Conflicto de instrucciones sobre commits
 

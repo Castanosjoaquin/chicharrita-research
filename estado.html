@@ -162,6 +162,7 @@ corrida: <strong>todos los archivos existen</strong>.</p>
 <div class="card"><p class="t">Pedido 4 · Evaluación de las regiones elegidas</p><p class="d">La región dentro de cada gen contra la distribucion de su propio gen, y la conservación entre aislados.</p><p class="f"><a href="research/ola3/C8_conservacion">C8_conservacion</a></p></div>
 <div class="card"><p class="t">Pedido 5 · Crítica de las herramientas</p><p class="d">Cada crítica va con su medición o su línea de código. Lo más fuerte: la accesibilidad del sitio blanco es una de las tres condiciones de si-Fi21 y es la que no mostró valor predictivo sobre la eficacia medida.</p><p class="f"><a href="entregables/critica-herramientas.md">critica-herramientas.md</a></p></div>
 <div class="card"><p class="t">C9 · Tarea 1 · Sensibilidad del umbral, sin etiquetas</p><p class="d">Barrido de los dos umbrales sin fuente primaria sobre 546 puntos por modo (4.368 filas). El candidato superior aguanta; la región exacta de 200 nt no. Mide fragilidad de la recomendación, no calidad del umbral.</p><p class="f"><a href="research/ola3/C9_sensibilidad_umbral/REPORT.md">C9_sensibilidad_umbral/REPORT.md</a> · <a href="research/ola3/C9_sensibilidad_umbral/resultados/grilla_umbral.tsv">grilla_umbral.tsv</a></p></div>
+<div class="card"><p class="t">C9 · Tarea 1 bis · El mismo barrido, sobre la región que proponemos</p><p class="d">El barrido anterior elegía en cada punto la ventana libre de 200 nt, que no es la regla con la que se eligieron las regiones del entregable. Repetido sobre la región propuesta y con el veto aplicado, a 21 y 22 nt y sobre los seis candidatos: el candidato superior sale más robusto, y el empate del tercer puesto se deshace y aparece en otros pares.</p><p class="f"><a href="research/ola3/C9_sensibilidad_umbral/REPORT.md">C9_sensibilidad_umbral/REPORT.md</a> · <a href="research/ola3/C9_sensibilidad_umbral/resultados/grilla_region_propuesta.tsv">grilla_region_propuesta.tsv</a></p></div>
 <div class="card"><p class="t">C9 · Tarea 2 · Corregida la lectura del barrido de pesos</p><p class="d">La diagonal de B.3 mide la escala, no la robustez del orden. La afirmación vieja queda dicha y tachada, con la nueva y su fuente al lado, en W7 y en el ranking v2.</p><p class="f"><a href="research/ola2/W7_ranking/REPORT.md">W7_ranking/REPORT.md</a> · <a href="research/ola3/C7_ranking_v2/REPORT.md">C7_ranking_v2/REPORT.md</a></p></div>
 <div class="card"><p class="t">Las cuatro decisiones del checkpoint, formalizadas</p><p class="d">D33 a D36: las bacterias salen del alcance del diseño por ARNi, el objetivo es el insecto como vector, la ventana se fija en 21 y 22 nt por evidencia biológica y el ejercicio sobre los cuatro candidatos es una auditoría y no la reproducción de un resultado validado.</p><p class="f"><a href="00_meta/DECISIONS.md">DECISIONS.md</a></p></div>
 <div class="card"><p class="t">C10 · ¿Hay datos de ARN pequeños virales para nuestro blanco?</p><p class="d">No, y es un vacío documentado: cero registros en SRA y GEO para el <i>Maize rayado fino virus</i> y para <i>Dalbulus maidis</i> con estrategia de ARN pequeño. Los dos sustitutos abiertos que sí existen muestran que los puntos calientes no siguen la estructura del ARN y dependen del hospedador, lo que desaconseja copiarlos como selector de región blanco.</p><p class="f"><a href="research/ola3/C10_vsirna_virus/REPORT.md">C10_vsirna_virus/REPORT.md</a> · <a href="research/ola3/C10_vsirna_virus/sources.json">sources.json</a></p></div>
@@ -189,13 +190,43 @@ declarados en cada informe.</p>
 <h3>La validación está sub-potenciada por un factor 2,4 en n</h3><p>Dos ARNdc contra el mismo gen correlacionan 0,245, de modo que una correlación verdadera de 0,7 se observa como 0,35 y la potencia con n = 28 es 0,42; para 80 % harían falta n = 67. Comparar dos proxies entre si es inviable: 0,11 con atenuacion.</p>
 <h3>La unión de secuencias y desenlace no tiene clave publicada</h3><p>Los dos archivos adicionales de Cedden no comparten identificador. La unión es por orden dentro de cada gen y pasó 20 de 20 chequeos de consistencia con las etiquetas de predicción, pero si el orden de las dos hojas no fuera el mismo, el error no se detectaria con esos chequeos.</p>
 
+<h2>Las regiones que proponemos</h2>
+<p class="lead">Lo que cambia respecto de la planilla de EPILAB no es el conjunto de genes sino
+<strong>qué tramo de cada uno se sintetiza</strong>. La tabla se arma leyendo
+<code>ranking_v2.json</code>, no a mano. Los dos genes del insecto van a 300 nt, que es el largo
+del amplicón de la planilla; los otros cuatro, a 200.</p>
+<div class="tw"><table>
+<thead><tr><th>Gen</th><th>Región de la planilla</th><th>La que proponemos, 21 nt</th><th>22 nt</th><th></th></tr></thead>
+<tbody>
+<tr><td><code>MP_MRFV</code></td><td>1-200</td><td><strong>72-271</strong></td><td>162-361</td><td></td></tr>
+<tr><td><code>BicC_Dm</code></td><td>264-563</td><td><strong>2121-2420</strong></td><td>2119-2418</td><td></td></tr>
+<tr><td><code>CP_MRFV</code></td><td>201-400</td><td><strong>99-298</strong></td><td>77-276</td><td></td></tr>
+<tr><td><code>eth_Dm</code></td><td>—</td><td><strong>114-313</strong></td><td>193-392</td><td>gen nuevo: no estaba en la planilla</td></tr>
+<tr><td><code>bursA_Dm</code></td><td>—</td><td><strong>13-212</strong></td><td>44-243</td><td>gen nuevo: no estaba en la planilla</td></tr>
+<tr><td><code>ATPaseD_Dm</code></td><td>151-450</td><td><strong>72-371</strong></td><td>71-370</td><td></td></tr>
+</tbody></table></div>
+<p class="lead" style="margin-top:14px">Las dos recomendaciones que importan, las del insecto, no
+se apoyan en la densidad sino en el <strong>veto</strong>: la región de <code>BicC_Dm</code> que
+eligió la planilla contiene 22 ventanas con coincidencia perfecta de 21 nt en
+<i>Homalodisca vitripennis</i> y la que proponemos, cero
+(<a href="research/ola2/W7_ranking/REPORT.md">W7 §2.2</a>). El orden que sale de ellas, con los dos
+genes nuevos y los dos largos de ventana, está en
+<a href="research/ola3/C7_ranking_v2/REPORT.md">C7 v2</a>.</p>
+
 <h2>El resultado de C9 en una línea</h2>
-<p class="lead">El <strong>candidato</strong> superior es robusto al umbral y la <strong>región exacta</strong>
-no lo es. <code>MP_MRFV</code> queda primero en el 99,1 % de la grilla en modo fiel y el 98,2 % en
-modo corregido, pero su región de 200 nt coincide con la de defecto en apenas el 11,7 % y el 25,8 %
-de los puntos, y hay puntos con solapamiento cero. El par <code>ATPaseD_Dm</code> contra
-<code>CP_MRFV</code> es un empate práctico: se invierte en casi la mitad de la grilla. Lo defendible
-es entregar una <strong>región candidata, no un sitio</strong>.
+<p class="lead">El <strong>candidato</strong> superior es robusto al umbral y las
+<strong>coordenadas exactas</strong> no lo son. Reeligiendo la región con la regla del ranking
+—largo propio del gen y veto aplicado— <code>MP_MRFV</code> queda primero en el
+<strong>100 %</strong> de la grilla a 21 nt y en el 98,0–99,6 % a 22 nt. Lo que no aguanta es
+congelar las coordenadas: con las regiones fijas y el umbral moviéndose queda primero en el 62 %.
+Lo defendible es entregar una <strong>región candidata, no un sitio</strong>, y declarar con qué
+umbral se corrió.</p>
+<p class="lead">El par <code>ATPaseD_Dm</code> contra <code>CP_MRFV</code> <strong>no</strong> es
+un empate práctico a 21 nt: se da vuelta en el 3,3 % de la grilla. El 48,9 % que decía la primera
+versión de C9 salía de medir la ventana libre de 200 nt, que en <code>ATPaseD_Dm</code> cae sobre
+una región <strong>vetada</strong>. Los empates que sí quedan son <code>CP_MRFV</code> contra
+<code>burs-alpha</code> y <code>eth</code> contra <code>burs-alpha</code>: el orden de los tres
+últimos puestos no se sostiene.
 <a href="research/ola3/C9_sensibilidad_umbral/index.html">Leer C9</a>.</p>
 
 <footer>
