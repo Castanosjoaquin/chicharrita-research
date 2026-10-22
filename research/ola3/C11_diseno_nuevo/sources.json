@@ -1,0 +1,41 @@
+{
+ "consulta": "2026-10-22",
+ "motor": "BLAST+ 2.17.0 local",
+ "fuentes": [
+  {
+   "id": "swissprot_arthropoda",
+   "que": "UniProtKB revisadas, taxonomy_id 6656, 14.079 entradas",
+   "nivel_lectura": "descarga completa, local",
+   "url": "https://rest.uniprot.org/uniprotkb/stream?query=reviewed:true+AND+taxonomy_id:6656&format=fasta"
+  },
+  {
+   "id": "GCF_028750875.1",
+   "que": "proteoma RefSeq de M. quadrilineatus, 34.269 proteinas",
+   "nivel_lectura": "local, work/W4/downloads"
+  },
+  {
+   "id": "TSA GCWP01/GHCC01/GITV01",
+   "que": "transcriptomas de D. maidis, 25.662+55.286+56.117 contigs",
+   "nivel_lectura": "local, work/W5/ref"
+  },
+  {
+   "id": "C5 catalogo_genes_blanco.json",
+   "que": "36 filas, 25 con evidencia en hemipteros",
+   "nivel_lectura": "leido el JSON; los articulos originales NO se reabrieron en esta sesion"
+  }
+ ],
+ "descartes": [
+  {
+   "familia": "Hig, transformer-2, clatrina",
+   "motivo": "sin RBH estricto (cobertura 53 %, 40 %)"
+  },
+  {
+   "familia": "lacasa, quitina sintasa, catepsina D, ABC B/E/F",
+   "motivo": "sin entrada en Swiss-Prot de artropodos; no evaluable"
+  },
+  {
+   "familia": "uk1_LRR, NcHig",
+   "motivo": "contraejemplos excluidos por criterio"
+  }
+ ]
+}
