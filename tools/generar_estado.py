@@ -92,11 +92,6 @@ FALTA = [
      "El borrador del correo está escrito y <strong>sin enviar</strong>: la transcripción automática del "
      "checkpoint escribió el apellido de varias formas y no se adivina. Es lo único que bloquea el envío "
      "(<a href=\"entregables/correo-investigador.md\">ver borrador</a>)."),
-    ("Decidir el análisis primario de la validación", "decision", True,
-     "Correlación agrupada sobre los 28 ARNdc, o dentro de cada gen. Los propios autores muestran que el "
-     "gen blanco domina la razón de riesgo (efecto del gen P = 0,047, R<sup>2</sup> ajustado 0,40), así que una "
-     "correlación agrupada alta podria venir del gen y no del puntaje. <strong>Bloquea la validación</strong>, y "
-     "decidirlo despues de ver los datos rompe el pre-registro."),
     ("Autorizar la publicación de las 28 secuencias de Cedden", "decision", False,
      "Son datos públicos de un artículo CC BY, no secuencias de EPILAB. Están unidas a su razón de riesgo "
      "en <code>research/ola3/C9_sensibilidad_umbral/datos/</code>, <strong>sin subir al remoto</strong> a la espera de esa decision."),
