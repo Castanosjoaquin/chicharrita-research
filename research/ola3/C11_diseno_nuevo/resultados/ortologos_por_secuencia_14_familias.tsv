@@ -1,0 +1,92 @@
+familia	sp	mq	pid	ev	qcov
+Rpn6 = PSMD11	sp|Q7KLV9|PSD11_DROME	XP_054288549.1	78.199	0.0	100.0
+PSMD6	sp|Q9V3G7|PSMD6_DROME	XP_054282698.1	43.687	1.68e-106	96.0
+ATP synthase beta	sp|Q05825|ATPB_DROME	XP_054266095.1	93.817	0.0	93.0
+ATP synthase beta	sp|Q07233|ATPB_SCHGA				
+ATP synthase beta	sp|Q24751|ATPB_DROVI				
+muscle actin	sp|P02572|ACT2_DROME				
+muscle actin	sp|P02574|ACT4_DROME				
+muscle actin	sp|P10981|ACT5_DROME				
+muscle actin	sp|P10987|ACT1_DROME				
+muscle actin	sp|P32392|ARP3_DROME	XP_054274533.1	88.462	0.0	99.0
+muscle actin	sp|P45888|ARP2_DROME	XP_054281704.1	85.787	0.0	99.0
+muscle actin	sp|P53501|ACT3_DROME				
+muscle actin	sp|P83967|ACT6_DROME				
+muscle actin	sp|Q9VU68|WDR1_DROME	XP_054261578.1	72.591	0.0	99.0
+muscle actin	sp|Q9W3U1|SETD3_DROME	XP_054264332.1	35.094	3.7e-101	96.0
+muscle actin	sp|P04829|ACT3_BOMMO				
+muscle actin	sp|P07836|ACT1_BOMMO				
+muscle actin	sp|P45890|ARP6_DROME	XP_054276039.1	50.128	1.4e-149	98.0
+muscle actin	sp|P45891|ACTY_DROME				
+muscle actin	sp|P83968|ACT6_DROSI				
+muscle actin	sp|Q9VEC3|ARP5_DROME				
+muscle actin	sp|Q9VIM5|ARPC2_DROME				
+muscle actin	sp|Q9VX09|ARP8_DROME				
+muscle actin	sp|O16808|ACT_MAYDE				
+muscle actin	sp|P07837|ACT2_BOMMO				
+muscle actin	sp|P18600|ACT1_ARTSX				
+muscle actin	sp|P18601|ACT2_ARTSX				
+muscle actin	sp|P18602|ACT3_ARTSX				
+muscle actin	sp|P18603|ACT4_ARTSX				
+muscle actin	sp|P41339|ACTA_LIMPO				
+muscle actin	sp|P41340|ACT3_LIMPO				
+muscle actin	sp|P41341|ACTY_LIMPO				
+muscle actin	sp|P45885|ACT2_BACDO				
+muscle actin	sp|P45886|ACT3_BACDO				
+muscle actin	sp|P45887|ACT5_BACDO				
+muscle actin	sp|P45889|ACTZ_DROME	XP_054259119.1	82.979	0.0	100.0
+muscle actin	sp|P49128|ACT1_AEDAE				
+muscle actin	sp|P49871|ACT_MANSE	XP_054265873.1	98.936	0.0	100.0
+muscle actin	sp|P83969|ACT1_BACDO				
+muscle actin	sp|P84183|ACT4_BOMMO				
+muscle actin	sp|P84184|ACT3B_HELAM				
+muscle actin	sp|P84185|ACT5C_ANOGA	XP_054281731.1	100.0	0.0	100.0
+muscle actin	sp|Q25010|ACT3A_HELAM				
+muscle actin	sp|A0A6B9KZ40|GELS1_PLARH				
+muscle actin	sp|P45521|ACT_PROCL				
+muscle actin	sp|P80709|ACT_CARMA				
+muscle actin	sp|P86700|ACT_CHIOP				
+muscle actin	sp|Q0IEG8|ARP8_AEDAE	XP_054261536.1	55.692	0.0	100.0
+muscle actin	sp|Q11212|ACT_SPOLI				
+muscle actin	sp|Q17GZ9|ARP5_AEDAE	XP_054269700.1	49.233	0.0	98.0
+muscle actin	sp|Q293V2|ARP5_DROPS				
+muscle actin	sp|Q29G73|ARP8_DROPS				
+muscle actin	sp|Q92192|ACT_CALFI				
+muscle actin	sp|Q9VCE8|ACTMP_DROME	XP_054262554.1	32.422	3.5e-36	93.0
+clathrin heavy chain	sp|P29742|CLH_DROME				
+XPO1	sp|Q9TVM2|XPO1_DROME	XP_054260952.1	72.352	0.0	99.0
+Ruvbl1	sp|Q9VH07|RUVB1_DROME				
+Ruvbl1	sp|Q0IFL2|RUVB1_AEDAE	XP_054258744.1	83.297	0.0	99.0
+Ruvbl1	sp|Q29AK9|RUVB1_DROPS				
+V-ATPase B	sp|P31409|VATB_DROME	XP_054288745.1	97.755	0.0	100.0
+V-ATPase B	sp|P31401|VATB_MANSE				
+V-ATPase B	sp|P31410|VATB_HELVI				
+V-ATPase D	sp|Q9V7D2|VATD1_DROME	XP_054264527.1	86.585	1.23e-149	100.0
+V-ATPase D	sp|Q9NEF6|VATD2_DROME				
+V-ATPase D	sp|Q9U0S4|VATD_MANSE				
+V-ATPase A	sp|Q27331|VATA2_DROME				
+V-ATPase A	sp|P48602|VATA1_DROME				
+V-ATPase A	sp|O16109|VATA_AEDAE				
+V-ATPase A	sp|P31400|VATA_MANSE				
+V-ATPase A	sp|Q2TJ56|VATA_AEDAL				
+V-ATPase A	sp|Q5TTG1|VATA_ANOGA	XP_054260731.1	92.345	0.0	100.0
+troponin C	sp|Q9W0Y1|TINA1_DROME				
+troponin C	sp|D2DGW3|TNNC_TYRPU				
+troponin C	sp|P06707|TNNC1_PONLE				
+troponin C	sp|P06708|TNNC2_PONLE				
+troponin C	sp|P15159|TNNC_TACTR				
+troponin C	sp|P21797|TNNC1_BALNU				
+troponin C	sp|P21798|TNNC2_BALNU				
+troponin C	sp|P29289|TNNC1_HOMAM				
+troponin C	sp|P29290|TNNCA_HOMAM				
+troponin C	sp|P29291|TNNCB_HOMAM				
+troponin C	sp|P47947|TNNC1_DROME	XP_054265439.1	73.077	1.19e-72	99.0
+troponin C	sp|P47948|TNNC2_DROME				
+troponin C	sp|P47949|TNNC3_DROME				
+troponin C	sp|Q1A7B1|TNNC3_BLAGE	XP_054288504.1	87.075	9.01e-92	95.0
+troponin C	sp|Q1A7B2|TNNC2_BLAGE				
+troponin C	sp|Q1A7B3|TNNC1_BLAGE				
+BicC	sp|Q24009|BICC_DROME	XP_054269355.1	45.985	7.63e-143	80.0
+transformer-2	sp|P19018|TRA2_DROME				
+transformer-2	sp|O02008|TRA2_DROVI	XP_054285890.1	65.455	2.21e-52	40.0
+Hig	sp|Q09101|HIG_DROME	XP_054275048.1	50.487	1.36e-170	53.0
