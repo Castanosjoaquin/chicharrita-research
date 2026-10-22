@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Checkpoint 2 — Dos listas de candidatos, una por mecanismo</title>
+<style>:root{--bg:#fff;--fg:#1c1f23;--mut:#5b6470;--line:#dfe3e8;--card:#f5f7f9;--azul:#2a6fdb;
+--rojo:#c23b3b;--verde:#1f7a4d;--hot:#c23b3b1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14171a;--fg:#e6e8eb;
+--mut:#9aa4af;--line:#2b3138;--card:#1b1f24;--azul:#6aa3ff;--rojo:#ff8a8a;--verde:#5fd09a;--hot:#ff8a8a1f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:900px;margin:0 auto;padding:28px 16px 60px}
+.k{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:26px;margin:6px 0 4px;line-height:1.2}h2{font-size:19px;margin:34px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+.lead{color:var(--mut);margin:0 0 18px}
+.box{background:var(--card);border-left:3px solid var(--azul);padding:12px 16px;border-radius:6px;margin:16px 0}
+.box.ok{border-left-color:var(--verde)}.box p{margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:4px 0}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:13px}
+.tw{overflow-x:auto;margin:8px 0}
+.muted,.fine{font-size:13px;color:var(--mut)}code{font-size:.92em}
+pre{background:var(--card);padding:12px;border-radius:6px;overflow-x:auto;font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:14px 0}
+.kpi{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font-size:22px}.kpi span{font-size:13px;color:var(--mut)}
+.bar{display:inline-block;width:64px;height:8px;background:var(--line);border-radius:4px;vertical-align:middle;
+overflow:hidden;margin-right:6px}.bar i{display:block;height:100%;background:var(--azul)}
+@media (max-width:600px){main{padding:20px 16px 50px}h1{font-size:22px}}</style></head><body><main>
+<h1>Checkpoint 2 — Dos listas de candidatos, una por mecanismo</h1>
+<p class="lead">Vista de lectura de <a href="checkpoint2-una-pagina.md">checkpoint2-una-pagina.md</a>, que es la fuente de verdad.</p>
+<p>*Categoría: Bioinformática accesible. Equipo UdeSA, track chicharrita del maíz. 22 de octubre de 2026. Marcadores: <code>[R]</code> reportado, <code>[M]</code> medido por nosotros y reproducible desde el repo, <code>[H]</code> hipótesis nuestra, <code>[?]</code> incierto.*</p>
+<p><b>1. La pregunta.</b> <code>[H]</code> ¿Puede un ARN de doble cadena dirigido a un gen esencial de <i>Dalbulus maidis</i>, entregado por la vía en que el insecto se alimenta, bajar el transcripto y producir un fenotipo útil para cortar la transmisión del achaparramiento?</p>
+<p><b>2. La hipótesis.</b> <code>[H]</code> El dsRNA ingerido llega a células del insecto, Dicer-2 y AGO2 lo procesan y el gen cae, con un fenotipo letal o reproductivo según el gen. Se refuta si, con exposición verificada, no hay knockdown o hay knockdown sin fenotipo. Nada de esto está medido en <i>D. maidis</i>.</p>
+<p><b>3. La evidencia.</b> <code>[M]</code> Cuatro genes vienen de EPILAB: <code>MP_MRFV</code> (proteína de movimiento, 1263 nt, posiciones 332..1594 de NC_002786.2) y <code>CP_MRFV</code> (cápside, 528 nt, 5674..6201 de NC_002786.2) del <i>Maize rayado fino virus</i>; <code>BicC_Dm</code> (Bicaudal C, 2520 nt, cromosoma 3, OZ319706.1) y <code>ATPaseD_Dm</code> (V-ATPasa subunidad D, 491 nt, cromosoma 8, OZ319711.1) de <i>D. maidis</i>. Sumamos <code>eth</code> (PZ371507.1) y <code>burs-α</code> (PZ371508.1). <code>[R]</code> El fenotipo viene de Andrada 2026 (doi 10.3389/finsc.2026.1811933), Jones 2021, preprint (doi 10.1101/2021.09.29.462424) y el resumen de Dalaisón-Fuentes 2022 (doi 10.1002/ps.6937).</p>
+<p><b>4. Un avance propio.</b> <code>[H]</code> Separamos el ranking por mecanismo: insecto (<code>BicC_Dm</code>, <code>eth</code>, <code>burs-α</code>, <code>ATPaseD_Dm</code>) y virus en la planta (<code>MP_MRFV</code>, <code>CP_MRFV</code>). No se comparan porque el ranking mide la calidad del diseño dentro de un gen, no el valor del blanco; juntarlos pondría arriba a los virales por un artefacto. <code>[M]</code> En el virus, <code>MP_MRFV</code> va antes que <code>CP_MRFV</code> en la escala absoluta, en al menos 78,5 % de 2.000 sorteos de pesos. En el insecto, <code>BicC_Dm</code> va antes que <code>ATPaseD_Dm</code> y <code>burs-α</code> a 21 y 22 nt y con las dos escalas. <code>BicC_Dm</code> precede a <code>eth</code> sólo a 21 nt. <code>eth</code> tiene más ventanas eficientes que <code>burs-α</code> en los dos largos (19 contra 16 a 21 nt; 26 contra 18 a 22 nt); en escala absoluta lo precede en 76 a 100 % de los sorteos, pero en min-max el par se vuelve inestable (37 a 73 % a 21 nt), porque esa escala estira una diferencia de limpieza de unos 0,015 hasta el rango completo. Por eso no lo tomamos como orden firme. El orden también depende del largo de ventana (21 o 22 nt, porque no hay perfil de siRNA publicado en hemípteros).</p>
+<p><b>5. Las alternativas.</b> <code>[H]</code> Atacar al virus en la planta, que sólo tiene un spray contra otro virus en maíz <code>[R]</code>. Esterilizar en lugar de matar: silenciar ATP sintasa β en <i>Scaphoideus titanus</i> no cambió la supervivencia pero alteró el huevo <code>[R]</code>. Que el desenlace sea demasiado ruidoso: dos dsRNA del mismo gen correlacionan 0,245 en <i>Tribolium</i>, cálculo propio sin reproducir <code>[H]</code>. Que las dsRNasas expliquen un fallo oral.</p>
+<p><b>6. La validación.</b> <code>[H]</code> Cruzar vía (inyección y oral) con eje (letal con <code>eth</code> o <code>burs-α</code>, reproductivo con <code>BicC</code>), con dsRNA no relacionado, vehículo y una región alternativa del mismo gen, midiendo transcripto y supervivencia u oviposición. Si hay knockdown sin fenotipo, medimos el otro eje; si no hay knockdown con dsRNA íntegro, descartamos ese gen. <code>[M]</code> Con datos abiertos no se distingue un filtro bueno de uno inútil: ρ = +0,142, IC95 [−0,247, +0,492], n = 29, en <i>Tribolium</i>, no concluyente. Una ventana que pasa el filtro no demuestra silenciamiento.</p>
+<p><b>7. Las dudas abiertas.</b> <code>[?]</code> ¿Les interesa matar o esterilizar? ¿Qué peso tiene un hemíptero no objetivo frente al maíz? ¿Qué transcriptoma de <i>D. maidis</i> usan? ¿Hay ensayos con seguimiento mayor a 5 días, y con qué varianza entre dsRNA del mismo gen? Nos faltan el texto completo de Dalaisón-Fuentes 2022 y 2023 y la latencia del MRFV. Lo que pedimos evaluar es el razonamiento de separar las listas, no el orden fino.</p>
+<p><i>Dónde está cada cosa:</i> <code>docs/plan_checkpoint2/salidas/</code> (<code>F1_decision_ranking.md</code>, <code>F2_entrega_y_mecanismo.md</code>, <code>F3_hipotesis_alternativas_validacion.md</code>, <code>PENDIENTES_FASES_1_A_3.md</code>); <code>research/ola3/C7_ranking_v2/resultados/</code> (<code>ranking_v2.json</code>, <code>por_estrategia.json</code>); <code>research/ola2/W5_secuencias_epilab/secuencias.json</code>; <code>research/ola3/C9_sensibilidad_umbral/RESULTADOS_validacion_retrospectiva.md</code>.</p>
+</main></body></html>
