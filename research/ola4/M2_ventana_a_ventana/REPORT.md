@@ -4,7 +4,10 @@ Línea M2 de la ola 4 (issue #6). Diego lo pidió textualmente: «sería útil c
 son las ventanas específicas que cambian de clasificación, en lugar de considerar
 únicamente el conteo final» `[R]`.
 
-**Estado: tres de los cuatro pares corridos. El cuarto no, y está declarado, no en cero.**
+**Estado: los cuatro pares corridos y los dos controles del criterio de terminado en verde.**
+El par de motores necesitaba un binario que no estaba en esta máquina; se resolvió
+compilando ViennaRNA 2.1.5 desde el fuente oficial y verificando que equivale al del
+instalador (§4).
 
 ## 1. La herramienta
 
@@ -44,12 +47,17 @@ reproducidas con herramienta:
   revés `[M]`. Era lo esperado —la rama del original sólo puede agregar eficientes— y
   ahora está medido sobre el conjunto completo.
 
-### Sobre el criterio de terminado
+### El criterio de terminado, en los dos motores
 
-El issue pide que este par dé **19, 7, 50 y 8**. Da 19, 9, 52 y 6. **No es una
-discrepancia: es otro motor.** Los números del issue salen de `CAMBIOS.md` C1, medidos con
-RNAplfold 2.1.5 (`--backend exe`); éstos son con ViennaRNA 2.7.2, que es el único motor
-disponible en esta máquina (§4). El total pasa de 84 a 86 ventanas.
+El issue pide que este par dé **19, 7, 50 y 8**. Con ViennaRNA 2.7.2 da 19, 9, 52 y 6, y
+con RNAplfold 2.1.5 da **19, 7, 50 y 8 exactos** `[M]`
+(`resultados/control_modos_exe_*`). No había discrepancia: los números del criterio salen
+de `CAMBIOS.md` C1, que se midió con 2.1.5, y el control pasa en cuanto se corre en el
+motor en que fue medido.
+
+Las dos propiedades estructurales se sostienen en los dos motores: con 2.1.5 son **84**
+ventanas —las mismas que cita D53— y con 2.7.2 son 86, y en los dos casos **todas caen en
+la rama 2 y todas van en la misma dirección** `[M]`.
 
 ## 3. Par 2 — `RNA_NN3` contra `RNA_NN4`
 
@@ -104,21 +112,57 @@ entre los dos modos, 24 que pierden y 9 que ganan** `[M]`
 171 y 29 a 118, 30, 168 y 30, así que la tabla mueve el resultado en los dos modos y no
 sólo en el que reproduce al original.
 
-## 4. Par 3 — RNAplfold 2.1.5 contra ViennaRNA 2.7.2: **no corrido**
+## 4. Par 3 — RNAplfold 2.1.5 contra ViennaRNA 2.7.2
 
-El backend `exe` del port invoca el `RNAplfold.exe` que trae el instalador de si-Fi2015,
-que es un binario de Windows. En esta máquina no hay ningún RNAplfold —sólo ViennaRNA
-2.7.2 como módulo de Python— y **ninguno de los 31 TSV por ventana versionados es `_exe`**:
-todos son `_vienna` `[M]`.
+| Gen | 2.1.5 | 2.7.2 | Cambian |
+|---|---|---|---|
+| `MP_MRFV` | 133 | 142 | 21 |
+| `CP_MRFV` | 32 | 39 | 15 |
+| `BicC_Dm` | 212 | 223 | 53 |
+| `ATPaseD_Dm` | 42 | 35 | 15 |
 
-Compilar ViennaRNA 2.1.5 desde fuente no sirve como control: lo que el criterio pide es
-reproducir números medidos con **ese** binario, y otra compilación probaría otra cosa.
+`[M]`, modo fiel. Los conteos de la izquierda son los cuatro números que la ola 2 verificó
+contra el programa original.
 
-**Qué haría falta:** el binario, o los TSV por ventana con backend `exe` de los cuatro
-genes. Cualquiera de los dos cierra este par y además permite correr los controles exactos
-de §2 y §5 con el motor en que fueron medidos. La máquina que corrió M1 lo tiene.
+### Cómo se corrió fuera de Windows, y por qué el control es válido
 
-Queda declarado como **no corrido**, no como resultado nulo.
+El backend `exe` del port invoca el `RNAplfold.exe` del instalador de si-Fi2015, que es un
+binario de Windows y no está en esta máquina. Pero ese binario **es ViennaRNA 2.1.5**, así
+que se compiló esa versión desde el tag `v2.1.5` del fuente oficial y se apuntó el port con
+la variable de entorno `SIFI_RNAPLFOLD`.
+
+**Que la compilación equivalga al binario del instalador no se asume: se verifica**, y con
+dos anclas independientes que el script comprueba antes de comparar nada:
+
+- los cuatro conteos publicados, **133, 32, 212 y 42** en fiel y **114, 25, 162 y 34** en
+  corregido `[M]`;
+- el control del criterio de terminado, **19, 7, 50 y 8** `[M]`.
+
+Los dos pasan exactos, y el script aborta si alguno falla. Esa es la razón por la que el
+par vale: una compilación que reproduce los seis números publicados no es «otro binario»,
+es el mismo programa.
+
+La receta está en el encabezado de `scripts/correr_pares.py`. Lo único no obvio es que el
+código es C89 con `register i;` sin tipo, que los clang modernos rechazan, así que hay que
+compilar con `-Wno-implicit-int` y compañía; y que el repo no trae `configure`, sólo
+`configure.ac`, de modo que hace falta `autoreconf -i` con autoconf, automake, libtool y
+gengetopt.
+
+### Por dónde cruza
+
+Las **104** ventanas que cambian cruzan **todas** por `target_site_accessibility` `[M]`, que
+es exactamente lo que tiene que pasar: entre versiones de ViennaRNA lo que cambia es el
+cálculo de accesibilidad, y ni la selección de hebra ni la estabilidad de extremos dependen
+de él.
+
+Dos detalles que el conteo no muestra:
+
+- **18 de las 104 cambian de veredicto sin que cambie `thermo_efficient`** `[M]`. Son
+  ventanas de la rama 2, el atajo: como ahí el veredicto lo decide sólo la accesibilidad, un
+  cambio en ese término mueve la clasificación aunque el veredicto termodinámico quede
+  igual. Es el mismo mecanismo que mide el par 1, visto desde el otro eje.
+- **No es unidireccional:** 62 son eficientes sólo con 2.7.2 y 42 sólo con 2.1.5 `[M]`. Por
+  eso `ATPaseD_Dm` baja de 42 a 35 mientras los otros tres suben.
 
 ## 5. Par 4 — región recortada contra región en contexto
 
@@ -169,20 +213,25 @@ independiente la confirma.
 - **Las cuatro anclas de región de C7 se reproducen** contando las posiciones completas de
   cada región vigente: 38, 21, 36 y 21 `[M]`. Es lo que valida que las coordenadas usadas
   son las correctas, y lo que explica la diferencia con la tabla de §5.
+- **El binario compilado reproduce las dos anclas del backend `exe`** antes de correr el par
+  3: los cuatro conteos publicados y el control de 19, 7, 50 y 8. El script aborta si alguna
+  falla (§4).
 - El par 2 se corrió con la tabla transcrita y el par 1 con el default, de modo que los dos
   comparten el mismo perfil de `fiel`: los 142/39/223/35 de la columna izquierda de §2 son
-  los mismos de §2 del par 1.
+  los mismos del par 1.
 
 ## 7. Reproducir
 
 ```sh
-python3 research/ola4/M2_ventana_a_ventana/scripts/correr_pares.py
+SIFI_RNAPLFOLD=/ruta/a/ViennaRNA/Progs/RNAplfold \
+    python3 research/ola4/M2_ventana_a_ventana/scripts/correr_pares.py
 ```
 
-Genera los insumos con el port, verifica las anclas, corre los tres pares y escribe
+Genera los insumos con el port, verifica las anclas, corre los cuatro pares y escribe
 `resultados/`: un `parN_*_resumen.json` y un `parN_*_cambios.tsv` por gen y por par, más
-`pares_resumen.json` con todo junto y el par 3 declarado. Necesita `ViennaRNA` y
-`biopython` por pip.
+`pares_resumen.json` con todo junto. Necesita `ViennaRNA` y `biopython` por pip, y el
+binario de 2.1.5 para el par 3; sin `SIFI_RNAPLFOLD` corre los otros tres y declara ese
+par como no corrido.
 
 Para un par suelto:
 
@@ -193,11 +242,15 @@ python3 research/ola4/M2_ventana_a_ventana/scripts/comparar_ventanas.py \
 
 ## 8. Lo que queda
 
-- **El par 3**, que necesita el binario (§4).
-- **Los dos controles exactos del issue** —19/7/50/8 y las doce celdas en el motor en que
-  fueron medidas— por lo mismo. Con ViennaRNA 2.7.2 el par de modos da 19/9/52/6 y el de
-  recorte reproduce las doce celdas, así que el control estructural pasa y el numérico
-  espera al binario.
-- **El comparador está listo para la salida por ventana de Diego**, que es la tercera tarea
-  del issue: es la misma herramienta, con `--etiquetas nuestro,suyo`. Lo que falta de ahí es
-  el archivo, que es el pedido 1 del lunes.
+Nada de esta línea. Las tres tareas del issue están hechas y los dos controles del criterio
+de terminado pasan en el motor en que fueron medidos.
+
+Lo único pendiente es externo y es el pedido 1 del lunes: **la salida por ventana de la
+corrida de Diego**. El comparador está listo para ese día, que es la tercera tarea del
+issue: es la misma herramienta, con `--etiquetas nuestro,suyo`.
+
+Queda anotado para quien lo necesite que el `RNAplfold` 2.1.5 compilado **no se versiona**
+—es un binario de 700 KB— pero la receta para rehacerlo en unos minutos está en el
+encabezado de `scripts/correr_pares.py`, y sin la variable `SIFI_RNAPLFOLD` el script corre
+los tres pares que no dependen de él y declara el cuarto como no corrido en vez de darlo
+por cero.

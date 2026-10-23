@@ -1,0 +1,16 @@
+pos	pos_vienna272	plfold215	vienna272	terminos_que_cruzan	rama_terminal	dg_sense5_plfold215	dg_sense5_vienna272	dg_sense5_delta	dg_antisense5_plfold215	dg_antisense5_vienna272	dg_antisense5_delta	ddg_plfold215	ddg_vienna272	ddg_delta	accessibility_plfold215	accessibility_vienna272	accessibility_delta
+3	3	False	True	target_site_accessibility,thermo_efficient	2	-2.2961	-2.2961	0.0	-0.9711	-0.9711	0.0	1.3251	1.3251	0.0	0.096892	0.447148	0.350256
+131	131	False	True	target_site_accessibility,thermo_efficient	2	-3.1365	-3.1365	0.0	0.6747	0.6747	0.0	3.8112	3.8112	0.0	0.078382	0.141507	0.063125
+205	205	False	True	target_site_accessibility	2	-1.5968	-1.5968	0.0	-1.8773	-1.8773	0.0	-0.2806	-0.2806	0.0	0.075399	0.114712	0.039313
+206	206	False	True	target_site_accessibility,thermo_efficient	2	-5.0561	-5.0561	0.0	0.6872	0.6872	0.0	5.7432	5.7432	0.0	0.07365	0.113752	0.040102
+207	207	False	True	target_site_accessibility,thermo_efficient	3	-3.3123	-3.3123	0.0	1.2445	1.2445	0.0	4.5568	4.5568	0.0	0.071697	0.113562	0.041865
+208	208	False	True	target_site_accessibility,thermo_efficient	3	-4.3445	-4.3445	0.0	-2.0104	-2.0104	0.0	2.334	2.334	0.0	0.070368	0.113287	0.042919
+211	211	False	True	target_site_accessibility	2	-2.3914	-2.3914	0.0	-1.55	-1.55	0.0	0.8414	0.8414	0.0	0.070185	0.116665	0.04648
+212	212	False	True	target_site_accessibility,thermo_efficient	1	0.2123	0.2123	0.0	1.3421	1.3421	0.0	1.1298	1.1298	0.0	0.066012	0.115753	0.049741
+241	241	False	True	target_site_accessibility,thermo_efficient	1	-2.7842	-2.7842	0.0	-1.3896	-1.3896	0.0	1.3945	1.3945	0.0	0.091898	0.163638	0.07174
+243	243	False	True	target_site_accessibility,thermo_efficient	2	-1.437	-1.437	0.0	0.7284	0.7284	0.0	2.1654	2.1654	0.0	0.091157	0.162819	0.071662
+276	276	True	False	target_site_accessibility,thermo_efficient	3	-2.4651	-2.4651	0.0	-0.4823	-0.4823	0.0	1.9829	1.9829	0.0	0.107624	0.084274	-0.02335
+278	278	True	False	target_site_accessibility,thermo_efficient	2	-2.0519	-2.0519	0.0	0.6002	0.6002	0.0	2.652	2.652	0.0	0.114143	0.098205	-0.015938
+337	337	True	False	target_site_accessibility,thermo_efficient	3	-1.7692	-1.7692	0.0	0.0518	0.0518	0.0	1.821	1.821	0.0	0.114508	0.091369	-0.023139
+369	369	True	False	target_site_accessibility,thermo_efficient	3	-3.2876	-3.2876	0.0	-0.9623	-0.9623	0.0	2.3254	2.3254	0.0	0.102905	0.098659	-0.004246
+451	451	False	True	target_site_accessibility,thermo_efficient	3	-4.8489	-4.8489	0.0	-3.4407	-3.4407	0.0	1.4082	1.4082	0.0	0.098711	0.103212	0.004501

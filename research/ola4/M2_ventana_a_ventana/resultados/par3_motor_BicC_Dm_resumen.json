@@ -1,0 +1,23 @@
+{
+  "etiquetas": [
+    "plfold215",
+    "vienna272"
+  ],
+  "offset_b": 1,
+  "ventanas_comparadas": 2500,
+  "ventanas_solo_en_plfold215": 0,
+  "ventanas_solo_en_vienna272": 0,
+  "eficientes_plfold215": 212,
+  "eficientes_vienna272": 223,
+  "confusion": {
+    "ambos_si": 191,
+    "ambos_no": 2256,
+    "solo_plfold215": 21,
+    "solo_vienna272": 32
+  },
+  "cambian": 53,
+  "terminos": [
+    "target_site_accessibility",
+    "thermo_efficient"
+  ]
+}

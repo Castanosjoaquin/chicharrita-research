@@ -1,0 +1,8 @@
+pos	pos_corregido	fiel	corregido	terminos_que_cruzan	rama_terminal	dg_sense5_fiel	dg_sense5_corregido	dg_sense5_delta	dg_antisense5_fiel	dg_antisense5_corregido	dg_antisense5_delta	ddg_fiel	ddg_corregido	ddg_delta	accessibility_fiel	accessibility_corregido	accessibility_delta
+50	50	True	False		2	-2.2569	-2.2569	0.0	-1.9165	-1.9165	0.0	0.3404	0.3404	0.0	0.612597	0.612597	0.0
+112	112	True	False		2	-1.2784	-1.2784	0.0	-0.9711	-0.9711	0.0	0.3073	0.3073	0.0	0.113796	0.113796	0.0
+195	195	True	False		2	-1.5881	-1.5881	0.0	-1.0248	-1.0248	0.0	0.5633	0.5633	0.0	0.360464	0.360464	0.0
+386	386	True	False		2	-0.018	-0.018	0.0	0.7605	0.7605	0.0	0.7785	0.7785	0.0	0.29656	0.29656	0.0
+389	389	True	False		2	0.6747	0.6747	0.0	1.2141	1.2141	0.0	0.5395	0.5395	0.0	0.290128	0.290128	0.0
+445	445	True	False		2	-0.0919	-0.0919	0.0	0.0235	0.0235	0.0	0.1154	0.1154	0.0	0.217734	0.217734	0.0
+457	457	True	False		2	-2.045	-2.045	0.0	-1.3896	-1.3896	0.0	0.6554	0.6554	0.0	0.176015	0.176015	0.0

@@ -51,7 +51,14 @@ TEMPERATURE = 22.0  # C; usada tanto para dG como para RNAplfold
 OVERHANG = 2
 END_NUCLEOTIDES = 3
 
-RNAPLFOLD_EXE = r"C:\Program Files (x86)\siFi21\ToCopy\RNAplfold\RNAplfold.exe"
+# Ruta por defecto del RNAplfold que trae el instalador de si-Fi21 en Windows. En otra
+# plataforma se apunta con la variable de entorno SIFI_RNAPLFOLD a un binario de la misma
+# version (ViennaRNA 2.1.5); la linea M2 lo compila desde el tag v2.1.5 del fuente oficial
+# para poder correr el par de motores fuera de Windows.
+RNAPLFOLD_EXE = os.environ.get(
+    "SIFI_RNAPLFOLD",
+    r"C:\Program Files (x86)\siFi21\ToCopy\RNAplfold\RNAplfold.exe",
+)
 
 
 @dataclass
