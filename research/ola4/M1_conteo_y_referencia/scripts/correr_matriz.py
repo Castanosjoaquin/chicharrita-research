@@ -168,8 +168,13 @@ def version_bowtie(dir_bowtie: Path) -> str:
 
 def correr_port(modo: str, backend: str, fastas: list[Path], destino: Path) -> None:
     destino.mkdir(parents=True, exist_ok=True)
+    # `--con-seq` es necesario: esta linea arma las consultas de Bowtie con el 21-mero de
+    # cada ventana, y desde la linea M3 (issue #7) el port no emite la columna `seq` por
+    # defecto, porque sobre ventanas solapadas de a 1 nt reconstruye el gen entero. El TSV
+    # que sale de aca es de trabajo y **no se versiona**: vive bajo `work/`.
     cmd = [sys.executable, "-I", RAIZ / "tools" / "sifi21_port" / "run_sifi.py",
-           *fastas, "--modo", modo, "--backend", backend, "--salida", destino]
+           *fastas, "--modo", modo, "--backend", backend, "--salida", destino,
+           "--con-seq"]
     paso(f"port: {modo}/{backend} sobre {len(fastas)} FASTA -> {destino}")
     res = correr(cmd, cwd=RAIZ)
     for linea in res.stdout.splitlines():

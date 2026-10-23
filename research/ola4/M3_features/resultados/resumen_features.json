@@ -1,0 +1,418 @@
+{
+  "MP_MRFV:fiel": {
+    "ventanas": 1243,
+    "eficientes": 142,
+    "por_rama": {
+      "1": {
+        "descripcion": "nt19 A/T, nt2 A/T: decide la termodinamica",
+        "ventanas": 164,
+        "eficientes": 25,
+        "pct_de_los_eficientes": 17.6
+      },
+      "2": {
+        "descripcion": "nt19 A/T, nt2 G/C: ATAJO, decide solo la accesibilidad",
+        "ventanas": 296,
+        "eficientes": 80,
+        "pct_de_los_eficientes": 56.3
+      },
+      "3": {
+        "descripcion": "nt19 G/C, nt2 G/C: decide la termodinamica",
+        "ventanas": 490,
+        "eficientes": 37,
+        "pct_de_los_eficientes": 26.1
+      },
+      "4": {
+        "descripcion": "nt19 G/C, nt2 A/T: no eficiente sin mirar nada mas",
+        "ventanas": 293,
+        "eficientes": 0,
+        "pct_de_los_eficientes": 0.0
+      }
+    },
+    "continuos": {
+      "dg_sense5": {
+        "min": -5.0561,
+        "mediana": -1.7571,
+        "max": 3.1635
+      },
+      "dg_antisense5": {
+        "min": -5.0561,
+        "mediana": -1.5118,
+        "max": 3.4664
+      },
+      "ddg": {
+        "min": -7.7021,
+        "mediana": 0.1425,
+        "max": 8.5224
+      },
+      "accessibility": {
+        "min": 0.0,
+        "mediana": 0.0133,
+        "max": 0.9717
+      }
+    }
+  },
+  "CP_MRFV:fiel": {
+    "ventanas": 508,
+    "eficientes": 39,
+    "por_rama": {
+      "1": {
+        "descripcion": "nt19 A/T, nt2 A/T: decide la termodinamica",
+        "ventanas": 58,
+        "eficientes": 5,
+        "pct_de_los_eficientes": 12.8
+      },
+      "2": {
+        "descripcion": "nt19 A/T, nt2 G/C: ATAJO, decide solo la accesibilidad",
+        "ventanas": 114,
+        "eficientes": 25,
+        "pct_de_los_eficientes": 64.1
+      },
+      "3": {
+        "descripcion": "nt19 G/C, nt2 G/C: decide la termodinamica",
+        "ventanas": 218,
+        "eficientes": 9,
+        "pct_de_los_eficientes": 23.1
+      },
+      "4": {
+        "descripcion": "nt19 G/C, nt2 A/T: no eficiente sin mirar nada mas",
+        "ventanas": 118,
+        "eficientes": 0,
+        "pct_de_los_eficientes": 0.0
+      }
+    },
+    "continuos": {
+      "dg_sense5": {
+        "min": -5.0561,
+        "mediana": -1.7571,
+        "max": 2.7223
+      },
+      "dg_antisense5": {
+        "min": -5.0561,
+        "mediana": -1.7079,
+        "max": 3.4664
+      },
+      "ddg": {
+        "min": -6.0909,
+        "mediana": 0.2112,
+        "max": 6.629
+      },
+      "accessibility": {
+        "min": 0.0,
+        "mediana": 0.0142,
+        "max": 0.6346
+      }
+    }
+  },
+  "BicC_Dm:fiel": {
+    "ventanas": 2500,
+    "eficientes": 223,
+    "por_rama": {
+      "1": {
+        "descripcion": "nt19 A/T, nt2 A/T: decide la termodinamica",
+        "ventanas": 572,
+        "eficientes": 53,
+        "pct_de_los_eficientes": 23.8
+      },
+      "2": {
+        "descripcion": "nt19 A/T, nt2 G/C: ATAJO, decide solo la accesibilidad",
+        "ventanas": 634,
+        "eficientes": 134,
+        "pct_de_los_eficientes": 60.1
+      },
+      "3": {
+        "descripcion": "nt19 G/C, nt2 G/C: decide la termodinamica",
+        "ventanas": 664,
+        "eficientes": 36,
+        "pct_de_los_eficientes": 16.1
+      },
+      "4": {
+        "descripcion": "nt19 G/C, nt2 A/T: no eficiente sin mirar nada mas",
+        "ventanas": 630,
+        "eficientes": 0,
+        "pct_de_los_eficientes": 0.0
+      }
+    },
+    "continuos": {
+      "dg_sense5": {
+        "min": -5.0561,
+        "mediana": -0.8404,
+        "max": 3.4664
+      },
+      "dg_antisense5": {
+        "min": -5.0561,
+        "mediana": -0.8404,
+        "max": 3.4664
+      },
+      "ddg": {
+        "min": -8.2196,
+        "mediana": -0.0442,
+        "max": 7.964
+      },
+      "accessibility": {
+        "min": 0.0,
+        "mediana": 0.0148,
+        "max": 0.941
+      }
+    }
+  },
+  "ATPaseD_Dm:fiel": {
+    "ventanas": 471,
+    "eficientes": 35,
+    "por_rama": {
+      "1": {
+        "descripcion": "nt19 A/T, nt2 A/T: decide la termodinamica",
+        "ventanas": 139,
+        "eficientes": 11,
+        "pct_de_los_eficientes": 31.4
+      },
+      "2": {
+        "descripcion": "nt19 A/T, nt2 G/C: ATAJO, decide solo la accesibilidad",
+        "ventanas": 114,
+        "eficientes": 19,
+        "pct_de_los_eficientes": 54.3
+      },
+      "3": {
+        "descripcion": "nt19 G/C, nt2 G/C: decide la termodinamica",
+        "ventanas": 101,
+        "eficientes": 5,
+        "pct_de_los_eficientes": 14.3
+      },
+      "4": {
+        "descripcion": "nt19 G/C, nt2 A/T: no eficiente sin mirar nada mas",
+        "ventanas": 117,
+        "eficientes": 0,
+        "pct_de_los_eficientes": 0.0
+      }
+    },
+    "continuos": {
+      "dg_sense5": {
+        "min": -5.0561,
+        "mediana": -0.3453,
+        "max": 3.4126
+      },
+      "dg_antisense5": {
+        "min": -5.0561,
+        "mediana": -0.3845,
+        "max": 3.4664
+      },
+      "ddg": {
+        "min": -6.304,
+        "mediana": -0.0415,
+        "max": 8.0124
+      },
+      "accessibility": {
+        "min": 0.0,
+        "mediana": 0.0131,
+        "max": 0.9081
+      }
+    }
+  },
+  "MP_MRFV:corregido": {
+    "ventanas": 1243,
+    "eficientes": 123,
+    "por_rama": {
+      "1": {
+        "descripcion": "nt19 A/T, nt2 A/T: decide la termodinamica",
+        "ventanas": 164,
+        "eficientes": 25,
+        "pct_de_los_eficientes": 20.3
+      },
+      "2": {
+        "descripcion": "nt19 A/T, nt2 G/C: ATAJO, decide solo la accesibilidad",
+        "ventanas": 296,
+        "eficientes": 61,
+        "pct_de_los_eficientes": 49.6
+      },
+      "3": {
+        "descripcion": "nt19 G/C, nt2 G/C: decide la termodinamica",
+        "ventanas": 490,
+        "eficientes": 37,
+        "pct_de_los_eficientes": 30.1
+      },
+      "4": {
+        "descripcion": "nt19 G/C, nt2 A/T: no eficiente sin mirar nada mas",
+        "ventanas": 293,
+        "eficientes": 0,
+        "pct_de_los_eficientes": 0.0
+      }
+    },
+    "continuos": {
+      "dg_sense5": {
+        "min": -5.0561,
+        "mediana": -1.7571,
+        "max": 3.1635
+      },
+      "dg_antisense5": {
+        "min": -5.0561,
+        "mediana": -1.5118,
+        "max": 3.4664
+      },
+      "ddg": {
+        "min": -7.7021,
+        "mediana": 0.1425,
+        "max": 8.5224
+      },
+      "accessibility": {
+        "min": 0.0,
+        "mediana": 0.0133,
+        "max": 0.9717
+      }
+    }
+  },
+  "CP_MRFV:corregido": {
+    "ventanas": 508,
+    "eficientes": 30,
+    "por_rama": {
+      "1": {
+        "descripcion": "nt19 A/T, nt2 A/T: decide la termodinamica",
+        "ventanas": 58,
+        "eficientes": 5,
+        "pct_de_los_eficientes": 16.7
+      },
+      "2": {
+        "descripcion": "nt19 A/T, nt2 G/C: ATAJO, decide solo la accesibilidad",
+        "ventanas": 114,
+        "eficientes": 16,
+        "pct_de_los_eficientes": 53.3
+      },
+      "3": {
+        "descripcion": "nt19 G/C, nt2 G/C: decide la termodinamica",
+        "ventanas": 218,
+        "eficientes": 9,
+        "pct_de_los_eficientes": 30.0
+      },
+      "4": {
+        "descripcion": "nt19 G/C, nt2 A/T: no eficiente sin mirar nada mas",
+        "ventanas": 118,
+        "eficientes": 0,
+        "pct_de_los_eficientes": 0.0
+      }
+    },
+    "continuos": {
+      "dg_sense5": {
+        "min": -5.0561,
+        "mediana": -1.7571,
+        "max": 2.7223
+      },
+      "dg_antisense5": {
+        "min": -5.0561,
+        "mediana": -1.7079,
+        "max": 3.4664
+      },
+      "ddg": {
+        "min": -6.0909,
+        "mediana": 0.2112,
+        "max": 6.629
+      },
+      "accessibility": {
+        "min": 0.0,
+        "mediana": 0.0142,
+        "max": 0.6346
+      }
+    }
+  },
+  "BicC_Dm:corregido": {
+    "ventanas": 2500,
+    "eficientes": 171,
+    "por_rama": {
+      "1": {
+        "descripcion": "nt19 A/T, nt2 A/T: decide la termodinamica",
+        "ventanas": 572,
+        "eficientes": 53,
+        "pct_de_los_eficientes": 31.0
+      },
+      "2": {
+        "descripcion": "nt19 A/T, nt2 G/C: ATAJO, decide solo la accesibilidad",
+        "ventanas": 634,
+        "eficientes": 82,
+        "pct_de_los_eficientes": 48.0
+      },
+      "3": {
+        "descripcion": "nt19 G/C, nt2 G/C: decide la termodinamica",
+        "ventanas": 664,
+        "eficientes": 36,
+        "pct_de_los_eficientes": 21.1
+      },
+      "4": {
+        "descripcion": "nt19 G/C, nt2 A/T: no eficiente sin mirar nada mas",
+        "ventanas": 630,
+        "eficientes": 0,
+        "pct_de_los_eficientes": 0.0
+      }
+    },
+    "continuos": {
+      "dg_sense5": {
+        "min": -5.0561,
+        "mediana": -0.8404,
+        "max": 3.4664
+      },
+      "dg_antisense5": {
+        "min": -5.0561,
+        "mediana": -0.8404,
+        "max": 3.4664
+      },
+      "ddg": {
+        "min": -8.2196,
+        "mediana": -0.0442,
+        "max": 7.964
+      },
+      "accessibility": {
+        "min": 0.0,
+        "mediana": 0.0148,
+        "max": 0.941
+      }
+    }
+  },
+  "ATPaseD_Dm:corregido": {
+    "ventanas": 471,
+    "eficientes": 29,
+    "por_rama": {
+      "1": {
+        "descripcion": "nt19 A/T, nt2 A/T: decide la termodinamica",
+        "ventanas": 139,
+        "eficientes": 11,
+        "pct_de_los_eficientes": 37.9
+      },
+      "2": {
+        "descripcion": "nt19 A/T, nt2 G/C: ATAJO, decide solo la accesibilidad",
+        "ventanas": 114,
+        "eficientes": 13,
+        "pct_de_los_eficientes": 44.8
+      },
+      "3": {
+        "descripcion": "nt19 G/C, nt2 G/C: decide la termodinamica",
+        "ventanas": 101,
+        "eficientes": 5,
+        "pct_de_los_eficientes": 17.2
+      },
+      "4": {
+        "descripcion": "nt19 G/C, nt2 A/T: no eficiente sin mirar nada mas",
+        "ventanas": 117,
+        "eficientes": 0,
+        "pct_de_los_eficientes": 0.0
+      }
+    },
+    "continuos": {
+      "dg_sense5": {
+        "min": -5.0561,
+        "mediana": -0.3453,
+        "max": 3.4126
+      },
+      "dg_antisense5": {
+        "min": -5.0561,
+        "mediana": -0.3845,
+        "max": 3.4664
+      },
+      "ddg": {
+        "min": -6.304,
+        "mediana": -0.0415,
+        "max": 8.0124
+      },
+      "accessibility": {
+        "min": 0.0,
+        "mediana": 0.0131,
+        "max": 0.9081
+      }
+    }
+  }
+}

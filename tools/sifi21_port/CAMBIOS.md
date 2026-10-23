@@ -208,6 +208,31 @@ gen de 1.263 nt eso son miles de líneas a stdout.
 
 ---
 
+## C10 — La salida publica las categorías de la regla terminal, y ya no el 21-mero
+
+El TSV por ventana suma `nt19_at`, `nt2_gc` y `rama_terminal` (1 a 4), y **deja de emitir
+`seq` por defecto**. Las dos cosas son de la línea M3 de la ola 4 (issue #7) y están
+decididas en el ADR D54.
+
+Por qué categorías y no los nucleótidos: la regla terminal no mira la letra, mira si
+`nt19` es A/T y si `nt2` es G/C (`_terminal_rule`, que reproduce `sifi_pipeline.py:525-550`).
+Emitir la letra sí tiene un costo, medido por la línea M9: como las ventanas se solapan de
+a 1 nt, la columna de una posición fija concatenada en orden es una subcadena literal del
+gen, y `nt19` con `nt2` reconstruyen el 99,4 % de un gen de 500 nt **sin producir ninguna
+racha de 21 nt**. Las categorías conservan todo el poder predictivo de la regla y bajan de
+dos bits por posición a uno.
+
+Por qué `seq` sale de la salida por defecto: un 21-mero por ventana, sobre ventanas que se
+solapan de a 1 nt, reconstruye el gen entero. Fue el incidente de C9 del repositorio. Quien
+la necesite para un paso local la pide con `--con-seq` y no versiona esa salida.
+
+`--features` emite la tabla de los seis términos sin ningún booleano de veredicto, que es
+la tercera alternativa que propuso Diego. Esa tabla no se versiona: ver
+`research/ola4/M3_features/REPORT.md` §5.
+
+**Ningún veredicto cambió:** las 4.722 ventanas de los cuatro genes, en los dos modos,
+reproducen el ancla de C9 con cero discrepancias.
+
 ## Lo que deliberadamente NO cambié
 
 - **La ponderación por posición de los mismatches en off-targets.** El original

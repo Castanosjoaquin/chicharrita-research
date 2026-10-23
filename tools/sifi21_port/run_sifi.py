@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from sifi_core import SifiEngine, best_region, to_tsv
+from sifi_core import COLUMNAS_FEATURES, SifiEngine, best_region, to_tsv
 
 
 def leer_fastas(ruta):
@@ -45,6 +45,12 @@ def main(argv=None):
     ap.add_argument("--region", type=int, default=200,
                     help="largo de region a buscar por densidad de eficientes")
     ap.add_argument("--salida", default=None, help="directorio para los TSV")
+    ap.add_argument("--features", action="store_true",
+                    help="emite la tabla de terminos sin ningun booleano de veredicto, "
+                         "para analizar como contribuyen a la eficiencia (issue #7)")
+    ap.add_argument("--con-seq", action="store_true", dest="con_seq",
+                    help="incluye la columna seq. NO versionar esa salida: la columna "
+                         "reconstruye el gen entero (ver tools/verificacion/sin_secuencias.py)")
     a = ap.parse_args(argv)
 
     salida = Path(a.salida) if a.salida else None
@@ -77,7 +83,15 @@ def main(argv=None):
             print()
 
             if salida:
-                to_tsv(ventanas, salida / ("%s_%s_%s.tsv" % (nombre, a.modo, a.backend)))
+                to_tsv(ventanas,
+                       salida / ("%s_%s_%s.tsv" % (nombre, a.modo, a.backend)),
+                       con_seq=a.con_seq)
+                if a.features:
+                    # La etiqueta va al final y aparte: la tabla de terminos es lo que
+                    # se analiza, `is_efficient` es contra que se la analiza.
+                    to_tsv(ventanas,
+                           salida / ("%s_%s_%s_features.tsv" % (nombre, a.modo, a.backend)),
+                           columnas=COLUMNAS_FEATURES + ["is_efficient"])
 
     if salida:
         (salida / "resumen.json").write_text(

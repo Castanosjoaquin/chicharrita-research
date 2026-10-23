@@ -56,18 +56,52 @@ RNAPLFOLD_EXE = r"C:\Program Files (x86)\siFi21\ToCopy\RNAplfold\RNAplfold.exe"
 
 @dataclass
 class Window:
-    """Una ventana de siRNA con su veredicto y los terminos que lo producen."""
+    """Una ventana de siRNA con su veredicto y los terminos que lo producen.
+
+    Sobre los tres campos de la regla terminal (`nt19_at`, `nt2_gc`, `rama_terminal`):
+    son **categorias y no los nucleotidos**, y la diferencia es deliberada. La linea M9
+    midio que una columna con la letra de una posicion fija de la ventana, concatenada
+    sobre ventanas que se solapan de a 1 nt, es una subcadena literal del gen: `nt19` y
+    `nt2` juntas reconstruyen el 99,4 % de un gen de 500 nt sin producir ni una racha de
+    21 nt que un escaner pueda ver. Las categorias que la regla efectivamente usa son
+    `nt19 in (A,T)` y `nt2 in (G,C)`, o sea un bit por posicion en vez de dos, asi que
+    conservan **todo** el poder predictivo de la regla y no permiten escribir la
+    secuencia. Aun asi la cadena de bits es informacion parcial del gen, de modo que la
+    tabla de `--features` no se versiona: se genera local. Ver `research/ola4/
+    M9_auditoria_secuencias/REPORT.md` §3.5 y el issue #7.
+    """
     pos: int                  # posicion de inicio, 1-based
     seq: str
     dg_sense5: float
     dg_antisense5: float
     ddg: float                # antisense - sense
     accessibility: float
+    nt19_at: bool             # el nucleotido 19 es A o T (la preferencia del 5' de la guia)
+    nt2_gc: bool              # el nucleotido 2 es G o C
+    rama_terminal: int        # 1 a 4, cual de las cuatro ramas de la regla se aplico
     strand_selection: bool
     end_stability: bool
     target_site_accessibility: bool
     thermo_efficient: bool
     is_efficient: bool
+
+
+# Las cuatro ramas de `_terminal_rule`, numeradas como pide el issue #7. La 2 es el
+# atajo que la auditoria encontro y que Diego confirmo: en modo fiel decide mirando
+# solo la accesibilidad y se saltea el veredicto termodinamico.
+RAMAS_TERMINALES = {
+    1: "nt19 A/T y nt2 A/T: decide la termodinamica",
+    2: "nt19 A/T y nt2 G/C: ATAJO, decide solo la accesibilidad (modo fiel)",
+    3: "nt19 G/C y nt2 G/C: decide la termodinamica",
+    4: "nt19 G/C y nt2 A/T: no eficiente, sin mirar nada mas",
+}
+
+
+def rama_terminal(nt19_at: bool, nt2_gc: bool) -> int:
+    """Cual de las cuatro ramas de la regla terminal aplica. Ver RAMAS_TERMINALES."""
+    if nt19_at:
+        return 1 if not nt2_gc else 2
+    return 3 if nt2_gc else 4
 
 
 # --- Accesibilidad ----------------------------------------------------------
@@ -253,11 +287,18 @@ class SifiEngine:
             else:
                 eff = bool(thermo)
 
+            # Las dos categorias que la regla terminal realmente usa, con los mismos
+            # indices que `_terminal_rule`: posicion 19 (1-based) y posicion 2.
+            nt19_at = sirna[self.size - 3] in ("A", "T")
+            nt2_gc = sirna[1] in ("G", "C")
+
             windows.append(Window(
                 pos=pos, seq=sirna,
                 dg_sense5=round(dg_s, 4), dg_antisense5=round(dg_as, 4),
                 ddg=round(dg_as - dg_s, 4),
                 accessibility=round(access_val, 6),
+                nt19_at=nt19_at, nt2_gc=nt2_gc,
+                rama_terminal=rama_terminal(nt19_at, nt2_gc),
                 strand_selection=strand_sel, end_stability=end_stab,
                 target_site_accessibility=access_ok,
                 thermo_efficient=thermo, is_efficient=eff,
@@ -383,8 +424,37 @@ def best_region(windows, length: int = 200):
     return {"inicio": best[0], "fin": best[1], "eficientes": best_n}
 
 
-def to_tsv(windows, path):
-    cols = list(asdict(windows[0]).keys())
+# Los seis terminos que el modelo usa, sin ningun booleano de veredicto. Es la tabla
+# que pidio Diego: «conservar los valores termodinamicos, las preferencias terminales y
+# la accesibilidad como variables independientes del proceso de clasificacion, para
+# evaluar posteriormente como contribuyen a la eficiencia». `is_efficient` se agrega
+# aparte como etiqueta, porque sin ella la tabla no sirve para ajustar nada.
+COLUMNAS_FEATURES = [
+    "pos",
+    "dg_sense5",
+    "dg_antisense5",
+    "ddg",
+    "accessibility",
+    "nt19_at",
+    "nt2_gc",
+    "rama_terminal",
+]
+
+
+def to_tsv(windows, path, *, con_seq: bool = False, columnas=None):
+    """Escribe un TSV por ventana.
+
+    `seq` **no se emite por defecto**: es un 21-mero por ventana y, como las ventanas se
+    solapan de a 1 nt, la columna reconstruye el gen entero. Fue el incidente de C9 y es
+    lo que el gancho de `tools/verificacion/sin_secuencias.py` ahora rechaza. Quien la
+    necesite para un paso local —`research/ola4/M1_conteo_y_referencia` la usa para armar
+    las consultas de Bowtie— la pide con `con_seq=True` y **no versiona esa salida**.
+    """
+    todas = list(asdict(windows[0]).keys())
+    if columnas is not None:
+        cols = [c for c in columnas if c in todas]
+    else:
+        cols = [c for c in todas if c != "seq" or con_seq]
     with open(path, "w", encoding="utf-8", newline="") as fh:
         fh.write("\t".join(cols) + "\n")
         for w in windows:

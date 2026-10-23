@@ -19,7 +19,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import sifi_energy as se
-from sifi_core import SifiEngine, primitives, apply_rules
+from sifi_core import (COLUMNAS_FEATURES, RAMAS_TERMINALES, SifiEngine,
+                       apply_rules, primitives, rama_terminal, to_tsv)
 
 FALLAS = []
 
@@ -126,9 +127,64 @@ def test_modos_difieren():
           "solo puede agregar eficientes" % (r["fiel"], r["corregido"]))
 
 
+def test_rama_terminal():
+    """Las cuatro ramas de la regla terminal, por tabla de verdad (issue #7)."""
+    print("ramas de la regla terminal")
+    casos = {(True, False): 1, (True, True): 2, (False, True): 3, (False, False): 4}
+    for (nt19_at, nt2_gc), esperada in casos.items():
+        check(rama_terminal(nt19_at, nt2_gc) == esperada,
+              "nt19_at=%s nt2_gc=%s -> rama %d" % (nt19_at, nt2_gc, esperada))
+    check(set(RAMAS_TERMINALES) == {1, 2, 3, 4}, "las cuatro ramas estan documentadas")
+
+
+def test_rama_predice_el_veredicto():
+    """La rama tiene que explicar el veredicto, si no el campo no sirve de nada.
+
+    En modo fiel: rama 1 y 3 deciden por termodinamica, la 2 solo por accesibilidad
+    --es el atajo que la auditoria encontro-- y la 4 rechaza sin mirar nada.
+    """
+    print("la rama terminal predice el veredicto")
+    seq = ("ATGGCTCAAAGGCGTAGTACGATCGATCGGCTAGCTAGCTTACGGCATCGGCATCGAATCGGCAT"
+           "CGAACGTACGTACGTAGCTAGCATCGATCGGATCGATCGGCTAACGTTACGATCGCATGCAATT")
+    ventanas, _ = SifiEngine(mode="fiel").run(seq, backend="vienna")
+    malas = 0
+    for w in ventanas:
+        esperado = {1: w.thermo_efficient, 2: w.target_site_accessibility,
+                    3: w.thermo_efficient, 4: False}[w.rama_terminal]
+        malas += w.is_efficient != esperado
+    check(malas == 0, "ninguna de las %d ventanas contradice su rama" % len(ventanas))
+    check(any(w.rama_terminal == 2 for w in ventanas),
+          "la secuencia de prueba ejercita el atajo (rama 2)")
+
+
+def test_tsv_no_lleva_secuencia():
+    """La columna `seq` reconstruye el gen, asi que no sale por defecto (issue #13)."""
+    print("el TSV no lleva la columna seq por defecto")
+    import tempfile
+    seq = "ATGGCTCAAAGGCGTAGTACGATCGATCGGCTAGCTAGCTTACGGCATCGGCATCGAATCGGCATCGAACGTACG"
+    ventanas, _ = SifiEngine(mode="fiel").run(seq, backend="vienna")
+    with tempfile.TemporaryDirectory() as d:
+        base = Path(d)
+        to_tsv(ventanas, base / "a.tsv")
+        to_tsv(ventanas, base / "b.tsv", con_seq=True)
+        to_tsv(ventanas, base / "c.tsv", columnas=COLUMNAS_FEATURES + ["is_efficient"])
+        cols = lambda f: (base / f).read_text().split("\n")[0].split("\t")
+        check("seq" not in cols("a.tsv"), "por defecto no emite seq")
+        check("seq" in cols("b.tsv"), "con con_seq=True si la emite")
+        check("seq" not in cols("c.tsv"), "la tabla de features tampoco la emite")
+        veredicto = {"strand_selection", "end_stability", "target_site_accessibility",
+                     "thermo_efficient"}
+        check(not (veredicto & set(cols("c.tsv"))),
+              "la tabla de features no lleva ningun booleano de veredicto")
+        check("rama_terminal" in cols("c.tsv") and "accessibility" in cols("c.tsv"),
+              "la tabla de features lleva los terminos y la rama")
+
+
 def main():
     for t in (test_tablas, test_recortes, test_temperatura, test_sal_se_cancela,
-              test_coherencia_motor_barrido, test_modos_difieren):
+              test_coherencia_motor_barrido, test_modos_difieren,
+              test_rama_terminal, test_rama_predice_el_veredicto,
+              test_tsv_no_lleva_secuencia):
         t()
     print()
     if FALLAS:
