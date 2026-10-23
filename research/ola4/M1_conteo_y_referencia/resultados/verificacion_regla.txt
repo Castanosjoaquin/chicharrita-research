@@ -1,58 +1,136 @@
-Verificacion de la regla de conteo del si-Fi21 original.
-Generado por: python scripts/test_conteo_por_acierto.py
-Maquina: Windows 11, Python 3.10.11, solo biblioteca estandar.
-Insumos: sinteticos, definidos dentro del propio archivo de pruebas.
-Fecha: 2026-10-23
-
-test_la_distancia_es_none_si_falta_un_gen (__main__.TestAgregaciones) ... ok
-test_la_fila_homonima_es_none_si_dos_referencias_nombran_al_gen (__main__.TestAgregaciones) ... ok
-test_la_fila_homonima_es_none_si_ninguna_referencia_nombra_al_gen (__main__.TestAgregaciones) ... ok
-test_las_tres_agregaciones_dan_numeros_distintos (__main__.TestAgregaciones) ... ok
-test_el_tramo_de_la_referencia_con_n_no_genera_aciertos (__main__.TestEnes) ... ok
-test_la_ventana_con_n_no_pega_ni_contra_una_referencia_con_n (__main__.TestEnes) ... aviso: 1 ventanas contienen N y quedan sin acierto (la primera, en la posicion 1)
+test_la_distancia_es_none_si_falta_un_gen (__main__.TestAgregaciones.test_la_distancia_es_none_si_falta_un_gen) ... ok
+test_la_fila_homonima_es_none_si_dos_referencias_nombran_al_gen (__main__.TestAgregaciones.test_la_fila_homonima_es_none_si_dos_referencias_nombran_al_gen) ... ok
+test_la_fila_homonima_es_none_si_ninguna_referencia_nombra_al_gen (__main__.TestAgregaciones.test_la_fila_homonima_es_none_si_ninguna_referencia_nombra_al_gen) ... ok
+test_las_tres_agregaciones_dan_numeros_distintos (__main__.TestAgregaciones.test_las_tres_agregaciones_dan_numeros_distintos) ... ok
+test_el_tramo_de_la_referencia_con_n_no_genera_aciertos (__main__.TestEnes.test_el_tramo_de_la_referencia_con_n_no_genera_aciertos) ... ok
+test_la_ventana_con_n_no_pega_ni_contra_una_referencia_con_n (__main__.TestEnes.test_la_ventana_con_n_no_pega_ni_contra_una_referencia_con_n) ... aviso: 1 ventanas contienen N y quedan sin acierto (la primera, en la posicion 1)
 ok
-test_la_ventana_con_n_queda_como_eficiente_sin_acierto (__main__.TestEnes) ... aviso: 2 ventanas contienen N y quedan sin acierto (la primera, en la posicion 1)
+test_la_ventana_con_n_queda_como_eficiente_sin_acierto (__main__.TestEnes.test_la_ventana_con_n_queda_como_eficiente_sin_acierto) ... aviso: 2 ventanas contienen N y quedan sin acierto (la primera, en la posicion 1)
 ok
-test_exacto_coincide_con_la_posicion_que_reporta_la_referencia (__main__.TestEnumeracionLocal) ... ok
-test_exacto_encuentra_la_hebra_menos (__main__.TestEnumeracionLocal) ... ok
-test_exacto_encuentra_las_repeticiones_en_mas (__main__.TestEnumeracionLocal) ... ok
-test_exacto_no_inventa_la_ventana_que_no_esta (__main__.TestEnumeracionLocal) ... ok
-test_no_duplica_el_acierto_exacto_cuando_mm_es_uno (__main__.TestEnumeracionLocal) ... ok
-test_un_desajuste_encuentra_el_vecino_a_distancia_uno (__main__.TestEnumeracionLocal) ... ok
-test_un_desajuste_es_superconjunto_del_exacto (__main__.TestEnumeracionLocal) ... ok
-test_el_subcomando_contar_corre_y_escribe_el_json (__main__.TestIdentidadDeExtremoAExtremo) ... ok
-test_el_subcomando_revcomp_da_vuelta_el_fasta (__main__.TestIdentidadDeExtremoAExtremo) ... ok
-test_el_subcomando_ventanas_escribe_un_fasta_con_una_ventana_por_registro (__main__.TestIdentidadDeExtremoAExtremo) ... ok
-test_exigir_identidad_falla_cuando_la_base_no_contiene_al_gen (__main__.TestIdentidadDeExtremoAExtremo) ... FALLA: otra/gen: 9 ventanas eficientes sin acierto en `+` contra la base 'otra'
+test_exacto_coincide_con_la_posicion_que_reporta_la_referencia (__main__.TestEnumeracionLocal.test_exacto_coincide_con_la_posicion_que_reporta_la_referencia) ... ok
+test_exacto_encuentra_la_hebra_menos (__main__.TestEnumeracionLocal.test_exacto_encuentra_la_hebra_menos) ... ok
+test_exacto_encuentra_las_repeticiones_en_mas (__main__.TestEnumeracionLocal.test_exacto_encuentra_las_repeticiones_en_mas) ... ok
+test_exacto_no_inventa_la_ventana_que_no_esta (__main__.TestEnumeracionLocal.test_exacto_no_inventa_la_ventana_que_no_esta) ... ok
+test_no_duplica_el_acierto_exacto_cuando_mm_es_uno (__main__.TestEnumeracionLocal.test_no_duplica_el_acierto_exacto_cuando_mm_es_uno) ... ok
+test_un_desajuste_encuentra_el_vecino_a_distancia_uno (__main__.TestEnumeracionLocal.test_un_desajuste_encuentra_el_vecino_a_distancia_uno) ... ok
+test_un_desajuste_es_superconjunto_del_exacto (__main__.TestEnumeracionLocal.test_un_desajuste_es_superconjunto_del_exacto) ... ok
+test_el_subcomando_contar_corre_y_escribe_el_json (__main__.TestIdentidadDeExtremoAExtremo.test_el_subcomando_contar_corre_y_escribe_el_json) ... ok
+test_el_subcomando_revcomp_da_vuelta_el_fasta (__main__.TestIdentidadDeExtremoAExtremo.test_el_subcomando_revcomp_da_vuelta_el_fasta) ... ok
+test_el_subcomando_ventanas_escribe_un_fasta_con_una_ventana_por_registro (__main__.TestIdentidadDeExtremoAExtremo.test_el_subcomando_ventanas_escribe_un_fasta_con_una_ventana_por_registro) ... ok
+test_exigir_identidad_falla_cuando_la_base_no_contiene_al_gen (__main__.TestIdentidadDeExtremoAExtremo.test_exigir_identidad_falla_cuando_la_base_no_contiene_al_gen) ... FALLA: otra/gen: 9 ventanas eficientes sin acierto en `+` contra la base 'otra'
 ok
-test_ninguna_eficiente_queda_sin_acierto_y_el_exceso_es_el_de_las_repeticiones (__main__.TestIdentidadDeExtremoAExtremo) ... ok
-test_un_gen_sin_numero_declarado_no_arruina_el_veredicto_de_los_declarados (__main__.TestIdentidadDeExtremoAExtremo) ... ok
-test_el_nombre_ambiguo_aborta_en_vez_de_elegir (__main__.TestNombreDeLectura) ... ok
-test_el_nombre_sin_digitos_aborta (__main__.TestNombreDeLectura) ... ok
-test_la_convencion_del_subcomando_ventanas (__main__.TestNombreDeLectura) ... ok
-test_un_solo_grupo_de_digitos_se_acepta (__main__.TestNombreDeLectura) ... ok
-test_con_largo_impar_el_caso_no_existe (__main__.TestPalindromos) ... ok
-test_no_se_duplica_el_mismo_alineamiento_en_las_dos_hebras (__main__.TestPalindromos) ... ok
-test_el_nativo_se_parsea_con_hebras_y_offsets (__main__.TestParseoBowtie) ... ok
-test_la_lectura_no_alineada_de_sam_se_descarta (__main__.TestParseoBowtie) ... ok
-test_los_dos_formatos_dan_los_mismos_aciertos (__main__.TestParseoBowtie) ... ok
-test_dos_referencias_reparten_el_conteo_en_dos_filas (__main__.TestRegla) ... ok
-test_el_alineamiento_repetido_en_el_archivo_no_multiplica (__main__.TestRegla) ... ok
-test_la_ventana_eficiente_que_no_pega_se_pierde_del_conteo (__main__.TestRegla) ... ok
-test_la_ventana_no_eficiente_nunca_cuenta (__main__.TestRegla) ... ok
-test_la_ventana_que_pega_dos_veces_en_la_misma_referencia_cuenta_dos_veces (__main__.TestRegla) ... ok
-test_la_ventana_que_pega_solo_en_menos_no_entra_al_conteo (__main__.TestRegla) ... ok
-test_los_aciertos_de_ventanas_que_el_tsv_no_tiene_se_informan (__main__.TestRegla) ... ok
-test_sin_aciertos_la_fila_mayor_es_vacia (__main__.TestRegla) ... ok
-test_un_acierto_por_ventana_en_mas_coincide_con_el_conteo_por_ventana (__main__.TestRegla) ... ok
-test_complementa_y_da_vuelta (__main__.TestRevcomp) ... ok
-test_es_involutivo (__main__.TestRevcomp) ... ok
-test_el_codigo_iupac_ambiguo_aborta_en_vez_de_complementarse_mal (__main__.TestValidacionDeInsumos) ... ok
-test_el_largo_heterogeneo_aborta (__main__.TestValidacionDeInsumos) ... ok
-test_la_posicion_repetida_en_el_tsv_aborta (__main__.TestValidacionDeInsumos) ... ok
-test_la_ventana_sin_secuencia_aborta_la_enumeracion_local (__main__.TestValidacionDeInsumos) ... ok
+test_ninguna_eficiente_queda_sin_acierto_y_el_exceso_es_el_de_las_repeticiones (__main__.TestIdentidadDeExtremoAExtremo.test_ninguna_eficiente_queda_sin_acierto_y_el_exceso_es_el_de_las_repeticiones) ... ok
+test_un_gen_sin_numero_declarado_no_arruina_el_veredicto_de_los_declarados (__main__.TestIdentidadDeExtremoAExtremo.test_un_gen_sin_numero_declarado_no_arruina_el_veredicto_de_los_declarados) ... ok
+test_el_nombre_ambiguo_aborta_en_vez_de_elegir (__main__.TestNombreDeLectura.test_el_nombre_ambiguo_aborta_en_vez_de_elegir) ... ok
+test_el_nombre_sin_digitos_aborta (__main__.TestNombreDeLectura.test_el_nombre_sin_digitos_aborta) ... ok
+test_la_convencion_del_subcomando_ventanas (__main__.TestNombreDeLectura.test_la_convencion_del_subcomando_ventanas) ... ok
+test_un_solo_grupo_de_digitos_se_acepta (__main__.TestNombreDeLectura.test_un_solo_grupo_de_digitos_se_acepta) ... ok
+test_con_largo_impar_el_caso_no_existe (__main__.TestPalindromos.test_con_largo_impar_el_caso_no_existe) ... ok
+test_no_se_duplica_el_mismo_alineamiento_en_las_dos_hebras (__main__.TestPalindromos.test_no_se_duplica_el_mismo_alineamiento_en_las_dos_hebras) ... ok
+test_el_nativo_se_parsea_con_hebras_y_offsets (__main__.TestParseoBowtie.test_el_nativo_se_parsea_con_hebras_y_offsets) ... ok
+test_la_lectura_no_alineada_de_sam_se_descarta (__main__.TestParseoBowtie.test_la_lectura_no_alineada_de_sam_se_descarta) ... ok
+test_los_dos_formatos_dan_los_mismos_aciertos (__main__.TestParseoBowtie.test_los_dos_formatos_dan_los_mismos_aciertos) ... ok
+test_dos_referencias_reparten_el_conteo_en_dos_filas (__main__.TestRegla.test_dos_referencias_reparten_el_conteo_en_dos_filas) ... ok
+test_el_alineamiento_repetido_en_el_archivo_no_multiplica (__main__.TestRegla.test_el_alineamiento_repetido_en_el_archivo_no_multiplica) ... ok
+test_la_ventana_eficiente_que_no_pega_se_pierde_del_conteo (__main__.TestRegla.test_la_ventana_eficiente_que_no_pega_se_pierde_del_conteo) ... ok
+test_la_ventana_no_eficiente_nunca_cuenta (__main__.TestRegla.test_la_ventana_no_eficiente_nunca_cuenta) ... ok
+test_la_ventana_que_pega_dos_veces_en_la_misma_referencia_cuenta_dos_veces (__main__.TestRegla.test_la_ventana_que_pega_dos_veces_en_la_misma_referencia_cuenta_dos_veces) ... ok
+test_la_ventana_que_pega_solo_en_menos_no_entra_al_conteo (__main__.TestRegla.test_la_ventana_que_pega_solo_en_menos_no_entra_al_conteo) ... ok
+test_los_aciertos_de_ventanas_que_el_tsv_no_tiene_se_informan (__main__.TestRegla.test_los_aciertos_de_ventanas_que_el_tsv_no_tiene_se_informan) ... ok
+test_sin_aciertos_la_fila_mayor_es_vacia (__main__.TestRegla.test_sin_aciertos_la_fila_mayor_es_vacia) ... ok
+test_un_acierto_por_ventana_en_mas_coincide_con_el_conteo_por_ventana (__main__.TestRegla.test_un_acierto_por_ventana_en_mas_coincide_con_el_conteo_por_ventana) ... ok
+test_complementa_y_da_vuelta (__main__.TestRevcomp.test_complementa_y_da_vuelta) ... ok
+test_es_involutivo (__main__.TestRevcomp.test_es_involutivo) ... ok
+test_el_codigo_iupac_ambiguo_aborta_en_vez_de_complementarse_mal (__main__.TestValidacionDeInsumos.test_el_codigo_iupac_ambiguo_aborta_en_vez_de_complementarse_mal) ... ok
+test_el_largo_heterogeneo_aborta (__main__.TestValidacionDeInsumos.test_el_largo_heterogeneo_aborta) ... ok
+test_la_posicion_repetida_en_el_tsv_aborta (__main__.TestValidacionDeInsumos.test_la_posicion_repetida_en_el_tsv_aborta) ... ok
+test_la_ventana_sin_secuencia_aborta_la_enumeracion_local (__main__.TestValidacionDeInsumos.test_la_ventana_sin_secuencia_aborta_la_enumeracion_local) ... ok
 
 ----------------------------------------------------------------------
-Ran 44 tests in 0.118s
+Ran 44 tests in 0.077s
 
 OK
+## Conteos por base, con la regla del original
+
+Declarado por la planilla: gen = 1.
+
+### Agregacion `suma_filas`
+
+| Base | gen | Distancia L1 | Reproduce |
+|---|---|---|---|
+| `identidad` | 11 | 10 | no |
+
+### Agregacion `fila_max`
+
+| Base | gen | Distancia L1 | Reproduce |
+|---|---|---|---|
+| `identidad` | 11 | 10 | no |
+
+### Agregacion `fila_homonima`
+
+| Base | gen | Distancia L1 | Reproduce |
+|---|---|---|---|
+| `identidad` | 11 | 10 | no |
+
+### Detalle por celda
+
+| Base | Gen | Ventanas | (a) eficientes | (b) aciertos `+` | (c) cualquier hebra | (d) sin acierto | (e) multiple | Filas | Origen |
+|---|---|---|---|---|---|---|---|---|---|
+| `identidad` | gen | 25 | 9 | 11 | 11 | 0 | 2 | 1 | local:mm0:gen.fasta |
+1 registros -> C:\Users\MODDE\AppData\Local\Temp\tmpaji_d3jp\rc.fasta
+25 ventanas -> C:\Users\MODDE\AppData\Local\Temp\tmpia96vfll\ventanas.fasta
+## Conteos por base, con la regla del original
+
+Declarado por la planilla: .
+
+### Agregacion `suma_filas`
+
+| Base | gen | Distancia L1 | Reproduce |
+|---|---|---|---|
+| `otra` | 0 | - | no |
+
+### Agregacion `fila_max`
+
+| Base | gen | Distancia L1 | Reproduce |
+|---|---|---|---|
+| `otra` | 0 | - | no |
+
+### Agregacion `fila_homonima`
+
+| Base | gen | Distancia L1 | Reproduce |
+|---|---|---|---|
+| `otra` | - | - | no |
+
+### Detalle por celda
+
+| Base | Gen | Ventanas | (a) eficientes | (b) aciertos `+` | (c) cualquier hebra | (d) sin acierto | (e) multiple | Filas | Origen |
+|---|---|---|---|---|---|---|---|---|---|
+| `otra` | gen | 25 | 9 | 0 | 0 | 9 | 0 | 0 | local:mm0:otra.fasta |
+## Conteos por base, con la regla del original
+
+Declarado por la planilla: gen = 11.
+
+### Agregacion `suma_filas`
+
+| Base | gen | otro | Distancia L1 | Reproduce |
+|---|---|---|---|---|
+| `identidad` | 11 | 11 | 0 | si |
+
+### Agregacion `fila_max`
+
+| Base | gen | otro | Distancia L1 | Reproduce |
+|---|---|---|---|---|
+| `identidad` | 11 | 11 | 0 | si |
+
+### Agregacion `fila_homonima`
+
+| Base | gen | otro | Distancia L1 | Reproduce |
+|---|---|---|---|---|
+| `identidad` | 11 | - | 0 | si |
+
+### Detalle por celda
+
+| Base | Gen | Ventanas | (a) eficientes | (b) aciertos `+` | (c) cualquier hebra | (d) sin acierto | (e) multiple | Filas | Origen |
+|---|---|---|---|---|---|---|---|---|---|
+| `identidad` | gen | 25 | 9 | 11 | 11 | 0 | 2 | 1 | local:mm0:gen.fasta |
+| `identidad` | otro | 25 | 9 | 11 | 11 | 0 | 2 | 1 | local:mm0:gen.fasta |

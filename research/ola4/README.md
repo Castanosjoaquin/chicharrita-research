@@ -12,15 +12,26 @@ Cada carpeta tiene su `REPORT.md` como fuente de verdad, su `index.html` como vi
 
 | Carpeta | Que contesto | Estado |
 | --- | --- | --- |
-| [`M1_conteo_y_referencia/`](M1_conteo_y_referencia/REPORT.md) | La regla de conteo del si-Fi21 original —un registro por acierto de Bowtie en la hebra `+`, agrupado por referencia— implementada y verificada. Acota la hipotesis del desajuste con numeros ya medidos y mueve el pedido del lunes de «contra que base corrieron» a «contra que registro». | parcial: la matriz de bases no corrio por falta de insumos en la maquina, y se declara como pendiente con los comandos exactos |
+| [`M1_conteo_y_referencia/`](M1_conteo_y_referencia/REPORT.md) | La regla de conteo del si-Fi21 original —un registro por acierto de Bowtie en la hebra `+`, agrupado por referencia— implementada, verificada y **aplicada a once bases**. El conteo por acierto explica `BicC_Dm` con un error de uno (200 contra 199) y no explica los otros tres genes. Descarta la orientacion con medicion y agrega una pregunta discriminante para el lunes. | **parcial, los cuatro criterios de terminado cumplidos.** Ningun gen pendiente de correr; lo que falta es un dato del laboratorio |
 
 ## Lo que hay que leer antes de usar estos numeros
 
-- **La maquina que ejecuto M1 no tiene el corpus ni las herramientas.** Sin `work/`, sin Bowtie,
-  sin BLAST+, sin ViennaRNA y sin si-Fi21 instalado. Las corridas de la ola 3 se hicieron en otra
-  maquina (`research/ola3/C2_codigo_apolo_inta/corridas/README.md`: Darwin arm64, conda `c2sifi`).
-  Cualquier linea de la ola 4 que necesite correr el motor de eficiencia o un alineador depende de
-  esa otra maquina, y conviene planificarlo antes de empezarla.
+- **Las herramientas estaban dentro de si-Fi2015.** La primera sesion de M1 declaro Bowtie y
+  RNAplfold como ausentes y escribio los comandos para otra maquina; el instalador de si-Fi2015
+  trae los dos en `%LOCALAPPDATA%\siFi2015\`, y son los binarios con los que corrio el programa
+  original. Sigue siendo cierto que `work/` no esta en git y que puede no estar en la maquina
+  (`research/ola3/C2_codigo_apolo_inta/corridas/README.md`), pero una linea que necesite el motor
+  de eficiencia o un alineador no depende por eso de otra maquina.
 - **El conteo por ventana y el conteo por acierto son unidades distintas.** Es el hallazgo que
   reordeno el plan (seccion 3 de `PLAN_OLA4.md`) y vale para leer cualquier numero de la planilla
-  de EPILAB contra cualquier numero nuestro.
+  de EPILAB contra cualquier numero nuestro. En el resumen de la ola 3 el mismo problema aparece
+  un nivel mas abajo y **ya esta resuelto**: `hits_bowtie` cuenta alineamientos y
+  `hits_blanco_principal` cuenta ventanas `[M]`.
+- **La base de una corrida puede borrar un gen entero de la tabla.** `ATPaseD_Dm` esta anotado en
+  la hebra reversa del cromosoma, asi que contra el genoma de *Dalbulus maidis* cuarenta de sus
+  cuarenta y dos ventanas eficientes pegan solo en `-`, y como el original evalua la eficiencia
+  unicamente para aciertos en `+`, la fila da **0** `[M]`. Es una trampa de la herramienta, no de
+  nuestros datos, y afecta a cualquier corrida con base genomica.
+- **`GCF_002217175.1` no es el transcriptoma de *D. maidis*.** El plan y el issue #5 lo nombran
+  asi; el archivo dice *Folsomia candida*. En `work/offtarget_db/` hay genoma de *D. maidis* y
+  ningun transcriptoma suyo.

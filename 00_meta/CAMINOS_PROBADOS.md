@@ -1005,9 +1005,47 @@ Lo que sigue es lo que nos corrigió, y de qué lado quedó cada cosa.
   cuatro números y ninguna habría medido el caso real. Lo que se entrega es la regla verificada
   más la secuencia exacta de comandos para la máquina que tiene el corpus, y el estado dice «no
   corrió» en los tres criterios que no se cumplieron.
+  **Actualización del 2026-10-23:** la matriz corrió. El insumo que se declaró ausente estaba en
+  el instalador de si-Fi2015, que trae su propio `RNAplfold.exe` 2.1.5 y su propio `bowtie.exe`.
+  La lección es de inventario y no de método: antes de declarar una herramienta ausente conviene
+  mirar dentro del programa cuya salida se quiere reproducir.
 
 - **Abrir el eje de la versión del motor de accesibilidad (2.4.x, 2.6.x). Evitado por ahora.** Es
   la tarea 4 de M1 y el plan la condiciona a que la referencia no cierre el desajuste. La
   referencia no cerró **ni falló**: quedó sin correr. Agregar puntos a un barrido mientras la
   hipótesis principal sigue sin medirse es el error de D45 otra vez, así que el eje queda cerrado
   hasta que la matriz corra.
+  **Actualización del 2026-10-23:** la matriz corrió y cierra un gen de cuatro, así que el eje
+  queda **habilitado** para los otros tres. Lo que cambia es que ya no es un barrido a ciegas: el
+  cruce de los dos ejes muestra que la versión del motor mueve los conteos en direcciones
+  distintas según el gen, así que hay una pregunta concreta que contestar (sección 7 del REPORT
+  de M1).
+
+- **La orientación de entrada como explicación del desajuste. Descartada con medición.** Era uno
+  de los cuatro ejes que el investigador nombró explícitamente el 2026-10-22 y había que
+  cerrarlo. Se corrió el motor de eficiencia sobre el complemento reverso de los cuatro genes
+  —hay que volver a correrlo, porque el complemento reverso cambia las ventanas y no sólo los
+  aciertos— y el conteo da 47, 22, 108 y 52 contra los 114, 35, 199 y 33 declarados: una
+  distancia L1 de 190, frente a 44 de la orientación directa `[M]`
+  (`research/ola4/M1_conteo_y_referencia/resultados/orientacion.json`). No sólo no acerca: se
+  aleja en un factor de cuatro y mueve tres genes en el sentido equivocado. El eje queda cerrado
+  con número y no con argumento.
+
+- **Que un aislamiento distinto de MRFV explique los conteos virales. Descartado para los 65
+  registros públicos.** Era la hipótesis que el propio reporte anterior de M1 había propuesto
+  como la candidata viva. Se bajaron los 65 registros públicos de MRFV de GenBank por número de
+  acceso —los que W5 ya había inventariado— y se aplicó la regla: para `MP_MRFV` las filas
+  posibles son 133, 133 y 30, y con un desajuste permitido 133, 133 y 85. **Ninguna es 114**, y
+  no hay nada entre 30 y 133 `[M]`. Para `CP_MRFV` es peor: el declarado 35 está **por encima** de
+  nuestras 32 ventanas eficientes, y la regla sólo puede superar el conteo por ventana si alguna
+  ventana eficiente pega dos veces en la misma referencia, lo que no pasa en ninguna de las 65
+  `[M]`. **Ninguna referencia de MRFV puede dar 35 bajo esta regla.** Lo que queda vivo es un
+  aislamiento no publicado, y eso es un pedido y no una corrida nuestra.
+
+- **Presentar la combinación mejor por gen como la explicación. Evitado.** Con la matriz corrida
+  aparece la tentación: `BicC_Dm` se acerca a 199 con RNAplfold 2.1.5 (200) y `ATPaseD_Dm` se
+  acerca a 33 con ViennaRNA 2.7.2 (35), así que eligiendo el mejor motor para cada gen el vector
+  queda (133, 32, 200, 35) y la distancia L1 baja de 44 a 25 `[M]`. Eso **no es una corrida**:
+  mezcla dos motores entre genes y por lo tanto no corresponde a ninguna configuración que el
+  laboratorio pudiera haber usado. Es el error de D45 con otra variable, y el REPORT lo dice
+  explícitamente en lugar de reportar el 25 como logro.

@@ -1277,13 +1277,55 @@ que su propia carta hizo necesaria.
   que `MP_MRFV` baje de 133 a 114 hace falta una referencia que difiera de la secuencia que
   diseñaron: otro aislamiento, no el conjunto completo de registros de MRFV. Hay que pedir el
   número de acceso o el archivo, por gen `[H]`.
-- **¿En qué unidad está cada campo de `04_resumen_base_datos.json`?** En la fila de `BicC_Dm`
-  contra `epilab4`, con **una sola referencia**, el resumen dice `hits_bowtie: 2504` y
-  `hits_blanco_principal: 2500` `[M]`. Con una sola referencia los dos deberían ser el mismo
-  número, así que uno cuenta alineamientos y el otro, casi con seguridad, ventanas. Cuál es cuál
-  no se puede resolver leyendo el repositorio `[?]`. Es el mismo problema de unidad de M1 un nivel
-  más abajo, y afecta a cualquier cuenta que mezcle esos dos campos.
+- ~~**¿En qué unidad está cada campo de `04_resumen_base_datos.json`?**~~ **Resuelto el
+  2026-10-23, midiendo.** La misma corrida de Bowtie contra la misma base, en la máquina que
+  tiene el corpus, da 2.504 líneas de alineamiento y **2.500 nombres de lectura distintos** para
+  `BicC_Dm` contra `epilab4` `[M]`, y la confirmación independiente está en el contig público de
+  *D. maidis*: 2.357 alineamientos y 2.353 ventanas distintas, y 2.353 es exactamente el número
+  que el resumen declara en `hits_blanco_principal`. Así que **`hits_bowtie` cuenta alineamientos
+  y `hits_blanco_principal` cuenta ventanas**. No hizo falta el driver sin versionar; hizo falta
+  correr Bowtie una vez.
 - **Los tres drivers de C2 no están versionados.** `run_inta.py`, `run_db.py` y `barrido_inta.py`
   viven sólo en `work/C2/scripts/`, que está en `.gitignore`. El README de las corridas los
   documenta pero no los contiene, y por eso la pregunta anterior no se puede contestar desde el
   repositorio. Hay que versionarlos: no llevan secuencias, sólo rutas.
+
+## Pendientes después de correr la matriz de M1 (2026-10-23)
+
+- **¿Contra un transcriptoma o contra el genoma corrieron los dos genes del insecto?** Es la
+  pregunta nueva y la más barata de contestar para él. Si fue contra el genoma de *D. maidis*, el
+  conteo de `ATPaseD_Dm` que sale de la herramienta es **0**: cuarenta de sus cuarenta y dos
+  ventanas eficientes pegan sólo en la hebra menos del cromosoma `OZ319711.1` y la regla del
+  original únicamente evalúa la hebra `+` `[M]`. El 33 declarado no puede venir de ahí, así que la
+  respuesta discrimina. Y si fue contra un transcriptoma, queremos saber cuál: el contig público
+  `GITV01000968.1` da 200 para `BicC_Dm` contra sus 199 declarados, que es la única coincidencia
+  de toda la matriz.
+- **¿Cuál es el número de acceso de su referencia de MRFV, por gen?** La pregunta ya estaba
+  abierta; lo que se agrega es una predicción que la hace discriminante. Para `MP_MRFV`, ninguno
+  de los sesenta y cinco registros públicos de MRFV da 114: las filas posibles son 133, 133 y 30,
+  y con un desajuste permitido 133, 133 y 85 `[M]`. Si el acceso que nos den está en esa lista,
+  el conteo no sale de la referencia; si no está, hace falta el archivo.
+- **`CP_MRFV` = 35 no puede salir de la referencia, y hay que decidir de dónde sale.** El
+  declarado está **por encima** de nuestras 32 ventanas eficientes, y la regla del original sólo
+  puede superar el conteo por ventana si alguna ventana eficiente pega dos o más veces en la misma
+  referencia; eso no ocurre en ninguna de las sesenta y cinco `[M]`. Quedan dos candidatos, los
+  dos del lado del motor y no de la base: la versión del motor de accesibilidad —con ViennaRNA
+  2.7.2 el mismo port da 39, y 35 cae justo entre 32 y 39 `[M]`— o una diferencia de criterio que
+  todavía no identificamos `[?]`.
+- **Faltan cinco contigs de la ensambladura TSA `GITV01` para completar esa celda.** Lo que se
+  usó son los dos contigs que la ola 3 identificó como blanco principal, bajados por número de
+  acceso. Para la **fila** de la tabla eso es exacto, porque una fila depende sólo de su propia
+  referencia; lo que queda subestimado es (d) y por lo tanto `suma_filas`. La ola 3 midió que
+  `BicC_Dm` toca seis referencias de esa base y `ATPaseD_Dm` dos, y la lista de las otras cinco
+  está en `work/C2/` y no en el repositorio `[?]`.
+- **`bowtie -a -v 1` no corre contra las dos bases más grandes** con el binario de 32 bits que
+  trae si-Fi2015: aborta con `Error reading _rstarts[] array` en `zmays` (172 MB) y en el genoma
+  de *D. maidis* (984 MB), y corre bien hasta 114 MB `[M]`. Las ocho celdas quedan declaradas como
+  fallidas en `resultados/procedencia.json`, no como ceros. Necesitan un Bowtie 1.3.x de 64 bits,
+  que es el de la máquina de la ola 3.
+- **El plan y el issue #5 llaman a `GCF_002217175.1` «transcriptoma de *D. maidis*» y no lo es.**
+  La cabecera del archivo dice *Folsomia candida* `[M]`. En `work/offtarget_db/` está el
+  **genoma** de *D. maidis* y **ningún transcriptoma** suyo; el que la ola 3 usó como
+  `tsa_gitv01` es la ensambladura TSA `GITV01`, que no está en esa carpeta. No invalida ninguna
+  medición de la ola 3, donde la base se llamaba por su nombre, pero sí el inventario del plan,
+  que cuenta tres transcriptomas de *D. maidis* donde hay uno y no está descargado.

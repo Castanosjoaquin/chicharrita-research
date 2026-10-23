@@ -1,4 +1,4 @@
-# M1 — Reconciliacion de conteos: la regla quedo implementada y verificada, la matriz de bases no se pudo correr aca
+# M1 — Reconciliacion de conteos: la matriz corrio, y explica un gen de cuatro
 
 **Ola 4, linea M1.** La pregunta que abre esta linea viene de la carta del investigador del 22
 de octubre de 2026 y de lo que aparecio al seguir su pista hasta el fuente: la columna
@@ -7,21 +7,61 @@ que comparar nuestros 133, 32, 212 y 42 contra los 114, 35, 199 y 33 de la plani
 el principio, comparar dos unidades distintas. M1 tenia que medir cuanto de la brecha explica
 esa diferencia de unidad y cual es la referencia que la produce.
 
-**Lo que se entrega, en una linea.** La regla de conteo del original esta implementada en
-`scripts/conteo_por_acierto.py` y verificada con 29 pruebas sobre insumos sinteticos que cubren
-los tres casos que la hacen interesante `[M]`. **La matriz de bases no corrio**, y no por falta
-de tiempo: la maquina donde se ejecuto esta linea no tiene ni las secuencias ni las herramientas
-que la matriz necesita, y eso se declara abajo con nombre y apellido en vez de resolverse con
-una corrida aproximada. Lo que si se pudo hacer sin ningun insumo nuevo fue acotar la hipotesis
-con numeros que la ola 3 ya habia medido, y el resultado de ese acotamiento cambia la pregunta
-que conviene hacer el lunes.
+**Lo que se entrega, en una linea.** La regla esta implementada en
+`scripts/conteo_por_acierto.py`, verificada con 44 pruebas sobre insumos sinteticos, y **la
+matriz de bases corrio**: once bases y treinta y ocho celdas con el motor verificado —el control
+de orientacion incluido—, mas una corrida de sensibilidad con un desajuste permitido y un cruce
+con el eje del motor de accesibilidad `[M]`. El resultado es parcial y conviene decirlo
+en el titulo: la regla del conteo por acierto contra el transcriptoma publico de *Dalbulus
+maidis* explica `BicC_Dm` **con un error de uno** —da 200 contra los 199 declarados— y **no
+explica los otros tres**. Para `MP_MRFV`, que es el gen de la brecha mas grande, ninguna
+referencia que tengamos puede producir 114, y ahora sabemos por que: el conteo por acierto
+sobre ese gen es practicamente una funcion escalon.
+
+La mitad anterior de esta linea (commit `6cf0306`) habia declarado la matriz como pendiente
+porque la maquina de esa sesion no tenia el corpus ni las herramientas. Esta maquina si los
+tiene, y una parte de lo que aparecio contradice lo que ese reporte dejo escrito. Donde eso
+pasa queda marcado.
 
 ---
 
-## 1. La regla, tal como quedo implementada
+## 1. Donde corrio, y con que
 
-La lectura del fuente es la de la seccion 3 del plan de la ola 4 y no se repite aca. Lo que
-importa para el codigo son tres frases, las tres `[R]`:
+El insumo que la mitad anterior declaro ausente estaba en un lugar que no se habia mirado: **el
+instalador de si-Fi2015 trae sus propias herramientas**, y con eso alcanza. En
+`%LOCALAPPDATA%\siFi2015\` viven `RNAplfold.exe` 2.1.5 y `bowtie.exe` 0.11.3 con su
+`bowtie-build.exe`, que son exactamente los binarios con los que corrio el programa original
+`[M]`. No hace falta instalar nada: la dependencia que parecia faltar la trae el programa cuya
+salida queremos reproducir.
+
+| Insumo | Estado en esta maquina |
+|---|---|
+| `work/sifi_check/` con los cuatro FASTA de EPILAB | si |
+| `work/offtarget_db/` con las seis bases comprimidas | si |
+| RNAplfold 2.1.5 (backend `exe`, el verificado) | si, del instalador de si-Fi2015 |
+| Bowtie | si, 0.11.3 del instalador de si-Fi2015 |
+| ViennaRNA | si, 2.7.2 por las ligaduras de Python |
+| Biopython | si, 1.88 |
+| `work/C2/` con los drivers de la ola 3 | **no**, siguen sin versionar |
+| BLAST+ | **no**, y esta linea no lo necesita |
+
+Lo primero que se corrio fue el ancla: `tools/sifi21_port/run_sifi.py --modo fiel --backend exe`
+sobre los cuatro genes devuelve **133, 32, 212 y 42** eficientes `[M]`, que son los cuatro
+numeros verificados contra el programa original. Sin ese ancla la matriz no se puede leer,
+porque cada celda es un conteo sobre el conjunto de ventanas eficientes y ese conjunto depende
+del motor.
+
+Todo el recorrido quedo en un driver versionado, `scripts/correr_matriz.py`, que va del FASTA al
+conteo en un comando y escribe `resultados/procedencia.json` con las versiones, las bases que
+corrieron, las que no y las celdas que fallaron. Eso responde al punto 4 de la lista de
+pendientes del reporte anterior, al menos para esta linea: el reclamo era que los drivers de la
+ola 3 viven en `work/` y no se pueden releer desde el repositorio, y repetir el error aca no
+tenia sentido.
+
+## 2. La regla, tal como quedo implementada
+
+La lectura del fuente es la de la seccion 3 del plan de la ola 4 y no se repite. Lo que importa
+para el codigo son tres frases, las tres `[R]`:
 
 En `general_helpers.py:107-123`, `get_table_data` arma la tabla con
 `Counter(player['hit_name'] for player in query if player['is_efficient'])`: **un registro por
@@ -30,8 +70,8 @@ acierto el registro sale con `hit_name = False` y `strand = None`. Y como todo e
 eficiencia vive dentro de `if strand == '+'`, una ventana sin acierto y una que pego solo en la
 hebra menos **nunca se evaluan**.
 
-El script devuelve, por cada par de gen y base, los cinco numeros que pide la tarea 1 y ademas
-la tabla desagregada por referencia, que es la unidad en la que el original presenta sus filas:
+El script devuelve, por cada par de gen y base, los cinco numeros que pide la tarea 1 y la tabla
+desagregada por referencia, que es la unidad en la que el original presenta sus filas:
 
 | Numero | Que es | Depende de la base |
 |---|---|---|
@@ -43,261 +83,309 @@ la tabla desagregada por referencia, que es la unidad en la que el original pres
 
 Hay una decision de diseno que conviene dejar explicita, porque es la que hace el resultado
 interpretable incluso si la hipotesis falla. **No sabemos que fila de la tabla leyo el
-laboratorio**, y con una base de 71 registros la tabla del original tiene hasta 71 filas. Asi
-que el script no elige: reporta tres agregaciones en paralelo y ninguna se declara la verdadera
-—`suma_filas`, la suma de todas las filas; `fila_max`, la fila mayor, que es el orden en que el
-original presenta la lista; y `fila_homonima`, la unica fila cuya referencia nombra al gen, que devuelve `None` si hay dos,
-porque dos filas sumadas no son una fila— y calcula la distancia L1 de cada una al vector
-declarado. Si alguna celda reproduce (114, 35, 199, 33),
-queda dicho con que agregacion; si ninguna, queda dicho cual es la mas cercana y bajo que
-supuesto.
+laboratorio**, y con una base de sesenta y cinco registros la tabla del original tiene hasta
+sesenta y cinco filas. Asi que el script no elige: reporta tres agregaciones en paralelo y
+ninguna se declara la verdadera —`suma_filas`, la suma de todas las filas; `fila_max`, la fila
+mayor, que es el orden en que el original presenta la lista; y `fila_homonima`, la unica fila
+cuya referencia nombra al gen, que devuelve `None` si hay dos, porque dos filas sumadas no son
+una fila— y calcula la distancia L1 de cada una al vector declarado.
 
-El script tambien resuelve una dependencia que, en esta linea, era un riesgo: **no necesita
-Bowtie**. Toma los aciertos de una salida de Bowtie (`-a -v 0`, o `-v 1` como sensibilidad), en
-formato nativo o SAM, o los enumera localmente contra un FASTA. Con cero desajustes la
-enumeracion local es lo que reporta `bowtie -a -v 0` —todas las coincidencias perfectas de
-extremo a extremo, en las dos hebras— y se indexa la consulta recorriendo la referencia una sola
-vez, que es el criterio que ya usa `tools/sifi21_port/offtarget_21nt.py`. Con un desajuste
-equivale a `-a -v 1` por el palomar sobre dos mitades, y es correcto pero lento: sirve para
-bases chicas, no para un genoma. La celda de verificacion, que es el gen contra si mismo, entra
-holgada en el camino local.
+Esa decision resulto ser la que mas rindio de todo el diseno. Con la matriz corrida, las tres
+agregaciones **no coinciden** en las bases de varios registros: para `CP_MRFV` contra los
+sesenta y cinco registros de MRFV, `suma_filas` da 779 y `fila_max` da 32 `[M]`. Si el script
+hubiera elegido una, la celda habria dicho una cosa y la otra lectura habria quedado invisible.
 
-Esa equivalencia se apoya en tres restricciones, y conviene leerlas antes de usar el camino
-local en lugar de Bowtie, porque son el lugar donde «equivalente» quiere decir «equivalente bajo
-un supuesto declarado»:
-
-- **Alfabeto.** Solo ACGTN. Un codigo IUPAC ambiguo aborta la corrida en vez de complementarse
-  mal en silencio, que es lo que haria la tabla de complemento con una R o una Y. Los cuatro
-  genes de EPILAB son ACGT en mayusculas `[M]`, asi que la restriccion no muerde en el caso real.
-- **N.** Ni una ventana con N ni un tramo de la referencia con N entran a la comparacion. Es lo
-  correcto y no una simplificacion: una N no aparea, asi que no puede haber un alineamiento
-  perfecto sobre ella, y comparar `N == N` habria inventado aciertos que Bowtie no reporta. Las
-  ventanas con N quedan contadas en (d), que es lo que tambien les pasaria con Bowtie. Con
-  `--mm 1` la regla es algo mas estricta que Bowtie, que por `--nceil` tolera algunas N en la
-  lectura y podria gastar su unico desajuste en una `[?]`.
-- **Palindromos.** Una ventana igual a su propio complemento reverso se indexa solo en la hebra
-  `+`: es el mismo alineamiento y emitirlo dos veces inflaria (c). Con ventanas de 21 nt el caso
-  es imposible —la base del medio tendria que ser su propio complemento— asi que la restriccion
-  es para largos pares.
-
-Las dos primeras no estaban en la primera version del script y las encontro la revision; las
-tres estan verificadas con pruebas.
-
-## 2. Una correccion al criterio de terminado, antes de usarlo
+## 3. Una correccion al criterio de terminado, y lo que la medicion dice de ella
 
 El criterio (a) del plan dice que, contra una base que es el gen mismo, el conteo por ventana y
-el conteo por acierto **tienen que coincidir**. Eso no es cierto en general, y el propio
-proyecto tiene el contraejemplo medido: en `BicC_Dm`, Bowtie reporta **2.504 aciertos para 2.500
-ventanas** `[M]`
-(`research/ola3/C2_codigo_apolo_inta/diff_sifi21INTA_vs_original.md`, fila 3). Si un 21-mero del
-gen esta repetido, la ventana que lo contiene pega dos veces contra el gen mismo y el conteo por
-acierto queda **por encima** del conteo por ventana.
+el conteo por acierto **tienen que coincidir**. La mitad anterior de esta linea objeto el
+criterio y tenia razon en general: si un 21-mero del gen esta repetido, la ventana que lo
+contiene pega dos veces contra el gen mismo y el conteo por acierto queda **por encima** del
+conteo por ventana. En `BicC_Dm`, Bowtie reporta 2.504 aciertos para 2.500 ventanas `[M]`, lo
+que se confirmo en esta maquina contra la misma base.
 
-El invariante que si se cumple siempre, y que el script verifica con `--exigir-identidad`, es
-otro: contra el gen mismo **ninguna ventana eficiente puede quedar sin acierto en la hebra `+`**,
-porque la ventana es, literalmente, un trozo de la referencia. Y el exceso de (b) sobre (a) es,
-exactamente, la cantidad de aciertos de mas que caen sobre ventanas eficientes. Formulado asi, el
-criterio es verificable y sigue sirviendo para lo que estaba pensado: si (d) no da cero contra el
-gen mismo, el script esta mal o los insumos no corresponden, y aborta.
+Pero conviene agregar lo que la medicion dice, porque matiza la objecion: **en los cuatro genes
+reales el criterio se cumple igual**. Contra `epilab4`, (a) y (b) dan 133, 32, 212 y 42, con
+(d) = 0 y (e) = 0 en los cuatro `[M]`. Los cuatro aciertos de mas de `BicC_Dm` caen sobre
+ventanas **no eficientes**, asi que no entran al conteo. El criterio del plan era frágil, no
+falso en este caso.
 
-Esto no es una objecion menor al plan: es el mismo error de unidad que M1 vino a medir,
-reapareciendo en el criterio con el que ibamos a cerrarla.
+Donde si se rompe es con un desajuste permitido: con `bowtie -a -v 1` contra el gen mismo,
+`BicC_Dm` da (b) = 215 sobre (a) = 212, con (e) = 3 `[M]`. Tres ventanas eficientes tienen un
+casi-vecino dentro del propio gen.
 
-## 3. Verificacion
+El invariante que el script verifica con `--exigir-identidad` sigue siendo el correcto y es el
+que se uso como compuerta de toda la matriz: contra el gen mismo **ninguna ventana eficiente
+puede quedar sin acierto en la hebra `+`**. La corrida completa lo pasa.
 
-Las pruebas corren con la biblioteca estandar, sin ViennaRNA, sin Biopython y sin Bowtie, asi
-que cualquier integrante las puede correr en su maquina:
-`python scripts/test_conteo_por_acierto.py`. **44 pruebas, las 44 pasan**; la salida cruda esta
-en `resultados/verificacion_regla.txt` `[M]`.
+## 4. La matriz
 
-Lo que cubren, en orden de importancia: que una ventana eficiente que no pega se pierde del
-conteo; que una que pega solo en la hebra menos no entra en (b) y si en (c); que una que pega
-dos veces en la misma referencia cuenta dos veces; que una ventana no eficiente no cuenta por
-mas aciertos que tenga; que dos referencias reparten el conteo en dos filas y que eso mueve
-`suma_filas` y `fila_max` en sentidos distintos; que los formatos nativo y SAM de Bowtie dan el
-mismo conjunto de aciertos; que la enumeracion local encuentra las repeticiones, encuentra la
-hebra menos y no inventa la ventana que no esta; y que, contra el gen mismo, ninguna eficiente
-queda sin acierto.
+Once bases. Las dos primeras son el control; la tercera y la cuarta son las candidatas reales de
+diseño; las ultimas cinco son el panel de no objetivo, que entra como control negativo y no como
+hipotesis de que el laboratorio haya diseñado contra ellas.
 
-Quince de esas pruebas salieron de una revision del script y cubren formas de fallar en silencio,
-que es la clase de error que importa cuando el numero que sale va a un reporte: una posicion
-repetida en el TSV, una ventana sin secuencia, un codigo IUPAC, una N, un nombre de lectura
-ambiguo —`w12_2` le asignaba el acierto a la ventana 2— y dos referencias que nombran al mismo
-gen, que no son una fila aunque se puedan sumar. Las seis abortan o devuelven `None` en vez de
-dar un numero plausible y equivocado.
+| Base | Que es | Genes |
+|---|---|---|
+| `epilab4` | los cuatro genes de EPILAB: la celda de verificacion | los cuatro |
+| `epilab4_rc` | lo mismo, complemento reverso: control de orientacion | los cuatro |
+| `mrfv_nc` | `NC_002786.2`, genoma de referencia de MRFV, aislamiento Costa Rican | los dos virales |
+| `mrfv_all` | los 65 registros publicos de MRFV de GenBank analizados en W5 | los dos virales |
+| `gitv01_blancos` | `GITV01000968.1` y `GITV01001458.1`, los dos contigs del transcriptoma publico de *D. maidis* que la ola 3 identifico como blanco principal | los dos del insecto |
+| `dmaid_genoma` | genoma de *D. maidis* `GCA_975739785.1` | los cuatro |
+| `hvitri` | transcriptoma de *Homalodisca vitripennis* `GCF_021130785.1` | los cuatro |
+| `zmays` | transcriptoma de maiz `GCF_902167145.1` | los cuatro |
+| `amel` | transcriptoma de *Apis mellifera* `GCF_003254395.2` | los cuatro |
+| `haxyr` | transcriptoma de *Harmonia axyridis* `GCF_914767665.1` | los cuatro |
+| `fcandida` | transcriptoma de *Folsomia candida* `GCF_002217175.1` | los cuatro |
 
-Por que las pruebas usan secuencias de juguete y no las de EPILAB. Los tres casos que definen la
-regla **no aparecen** cuando la base es el gen mismo, que es la unica base que tenemos
-verificada: una ventana que no pega y una que pega solo en la hebra menos son imposibles contra
-el propio gen. Construirlos a mano es la unica forma de probar la implementacion antes de
-aplicarla, y es lo que vuelve interpretable el numero que salga despues.
+El conteo de la regla, por base y por gen, con el motor verificado (RNAplfold 2.1.5). La fila es
+`fila_max`, que es la agregacion mas favorable a la hipotesis; la tabla completa con las tres
+agregaciones esta en `resultados/matriz.md` `[M]`:
 
-Sobre eso hay una demostracion del mecanismo que vale leer, en
-`resultados/ejemplo_formato_sintetico.md`, generada por `scripts/demo_sintetico.py` con una
-secuencia al azar de semilla fija: 40 ventanas, 10 eficientes. Contra el gen mismo la regla da
-10. Contra un isolado con **una sola sustitucion** en el medio, da **5**, porque las ventanas que
-cubren esa posicion dejan de pegar con `-v 0`. Contra una referencia que repite un tramo de 25
-nt del gen, da **12**. `[M]` con insumos sinteticos. Son los dos signos que hacen falta para
-explicar la forma del desajuste de la planilla, que baja en tres genes y sube en uno, y quedan
-demostrados sobre el mecanismo. Lo que no demuestran es que ese sea el mecanismo del caso real:
-eso es `[H]` y lo mide la matriz.
+| Base | `MP_MRFV` | `CP_MRFV` | `BicC_Dm` | `ATPaseD_Dm` |
+|---|---|---|---|---|
+| **declarado por la planilla** | **114** | **35** | **199** | **33** |
+| nuestras ventanas eficientes (a) | 133 | 32 | 212 | 42 |
+| `epilab4` | 133 | 32 | 212 | 42 |
+| `mrfv_nc` | 133 | 32 | — | — |
+| `mrfv_all` | 133 | 32 | — | — |
+| `gitv01_blancos` | — | — | **200** | 42 |
+| `dmaid_genoma` | 0 | 0 | 191 | **0** |
+| `hvitri` | 0 | 0 | 0 | 3 |
+| `zmays` | 0 | 0 | 0 | 0 |
+| `amel` | 0 | 0 | 0 | 0 |
+| `haxyr` | 0 | 0 | 0 | 0 |
+| `fcandida` | 0 | 0 | 0 | 0 |
 
-## 4. Por que la matriz de bases no corrio, y donde tiene que correr
+Tres lecturas, y la tercera es la que vale la linea.
 
-La maquina donde se ejecuto esta linea **no tiene ninguno de los cuatro insumos** que la matriz
-necesita, y conviene que quede escrito con precision porque afecta a varias lineas de la ola 4,
-no solo a esta:
+**`BicC_Dm` queda explicado, con un error de uno.** Contra `GITV01000968.1`, el contig del
+transcriptoma publico de *D. maidis*, doce de las 212 ventanas eficientes no pegan y la fila de
+la tabla cae a **200**, contra los **199** declarados `[M]`. El reporte anterior habia estimado
+«alrededor de 200» con una regla de tres sobre la perdida total de ventanas; la medicion sobre
+las ventanas eficientes da 200. Eso no prueba que sea la referencia que usaron —un error de uno
+sobre 212 es tambien lo que daria una coincidencia— pero es la unica celda de toda la matriz que
+aterriza sobre un numero declarado `[H]`.
 
-1. **No existe `work/`.** Esta en `.gitignore` por la regla de confidencialidad, asi que los
-   cuatro FASTA de EPILAB, el TSV por ventana del port y las seis bases de `work/offtarget_db/`
-   no estan.
-2. **No hay Bowtie ni BLAST+.**
-3. **No hay ViennaRNA ni Biopython**, asi que el port tampoco puede generar el TSV por ventana
-   desde cero.
-4. **No esta instalado si-Fi21**, asi que el backend `exe` con RNAplfold 2.1.5 —el unico que
-   reproduce los 133, 32, 212 y 42 del original— no es alcanzable.
+**`ATPaseD_Dm` no queda explicado, y contra el genoma se cae a cero.** Contra
+`GITV01001458.1` las 42 ventanas eficientes pegan todas, asi que la fila da 42 y no 33 `[M]`.
+Contra el genoma pasa algo distinto y peor: de las 42, cuarenta pegan **solo en la hebra menos**
+y dos no pegan, asi que (b) da **0** `[M]`. El gen esta anotado en la hebra reversa del cromosoma
+`OZ319711.1` y los 376 aciertos estan todos en `-`. Bajo la regla del original, ese gen
+**desaparece entero de la tabla** si la base es el genoma en vez del transcriptoma. Es la
+consecuencia 2 del fuente, en el caso real y con el signo mas fuerte posible.
 
-Esto no es un hallazgo nuevo, es una consecuencia de como se reparte el trabajo: las corridas de
-la ola 3 se hicieron en otra maquina, y su propio registro lo dice
-(`research/ola3/C2_codigo_apolo_inta/corridas/README.md`: Darwin arm64, entorno conda `c2sifi`,
-Bowtie 1.3.1, ViennaRNA 2.7.2). Los `scripts/run_inta.py`, `run_db.py` y `barrido_inta.py` que
-ese README documenta **viven en `work/C2/` y no estan versionados**, asi que tampoco se pueden
-releer desde el repositorio.
+**`MP_MRFV` es el que no cierra, y ahora se sabe por que.** Su conteo por acierto es casi una
+funcion escalon. Las filas de la tabla contra los sesenta y cinco registros publicos de MRFV son
+133 (`AF265566.2`), 133 (`NC_002786.2`) y 30 (`KM523134.1`), y nada en el medio `[M]`. Las dos
+primeras son 133 porque la secuencia de EPILAB es una **subcadena exacta** de esos dos registros,
+asi que ninguna ventana se pierde; la tercera se cae a 30 porque `KM523134.1` difiere lo
+suficiente para que casi toda ventana de 21 nt tenga al menos un desajuste. Con un desajuste
+permitido la tercera fila sube a 85, y sigue sin ser 114 `[M]`. Para que la fila valga 114 hace
+falta un registro que difiera del que secuenciaron **en la medida justa**: mas parecido que
+`KM523134.1` y no identico a `AF265566.2`. Ninguno de los 65 registros publicos lo es.
 
-La matriz queda entonces como **pendiente declarado**, no como resultado nulo. La diferencia
-importa: un nulo seria haber corrido las celdas y que ninguna reproduzca los cuatro numeros, y
-eso todavia no se sabe. Lo que sigue es la secuencia exacta, para correrla en la maquina que
-tiene el corpus:
+`CP_MRFV` tiene el problema inverso y es el mas duro de los cuatro. El declarado, 35, esta
+**por encima** de nuestras 32 ventanas eficientes. La regla del original solo puede superar (a)
+si alguna ventana eficiente pega dos o mas veces en la misma referencia, y eso es exactamente lo
+que mide (e): contra las sesenta y cinco referencias de MRFV, **(e) = 0 en todas** `[M]`. La
+fila mas alta de las sesenta y cinco es 32 y las demas bajan hasta 2. **Ninguna referencia de
+MRFV puede dar 35 bajo esta regla**, ni con cero desajustes ni con uno. Ese numero no sale de la
+referencia: sale del motor o del criterio.
 
-```bash
-# 1. el TSV por ventana, en modo fiel y con el backend que corresponda
-python tools/sifi21_port/run_sifi.py work/sifi_check/{MP_MRFV,CP_MRFV,BicC_Dm,ATPaseD_Dm}_full.fasta \
-    --modo fiel --backend exe --salida work/M1/port_fiel
+## 5. Los tres mecanismos, ahora sobre datos reales
 
-# 2. el FASTA de ventanas que alimenta a Bowtie, con el nombre `w<pos>`
-for g in MP_MRFV CP_MRFV BicC_Dm ATPaseD_Dm; do
-  python research/ola4/M1_conteo_y_referencia/scripts/conteo_por_acierto.py ventanas \
-      --tsv work/M1/port_fiel/${g}_full.tsv --salida work/M1/ventanas/${g}.fasta
-done
+El reporte anterior tuvo que demostrar los tres casos que definen la regla con secuencias de
+juguete, y lo justificaba bien: contra el gen mismo son imposibles. Con la matriz corrida los
+tres aparecen en el corpus, y eso cambia el estatus de la demostracion.
 
-# 3. Bowtie, una corrida por base y por gen, con todos los aciertos
-bowtie -a -v 0 -f work/offtarget_db/indices/tsa_gitv01 work/M1/ventanas/BicC_Dm.fasta \
-    > work/M1/hits/tsa_gitv01_BicC_Dm.txt
+| Consecuencia del fuente | Instancia real medida |
+|---|---|
+| 1. La ventana eficiente que **no pega** se pierde del conteo | `BicC_Dm` contra `GITV01000968.1`: 12 de 212. Contra `dmaid_genoma`: 21 de 212 `[M]` |
+| 2. La que pega **solo en la hebra menos** no se evalua | `ATPaseD_Dm` contra `dmaid_genoma`: **40 de 42**, y la fila cae a 0 `[M]` |
+| 3. La que pega **dos veces en la misma referencia** cuenta dos veces | `BicC_Dm` contra el gen mismo con `-v 1`: 3 ventanas, (b) = 215 sobre (a) = 212 `[M]` |
 
-# 4. la regla del original sobre la matriz
-python research/ola4/M1_conteo_y_referencia/scripts/conteo_por_acierto.py contar \
-    --gen MP_MRFV=work/M1/port_fiel/MP_MRFV_full.tsv \
-    --gen CP_MRFV=work/M1/port_fiel/CP_MRFV_full.tsv \
-    --gen BicC_Dm=work/M1/port_fiel/BicC_Dm_full.tsv \
-    --gen ATPaseD_Dm=work/M1/port_fiel/ATPaseD_Dm_full.tsv \
-    --aciertos tsa_gitv01:BicC_Dm=work/M1/hits/tsa_gitv01_BicC_Dm.txt \
-    --base epilab4=work/C2/runs/epilab_full.fasta \
-    --exigir-identidad epilab4 \
-    --json research/ola4/M1_conteo_y_referencia/resultados/matriz.json \
-    --md   research/ola4/M1_conteo_y_referencia/resultados/matriz.md
+La demostracion sintetica de `resultados/ejemplo_formato_sintetico.md` se conserva porque sigue
+sirviendo para lo que fue hecha —aislar cada mecanismo con un solo cambio controlado— pero deja
+de ser la evidencia principal. La evidencia ahora es la tabla de arriba.
 
-# 5. control de orientacion: el complemento reverso de cada gen, y de ahi otra vez al paso 1
-python research/ola4/M1_conteo_y_referencia/scripts/conteo_por_acierto.py revcomp \
-    --fasta work/sifi_check/BicC_Dm_full.fasta --salida work/M1/revcomp/BicC_Dm_full.fasta
-```
+El caso 2 merece un parrafo propio porque no es solo una curiosidad del conteo. Si uno diseña
+contra un transcriptoma y verifica contra un genoma, o al reves, el conteo de eficientes de un
+gen anotado en la hebra reversa puede pasar de 42 a 0 sin que cambie una sola decision de diseño.
+Eso es una trampa de la herramienta, no de nuestros datos, y afecta a cualquiera que use el
+si-Fi21 original con una base genomica `[H]`. Va a `00_meta/CAMINOS_PROBADOS.md` y conviene
+mencionarselo al investigador.
 
-El paso 5 merece una aclaracion, porque el plan lo trata como barato y es un poco menos barato
-de lo que parece: el complemento reverso cambia **las ventanas**, no solo los aciertos, asi que
-el control de orientacion obliga a volver a correr el motor de eficiencia sobre el gen dado
-vuelta y recien despues contar. El script escribe el FASTA invertido; el costo esta en el paso 1.
+## 6. Control de orientacion: descartado, y con margen
 
-Confidencialidad: el TSV del port y el FASTA de ventanas contienen secuencias de EPILAB, y por
-eso los dos van a `work/` y nunca a `research/`. El script no sube nada a ninguna parte: Bowtie
-y la enumeracion local son locales.
+El plan trata este control como barato y no lo es tanto: el complemento reverso cambia **las
+ventanas**, no solo los aciertos, asi que hay que volver a correr el motor de eficiencia sobre el
+gen invertido y recien despues contar. Hecho, con el mismo motor verificado:
 
-## 5. Lo que si se puede acotar hoy, con numeros ya medidos
+| | `MP_MRFV` | `CP_MRFV` | `BicC_Dm` | `ATPaseD_Dm` | Distancia L1 |
+|---|---|---|---|---|---|
+| declarado | 114 | 35 | 199 | 33 | — |
+| orientacion directa | 133 | 32 | 212 | 42 | **44** |
+| complemento reverso | 47 | 22 | 108 | 52 | **190** |
 
-Sin correr nada nuevo, la corrida 4 de C2 ya midio contra que referencia pega cada gen en tres
-bases, y eso alcanza para descartar una parte del espacio de hipotesis. La tabla, con la de
-energia por defecto `[M]`
-(`research/ola3/C2_codigo_apolo_inta/corridas/04_resumen_base_datos.json`):
+El control queda **descartado con holgura** `[M]`. El complemento reverso no solo no acerca: se
+aleja en un factor de cuatro, y mueve tres genes en el sentido equivocado. La orientacion de
+entrada del laboratorio es la misma que la nuestra, que era la primera de las cuatro cosas que el
+investigador pidio verificar y ahora esta verificada con un numero y no con un argumento. El
+detalle esta en `resultados/orientacion.json`.
 
-| Gen | Base | Ventanas | Aciertos totales | Referencias | Blanco principal | Aciertos del blanco principal |
-|---|---|---|---|---|---|---|
-| `MP_MRFV` | `epilab4` | 1.243 | 1.243 | 1 | `MP_MRFV_full` | 1.243 |
-| `MP_MRFV` | `mrfv_all` | 1.243 | 2.841 | 4 | `NC_002786.2` | 1.243 |
-| `CP_MRFV` | `epilab4` | 508 | 508 | 1 | `CP_MRFV_full` | 508 |
-| `CP_MRFV` | `mrfv_all` | 508 | 11.019 | 65 | `AF265566.2` | 508 |
-| `BicC_Dm` | `epilab4` | 2.500 | 2.504 | 1 | `BicC_Dm_full` | 2.500 |
-| `BicC_Dm` | `tsa_gitv01` | 2.500 | 2.430 | 6 | `GITV01000968.1` | 2.353 |
-| `ATPaseD_Dm` | `epilab4` | 471 | 471 | 1 | `ATPaseD_Dm_full` | 471 |
-| `ATPaseD_Dm` | `tsa_gitv01` | 471 | 736 | 2 | `GITV01001458.1` | 450 |
+Vale notar por que el control es informativo a pesar de ser negativo: la asimetria es grande
+—`BicC_Dm` cae a la mitad y `ATPaseD_Dm` sube— porque el criterio de si-Fi21 no es simetrico
+respecto de la hebra. Un resultado parecido entre las dos orientaciones habria significado que el
+control no distingue nada; este distingue mucho.
 
-De ahi salen tres cosas.
+## 7. El eje del motor, cruzado con el de la referencia
 
-**Contra el gen mismo, la regla del original no puede bajar el conteo.** Toda ventana pega al
-menos una vez, asi que (b) es mayor o igual que (a). La base `epilab4` no puede producir 114
-partiendo de 133, ni 199 partiendo de 212, ni 33 partiendo de 42: solo puede producir numeros
-iguales o mayores. Para que la regla explique una **baja** hace falta una referencia en la que
-ventanas eficientes **no peguen**, y eso es una propiedad de la referencia, no del criterio
-`[H]`.
+El plan condiciona la tarea 4 —puntos intermedios del motor de accesibilidad— a que M1 no cierre
+con la referencia. Cierra para un gen de cuatro, asi que el eje **vuelve a estar en juego** para
+los otros tres, y conviene dejar medido lo que se puede medir sin instalar nada. Los dos ejes
+nunca se habian cruzado: la ola 3 barrio el motor con una sola base y esta linea barrio la base
+con un solo motor.
 
-**En los dos genes del insecto, el transcriptoma publico de *Dalbulus maidis* pierde ventanas, y
-en la direccion correcta.** El blanco principal de `BicC_Dm` en `tsa_gitv01` recibe 2.353 de
-2.500, y el de `ATPaseD_Dm`, 450 de 471 `[M]`. Si la proporcion de perdida fuera parecida entre
-las ventanas eficientes, la fila de ese blanco caeria de 212 a alrededor de 200 y de 42 a
-alrededor de 40, contra los 199 y 33 declarados. El primero cae casi exacto; el segundo se queda
-corto. Eso es aritmetica de servilleta y no reemplaza la medicion, porque la perdida no tiene
-por que repartirse igual entre eficientes y no eficientes: es justo lo que mide (d) por gen y por
-base `[H]`.
+Con el backend `vienna` (ViennaRNA 2.7.2) en lugar de `exe` (RNAplfold 2.1.5), el mismo port y el
+mismo modo `fiel` dan 142, 39, 223 y 35 eficientes `[M]`, que son los mismos cuatro numeros que
+`sifi21INTA` reporta con la tabla `RNA_NN3`
+(`research/ola3/C2_codigo_apolo_inta/corridas/04_resumen_base_datos.json`) — una concordancia que
+vale como verificacion cruzada del port en un segundo punto. Cruzado con la referencia:
 
-**En los dos genes virales, ninguna base medida pierde una sola ventana.** El blanco principal de
-`MP_MRFV` en `mrfv_all` es `NC_002786.2` y recibe las 1.243; el de `CP_MRFV` es `AF265566.2` y
-recibe las 508 `[M]`. O sea que las secuencias de EPILAB son subcadenas exactas de esos dos
-registros publicos, y contra ellos la regla del original tampoco puede bajar el conteo. Para que
-`MP_MRFV` baje de 133 a 114 hace falta una referencia que **difiera** de la secuencia que
-diseñaron: otro aislamiento de MRFV, no el conjunto completo de registros publicos. Y la
-demostracion sintetica de la seccion 3 muestra que **una sola sustitucion** alcanza para sacar
-de la tabla a las veintiuna ventanas que la cubren, lo que convierte a esa hipotesis en una que
-mueve numeros del orden de la brecha.
+| Motor | Base | `MP_MRFV` | `CP_MRFV` | `BicC_Dm` | `ATPaseD_Dm` |
+|---|---|---|---|---|---|
+| declarado | — | **114** | **35** | **199** | **33** |
+| RNAplfold 2.1.5 | gen mismo | 133 | 32 | 212 | 42 |
+| RNAplfold 2.1.5 | publico de *D. maidis* | — | — | **200** | 42 |
+| ViennaRNA 2.7.2 | gen mismo | 142 | 39 | 223 | **35** |
+| ViennaRNA 2.7.2 | publico de *D. maidis* | — | — | 209 | **35** |
 
-Eso reordena el pedido del lunes. La pregunta no es solo «contra que base corrieron el diseño»,
-sino **contra que registro**, con su numero de acceso o su archivo: para los dos genes virales,
-la unica forma de que la regla por acierto baje el conteo es que la referencia sea un aislamiento
-distinto del que ellos secuenciaron.
+Lo que esto dice es incomodo y hay que decirlo asi: **cada gen tiene su mejor celda, y no son la
+misma celda** `[M]`. `BicC_Dm` se acerca a 199 con el motor viejo (200) y se aleja con el nuevo
+(209). `ATPaseD_Dm` se acerca a 33 con el motor nuevo (35) y se aleja con el viejo (42).
+`CP_MRFV` queda encerrado: 32 con el viejo, 39 con el nuevo, y el declarado 35 justo en el medio.
+`MP_MRFV` no se acerca con ninguno.
 
-## 6. Una inconsistencia de unidad en nuestro propio resumen
+De ahi sale la conclusion que ordena el resto. **No existe una configuracion unica, entre las que
+podemos construir, que reproduzca los cuatro numeros.** La combinacion mejor por gen da
+(133, 32, 200, 35) y una distancia L1 de 25, contra los 44 de la celda de verificacion, pero esa
+combinacion **mezcla dos motores distintos entre genes** y por lo tanto no es una corrida: es un
+artefacto de elegir lo mejor de cada columna. Presentarla como explicacion seria el mismo error
+que D45 registro con el umbral de 1,75, un barrido mas grande `[H]`.
 
-Mientras se leia esa tabla aparecio algo que conviene registrar, porque es el mismo problema de
-M1 un nivel mas abajo. En la fila de `BicC_Dm` contra `epilab4`, el resumen dice
-`hits_bowtie: 2504` y `hits_blanco_principal: 2500`, **con una sola referencia** `[M]`. Con una
-sola referencia los dos campos deberian ser el mismo numero, asi que **no estan en la misma
-unidad**: uno cuenta alineamientos y el otro, casi con seguridad, ventanas. Cual es cual no se
-puede resolver desde el repositorio, porque el driver que los calculo (`work/C2/scripts/run_db.py`)
-no esta versionado `[?]`. Queda anotado en `00_meta/PREGUNTAS_ABIERTAS.md`. No invalida nada de
-lo que esta arriba —los 2.353 y los 450 son del mismo campo y se comparan entre si— pero sin
-resolverlo esos dos numeros no se pueden mezclar con los aciertos de Bowtie en una sola cuenta.
+## 8. La unidad de los dos campos, resuelta
 
-## 7. Estado del criterio de terminado
+El reporte anterior dejo abierto, como `[?]`, que en la fila de `BicC_Dm` contra `epilab4` el
+resumen de la ola 3 dice `hits_bowtie: 2504` y `hits_blanco_principal: 2500` con una sola
+referencia, y que cual campo esta en que unidad no se podia resolver leyendo el repositorio.
+**Se resolvio midiendo.** La misma corrida en esta maquina, contra la misma base, da 2.504 lineas
+de alineamiento y **2.500 nombres de lectura distintos** `[M]`. Asi que `hits_bowtie` cuenta
+alineamientos y `hits_blanco_principal` cuenta ventanas. La confirmacion independiente esta en
+`gitv01_blancos`: 2.357 alineamientos y 2.353 ventanas distintas, y 2.353 es exactamente el
+numero que el resumen de la ola 3 declara para ese campo.
+
+No hizo falta el driver sin versionar: hizo falta correr Bowtie una vez. La entrada de
+`PREGUNTAS_ABIERTAS.md` se cierra y el pendiente de versionar los tres drivers de C2 queda igual,
+por otras razones.
+
+Esto tambien corrige un detalle de redaccion del reporte anterior, que leia la tabla de la ola 3
+como si los campos fueran comparables entre si: los 2.353 de `BicC_Dm` y los 450 de
+`ATPaseD_Dm` son ventanas, no aciertos, y por eso la regla de tres que estimaba «alrededor de
+200» estaba hecha sobre la unidad correcta por casualidad y no por diseño.
+
+## 9. Una correccion al plan y al issue, sobre una base mal nombrada
+
+El plan de la ola 4 y el issue #5 describen `GCF_002217175.1` como «transcriptoma de
+*D. maidis*». **No lo es.** La cabecera del primer registro del archivo dice *Folsomia candida*
+`[M]`, que es el colembolo del panel de no objetivo, con peso 0,40 en D18. Las seis bases de
+`work/offtarget_db/` incluyen el **genoma** de *D. maidis* pero **ningun transcriptoma** de
+*D. maidis*; el que la ola 3 uso con el nombre `tsa_gitv01` es la ensambladura TSA `GITV01`, que
+no esta en esa carpeta ni en el repositorio.
+
+Esto no invalida ninguna medicion de la ola 3 —ahi la base se llamaba por su nombre— pero si
+afecta a como se lee el inventario del plan, que cuenta «tres transcriptomas publicos de
+*D. maidis*» cuando hay uno y no esta descargado. Queda corregido en el driver, en el issue y en
+`PREGUNTAS_ABIERTAS.md`.
+
+## 10. Lo que no corrio, y la limitacion de la herramienta
+
+Dos cosas, y las dos se declaran en lugar de aproximarse.
+
+**La ensambladura TSA completa de *D. maidis* no se bajo.** Lo que se uso son los **dos contigs**
+que la ola 3 identifico como blanco principal, bajados por numero de acceso. Para la **fila de la
+tabla** eso es exacto, y es lo que importa: una fila depende solo de su propia referencia. Lo que
+queda subestimado es (d) —una ventana que no pega en `GITV01000968.1` podria pegar en otro contig
+de la misma ensambladura— y por lo tanto `suma_filas`. La ola 3 midio que `BicC_Dm` toca seis
+referencias de esa base y `ATPaseD_Dm` dos, asi que faltan cuatro y una; con la ensambladura
+completa, la fila de 200 **no cambia** y el total si. La lista de los otros cinco contigs no esta
+en el repositorio: es lo que habria que recuperar de `work/C2/` para completar la celda `[?]`.
+
+**`bowtie -a -v 1` no corre contra las dos bases mas grandes.** El binario de 32 bits que trae
+si-Fi2015 aborta con `Error reading _rstarts[] array` sobre un indice grande `[M]`. Con `-v 0`
+corre bien en las once bases; con `-v 1` corre bien hasta `fcandida` (114 MB de FASTA) y aborta
+en `zmays` (172 MB) y en `dmaid_genoma` (984 MB), asi que el limite esta entre 114 y 172 MB. Las
+ocho celdas afectadas quedan registradas como fallidas en `resultados/procedencia.json` y
+**ausentes** de `matriz_mm1.md`, no como ceros: el driver borra el archivo de salida cuando Bowtie
+aborta, justamente para que una celda que no corrio no se lea como una que midio cero. Esa
+distincion no es teorica —durante esta sesion una corrida fallida dejo un archivo vacio y la
+celda aparecio como un cero medido en la primera version de la tabla—, y es la razon por la que
+el driver ahora lo borra. Correrlas necesita un Bowtie de 64 bits, 1.3.x, que es el que tiene la
+maquina de la ola 3.
+
+## 11. Estado del criterio de terminado
 
 | # | Criterio | Estado |
 |---|---|---|
-| 1 | El script reproduce los cuatro numeros verificados cuando la base es el gen mismo | **parcial.** La regla esta implementada y el invariante correcto esta verificado con insumos sinteticos; la celda real necesita el TSV del port sobre las secuencias de EPILAB. Y el criterio, como estaba escrito, era falso: ver seccion 2 |
-| 2 | Una tabla con una fila por base y los cuatro conteos | **no.** El formato esta fijado y demostrado en `resultados/ejemplo_formato_sintetico.md`; las celdas reales no corrieron |
-| 3 | Esta dicho si alguna celda reproduce (114, 35, 199, 33) | **no**, y no se finge. Lo que si esta dicho es que `epilab4` y `mrfv_all` **no pueden** reproducirlo por una razon estructural, y que el candidato vivo es un registro distinto del que secuenciaron (seccion 5) |
-| 4 | El control de orientacion esta corrido e informado | **no.** El subcomando esta escrito y probado; correrlo necesita el motor de eficiencia sobre el gen invertido |
+| 1 | El script reproduce los cuatro numeros verificados cuando la base es el gen mismo | **si.** Contra `epilab4`, (a) y (b) dan 133, 32, 212 y 42, con (d) = 0 y (e) = 0, y el invariante `--exigir-identidad` pasa `[M]` |
+| 2 | Una tabla con una fila por base y los cuatro conteos | **si.** Once bases en `resultados/matriz.md`, con las tres agregaciones, el detalle por celda y la distancia L1; mas `matriz_mm1.md` y `matriz_vienna.md` |
+| 3 | Esta dicho si alguna celda reproduce (114, 35, 199, 33) y, si ninguna, cual es la mas cercana y que dato falta | **si, y ninguna reproduce.** La mas cercana es `epilab4` con L1 = 44; con la referencia publica de *D. maidis* para los dos genes del insecto baja a 32. El dato que falta es su salida por ventana y el numero de acceso de su referencia de MRFV (seccion 12) |
+| 4 | El control de orientacion esta corrido e informado | **si.** Descartado con L1 = 190 contra 44 `[M]` |
 
-La tarea 4 del plan —los puntos intermedios del motor de accesibilidad, 2.4.x y 2.6.x— **no
-corresponde todavia**: el plan la condiciona a que M1 no cierre con la referencia, y M1 no
-cerro ni fallo, quedo sin correr. Abrir ese eje ahora seria exactamente el error que D45 acaba de
-registrar.
+La tarea 4 del plan —puntos intermedios 2.4.x y 2.6.x del motor— **queda habilitada y no
+corrida**. El plan la condicionaba a que M1 no cerrara con la referencia, y no cierra para tres
+de los cuatro genes. Lo que esta linea agrega es el cruce de los dos ejes (seccion 7), que
+muestra que el eje del motor mueve los numeros en direcciones **distintas segun el gen**, asi que
+un barrido de versiones intermedias tiene ahora una pregunta concreta que contestar y no es un
+barrido a ciegas. Instalar dos versiones mas de ViennaRNA es trabajo de la maquina de la ola 3.
 
-## 8. Lo que falta, y en que orden
+## 12. Que cambia para el lunes
 
-1. **Correr los pasos 1 a 5 de la seccion 4 en la maquina que tiene el corpus.** Es la mitad que
-   falta de esta linea y no necesita ninguna decision.
-2. **Pedir el lunes la salida por ventana de la corrida `siFi21_8_1.0_0.1_1111`** y, con el
-   detalle que agrega la seccion 5, **el numero de acceso o el archivo de la referencia de
-   Bowtie contra la que corrieron el diseño**, por gen. Con eso la comparacion es exacta.
-3. **Resolver la unidad de los dos campos de `04_resumen_base_datos.json`** (seccion 6), que
-   cuesta minutos en la maquina que tiene `work/C2/`.
-4. **Versionar los tres drivers de C2** que hoy viven solo en `work/`. No es de esta linea, pero
-   es la razon por la que el punto 3 no se pudo contestar leyendo el repositorio.
+El pedido se afina por tercera vez y ahora tiene tres piezas, en orden de rendimiento.
+
+**Uno, el mismo de siempre y sigue siendo el que mas rinde:** la salida por ventana de la corrida
+`siFi21_8_1.0_0.1_1111`. Con eso la comparacion es exacta y las cuatro brechas se cierran o se
+explican en una tarde.
+
+**Dos, el numero de acceso de la referencia de Bowtie, por gen.** Esto ya estaba en el reporte
+anterior, pero ahora se puede acompañar de una prediccion verificable, que es lo que lo hace util
+preguntarlo: para `MP_MRFV`, **ninguno de los 65 registros publicos de MRFV da 114**. Las filas
+posibles son 133, 133 y 30. Si nos dicen el acceso, o esta en esa lista —y entonces el conteo no
+sale de la referencia— o es un aislamiento que no esta publicado, y entonces hace falta el
+archivo. Preguntar asi es mejor que preguntar abierto: la respuesta discrimina.
+
+**Tres, una pregunta nueva, que sale de la seccion 4:** si para los dos genes del insecto
+corrieron contra un **transcriptoma** o contra el **genoma**. No es un detalle de bookkeeping. Si
+fue contra el genoma, el conteo de `ATPaseD_Dm` que sale de la herramienta es **0**, porque el gen
+esta en la hebra reversa y la regla del original solo evalua la hebra `+`; el 33 declarado no
+podria salir de ahi. Y si fue contra un transcriptoma, queremos saber cual, porque el contig
+publico `GITV01000968.1` da 200 para `BicC_Dm` contra sus 199 y eso es la unica coincidencia de
+toda la matriz.
+
+Lo que **no** conviene hacer es presentar la combinacion mejor por gen como si fuera una
+explicacion. No es una corrida: mezcla motores entre genes, y la leccion de D45 es exactamente
+esa.
+
+## 13. Lo que falta, y en que orden
+
+1. **Pedir las tres cosas de la seccion 12**, el lunes. Sin eso lo que se puede hacer es acotar,
+   y acotar ya se hizo.
+2. **Completar la celda de la ensambladura TSA** con los cinco contigs que faltan, que estan
+   nombrados en `work/C2/` y no en el repositorio. Cambia `suma_filas` y (d), no la fila.
+3. **Correr `-v 1` contra el genoma** con un Bowtie de 64 bits, en la maquina de la ola 3.
+4. **Versionar los tres drivers de C2.** Sigue pendiente, pero ya no bloquea nada de esta linea:
+   la pregunta que dependia de ellos se contesto midiendo (seccion 8).
+5. **Los puntos intermedios del motor**, con la pregunta concreta de la seccion 7.
 
 ---
 
@@ -306,7 +394,13 @@ registrar.
 | Ruta | Que es |
 |---|---|
 | `scripts/conteo_por_acierto.py` | La regla del original. Tres subcomandos: `contar`, `ventanas`, `revcomp`. Solo biblioteca estandar |
-| `scripts/test_conteo_por_acierto.py` | 29 verificaciones con insumos sinteticos |
-| `scripts/demo_sintetico.py` | Demostracion de los dos mecanismos, con semilla fija |
-| `resultados/verificacion_regla.txt` | Salida cruda de las verificaciones |
-| `resultados/ejemplo_formato_sintetico.md` | El formato de la tabla de la matriz, sobre secuencias de juguete |
+| `scripts/correr_matriz.py` | El driver: del FASTA al conteo en un comando, con procedencia. Encuentra Bowtie y RNAplfold en el instalador de si-Fi2015 |
+| `scripts/test_conteo_por_acierto.py` | 44 verificaciones con insumos sinteticos |
+| `scripts/demo_sintetico.py` | Demostracion aislada de los tres mecanismos, con semilla fija |
+| `resultados/matriz.md` y `.json` | La matriz con `-v 0`: once bases, tres agregaciones, detalle por celda |
+| `resultados/matriz_mm1.md` y `.json` | Lo mismo con `-v 1` como sensibilidad, sin las celdas que Bowtie no pudo correr |
+| `resultados/matriz_vienna.md` y `.json` | El cruce con el eje del motor (ViennaRNA 2.7.2) |
+| `resultados/orientacion.md` y `.json` | El control de orientacion |
+| `resultados/procedencia.json` | Versiones, bases corridas, bases ausentes, celdas fallidas |
+| `resultados/verificacion_regla.txt` | Salida cruda de las 44 verificaciones |
+| `resultados/ejemplo_formato_sintetico.md` | La demostracion de los mecanismos sobre secuencias de juguete |

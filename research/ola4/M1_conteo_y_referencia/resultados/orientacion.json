@@ -1,0 +1,158 @@
+{
+  "declarado": {
+    "MP_MRFV": 114,
+    "CP_MRFV": 35,
+    "BicC_Dm": 199,
+    "ATPaseD_Dm": 33
+  },
+  "agregaciones": {
+    "suma_filas": {
+      "epilab4_rc": {
+        "vector": {
+          "ATPaseD_Dm": 52,
+          "BicC_Dm": 108,
+          "CP_MRFV": 22,
+          "MP_MRFV": 47
+        },
+        "distancia_L1": 190,
+        "reproduce": false
+      }
+    },
+    "fila_max": {
+      "epilab4_rc": {
+        "vector": {
+          "ATPaseD_Dm": 52,
+          "BicC_Dm": 108,
+          "CP_MRFV": 22,
+          "MP_MRFV": 47
+        },
+        "distancia_L1": 190,
+        "reproduce": false
+      }
+    },
+    "fila_homonima": {
+      "epilab4_rc": {
+        "vector": {
+          "ATPaseD_Dm": 52,
+          "BicC_Dm": 108,
+          "CP_MRFV": 22,
+          "MP_MRFV": 47
+        },
+        "distancia_L1": 190,
+        "reproduce": false
+      }
+    }
+  },
+  "celdas": {
+    "epilab4_rc": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 52,
+        "aciertos_mas_total": 52,
+        "aciertos_cualquier_hebra_total": 52,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "ATPaseD_Dm_full_revcomp": 52
+        },
+        "filas_cualquier_hebra": {
+          "ATPaseD_Dm_full_revcomp": 52
+        },
+        "fila_max": {
+          "ref": "ATPaseD_Dm_full_revcomp",
+          "conteo": 52
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 471,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:epilab4rc_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {
+          "ATPaseD_Dm_full_revcomp": 52
+        }
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 108,
+        "aciertos_mas_total": 108,
+        "aciertos_cualquier_hebra_total": 108,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "BicC_Dm_full_revcomp": 108
+        },
+        "filas_cualquier_hebra": {
+          "BicC_Dm_full_revcomp": 108
+        },
+        "fila_max": {
+          "ref": "BicC_Dm_full_revcomp",
+          "conteo": 108
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 2504,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:epilab4rc_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {
+          "BicC_Dm_full_revcomp": 108
+        }
+      },
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 22,
+        "aciertos_mas_total": 22,
+        "aciertos_cualquier_hebra_total": 22,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "CP_MRFV_full_revcomp": 22
+        },
+        "filas_cualquier_hebra": {
+          "CP_MRFV_full_revcomp": 22
+        },
+        "fila_max": {
+          "ref": "CP_MRFV_full_revcomp",
+          "conteo": 22
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 508,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:epilab4rc_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {
+          "CP_MRFV_full_revcomp": 22
+        }
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 47,
+        "aciertos_mas_total": 47,
+        "aciertos_cualquier_hebra_total": 47,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "MP_MRFV_full_revcomp": 47
+        },
+        "filas_cualquier_hebra": {
+          "MP_MRFV_full_revcomp": 47
+        },
+        "fila_max": {
+          "ref": "MP_MRFV_full_revcomp",
+          "conteo": 47
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 1243,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:epilab4rc_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {
+          "MP_MRFV_full_revcomp": 47
+        }
+      }
+    }
+  }
+}

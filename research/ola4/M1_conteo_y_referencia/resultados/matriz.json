@@ -1,0 +1,1224 @@
+{
+  "declarado": {
+    "MP_MRFV": 114,
+    "CP_MRFV": 35,
+    "BicC_Dm": 199,
+    "ATPaseD_Dm": 33
+  },
+  "agregaciones": {
+    "suma_filas": {
+      "amel": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 381,
+        "reproduce": false
+      },
+      "dmaid_genoma": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 191,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 190,
+        "reproduce": false
+      },
+      "epilab4": {
+        "vector": {
+          "ATPaseD_Dm": 42,
+          "BicC_Dm": 212,
+          "CP_MRFV": 32,
+          "MP_MRFV": 133
+        },
+        "distancia_L1": 44,
+        "reproduce": false
+      },
+      "fcandida": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 381,
+        "reproduce": false
+      },
+      "gitv01_blancos": {
+        "vector": {
+          "ATPaseD_Dm": 42,
+          "BicC_Dm": 200
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "haxyr": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 381,
+        "reproduce": false
+      },
+      "hvitri": {
+        "vector": {
+          "ATPaseD_Dm": 3,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 378,
+        "reproduce": false
+      },
+      "mrfv_all": {
+        "vector": {
+          "CP_MRFV": 779,
+          "MP_MRFV": 296
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "mrfv_nc": {
+        "vector": {
+          "CP_MRFV": 32,
+          "MP_MRFV": 133
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "zmays": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 381,
+        "reproduce": false
+      }
+    },
+    "fila_max": {
+      "amel": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 381,
+        "reproduce": false
+      },
+      "dmaid_genoma": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 191,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 190,
+        "reproduce": false
+      },
+      "epilab4": {
+        "vector": {
+          "ATPaseD_Dm": 42,
+          "BicC_Dm": 212,
+          "CP_MRFV": 32,
+          "MP_MRFV": 133
+        },
+        "distancia_L1": 44,
+        "reproduce": false
+      },
+      "fcandida": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 381,
+        "reproduce": false
+      },
+      "gitv01_blancos": {
+        "vector": {
+          "ATPaseD_Dm": 42,
+          "BicC_Dm": 200
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "haxyr": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 381,
+        "reproduce": false
+      },
+      "hvitri": {
+        "vector": {
+          "ATPaseD_Dm": 3,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 378,
+        "reproduce": false
+      },
+      "mrfv_all": {
+        "vector": {
+          "CP_MRFV": 32,
+          "MP_MRFV": 133
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "mrfv_nc": {
+        "vector": {
+          "CP_MRFV": 32,
+          "MP_MRFV": 133
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "zmays": {
+        "vector": {
+          "ATPaseD_Dm": 0,
+          "BicC_Dm": 0,
+          "CP_MRFV": 0,
+          "MP_MRFV": 0
+        },
+        "distancia_L1": 381,
+        "reproduce": false
+      }
+    },
+    "fila_homonima": {
+      "amel": {
+        "vector": {
+          "ATPaseD_Dm": null,
+          "BicC_Dm": null,
+          "CP_MRFV": null,
+          "MP_MRFV": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "dmaid_genoma": {
+        "vector": {
+          "ATPaseD_Dm": null,
+          "BicC_Dm": null,
+          "CP_MRFV": null,
+          "MP_MRFV": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "epilab4": {
+        "vector": {
+          "ATPaseD_Dm": 42,
+          "BicC_Dm": 212,
+          "CP_MRFV": 32,
+          "MP_MRFV": 133
+        },
+        "distancia_L1": 44,
+        "reproduce": false
+      },
+      "fcandida": {
+        "vector": {
+          "ATPaseD_Dm": null,
+          "BicC_Dm": null,
+          "CP_MRFV": null,
+          "MP_MRFV": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "gitv01_blancos": {
+        "vector": {
+          "ATPaseD_Dm": null,
+          "BicC_Dm": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "haxyr": {
+        "vector": {
+          "ATPaseD_Dm": null,
+          "BicC_Dm": null,
+          "CP_MRFV": null,
+          "MP_MRFV": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "hvitri": {
+        "vector": {
+          "ATPaseD_Dm": null,
+          "BicC_Dm": null,
+          "CP_MRFV": null,
+          "MP_MRFV": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "mrfv_all": {
+        "vector": {
+          "CP_MRFV": null,
+          "MP_MRFV": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "mrfv_nc": {
+        "vector": {
+          "CP_MRFV": null,
+          "MP_MRFV": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      },
+      "zmays": {
+        "vector": {
+          "ATPaseD_Dm": null,
+          "BicC_Dm": null,
+          "CP_MRFV": null,
+          "MP_MRFV": null
+        },
+        "distancia_L1": null,
+        "reproduce": false
+      }
+    }
+  },
+  "celdas": {
+    "amel": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 42,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 42,
+        "eficientes_sin_acierto_mas": 42,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:amel_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 212,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 212,
+        "eficientes_sin_acierto_mas": 212,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:amel_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 32,
+        "eficientes_sin_acierto_mas": 32,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:amel_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 133,
+        "eficientes_sin_acierto_mas": 133,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:amel_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    },
+    "dmaid_genoma": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 42,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 40,
+        "eficientes_sin_acierto": 2,
+        "eficientes_sin_acierto_mas": 42,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {
+          "OZ319711.1": 40
+        },
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 376,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:dmaid_genoma_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 212,
+        "aciertos_mas_total": 191,
+        "aciertos_cualquier_hebra_total": 191,
+        "eficientes_sin_acierto": 21,
+        "eficientes_sin_acierto_mas": 21,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "OZ319706.1": 191
+        },
+        "filas_cualquier_hebra": {
+          "OZ319706.1": 191
+        },
+        "fila_max": {
+          "ref": "OZ319706.1",
+          "conteo": 191
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 2178,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:dmaid_genoma_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 32,
+        "eficientes_sin_acierto_mas": 32,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:dmaid_genoma_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 133,
+        "eficientes_sin_acierto_mas": 133,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:dmaid_genoma_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    },
+    "epilab4": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 42,
+        "aciertos_mas_total": 42,
+        "aciertos_cualquier_hebra_total": 42,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "ATPaseD_Dm_full": 42
+        },
+        "filas_cualquier_hebra": {
+          "ATPaseD_Dm_full": 42
+        },
+        "fila_max": {
+          "ref": "ATPaseD_Dm_full",
+          "conteo": 42
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 471,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:epilab4_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {
+          "ATPaseD_Dm_full": 42
+        }
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 212,
+        "aciertos_mas_total": 212,
+        "aciertos_cualquier_hebra_total": 212,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "BicC_Dm_full": 212
+        },
+        "filas_cualquier_hebra": {
+          "BicC_Dm_full": 212
+        },
+        "fila_max": {
+          "ref": "BicC_Dm_full",
+          "conteo": 212
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 2504,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:epilab4_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {
+          "BicC_Dm_full": 212
+        }
+      },
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 32,
+        "aciertos_cualquier_hebra_total": 32,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "CP_MRFV_full": 32
+        },
+        "filas_cualquier_hebra": {
+          "CP_MRFV_full": 32
+        },
+        "fila_max": {
+          "ref": "CP_MRFV_full",
+          "conteo": 32
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 508,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:epilab4_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {
+          "CP_MRFV_full": 32
+        }
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 133,
+        "aciertos_cualquier_hebra_total": 133,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "MP_MRFV_full": 133
+        },
+        "filas_cualquier_hebra": {
+          "MP_MRFV_full": 133
+        },
+        "fila_max": {
+          "ref": "MP_MRFV_full",
+          "conteo": 133
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 1243,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:epilab4_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {
+          "MP_MRFV_full": 133
+        }
+      }
+    },
+    "fcandida": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 42,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 42,
+        "eficientes_sin_acierto_mas": 42,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:fcandida_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 212,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 212,
+        "eficientes_sin_acierto_mas": 212,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:fcandida_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 32,
+        "eficientes_sin_acierto_mas": 32,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:fcandida_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 133,
+        "eficientes_sin_acierto_mas": 133,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:fcandida_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    },
+    "gitv01_blancos": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 42,
+        "aciertos_mas_total": 42,
+        "aciertos_cualquier_hebra_total": 42,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "GITV01001458.1": 42
+        },
+        "filas_cualquier_hebra": {
+          "GITV01001458.1": 42
+        },
+        "fila_max": {
+          "ref": "GITV01001458.1",
+          "conteo": 42
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 450,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:gitv01_blancos_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 212,
+        "aciertos_mas_total": 200,
+        "aciertos_cualquier_hebra_total": 200,
+        "eficientes_sin_acierto": 12,
+        "eficientes_sin_acierto_mas": 12,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "GITV01000968.1": 200
+        },
+        "filas_cualquier_hebra": {
+          "GITV01000968.1": 200
+        },
+        "fila_max": {
+          "ref": "GITV01000968.1",
+          "conteo": 200
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 2357,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:gitv01_blancos_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    },
+    "haxyr": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 42,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 42,
+        "eficientes_sin_acierto_mas": 42,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:haxyr_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 212,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 212,
+        "eficientes_sin_acierto_mas": 212,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 3,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:haxyr_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 32,
+        "eficientes_sin_acierto_mas": 32,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:haxyr_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 133,
+        "eficientes_sin_acierto_mas": 133,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:haxyr_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    },
+    "hvitri": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 42,
+        "aciertos_mas_total": 3,
+        "aciertos_cualquier_hebra_total": 3,
+        "eficientes_sin_acierto": 39,
+        "eficientes_sin_acierto_mas": 39,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "XM_046807969.1": 3
+        },
+        "filas_cualquier_hebra": {
+          "XM_046807969.1": 3
+        },
+        "fila_max": {
+          "ref": "XM_046807969.1",
+          "conteo": 3
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 3,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:hvitri_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 212,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 212,
+        "eficientes_sin_acierto_mas": 212,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 40,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:hvitri_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 32,
+        "eficientes_sin_acierto_mas": 32,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:hvitri_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 133,
+        "eficientes_sin_acierto_mas": 133,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:hvitri_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    },
+    "mrfv_all": {
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 779,
+        "aciertos_cualquier_hebra_total": 779,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 32,
+        "filas": {
+          "AF265566.2": 32,
+          "JN966985.1": 32,
+          "NC_002786.2": 32,
+          "U97722.1": 30,
+          "U97721.1": 23,
+          "U97724.1": 21,
+          "U97723.1": 17,
+          "U97725.1": 15,
+          "AF186178.1": 12,
+          "OM763708.1": 12,
+          "OM763709.1": 12,
+          "ON730783.1": 12,
+          "ON730785.1": 12,
+          "ON730787.1": 12,
+          "ON730792.1": 12,
+          "ON730801.1": 12,
+          "ON730803.1": 12,
+          "ON730804.1": 12,
+          "ON730805.1": 12,
+          "OP559511.1": 12,
+          "OP559513.1": 12,
+          "OP559515.1": 12,
+          "OP585537.1": 12,
+          "OP585538.1": 12,
+          "OP585539.1": 12,
+          "OP585540.1": 12,
+          "AF186177.1": 11,
+          "OM763710.1": 11,
+          "ON730782.1": 11,
+          "ON730786.1": 11,
+          "ON730788.1": 11,
+          "ON730794.1": 11,
+          "ON730796.1": 11,
+          "ON730799.1": 11,
+          "ON730800.1": 11,
+          "ON730802.1": 11,
+          "OP559512.1": 11,
+          "OP584701.1": 11,
+          "OP584702.1": 11,
+          "OP584703.1": 11,
+          "OP585535.1": 11,
+          "OP585536.1": 11,
+          "U97729.1": 11,
+          "KM523134.1": 10,
+          "ON730784.1": 10,
+          "ON730793.1": 10,
+          "ON730795.1": 10,
+          "ON730797.1": 10,
+          "ON730798.1": 10,
+          "ON730806.1": 10,
+          "ON730789.1": 8,
+          "ON730791.1": 8,
+          "OP559514.1": 8,
+          "U97717.1": 8,
+          "U97718.1": 8,
+          "U97726.1": 8,
+          "U97727.1": 8,
+          "DQ196348.1": 7,
+          "DQ196349.1": 7,
+          "ON730790.1": 7,
+          "U97730.1": 7,
+          "AF186179.1": 6,
+          "U97719.1": 6,
+          "U97728.1": 6,
+          "U97720.1": 2
+        },
+        "filas_cualquier_hebra": {
+          "AF265566.2": 32,
+          "JN966985.1": 32,
+          "NC_002786.2": 32,
+          "U97722.1": 30,
+          "U97721.1": 23,
+          "U97724.1": 21,
+          "U97723.1": 17,
+          "U97725.1": 15,
+          "AF186178.1": 12,
+          "OM763708.1": 12,
+          "OM763709.1": 12,
+          "ON730783.1": 12,
+          "ON730785.1": 12,
+          "ON730787.1": 12,
+          "ON730792.1": 12,
+          "ON730801.1": 12,
+          "ON730803.1": 12,
+          "ON730804.1": 12,
+          "ON730805.1": 12,
+          "OP559511.1": 12,
+          "OP559513.1": 12,
+          "OP559515.1": 12,
+          "OP585537.1": 12,
+          "OP585538.1": 12,
+          "OP585539.1": 12,
+          "OP585540.1": 12,
+          "AF186177.1": 11,
+          "OM763710.1": 11,
+          "ON730782.1": 11,
+          "ON730786.1": 11,
+          "ON730788.1": 11,
+          "ON730794.1": 11,
+          "ON730796.1": 11,
+          "ON730799.1": 11,
+          "ON730800.1": 11,
+          "ON730802.1": 11,
+          "OP559512.1": 11,
+          "OP584701.1": 11,
+          "OP584702.1": 11,
+          "OP584703.1": 11,
+          "OP585535.1": 11,
+          "OP585536.1": 11,
+          "U97729.1": 11,
+          "KM523134.1": 10,
+          "ON730784.1": 10,
+          "ON730793.1": 10,
+          "ON730795.1": 10,
+          "ON730797.1": 10,
+          "ON730798.1": 10,
+          "ON730806.1": 10,
+          "ON730789.1": 8,
+          "ON730791.1": 8,
+          "OP559514.1": 8,
+          "U97717.1": 8,
+          "U97718.1": 8,
+          "U97726.1": 8,
+          "U97727.1": 8,
+          "DQ196348.1": 7,
+          "DQ196349.1": 7,
+          "ON730790.1": 7,
+          "U97730.1": 7,
+          "AF186179.1": 6,
+          "U97719.1": 6,
+          "U97728.1": 6,
+          "U97720.1": 2
+        },
+        "fila_max": {
+          "ref": "NC_002786.2",
+          "conteo": 32
+        },
+        "referencias_con_fila": 65,
+        "aciertos_totales": 11019,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:mrfv_all_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 296,
+        "aciertos_cualquier_hebra_total": 296,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 133,
+        "filas": {
+          "AF265566.2": 133,
+          "NC_002786.2": 133,
+          "KM523134.1": 30
+        },
+        "filas_cualquier_hebra": {
+          "AF265566.2": 133,
+          "NC_002786.2": 133,
+          "KM523134.1": 30
+        },
+        "fila_max": {
+          "ref": "NC_002786.2",
+          "conteo": 133
+        },
+        "referencias_con_fila": 3,
+        "aciertos_totales": 2835,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:mrfv_all_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    },
+    "mrfv_nc": {
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 32,
+        "aciertos_cualquier_hebra_total": 32,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "NC_002786.2": 32
+        },
+        "filas_cualquier_hebra": {
+          "NC_002786.2": 32
+        },
+        "fila_max": {
+          "ref": "NC_002786.2",
+          "conteo": 32
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 508,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:mrfv_nc_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 133,
+        "aciertos_cualquier_hebra_total": 133,
+        "eficientes_sin_acierto": 0,
+        "eficientes_sin_acierto_mas": 0,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {
+          "NC_002786.2": 133
+        },
+        "filas_cualquier_hebra": {
+          "NC_002786.2": 133
+        },
+        "fila_max": {
+          "ref": "NC_002786.2",
+          "conteo": 133
+        },
+        "referencias_con_fila": 1,
+        "aciertos_totales": 1243,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:mrfv_nc_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    },
+    "zmays": {
+      "ATPaseD_Dm": {
+        "ventanas_total": 471,
+        "eficientes_por_ventana": 42,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 42,
+        "eficientes_sin_acierto_mas": 42,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:zmays_ATPaseD_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "BicC_Dm": {
+        "ventanas_total": 2500,
+        "eficientes_por_ventana": 212,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 212,
+        "eficientes_sin_acierto_mas": 212,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:zmays_BicC_Dm.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "CP_MRFV": {
+        "ventanas_total": 508,
+        "eficientes_por_ventana": 32,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 32,
+        "eficientes_sin_acierto_mas": 32,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:zmays_CP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      },
+      "MP_MRFV": {
+        "ventanas_total": 1243,
+        "eficientes_por_ventana": 133,
+        "aciertos_mas_total": 0,
+        "aciertos_cualquier_hebra_total": 0,
+        "eficientes_sin_acierto": 133,
+        "eficientes_sin_acierto_mas": 133,
+        "eficientes_con_acierto_multiple_en_una_ref": 0,
+        "eficientes_con_mas_de_un_acierto_mas": 0,
+        "filas": {},
+        "filas_cualquier_hebra": {},
+        "fila_max": {
+          "ref": null,
+          "conteo": 0
+        },
+        "referencias_con_fila": 0,
+        "aciertos_totales": 0,
+        "aciertos_sin_ventana_en_el_tsv": 0,
+        "origen": "bowtie:zmays_MP_MRFV.txt",
+        "filas_que_nombran_al_gen": {}
+      }
+    }
+  }
+}

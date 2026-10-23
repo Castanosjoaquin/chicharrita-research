@@ -184,10 +184,20 @@ incluso si la hipótesis falla.
 
 **Lo que ya hay.** El port con salida por ventana (`run_sifi.py --salida`, un TSV por gen con
 `pos`, `ddg`, `accessibility` y los cuatro booleanos). Las seis bases de
-`work/offtarget_db/` —genoma de *D. maidis* `GCA_975739785.1`, transcriptomas de *D. maidis*
-`GCF_002217175.1`, de *Homalodisca vitripennis* `GCF_021130785.1`, de *Apis mellifera*
+`work/offtarget_db/` —genoma de *D. maidis* `GCA_975739785.1`, transcriptomas de *Folsomia
+candida* `GCF_002217175.1`, de *Homalodisca vitripennis* `GCF_021130785.1`, de *Apis mellifera*
 `GCF_003254395.2`, de *Harmonia axyridis* `GCF_914767665.1` y de maíz `GCF_902167145.1`—. Los 71
 registros públicos de MRFV ya descargados y analizados en W5. Bowtie y BLAST+ locales.
+
+> **Corrección del 2026-10-23, al correr la línea.** Este inventario tenía dos errores que
+> importan para la tarea 2. Primero: `GCF_002217175.1` **no es** un transcriptoma de *D. maidis*
+> sino de *Folsomia candida*, el colémbolo del panel de no objetivo; queda corregido arriba. En
+> `work/offtarget_db/` hay **genoma** de *D. maidis* y **ningún transcriptoma** suyo, así que
+> donde la tarea 2 dice «cada uno de los tres transcriptomas públicos de *D. maidis*» hay que
+> leer «el único, que es la ensambladura TSA `GITV01` y hay que bajarla». Segundo: de los 71
+> registros de MRFV, los que W5 dejó inventariados con número de acceso son **65**. Y una
+> aclaración de disponibilidad: Bowtie y RNAplfold 2.1.5 vienen con el instalador de si-Fi2015,
+> en `%LOCALAPPDATA%\siFi2015\`, así que no hacen falta instalaciones aparte.
 
 **Lo que falta.** Un script que **implemente la regla de conteo del original** —un registro por
 acierto de Bowtie en la hebra `+`, agrupado por nombre de referencia— y la aplique a cada gen
