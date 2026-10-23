@@ -949,3 +949,50 @@ Con escalas continuas, `bursA_Dm` queda por delante de `ATPaseD_Dm` a los dos la
 - **Mezclar los modos del port.** Evitado a tiempo: C4 midió las quimeras en modo `fiel` y el ranking de W7 y C7 se construyó en `corregido`. En `fiel`, `MP_MRFV` tiene 142 ventanas eficientes y en `corregido` 123. Todo lo que compara contra el ranking se corrió en `corregido`.
 - **Tamizar las 5.760 ventanas de las doce quimeras.** Descartado por innecesario: toda ventana heredada es, base por base, una ventana de su región de origen, así que alcanza con tamizar las 4 regiones y los 40 nt que cruzan cada unión, 1.160 ventanas. El resultado es idéntico y cuesta una pasada por referencia en vez de siete.
 - **Las ternas y la cuádruple.** No se corrieron: 900 a 1.000 nt, muy por encima de los 262 y 300 pb de los dos antecedentes hemípteros publicados, y con el empalme aportando 4 ventanas eficientes de 240 no hay motivo para esperar que agregar uniones mejore nada. El script las soporta cambiando el `2` de `itertools.permutations(REGIONES, 2)`.
+
+## La respuesta del investigador (2026-10-22): tres correcciones
+
+La carta está transcripta y mapeada en `docs/plan_checkpoint2/salidas/F6_respuesta_y_cambios.md`.
+Lo que sigue es lo que nos corrigió, y de qué lado quedó cada cosa.
+
+- **El 1,75 como explicación del desajuste de conteos. Descartado, y era nuestro.** Afirmábamos
+  —en el correo y en la sección de la planilla de `entregables/critica-herramientas.md`— que
+  subir el umbral de estabilidad de extremos de 1,0 a 1,75 era lo que más acercaba a los 114, 35,
+  199 y 33 de la planilla, y que «dos barridos independientes apuntan al mismo parámetro». Él
+  declaró la configuración de sus corridas, `siFi21_8_1.0_0.1_1111`, con el umbral en **1,0**
+  `[R]`. La medición sobrevive: esa celda da 117, 35, 199 y 32, con dos valores exactos y un
+  error total de 4 `[M]`. La lectura causal no: con 22.176 celdas barridas, que una acierte dos de
+  cuatro números es lo que un barrido grande produce por sí solo. Queda como ADR D45, y la lección
+  es general: el mejor punto de un barrido con muchos grados de libertad no es un hallazgo hasta
+  que algo externo al barrido lo confirme.
+
+- **El veto ecológico automático. Descartado, y lo habíamos construido nosotros sobre un criterio
+  que él sí comparte.** El criterio de D17 —una ventana con coincidencia en un no objetivo cuenta
+  como riesgo aunque el modelo no la prediga eficiente— él lo corre igual y por el mismo
+  argumento, así que D17 queda confirmado por una fuente independiente. Lo que no hace es
+  convertir la coincidencia en una compuerta: «no trataría todas las coincidencias de 21 nt como
+  equivalentes ni las convertiría automáticamente en un veto ecológico universal» `[R]`. Pasa a
+  ADR D48 como alerta con cuatro campos obligatorios y justificación escrita. **Y nos cuesta una
+  conclusión:** el desempate del tercer puesto se apoyaba en el veto de `ATPaseD_Dm` por tres
+  coincidencias con *Homalodisca vitripennis*, y sin veto el empate vuelve.
+
+- **El peso único del panel no objetivo. Descartado por confundir dos funciones.** El 0,60 que
+  D18 le daba a *H. vitripennis* servía a la vez como riesgo de exposición y como señal de
+  conservación entre cicadélidos, que son cosas de signo opuesto. Él pide separarlas `[R]`; pasa
+  a ADR D47 como dos vectores que el motor no combina. Lo que **no** se descarta es el organismo:
+  pidió explícitamente conservarlo en el panel por su valor de conservación.
+
+- **Comparar 133 contra 114 como si fueran la misma cifra. Descartado al leer el fuente.**
+  Siguiendo su pista de «referencias y criterios de contabilización», la columna «Efficient siRNA
+  hits» del original no cuenta ventanas: cuenta registros de acierto de Bowtie agrupados por
+  nombre de referencia (`general_helpers.py:107-123`), y la eficiencia sólo se calcula para
+  aciertos en la hebra `+` (`sifi_pipeline.py:195-221`) `[R]`. `sifi21INTA`, en cambio, cuenta una
+  fila por ventana (`SifiPipeline.py:430-448`). Todas nuestras comparaciones contra la planilla
+  venían midiendo unidades distintas. La nueva hipótesis —que el desajuste es de referencia y de
+  unidad, no de parámetro— es la línea M1 de `docs/plan_ola4/PLAN_OLA4.md` y todavía es `[H]`.
+
+- **Seguir barriendo parámetros hasta dar con los cuatro números. Evitado a tiempo.** Era el
+  camino obvio después de que él dijera que el umbral no era 1,75: agregar ejes al barrido hasta
+  que alguna celda coincida. Es el mismo error de D45 a mayor escala. El plan de la ola 4 lo
+  prohíbe explícitamente: si M1 no cierra con la referencia, el resultado que se informa es la
+  cota y el dato que falta, no otra corrida.

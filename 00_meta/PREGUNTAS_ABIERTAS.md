@@ -1172,3 +1172,92 @@ abrió la tesis de Palacio, sólo su cita dentro del artículo. El paso 1 queda 
 - **Los empalmes no están tamizados contra humano.** El panel local tiene seis referencias; el ranking v2 usa siete, con *Homo sapiens*. Falta bajar el transcriptoma humano para cerrar el tamizaje de las 240 ventanas de empalme.
 - **Fuente sin abrir sobre el nombre de la técnica.** Wang *et al.* 2021, «Chimeric Double-Stranded RNAs Could Act as Tailor-Made Pesticides for Controlling Storage Insects», *J. Agric. Food Chem.* 69(22):6166-6171. Apareció en una búsqueda web como la cita académica más temprana de «chimeric dsRNA» aplicado a plagas; es de ACS y no se consiguió versión abierta. **No se cita en ningún documento del proyecto.**
 - **Por qué el empalme rinde tan poco.** Con las regiones de EPILAB las 240 ventanas de empalme daban 48 eficientes y con las vigentes dan 4. La explicación candidata —que una región elegida por densidad está enriquecida y el empalme es secuencia que nadie eligió— es nuestra y no está probada; además las 20 ventanas de una unión no son independientes, así que el n efectivo es 12 y no 240.
+
+# Respuesta del investigador (2026-10-22) — qué cierra y qué abre
+
+Fuente: correo de Diego del 22 de octubre de 2026, transcripto en
+`docs/plan_checkpoint2/salidas/F6_respuesta_y_cambios.md`. Plan de ejecución:
+`docs/plan_ola4/PLAN_OLA4.md`.
+
+## Cerradas
+
+- **En qué configuración corrieron si-Fi21.** `siFi21_8_1.0_0.1_1111`: modo diseño con los
+  valores por defecto —ventana de accesibilidad 8, umbral de estabilidad de extremos **1,0**,
+  corte de accesibilidad 0,1 y las cuatro casillas activas— `[R]`. El nombre se decodifica contra
+  `main.py:344-362` del fuente original. Cierra la primera mitad de la pregunta 1 del correo y
+  retira el 1,75 como explicación (ADR D45).
+- **Si la planilla es «eficientes» o «eficientes sin off-targets».** Es la primera: conteos del
+  análisis de diseño; los off-targets los evalúan por separado `[R]`. Cierra la segunda mitad de
+  la pregunta 1 (ADR D46).
+- **Si la rama de la regla terminal existe en el original.** Confirmada por él: «efectivamente, la
+  rama que identificaron existe en el código original», y describe el atajo igual que nosotros
+  —para ciertas combinaciones de nucleótidos el algoritmo prescinde de estabilidad de extremos y
+  selección de hebra y deja sólo accesibilidad— `[R]`. La auditoría de `CAMBIOS.md` C1 queda
+  confirmada por el laboratorio que usa la herramienta.
+- **Si nuestra posición conservadora sobre off-targets es defendible.** Él corre el mismo criterio
+  y por el mismo motivo `[R]`. D17 confirmado por una fuente independiente. Lo que corrige es la
+  consecuencia, no el criterio (ADR D48).
+- **Si *Homalodisca vitripennis* debía salir del panel.** No: pidió conservarla, separando
+  exposición de conservación `[R]` (ADR D47).
+
+## Siguen abiertas, y son los pedidos del lunes 26
+
+En orden de cuánto desbloquean. Las seis son preguntas del correo que no contestó, más una nueva
+que su propia carta hizo necesaria.
+
+1. **La salida por ventana de su corrida `siFi21_8_1.0_0.1_1111`, y contra qué base de Bowtie
+   corrieron el diseño.** Es nueva y es la que más rinde: con la clasificación por ventana la
+   comparación es exacta y el desajuste de conteos se cierra en una tarde. La base importa porque
+   la columna del original cuenta aciertos de Bowtie y no ventanas (ver más abajo).
+2. **Qué transcriptoma de *Dalbulus maidis* usan, y si lo comparten.** Pregunta 3 del correo, sin
+   contestar. Bloquea la conservación de `eth` y `burs-alpha` y es la referencia que la línea M7
+   necesita.
+3. **¿Matar o esterilizar?** Pregunta 5, sin contestar, y sigue siendo decisión suya.
+4. **Los dos pesos del panel no objetivo**, ahora reformulados por su propia carta: no un peso
+   sino `w_exposicion` y `s_conservacion` (ADR D47). Pregunta 4, reencuadrada.
+5. **Por qué la región de `MP_MRFV` es 1–200.** Pregunta 2, sin contestar. Decide si la crítica de
+   la región se sostiene o se reformula.
+6. **De dónde sale el rango de 150 a 250 nt.** Pregunta 6, sin contestar. Nuestra lectura (D29:
+   convención compatible con la evidencia, no conclusión de ella) queda como estaba.
+7. **BLAST por defecto y qué quiso decir con «HCP».** Pregunta 7, sin contestar. La medición de C3
+   y el ADR D27 no cambian.
+
+## Nuevas, que abre la carta
+
+- **¿Qué referencia reproduce los cuatro conteos?** La columna «Efficient siRNA hits» del original
+  cuenta un registro por acierto de Bowtie en la hebra `+`, agrupado por nombre de referencia
+  (`general_helpers.py:107-123` y `sifi_pipeline.py:195-221`) `[R]`, mientras `sifi21INTA` cuenta
+  una fila por ventana (`SifiPipeline.py:430-448`). Entonces una ventana eficiente que no pega en
+  la referencia no cuenta, una que pega sólo en la hebra menos no cuenta, y una que pega dos veces
+  cuenta dos veces —y eso ocurre: 2.504 aciertos para 2.500 ventanas en `BicC_Dm` `[M]`—. Es la
+  primera explicación que puede mover los conteos en los dos sentidos, que es la forma del
+  desajuste: la planilla baja en tres genes y sube en uno. Es `[H]` hasta que la línea M1 la mida.
+- **Del efecto del recorte, cuánto es plegamiento y cuánto es tratamiento de posiciones.** Lo
+  pregunta en su punto 2 y está contestado a medias: C13 §4 separa la parte aritmética (200
+  posiciones de inicio en contexto contra 180 recortada) de 27 cambios de veredicto por borde, y de
+  esos hay dos identificados a 64 y 66 nt cuyos 21 nucleótidos son idénticos y a los que sólo les
+  cambió la accesibilidad `[M]`. Falta hacer esa partición para los 27, no para dos. Línea M2.
+- **Cuántas etiquetas de eficacia hacen falta para distinguir el modo fiel del corregido.** La
+  validación retrospectiva da ρ = +0,142 [-0,247, +0,492] contra +0,024 [-0,356, +0,397], n = 29
+  `[M]`: no se distinguen. El número de etiquetas necesario no está calculado. Línea M4.
+- **¿Cuál es el ensayo prospectivo mínimo que discrimina los dos modelos?** Los dos difieren en 19,
+  7, 50 y 8 ventanas en los cuatro genes, y ninguna va en sentido contrario `[M]`, así que el
+  ensayo mide discordantes contra concordantes. Falta el diseño con su tamaño de muestra. Línea M4.
+- **¿Cómo se comparte el port, y bajo qué licencia?** Nos pidió conocerlo. Dos pendientes antes de
+  mandarlo: la auditoría de secuencia sobre el árbol y el historial (el repositorio ya tuvo un
+  incidente de 21-meros commiteados, resuelto reescribiendo tres commits locales), y la licencia
+  del original, en conflicto entre el artículo (CC BY-SA 4.0) y SourceForge (CC BY-NC 2.0) `[?]`,
+  que D32 dejó sin resolver y que conviene preguntarle a él, que la usa. Línea M9.
+
+## Pendientes internos nuevos
+
+- Corregir la sección de la planilla de `entregables/critica-herramientas.md`, que hoy afirma el
+  1,75 como la mejor explicación. Espera el resultado de M1 para no reemplazar una explicación
+  equivocada por un agujero.
+- Implementar D47 y D48, que cambian el ranking ya entregado. **Esperan confirmación del
+  usuario**, y D47 además nos devuelve el empate del tercer puesto.
+- Completar D26 agregando `nt19`, `nt2` y la rama terminal al TSV por ventana: hoy el ADR obliga a
+  publicar los términos continuos y los nucleótidos terminales no están. Línea M3.
+- La Parte 1 de la Fase 6 (diez preguntas anticipadas y agenda de cinco minutos) sigue sin hacerse.
+- No se verificó el texto del correo realmente enviado contra el borrador de siete preguntas. El
+  mapeo de la respuesta se hizo por contenido, no por número.
