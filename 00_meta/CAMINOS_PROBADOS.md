@@ -996,3 +996,18 @@ Lo que sigue es lo que nos corrigió, y de qué lado quedó cada cosa.
   que alguna celda coincida. Es el mismo error de D45 a mayor escala. El plan de la ola 4 lo
   prohíbe explícitamente: si M1 no cierra con la referencia, el resultado que se informa es la
   cota y el dato que falta, no otra corrida.
+
+- **Correr la matriz de bases de M1 con insumos sustitutos. Descartado, y declarado como
+  pendiente.** La máquina que ejecutó M1 no tiene `work/`, ni Bowtie, ni ViennaRNA, ni si-Fi21
+  instalado, así que las celdas reales no se pudieron calcular. Las dos salidas tentadoras eran
+  bajar secuencias públicas parecidas a las de EPILAB para los dos genes virales, o presentar la
+  demostración sintética como si fuera la matriz. Las dos habrían producido una tabla con los
+  cuatro números y ninguna habría medido el caso real. Lo que se entrega es la regla verificada
+  más la secuencia exacta de comandos para la máquina que tiene el corpus, y el estado dice «no
+  corrió» en los tres criterios que no se cumplieron.
+
+- **Abrir el eje de la versión del motor de accesibilidad (2.4.x, 2.6.x). Evitado por ahora.** Es
+  la tarea 4 de M1 y el plan la condiciona a que la referencia no cierre el desajuste. La
+  referencia no cerró **ni falló**: quedó sin correr. Agregar puntos a un barrido mientras la
+  hipótesis principal sigue sin medirse es el error de D45 otra vez, así que el eje queda cerrado
+  hasta que la matriz corra.

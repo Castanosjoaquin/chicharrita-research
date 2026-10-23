@@ -1266,3 +1266,24 @@ que su propia carta hizo necesaria.
   envío lo hace el equipo. Es el mismo pendiente que quedó sin cerrar con el correo anterior, así
   que esta vez se anota al mandarlo. Si no se manda, dejarlo escrito también: el fallback es decir
   los tres contenidos en persona el lunes.
+
+## Pendientes abiertos por la línea M1 (2026-10-22)
+
+- **¿Contra qué registro, no contra qué base, corrieron el diseño?** La pregunta para el lunes se
+  afina. En las tres bases que midió C2, el blanco principal de los dos genes virales recibe
+  **todas** las ventanas —`MP_MRFV` contra `NC_002786.2`, 1.243 de 1.243; `CP_MRFV` contra
+  `AF265566.2`, 508 de 508 `[M]`—, o sea que las secuencias de EPILAB son subcadenas exactas de
+  esos registros públicos y contra ellos la regla por acierto **no puede bajar** el conteo. Para
+  que `MP_MRFV` baje de 133 a 114 hace falta una referencia que difiera de la secuencia que
+  diseñaron: otro aislamiento, no el conjunto completo de registros de MRFV. Hay que pedir el
+  número de acceso o el archivo, por gen `[H]`.
+- **¿En qué unidad está cada campo de `04_resumen_base_datos.json`?** En la fila de `BicC_Dm`
+  contra `epilab4`, con **una sola referencia**, el resumen dice `hits_bowtie: 2504` y
+  `hits_blanco_principal: 2500` `[M]`. Con una sola referencia los dos deberían ser el mismo
+  número, así que uno cuenta alineamientos y el otro, casi con seguridad, ventanas. Cuál es cuál
+  no se puede resolver leyendo el repositorio `[?]`. Es el mismo problema de unidad de M1 un nivel
+  más abajo, y afecta a cualquier cuenta que mezcle esos dos campos.
+- **Los tres drivers de C2 no están versionados.** `run_inta.py`, `run_db.py` y `barrido_inta.py`
+  viven sólo en `work/C2/scripts/`, que está en `.gitignore`. El README de las corridas los
+  documenta pero no los contiene, y por eso la pregunta anterior no se puede contestar desde el
+  repositorio. Hay que versionarlos: no llevan secuencias, sólo rutas.

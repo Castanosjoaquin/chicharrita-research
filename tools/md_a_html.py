@@ -2,8 +2,13 @@
 
 El markdown es la fuente de verdad; el HTML es solo la vista de lectura. Soporta
 titulos, parrafos, tablas, imagenes, enlaces, negrita, cursiva, tachado, codigo en
-linea y lineas horizontales. No es un conversor general: cubre lo que usan los
-documentos de este repositorio.
+linea, bloques de codigo con cercas (```), listas con viñeta y numeradas, y lineas
+horizontales. No es un conversor general: cubre lo que usan los documentos de este
+repositorio.
+
+Las cercas y las listas se agregaron en la ola 4: antes el contenido de un bloque de
+codigo se unia en un solo parrafo y los comandos de varias lineas quedaban ilegibles
+en la vista de lectura.
 
 Uso (desde la raiz del repositorio):
     python tools/md_a_html.py entregables/para-el-investigador.md \
@@ -41,8 +46,87 @@ def celdas(l):
     return [c.strip() for c in l.strip().strip("|").split("|")]
 
 
+VINETA = re.compile(r"^[-*] +(.*)$")
+NUMERADA = re.compile(r"^\d+\. +(.*)$")
+# Regla horizontal: tres o mas del mismo caracter, con o sin espacios. Hay que
+# mirarla **antes** que la viñeta, porque `* * *` y `- - -` son reglas y no items.
+REGLA = re.compile(r"^([-*_])( *\1){2,} *$")
+CERCA = "```"
+
+
+def sangria(l):
+    return len(l) - len(l.lstrip())
+
+
+def marca(l):
+    """('ul'|'ol', texto del item) si la linea abre un item; None si no."""
+    s = l.strip()
+    if REGLA.match(s):
+        return None
+    m = VINETA.match(s)
+    if m:
+        return "ul", m.group(1).strip()
+    m = NUMERADA.match(s)
+    if m:
+        return "ol", m.group(1).strip()
+    return None
+
+
+def bloque_lista(lineas):
+    """Convierte un bloque de lista, con anidado y cercas adentro de los items.
+
+    Las lineas vienen sin blancos. Un item arranca con un marcador a la sangria
+    minima del bloque; todo lo que sigue hasta el proximo marcador de ese nivel es
+    contenido del item: lineas de continuacion, una cerca de codigo o una sublista,
+    que se resuelve recursivamente. Limitacion declarada: una continuacion de texto
+    que venga **despues** de una sublista se renderiza antes que ella.
+    """
+    base = min(sangria(l) for l in lineas)
+    tipo = marca(lineas[0])[0]
+    items = []
+    for l in lineas:
+        mk = marca(l)
+        if mk and sangria(l) <= base:
+            items.append({"texto": [mk[1]], "resto": []})
+        elif items:
+            items[-1]["resto"].append(l)
+    return "<%s>%s</%s>" % (
+        tipo, "".join("<li>%s</li>" % contenido_item(i) for i in items), tipo)
+
+
+def contenido_item(item):
+    texto, extra, resto, i = list(item["texto"]), [], item["resto"], 0
+    while i < len(resto):
+        if resto[i].strip().startswith(CERCA):
+            j, cuerpo = i + 1, []
+            while j < len(resto) and not resto[j].strip().startswith(CERCA):
+                cuerpo.append(resto[j]); j += 1
+            extra.append("<pre>%s</pre>" % html.escape(desangrar(cuerpo)))
+            i = j + 1
+        elif marca(resto[i]):
+            j = i
+            while j < len(resto) and not resto[j].strip().startswith(CERCA):
+                j += 1
+            extra.append(bloque_lista(resto[i:j]))
+            i = j
+        else:
+            texto.append(resto[i].strip()); i += 1
+    return inline(" ".join(texto)) + "".join(extra)
+
+
+def desangrar(lineas):
+    """Saca la sangria comun, para que una cerca indentada no quede corrida."""
+    while lineas and not lineas[-1].strip():
+        lineas = lineas[:-1]
+    utiles = [l for l in lineas if l.strip()]
+    corte = min((sangria(l) for l in utiles), default=0)
+    return "\n".join(l[corte:] if l.strip() else "" for l in lineas)
+
+
 def convertir(md):
-    bloques, tabla, parr = [], [], []
+    bloques, tabla, parr, lbuf = [], [], [], []
+    cerca, cerca_abierta = [], False
+    blanco_pendiente = False
     titulo = ""
 
     def vaciar_p():
@@ -50,6 +134,12 @@ def convertir(md):
         if parr:
             bloques.append("<p>%s</p>" % inline(" ".join(parr)))
             parr = []
+
+    def vaciar_l():
+        nonlocal lbuf
+        if lbuf:
+            bloques.append(bloque_lista(lbuf))
+            lbuf = []
 
     def vaciar_t():
         nonlocal tabla
@@ -62,23 +152,65 @@ def convertir(md):
                            for r in filas)))
             tabla = []
 
+    BLOQUE = ("# ", "## ", "### ", "|", CERCA)
     for l in md.split("\n"):
+        if cerca_abierta:
+            if l.strip().startswith(CERCA):
+                bloques.append("<pre>%s</pre>" % html.escape(desangrar(cerca)))
+                cerca, cerca_abierta = [], False
+            else:
+                cerca.append(l)
+            continue
+        # Un blanco con la lista abierta no la cierra todavia: si lo que sigue viene
+        # indentado o es otro marcador, la lista continua, que es lo que markdown
+        # hace con una lista de items separados por blancos.
+        if lbuf and not l.strip():
+            blanco_pendiente = True
+            continue
+        # Con una lista abierta, todo lo indentado y todo marcador es contenido de
+        # la lista: tambien una cerca, que si no cerraria el item y reiniciaria la
+        # numeracion. Una linea sin sangria que no abre otro bloque es una
+        # continuacion perezosa, que es lo que markdown hace con ella.
+        if lbuf and l.strip():
+            mk = marca(l)
+            # Cambiar de viñeta a numerada al mismo nivel son dos listas, no una.
+            if mk and sangria(l) <= min(sangria(x) for x in lbuf) \
+                    and mk[0] != marca(lbuf[0])[0]:
+                vaciar_l(); blanco_pendiente = False
+                vaciar_p(); lbuf.append(l); continue
+            if mk or sangria(l) > 0:
+                blanco_pendiente = False
+                lbuf.append(l); continue
+            # Sin blanco de por medio es una continuacion perezosa del item; con un
+            # blanco, markdown abre un parrafo nuevo y la lista se cierra.
+            if not blanco_pendiente and not (
+                    l.startswith(BLOQUE) or REGLA.match(l.strip())):
+                lbuf.append(l); continue
+        blanco_pendiente = False
+        if l.strip().startswith(CERCA):
+            vaciar_p(); vaciar_l(); vaciar_t()
+            cerca_abierta = True
+            continue
         if l.startswith("|"):
-            vaciar_p(); tabla.append(l); continue
+            vaciar_p(); vaciar_l(); tabla.append(l); continue
         vaciar_t()
         if l.startswith("# "):
-            vaciar_p(); titulo = l[2:].strip()
+            vaciar_p(); vaciar_l(); titulo = l[2:].strip()
         elif l.startswith("## "):
-            vaciar_p(); bloques.append("<h2>%s</h2>" % inline(l[3:].strip()))
+            vaciar_p(); vaciar_l(); bloques.append("<h2>%s</h2>" % inline(l[3:].strip()))
         elif l.startswith("### "):
-            vaciar_p(); bloques.append("<h3>%s</h3>" % inline(l[4:].strip()))
-        elif l.strip() == "---":
-            vaciar_p(); bloques.append("<hr>")
+            vaciar_p(); vaciar_l(); bloques.append("<h3>%s</h3>" % inline(l[4:].strip()))
+        elif REGLA.match(l.strip()):
+            vaciar_p(); vaciar_l(); bloques.append("<hr>")
+        elif marca(l):
+            vaciar_p(); lbuf.append(l)
         elif l.strip() == "":
-            vaciar_p()
+            vaciar_p(); vaciar_l()
         else:
-            parr.append(l.strip())
-    vaciar_p(); vaciar_t()
+            vaciar_l(); parr.append(l.strip())
+    if cerca_abierta:
+        bloques.append("<pre>%s</pre>" % html.escape(desangrar(cerca)))
+    vaciar_p(); vaciar_l(); vaciar_t()
     return titulo, "\n".join(bloques)
 
 
