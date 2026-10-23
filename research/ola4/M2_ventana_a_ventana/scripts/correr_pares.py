@@ -125,15 +125,19 @@ def main() -> int:
         print(f"  {g:12s} fiel {res['eficientes_fiel']:4d} | corregido "
               f"{res['eficientes_corregido']:4d} | cambian {res['cambian']:3d}")
 
-    print("\npar 2 — RNA_NN3 contra RNA_NN4 (modo fiel)")
-    for g in GENES:
-        res, camb = comparar(leer(tsv(dirs[("fiel", "NN3")], g, "fiel")),
-                             leer(tsv(dirs[("fiel", "NN4")], g, "fiel", "_nn4")),
-                             1, ("nn3", "nn4"))
-        escribir(SALIDA / f"par2_tablas_{g}", res, camb)
-        reporte[f"par2_tablas:{g}"] = res
-        print(f"  {g:12s} NN3 {res['eficientes_nn3']:4d} | NN4 {res['eficientes_nn4']:4d}"
-              f" | cambian {res['cambian']:3d}")
+    # Los dos modos: el fiel es el que compara contra `sifi21INTA`, que corre la rama del
+    # original; el corregido va igual para poder decir la direccion sobre el conjunto
+    # completo y no sobre la mitad.
+    print("\npar 2 — RNA_NN3 contra RNA_NN4")
+    for modo in ("fiel", "corregido"):
+        for g in GENES:
+            res, camb = comparar(leer(tsv(dirs[(modo, "NN3")], g, modo)),
+                                 leer(tsv(dirs[(modo, "NN4")], g, modo, "_nn4")),
+                                 1, ("nn3", "nn4"))
+            escribir(SALIDA / f"par2_tablas_{modo}_{g}", res, camb)
+            reporte[f"par2_tablas:{g}:{modo}"] = res
+            print(f"  {g:12s} {modo:10s} NN3 {res['eficientes_nn3']:4d} | NN4 "
+                  f"{res['eficientes_nn4']:4d} | cambian {res['cambian']:3d}")
 
     print("\npar 3 — RNAplfold 2.1.5 contra ViennaRNA 2.7.2: NO CORRIDO")
     print("  falta el binario del instalador de si-Fi2015; ver el encabezado")

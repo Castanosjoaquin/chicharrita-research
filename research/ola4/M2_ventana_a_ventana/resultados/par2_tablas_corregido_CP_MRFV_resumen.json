@@ -1,0 +1,23 @@
+{
+  "etiquetas": [
+    "nn3",
+    "nn4"
+  ],
+  "offset_b": 1,
+  "ventanas_comparadas": 508,
+  "ventanas_solo_en_nn3": 0,
+  "ventanas_solo_en_nn4": 0,
+  "eficientes_nn3": 30,
+  "eficientes_nn4": 30,
+  "confusion": {
+    "ambos_si": 29,
+    "ambos_no": 477,
+    "solo_nn3": 1,
+    "solo_nn4": 1
+  },
+  "cambian": 2,
+  "terminos": [
+    "end_stability",
+    "thermo_efficient"
+  ]
+}

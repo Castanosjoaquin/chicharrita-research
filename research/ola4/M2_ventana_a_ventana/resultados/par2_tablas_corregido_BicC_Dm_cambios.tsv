@@ -1,0 +1,12 @@
+pos	pos_nn4	nn3	nn4	terminos_que_cruzan	rama_terminal	dg_sense5_nn3	dg_sense5_nn4	dg_sense5_delta	dg_antisense5_nn3	dg_antisense5_nn4	dg_antisense5_delta	ddg_nn3	ddg_nn4	ddg_delta	accessibility_nn3	accessibility_nn4	accessibility_delta
+722	722	True	False	end_stability,thermo_efficient	1	-0.9623	-1.3075	-0.3452	0.1495	-0.3234	-0.4729	1.1118	0.9841	-0.1277	0.261684	0.261684	0.0
+777	777	False	True	end_stability,thermo_efficient	2	-0.1778	-0.6507	-0.4729	0.6872	0.3637	-0.3235	0.865	1.0144	0.1494	0.175555	0.175555	0.0
+1022	1022	True	False	end_stability,thermo_efficient	1	-0.9623	-1.3075	-0.3452	0.1495	-0.3234	-0.4729	1.1118	0.9841	-0.1277	0.546831	0.546831	0.0
+1148	1148	True	False	end_stability,thermo_efficient	1	-1.0407	-1.3163	-0.2756	0.1424	-0.3511	-0.4935	1.1831	0.9651	-0.218	0.133571	0.133571	0.0
+1151	1151	False	True	end_stability,thermo_efficient	3	-1.6104	-1.8662	-0.2558	-0.6307	-0.7806	-0.1499	0.9797	1.0856	0.1059	0.109621	0.109621	0.0
+1220	1220	True	False	end_stability,thermo_efficient	1	-0.8404	-0.9903	-0.1499	0.2728	-0.0234	-0.2962	1.1132	0.9669	-0.1463	0.177663	0.177663	0.0
+1390	1390	True	False	end_stability,thermo_efficient	1	-1.094	-1.2232	-0.1292	-0.018	-0.5115	-0.4935	1.076	0.7117	-0.3643	0.478198	0.478198	0.0
+1773	1773	False	True	end_stability,thermo_efficient	2	-0.1334	-0.6062	-0.4728	0.7605	0.4643	-0.2962	0.8939	1.0706	0.1767	0.149545	0.149545	0.0
+2094	2094	False	True	end_stability,thermo_efficient	3	-2.1237	-2.4739	-0.3502	-1.3283	-1.4576	-0.1293	0.7954	1.0163	0.2209	0.175361	0.175361	0.0
+2170	2170	True	False	end_stability,thermo_efficient	1	-1.094	-1.2232	-0.1292	0.1424	-0.3511	-0.4935	1.2364	0.8721	-0.3643	0.157427	0.157427	0.0
+2415	2415	True	False	end_stability,thermo_efficient	3	-1.5881	-1.8344	-0.2463	-0.5457	-0.9008	-0.3551	1.0424	0.9336	-0.1088	0.94097	0.94097	0.0

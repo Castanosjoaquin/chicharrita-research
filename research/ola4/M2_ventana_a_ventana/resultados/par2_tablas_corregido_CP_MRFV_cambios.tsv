@@ -1,0 +1,3 @@
+pos	pos_nn4	nn3	nn4	terminos_que_cruzan	rama_terminal	dg_sense5_nn3	dg_sense5_nn4	dg_sense5_delta	dg_antisense5_nn3	dg_antisense5_nn4	dg_antisense5_delta	ddg_nn3	ddg_nn4	ddg_delta	accessibility_nn3	accessibility_nn4	accessibility_delta
+71	71	False	True	end_stability,thermo_efficient	3	-3.3169	-3.6251	-0.3082	-2.4209	-2.5502	-0.1293	0.896	1.0749	0.1789	0.102251	0.102251	0.0
+214	214	True	False	end_stability,thermo_efficient	2	-1.2001	-1.467	-0.2669	-0.018	-0.5115	-0.4935	1.1821	0.9555	-0.2266	0.187977	0.187977	0.0

@@ -95,11 +95,14 @@ por accesibilidad `[M]`. Tres controles:
   que el cambio se haya filtrado a otro término.
 - **Todas cruzan el umbral de 1,0**, con `ddg` entre 0,7117 y 1,2364: son las ventanas que
   estaban al borde, no ventanas cualesquiera.
-- **No es unidireccional:** de las 14, **11 pierden la condición con NN4 y 3 la ganan**
-  `[M]`, que es por qué `CP_MRFV` sube de 39 a 40 mientras los otros bajan. Corrido también
-  en modo `corregido`, el par da 33 ventanas en total con 24 que pierden y 9 que ganan; esa
-  corrida está en el commit anterior de esta línea y no se repite acá porque el modo que
-  compara contra `sifi21INTA` es el fiel.
+- **No es unidireccional:** de las 14 de modo fiel, **11 pierden la condición con NN4 y 3
+  la ganan** `[M]`, que es por qué `CP_MRFV` sube de 39 a 40 mientras los otros bajan.
+
+El par se corrió también en modo `corregido`, donde da 5, 2, 11 y 1 ventanas: **33 en total
+entre los dos modos, 24 que pierden y 9 que ganan** `[M]`
+(`resultados/par2_tablas_{fiel,corregido}_*`). En corregido los conteos pasan de 123, 30,
+171 y 29 a 118, 30, 168 y 30, así que la tabla mueve el resultado en los dos modos y no
+sólo en el que reproduce al original.
 
 ## 4. Par 3 — RNAplfold 2.1.5 contra ViennaRNA 2.7.2: **no corrido**
 

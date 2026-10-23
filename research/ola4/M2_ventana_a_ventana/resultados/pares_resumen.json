@@ -79,7 +79,7 @@
     "cambian": 6,
     "terminos": []
   },
-  "par2_tablas:MP_MRFV": {
+  "par2_tablas:MP_MRFV:fiel": {
     "etiquetas": [
       "nn3",
       "nn4"
@@ -102,7 +102,7 @@
       "thermo_efficient"
     ]
   },
-  "par2_tablas:CP_MRFV": {
+  "par2_tablas:CP_MRFV:fiel": {
     "etiquetas": [
       "nn3",
       "nn4"
@@ -125,7 +125,7 @@
       "thermo_efficient"
     ]
   },
-  "par2_tablas:BicC_Dm": {
+  "par2_tablas:BicC_Dm:fiel": {
     "etiquetas": [
       "nn3",
       "nn4"
@@ -148,7 +148,7 @@
       "thermo_efficient"
     ]
   },
-  "par2_tablas:ATPaseD_Dm": {
+  "par2_tablas:ATPaseD_Dm:fiel": {
     "etiquetas": [
       "nn3",
       "nn4"
@@ -167,6 +167,98 @@
     },
     "cambian": 0,
     "terminos": []
+  },
+  "par2_tablas:MP_MRFV:corregido": {
+    "etiquetas": [
+      "nn3",
+      "nn4"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 1243,
+    "ventanas_solo_en_nn3": 0,
+    "ventanas_solo_en_nn4": 0,
+    "eficientes_nn3": 123,
+    "eficientes_nn4": 118,
+    "confusion": {
+      "ambos_si": 118,
+      "ambos_no": 1120,
+      "solo_nn3": 5,
+      "solo_nn4": 0
+    },
+    "cambian": 5,
+    "terminos": [
+      "end_stability",
+      "thermo_efficient"
+    ]
+  },
+  "par2_tablas:CP_MRFV:corregido": {
+    "etiquetas": [
+      "nn3",
+      "nn4"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 508,
+    "ventanas_solo_en_nn3": 0,
+    "ventanas_solo_en_nn4": 0,
+    "eficientes_nn3": 30,
+    "eficientes_nn4": 30,
+    "confusion": {
+      "ambos_si": 29,
+      "ambos_no": 477,
+      "solo_nn3": 1,
+      "solo_nn4": 1
+    },
+    "cambian": 2,
+    "terminos": [
+      "end_stability",
+      "thermo_efficient"
+    ]
+  },
+  "par2_tablas:BicC_Dm:corregido": {
+    "etiquetas": [
+      "nn3",
+      "nn4"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 2500,
+    "ventanas_solo_en_nn3": 0,
+    "ventanas_solo_en_nn4": 0,
+    "eficientes_nn3": 171,
+    "eficientes_nn4": 168,
+    "confusion": {
+      "ambos_si": 164,
+      "ambos_no": 2325,
+      "solo_nn3": 7,
+      "solo_nn4": 4
+    },
+    "cambian": 11,
+    "terminos": [
+      "end_stability",
+      "thermo_efficient"
+    ]
+  },
+  "par2_tablas:ATPaseD_Dm:corregido": {
+    "etiquetas": [
+      "nn3",
+      "nn4"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 471,
+    "ventanas_solo_en_nn3": 0,
+    "ventanas_solo_en_nn4": 0,
+    "eficientes_nn3": 29,
+    "eficientes_nn4": 30,
+    "confusion": {
+      "ambos_si": 29,
+      "ambos_no": 441,
+      "solo_nn3": 0,
+      "solo_nn4": 1
+    },
+    "cambian": 1,
+    "terminos": [
+      "end_stability",
+      "thermo_efficient"
+    ]
   },
   "par3_motor": {
     "estado": "no corrido",
