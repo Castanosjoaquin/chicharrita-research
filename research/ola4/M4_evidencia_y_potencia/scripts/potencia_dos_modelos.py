@@ -55,7 +55,7 @@ from typing import Sequence
 
 import numpy as np
 from scipy import integrate
-from scipy.stats import chi2, nct, rankdata, t as t_dist
+from scipy.stats import chi2, mannwhitneyu, nct, norm, rankdata, t as t_dist
 
 RAIZ = Path(__file__).resolve().parents[3]
 TSV_C9_POR_DEFECTO = (
@@ -131,22 +131,90 @@ def rho_spearman(x: np.ndarray, y: np.ndarray) -> float:
     return float(rx @ ry / math.sqrt((rx @ rx) * (ry @ ry)))
 
 
-def _rho_binario_desde_suma(suma: np.ndarray, k: np.ndarray, n: int, norma_y: float) -> np.ndarray:
+def _rho_binario_desde_suma(
+    suma: np.ndarray, marcados: np.ndarray, n: int, norma_y: float
+) -> np.ndarray:
     """rho de un predictor binario, a partir de la suma de rangos de los marcados.
 
-    Con x binario de k unos, la covarianza con los rangos centrados del desenlace
+    Con x binario de m unos, la covarianza con los rangos centrados del desenlace
     es la suma de esos rangos sobre las posiciones marcadas, y la desviacion de x
-    es sqrt(k - k^2/n). Escribirlo asi deja la permutacion en dos vectores y evita
+    es sqrt(m - m^2/n). Escribirlo asi deja la permutacion en dos vectores y evita
     recalcular rangos: lo que se intercambia son filas, no el desenlace.
 
-    Un predictor constante (k = 0 o k = n) no tiene rho; se devuelve 0, que es el
+    Un predictor constante (m = 0 o m = n) no tiene rho; se devuelve 0, que es el
     valor neutro para la diferencia entre modos y equivale a «este modo no ordena
     nada en esta muestra».
     """
-    var_x = k.astype(float) - (k.astype(float) ** 2) / n
+    m = marcados.astype(float)
+    var_x = m - (m**2) / n
     with np.errstate(divide="ignore", invalid="ignore"):
         rho = suma / np.sqrt(var_x * norma_y**2)
     return np.where(var_x > 0, rho, 0.0)
+
+
+@dataclass
+class _Intercambio:
+    """Todo lo que hace falta para evaluar la diferencia de los dos rho al intercambiar.
+
+    Existe para que la version sorteada de la prueba (`p_permutacion`) y la version
+    exhaustiva (`p_exacto_enumerado`) compartan la preparacion y el estadistico, que
+    es donde esta la unica parte delicada: los rangos del desenlace se calculan una
+    sola vez y lo que cambia entre aleatorizaciones son solo las filas discordantes.
+    """
+
+    n: int
+    ry_d: np.ndarray
+    a: np.ndarray
+    b: np.ndarray
+    suma_fija: float
+    k_fija: int
+    norma_y: float
+
+    @property
+    def k(self) -> int:
+        """Cuantas filas discordantes tiene la muestra."""
+        return int(self.a.size)
+
+    def stat(self, vals_f: np.ndarray, vals_c: np.ndarray) -> np.ndarray:
+        suma_f = self.suma_fija + vals_f @ self.ry_d
+        suma_c = self.suma_fija + vals_c @ self.ry_d
+        m_f = self.k_fija + vals_f.sum(axis=-1).astype(int)
+        m_c = self.k_fija + vals_c.sum(axis=-1).astype(int)
+        rho_f = _rho_binario_desde_suma(
+            np.atleast_1d(suma_f), np.atleast_1d(m_f), self.n, self.norma_y
+        )
+        rho_c = _rho_binario_desde_suma(
+            np.atleast_1d(suma_c), np.atleast_1d(m_c), self.n, self.norma_y
+        )
+        return rho_f - rho_c
+
+
+def _preparar_intercambio(
+    fiel: np.ndarray, corregido: np.ndarray, hr: np.ndarray
+) -> _Intercambio | None:
+    """Devuelve None cuando no hay nada que aleatorizar, y entonces el p es 1.
+
+    Son dos casos: que los dos modos clasifiquen igual todas las filas, y que el
+    desenlace sea constante.
+    """
+    disc = np.flatnonzero(fiel != corregido)
+    if disc.size == 0:
+        return None
+    ry = rankdata(hr)
+    if np.ptp(ry) == 0:
+        return None
+    ry = ry - ry.mean()
+    concordante = np.ones(len(hr), dtype=bool)
+    concordante[disc] = False
+    return _Intercambio(
+        n=len(hr),
+        ry_d=ry[disc],
+        a=fiel[disc],
+        b=corregido[disc],
+        suma_fija=float(ry[concordante] @ fiel[concordante]),
+        k_fija=int(fiel[concordante].sum()),
+        norma_y=math.sqrt(float(ry @ ry)),
+    )
 
 
 def p_permutacion(
@@ -170,40 +238,15 @@ def p_permutacion(
     formula asintotica con n = 29.
     """
     rng = np.random.default_rng() if rng is None else rng
-    n = len(hr)
-    disc = np.flatnonzero(fiel != corregido)
-    if disc.size == 0:
+    prep = _preparar_intercambio(fiel, corregido, hr)
+    if prep is None:
         return 1.0
-    ry = rankdata(hr)
-    if np.ptp(ry) == 0:
-        return 1.0
-    ry = ry - ry.mean()
-    norma_y = math.sqrt(float(ry @ ry))
 
-    # Lo que no se intercambia aporta una constante a cada modo.
-    concordante = np.ones(n, dtype=bool)
-    concordante[disc] = False
-    suma_fija = float(ry[concordante] @ fiel[concordante])
-    k_fija = int(fiel[concordante].sum())
-
-    a = fiel[disc]
-    b = corregido[disc]
-    ry_d = ry[disc]
-
-    def stat(vals_f: np.ndarray, vals_c: np.ndarray) -> np.ndarray:
-        suma_f = suma_fija + vals_f @ ry_d
-        suma_c = suma_fija + vals_c @ ry_d
-        k_f = k_fija + vals_f.sum(axis=-1).astype(int)
-        k_c = k_fija + vals_c.sum(axis=-1).astype(int)
-        rho_f = _rho_binario_desde_suma(np.atleast_1d(suma_f), np.atleast_1d(k_f), n, norma_y)
-        rho_c = _rho_binario_desde_suma(np.atleast_1d(suma_c), np.atleast_1d(k_c), n, norma_y)
-        return rho_f - rho_c
-
-    d_obs = float(stat(a, b)[0])
-    intercambia = rng.random((n_perm, disc.size)) < 0.5
-    vals_f = np.where(intercambia, b, a)
-    vals_c = np.where(intercambia, a, b)
-    d_perm = stat(vals_f, vals_c)
+    d_obs = float(prep.stat(prep.a, prep.b)[0])
+    intercambia = rng.random((n_perm, prep.k)) < 0.5
+    d_perm = prep.stat(
+        np.where(intercambia, prep.b, prep.a), np.where(intercambia, prep.a, prep.b)
+    )
     # El observado entra a la distribucion de referencia (p nunca es 0).
     extremos = int(np.count_nonzero(np.abs(d_perm) >= abs(d_obs) - 1e-12))
     return (extremos + 1) / (n_perm + 1)
@@ -220,35 +263,16 @@ def p_exacto_enumerado(
     2/2^k --la asignacion observada y su espejo-- asi que con k < 6 **ningun dato
     puede dar p <= 0,05**, por mucho que crezca el n total.
     """
-    disc = np.flatnonzero(fiel != corregido)
-    k = disc.size
-    if k == 0:
+    prep = _preparar_intercambio(fiel, corregido, hr)
+    if prep is None:
         return 1.0
-    if k > k_max:
-        raise ValueError(f"{k} discordantes: 2^k no es enumerable, usar p_permutacion")
-    n = len(hr)
-    ry = rankdata(hr)
-    if np.ptp(ry) == 0:
-        return 1.0
-    ry = ry - ry.mean()
-    norma_y = math.sqrt(float(ry @ ry))
-    concordante = np.ones(n, dtype=bool)
-    concordante[disc] = False
-    suma_fija = float(ry[concordante] @ fiel[concordante])
-    k_fija = int(fiel[concordante].sum())
-    a, b = fiel[disc], corregido[disc]
-    ry_d = ry[disc]
+    if prep.k > k_max:
+        raise ValueError(f"{prep.k} discordantes: 2^k no es enumerable, usar p_permutacion")
 
-    todas = ((np.arange(2**k)[:, None] >> np.arange(k)) & 1).astype(bool)
-    vals_f = np.where(todas, b, a)
-    vals_c = np.where(todas, a, b)
-    suma_f = suma_fija + vals_f @ ry_d
-    suma_c = suma_fija + vals_c @ ry_d
-    rho_f = _rho_binario_desde_suma(suma_f, k_fija + vals_f.sum(axis=1).astype(int), n, norma_y)
-    rho_c = _rho_binario_desde_suma(suma_c, k_fija + vals_c.sum(axis=1).astype(int), n, norma_y)
-    d = rho_f - rho_c
+    todas = ((np.arange(2**prep.k)[:, None] >> np.arange(prep.k)) & 1).astype(bool)
+    d = prep.stat(np.where(todas, prep.b, prep.a), np.where(todas, prep.a, prep.b))
     d_obs = float(d[0])  # la fila 0 es «ningun intercambio», o sea lo observado
-    return float(np.count_nonzero(np.abs(d) >= abs(d_obs) - 1e-12) / 2**k)
+    return float(np.count_nonzero(np.abs(d) >= abs(d_obs) - 1e-12) / 2**prep.k)
 
 
 def k_minimo_para_rechazar(alpha: float = 0.05) -> int:
@@ -260,6 +284,17 @@ def k_minimo_para_rechazar(alpha: float = 0.05) -> int:
     return int(math.ceil(math.log2(2.0 / alpha)))
 
 
+def pool_discordantes_por_defecto(datos: Datos) -> np.ndarray:
+    """Los desenlaces de los siRNA que el modo fiel marca como eficientes.
+
+    Es el reservorio con el que se corrige la pseudo-replicacion del remuestreo
+    (ver `potencia_remuestreo`): la clase discordante es, por construccion, un
+    subconjunto de los que el fiel marca, asi que es el reservorio observado mas
+    cercano que tiene varianza propia.
+    """
+    return datos.hr[datos.fiel > 0]
+
+
 def potencia_remuestreo(
     datos: Datos,
     n: int,
@@ -267,21 +302,36 @@ def potencia_remuestreo(
     n_perm: int = 499,
     alpha: float = 0.05,
     rng: np.random.Generator | None = None,
+    pool_discordantes: np.ndarray | None = None,
 ) -> ResultadoPotencia:
     """Fraccion de muestras de tamano n en las que la prueba rechaza.
 
     La poblacion madre es la tabla de Cedden tal cual: se sortean n filas con
     reposicion, de modo que la tasa de discordancia entre modos, la proporcion de
     negativos y la restriccion de rango del desenlace son las del dato real.
+
+    **Pseudo-replicacion, y como se corrige.** En esa tabla hay un solo siRNA
+    discordante, asi que un remuestreo sin mas sortea copias del mismo desenlace: la
+    clase discordante queda con varianza cero y su aporte a la diferencia entre los
+    dos rho tiene siempre el mismo signo. Eso **sobreestima la potencia**, porque en
+    un conjunto real algunos discordantes apuntarian al otro lado. Con
+    `pool_discordantes` se le vuelve a dar varianza: a cada fila discordante sorteada
+    se le redibuja el desenlace de ese reservorio. La version sin reservorio es un
+    piso optimista; la version con reservorio es la estimacion honesta.
     """
     rng = np.random.default_rng() if rng is None else rng
     n0 = len(datos.hr)
     rechazos = 0
     for _ in range(b):
         idx = rng.integers(0, n0, n)
-        p = p_permutacion(
-            datos.fiel[idx], datos.corregido[idx], datos.hr[idx], n_perm=n_perm, rng=rng
-        )
+        fiel, corregido, hr = datos.fiel[idx], datos.corregido[idx], datos.hr[idx]
+        if pool_discordantes is not None and len(pool_discordantes):
+            disc = fiel != corregido
+            k = int(np.count_nonzero(disc))
+            if k:
+                hr = hr.copy()
+                hr[disc] = rng.choice(pool_discordantes, size=k, replace=True)
+        p = p_permutacion(fiel, corregido, hr, n_perm=n_perm, rng=rng)
         rechazos += int(p <= alpha)
     pot = rechazos / b
     # Wilson, por la misma razon por la que C9 reporta Wilson en la curva PR.
@@ -306,14 +356,27 @@ def n_minimo_remuestreo(
     alpha: float = 0.05,
     rng: np.random.Generator | None = None,
     n_max: int = 200_000,
+    pool_discordantes: np.ndarray | None = None,
 ) -> ResultadoNMinimo:
     """Busca el n mas chico con potencia >= objetivo: duplica y despues biseca."""
     rng = np.random.default_rng() if rng is None else rng
     curva: list[ResultadoPotencia] = []
     n = len(datos.hr)
     alcanzado: ResultadoPotencia | None = None
+
+    def potencia_en(n: int) -> ResultadoPotencia:
+        return potencia_remuestreo(
+            datos,
+            n=n,
+            b=b,
+            n_perm=n_perm,
+            alpha=alpha,
+            rng=rng,
+            pool_discordantes=pool_discordantes,
+        )
+
     while n <= n_max:
-        res = potencia_remuestreo(datos, n=n, b=b, n_perm=n_perm, alpha=alpha, rng=rng)
+        res = potencia_en(n)
         curva.append(res)
         if res.potencia >= objetivo:
             alcanzado = res
@@ -327,7 +390,7 @@ def n_minimo_remuestreo(
     mejor = alcanzado
     while hi - lo > max(1, hi // 20):
         medio = (lo + hi) // 2
-        res = potencia_remuestreo(datos, n=medio, b=b, n_perm=n_perm, alpha=alpha, rng=rng)
+        res = potencia_en(medio)
         curva.append(res)
         if res.potencia >= objetivo:
             hi = medio
@@ -351,14 +414,23 @@ def potencia_dos_grupos(delta: float, sd: float, n_por_brazo: int, alpha: float 
     return float(1 - nct.cdf(crit, df, ncp) + nct.cdf(-crit, df, ncp))
 
 
+def _n_mas_chico(potencia_en, objetivo: float, n_max: int) -> int:
+    """El n por brazo mas chico cuya potencia alcanza el objetivo.
+
+    La potencia de las dos pruebas de brazos fijos crece con n, asi que recorrerla de
+    abajo hacia arriba devuelve el minimo y no hace falta bisecar.
+    """
+    for n in range(2, n_max + 1):
+        if potencia_en(n) >= objetivo:
+            return n
+    raise ValueError("no se alcanza el objetivo dentro de n_max")
+
+
 def n_por_grupo(
     delta: float, sd: float, alpha: float = 0.05, objetivo: float = 0.8, n_max: int = 100_000
 ) -> int:
     """El n por brazo mas chico que alcanza el objetivo de potencia."""
-    for n in range(2, n_max + 1):
-        if potencia_dos_grupos(delta, sd, n, alpha) >= objetivo:
-            return n
-    raise ValueError("no se alcanza el objetivo dentro de n_max")
+    return _n_mas_chico(lambda n: potencia_dos_grupos(delta, sd, n, alpha), objetivo, n_max)
 
 
 def potencia_tost(margen: float, sd: float, n_por_brazo: int, alpha: float = 0.05) -> float:
@@ -375,11 +447,10 @@ def potencia_tost(margen: float, sd: float, n_por_brazo: int, alpha: float = 0.0
         return 0.0
     df = 2 * n_por_brazo - 2
     crit = t_dist.ppf(1 - alpha, df)
-    c = margen / (sd * math.sqrt(2.0 / n_por_brazo))
-    from scipy.stats import norm
+    margen_tipificado = margen / (sd * math.sqrt(2.0 / n_por_brazo))
 
     def integrando(u: float) -> float:
-        lim = c - crit * u
+        lim = margen_tipificado - crit * u
         if lim <= 0:
             return 0.0
         prob = norm.cdf(lim) - norm.cdf(-lim)
@@ -387,7 +458,7 @@ def potencia_tost(margen: float, sd: float, n_por_brazo: int, alpha: float = 0.0
         dens = chi2.pdf(df * u * u, df) * 2 * df * u
         return prob * dens
 
-    valor, _ = integrate.quad(integrando, 1e-9, c / crit, limit=200)
+    valor, _ = integrate.quad(integrando, 1e-9, margen_tipificado / crit, limit=200)
     return float(min(max(valor, 0.0), 1.0))
 
 
@@ -395,10 +466,7 @@ def n_por_grupo_tost(
     margen: float, sd: float, alpha: float = 0.05, objetivo: float = 0.8, n_max: int = 100_000
 ) -> int:
     """El n por brazo mas chico que alcanza el objetivo con la prueba de equivalencia."""
-    for n in range(2, n_max + 1):
-        if potencia_tost(margen, sd, n, alpha) >= objetivo:
-            return n
-    raise ValueError("no se alcanza el objetivo dentro de n_max")
+    return _n_mas_chico(lambda n: potencia_tost(margen, sd, n, alpha), objetivo, n_max)
 
 
 def potencia_dos_grupos_mwu(
@@ -414,22 +482,20 @@ def potencia_dos_grupos_mwu(
     El porcentaje de silenciamiento esta acotado entre 0 y 100 y suele ser asimetrico,
     asi que conviene saber cuanto se pierde si el analisis es por rangos.
     """
-    from scipy.stats import mannwhitneyu
-
     rng = np.random.default_rng() if rng is None else rng
     rechazos = 0
     for _ in range(b):
-        a = rng.normal(delta, sd, n_por_brazo)
-        c = rng.normal(0.0, sd, n_por_brazo)
+        tratado = rng.normal(delta, sd, n_por_brazo)
+        control = rng.normal(0.0, sd, n_por_brazo)
         try:
-            p = mannwhitneyu(a, c, alternative="two-sided").pvalue
+            p = mannwhitneyu(tratado, control, alternative="two-sided").pvalue
         except ValueError:
             continue
         rechazos += int(p <= alpha)
     return rechazos / b
 
 
-def _main(argv: Sequence[str] | None = None) -> int:
+def main(argv: Sequence[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("accion", choices=["observado", "potencia", "ensayo", "todo"])
     ap.add_argument("--tsv", type=Path, default=TSV_C9_POR_DEFECTO)
@@ -444,7 +510,11 @@ def _main(argv: Sequence[str] | None = None) -> int:
     rng = np.random.default_rng(args.semilla)
     datos = cargar_cedden(args.tsv)
     salida: dict = {
-        "insumo": str(args.tsv.relative_to(RAIZ.parent)) if args.tsv.is_absolute() else str(args.tsv),
+        "insumo": (
+            args.tsv.relative_to(RAIZ.parent).as_posix()
+            if args.tsv.is_absolute()
+            else args.tsv.as_posix()
+        ),
         "semilla": args.semilla,
         "alpha": args.alpha,
         "objetivo_potencia": args.objetivo,
@@ -488,19 +558,46 @@ def _main(argv: Sequence[str] | None = None) -> int:
             alpha=args.alpha,
             rng=rng,
         )
+        pool = pool_discordantes_por_defecto(datos)
+        res_pool = n_minimo_remuestreo(
+            datos,
+            objetivo=args.objetivo,
+            b=args.b,
+            n_perm=args.perm,
+            alpha=args.alpha,
+            rng=rng,
+            pool_discordantes=pool,
+        )
+
+        def curva(r: ResultadoNMinimo) -> list[dict]:
+            return [
+                {
+                    "n": punto.n,
+                    "potencia": punto.potencia,
+                    "ic95": [round(punto.ic95[0], 4), round(punto.ic95[1], 4)],
+                }
+                for punto in sorted(r.curva, key=lambda punto: punto.n)
+            ]
+
+        ultimo = res.curva[-1]
         salida["remuestreo"] = {
             "n_minimo": res.n,
             "potencia_en_n_minimo": res.potencia,
-            "curva": [
-                {
-                    "n": c.n,
-                    "potencia": c.potencia,
-                    "ic95": [round(c.ic95[0], 4), round(c.ic95[1], 4)],
-                }
-                for c in sorted(res.curva, key=lambda c: c.n)
-            ],
-            "b": args.b,
-            "permutaciones": args.perm,
+            "curva": curva(res),
+            "b": ultimo.b,
+            "permutaciones": ultimo.n_perm,
+            "sensibilidad_con_varianza_en_discordantes": {
+                "que_es": (
+                    "mismo procedimiento, pero redibujando el desenlace de cada fila "
+                    "discordante sorteada del reservorio de los que el modo fiel marca "
+                    "eficientes. Corrige la pseudo-replicacion del unico discordante "
+                    "observado, que deja a esa clase con varianza cero"
+                ),
+                "reservorio_hr": [round(float(v), 3) for v in sorted(pool)],
+                "n_minimo": res_pool.n,
+                "potencia_en_n_minimo": res_pool.potencia,
+                "curva": curva(res_pool),
+            },
         }
         print(json.dumps(salida["remuestreo"], indent=1, ensure_ascii=False))
 
@@ -556,4 +653,4 @@ def _main(argv: Sequence[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(_main())
+    raise SystemExit(main())

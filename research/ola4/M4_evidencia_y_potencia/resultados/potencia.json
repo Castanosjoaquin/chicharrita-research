@@ -1,5 +1,5 @@
 {
- "insumo": "research\\ola3\\C9_sensibilidad_umbral\\resultados\\validacion_31sirna.tsv",
+ "insumo": "research/ola3/C9_sensibilidad_umbral/resultados/validacion_31sirna.tsv",
  "semilla": 20261023,
  "alpha": 0.05,
  "objetivo_potencia": 0.8,
@@ -90,7 +90,117 @@
    }
   ],
   "b": 2000,
-  "permutaciones": 999
+  "permutaciones": 999,
+  "sensibilidad_con_varianza_en_discordantes": {
+   "que_es": "mismo procedimiento, pero redibujando el desenlace de cada fila discordante sorteada del reservorio de los que el modo fiel marca eficientes. Corrige la pseudo-replicacion del unico discordante observado, que deja a esa clase con varianza cero",
+   "reservorio_hr": [
+    0.0,
+    17.8,
+    23.4,
+    28.7,
+    30.0
+   ],
+   "n_minimo": 2784,
+   "potencia_en_n_minimo": 0.8335,
+   "curva": [
+    {
+     "n": 29,
+     "potencia": 0.0,
+     "ic95": [
+      0.0,
+      0.0019
+     ]
+    },
+    {
+     "n": 58,
+     "potencia": 0.0015,
+     "ic95": [
+      0.0005,
+      0.0044
+     ]
+    },
+    {
+     "n": 116,
+     "potencia": 0.0265,
+     "ic95": [
+      0.0203,
+      0.0345
+     ]
+    },
+    {
+     "n": 232,
+     "potencia": 0.11,
+     "ic95": [
+      0.097,
+      0.1245
+     ]
+    },
+    {
+     "n": 464,
+     "potencia": 0.203,
+     "ic95": [
+      0.1859,
+      0.2212
+     ]
+    },
+    {
+     "n": 928,
+     "potencia": 0.375,
+     "ic95": [
+      0.354,
+      0.3964
+     ]
+    },
+    {
+     "n": 1856,
+     "potencia": 0.6585,
+     "ic95": [
+      0.6374,
+      0.679
+     ]
+    },
+    {
+     "n": 2320,
+     "potencia": 0.7415,
+     "ic95": [
+      0.7219,
+      0.7602
+     ]
+    },
+    {
+     "n": 2552,
+     "potencia": 0.7815,
+     "ic95": [
+      0.7629,
+      0.7991
+     ]
+    },
+    {
+     "n": 2668,
+     "potencia": 0.7875,
+     "ic95": [
+      0.769,
+      0.8049
+     ]
+    },
+    {
+     "n": 2784,
+     "potencia": 0.8335,
+     "ic95": [
+      0.8165,
+      0.8492
+     ]
+    },
+    {
+     "n": 3712,
+     "potencia": 0.9145,
+     "ic95": [
+      0.9014,
+      0.926
+     ]
+    }
+   ]
+  }
  },
  "ensayo": {
   "diferencia": [
@@ -201,19 +311,19 @@
     "sd_pp": 20.0,
     "delta_pp": 20.0,
     "n_por_brazo_t": 17,
-    "potencia_mwu_en_ese_n": 0.786
+    "potencia_mwu_en_ese_n": 0.785
    },
    {
     "sd_pp": 20.0,
     "delta_pp": 30.0,
     "n_por_brazo_t": 9,
-    "potencia_mwu_en_ese_n": 0.796
+    "potencia_mwu_en_ese_n": 0.8
    },
    {
     "sd_pp": 20.0,
     "delta_pp": 40.0,
     "n_por_brazo_t": 6,
-    "potencia_mwu_en_ese_n": 0.831
+    "potencia_mwu_en_ese_n": 0.83
    }
   ]
  }

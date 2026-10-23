@@ -183,6 +183,53 @@ class TestPotenciaPorRemuestreo(unittest.TestCase):
         grande = pot.potencia_remuestreo(datos, n=400, b=120, n_perm=199, rng=rng)
         self.assertLess(chica.potencia, grande.potencia)
 
+    def test_el_reservorio_reemplaza_el_desenlace_de_los_discordantes(self) -> None:
+        # Propiedad verificable del mecanismo: con un reservorio de un solo valor
+        # absurdo, toda fila discordante sorteada tiene que quedar con ese valor, y
+        # entonces los discordantes son indistinguibles del tope de rangos.
+        rng = np.random.default_rng(8)
+        fiel = np.array([1.0, 0.0, 0.0, 0.0])
+        corregido = np.array([0.0, 0.0, 0.0, 0.0])
+        hr = np.array([1.0, 2.0, 3.0, 4.0])
+        datos = pot.Datos(nombres=None, fiel=fiel, corregido=corregido, hr=hr)
+        con_pool = pot.potencia_remuestreo(
+            datos, n=60, b=40, n_perm=99, rng=rng, pool_discordantes=np.array([999.0])
+        )
+        # Con el desenlace del discordante siempre en el tope, el modo fiel ordena
+        # perfecto y la prueba rechaza casi siempre.
+        self.assertGreater(con_pool.potencia, 0.9)
+
+    def test_el_reservorio_por_defecto_son_los_eficientes_del_fiel(self) -> None:
+        fiel = np.array([1.0, 0.0, 1.0])
+        datos = pot.Datos(
+            nombres=None,
+            fiel=fiel,
+            corregido=np.zeros(3),
+            hr=np.array([10.0, 20.0, 30.0]),
+        )
+        self.assertEqual(
+            sorted(pot.pool_discordantes_por_defecto(datos).tolist()), [10.0, 30.0]
+        )
+
+    def test_dar_varianza_a_los_discordantes_no_sube_la_potencia(self) -> None:
+        # El punto metodologico: el remuestreo sin reservorio copia el unico
+        # discordante observado, asi que su clase tiene varianza cero y la potencia
+        # sale optimista. Con varianza real no puede salir mas alta.
+        if not TSV_C9.exists():
+            self.skipTest(f"falta el insumo de C9: {TSV_C9}")
+        datos = pot.cargar_cedden(TSV_C9)
+        rng = np.random.default_rng(9)
+        sin = pot.potencia_remuestreo(datos, n=232, b=200, n_perm=299, rng=rng)
+        con = pot.potencia_remuestreo(
+            datos,
+            n=232,
+            b=200,
+            n_perm=299,
+            rng=rng,
+            pool_discordantes=pot.pool_discordantes_por_defecto(datos),
+        )
+        self.assertLessEqual(con.potencia, sin.potencia)
+
     def test_n_minimo_devuelve_un_n_con_potencia_suficiente(self) -> None:
         rng = np.random.default_rng(5)
         n0 = 20

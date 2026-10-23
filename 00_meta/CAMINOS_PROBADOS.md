@@ -1053,7 +1053,7 @@ Lo que sigue es lo que nos corrigió, y de qué lado quedó cada cosa.
 ## Estimar por remuestreo un diseño enriquecido en discordantes (2026-10-23, línea M4)
 
 - **Descartado, con motivo que vale como regla general.** Después de medir que replicando el diseño
-  de Cedden harían falta 232 siRNA para distinguir los dos modos `[M]`, la idea natural es volver a
+  de Cedden harían falta 2.784 siRNA para distinguir los dos modos `[M]`, la idea natural es volver a
   remuestrear subiendo a propósito la proporción de siRNA discordantes y ver cuánto baja el número.
   No se puede: en las 29 filas de Cedden hay **un solo** siRNA discordante (`si778`), así que
   cualquier remuestreo que lo enriquezca reproduce su mismo desenlace, la variabilidad entre

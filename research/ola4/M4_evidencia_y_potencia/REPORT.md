@@ -9,14 +9,16 @@ tenemos no alcanza.**
 
 **Las cuatro respuestas, en una linea cada una.**
 
-1. Con el diseno de Cedden 2025 replicado tal cual hacen falta **232 siRNA** con eficacia medida
-   para distinguir los dos modos con potencia 0,80 y alfa 0,05, ocho veces los 29 que existen
-   `[M]`. Y hay un resultado mas fuerte que ese: con los 29 actuales la prueba **no puede
-   rechazar nunca**, cualquiera sea el dato, porque los dos modos discrepan en **un solo**
-   siRNA `[M]`.
-2. Las fuentes de etiquetas publicas estan inventariadas abajo con su identificador y su
-   licencia. Ninguna resuelve el problema: la unica del reino y la unidad correctos es la que ya
-   usamos, y las grandes cambian de reino, de maquinaria y de via de entrega.
+1. Con el diseno de Cedden 2025 replicado tal cual hacen falta **del orden de 2.800 siRNA** con
+   eficacia medida para distinguir los dos modos con potencia 0,80 y alfa 0,05 —2.784 en la
+   estimacion honesta, noventa y seis veces los 29 que existen— y **232** es solo el piso que sale
+   de suponer que todos los discordantes se parecen al unico que observamos `[M]`. Y hay un
+   resultado mas fuerte que el numero: con los 29 actuales la prueba **no puede rechazar nunca**,
+   cualquiera sea el dato, porque los dos modos discrepan en **un solo** siRNA `[M]`.
+2. Las fuentes de etiquetas publicas estan inventariadas abajo con su identificador y su licencia.
+   Ninguna resuelve el problema: la unica del reino y la unidad correctos es la que ya usamos, y
+   las grandes cambian de reino, de maquinaria y de via de entrega `[R]`. Con datos abiertos, el
+   numero del punto 1 es inalcanzable `[H]`.
 3. El ensayo que si discrimina no mide siRNA al azar: **elige** los discordantes. Pide **32
    siRNA por brazo** si la conclusion buscada es «silencian igual», con margen de 15 puntos
    porcentuales y desviacion de 20 `[M]`, y el repertorio de discordantes que ya tenemos contado
@@ -25,7 +27,7 @@ tenemos no alcanza.**
    [`PREREGISTRO_tercera_via.md`](PREREGISTRO_tercera_via.md), escrito antes de que exista una
    sola etiqueta nueva.
 
-**Decision del usuario, tomada el 2026-10-23.** El diseno de la seccion 3 **entra al entregable
+**Decision del usuario, tomada el 2026-10-23.** El diseno de la seccion 4 **entra al entregable
 del checkpoint 2 como la casilla de validacion**, declarando que el ensayo lo proponemos y no lo
 corremos. Queda como D53.
 
@@ -57,59 +59,76 @@ chico que admite es 2/2^k —la asignacion observada y su espejo— asi que **co
 puede dar p ≤ 0,05**, por mucho que crezca el n total `[M]`. Con k = 1, que es el caso real, el p
 exacto por enumeracion completa es **1,00** `[M]`.
 
-Esto cambia la respuesta que conviene dar. La objecion no es «su validacion tiene poca muestra»,
-sino **«su validacion no tenia forma de salir distinta»**: con un solo siRNA discordante, el
-resultado era 1,00 antes de mirar los datos. Y no es una peculiaridad del conjunto de Cedden: es
+`[H]` Esto cambia la respuesta que conviene dar. La objecion no es «su validacion tiene poca
+muestra», sino **«su validacion no tenia forma de salir distinta»**: con un solo siRNA discordante,
+el resultado era 1,00 antes de mirar los datos. Y no es una peculiaridad del conjunto de Cedden: es
 lo que pasa siempre que dos criterios discrepan en una fraccion chica de los casos y la muestra es
-chica. La tasa de discordancia medida entre los dos modos sobre los 29 siRNA es **3,45 %** `[M]`,
-del mismo orden que el 14-24 % de C1 pero sobre un conjunto distinto —alla se contaban ventanas de
+chica.
+
+La tasa de discordancia medida entre los dos modos sobre los 29 siRNA es **3,45 %** `[M]`. `[H]` Es
+del mismo orden que el 14-24 % de C1, pero sobre un conjunto distinto —alla se contaban ventanas de
 cuatro genes del corpus, aca siRNA elegidos por otros autores—, asi que las dos cifras no se
 comparan directamente.
 
-## 2. Cuantas etiquetas harian falta: 232, por remuestreo
+## 2. Cuantas etiquetas harian falta: del orden de 2.800, por remuestreo
 
 El numero que pidio el investigador sale de remuestrear el propio conjunto de Cedden. El
 procedimiento, implementado en [`scripts/potencia_dos_modelos.py`](scripts/potencia_dos_modelos.py)
-y verificado con 25 pruebas en
+y verificado con 28 pruebas en
 [`scripts/test_potencia_dos_modelos.py`](scripts/test_potencia_dos_modelos.py), es: tomar las 29
 filas como poblacion madre, sortear n filas con reposicion, correr sobre cada muestra la prueba de
 aleatorizacion por intercambio con 999 permutaciones, y contar en que fraccion de 2000 muestras el
 p queda en 0,05 o menos. Asi la tasa de discordancia, la proporcion de negativos y la restriccion
 de rango del desenlace son las del dato real y no las de un supuesto.
 
-| n de siRNA | Potencia | IC95 de la potencia |
+**Hay que correrlo de dos maneras, y la diferencia entre las dos es el resultado.** El remuestreo
+simple sortea filas enteras, y como en las 29 hay **un solo** discordante, toda fila discordante
+que salga sorteada es una copia de `si778`, con su mismo desenlace. La clase discordante queda
+entonces con varianza cero y su aporte a la diferencia entre los dos rho tiene siempre el mismo
+signo, lo que **sobreestima la potencia**: en un conjunto real algunos discordantes apuntarian al
+otro lado. La version honesta le devuelve la varianza: a cada fila discordante sorteada se le
+redibuja el desenlace del reservorio de los cinco siRNA que el modo fiel marca eficientes —razones
+de riesgo 0,0, 17,8, 23,4, 28,7 y 30,0—, que es el reservorio observado mas cercano a esa clase y
+el unico con varianza propia que tenemos. Las dos curvas:
+
+| n de siRNA | Potencia, copiando el unico discordante | Potencia con varianza en los discordantes |
 |---|---|---|
-| 29 (lo que existe) | 0,001 | [0,000, 0,004] |
-| 58 | 0,017 | [0,012, 0,023] |
-| 116 | 0,209 | [0,192, 0,227] |
-| 174 | 0,570 | [0,548, 0,592] |
-| 203 | 0,710 | [0,689, 0,729] |
-| 217 | 0,770 | [0,751, 0,787] |
-| 224 | 0,800 | [0,781, 0,817] |
-| **232** | **0,824** | [0,806, 0,840] |
+| 29 (lo que existe) | 0,001 | 0,000 |
+| 58 | 0,017 | 0,002 |
+| 116 | 0,209 | 0,027 |
+| 174 | 0,570 | — |
+| 224 | 0,799 | — |
+| **232** | **0,824** | 0,110 |
+| 464 | — | 0,203 |
+| 928 | — | 0,375 |
+| 1.856 | — | 0,659 |
+| 2.320 | — | 0,742 |
+| 2.552 | — | 0,782 |
+| **2.784** | — | **0,834** |
 
-`[M]` (semilla 20261023, `resultados/potencia.json`). El n minimo que alcanza 0,80 es **232**, y la
-busqueda lo localiza por duplicacion y biseccion, de modo que el 224 de la fila anterior ya esta en
-el borde: cualquier numero entre 224 y 232 es defendible y **el redondeo honesto es «del orden de
-230, no de 30»**.
+`[M]` (semilla 20261023, 2.000 muestras por punto y 999 permutaciones por muestra;
+`resultados/potencia.json`, con el intervalo de Wilson de cada potencia). **El numero que hay que
+dar es 2.784**, y el 232 queda como lo que es: el piso que sale de suponer que todos los
+discordantes se parecen al unico que vimos. Doce veces de diferencia entre los dos, lo que muestra
+que la pseudo-replicacion de un solo caso no es un detalle de implementacion sino el factor que
+domina la cuenta `[H]`.
 
-Los dos numeros de la tabla que conviene llevar a la reunion no son el 232 sino los dos extremos.
-Con los 29 que existen la potencia es **0,001**, o sea que el ejercicio de C9 tenia una chance en
-mil de distinguir los modos aunque uno fuera bueno y el otro inutil. Y el 174 no es una fila
-cualquiera: es exactamente el n al que la tasa de discordancia del 3,45 % produce, en promedio, los
-**6 discordantes** que la cota combinatoria de la seccion 1 exige para que la prueba pueda rechazar
-`[M]`. Las dos cuentas —una exacta y de una linea, otra por remuestreo— coinciden en el mismo orden
-de magnitud, que es la clase de acuerdo que da confianza en el numero.
+Dos filas mas que conviene llevar a la reunion. Con los 29 que existen la potencia es **0,001** por
+la via optimista y **0,000** por la honesta: el ejercicio de C9 tenia, como maximo, una chance en
+mil de distinguir los modos aunque uno fuera bueno y el otro inutil. Y el 174 de la primera columna
+es exactamente el n al que la tasa de discordancia del 3,45 % produce en promedio los **6
+discordantes** que la cota combinatoria de la seccion 1 exige para que la prueba pueda rechazar
+`[M]`: las dos cuentas —una exacta y de una linea, otra por remuestreo— coinciden, lo que da
+confianza en que el piso esta bien calculado aunque sea un piso `[H]`.
 
-**Lo que este 232 es y lo que no.** Es el n necesario para distinguir los dos modos **replicando el
-diseno de Cedden**: siRNA elegidos por los autores sin referencia a nuestra discordancia, con
-mortalidad de larvas como desenlace y su misma restriccion de rango. No es el n de un ensayo
-disenado para la pregunta, que es la seccion 3 y pide mucho menos. Y como todo remuestreo, hereda el
-limite de su poblacion madre: hay **un solo** siRNA discordante en las 29 filas, asi que cada vez
-que el sorteo lo elige reproduce su mismo desenlace. Eso invalida usar este mismo procedimiento
-para estimar la potencia de un diseno que enriquezca discordantes —no habria variabilidad entre
-ellos— y es la razon metodologica por la que la seccion 3 cambia de estadistico en vez de subir el
-n. `[M]`
+**Lo que estos numeros son y lo que no.** `[M]` Son el n necesario para distinguir los dos modos
+**replicando el diseno de Cedden**: siRNA elegidos por los autores sin referencia a nuestra
+discordancia, con mortalidad de larvas como desenlace y su misma restriccion de rango. `[H]` No son
+el n de un ensayo disenado para la pregunta, que es la seccion 4 y pide mucho menos; y aun con el
+reservorio, el remuestreo sigue heredando el limite de su poblacion madre, porque los cinco valores
+del reservorio son los unicos desenlaces de siRNA eficientes que tenemos. Por eso la seccion 4
+cambia de estadistico —de una correlacion de rangos a un contraste entre grupos— en vez de subir el
+n del mismo calculo: un remuestreo no puede inventar variabilidad que la poblacion madre no tiene.
 
 ## 3. Las fuentes de etiquetas que existen, con lo que cada una cuesta
 
@@ -120,7 +139,7 @@ se leyo, y lo que no se pudo abrir esta marcado `[?]` y anotado en
 | Fuente | Identificador | Licencia | Unidad y n | Lo que cuesta |
 |---|---|---|---|---|
 | Cedden *et al.* 2025 | DOI 10.1186/s12915-025-02219-6, PMC12039203 | CC BY 4.0 | 31 siRNA de 21 nt contra *Tc-gawky* (29 usables) y 3-4 ARNdc por gen en 8 genes de *Tribolium castaneum*; desenlace de supervivencia con razon de riesgo de log-rank | Es la que ya usamos. Coleoptero, no hemiptero; **un solo** siRNA discordante entre modos; restriccion de rango (24 de 29 positivos); y la prueba no es independiente de lo ya publicado, porque los autores analizaron sus propios descriptores sobre estos mismos siRNA `[R]` |
-| Huesken *et al.* 2005 | DOI 10.1038/nbt1118 | no verificada `[?]` | 2431 siRNA sobre 34 ARNm humanos y de roedor, ensayo con reportero fluorescente | n de cuatro cifras, pero cambia de reino, de maquinaria y de via de entrega: celulas en cultivo con transfeccion, no insecto alimentado o inyectado. **No conseguimos un punto de descarga abierto**: los dos trabajos que la usan la citan al original sin enlace `[?]` |
+| Huesken *et al.* 2005, **tal como lo reportan Vert *et al.* 2006 y Thang *et al.* 2015** (el original no lo abrimos) | DOI 10.1038/nbt1118 | no verificada `[?]` | 2431 siRNA sobre 34 ARNm humanos y de roedor, ensayo con reportero fluorescente `[R]` | n de cuatro cifras, pero cambia de reino, de maquinaria y de via de entrega: celulas en cultivo con transfeccion, no insecto alimentado o inyectado. **No conseguimos un punto de descarga abierto**: los dos trabajos que la usan la citan al original sin enlace `[?]` |
 | Reynolds, Vickers, Harborth y la compilacion de Shabalina, tal como las reporta Vert *et al.* 2006 | DOI 10.1186/1471-2105-7-520, PMC1698581 | CC BY 2.0 el articulo; los datos, no verificada `[?]` | 240, 76, 44 y 653 siRNA, todos humanos | Mismo salto de reino, y ademas son conjuntos de prueba chicos de un solo gen o dos en dos de los casos. El articulo que los compila no adjunta los datos `[?]` |
 | siRecords, tal como lo reporta Thang *et al.* 2015 | DOI 10.1186/s12859-015-0495-2, PMC4379720 | CC BY 2.0 el articulo; la base, no verificada `[?]` | 2470 siRNA de eficacia «muy alta» y 2514 de eficacia «baja», humanos | Las etiquetas son **clases, no valores**: no hay eficacia continua, asi que sirve para una comparacion de clasificadores y no para una correlacion de rangos. No pudimos abrir la base original `[?]` |
 | iBeetle-Base | DOI 10.1093/nar/gku1054, PMC4383896 | **CC BY-NC 4.0** | 5180 ARNdc distintos sobre 16.505 genes de *Tribolium castaneum*, con fenotipo anotado **por fragmento** y penetrancia | Es la unica fuente grande del reino correcto, y es la mas prometedora de la tabla. Pero el reactivo es un fragmento de ~479 pb, no un siRNA de 21 nt; el desenlace son terminos de ontologia y penetrancia en tramos, no una eficacia continua; la licencia excluye uso comercial; y **el articulo no dice si hay dos fragmentos independientes por gen**, que es justamente lo que haria falta para tener discordancia dentro de un mismo blanco `[?]` |
@@ -129,15 +148,16 @@ se leyo, y lo que no se pudo abrir esta marcado `[?]` y anotado en
 
 Dos lecturas de la tabla, las dos reportables.
 
-**La primera es la respuesta directa al pedido.** Los 232 siRNA de la seccion 2 tienen que ser
-siRNA con eficacia medida **en la unidad y el reino correctos**, y de esos hay 29 en el mundo
-publico. Las fuentes grandes suman miles, pero ninguna sirve para la comparacion que el
-investigador propone: las humanas cambian las tres cosas a la vez —reino, maquinaria y entrega— y
-entran como `[?]`, utiles solo para preguntar si los terminos de si-Fi21 tienen **alguna** senal,
-no para elegir entre dos variantes que difieren en una rama; y la grande del reino correcto cambia
-la unidad del reactivo. **Con datos abiertos, el numero necesario es inalcanzable hoy.** Ese era el
-riesgo declarado de esta linea y se cumplio, y es una respuesta: los dos modelos no son
-distinguibles con la evidencia existente. `[M]` para el 232, `[H]` para la lectura.
+**La primera es la respuesta directa al pedido.** Los 2.784 siRNA de la seccion 2 —o los 232 del
+piso optimista— tienen que ser siRNA con eficacia medida **en la unidad y el reino correctos**, y
+de esos hay 29 en el mundo publico `[M]`. Las fuentes grandes suman miles, pero ninguna sirve para
+la comparacion que el investigador propone: las humanas cambian las tres cosas a la vez —reino,
+maquinaria y entrega— y entran como `[?]`, utiles solo para preguntar si los terminos de si-Fi21
+tienen **alguna** senal, no para elegir entre dos variantes que difieren en una rama; y la grande
+del reino correcto cambia la unidad del reactivo `[R]`. `[H]` **Con datos abiertos, el numero
+necesario es inalcanzable hoy**, ni siquiera en su version mas optimista. Ese era el riesgo
+declarado de esta linea y se cumplio, y es una respuesta: los dos modelos no son distinguibles con
+la evidencia existente.
 
 **La segunda es una linea de trabajo que no habiamos visto.** iBeetle-Base es la unica fuente que
 combina el reino correcto con n de cuatro cifras y resultado por reactivo, y la pregunta que
@@ -189,7 +209,7 @@ misma clase, las dos en puntos porcentuales de silenciamiento `[M]`:
 
 | Dispersion entre siRNA (pp) | Diferencia 20 pp | 30 pp | 40 pp |
 |---|---|---|---|
-| 15 | 11 | 6 | 4 |
+| 15 | 10 | 6 | 4 |
 | 20 | 17 | 9 | 6 |
 | 25 | 26 | 12 | 8 |
 
@@ -218,10 +238,10 @@ supuesto que hay que revisar primero con los datos del propio ensayo. Los dos va
 supuestos nuestros, no mediciones: la dispersion entre siRNA no la tenemos medida en ningun
 sistema comparable, y si en el ensayo resulta 25 pp el n necesario sube a 49. `[H]`
 
-**El repertorio alcanza, y eso no era obvio.** 32 discordantes por brazo contra las 50 ventanas
-discordantes de `BicC_Dm` deja margen para descartar por solapamiento, por contenido GC o por
-off-targets, y si no alcanzara se completan con las 19 de `MP_MRFV`, al costo de agregar el gen
-como variable `[M]`.
+**El repertorio alcanza, y eso no era obvio.** `BicC_Dm` tiene **50** ventanas discordantes y
+`MP_MRFV` **19** `[M]`. `[H]` Treinta y dos por brazo contra esas 50 deja margen para descartar por
+solapamiento, por contenido GC o por off-targets, y si no alcanzara se completan con las de
+`MP_MRFV`, al costo de agregar el gen como variable.
 
 **Ciego y asignacion.** Quien corre el bioensayo y quien mide el transcrito reciben los siRNA
 codificados, sin la clase. La correspondencia entre codigo y brazo queda en manos de una persona
@@ -235,12 +255,14 @@ hace que el ensayo sea una prueba y no una ilustracion.
 
 - **Si A es equivalente a B** (la prueba de equivalencia rechaza las dos unilaterales con margen
   de 15 pp): la rama terminal del original **no infla nada** y nuestro modo corregido esta
-  descartando entre el 14 % y el 24 % de diseños buenos. Habria que revisar C1, y el modo por
-  defecto del entregable deberia volver a ser el fiel.
+  descartando disenos que funcionan, que en el corpus son entre el 14 % y el 24 % de los
+  eficientes `[M]`. `[H]` Habria que revisar C1, y el modo por defecto del entregable deberia
+  volver a ser el fiel.
 - **Si A silencia menos que B**, con la diferencia por debajo de −15 pp: la rama infla, la
-  correccion vale, y los 84 casos del corpus son falsos positivos del original.
+  correccion vale, y las 84 ventanas discordantes del corpus `[M]` son falsos positivos del
+  original `[H]`.
 - **Si ninguna de las dos**: no concluyente, y se reporta con el n que habria hecho falta segun la
-  dispersion observada. Es el resultado que hay que estar dispuesto a publicar.
+  dispersion observada `[H]`. Es el resultado que hay que estar dispuesto a publicar.
 
 **Lo que el ensayo no resuelve.** Es *Dalbulus maidis* o el sistema que el laboratorio pueda
 correr, pero sigue siendo **un gen**: generaliza a la rama, no a la especie. No mide nada sobre
@@ -253,25 +275,29 @@ ejecucion.
 | Archivo | Que es |
 |---|---|
 | `scripts/potencia_dos_modelos.py` | La cuenta de potencia: remuestreo, prueba de aleatorizacion por intercambio, enumeracion exacta, y las cuentas de dos grupos y de equivalencia. Corre sin insumos nuevos |
-| `scripts/test_potencia_dos_modelos.py` | 25 verificaciones. Las anclas: reproduce los rho de C9 (+0,142 y +0,024), reproduce el valor de libro de la t de dos muestras (17 por grupo), y la cota combinatoria coincide con la enumeracion exhaustiva para k de 1 a 8 |
+| `scripts/test_potencia_dos_modelos.py` | 28 verificaciones. Las anclas: reproduce los rho de C9 (+0,142 y +0,024), reproduce el valor de libro de la t de dos muestras (17 por grupo), la cota combinatoria coincide con la enumeracion exhaustiva para k de 1 a 8, y dar varianza a los discordantes nunca sube la potencia |
 | `resultados/potencia.json` | Todas las cifras de este reporte, con su semilla |
 | `PREREGISTRO_tercera_via.md` | El plan de analisis de M3, escrito antes de que exista una etiqueta nueva |
 
 **Que no se hizo, y por que.** No se ajusto ningun modelo: con 29 etiquetas y seis terminos no se
 ajusta nada, y es la razon por la que M3 entrega una tabla y no un modelo. No se bajo ni se
-reproceso ninguna de las fuentes de la seccion 3: la linea pedia inventariarlas con su costo, y
+reproceso ninguna de las fuentes de la seccion 3 (la tabla de fuentes): la linea pedia inventariarlas con su costo, y
 bajar la de Huesken no cambiaria el hecho de que es otro reino. No se toco el motor de eficiencia,
 que en esta maquina no esta disponible.
 
 ## 6. Limites
 
-El 232 depende de la poblacion madre: es el n para replicar el diseno de Cedden, y un conjunto con
-otra tasa de discordancia o menos restriccion de rango daria otro numero. La cota de los 6
+Los dos numeros de potencia dependen de la poblacion madre: son el n para replicar el diseno de
+Cedden, y un conjunto con otra tasa de discordancia o menos restriccion de rango daria otro numero.
+El 2.784 es la estimacion a usar y el 232 es un piso, pero el 2.784 tampoco es exacto: el
+reservorio con el que se le da varianza a la clase discordante tiene cinco valores, que son los
+unicos desenlaces de siRNA eficientes que existen en el conjunto, asi que el numero esta bien en
+orden de magnitud y no en su ultima cifra. La cota de los 6
 discordantes es exacta y no depende de nada, pero vale para esta prueba de aleatorizacion: otra
 prueba tendria otra cota, y cualquier prueba que diera p ≤ 0,05 con un solo caso discordante
 estaria suponiendo algo que el dato no tiene. Los dos supuestos del tamano de muestra del ensayo
 —dispersion 20 pp, margen 15 pp— son nuestros y estan marcados `[H]`: el primero se revisa con el
-propio ensayo, el segundo es una decision de diseño que conviene discutir con quien vaya a correrlo.
+propio ensayo, el segundo es una decision de diseno que conviene discutir con quien vaya a correrlo.
 La licencia de iBeetle-Base es CC BY-NC, de modo que cualquier uso con fines comerciales queda
 fuera. Y el ensayo mide silenciamiento en un gen: no dice nada sobre eficacia en campo, sobre
 especies no objetivo ni sobre resistencia.
