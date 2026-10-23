@@ -1,0 +1,33 @@
+#!/bin/sh
+# Gancho de pre-commit: no dejar entrar secuencias de nucleotidos al repositorio.
+#
+# Corre dos chequeos sobre lo que esta en el indice, no sobre el arbol:
+#   1. la pasada contra las secuencias de EPILAB, que es la que distingue una fuga de
+#      un dato publico. Si falta YHat-Biotech/ en disco, se declara no corrida;
+#   2. rachas de 21 nt o mas y columnas de k-meros solapados, con la lista blanca.
+#
+# Instalacion (una vez por clon):
+#     git config core.hooksPath tools/verificacion/hooks
+#
+# Para saltearlo en un commit puntual hay que decirlo a proposito:
+#     git commit --no-verify
+set -e
+
+echo "pre-commit: sin_secuencias.py sobre el indice"
+if ! python3 tools/verificacion/sin_secuencias.py --staged --solo-epilab; then
+    echo ""
+    echo "RECHAZADO: hay secuencias de EPILAB en lo que estas por commitear."
+    echo "Quitalas del indice. Si creés que es un dato publico, agregá la excepción"
+    echo "con su motivo en EXCEPCIONES de tools/verificacion/sin_secuencias.py."
+    exit 1
+fi
+
+if ! python3 tools/verificacion/sin_secuencias.py --staged; then
+    echo ""
+    echo "RECHAZADO: hay secuencias de nucleotidos sin exceptuar en el indice."
+    echo "Revisalas una por una. Si son publicas, agregá la excepción con su motivo"
+    echo "y su accesión en EXCEPCIONES de tools/verificacion/sin_secuencias.py."
+    exit 1
+fi
+
+echo "pre-commit: sin hallazgos"

@@ -1,0 +1,73 @@
+{
+  "modo": "arbol",
+  "unidades_revisadas": 898,
+  "largo_racha": 21,
+  "no_exceptuados": 5506,
+  "exceptuados": 51047,
+  "rachas_totales": 56504,
+  "cadenas_totales": 43,
+  "nota": "Resumen por archivo de los hallazgos NO exceptuados. El detalle por linea no se versiona: son 30 MB y se regenera con --json.",
+  "por_archivo": {
+    "baseline_dsrip/dsrip_vatpaseA.csv": {
+      "rachas": 5473,
+      "largo_racha_min": 21,
+      "largo_racha_max": 21,
+      "cadenas": [
+        {
+          "n_kmeros": 1825,
+          "largo_kmero": 21,
+          "nt_reconstruidos": 1845,
+          "linea_desde": 2,
+          "linea_hasta": 1826,
+          "sentido": "antisentido"
+        },
+        {
+          "n_kmeros": 1823,
+          "largo_kmero": 21,
+          "nt_reconstruidos": 1843,
+          "linea_desde": 2,
+          "linea_hasta": 1824,
+          "sentido": "antisentido"
+        },
+        {
+          "n_kmeros": 1825,
+          "largo_kmero": 21,
+          "nt_reconstruidos": 1845,
+          "linea_desde": 2,
+          "linea_hasta": 1826,
+          "sentido": "antisentido"
+        }
+      ],
+      "epilab": []
+    },
+    "research/ola3/C13_quimeras_region_recomendada/resultados/empalme_maiz_detalle.json": {
+      "rachas": 3,
+      "largo_racha_min": 21,
+      "largo_racha_max": 21,
+      "cadenas": [],
+      "epilab": []
+    },
+    "research/ola3/C4_offtargets_quimeras_largo/resultados/q2_aciertos_localizados.tsv": {
+      "rachas": 25,
+      "largo_racha_min": 21,
+      "largo_racha_max": 21,
+      "cadenas": [],
+      "epilab": [
+        {
+          "region": "MP_MRFV",
+          "nt_cubiertos": 46,
+          "nt_region": 200,
+          "pct_cubierto": 23.0,
+          "tramo_contiguo_mayor": 23
+        },
+        {
+          "region": "BicC_Dm",
+          "nt_cubiertos": 48,
+          "nt_region": 300,
+          "pct_cubierto": 16.0,
+          "tramo_contiguo_mayor": 25
+        }
+      ]
+    }
+  }
+}

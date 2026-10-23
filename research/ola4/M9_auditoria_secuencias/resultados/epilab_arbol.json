@@ -1,0 +1,69 @@
+{
+  "modo": "arbol",
+  "unidades_revisadas": 898,
+  "largo_racha": 21,
+  "no_exceptuados": 6,
+  "exceptuados": 0,
+  "hallazgos": [
+    {
+      "tipo": "kmero_de_epilab",
+      "archivo": "research/ola2/W2_herramientas/ejemplos/entradas/MRFV_NC_002786.2.fa",
+      "region": "MP_MRFV",
+      "nt_cubiertos": 181,
+      "nt_region": 200,
+      "pct_cubierto": 90.5,
+      "tramo_contiguo_mayor": 181,
+      "exceptuado": false
+    },
+    {
+      "tipo": "kmero_de_epilab",
+      "archivo": "research/ola2/W2_herramientas/ejemplos/entradas/MRFV_NC_002786.2.fa",
+      "region": "CP_MRFV",
+      "nt_cubiertos": 193,
+      "nt_region": 200,
+      "pct_cubierto": 96.5,
+      "tramo_contiguo_mayor": 193,
+      "exceptuado": false
+    },
+    {
+      "tipo": "kmero_de_epilab",
+      "archivo": "research/ola2/W2_herramientas/ejemplos/entradas/db_demo_zmays40_amel40_mrfv.fa",
+      "region": "MP_MRFV",
+      "nt_cubiertos": 181,
+      "nt_region": 200,
+      "pct_cubierto": 90.5,
+      "tramo_contiguo_mayor": 181,
+      "exceptuado": false
+    },
+    {
+      "tipo": "kmero_de_epilab",
+      "archivo": "research/ola2/W2_herramientas/ejemplos/entradas/db_demo_zmays40_amel40_mrfv.fa",
+      "region": "CP_MRFV",
+      "nt_cubiertos": 193,
+      "nt_region": 200,
+      "pct_cubierto": 96.5,
+      "tramo_contiguo_mayor": 193,
+      "exceptuado": false
+    },
+    {
+      "tipo": "kmero_de_epilab",
+      "archivo": "research/ola3/C4_offtargets_quimeras_largo/resultados/q2_aciertos_localizados.tsv",
+      "region": "MP_MRFV",
+      "nt_cubiertos": 46,
+      "nt_region": 200,
+      "pct_cubierto": 23.0,
+      "tramo_contiguo_mayor": 23,
+      "exceptuado": false
+    },
+    {
+      "tipo": "kmero_de_epilab",
+      "archivo": "research/ola3/C4_offtargets_quimeras_largo/resultados/q2_aciertos_localizados.tsv",
+      "region": "BicC_Dm",
+      "nt_cubiertos": 48,
+      "nt_region": 300,
+      "pct_cubierto": 16.0,
+      "tramo_contiguo_mayor": 25,
+      "exceptuado": false
+    }
+  ]
+}
