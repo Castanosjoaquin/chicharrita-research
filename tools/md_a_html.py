@@ -2,13 +2,16 @@
 
 El markdown es la fuente de verdad; el HTML es solo la vista de lectura. Soporta
 titulos, parrafos, tablas, imagenes, enlaces, negrita, cursiva, tachado, codigo en
-linea, bloques de codigo con cercas (```), listas con viñeta y numeradas, y lineas
-horizontales. No es un conversor general: cubre lo que usan los documentos de este
+linea, bloques de codigo con cercas (```), listas con viñeta y numeradas, citas (`>`)
+y lineas horizontales. No es un conversor general: cubre lo que usan los documentos de este
 repositorio.
 
 Las cercas y las listas se agregaron en la ola 4: antes el contenido de un bloque de
 codigo se unia en un solo parrafo y los comandos de varias lineas quedaban ilegibles
 en la vista de lectura.
+
+Las citas se agregaron en la linea M8: antes un `> ` quedaba como un `&gt;` literal
+al principio de cada linea.
 
 Uso (desde la raiz del repositorio):
     python tools/md_a_html.py entregables/para-el-investigador.md \
@@ -51,6 +54,9 @@ NUMERADA = re.compile(r"^\d+\. +(.*)$")
 # Regla horizontal: tres o mas del mismo caracter, con o sin espacios. Hay que
 # mirarla **antes** que la viñeta, porque `* * *` y `- - -` son reglas y no items.
 REGLA = re.compile(r"^([-*_])( *\1){2,} *$")
+# Cita: el `>` tiene que abrir la linea. Los informes escriben ordenes como
+# `BicC_Dm > CP_MRFV` en medio de un parrafo, y eso no es una cita.
+CITA = re.compile("^>( .*)?$")
 CERCA = "```"
 
 
@@ -124,7 +130,7 @@ def desangrar(lineas):
 
 
 def convertir(md):
-    bloques, tabla, parr, lbuf = [], [], [], []
+    bloques, tabla, parr, lbuf, cita = [], [], [], [], []
     cerca, cerca_abierta = [], False
     blanco_pendiente = False
     titulo = ""
@@ -141,6 +147,12 @@ def convertir(md):
             bloques.append(bloque_lista(lbuf))
             lbuf = []
 
+    def vaciar_c():
+        nonlocal cita
+        if cita:
+            bloques.append("<blockquote><p>%s</p></blockquote>" % inline(" ".join(cita)))
+            cita = []
+
     def vaciar_t():
         nonlocal tabla
         if tabla:
@@ -152,7 +164,7 @@ def convertir(md):
                            for r in filas)))
             tabla = []
 
-    BLOQUE = ("# ", "## ", "### ", "|", CERCA)
+    BLOQUE = ("# ", "## ", "### ", "|", CERCA, ">")
     for l in md.split("\n"):
         if cerca_abierta:
             if l.strip().startswith(CERCA):
@@ -187,6 +199,12 @@ def convertir(md):
                     l.startswith(BLOQUE) or REGLA.match(l.strip())):
                 lbuf.append(l); continue
         blanco_pendiente = False
+        cit = CITA.match(l)
+        if cit:
+            vaciar_p(); vaciar_l(); vaciar_t()
+            cita.append((cit.group(1) or "").strip())
+            continue
+        vaciar_c()
         if l.strip().startswith(CERCA):
             vaciar_p(); vaciar_l(); vaciar_t()
             cerca_abierta = True
@@ -210,7 +228,7 @@ def convertir(md):
             vaciar_l(); parr.append(l.strip())
     if cerca_abierta:
         bloques.append("<pre>%s</pre>" % html.escape(desangrar(cerca)))
-    vaciar_p(); vaciar_l(); vaciar_t()
+    vaciar_p(); vaciar_l(); vaciar_c(); vaciar_t()
     return titulo, "\n".join(bloques)
 
 

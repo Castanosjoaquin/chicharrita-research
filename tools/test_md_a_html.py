@@ -6,6 +6,9 @@ facil romper sin que se note en la pagina: la continuacion de un item, la sublis
 anidada, una cerca indentada adentro de un item y la regla horizontal escrita con
 espacios (`- - -`), que no es un item.
 
+En M8 se agrego la cita (`> `), que tiene la trampa de parecerse al `>` que los
+informes usan en medio de un parrafo para escribir un orden.
+
 Uso:
     python tools/test_md_a_html.py
 """
@@ -96,6 +99,39 @@ class TestCercas(unittest.TestCase):
 
     def test_la_cerca_sin_cerrar_igual_se_emite(self):
         self.assertEqual(html_de("```\nuno\n"), "<pre>uno</pre>")
+
+
+class TestCitas(unittest.TestCase):
+    """La cita (`> `) se agrego en M8, porque el parrafo que el informe deja listo
+    para copiar al entregable salia con un `&gt;` literal al principio de cada
+    linea. C7 y C13 ya la usaban en su markdown."""
+
+    def test_una_cita_de_una_linea(self):
+        self.assertEqual(html_de("> uno\n"), "<blockquote><p>uno</p></blockquote>")
+
+    def test_la_cita_de_varias_lineas_es_un_solo_parrafo(self):
+        self.assertEqual(html_de("> uno\n> dos\n"),
+                         "<blockquote><p>uno dos</p></blockquote>")
+
+    def test_la_cita_admite_marcado_en_linea(self):
+        self.assertEqual(html_de("> **x** y `z`\n"),
+                         "<blockquote><p><b>x</b> y <code>z</code></p></blockquote>")
+
+    def test_la_cita_vacia_no_rompe(self):
+        self.assertEqual(html_de(">\n"), "<blockquote><p></p></blockquote>")
+
+    def test_un_blanco_cierra_la_cita_y_abre_dos(self):
+        self.assertEqual(html_de("> uno\n\n> dos\n"),
+                         "<blockquote><p>uno</p></blockquote>\n"
+                         "<blockquote><p>dos</p></blockquote>")
+
+    def test_la_cita_cierra_el_parrafo_anterior(self):
+        self.assertEqual(html_de("parrafo\n> cita\n"),
+                         "<p>parrafo</p>\n<blockquote><p>cita</p></blockquote>")
+
+    def test_un_mayor_que_en_medio_de_un_parrafo_no_es_cita(self):
+        # Los informes escriben ordenes como `BicC_Dm > CP_MRFV` dentro del texto.
+        self.assertEqual(html_de("a > b\n"), "<p>a &gt; b</p>")
 
 
 class TestNoRompeLoQueYaFuncionaba(unittest.TestCase):

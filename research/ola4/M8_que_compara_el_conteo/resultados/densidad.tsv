@@ -1,0 +1,17 @@
+configuracion	gen	largo_nt	ventanas	eficientes	densidad_por_100_ventanas	puesto_por_conteo	puesto_por_densidad
+original_2.1.5	BicC_Dm	2520	2500	212	8.48	1	3
+original_2.1.5	MP_MRFV	1263	1243	133	10.70	2	1
+original_2.1.5	ATPaseD_Dm	491	471	42	8.92	3	2
+original_2.1.5	CP_MRFV	528	508	32	6.30	4	4
+fiel_vienna_2.7.2	BicC_Dm	2520	2500	223	8.92	1	2
+fiel_vienna_2.7.2	MP_MRFV	1263	1243	142	11.42	2	1
+fiel_vienna_2.7.2	CP_MRFV	528	508	39	7.68	3	3
+fiel_vienna_2.7.2	ATPaseD_Dm	491	471	35	7.43	4	4
+corregido_vienna	BicC_Dm	2520	2500	171	6.84	1	2
+corregido_vienna	MP_MRFV	1263	1243	123	9.90	2	1
+corregido_vienna	CP_MRFV	528	508	30	5.91	3	4
+corregido_vienna	ATPaseD_Dm	491	471	29	6.16	4	3
+planilla_epilab	BicC_Dm	2520	2500	199	7.96	1	2
+planilla_epilab	MP_MRFV	1263	1243	114	9.17	2	1
+planilla_epilab	CP_MRFV	528	508	35	6.89	3	4
+planilla_epilab	ATPaseD_Dm	491	471	33	7.01	4	3

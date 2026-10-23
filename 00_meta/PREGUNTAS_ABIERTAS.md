@@ -1329,3 +1329,38 @@ que su propia carta hizo necesaria.
   `tsa_gitv01` es la ensambladura TSA `GITV01`, que no está en esa carpeta. No invalida ninguna
   medición de la ola 3, donde la base se llamaba por su nombre, pero sí el inventario del plan,
   que cuenta tres transcriptomas de *D. maidis* donde hay uno y no está descargado.
+## Las siete variables biológicas que faltan para comparar genes, por la línea M8 (2026-10-23)
+
+M8 contestó hasta dónde compara el número de siRNAs eficientes
+(`research/ola4/M8_que_compara_el_conteo/REPORT.md`) y la respuesta deja esta lista: son las
+variables que habría que incorporar para comparar estrategias dirigidas a genes distintos, y lo
+que falta de cada una. Van juntas porque son pedidos que se le pueden hacer al investigador en la
+misma conversación del lunes, ordenadas por cuánto cambiarían la decisión y no por lo que cuesta
+conseguirlas.
+
+1. **Ventana de latencia del patógeno contra tiempo hasta el efecto.** Es la que manda: si el
+   insecto transmite antes de que el silenciamiento haga efecto, matarlo no corta la transmisión.
+   Falta la fuente de latencia del MRFV —la abierta (Jones y Medina 2020) es de *Spiroplasma
+   kunkelii*, 18 a 22 días `[?]`— y faltan seguimientos más largos que los 4 o 5 días de los
+   ensayos abiertos. **Esta comparación es la que decide si esterilizar alcanza.**
+2. **Evidencia de fenotipo tras silenciamiento.** Tenemos cifras para los cuatro ejes pero no son
+   comparables entre sí: distinto desenlace, distinto estadio, distinto control y n de tres
+   réplicas de tres ninfas en lo molecular. Falta un desenlace común, y falta por ingesta lo que
+   hoy sólo existe por microinyección.
+3. **Nivel de expresión en el tejido que el ARNdc ingerido alcanza.** No tenemos nada y el hueco
+   es doble: ninguna fuente abierta identifica qué célula recibe el ARNdc por ingesta, y el
+   transcriptoma del grupo que publica en la especie es de cuerpo entero de individuos agrupados
+   de varios estadios (Palacio, UNNOBA 2018), así que no da expresión por tejido ni por estadio.
+4. **Redundancia por parálogos.** No medido, y es una corrida local posible que no se hizo: buscar
+   los parálogos de cada candidato en `GCA_975739785.1` con las herramientas que ya usamos.
+   Silenciar un miembro de una familia puede no hacer nada, y eso no aparece en ningún conteo.
+5. **Esencialidad del gen.** Tenemos KEGG como vía de anotación y ninguna medición propia. No hay
+   panel de esencialidad para hemípteros; iBeetle es *Tribolium*, coleóptero holometábolo. Falta
+   un criterio operativo que no sea «la vía parece importante».
+6. **Recambio de la proteína.** Fija cuánto tarda el efecto, y por eso entra directo en la
+   comparación del punto 1. Sin dato, propio ni abierto, para ninguno de los seis candidatos.
+7. **Estadio de desarrollo de la exposición.** Las ninfas ya transmiten y el tercer estadio fue el
+   más sensible en un cicadélido emparentado `[R]`, pero la dieta en sobre de parafilm no sirve
+   para ninfas porque las mata. Si el estadio más sensible es el que no se puede tratar por la vía
+   que se quiere usar, el orden de los candidatos cambia `[H]`. Falta la sensibilidad por estadio
+   en *D. maidis*, que no está publicada.
