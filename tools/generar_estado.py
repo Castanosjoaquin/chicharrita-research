@@ -92,7 +92,7 @@ HECHO = [
      "fracaso, y la decisión de reportar el intervalo y no el valor p. La validación no se corrió.",
      ["research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md"]),
     ("Checkpoint 2 · Página de siete casillas",
-     "La página que se lee en diez minutos, con las siete casillas de la guía, un protagonista (dos listas por mecanismo, D38) y las cifras verificadas contra sus archivos.",
+     "La página que se lee en diez minutos, con las siete casillas de la guía y las cifras verificadas contra sus archivos. El protagonista (D42) es el veto y el movimiento de región: las dos regiones que EPILAB eligió para los genes del insecto contienen ventanas de 21 nt idénticas a <i>H. vitripennis</i>, y moviendo la región dentro del mismo gen <code>BicC_Dm</code> pasa de 20 a 36 ventanas que pasan el filtro y de 22 a 0 coincidencias (región 922-1221, vigente por D25), con lo que queda primero de la lista del insecto en las diez combinaciones de agregación a 21 nt. Se presenta en dos listas por mecanismo (D38).",
      ["entregables/checkpoint2-una-pagina.md", "docs/plan_checkpoint2/salidas/F4_checklist_guia.md"]),
     ("Checkpoint 2 · Entrega y mecanismo (Fase 2)",
      "Qué dicen las fuentes abiertas sobre la entrega oral y el mecanismo de RNAi en insectos, con el estado de apertura de cada fuente. Las que no se pudieron abrir se declaran y no se citan.",
@@ -277,7 +277,11 @@ declarados en cada informe.</p>
 <p class="lead">Lo que cambia respecto de la planilla de EPILAB no es el conjunto de genes sino
 <strong>qué tramo de cada uno se sintetiza</strong>. La tabla se arma leyendo
 <code>ranking_v2.json</code>, no a mano. Los dos genes del insecto van a 300 nt, que es el largo
-del amplicón de la planilla; los otros cuatro, a 200.</p>
+del amplicón de la planilla; los otros cuatro, a 200. <strong>Salvedad para
+<code>BicC_Dm</code>:</strong> la tabla muestra lo que devolvió el ranking (2121-2420), pero la
+recomendación vigente es <strong>922-1221</strong> desde D25, elegida por conservación entre
+fuentes; cambiarla no mueve el orden (94,2 % de los sorteos lo conservan). La tabla no se edita a
+mano, así que la salvedad va acá.</p>
 {regiones}
 <p class="lead" style="margin-top:14px">Las dos recomendaciones que importan, las del insecto, no
 se apoyan en la densidad sino en el <strong>veto</strong>: la región de <code>BicC_Dm</code> que
