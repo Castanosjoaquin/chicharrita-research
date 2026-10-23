@@ -489,3 +489,26 @@ cada carpeta de `research/ola3/`. Acá van las que cambian lo que el proyecto pu
 - Gan *et al.* 2010, *Plant Cell Rep*, doi 10.1007/s00299-010-0911-z — abierta, sólo resumen leído en la Fase 2.
 - Dalaisón-Fuentes *et al.* 2022, doi 10.1002/ps.6937 — sólo resumen (PubMed); texto completo no es de acceso abierto.
 - Dalaisón-Fuentes *et al.* 2023, doi 10.1016/j.pestbp.2023.105618 — no abierta; no se cita su contenido.
+
+## Fuentes de etiquetas de eficacia, inventariadas por la línea M4 (2026-10-23)
+
+- Cedden *et al.* 2025, *BMC Biology* 23:114, doi 10.1186/s12915-025-02219-6 (PMC12039203) —
+  abierta completa, **licencia CC BY 4.0 verificada acá**. 31 siRNA de 21 nt contra *Tc-gawky* y
+  3-4 ARNdc por gen en 8 genes de *Tribolium castaneum*, con razón de riesgo de log-rank como
+  desenlace; datos en los archivos adicionales 1 y 2. Ya estaba en uso desde C9.
+- Vert *et al.* 2006, *BMC Bioinformatics* 7:520, doi 10.1186/1471-2105-7-520 (PMC1698581) —
+  abierta completa, CC BY 2.0. De acá salen los tamaños de los conjuntos humanos: Huesken 2.431
+  siRNA sobre 34 ARNm, Reynolds 240, Vickers 76, Harborth 44 y la compilación de Shabalina 653
+  `[R]`. El artículo **no adjunta los datos**.
+- Thang *et al.* 2015, *BMC Bioinformatics* 16:80, doi 10.1186/s12859-015-0495-2 (PMC4379720) —
+  abierta completa, CC BY 2.0. Confirma los mismos 2.431 de Huesken y reporta las etiquetas de
+  siRecords (2.470 «muy alta», 2.514 «baja») `[R]`.
+- Dönitz *et al.* 2015, *Nucleic Acids Research* 43(D1):D720-D725, doi 10.1093/nar/gku1054
+  (PMC4383896) — abierta completa, **CC BY-NC 4.0**. iBeetle-Base: 5.180 ARNdc sobre 16.505 genes
+  de *Tribolium castaneum*, con fenotipo anotado **por fragmento** y penetrancia.
+- Jain *et al.* 2020, *Insects* 11(9):557, doi 10.3390/insects11090557 (PMC7564473) — abierta
+  completa, CC BY 4.0. 33 especies de hemípteros en 14 familias con silenciamiento publicado y
+  **ninguna base de eficacia por reactivo**: es la fuente de que para hemípteros no hay etiquetas.
+- Huesken *et al.* 2005, *Nature Biotechnology*, doi 10.1038/nbt1118 — **no abierta**. Se usa sólo
+  como identificador del conjunto; todo número sobre ella viene de Vert 2006 y Thang 2015.
+- `genomernai.org` — **no accesible** desde esta máquina (error de TLS). No se cita.

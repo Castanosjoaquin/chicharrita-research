@@ -1364,3 +1364,39 @@ conseguirlas.
    para ninfas porque las mata. Si el estadio más sensible es el que no se puede tratar por la vía
    que se quiere usar, el orden de los candidatos cambia `[H]`. Falta la sensibilidad por estadio
    en *D. maidis*, que no está publicada.
+
+## Pendientes abiertos por la línea M4 (2026-10-23)
+
+Los cinco salen de inventariar las fuentes de etiquetas posibles para comparar los dos modos del
+port. Ninguna fuente se cita acá sin haberla abierto; lo que no se pudo abrir está marcado `[?]` y
+es justamente el pendiente.
+
+1. **iBeetle-Base: ¿hay dos fragmentos no solapados por gen?** Es la pregunta que decide si la
+   única fuente grande de etiquetas del reino correcto sirve. El artículo de la base (Dönitz *et
+   al.* 2015, *NAR* 43(D1):D720, `10.1093/nar/gku1054`, PMC4383896) dice que los fenotipos se
+   guardan **por fragmento** y que hay 5.180 ARNdc distintos sobre 16.505 genes de *Tribolium
+   castaneum*, pero **no menciona fragmentos no solapados** ni cuántos genes tienen dos reactivos
+   independientes `[?]`. Si los hay, hay pares de reactivos contra el mismo blanco con desenlaces
+   independientes, que es la estructura que M4 muestra como necesaria para comparar dos criterios;
+   si no, la línea se cierra en una tarde. Se contesta consultando
+   `ibeetle-base.uni-goettingen.de` o la actualización de 2017 (`10.1093/nar/gkx984`). Límites ya
+   conocidos: licencia **CC BY-NC 4.0**, el reactivo es un fragmento de ~479 pb y no un siRNA de
+   21 nt, y el desenlace son términos de ontología con penetrancia en tramos, no una eficacia
+   continua.
+2. **El conjunto de 2.431 siRNA de Huesken 2005 no tiene punto de descarga abierto que hayamos
+   encontrado.** Los dos trabajos que lo usan y que sí abrimos —Vert *et al.* 2006
+   (`10.1186/1471-2105-7-520`) y Thang *et al.* 2015 (`10.1186/s12859-015-0495-2`)— lo citan al
+   original (`10.1038/nbt1118`) sin enlace ni archivo adjunto `[?]`. Queda pendiente revisar el
+   material suplementario del original. No se citó contenido suyo más allá de lo que esos dos
+   reportan, y de todas formas cambia de reino, de maquinaria y de vía de entrega.
+3. **siRecords:** las 2.470 etiquetas de eficacia «muy alta» y 2.514 de «baja» aparecen reportadas
+   en Thang *et al.* 2015, pero **no pudimos abrir la base** ni verificar su licencia o si sigue en
+   línea `[?]`. Sus etiquetas son clases y no valores, así que no sirven para una correlación de
+   rangos.
+4. **GenomeRNAi no se pudo abrir** desde esta máquina (error de TLS en `genomernai.org`). No se
+   cita nada de su contenido `[?]`.
+5. **La dispersión del silenciamiento entre siRNA de una misma clase no la tenemos medida en ningún
+   sistema comparable.** El tamaño de muestra del ensayo propuesto la supone en 20 puntos
+   porcentuales `[H]`; si en el ensayo resulta 25, el n por brazo sube de 32 a 49. Es el primer
+   supuesto a revisar con los datos del propio ensayo, y conviene preguntarle al investigador si
+   tiene una estimación de su sistema.

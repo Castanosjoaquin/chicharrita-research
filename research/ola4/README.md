@@ -14,6 +14,7 @@ Cada carpeta tiene su `REPORT.md` como fuente de verdad, su `index.html` como vi
 | --- | --- | --- |
 | [`M1_conteo_y_referencia/`](M1_conteo_y_referencia/REPORT.md) | La regla de conteo del si-Fi21 original —un registro por acierto de Bowtie en la hebra `+`, agrupado por referencia— implementada, verificada y **aplicada a once bases**. El conteo por acierto explica `BicC_Dm` con un error de uno (200 contra 199) y no explica los otros tres genes. Descarta la orientacion con medicion y agrega una pregunta discriminante para el lunes. | **parcial, los cuatro criterios de terminado cumplidos.** Ningun gen pendiente de correr; lo que falta es un dato del laboratorio |
 | [`M8_que_compara_el_conteo/`](M8_que_compara_el_conteo/REPORT.md) | Hasta donde compara el numero de siRNAs eficientes: los cuatro limites, todos ya medidos en el repositorio, y las siete variables biologicas que faltan. Normalizando por largo, `BicC_Dm` pasa de primero por conteo a tercero por densidad. | completa: sin computo nuevo, solo aritmetica sobre conteos ya publicados |
+| [`M4_evidencia_y_potencia/`](M4_evidencia_y_potencia/REPORT.md) | Que evidencia distinguiria los dos modos del port y cuanta hace falta. Con los 29 siRNA de Cedden la comparacion **no podia salir distinta** (un solo discordante, p exacto 1,00); replicando ese diseno harian falta **232**. El inventario de fuentes de etiquetas dice que ese numero es inalcanzable con datos abiertos, y el ensayo prospectivo que si discrimina pide **32 siRNA por brazo**. | completa: los tres criterios de terminado cumplidos, mas el preregistro del analisis de M3 |
 
 ## Lo que hay que leer antes de usar estos numeros
 
@@ -33,6 +34,12 @@ Cada carpeta tiene su `REPORT.md` como fuente de verdad, su `index.html` como vi
   cuarenta y dos ventanas eficientes pegan solo en `-`, y como el original evalua la eficiencia
   unicamente para aciertos en `+`, la fila da **0** `[M]`. Es una trampa de la herramienta, no de
   nuestros datos, y afecta a cualquier corrida con base genomica.
+- **Para comparar dos criterios, lo que cuenta es la discordancia y no el n.** Con k casos en los
+  que los dos criterios difieren, la prueba de aleatorizacion por intercambio no puede dar un p
+  menor que 2/2^k, asi que con menos de **6** discordantes ningun dato alcanza alfa 0,05 `[M]`. En
+  los 29 siRNA de Cedden hay **uno**, de modo que la validacion de C9 no tenia forma de salir
+  distinta. Antes de pedir mas etiquetas, contar discordantes
+  (`research/ola4/M4_evidencia_y_potencia/`).
 - **`GCF_002217175.1` no es el transcriptoma de *D. maidis*.** El plan y el issue #5 lo nombran
   asi; el archivo dice *Folsomia candida*. En `work/offtarget_db/` hay genoma de *D. maidis* y
   ningun transcriptoma suyo.

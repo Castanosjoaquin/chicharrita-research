@@ -1,0 +1,220 @@
+{
+ "insumo": "research\\ola3\\C9_sensibilidad_umbral\\resultados\\validacion_31sirna.tsv",
+ "semilla": 20261023,
+ "alpha": 0.05,
+ "objetivo_potencia": 0.8,
+ "observado": {
+  "n": 29,
+  "rho_fiel": 0.1422,
+  "rho_corregido": 0.024,
+  "diferencia": 0.1182,
+  "discordantes": 1,
+  "nombres_discordantes": [
+   "si778"
+  ],
+  "marcados_fiel": 5,
+  "marcados_corregido": 4,
+  "p_permutacion_9999": 1.0,
+  "p_exacto_enumerado": 1.0,
+  "k_minimo_discordantes_para_rechazar": 6,
+  "tasa_discordancia": 0.0345,
+  "n_para_esa_cantidad_de_discordantes_en_promedio": 174
+ },
+ "remuestreo": {
+  "n_minimo": 232,
+  "potencia_en_n_minimo": 0.8235,
+  "curva": [
+   {
+    "n": 29,
+    "potencia": 0.001,
+    "ic95": [
+     0.0003,
+     0.0036
+    ]
+   },
+   {
+    "n": 58,
+    "potencia": 0.0165,
+    "ic95": [
+     0.0118,
+     0.0231
+    ]
+   },
+   {
+    "n": 116,
+    "potencia": 0.209,
+    "ic95": [
+     0.1917,
+     0.2274
+    ]
+   },
+   {
+    "n": 174,
+    "potencia": 0.57,
+    "ic95": [
+     0.5482,
+     0.5915
+    ]
+   },
+   {
+    "n": 203,
+    "potencia": 0.7095,
+    "ic95": [
+     0.6892,
+     0.729
+    ]
+   },
+   {
+    "n": 217,
+    "potencia": 0.7695,
+    "ic95": [
+     0.7505,
+     0.7874
+    ]
+   },
+   {
+    "n": 224,
+    "potencia": 0.7995,
+    "ic95": [
+     0.7814,
+     0.8165
+    ]
+   },
+   {
+    "n": 232,
+    "potencia": 0.8235,
+    "ic95": [
+     0.8062,
+     0.8396
+    ]
+   }
+  ],
+  "b": 2000,
+  "permutaciones": 999
+ },
+ "ensayo": {
+  "diferencia": [
+   {
+    "sd_pp": 15.0,
+    "delta_pp": 20.0,
+    "n_por_brazo_alpha05": 10,
+    "n_por_brazo_alpha025": 13
+   },
+   {
+    "sd_pp": 15.0,
+    "delta_pp": 30.0,
+    "n_por_brazo_alpha05": 6,
+    "n_por_brazo_alpha025": 7
+   },
+   {
+    "sd_pp": 15.0,
+    "delta_pp": 40.0,
+    "n_por_brazo_alpha05": 4,
+    "n_por_brazo_alpha025": 5
+   },
+   {
+    "sd_pp": 20.0,
+    "delta_pp": 20.0,
+    "n_por_brazo_alpha05": 17,
+    "n_por_brazo_alpha025": 21
+   },
+   {
+    "sd_pp": 20.0,
+    "delta_pp": 30.0,
+    "n_por_brazo_alpha05": 9,
+    "n_por_brazo_alpha025": 10
+   },
+   {
+    "sd_pp": 20.0,
+    "delta_pp": 40.0,
+    "n_por_brazo_alpha05": 6,
+    "n_por_brazo_alpha025": 7
+   },
+   {
+    "sd_pp": 25.0,
+    "delta_pp": 20.0,
+    "n_por_brazo_alpha05": 26,
+    "n_por_brazo_alpha025": 31
+   },
+   {
+    "sd_pp": 25.0,
+    "delta_pp": 30.0,
+    "n_por_brazo_alpha05": 12,
+    "n_por_brazo_alpha025": 15
+   },
+   {
+    "sd_pp": 25.0,
+    "delta_pp": 40.0,
+    "n_por_brazo_alpha05": 8,
+    "n_por_brazo_alpha025": 9
+   }
+  ],
+  "equivalencia_tost": [
+   {
+    "sd_pp": 15.0,
+    "margen_pp": 10.0,
+    "n_por_brazo": 40
+   },
+   {
+    "sd_pp": 15.0,
+    "margen_pp": 15.0,
+    "n_por_brazo": 18
+   },
+   {
+    "sd_pp": 15.0,
+    "margen_pp": 20.0,
+    "n_por_brazo": 11
+   },
+   {
+    "sd_pp": 20.0,
+    "margen_pp": 10.0,
+    "n_por_brazo": 70
+   },
+   {
+    "sd_pp": 20.0,
+    "margen_pp": 15.0,
+    "n_por_brazo": 32
+   },
+   {
+    "sd_pp": 20.0,
+    "margen_pp": 20.0,
+    "n_por_brazo": 18
+   },
+   {
+    "sd_pp": 25.0,
+    "margen_pp": 10.0,
+    "n_por_brazo": 108
+   },
+   {
+    "sd_pp": 25.0,
+    "margen_pp": 15.0,
+    "n_por_brazo": 49
+   },
+   {
+    "sd_pp": 25.0,
+    "margen_pp": 20.0,
+    "n_por_brazo": 28
+   }
+  ],
+  "sensibilidad_no_parametrica": [
+   {
+    "sd_pp": 20.0,
+    "delta_pp": 20.0,
+    "n_por_brazo_t": 17,
+    "potencia_mwu_en_ese_n": 0.786
+   },
+   {
+    "sd_pp": 20.0,
+    "delta_pp": 30.0,
+    "n_por_brazo_t": 9,
+    "potencia_mwu_en_ese_n": 0.796
+   },
+   {
+    "sd_pp": 20.0,
+    "delta_pp": 40.0,
+    "n_por_brazo_t": 6,
+    "potencia_mwu_en_ese_n": 0.831
+   }
+  ]
+ }
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pre-registro — el analisis de la tercera via (los terminos continuos de M3)</title>
+<style>:root{--bg:#fff;--fg:#1c1f23;--mut:#5b6470;--line:#dfe3e8;--card:#f5f7f9;--azul:#2a6fdb;
+--rojo:#c23b3b;--verde:#1f7a4d;--hot:#c23b3b1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14171a;--fg:#e6e8eb;
+--mut:#9aa4af;--line:#2b3138;--card:#1b1f24;--azul:#6aa3ff;--rojo:#ff8a8a;--verde:#5fd09a;--hot:#ff8a8a1f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:900px;margin:0 auto;padding:28px 16px 60px}
+.k{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:26px;margin:6px 0 4px;line-height:1.2}h2{font-size:19px;margin:34px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+.lead{color:var(--mut);margin:0 0 18px}
+.box{background:var(--card);border-left:3px solid var(--azul);padding:12px 16px;border-radius:6px;margin:16px 0}
+.box.ok{border-left-color:var(--verde)}.box p{margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:4px 0}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:13px}
+.tw{overflow-x:auto;margin:8px 0}
+.muted,.fine{font-size:13px;color:var(--mut)}code{font-size:.92em}
+pre{background:var(--card);padding:12px;border-radius:6px;overflow-x:auto;font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:14px 0}
+.kpi{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font-size:22px}.kpi span{font-size:13px;color:var(--mut)}
+.bar{display:inline-block;width:64px;height:8px;background:var(--line);border-radius:4px;vertical-align:middle;
+overflow:hidden;margin-right:6px}.bar i{display:block;height:100%;background:var(--azul)}
+@media (max-width:600px){main{padding:20px 16px 50px}h1{font-size:22px}}</style></head><body><main>
+<h1>Pre-registro — el analisis de la tercera via (los terminos continuos de M3)</h1>
+<p class="lead">Vista de lectura de <a href="PREREGISTRO_tercera_via.md">PREREGISTRO_tercera_via.md</a>, que es la fuente de verdad.</p>
+<p><b>Estado: escrito el 2026-10-23, antes de que exista una sola etiqueta nueva y antes de ajustar ningun modelo sobre la tabla de M3.</b> Cualquier cambio posterior se agrega como enmienda fechada al final, sin borrar el texto original. Es la misma convencion que <code>research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md</code>, y por la misma razon: el valor de lo que salga depende de que las decisiones esten tomadas antes.</p>
+<h2>Que se preregistra y por que ahora</h2>
+<p>El investigador propuso «conservar los valores termodinamicos, las preferencias terminales y la accesibilidad como variables independientes del proceso de clasificacion, para evaluar posteriormente como contribuyen a la eficiencia» <code>[R]</code>. La linea M3 (#7) implementa la primera mitad: emite la tabla de terminos continuos por ventana, <b>sin ningun booleano</b>. La segunda mitad —evaluar como contribuyen— es un ajuste, y ajustar necesita etiquetas que hoy no existen: hay 29 siRNA con eficacia medida en el mundo publico y la seccion 2 de [<code>REPORT.md</code>](REPORT.md) muestra que con eso no se distingue ni entre dos criterios que difieren en una rama. Con 29 etiquetas y seis terminos, cualquier modelo que ajustemos va a describir el ruido de Cedden.</p>
+<p>Entonces esto no es un analisis: es el plan del analisis, escrito ahora para que cuando aparezcan etiquetas —del ensayo de la seccion 4 del reporte, de iBeetle-Base si resulta usable, o de un trabajo de terceros— no se elija el modelo mirando los datos. <b>Si nunca aparecen etiquetas, este documento queda sin ejecutar y eso tambien es un resultado reportable.</b></p>
+<h2>Condicion de disparo: cuando se corre y cuando no</h2>
+<p>El analisis <b>no se corre</b> hasta que se cumplan las tres condiciones, y se declara incumplido con el numero que falte:</p>
+<ol><li><b>n ≥ 100 siRNA</b> con eficacia medida en la misma unidad que la tabla de M3 (una ventana de 21 nt, con su contexto de ARNm para la accesibilidad). El umbral no es convencional: con seis terminos, diez etiquetas por termino son el minimo habitual <code>[E]</code> y darian 60, y se pide 100 porque la validacion cruzada por gen necesita que cada grupo retenido tenga tamano razonable.</li><li><b>Al menos 3 genes blanco distintos.</b> Con un solo gen no se puede separar el efecto del gen del efecto de los terminos, y el propio trabajo de Cedden mide que el gen domina el desenlace <code>[R]</code>.</li><li><b>Las etiquetas provienen de una medicion de silenciamiento o de eficacia, no de una prediccion de otra herramienta.</b> Ajustar contra la salida de otro predictor mide acuerdo entre herramientas, no eficacia.</li></ol>
+<p>Con menos que eso se publica la tabla de M3 y se dice lo que M3 ya dice: <b>es la tabla sobre la que se podria ajustar un modelo, no un modelo.</b></p>
+<h2>Las variables, congeladas</h2>
+<p>Las seis columnas de <code>run_sifi.py --features</code>, y nada mas:</p>
+<div class="tw"><table><thead><tr><th>Termino</th><th>Tipo</th><th>Signo esperado, fijado aca</th></tr></thead><tbody><tr><td><code>dg_sense5</code></td><td>continuo (kcal/mol)</td><td>—</td></tr><tr><td><code>dg_antisense5</code></td><td>continuo (kcal/mol)</td><td>—</td></tr><tr><td><code>ddg</code> (brecha de extremos)</td><td>continuo (kcal/mol)</td><td>positivo: mas asimetria, mas carga de la hebra guia <code>[E]</code></td></tr><tr><td><code>accessibility</code></td><td>continuo (0 a 1)</td><td>positivo: sitio mas accesible, mas silenciamiento <code>[R]</code></td></tr><tr><td><code>nt19</code> es A o T</td><td>indicador binario</td><td>positivo <code>[R]</code></td></tr><tr><td><code>nt2</code> es G o C</td><td>indicador binario</td><td>positivo <code>[R]</code></td></tr></tbody></table></div>
+<p><b>No se agregan terminos despues de ver las etiquetas</b>: ni interacciones, ni potencias, ni contenido GC, ni largo, ni nada derivado de la secuencia. <code>rama_terminal</code> <b>no entra</b> como variable propia, porque es una funcion de <code>nt19</code> y <code>nt2</code> y meter las tres cuenta dos veces la misma informacion; entra solo como variable de estratificacion para describir la muestra. Los signos esperados quedan fijados arriba para que un coeficiente con el signo contrario se reporte como lo que seria —una contradiccion con la literatura— y no se narre como un hallazgo.</p>
+<h2>El modelo</h2>
+<p><b>Primario, unico.</b> Regresion lineal con penalizacion L2 (ridge) sobre los seis terminos estandarizados, con el parametro de penalizacion elegido por validacion cruzada <b>interna</b> dentro de cada pliegue de entrenamiento. Se elige ridge y no seleccion de variables porque la pregunta es cuanto contribuye cada termino y no cuales sobreviven: un procedimiento que elimina variables da una respuesta binaria a una pregunta de magnitud, y con n de tres cifras la seleccion es inestable <code>[E]</code>.</p>
+<p><b>Prohibido de antemano:</b> ningun procedimiento por pasos (stepwise), ningun ajuste de hiperparametros mirando el pliegue retenido, ningun cambio de familia de modelo despues de ver el resultado. Si el desenlace es una proporcion de silenciamiento se modela su transformacion logit, declarada aca; si trae ceros o unos exactos se usa la transformacion con media empirica (<code>(y·(n−1)+0,5)/n</code>), tambien declarada aca.</p>
+<p><b>Desenlace.</b> El silenciamiento del transcrito como reduccion porcentual respecto del control negativo, si las etiquetas vienen del ensayo de la seccion 4. Si vienen de un desenlace de supervivencia, el desenlace es el logaritmo de la razon de riesgo y se declara como tal, con la atenuacion que eso implica.</p>
+<h2>La validacion cruzada</h2>
+<p><b>Dejar un gen afuera</b> (leave-one-group-out, agrupando por gen blanco). Es la unica forma de no confundir el efecto del gen con el de los terminos, y esta decidido antes de ver nada. Si hubiera mas de 15 genes se pasa a 5 pliegues por grupo de genes, por costo; el criterio es el numero de genes y no el resultado.</p>
+<p><b>Metrica primaria:</b> rho de Spearman entre predicho y observado, calculado <b>una sola vez sobre el conjunto de las predicciones retenidas</b> de todos los pliegues, no como promedio de rho por pliegue. Se reporta con intervalo de confianza del 95 % por bootstrap <b>de genes</b>, que es la unidad de agrupamiento. <b>No se reporta valor p de la metrica primaria.</b></p>
+<h2>La medida de contribucion, declarada</h2>
+<p>Para cada uno de los seis terminos: <b>la caida de la metrica primaria al quitarlo</b> (dejar uno afuera, reajustando el modelo completo dentro de cada pliegue), con intervalo por el mismo bootstrap de genes. Es una medida de contribucion fuera de muestra, que es lo que la pregunta pide; los coeficientes se reportan al lado, estandarizados y con su signo, pero <b>no son la medida de contribucion</b>, porque con terminos correlacionados —y <code>ddg</code> con los dos <code>dg</code> lo estan por construccion— el coeficiente individual no se puede leer solo.</p>
+<p>Se reporta ademas, como descriptivo y no como inferencia, la matriz de correlacion entre los seis terminos, para que se vea cuanta informacion comparten.</p>
+<h2>La comparacion con los dos booleanos, que es el punto</h2>
+<p>Los tres modelos —fiel, corregido y continuo— se comparan <b>con la misma validacion cruzada y la misma metrica</b>, y la comparacion entre dos de ellos usa la prueba de aleatorizacion por intercambio de <code>scripts/potencia_dos_modelos.py</code>, que es la que corresponde a dos predictores evaluados sobre las mismas ventanas. La cota de la seccion 1 del reporte vale igual aca: si los dos modelos comparados discrepan en menos de 6 casos, la prueba no puede rechazar y se reporta eso en vez de un p.</p>
+<p><b>Regla de decision, fijada ahora.</b> El modelo continuo se reporta como mejor <b>solo si</b> su rho de validacion cruzada supera al del mejor booleano por <b>0,10 o mas</b> y la prueba de aleatorizacion da p ≤ 0,05. Si supera por menos, se reporta como <b>«no distinguible del booleano»</b>, aunque el numero sea mas alto. Si no supera, se reporta que el booleano no pierde nada y que la tercera via no mejora la prediccion, que es un resultado tan publicable como el otro y contradiria nuestra propia hipotesis de T5 sobre que el <code>and</code> tira informacion.</p>
+<h2>Que resultado falsa que</h2>
+<ul><li>**Si la contribucion de <code>accessibility</code> es nula y la de <code>ddg</code> no**, la critica de T5 queda reforzada con una medicion y no con un argumento: el termino que si-Fi21 usa como filtro booleano con umbral fijo no aporta fuera de muestra.</li><li><b>Si la contribucion de los dos indicadores terminales es nula</b>, la discusion entre modo fiel y corregido pierde importancia practica: estariamos discutiendo una rama que no predice nada.</li><li><b>Si el modelo continuo no supera a los booleanos</b>, la propuesta de reemplazar el <code>and</code> por un puntaje graduado se queda sin apoyo empirico y hay que decirlo.</li></ul>
+<h2>Lo que este pre-registro no cubre</h2>
+<p>No cubre la seleccion de candidatos del ranking, que se decide por otros criterios (D25, C7). No cubre off-targets ni limpieza, que son hechos de alineamiento y no predicciones. No autoriza a usar las etiquetas humanas de la seccion 3 del reporte para el ajuste: con ese cambio de reino, de maquinaria y de via de entrega, un modelo ajustado ahi no se transfiere a un hemiptero, y si alguna vez se corre sera como ejercicio rotulado <code>[?]</code> y con esta misma validacion cruzada, nunca como el modelo del entregable.</p>
+<h2>Enmiendas</h2>
+<p><i>(ninguna todavia)</i></p>
+</main></body></html>

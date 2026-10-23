@@ -1049,3 +1049,21 @@ Lo que sigue es lo que nos corrigió, y de qué lado quedó cada cosa.
   mezcla dos motores entre genes y por lo tanto no corresponde a ninguna configuración que el
   laboratorio pudiera haber usado. Es el error de D45 con otra variable, y el REPORT lo dice
   explícitamente en lugar de reportar el 25 como logro.
+
+## Estimar por remuestreo un diseño enriquecido en discordantes (2026-10-23, línea M4)
+
+- **Descartado, con motivo que vale como regla general.** Después de medir que replicando el diseño
+  de Cedden harían falta 232 siRNA para distinguir los dos modos `[M]`, la idea natural es volver a
+  remuestrear subiendo a propósito la proporción de siRNA discordantes y ver cuánto baja el número.
+  No se puede: en las 29 filas de Cedden hay **un solo** siRNA discordante (`si778`), así que
+  cualquier remuestreo que lo enriquezca reproduce su mismo desenlace, la variabilidad entre
+  discordantes sería cero y la potencia se infla a voluntad. **Un remuestreo no puede inventar
+  variabilidad que la población madre no tiene.** Es la razón por la que la sección 4 del REPORT de
+  M4 cambia de estadístico —de una correlación de rangos a un contraste entre grupos con supuestos
+  declarados— en vez de subir el n del mismo cálculo.
+- **Comparar los dos modos con más datos del mismo tipo, sin mirar la discordancia. Evitado.** La
+  objeción obvia a la validación de C9 es «poca muestra», y la respuesta obvia es pedir más siRNA.
+  Pero la cuenta exacta muestra que el problema no es el n: con k siRNA discordantes, la prueba de
+  aleatorización por intercambio no puede dar un p menor que 2/2^k, así que **con menos de 6
+  discordantes ningún dato alcanza alfa 0,05** `[M]`. Pedir más datos del mismo tipo sin fijarse en
+  la discordancia es gastar etiquetas para volver al mismo lugar.

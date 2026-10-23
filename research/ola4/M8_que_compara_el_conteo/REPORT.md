@@ -56,7 +56,8 @@ densidad del gen y la de la region son casi el mismo numero y no hay nada que el
 
 ## 2. Depende de la referencia y de la unidad de conteo
 
-El segundo limite es el que midio la linea M1, y las dos mitades ya estan cerradas.
+El segundo limite es el que midio la linea M1: la unidad quedo cerrada y la referencia
+quedo medida, aunque no explicada.
 
 Lo cerrado es la unidad. La columna «Efficient siRNA hits» del si-Fi21 original **no cuenta
 ventanas: cuenta aciertos de Bowtie en la hebra `+`, agrupados por nombre de referencia**
@@ -67,16 +68,20 @@ dentro del gen y esas cuatro consultas pegan en dos lugares cada una
 mas son ventanas no eficientes, asi que ahi el conteo de eficientes no se inflo; la cuestion es
 que **puede** inflarse, y por una via que no tiene nada que ver con el gen blanco.
 
-Lo medido es la referencia, y ya no es una hipotesis: la matriz de M1 corrio sobre once bases y
-treinta y ocho celdas con el motor verificado, y **ninguna celda reproduce los cuatro valores
-declarados** (`research/ola4/M1_conteo_y_referencia/REPORT.md` y
-`resultados/matriz.md`, D52) `[M]`. Lo que la matriz muestra es mas fuerte que la hipotesis que
-venia a probar. Para `BicC_Dm`, **el mismo gen con la misma configuracion y la misma regla da 0,
+Lo medido es la referencia, y el resultado es parcial: de los cuatro genes, la regla del conteo
+por acierto contra el transcriptoma publico de la especie explica **uno**, `BicC_Dm`, con un
+error de uno —da 200 contra los 199 declarados— y **no explica los otros tres**. La matriz corrio
+sobre once bases y treinta y ocho celdas con el motor verificado, y **ninguna celda reproduce los
+cuatro valores declarados** (`research/ola4/M1_conteo_y_referencia/REPORT.md` y su
+`resultados/matriz.md`, D52) `[M]`. Pero lo que muestra de paso es mas fuerte que la hipotesis
+que venia a probar. Para `BicC_Dm`, **el mismo gen con la misma configuracion y la misma regla da 0,
 191, 200 o 212 segun contra que base se cuente** —cero contra maiz, *Apis mellifera*, *Harmonia
-axyridis* y *Folsomia candida*; 191 contra el genoma de su propia especie; 200 contra los contigs
-blanco de la ensambladura TSA `GITV01`, que es la unica celda de toda la matriz que se acerca a
-un valor declarado; 212 contra el gen mismo— `[M]`. Y el caso extremo es `ATPaseD_Dm` contra el
-genoma de *Dalbulus maidis*: **cuenta 0**, porque 40 de sus 42 ventanas eficientes pegan solo en
+axyridis*, *Folsomia candida* y *Homalodisca vitripennis*; 191 contra el genoma de su propia
+especie; 200 contra los contigs blanco de la ensambladura TSA `GITV01`; 212 contra la base
+`epilab4`, que son las cuatro secuencias de EPILAB indexadas juntas— `[M]`. Que esa celda de 200
+sea la unica de toda la matriz que se acerca a un valor declarado es lectura, no medicion `[H]`.
+Y el caso extremo es `ATPaseD_Dm` contra el genoma de *Dalbulus maidis*: **cuenta 0**, porque 40
+de sus 42 ventanas eficientes pegan solo en
 la hebra menos del cromosoma `OZ319711.1` y la regla del original evalua unicamente la hebra `+`
 `[M]`.
 
@@ -95,9 +100,11 @@ la implementacion, nada del gen ni de la biologia, y se cuenta otra vez.
 **La version del motor de accesibilidad.** Nuestro port en modo fiel con RNAplfold 2.1.5
 reproduce exacto los cuatro conteos del programa original —133, 32, 212 y 42 para `MP_MRFV`,
 `CP_MRFV`, `BicC_Dm` y `ATPaseD_Dm`— y el mismo port, el mismo modo y las mismas secuencias con
-las ligaduras de ViennaRNA 2.7.2 dan **142, 39, 223 y 35** `[M]`
-(`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md` §0 y
-`research/ola3/C2_codigo_apolo_inta/corridas/README.md`). Lo que importa no es solo que los
+las ligaduras de ViennaRNA 2.7.2 dan **142, 39, 223 y 35** `[M]`. Las dos columnas salen del
+mismo barrido y de la misma maquina, que cruzo motor por modo
+(`research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md` §1), asi que ahi la version es lo
+unico que cambia; el modo corregido muestra el mismo efecto, 114/25/162/34 contra 123/30/171/29
+`[M]`. Lo que importa no es solo que los
 cuatro numeros se muevan, sino **como**: tres suben y uno baja, de modo que `ATPaseD_Dm` y
 `CP_MRFV` intercambian el tercer y el cuarto puesto por un cambio de version de una libreria.
 
@@ -112,9 +119,15 @@ fiel mueven los cuatro conteos asi: `ATPaseD_Dm` 35 a 40 (+14,3 %), `CP_MRFV` 39
 `MP_MRFV` 142 a 136 (−4,2 %) y `BicC_Dm` 223 a 210
 (`research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md`) `[M]`, con signo distinto segun el
 gen. Y no es una variacion caprichosa
-que podamos descartar: no hay perfil de siRNA publicado para ningun hemiptero, y el largo lo
-dicta la maquinaria del hospedador (Zotti *et al.* 2026, *Viruses* 18:285) `[R]`, asi que **no
-sabemos cual de los dos numeros corresponde a nuestro insecto**.
+que podamos descartar: el largo del siRNA es especifico de orden y lo fija la Dicer-2 del propio
+insecto, 21 nt en dipteros y coleopteros, 22 en himenopteros y ortopteros, 20 en lepidopteros
+`[E]`, con una correlacion estructural propuesta sobre modelos por homologia y no sobre
+estructuras experimentales (Zotti *et al.* 2026, *Viruses* 18:285) `[R]`. Hemipteros hay
+medidos —*Bemisia tabaci* es bimodal con un pico de 22 nt `[E]`, *Bactericera cockerelli* da 21
+y *Laodelphax striatellus* 21-22 `[R]`—, pero **para *Dalbulus maidis* y para los cicadelidos no
+hay nada**, y ese vacio esta documentado
+(`research/ola3/C3_blast_ventana_azar/ventana_21_vs_22.md` §A) `[E]`. Asi que no sabemos cual de
+los dos numeros corresponde a nuestro insecto.
 
 Sumados, los tres dicen lo mismo: una parte de la diferencia entre dos conteos es diferencia de
 software, y si dos equipos comparan estrategias con «numero de siRNAs eficientes» sin declarar
@@ -152,11 +165,15 @@ Los cuatro limites acotan el uso; no lo anulan. Dentro de un mismo gen, con una 
 configuracion declarada, una sola referencia y una sola unidad, el conteo **ordena regiones**, y
 hay dos fuentes abiertas que sostienen que ese orden tiene algo que ver con la realidad: en
 *Mythimna separata*, la posicion del fragmento de 200 pb dentro del gen *MsChi2* cambio la
-eficacia, y esa eficacia correlaciono con el numero de siRNA eficientes predichos (Bao *et al.* 2026, *Insects*, doi 10.3390/insects17090931) `[E]`. La contracara, en un
-hemiptero y por lo tanto mas cerca de nuestro caso: en *Apolygus lucorum*, fragmentos del mismo
-largo del mismo gen dieron entre 58,9 % y 70,0 % de mortalidad **y otros del mismo largo no
-dieron nada** (Luo *et al.* 2026, *Frontiers in Insect Science*, doi 10.3389/finsc.2026.1912427)
-`[E]`. Las dos cosas a la vez: elegir region importa, y el numero no alcanza para predecir cuanto.
+eficacia, y esa eficacia correlaciono con el numero de siRNA eficientes predichos (Bao *et al.*
+2026, *Insects*, doi 10.3390/insects17090931) `[E]`. La contracara, en un
+hemiptero y por lo tanto mas cerca de nuestro caso: en *Apolygus lucorum*, fragmentos de 132 a
+140 pb dieron entre 58,9 % y 70,0 % de mortalidad **y otros del mismo largo no dieron nada**
+(Luo *et al.* 2026, *Frontiers in Insect Science*, doi 10.3389/finsc.2026.1912427) `[E]`. Dos
+salvedades que la fuente pone y conviene no perder: la via es microinyeccion, no ingesta, y los
+fragmentos salen de cuatro genes distintos, asi que el contraste es entre fragmentos de igual
+largo y no dentro de un mismo gen. Las dos cosas a la vez: elegir region importa, y el numero no
+alcanza para predecir cuanto.
 
 A eso se suma el limite que el entregable ya declara en su casilla de validacion: con los datos
 abiertos que existen no se distingue un filtro bueno de uno inutil —ρ = +0,142, IC95 [−0,247,
@@ -188,7 +205,7 @@ de diseño (D24). Tenemos bastante y desparejo: en `eth` y `burs-alpha`, knockdo
 ~95 % y supervivencia cayendo al 10 % al dia 4 en `burs-alpha` —la cifra de `eth` no esta en el
 texto y hay que leerla de la figura 5A `[?]`—, n = 40, pero **por microinyeccion en ninfas de
 quinto estadio**, no por ingesta (Andrada *et al.* 2026, *Frontiers in Insect Science* 6:1811933)
-`[E]`; en la V-ATPasa, supervivencia por dieta a 4 dias de ~18 % contra ~37 % del control de GFP
+`[R]`; en la V-ATPasa, supervivencia por dieta a 4 dias de ~18 % contra ~37 % del control de GFP
 `[R]`; en `BicC`, oviposicion y fenotipo ovarico, **solo desde el resumen** porque el texto
 completo de Dalaison-Fuentes 2022 no es abierto `[R]`. Lo que falta es lo que haria comparables
 esas cifras: los desenlaces no son el mismo (oviposicion en adultas, supervivencia de ninfas por
@@ -202,8 +219,9 @@ supervivencia declarado: el knockdown se mide en los insectos vivos al momento d
 nada, y el hueco es doble. Ninguna fuente abierta identifica que celula del insecto recibe el
 ARNdc por ingesta `[?]`, y los transcriptomas con los que trabajamos no pueden contestarlo: el
 que usa el grupo que publica en la especie es de **ARN de cuerpo entero de individuos agrupados
-de varios estadios** (tesis de Palacio, UNNOBA 2018, citada en metodos por Andrada *et al.* 2026)
-`[E]`, de modo que no da expresion por tejido ni por estadio. Un gen muy expresado en un tejido
+de varios estadios** (tesis de Palacio, UNNOBA 2018, citada en metodos por Andrada *et al.* 2026;
+la cita esta verificada, la tesis no se abrio) `[R]`, de modo que no da expresion por tejido ni
+por estadio. Un gen muy expresado en un tejido
 que el ARNdc no alcanza es un candidato peor que su conteo de ventanas sugiere, y hoy no tenemos
 forma de distinguirlos.
 
@@ -217,10 +235,11 @@ buscar los parologos de cada candidato en el genoma de *Dalbulus maidis* `GCA_97
 herramientas que ya usamos.
 
 **Esencialidad del gen.** Tenemos la via de anotacion funcional declarada (KEGG, usada en C1a
-para el argumento de esencialidad) `[E]` pero ninguna medicion propia, y no hay panel de
+para el argumento de esencialidad) pero ninguna medicion propia, y no hay panel de
 esencialidad para hemipteros: el unico panel grande de RNAi es iBeetle, en *Tribolium castaneum*,
 un coleoptero holometabolo, del que salio el techo de ruido de 0,245 que el entregable declara
-como calculo propio sin reproducir `[H]`. Falta un criterio operativo que no sea «la via parece importante».
+como calculo propio sin reproducir `[H]`. Falta un criterio operativo que no sea «la via parece
+importante».
 
 **Recambio de la proteina.** Fija cuanto tarda el efecto, y por lo tanto entra directo en la
 comparacion con la ventana de latencia: bajar el transcripto no sirve si la proteina que ya esta
