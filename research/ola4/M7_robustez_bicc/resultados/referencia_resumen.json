@@ -1,0 +1,407 @@
+{
+ "motor": "ViennaRNA 2.7.2, tabla NN3, punto por defecto (brecha 1,0, accesibilidad 0,1, u = 8, 22 C)",
+ "consulta": "work/W5/fasta/BicC_Dm_full.fasta",
+ "alineamiento": "blastn local, evalue 1e-20, bases de work/W5/db/",
+ "fuentes": {
+  "GHCC01 (Argentina, Pergamino)": {
+   "base": "TSA_GHCC01",
+   "hsps": 2,
+   "contigs": {
+    "GHCC01002326.1": 2
+   },
+   "posiciones_cubiertas": 2520,
+   "posiciones": 2520,
+   "ventanas_identicas": 2417,
+   "ventanas_variantes": 83,
+   "ventanas_que_cruzan_empalme": 0,
+   "ventanas_sin_datos": 0,
+   "ventanas": 2500,
+   "es_genoma": false
+  },
+  "GITV01 (Ohio State)": {
+   "base": "TSA_GITV01",
+   "hsps": 2,
+   "contigs": {
+    "GITV01000968.1": 1,
+    "GITV01029469.1": 1
+   },
+   "posiciones_cubiertas": 2520,
+   "posiciones": 2520,
+   "ventanas_identicas": 2353,
+   "ventanas_variantes": 147,
+   "ventanas_que_cruzan_empalme": 0,
+   "ventanas_sin_datos": 0,
+   "ventanas": 2500,
+   "es_genoma": false
+  },
+  "GCWP01 (Illinois)": {
+   "base": "TSA_GCWP01",
+   "hsps": 4,
+   "contigs": {
+    "GCWP01003535.1": 1,
+    "GCWP01003534.1": 1,
+    "GCWP01004693.1": 1,
+    "GCWP01004692.1": 1
+   },
+   "posiciones_cubiertas": 609,
+   "posiciones": 2520,
+   "ventanas_identicas": 419,
+   "ventanas_variantes": 150,
+   "ventanas_que_cruzan_empalme": 0,
+   "ventanas_sin_datos": 1931,
+   "ventanas": 2500,
+   "es_genoma": false
+  },
+  "genoma UK GCA_975739785.1": {
+   "base": "GCA_975739785.1_ihDalMaid1.1_genomic",
+   "hsps": 16,
+   "contigs": {
+    "OZ319706.1": 16
+   },
+   "posiciones_cubiertas": 2476,
+   "posiciones": 2520,
+   "ventanas_identicas": 2100,
+   "ventanas_variantes": 56,
+   "ventanas_que_cruzan_empalme": 280,
+   "ventanas_sin_datos": 64,
+   "ventanas": 2500,
+   "es_genoma": true
+  }
+ },
+ "regiones": {
+  "922-1221": [
+   922,
+   1221
+  ],
+  "2121-2420": [
+   2121,
+   2420
+  ],
+  "264-563": [
+   264,
+   563
+  ]
+ },
+ "eficientes_epilab_contexto": {
+  "fiel": {
+   "922-1221": 48,
+   "2121-2420": 42,
+   "264-563": 26
+  },
+  "corregido": {
+   "922-1221": 36,
+   "2121-2420": 35,
+   "264-563": 20
+  }
+ },
+ "recorte_epilab": {
+  "922-1221": {
+   "fiel": 36,
+   "corregido": 26
+  },
+  "2121-2420": {
+   "fiel": 29,
+   "corregido": 22
+  },
+  "264-563": {
+   "fiel": 22,
+   "corregido": 17
+  }
+ },
+ "veredicto": {
+  "GHCC01 (Argentina, Pergamino)": {
+   "regiones_comparables": [
+    "922-1221",
+    "2121-2420",
+    "264-563"
+   ],
+   "recalculo_fiel": {
+    "gana_a": [
+     "2121-2420",
+     "264-563"
+    ],
+    "pierde_con": [],
+    "conteos": {
+     "922-1221": 36,
+     "2121-2420": 29,
+     "264-563": 22
+    }
+   },
+   "recalculo_corregido": {
+    "gana_a": [
+     "2121-2420",
+     "264-563"
+    ],
+    "pierde_con": [],
+    "conteos": {
+     "922-1221": 26,
+     "2121-2420": 22,
+     "264-563": 17
+    }
+   },
+   "regiones_con_cobertura_total_de_ventanas": [
+    "922-1221",
+    "2121-2420",
+    "264-563"
+   ],
+   "coincidencias_fiel": {
+    "922-1221": {
+     "eficientes": 48,
+     "identicas": 48,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "2121-2420": {
+     "eficientes": 42,
+     "identicas": 41,
+     "variantes": 1,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "264-563": {
+     "eficientes": 26,
+     "identicas": 26,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    }
+   },
+   "coincidencias_corregido": {
+    "922-1221": {
+     "eficientes": 36,
+     "identicas": 36,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "2121-2420": {
+     "eficientes": 35,
+     "identicas": 35,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "264-563": {
+     "eficientes": 20,
+     "identicas": 20,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    }
+   }
+  },
+  "GITV01 (Ohio State)": {
+   "regiones_comparables": [
+    "922-1221",
+    "2121-2420",
+    "264-563"
+   ],
+   "recalculo_fiel": {
+    "gana_a": [
+     "2121-2420",
+     "264-563"
+    ],
+    "pierde_con": [],
+    "conteos": {
+     "922-1221": 35,
+     "2121-2420": 27,
+     "264-563": 22
+    }
+   },
+   "recalculo_corregido": {
+    "gana_a": [
+     "2121-2420",
+     "264-563"
+    ],
+    "pierde_con": [],
+    "conteos": {
+     "922-1221": 25,
+     "2121-2420": 19,
+     "264-563": 17
+    }
+   },
+   "regiones_con_cobertura_total_de_ventanas": [
+    "922-1221",
+    "2121-2420",
+    "264-563"
+   ],
+   "coincidencias_fiel": {
+    "922-1221": {
+     "eficientes": 48,
+     "identicas": 42,
+     "variantes": 6,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "2121-2420": {
+     "eficientes": 42,
+     "identicas": 39,
+     "variantes": 3,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "264-563": {
+     "eficientes": 26,
+     "identicas": 26,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    }
+   },
+   "coincidencias_corregido": {
+    "922-1221": {
+     "eficientes": 36,
+     "identicas": 32,
+     "variantes": 4,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "2121-2420": {
+     "eficientes": 35,
+     "identicas": 33,
+     "variantes": 2,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "264-563": {
+     "eficientes": 20,
+     "identicas": 20,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    }
+   }
+  },
+  "GCWP01 (Illinois)": {
+   "regiones_comparables": [
+    "2121-2420"
+   ],
+   "regiones_con_cobertura_total_de_ventanas": [
+    "2121-2420"
+   ],
+   "coincidencias_fiel": {
+    "922-1221": {
+     "eficientes": 48,
+     "identicas": 0,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 48
+    },
+    "2121-2420": {
+     "eficientes": 42,
+     "identicas": 26,
+     "variantes": 16,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "264-563": {
+     "eficientes": 26,
+     "identicas": 7,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 19
+    }
+   },
+   "coincidencias_corregido": {
+    "922-1221": {
+     "eficientes": 36,
+     "identicas": 0,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 36
+    },
+    "2121-2420": {
+     "eficientes": 35,
+     "identicas": 22,
+     "variantes": 13,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "264-563": {
+     "eficientes": 20,
+     "identicas": 5,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 15
+    }
+   }
+  },
+  "genoma UK GCA_975739785.1": {
+   "regiones_comparables": [
+    "922-1221",
+    "2121-2420"
+   ],
+   "recalculo_fiel": {
+    "gana_a": [
+     "2121-2420"
+    ],
+    "pierde_con": [],
+    "conteos": {
+     "922-1221": 36,
+     "2121-2420": 29
+    }
+   },
+   "recalculo_corregido": {
+    "gana_a": [
+     "2121-2420"
+    ],
+    "pierde_con": [],
+    "conteos": {
+     "922-1221": 26,
+     "2121-2420": 22
+    }
+   },
+   "regiones_con_cobertura_total_de_ventanas": [
+    "922-1221",
+    "2121-2420"
+   ],
+   "coincidencias_fiel": {
+    "922-1221": {
+     "eficientes": 48,
+     "identicas": 48,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "2121-2420": {
+     "eficientes": 42,
+     "identicas": 34,
+     "variantes": 0,
+     "cruzan_empalme": 8,
+     "sin_datos": 0
+    },
+    "264-563": {
+     "eficientes": 26,
+     "identicas": 17,
+     "variantes": 0,
+     "cruzan_empalme": 8,
+     "sin_datos": 1
+    }
+   },
+   "coincidencias_corregido": {
+    "922-1221": {
+     "eficientes": 36,
+     "identicas": 36,
+     "variantes": 0,
+     "cruzan_empalme": 0,
+     "sin_datos": 0
+    },
+    "2121-2420": {
+     "eficientes": 35,
+     "identicas": 27,
+     "variantes": 0,
+     "cruzan_empalme": 8,
+     "sin_datos": 0
+    },
+    "264-563": {
+     "eficientes": 20,
+     "identicas": 12,
+     "variantes": 0,
+     "cruzan_empalme": 8,
+     "sin_datos": 0
+    }
+   }
+  }
+ }
+}

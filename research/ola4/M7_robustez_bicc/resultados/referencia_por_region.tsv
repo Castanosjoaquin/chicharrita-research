@@ -1,0 +1,13 @@
+fuente	region	ventanas_region	sin_datos	identicas	variantes	cruzan_empalme	eficientes_epilab_fiel	efic_identicas_fiel	efic_variantes_fiel	efic_cruzan_empalme_fiel	efic_sin_datos_fiel	eficientes_epilab_corregido	efic_identicas_corregido	efic_variantes_corregido	efic_cruzan_empalme_corregido	efic_sin_datos_corregido	recalculo	largo_segun_fuente	recalc_fiel	recalc_corregido
+GHCC01 (Argentina, Pergamino)	922-1221	300	0	300	0	0	48	48	0	0	0	36	36	0	0	0	corrido	300	36	26
+GHCC01 (Argentina, Pergamino)	2121-2420	300	0	279	21	0	42	41	1	0	0	35	35	0	0	0	corrido	300	29	22
+GHCC01 (Argentina, Pergamino)	264-563	300	0	300	0	0	26	26	0	0	0	20	20	0	0	0	corrido	300	22	17
+GITV01 (Ohio State)	922-1221	300	0	258	42	0	48	42	6	0	0	36	32	4	0	0	corrido	300	35	25
+GITV01 (Ohio State)	2121-2420	300	0	237	63	0	42	39	3	0	0	35	33	2	0	0	corrido	300	27	19
+GITV01 (Ohio State)	264-563	300	0	300	0	0	26	26	0	0	0	20	20	0	0	0	corrido	300	22	17
+GCWP01 (Illinois)	922-1221	300	300	0	0	0	48	0	0	0	48	36	0	0	0	36	no corrido: la fuente no cubre la region entera			
+GCWP01 (Illinois)	2121-2420	300	0	197	103	0	42	26	16	0	0	35	22	13	0	0	corrido	300	25	18
+GCWP01 (Illinois)	264-563	300	150	150	0	0	26	7	0	0	19	20	5	0	0	15	no corrido: la fuente no cubre la region entera			
+genoma UK GCA_975739785.1	922-1221	300	0	280	0	20	48	48	0	0	0	36	36	0	0	0	corrido	300	36	26
+genoma UK GCA_975739785.1	2121-2420	300	0	260	0	40	42	34	0	8	0	35	27	0	8	0	corrido	300	29	22
+genoma UK GCA_975739785.1	264-563	300	29	210	21	40	26	17	0	8	1	20	12	0	8	0	no corrido: la fuente no cubre la region entera			
