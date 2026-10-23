@@ -1,0 +1,19 @@
+{
+  "anclas_gen_completo": {
+    "MP_MRFV": 123,
+    "CP_MRFV": 30,
+    "BicC_Dm": 171,
+    "ATPaseD_Dm": 29
+  },
+  "conjunto": "vigentes",
+  "anclas_region": {
+    "MP_MRFV": 38,
+    "CP_MRFV": 21,
+    "BicC_Dm": 36,
+    "ATPaseD_Dm": 21
+  },
+  "las_dos_anclas_pasaron": true,
+  "modo": "corregido",
+  "backend": "vienna",
+  "python": "3.13.15"
+}

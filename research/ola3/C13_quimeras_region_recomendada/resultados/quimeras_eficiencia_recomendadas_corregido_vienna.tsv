@@ -1,0 +1,13 @@
+quimera	izquierda	derecha	largo_nt	corte_nt	ventanas_quimera	ef_region_izq	ef_region_der	suma_de_partes	ef_quimera_total	ef_heredadas_izq	ef_heredadas_der	ventanas_empalme	ef_empalme	delta_total_menos_suma	delta_explicado_por_empalme	ventanas_heredadas_que_cambiaron
+Q_MP_MRFV__CP_MRFV	MP_MRFV	CP_MRFV	400	200	380	27	23	50	52	28	24	20	0	2	0	8
+Q_MP_MRFV__BicC_Dm	MP_MRFV	BicC_Dm	500	200	480	27	22	49	54	28	26	20	0	5	0	7
+Q_MP_MRFV__ATPaseD_Dm	MP_MRFV	ATPaseD_Dm	500	200	480	27	20	47	44	25	19	20	0	-3	0	3
+Q_CP_MRFV__MP_MRFV	CP_MRFV	MP_MRFV	400	200	380	23	27	50	46	19	27	20	0	-4	0	6
+Q_CP_MRFV__BicC_Dm	CP_MRFV	BicC_Dm	500	200	480	23	22	45	45	23	22	20	0	0	0	4
+Q_CP_MRFV__ATPaseD_Dm	CP_MRFV	ATPaseD_Dm	500	200	480	23	20	43	42	23	19	20	0	-1	0	3
+Q_BicC_Dm__MP_MRFV	BicC_Dm	MP_MRFV	500	300	480	22	27	49	50	23	27	20	0	1	0	1
+Q_BicC_Dm__CP_MRFV	BicC_Dm	CP_MRFV	500	300	480	22	23	45	47	22	25	20	0	2	0	4
+Q_BicC_Dm__ATPaseD_Dm	BicC_Dm	ATPaseD_Dm	600	300	580	22	20	42	44	22	19	20	3	2	3	3
+Q_ATPaseD_Dm__MP_MRFV	ATPaseD_Dm	MP_MRFV	500	300	480	20	27	47	50	19	31	20	0	3	0	9
+Q_ATPaseD_Dm__CP_MRFV	ATPaseD_Dm	CP_MRFV	500	300	480	20	23	43	44	20	23	20	1	1	1	4
+Q_ATPaseD_Dm__BicC_Dm	ATPaseD_Dm	BicC_Dm	600	300	580	20	22	42	41	19	22	20	0	-1	0	3

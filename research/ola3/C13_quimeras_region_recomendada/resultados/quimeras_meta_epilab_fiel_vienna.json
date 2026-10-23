@@ -1,0 +1,38 @@
+{
+  "conjunto": "epilab",
+  "coordenadas": {
+    "MP_MRFV": [
+      1,
+      200
+    ],
+    "CP_MRFV": [
+      201,
+      400
+    ],
+    "BicC_Dm": [
+      264,
+      563
+    ],
+    "ATPaseD_Dm": [
+      151,
+      450
+    ]
+  },
+  "modo": "fiel",
+  "backend": "vienna",
+  "regiones": {
+    "MP_MRFV": 200,
+    "CP_MRFV": 200,
+    "BicC_Dm": 300,
+    "ATPaseD_Dm": 300
+  },
+  "eficientes_region_suelta": {
+    "MP_MRFV": 20,
+    "CP_MRFV": 16,
+    "BicC_Dm": 22,
+    "ATPaseD_Dm": 19
+  },
+  "n_quimeras": 12,
+  "comando_run_sifi": "C:\\Users\\MODDE\\miniconda3\\python.exe C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\tools\\sifi21_port\\run_sifi.py C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\fasta\\epilab\\regiones.fasta C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\fasta\\epilab\\quimeras.fasta --modo fiel --backend vienna --salida C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\sifi\\epilab_fiel_vienna",
+  "python": "3.13.15"
+}

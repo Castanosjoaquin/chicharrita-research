@@ -1,0 +1,5 @@
+gen	region	largo_nt	ventanas_en_contexto	ef_en_contexto	ventanas_recortada	ef_recortada	delta	ventanas_perdidas	ef_perdidas	flips	flips_a_eficiente	flips_a_no_eficiente	cierra	eficacia_en_contexto	eficacia_recortada	flip_mas_lejano_nt
+MP_MRFV	72-271	200	200	38	180	27	-11	20	7	6	1	5	True	0.19	0.15	34
+CP_MRFV	99-298	200	200	21	180	23	2	20	1	9	6	3	True	0.105	0.1278	66
+BicC_Dm	922-1221	300	300	36	280	26	-10	20	7	3	0	3	True	0.12	0.0929	47
+ATPaseD_Dm	72-371	300	300	21	280	20	-1	20	4	5	4	1	True	0.07	0.0714	64

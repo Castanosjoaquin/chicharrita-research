@@ -1,0 +1,77 @@
+{
+  "nota": "C13 no abrio literatura nueva. Las dos fuentes externas que se citan por el nombre de la tecnica estan registradas como leidas en texto completo por la linea C4 (research/ola3/C4_offtargets_quimeras_largo/sources.json), y en C13 NO se reabrieron: se citan por el titulo, que es lo que sostiene la afirmacion terminologica, y con marcador [R] por eso. Todo lo demas de este bloque es interno al repositorio o medido por nosotros.",
+  "externas_citadas_por_el_titulo": [
+    {
+      "id_en_C4": "S07",
+      "titulo": "dsRNAmax: a multi-target chimeric dsRNA designer for safe and effective crop protection",
+      "primer_autor": "Fletcher",
+      "anio": "2025",
+      "revista": "NAR Genomics and Bioinformatics",
+      "doi": "10.1093/nargab/lqaf064",
+      "pmcid": "PMC12086532",
+      "uso_en_C13": "La tecnica que el investigador llamo 'quimera' aparece en la literatura como chimeric dsRNA y multi-target. El titulo usa las dos palabras.",
+      "estado_en_C13": "no reabierta en esta linea; leida en texto completo por C4",
+      "marcador": "R"
+    },
+    {
+      "id_en_C4": "S11",
+      "titulo": "Screening, optimization and artificial recombination of dsRNA fragments for RNAi-mediated pest resistance in Apolygus lucorum",
+      "primer_autor": "Luo",
+      "anio": "2026",
+      "revista": "Frontiers in Insect Science",
+      "doi": "10.3389/finsc.2026.1912427",
+      "pmcid": "PMC13529733",
+      "uso_en_C13": "El mismo objeto nombrado como artificial recombination of dsRNA fragments; la molecula Udw de 262 pb armada con fragmentos de tres genes distintos.",
+      "estado_en_C13": "no reabierta en esta linea; leida en texto completo por C4",
+      "marcador": "R"
+    },
+    {
+      "id_en_C4": "S21",
+      "titulo": "Nanomaterial-Mediated RNAi Targeting Chitin Metabolism Genes in MEAM1 Cryptic Species of Bemisia tabaci (Hemiptera: Aleyrodidae)",
+      "primer_autor": "Kong",
+      "anio": "2025",
+      "revista": "Insects",
+      "doi": "10.3390/insects17010002",
+      "pmcid": "PMC12842457",
+      "uso_en_C13": "El tercer nombre del mismo objeto: ARNdc de fusion de tres fragmentos de 100 pb.",
+      "estado_en_C13": "no reabierta en esta linea; leida en texto completo por C4",
+      "marcador": "R"
+    }
+  ],
+  "internas": [
+    {
+      "ruta": "research/checkpoints/checkpoint1.md",
+      "apartado": "Quimeras: combinar regiones de genes distintos",
+      "uso": "La palabra que el investigador uso, segun nuestra transcripcion, es quimera, y la receta es: los 200 nt de mayor densidad de un gen mas los 200 del otro, reevaluados juntos."
+    },
+    {
+      "ruta": "research/ola3/C4_offtargets_quimeras_largo/quimeras.md",
+      "uso": "Las 12 quimeras con las regiones de EPILAB: la tabla que C13 reproduce como verificacion, y el techo de 59 nt que C13 corrige."
+    },
+    {
+      "ruta": "research/ola3/C7_ranking_v2/REPORT.md",
+      "apartado": "seccion 4, nivel 3",
+      "uso": "Las regiones recomendadas y sus cifras en contexto (38, 21, 35, 21), que son las anclas de C13."
+    },
+    {
+      "ruta": "00_meta/DECISIONS.md",
+      "apartado": "D5, D20, D25, D31, D34, D38",
+      "uso": "El trato del genoma del vector segun la estrategia, la region vigente de BicC_Dm (922-1221) y la separacion del ranking en dos listas por mecanismo."
+    },
+    {
+      "ruta": "tools/sifi21_port/sifi_core.py",
+      "apartado": "lineas 40, 48-50 y 231-247",
+      "uso": "accessibility_window = 8, WINSIZE = 80, SPAN = 40, y la lectura up[pos + size - 1][u]: es el dato que explica por que la banda de contexto es asimetrica."
+    }
+  ],
+  "pendientes_sin_abrir": [
+    {
+      "titulo": "Chimeric Double-Stranded RNAs Could Act as Tailor-Made Pesticides for Controlling Storage Insects",
+      "primer_autor": "Wang",
+      "anio": "2021",
+      "revista": "Journal of Agricultural and Food Chemistry 69(22):6166-6171",
+      "por_que_importa": "Aparecio en una busqueda web como la cita academica mas antigua del termino chimeric dsRNA aplicado a plagas. NO se pudo abrir: es de ACS y la busqueda no devolvio version abierta. No se cita en ningun documento del proyecto.",
+      "registrado_en": "00_meta/PREGUNTAS_ABIERTAS.md"
+    }
+  ]
+}

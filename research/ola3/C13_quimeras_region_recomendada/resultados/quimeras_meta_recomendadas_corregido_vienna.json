@@ -1,0 +1,38 @@
+{
+  "conjunto": "recomendadas",
+  "coordenadas": {
+    "MP_MRFV": [
+      72,
+      271
+    ],
+    "CP_MRFV": [
+      99,
+      298
+    ],
+    "BicC_Dm": [
+      2121,
+      2420
+    ],
+    "ATPaseD_Dm": [
+      72,
+      371
+    ]
+  },
+  "modo": "corregido",
+  "backend": "vienna",
+  "regiones": {
+    "MP_MRFV": 200,
+    "CP_MRFV": 200,
+    "BicC_Dm": 300,
+    "ATPaseD_Dm": 300
+  },
+  "eficientes_region_suelta": {
+    "MP_MRFV": 27,
+    "CP_MRFV": 23,
+    "BicC_Dm": 22,
+    "ATPaseD_Dm": 20
+  },
+  "n_quimeras": 12,
+  "comando_run_sifi": "C:\\Users\\MODDE\\miniconda3\\python.exe C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\tools\\sifi21_port\\run_sifi.py C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\fasta\\recomendadas\\regiones.fasta C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\fasta\\recomendadas\\quimeras.fasta --modo corregido --backend vienna --salida C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\sifi\\recomendadas_corregido_vienna",
+  "python": "3.13.15"
+}

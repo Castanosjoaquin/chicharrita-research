@@ -1,0 +1,50 @@
+[
+  {
+    "quimera": "Q_MP_MRFV__ATPaseD_Dm",
+    "j": 15,
+    "ventana": "AGGGCAAGGTGATGAAGGAGG",
+    "bloque": "GGCAAGGTGATGAAGGAGG",
+    "largo": 19,
+    "offset": 2,
+    "nt_de_izquierda": 4,
+    "nt_de_derecha": 15,
+    "es_nuevo": true,
+    "transcriptos": [
+      "XR_004852610.1",
+      "XR_004856333.1",
+      "XR_562605.3"
+    ]
+  },
+  {
+    "quimera": "Q_MP_MRFV__ATPaseD_Dm",
+    "j": 16,
+    "ventana": "GGGCAAGGTGATGAAGGAGGC",
+    "bloque": "GGCAAGGTGATGAAGGAGG",
+    "largo": 19,
+    "offset": 1,
+    "nt_de_izquierda": 4,
+    "nt_de_derecha": 15,
+    "es_nuevo": true,
+    "transcriptos": [
+      "XR_004852610.1",
+      "XR_004856333.1",
+      "XR_562605.3"
+    ]
+  },
+  {
+    "quimera": "Q_MP_MRFV__ATPaseD_Dm",
+    "j": 17,
+    "ventana": "GGCAAGGTGATGAAGGAGGCT",
+    "bloque": "GGCAAGGTGATGAAGGAGG",
+    "largo": 19,
+    "offset": 0,
+    "nt_de_izquierda": 4,
+    "nt_de_derecha": 15,
+    "es_nuevo": true,
+    "transcriptos": [
+      "XR_004852610.1",
+      "XR_004856333.1",
+      "XR_562605.3"
+    ]
+  }
+]

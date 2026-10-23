@@ -1,0 +1,98 @@
+{
+  "Q_MP_MRFV__CP_MRFV": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {}
+  },
+  "Q_MP_MRFV__BicC_Dm": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_ge19": 2,
+      "D_maidis|mm1_21": 4
+    }
+  },
+  "Q_MP_MRFV__ATPaseD_Dm": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_ge19": 2,
+      "D_maidis|mm1_21": 1,
+      "maiz|perfecto_ge19": 3
+    }
+  },
+  "Q_CP_MRFV__MP_MRFV": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {}
+  },
+  "Q_CP_MRFV__BicC_Dm": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_ge19": 2,
+      "D_maidis|mm1_21": 1
+    }
+  },
+  "Q_CP_MRFV__ATPaseD_Dm": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_21": 2,
+      "D_maidis|perfecto_ge19": 4,
+      "D_maidis|mm1_21": 1
+    }
+  },
+  "Q_BicC_Dm__MP_MRFV": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_21": 1,
+      "D_maidis|perfecto_ge19": 3,
+      "D_maidis|mm1_21": 1
+    }
+  },
+  "Q_BicC_Dm__CP_MRFV": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_ge19": 2,
+      "D_maidis|mm1_21": 3
+    }
+  },
+  "Q_BicC_Dm__ATPaseD_Dm": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 3,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_ge19": 4,
+      "D_maidis|mm1_21": 3,
+      "F_candida|mm1_21": 1,
+      "maiz|mm1_21": 1
+    }
+  },
+  "Q_ATPaseD_Dm__MP_MRFV": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_ge19": 2,
+      "D_maidis|mm1_21": 1
+    }
+  },
+  "Q_ATPaseD_Dm__CP_MRFV": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 2,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_ge19": 2,
+      "D_maidis|mm1_21": 1
+    }
+  },
+  "Q_ATPaseD_Dm__BicC_Dm": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 0,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_21": 1,
+      "D_maidis|perfecto_ge19": 5,
+      "D_maidis|mm1_21": 3
+    }
+  }
+}

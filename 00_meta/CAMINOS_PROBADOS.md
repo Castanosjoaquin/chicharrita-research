@@ -941,3 +941,11 @@ Con escalas continuas, `bursA_Dm` queda por delante de `ATPaseD_Dm` a los dos la
 
 - **Pregunta 3 del entregable.** La versión que decía que `eth` y `burs-alpha` no estaban en ningún transcriptoma público fue corregida por C11 (2026-10-21). El texto tachado se quitó de `para-el-investigador.md`; la historia queda aquí.
 - **Lectura del par `eth`–`burs-alpha`.** Se había escrito que no se distinguían. Ese enunciado dependía de exigir que el orden se sostenga en las dos escalas, y se corrigió (D38, enmienda de 2026-10-22).
+
+## Quimeras con las regiones nuevas (2026-10-22, línea C13)
+
+- **Rehacer las quimeras sobre las regiones de EPILAB.** Descartado como resultado: ya estaba hecho en C4 y no es lo que el proyecto recomienda hoy. Se corrió igual, pero **como verificación**: el script nuevo reproduce la tabla de C4 celda por celda en los dos modos, y recién entonces se usó con las regiones vigentes.
+- **Comparar las quimeras contra las cifras publicadas de las regiones (38, 21, 36, 21).** Descartado: esas cifras se cuentan sobre el perfil del gen completo y la quimera se arma con el recorte. Se midió el control que faltaba y la diferencia llega a 11 ventanas en `MP_MRFV`, así que la comparación habría sido contra el número equivocado.
+- **Mezclar los modos del port.** Evitado a tiempo: C4 midió las quimeras en modo `fiel` y el ranking de W7 y C7 se construyó en `corregido`. En `fiel`, `MP_MRFV` tiene 142 ventanas eficientes y en `corregido` 123. Todo lo que compara contra el ranking se corrió en `corregido`.
+- **Tamizar las 5.760 ventanas de las doce quimeras.** Descartado por innecesario: toda ventana heredada es, base por base, una ventana de su región de origen, así que alcanza con tamizar las 4 regiones y los 40 nt que cruzan cada unión, 1.160 ventanas. El resultado es idéntico y cuesta una pasada por referencia en vez de siete.
+- **Las ternas y la cuádruple.** No se corrieron: 900 a 1.000 nt, muy por encima de los 262 y 300 pb de los dos antecedentes hemípteros publicados, y con el empalme aportando 4 ventanas eficientes de 240 no hay motivo para esperar que agregar uniones mejore nada. El script las soporta cambiando el `2` de `itertools.permutations(REGIONES, 2)`.
