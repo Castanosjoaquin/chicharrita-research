@@ -48,7 +48,7 @@ Margen, en conjunto (ventanas de 922-1221 menos las de la rival; mediana y extre
 
 ### Qué dice la tabla
 
-`[M]` **Contra 264-563 la ventaja es robusta y grande.** Pierde en 13 de 4.368 configuraciones en contexto y en 11 en el recorte, todas con la brecha de estabilidad en 1,8 o más —el extremo del eje, donde los dos conteos ya cayeron a cuatro o cinco ventanas— y por una sola ventana en casi todas. El margen mediano es de 10 ventanas en contexto y 12 en el recorte. `[H]` Para la pregunta de Diego —si la región que proponemos es superior a la que eligió el laboratorio— la respuesta no depende de los parámetros.
+`[M]` **Contra 264-563 la ventaja es robusta y grande.** Pierde en 13 de 4.368 configuraciones en contexto y en 11 en el recorte, y todas ellas están en el extremo del eje de estabilidad: brecha de 1,9 o 2,0 en el marco de contexto y de 1,8 a 2,0 en el recorte, contra un valor por defecto de 1,0. En contexto las trece pierden por exactamente una ventana; en el recorte los márgenes van de una a cinco, y sólo tres de las once son de una. El margen mediano sobre toda la grilla es de 10 ventanas en contexto y 12 en el recorte. `[H]` Para la pregunta de Diego —si la región que proponemos es superior a la que eligió el laboratorio— la respuesta no depende de los parámetros.
 
 `[M]` **Contra 2121-2420 la ventaja depende del marco y del motor.** En contexto, con el modo `corregido`, 922-1221 gana en el 15,7 % de la grilla; en el punto por defecto son 36 contra 35, una ventana, y con el motor del si-Fi original esa única ventana se invierte: 30 contra 32 con `RNA_NN3` y 27 contra 31 con `RNA_NN4` `[M]`. En el recorte la fracción sube a 75,6 % y en el punto por defecto gana en las ocho celdas de motor × tabla × modo, por entre 2 y 8 ventanas.
 
