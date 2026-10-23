@@ -1,0 +1,269 @@
+{
+  "par1_modos:MP_MRFV": {
+    "etiquetas": [
+      "fiel",
+      "corregido"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 1243,
+    "ventanas_solo_en_fiel": 0,
+    "ventanas_solo_en_corregido": 0,
+    "eficientes_fiel": 142,
+    "eficientes_corregido": 123,
+    "confusion": {
+      "ambos_si": 123,
+      "ambos_no": 1101,
+      "solo_fiel": 19,
+      "solo_corregido": 0
+    },
+    "cambian": 19,
+    "terminos": []
+  },
+  "par1_modos:CP_MRFV": {
+    "etiquetas": [
+      "fiel",
+      "corregido"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 508,
+    "ventanas_solo_en_fiel": 0,
+    "ventanas_solo_en_corregido": 0,
+    "eficientes_fiel": 39,
+    "eficientes_corregido": 30,
+    "confusion": {
+      "ambos_si": 30,
+      "ambos_no": 469,
+      "solo_fiel": 9,
+      "solo_corregido": 0
+    },
+    "cambian": 9,
+    "terminos": []
+  },
+  "par1_modos:BicC_Dm": {
+    "etiquetas": [
+      "fiel",
+      "corregido"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 2500,
+    "ventanas_solo_en_fiel": 0,
+    "ventanas_solo_en_corregido": 0,
+    "eficientes_fiel": 223,
+    "eficientes_corregido": 171,
+    "confusion": {
+      "ambos_si": 171,
+      "ambos_no": 2277,
+      "solo_fiel": 52,
+      "solo_corregido": 0
+    },
+    "cambian": 52,
+    "terminos": []
+  },
+  "par1_modos:ATPaseD_Dm": {
+    "etiquetas": [
+      "fiel",
+      "corregido"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 471,
+    "ventanas_solo_en_fiel": 0,
+    "ventanas_solo_en_corregido": 0,
+    "eficientes_fiel": 35,
+    "eficientes_corregido": 29,
+    "confusion": {
+      "ambos_si": 29,
+      "ambos_no": 436,
+      "solo_fiel": 6,
+      "solo_corregido": 0
+    },
+    "cambian": 6,
+    "terminos": []
+  },
+  "par2_tablas:MP_MRFV": {
+    "etiquetas": [
+      "nn3",
+      "nn4"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 1243,
+    "ventanas_solo_en_nn3": 0,
+    "ventanas_solo_en_nn4": 0,
+    "eficientes_nn3": 142,
+    "eficientes_nn4": 138,
+    "confusion": {
+      "ambos_si": 138,
+      "ambos_no": 1101,
+      "solo_nn3": 4,
+      "solo_nn4": 0
+    },
+    "cambian": 4,
+    "terminos": [
+      "end_stability",
+      "thermo_efficient"
+    ]
+  },
+  "par2_tablas:CP_MRFV": {
+    "etiquetas": [
+      "nn3",
+      "nn4"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 508,
+    "ventanas_solo_en_nn3": 0,
+    "ventanas_solo_en_nn4": 0,
+    "eficientes_nn3": 39,
+    "eficientes_nn4": 40,
+    "confusion": {
+      "ambos_si": 39,
+      "ambos_no": 468,
+      "solo_nn3": 0,
+      "solo_nn4": 1
+    },
+    "cambian": 1,
+    "terminos": [
+      "end_stability",
+      "thermo_efficient"
+    ]
+  },
+  "par2_tablas:BicC_Dm": {
+    "etiquetas": [
+      "nn3",
+      "nn4"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 2500,
+    "ventanas_solo_en_nn3": 0,
+    "ventanas_solo_en_nn4": 0,
+    "eficientes_nn3": 223,
+    "eficientes_nn4": 218,
+    "confusion": {
+      "ambos_si": 216,
+      "ambos_no": 2275,
+      "solo_nn3": 7,
+      "solo_nn4": 2
+    },
+    "cambian": 9,
+    "terminos": [
+      "end_stability",
+      "thermo_efficient"
+    ]
+  },
+  "par2_tablas:ATPaseD_Dm": {
+    "etiquetas": [
+      "nn3",
+      "nn4"
+    ],
+    "offset_b": 1,
+    "ventanas_comparadas": 471,
+    "ventanas_solo_en_nn3": 0,
+    "ventanas_solo_en_nn4": 0,
+    "eficientes_nn3": 35,
+    "eficientes_nn4": 35,
+    "confusion": {
+      "ambos_si": 35,
+      "ambos_no": 436,
+      "solo_nn3": 0,
+      "solo_nn4": 0
+    },
+    "cambian": 0,
+    "terminos": []
+  },
+  "par3_motor": {
+    "estado": "no corrido",
+    "motivo": "el backend exe invoca el RNAplfold.exe del instalador de si-Fi2015, que es un binario de Windows; no hay RNAplfold en esta maquina y ningun TSV versionado es _exe",
+    "que_haria_falta": "el binario, o los TSV por ventana con backend exe de los cuatro genes"
+  },
+  "par4_recorte:MP_MRFV": {
+    "etiquetas": [
+      "contexto",
+      "recorte"
+    ],
+    "offset_b": 72,
+    "ventanas_comparadas": 180,
+    "ventanas_solo_en_contexto": 1063,
+    "ventanas_solo_en_recorte": 0,
+    "eficientes_contexto": 31,
+    "eficientes_recorte": 27,
+    "confusion": {
+      "ambos_si": 26,
+      "ambos_no": 148,
+      "solo_contexto": 5,
+      "solo_recorte": 1
+    },
+    "cambian": 6,
+    "terminos": [
+      "target_site_accessibility",
+      "thermo_efficient"
+    ]
+  },
+  "par4_recorte:CP_MRFV": {
+    "etiquetas": [
+      "contexto",
+      "recorte"
+    ],
+    "offset_b": 99,
+    "ventanas_comparadas": 180,
+    "ventanas_solo_en_contexto": 328,
+    "ventanas_solo_en_recorte": 0,
+    "eficientes_contexto": 20,
+    "eficientes_recorte": 23,
+    "confusion": {
+      "ambos_si": 17,
+      "ambos_no": 154,
+      "solo_contexto": 3,
+      "solo_recorte": 6
+    },
+    "cambian": 9,
+    "terminos": [
+      "target_site_accessibility",
+      "thermo_efficient"
+    ]
+  },
+  "par4_recorte:BicC_Dm": {
+    "etiquetas": [
+      "contexto",
+      "recorte"
+    ],
+    "offset_b": 922,
+    "ventanas_comparadas": 280,
+    "ventanas_solo_en_contexto": 2220,
+    "ventanas_solo_en_recorte": 0,
+    "eficientes_contexto": 29,
+    "eficientes_recorte": 26,
+    "confusion": {
+      "ambos_si": 26,
+      "ambos_no": 251,
+      "solo_contexto": 3,
+      "solo_recorte": 0
+    },
+    "cambian": 3,
+    "terminos": [
+      "end_stability",
+      "target_site_accessibility",
+      "thermo_efficient"
+    ]
+  },
+  "par4_recorte:ATPaseD_Dm": {
+    "etiquetas": [
+      "contexto",
+      "recorte"
+    ],
+    "offset_b": 72,
+    "ventanas_comparadas": 280,
+    "ventanas_solo_en_contexto": 191,
+    "ventanas_solo_en_recorte": 0,
+    "eficientes_contexto": 17,
+    "eficientes_recorte": 20,
+    "confusion": {
+      "ambos_si": 16,
+      "ambos_no": 259,
+      "solo_contexto": 1,
+      "solo_recorte": 4
+    },
+    "cambian": 5,
+    "terminos": [
+      "target_site_accessibility",
+      "thermo_efficient"
+    ]
+  }
+}

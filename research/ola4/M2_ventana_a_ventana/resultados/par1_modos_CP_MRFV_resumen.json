@@ -1,0 +1,20 @@
+{
+  "etiquetas": [
+    "fiel",
+    "corregido"
+  ],
+  "offset_b": 1,
+  "ventanas_comparadas": 508,
+  "ventanas_solo_en_fiel": 0,
+  "ventanas_solo_en_corregido": 0,
+  "eficientes_fiel": 39,
+  "eficientes_corregido": 30,
+  "confusion": {
+    "ambos_si": 30,
+    "ambos_no": 469,
+    "solo_fiel": 9,
+    "solo_corregido": 0
+  },
+  "cambian": 9,
+  "terminos": []
+}

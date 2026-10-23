@@ -1,0 +1,23 @@
+{
+  "etiquetas": [
+    "contexto",
+    "recorte"
+  ],
+  "offset_b": 72,
+  "ventanas_comparadas": 180,
+  "ventanas_solo_en_contexto": 1063,
+  "ventanas_solo_en_recorte": 0,
+  "eficientes_contexto": 31,
+  "eficientes_recorte": 27,
+  "confusion": {
+    "ambos_si": 26,
+    "ambos_no": 148,
+    "solo_contexto": 5,
+    "solo_recorte": 1
+  },
+  "cambian": 6,
+  "terminos": [
+    "target_site_accessibility",
+    "thermo_efficient"
+  ]
+}
