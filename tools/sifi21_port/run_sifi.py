@@ -45,6 +45,10 @@ def main(argv=None):
     ap.add_argument("--region", type=int, default=200,
                     help="largo de region a buscar por densidad de eficientes")
     ap.add_argument("--salida", default=None, help="directorio para los TSV")
+    ap.add_argument("--tabla-nn", choices=("NN1", "NN2", "NN3", "NN4"), default="NN3",
+                    dest="tabla_nn",
+                    help="tabla de apilamiento: NN3 es la del original (default), NN4 la "
+                         "que usa sifi21INTA (issue #6)")
     ap.add_argument("--features", action="store_true",
                     help="emite la tabla de terminos sin ningun booleano de veredicto, "
                          "para analizar como contribuyen a la eficiencia (issue #7)")
@@ -53,6 +57,9 @@ def main(argv=None):
                          "reconstruye el gen entero (ver tools/verificacion/sin_secuencias.py)")
     a = ap.parse_args(argv)
 
+    # Sufijo solo cuando no es la tabla del original, para no cambiar los nombres de los
+    # TSV que ya estan publicados.
+    sufijo_nn = "" if a.tabla_nn == "NN3" else "_" + a.tabla_nn.lower()
     salida = Path(a.salida) if a.salida else None
     if salida:
         salida.mkdir(parents=True, exist_ok=True)
@@ -60,7 +67,7 @@ def main(argv=None):
     todo = []
     for ruta in a.fasta:
         for nombre, seq in leer_fastas(ruta):
-            eng = SifiEngine(mode=a.modo, temp_c=a.temp)
+            eng = SifiEngine(mode=a.modo, temp_c=a.temp, tabla_nn=a.tabla_nn)
             ventanas, resumen = eng.run(seq, backend=a.backend)
             reg = best_region(ventanas, a.region)
             resumen["nombre"] = nombre
@@ -84,13 +91,13 @@ def main(argv=None):
 
             if salida:
                 to_tsv(ventanas,
-                       salida / ("%s_%s_%s.tsv" % (nombre, a.modo, a.backend)),
+                       salida / ("%s_%s_%s%s.tsv" % (nombre, a.modo, a.backend, sufijo_nn)),
                        con_seq=a.con_seq)
                 if a.features:
                     # La etiqueta va al final y aparte: la tabla de terminos es lo que
                     # se analiza, `is_efficient` es contra que se la analiza.
                     to_tsv(ventanas,
-                           salida / ("%s_%s_%s_features.tsv" % (nombre, a.modo, a.backend)),
+                           salida / ("%s_%s_%s%s_features.tsv" % (nombre, a.modo, a.backend, sufijo_nn)),
                            columnas=COLUMNAS_FEATURES + ["is_efficient"])
 
     if salida:

@@ -30,7 +30,7 @@ from dataclasses import dataclass, asdict
 
 from Bio.Seq import Seq
 
-from sifi_energy import free_energy
+from sifi_energy import TABLAS_NN, free_energy
 
 # Valores por defecto de la interfaz del original (main.py:329-339 y 354-363).
 DEFAULTS = {
@@ -176,12 +176,22 @@ class SifiEngine:
         self.p = p
         self.size = p["sirna_size"]
         self.track: dict = {}
+        # Tabla de apilamiento. NN3 es la del original; NN4 es la que usa sifi21INTA y
+        # difiere de NN3 en 22 de sus 28 entradas.
+        tabla = p.get("tabla_nn", "NN3")
+        if tabla not in TABLAS_NN:
+            raise ValueError("tabla_nn debe ser una de %s" % sorted(TABLAS_NN))
+        self.tabla_nn = tabla
+        self.nn_table = None if tabla == "NN3" else TABLAS_NN[tabla]
 
     # -- energias del original ---------------------------------------------
 
     def _dg(self, seq, c_seq=None, shift=0):
+        # `nn_table` queda en None para NN3, que es el default real de si-Fi y el que
+        # free_energy ya aplica; se pasa explicita solo cuando se pide otra tabla, como
+        # la NN4 de sifi21INTA.
         return free_energy(seq, c_seq=c_seq, shift=shift, temp_c=self.temp_c,
-                           track=self.track)
+                           nn_table=self.nn_table, track=self.track)
 
     def _ends_plain(self, sirna: str):
         """Sin extremos colgantes. El original lo usa para los dos primeros siRNA."""

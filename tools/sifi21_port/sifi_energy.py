@@ -31,6 +31,36 @@ RNA_NN1 = _mt.RNA_NN1   # Freier et al. 1986   (definida en si-Fi, NO usada)
 RNA_NN2 = _mt.RNA_NN2   # Xia et al. 1998      (definida en si-Fi, NO usada)
 RNA_NN3 = _mt.RNA_NN3   # Chen et al. 2012     <- el default real de si-Fi
 
+# La tabla propia de sifi21INTA, y la unica que NO sale de Biopython.
+#
+# Es el unico parametro de quimica que el laboratorio cambio respecto del original:
+# `calculateFreeEnergy` de `sifi21INTA/freeEnergy.py:306` la usa por defecto, mientras
+# que el original usa RNA_NN3. Transcrita literal de `freeEnergy.py:61-74` del fuente
+# (commit 92df4449, cabeza de main al 2024-03-27).
+#
+# Atribucion: el comentario del fuente la asigna a Zuber et al. (2022), Nucleic Acids
+# Research 50(9):5251-5262. **El articulo no se abrio**, asi que la atribucion esta
+# identificada pero no verificada contra su fuente `[?]`; esta anotado como pregunta
+# abierta en `00_meta/PREGUNTAS_ABIERTAS.md`. Lo que si esta verificado es que la tabla
+# es distinta de RNA_NN3 en 22 de sus 28 entradas, asi que no es un retoque menor y no
+# se puede aproximar con la de Biopython.
+RNA_NN4 = {
+    "init": (4.66, 1.78), "init_A/T": (4.36, 13.35), "init_G/C": (0, 0),
+    "init_oneG/C": (0, 0), "init_allA/T": (0, 0), "init_5T/A": (0, 0),
+    "sym": (0, -1.38),
+    "AA/TT": (-7.44, -20.98), "AT/TA": (-8.91, -25.22), "TA/AT": (-9.16, -25.4),
+    "CA/GT": (-10.47, -27.08), "GT/CA": (-11.98, -31.37),
+    "CT/GA": (-10.90, -28.5), "GA/CT": (-13.21, -34.9),
+    "CG/GC": (-9.61, -23.46), "GC/CG": (-16.52, -42.13),
+    "GG/CC": (-13.94, -34.41), "GT/TG": (-7.66, -24.11),
+    "GG/TT": (-9.06, -28.57), "AG/TT": (-5.1, -16.53),
+    "TG/AT": (-2.72, -8.08), "TT/AG": (-10.58, -32.19), "TG/GT": (-8.76, -27.04),
+    "AT/TG": (-9.23, -27.32), "CG/GT": (-5.64, -14.83), "CT/GG": (-9.26, -23.64),
+    "GG/CT": (-12.41, -34.23), "GT/CG": (-14.73, -40.32),
+}
+
+TABLAS_NN = {"NN1": RNA_NN1, "NN2": RNA_NN2, "NN3": RNA_NN3, "NN4": RNA_NN4}
+
 # Mismatches. si-Fi usa las de ADN; ver CAMBIOS.md, cambio C3.
 DNA_IMM1 = _mt.DNA_IMM1  # Allawi & SantaLucia 1998, mismatches internos ADN/ADN
 DNA_TMM1 = _mt.DNA_TMM1  # mismatches terminales ADN/ADN

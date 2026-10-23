@@ -180,11 +180,47 @@ def test_tsv_no_lleva_secuencia():
               "la tabla de features lleva los terminos y la rama")
 
 
+def test_tabla_nn4():
+    """La tabla de sifi21INTA: 28 entradas, distinta de NN3, y seleccionable (issue #6)."""
+    print("tabla RNA_NN4 de sifi21INTA")
+    check(len(se.RNA_NN4) == 28, "RNA_NN4 tiene 28 entradas")
+    check(set(se.RNA_NN4) == set(se.RNA_NN3),
+          "RNA_NN4 cubre las mismas claves que RNA_NN3")
+    distintas = [k for k in se.RNA_NN4 if se.RNA_NN4[k] != se.RNA_NN3[k]]
+    check(len(distintas) == 22,
+          "difiere de RNA_NN3 en 22 de 28 entradas (son %d)" % len(distintas))
+    check(se.TABLAS_NN["NN4"] is se.RNA_NN4, "TABLAS_NN expone NN4")
+    # Un par de valores transcritos del fuente (freeEnergy.py:61-74), como ancla.
+    for k, v in {"AA/TT": (-7.44, -20.98), "GC/CG": (-16.52, -42.13),
+                 "sym": (0, -1.38)}.items():
+        check(se.RNA_NN4.get(k) == v, "RNA_NN4[%s] == %s" % (k, v))
+
+
+def test_nn4_cambia_el_conteo_y_nn3_no():
+    """Elegir NN4 tiene que mover algo, y NN3 tiene que seguir siendo el default."""
+    print("la tabla seleccionada cambia el veredicto")
+    seq = ("ATGGCTCAAAGGCGTAGTACGATCGATCGGCTAGCTAGCTTACGGCATCGGCATCGAATCGGCAT"
+           "CGAACGTACGTACGTAGCTAGCATCGATCGGATCGATCGGCTAACGTTACGATCGCATGCAATT")
+    base, _ = SifiEngine(mode="fiel").run(seq, backend="vienna")
+    nn3, _ = SifiEngine(mode="fiel", tabla_nn="NN3").run(seq, backend="vienna")
+    nn4, _ = SifiEngine(mode="fiel", tabla_nn="NN4").run(seq, backend="vienna")
+    check([w.is_efficient for w in base] == [w.is_efficient for w in nn3],
+          "NN3 explicita da lo mismo que el default")
+    check([w.ddg for w in nn3] != [w.ddg for w in nn4],
+          "NN4 mueve los ddg respecto de NN3")
+    try:
+        SifiEngine(mode="fiel", tabla_nn="NN9")
+        check(False, "una tabla inexistente tiene que fallar")
+    except ValueError:
+        check(True, "una tabla inexistente falla con ValueError")
+
+
 def main():
     for t in (test_tablas, test_recortes, test_temperatura, test_sal_se_cancela,
               test_coherencia_motor_barrido, test_modos_difieren,
               test_rama_terminal, test_rama_predice_el_veredicto,
-              test_tsv_no_lleva_secuencia):
+              test_tsv_no_lleva_secuencia, test_tabla_nn4,
+              test_nn4_cambia_el_conteo_y_nn3_no):
         t()
     print()
     if FALLAS:
