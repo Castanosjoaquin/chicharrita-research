@@ -231,7 +231,7 @@ azar.
 | ADR D49: se conservan los dos modos y se agrega la vía continua | idem | hecho (M3) |
 | Las tres contradicciones | `00_meta/CAMINOS_PROBADOS.md` | hecho |
 | Tres cerradas, seis abiertas, cinco nuevas | `00_meta/PREGUNTAS_ABIERTAS.md` | hecho |
-| Borrador de respuesta y pedidos del lunes | `entregables/respuesta-al-mentor.md` | hecho, **sin enviar** |
+| Borrador de respuesta y pedidos del lunes | `entregables/respuesta-al-mentor.md` | hecho, **aprobado para envio antes del lunes** (D50), pendiente de revision del equipo |
 | La sección de la planilla de `critica-herramientas.md` | `entregables/` | **pendiente**, y espera M1: hoy afirma el 1,75 como la mejor explicación y eso ya no se sostiene |
 | El ranking y la casilla de riesgo | `entregables/`, `tablero/` | **pendiente**, y espera M5 y M6, que el usuario tiene que confirmar |
 | El plan de ejecución, nueve líneas | `docs/plan_ola4/PLAN_OLA4.md` | hecho |

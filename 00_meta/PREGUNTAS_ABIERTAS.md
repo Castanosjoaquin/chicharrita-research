@@ -1261,3 +1261,8 @@ que su propia carta hizo necesaria.
 - La Parte 1 de la Fase 6 (diez preguntas anticipadas y agenda de cinco minutos) sigue sin hacerse.
 - No se verificó el texto del correo realmente enviado contra el borrador de siete preguntas. El
   mapeo de la respuesta se hizo por contenido, no por número.
+- **Registrar fecha y texto del mensaje de respuesta cuando se mande.** El usuario decidió el
+  2026-10-22 enviarlo antes de la reunión del lunes 26, con revisión del equipo previa (D50); el
+  envío lo hace el equipo. Es el mismo pendiente que quedó sin cerrar con el correo anterior, así
+  que esta vez se anota al mandarlo. Si no se manda, dejarlo escrito también: el fallback es decir
+  los tres contenidos en persona el lunes.

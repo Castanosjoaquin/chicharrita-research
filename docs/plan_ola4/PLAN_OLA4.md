@@ -171,7 +171,7 @@ discutimos sobre un estado que ya no es el nuestro.
   original están uno por uno en `tools/sifi21_port/CAMBIOS.md`.
 
 **Criterio de terminado.** Los cuatro archivos de `00_meta/` y de `salidas/` están escritos; el
-borrador de respuesta existe y está marcado como no enviado.
+borrador de respuesta existe y quedó aprobado para envío antes del lunes, pendiente de revisión del equipo (D50).
 
 ---
 

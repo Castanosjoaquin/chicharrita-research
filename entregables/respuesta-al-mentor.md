@@ -1,6 +1,9 @@
 # Respuesta a la carta del 22 de octubre — borrador
 
-**Estado: BORRADOR, SIN ENVIAR.** No se manda sin que el usuario lo confirme.
+**Estado: APROBADO PARA ENVIO, PENDIENTE DE REVISION DEL EQUIPO** (decision del usuario del
+2026-10-22, D50). Se manda antes de la reunion del lunes 26, despues de que el equipo lo evalue.
+El envio lo hace el equipo, no el agente. Si no se llega a revisarlo a tiempo no se manda nada y
+los tres contenidos se dicen en persona el lunes.
 
 **Criterio de este borrador.** La carta de Diego cierra con «nos vemos el lunes». Eso cambia qué
 conviene escribir: de nuestras siete preguntas del correo anterior contestó una, y las otras seis
@@ -11,7 +14,7 @@ siguiendo su pista, porque es lo que justifica el pedido. Las seis preguntas abi
 reunión, y están listadas en `00_meta/PREGUNTAS_ABIERTAS.md` y en `docs/plan_ola4/PLAN_OLA4.md`
 §6, en orden de cuánto desbloquean.
 
-**Si el usuario prefiere no mandar nada antes del lunes**, lo único que vale la pena mandar es el
+**Si el equipo decide recortar**, lo único que vale la pena mandar es el
 pedido del archivo, porque es lo que necesita tiempo. Las dos respuestas y el párrafo del
 hallazgo se pueden decir en la reunión.
 
