@@ -1,0 +1,943 @@
+{
+ "motor": {
+  "vienna": "ViennaRNA 2.7.2",
+  "exe": "RNAplfold 2.1.5 (el del si-Fi original)"
+ },
+ "grilla": {
+  "end_thr": [
+   0.0,
+   2.0
+  ],
+  "access_thr": [
+   0.05,
+   0.3
+  ],
+  "modos": [
+   "fiel",
+   "corregido"
+  ],
+  "tablas": [
+   "NN3",
+   "NN4"
+  ],
+  "backends": [
+   "vienna",
+   "exe"
+  ],
+  "configuraciones": 4368
+ },
+ "regiones": {
+  "922-1221": [
+   922,
+   1221
+  ],
+  "2121-2420": [
+   2121,
+   2420
+  ],
+  "264-563": [
+   264,
+   563
+  ]
+ },
+ "anclas": {
+  "gen_entero": {
+   "vienna/fiel": {
+    "obtenido": {
+     "MP_MRFV": 142,
+     "CP_MRFV": 39,
+     "BicC_Dm": 223,
+     "ATPaseD_Dm": 35
+    },
+    "esperado": {
+     "MP_MRFV": 142,
+     "CP_MRFV": 39,
+     "BicC_Dm": 223,
+     "ATPaseD_Dm": 35
+    },
+    "coincide": true
+   },
+   "vienna/corregido": {
+    "obtenido": {
+     "MP_MRFV": 123,
+     "CP_MRFV": 30,
+     "BicC_Dm": 171,
+     "ATPaseD_Dm": 29
+    },
+    "esperado": {
+     "MP_MRFV": 123,
+     "CP_MRFV": 30,
+     "BicC_Dm": 171,
+     "ATPaseD_Dm": 29
+    },
+    "coincide": true
+   },
+   "exe/fiel": {
+    "obtenido": {
+     "MP_MRFV": 133,
+     "CP_MRFV": 32,
+     "BicC_Dm": 212,
+     "ATPaseD_Dm": 42
+    },
+    "esperado": {
+     "MP_MRFV": 133,
+     "CP_MRFV": 32,
+     "BicC_Dm": 212,
+     "ATPaseD_Dm": 42
+    },
+    "coincide": true
+   },
+   "exe/corregido": {
+    "obtenido": {
+     "MP_MRFV": 114,
+     "CP_MRFV": 25,
+     "BicC_Dm": 162,
+     "ATPaseD_Dm": 34
+    },
+    "esperado": {
+     "MP_MRFV": 114,
+     "CP_MRFV": 25,
+     "BicC_Dm": 162,
+     "ATPaseD_Dm": 34
+    },
+    "coincide": true
+   }
+  },
+  "regiones_vigentes": {
+   "obtenido": {
+    "MP_MRFV": 38,
+    "CP_MRFV": 21,
+    "BicC_Dm": 36,
+    "ATPaseD_Dm": 21
+   },
+   "esperado": {
+    "MP_MRFV": 38,
+    "CP_MRFV": 21,
+    "BicC_Dm": 36,
+    "ATPaseD_Dm": 21
+   },
+   "coincide": true,
+   "medido_con": "vienna/corregido/NN3, punto por defecto"
+  }
+ },
+ "fracciones": {
+  "contexto": {
+   "en conjunto": {
+    "configuraciones": 4368,
+    "vs_2121-2420": {
+     "gana": 1589,
+     "empata": 291,
+     "pierde": 2488,
+     "gana_pct": 36.4,
+     "dif_mediana": -1.5,
+     "dif_min": -10,
+     "dif_max": 14
+    },
+    "vs_264-563": {
+     "gana": 4329,
+     "empata": 26,
+     "pierde": 13,
+     "gana_pct": 99.1,
+     "dif_mediana": 10.0,
+     "dif_min": -1,
+     "dif_max": 28
+    },
+    "gana_a_los_dos": 1589,
+    "gana_a_los_dos_pct": 36.4
+   },
+   "modo = fiel": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1246,
+     "empata": 128,
+     "pierde": 810,
+     "gana_pct": 57.1,
+     "dif_mediana": 1.0,
+     "dif_min": -7,
+     "dif_max": 14
+    },
+    "vs_264-563": {
+     "gana": 2184,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 13.0,
+     "dif_min": 3,
+     "dif_max": 28
+    },
+    "gana_a_los_dos": 1246,
+    "gana_a_los_dos_pct": 57.1
+   },
+   "modo = corregido": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 343,
+     "empata": 163,
+     "pierde": 1678,
+     "gana_pct": 15.7,
+     "dif_mediana": -3.0,
+     "dif_min": -10,
+     "dif_max": 13
+    },
+    "vs_264-563": {
+     "gana": 2145,
+     "empata": 26,
+     "pierde": 13,
+     "gana_pct": 98.2,
+     "dif_mediana": 7.0,
+     "dif_min": -1,
+     "dif_max": 24
+    },
+    "gana_a_los_dos": 343,
+    "gana_a_los_dos_pct": 15.7
+   },
+   "tabla = NN3": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 796,
+     "empata": 152,
+     "pierde": 1236,
+     "gana_pct": 36.4,
+     "dif_mediana": -1.0,
+     "dif_min": -10,
+     "dif_max": 13
+    },
+    "vs_264-563": {
+     "gana": 2167,
+     "empata": 14,
+     "pierde": 3,
+     "gana_pct": 99.2,
+     "dif_mediana": 10.0,
+     "dif_min": -1,
+     "dif_max": 28
+    },
+    "gana_a_los_dos": 796,
+    "gana_a_los_dos_pct": 36.4
+   },
+   "tabla = NN4": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 793,
+     "empata": 139,
+     "pierde": 1252,
+     "gana_pct": 36.3,
+     "dif_mediana": -2.0,
+     "dif_min": -10,
+     "dif_max": 14
+    },
+    "vs_264-563": {
+     "gana": 2162,
+     "empata": 12,
+     "pierde": 10,
+     "gana_pct": 99.0,
+     "dif_mediana": 10.0,
+     "dif_min": -1,
+     "dif_max": 27
+    },
+    "gana_a_los_dos": 793,
+    "gana_a_los_dos_pct": 36.3
+   },
+   "motor = vienna": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 864,
+     "empata": 172,
+     "pierde": 1148,
+     "gana_pct": 39.6,
+     "dif_mediana": -1.0,
+     "dif_min": -10,
+     "dif_max": 13
+    },
+    "vs_264-563": {
+     "gana": 2157,
+     "empata": 17,
+     "pierde": 10,
+     "gana_pct": 98.8,
+     "dif_mediana": 11.0,
+     "dif_min": -1,
+     "dif_max": 28
+    },
+    "gana_a_los_dos": 864,
+    "gana_a_los_dos_pct": 39.6
+   },
+   "motor = exe": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 725,
+     "empata": 119,
+     "pierde": 1340,
+     "gana_pct": 33.2,
+     "dif_mediana": -2.0,
+     "dif_min": -9,
+     "dif_max": 14
+    },
+    "vs_264-563": {
+     "gana": 2172,
+     "empata": 9,
+     "pierde": 3,
+     "gana_pct": 99.5,
+     "dif_mediana": 9.0,
+     "dif_min": -1,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 725,
+    "gana_a_los_dos_pct": 33.2
+   },
+   "brecha = 1,0 (defecto)": {
+    "configuraciones": 208,
+    "vs_2121-2420": {
+     "gana": 75,
+     "empata": 9,
+     "pierde": 124,
+     "gana_pct": 36.1,
+     "dif_mediana": -2.0,
+     "dif_min": -9,
+     "dif_max": 9
+    },
+    "vs_264-563": {
+     "gana": 208,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 10.5,
+     "dif_min": 1,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 75,
+    "gana_a_los_dos_pct": 36.1
+   },
+   "accesibilidad = 0,1 (defecto)": {
+    "configuraciones": 168,
+    "vs_2121-2420": {
+     "gana": 111,
+     "empata": 14,
+     "pierde": 43,
+     "gana_pct": 66.1,
+     "dif_mediana": 2.0,
+     "dif_min": -7,
+     "dif_max": 9
+    },
+    "vs_264-563": {
+     "gana": 168,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 14.0,
+     "dif_min": 2,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 111,
+    "gana_a_los_dos_pct": 66.1
+   },
+   "punto por defecto": {
+    "configuraciones": 8,
+    "vs_2121-2420": {
+     "gana": 6,
+     "empata": 0,
+     "pierde": 2,
+     "gana_pct": 75.0,
+     "dif_mediana": 1.5,
+     "dif_min": -4,
+     "dif_max": 6
+    },
+    "vs_264-563": {
+     "gana": 8,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 15.0,
+     "dif_min": 8,
+     "dif_max": 22
+    },
+    "gana_a_los_dos": 6,
+    "gana_a_los_dos_pct": 75.0
+   }
+  },
+  "recorte": {
+   "en conjunto": {
+    "configuraciones": 4368,
+    "vs_2121-2420": {
+     "gana": 3301,
+     "empata": 315,
+     "pierde": 752,
+     "gana_pct": 75.6,
+     "dif_mediana": 3.0,
+     "dif_min": -6,
+     "dif_max": 19
+    },
+    "vs_264-563": {
+     "gana": 4349,
+     "empata": 8,
+     "pierde": 11,
+     "gana_pct": 99.6,
+     "dif_mediana": 12.0,
+     "dif_min": -5,
+     "dif_max": 26
+    },
+    "gana_a_los_dos": 3298,
+    "gana_a_los_dos_pct": 75.5
+   },
+   "modo = fiel": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1913,
+     "empata": 140,
+     "pierde": 131,
+     "gana_pct": 87.6,
+     "dif_mediana": 4.0,
+     "dif_min": -3,
+     "dif_max": 18
+    },
+    "vs_264-563": {
+     "gana": 2184,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 13.0,
+     "dif_min": 1,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 1913,
+    "gana_a_los_dos_pct": 87.6
+   },
+   "modo = corregido": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1388,
+     "empata": 175,
+     "pierde": 621,
+     "gana_pct": 63.6,
+     "dif_mediana": 2.0,
+     "dif_min": -6,
+     "dif_max": 19
+    },
+    "vs_264-563": {
+     "gana": 2165,
+     "empata": 8,
+     "pierde": 11,
+     "gana_pct": 99.1,
+     "dif_mediana": 9.0,
+     "dif_min": -5,
+     "dif_max": 26
+    },
+    "gana_a_los_dos": 1385,
+    "gana_a_los_dos_pct": 63.4
+   },
+   "tabla = NN3": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1677,
+     "empata": 152,
+     "pierde": 355,
+     "gana_pct": 76.8,
+     "dif_mediana": 3.0,
+     "dif_min": -6,
+     "dif_max": 17
+    },
+    "vs_264-563": {
+     "gana": 2177,
+     "empata": 2,
+     "pierde": 5,
+     "gana_pct": 99.7,
+     "dif_mediana": 12.0,
+     "dif_min": -5,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 1675,
+    "gana_a_los_dos_pct": 76.7
+   },
+   "tabla = NN4": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1624,
+     "empata": 163,
+     "pierde": 397,
+     "gana_pct": 74.4,
+     "dif_mediana": 3.0,
+     "dif_min": -6,
+     "dif_max": 19
+    },
+    "vs_264-563": {
+     "gana": 2172,
+     "empata": 6,
+     "pierde": 6,
+     "gana_pct": 99.5,
+     "dif_mediana": 12.0,
+     "dif_min": -5,
+     "dif_max": 26
+    },
+    "gana_a_los_dos": 1623,
+    "gana_a_los_dos_pct": 74.3
+   },
+   "motor = vienna": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1940,
+     "empata": 102,
+     "pierde": 142,
+     "gana_pct": 88.8,
+     "dif_mediana": 4.0,
+     "dif_min": -4,
+     "dif_max": 15
+    },
+    "vs_264-563": {
+     "gana": 2165,
+     "empata": 8,
+     "pierde": 11,
+     "gana_pct": 99.1,
+     "dif_mediana": 13.0,
+     "dif_min": -5,
+     "dif_max": 24
+    },
+    "gana_a_los_dos": 1937,
+    "gana_a_los_dos_pct": 88.7
+   },
+   "motor = exe": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1361,
+     "empata": 213,
+     "pierde": 610,
+     "gana_pct": 62.3,
+     "dif_mediana": 1.0,
+     "dif_min": -6,
+     "dif_max": 19
+    },
+    "vs_264-563": {
+     "gana": 2184,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 11.0,
+     "dif_min": 3,
+     "dif_max": 26
+    },
+    "gana_a_los_dos": 1361,
+    "gana_a_los_dos_pct": 62.3
+   },
+   "brecha = 1,0 (defecto)": {
+    "configuraciones": 208,
+    "vs_2121-2420": {
+     "gana": 155,
+     "empata": 16,
+     "pierde": 37,
+     "gana_pct": 74.5,
+     "dif_mediana": 3.0,
+     "dif_min": -5,
+     "dif_max": 15
+    },
+    "vs_264-563": {
+     "gana": 208,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 12.0,
+     "dif_min": 5,
+     "dif_max": 22
+    },
+    "gana_a_los_dos": 155,
+    "gana_a_los_dos_pct": 74.5
+   },
+   "accesibilidad = 0,1 (defecto)": {
+    "configuraciones": 168,
+    "vs_2121-2420": {
+     "gana": 157,
+     "empata": 4,
+     "pierde": 7,
+     "gana_pct": 93.5,
+     "dif_mediana": 6.0,
+     "dif_min": -3,
+     "dif_max": 12
+    },
+    "vs_264-563": {
+     "gana": 168,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 12.0,
+     "dif_min": 1,
+     "dif_max": 19
+    },
+    "gana_a_los_dos": 157,
+    "gana_a_los_dos_pct": 93.5
+   },
+   "punto por defecto": {
+    "configuraciones": 8,
+    "vs_2121-2420": {
+     "gana": 8,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 5.0,
+     "dif_min": 2,
+     "dif_max": 8
+    },
+    "vs_264-563": {
+     "gana": 8,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 13.0,
+     "dif_min": 8,
+     "dif_max": 18
+    },
+    "gana_a_los_dos": 8,
+    "gana_a_los_dos_pct": 100.0
+   }
+  },
+  "recorte_sin_bordes": {
+   "en conjunto": {
+    "configuraciones": 4368,
+    "vs_2121-2420": {
+     "gana": 3242,
+     "empata": 344,
+     "pierde": 782,
+     "gana_pct": 74.2,
+     "dif_mediana": 3.0,
+     "dif_min": -6,
+     "dif_max": 18
+    },
+    "vs_264-563": {
+     "gana": 4349,
+     "empata": 8,
+     "pierde": 11,
+     "gana_pct": 99.6,
+     "dif_mediana": 11.0,
+     "dif_min": -5,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 3239,
+    "gana_a_los_dos_pct": 74.2
+   },
+   "modo = fiel": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1890,
+     "empata": 163,
+     "pierde": 131,
+     "gana_pct": 86.5,
+     "dif_mediana": 4.0,
+     "dif_min": -3,
+     "dif_max": 17
+    },
+    "vs_264-563": {
+     "gana": 2184,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 13.0,
+     "dif_min": 1,
+     "dif_max": 24
+    },
+    "gana_a_los_dos": 1890,
+    "gana_a_los_dos_pct": 86.5
+   },
+   "modo = corregido": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1352,
+     "empata": 181,
+     "pierde": 651,
+     "gana_pct": 61.9,
+     "dif_mediana": 1.0,
+     "dif_min": -6,
+     "dif_max": 18
+    },
+    "vs_264-563": {
+     "gana": 2165,
+     "empata": 8,
+     "pierde": 11,
+     "gana_pct": 99.1,
+     "dif_mediana": 9.0,
+     "dif_min": -5,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 1349,
+    "gana_a_los_dos_pct": 61.8
+   },
+   "tabla = NN3": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1642,
+     "empata": 167,
+     "pierde": 375,
+     "gana_pct": 75.2,
+     "dif_mediana": 3.0,
+     "dif_min": -6,
+     "dif_max": 16
+    },
+    "vs_264-563": {
+     "gana": 2177,
+     "empata": 2,
+     "pierde": 5,
+     "gana_pct": 99.7,
+     "dif_mediana": 11.0,
+     "dif_min": -5,
+     "dif_max": 24
+    },
+    "gana_a_los_dos": 1640,
+    "gana_a_los_dos_pct": 75.1
+   },
+   "tabla = NN4": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1600,
+     "empata": 177,
+     "pierde": 407,
+     "gana_pct": 73.3,
+     "dif_mediana": 3.0,
+     "dif_min": -6,
+     "dif_max": 18
+    },
+    "vs_264-563": {
+     "gana": 2172,
+     "empata": 6,
+     "pierde": 6,
+     "gana_pct": 99.5,
+     "dif_mediana": 11.0,
+     "dif_min": -5,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 1599,
+    "gana_a_los_dos_pct": 73.2
+   },
+   "motor = vienna": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1924,
+     "empata": 114,
+     "pierde": 146,
+     "gana_pct": 88.1,
+     "dif_mediana": 4.0,
+     "dif_min": -4,
+     "dif_max": 14
+    },
+    "vs_264-563": {
+     "gana": 2165,
+     "empata": 8,
+     "pierde": 11,
+     "gana_pct": 99.1,
+     "dif_mediana": 12.0,
+     "dif_min": -5,
+     "dif_max": 23
+    },
+    "gana_a_los_dos": 1921,
+    "gana_a_los_dos_pct": 88.0
+   },
+   "motor = exe": {
+    "configuraciones": 2184,
+    "vs_2121-2420": {
+     "gana": 1318,
+     "empata": 230,
+     "pierde": 636,
+     "gana_pct": 60.3,
+     "dif_mediana": 1.0,
+     "dif_min": -6,
+     "dif_max": 18
+    },
+    "vs_264-563": {
+     "gana": 2184,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 11.0,
+     "dif_min": 3,
+     "dif_max": 25
+    },
+    "gana_a_los_dos": 1318,
+    "gana_a_los_dos_pct": 60.3
+   },
+   "brecha = 1,0 (defecto)": {
+    "configuraciones": 208,
+    "vs_2121-2420": {
+     "gana": 155,
+     "empata": 16,
+     "pierde": 37,
+     "gana_pct": 74.5,
+     "dif_mediana": 3.0,
+     "dif_min": -5,
+     "dif_max": 15
+    },
+    "vs_264-563": {
+     "gana": 208,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 12.0,
+     "dif_min": 5,
+     "dif_max": 22
+    },
+    "gana_a_los_dos": 155,
+    "gana_a_los_dos_pct": 74.5
+   },
+   "accesibilidad = 0,1 (defecto)": {
+    "configuraciones": 168,
+    "vs_2121-2420": {
+     "gana": 157,
+     "empata": 4,
+     "pierde": 7,
+     "gana_pct": 93.5,
+     "dif_mediana": 5.0,
+     "dif_min": -3,
+     "dif_max": 11
+    },
+    "vs_264-563": {
+     "gana": 168,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 12.0,
+     "dif_min": 1,
+     "dif_max": 19
+    },
+    "gana_a_los_dos": 157,
+    "gana_a_los_dos_pct": 93.5
+   },
+   "punto por defecto": {
+    "configuraciones": 8,
+    "vs_2121-2420": {
+     "gana": 8,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 5.0,
+     "dif_min": 2,
+     "dif_max": 8
+    },
+    "vs_264-563": {
+     "gana": 8,
+     "empata": 0,
+     "pierde": 0,
+     "gana_pct": 100.0,
+     "dif_mediana": 13.0,
+     "dif_min": 8,
+     "dif_max": 18
+    },
+    "gana_a_los_dos": 8,
+    "gana_a_los_dos_pct": 100.0
+   }
+  }
+ },
+ "conteos_en_defecto": {
+  "vienna/NN3/fiel/contexto": {
+   "922-1221": 48,
+   "2121-2420": 42,
+   "264-563": 26
+  },
+  "vienna/NN3/fiel/recorte": {
+   "922-1221": 36,
+   "2121-2420": 29,
+   "264-563": 22
+  },
+  "vienna/NN3/fiel/recorte_sin_bordes": {
+   "922-1221": 36,
+   "2121-2420": 29,
+   "264-563": 22
+  },
+  "vienna/NN3/corregido/contexto": {
+   "922-1221": 36,
+   "2121-2420": 35,
+   "264-563": 20
+  },
+  "vienna/NN3/corregido/recorte": {
+   "922-1221": 26,
+   "2121-2420": 22,
+   "264-563": 17
+  },
+  "vienna/NN3/corregido/recorte_sin_bordes": {
+   "922-1221": 26,
+   "2121-2420": 22,
+   "264-563": 17
+  },
+  "vienna/NN4/fiel/contexto": {
+   "922-1221": 46,
+   "2121-2420": 40,
+   "264-563": 26
+  },
+  "vienna/NN4/fiel/recorte": {
+   "922-1221": 35,
+   "2121-2420": 28,
+   "264-563": 22
+  },
+  "vienna/NN4/fiel/recorte_sin_bordes": {
+   "922-1221": 35,
+   "2121-2420": 28,
+   "264-563": 22
+  },
+  "vienna/NN4/corregido/contexto": {
+   "922-1221": 34,
+   "2121-2420": 33,
+   "264-563": 20
+  },
+  "vienna/NN4/corregido/recorte": {
+   "922-1221": 25,
+   "2121-2420": 21,
+   "264-563": 17
+  },
+  "vienna/NN4/corregido/recorte_sin_bordes": {
+   "922-1221": 25,
+   "2121-2420": 21,
+   "264-563": 17
+  },
+  "exe/NN3/fiel/contexto": {
+   "922-1221": 42,
+   "2121-2420": 38,
+   "264-563": 25
+  },
+  "exe/NN3/fiel/recorte": {
+   "922-1221": 33,
+   "2121-2420": 25,
+   "264-563": 15
+  },
+  "exe/NN3/fiel/recorte_sin_bordes": {
+   "922-1221": 33,
+   "2121-2420": 25,
+   "264-563": 15
+  },
+  "exe/NN3/corregido/contexto": {
+   "922-1221": 30,
+   "2121-2420": 32,
+   "264-563": 19
+  },
+  "exe/NN3/corregido/recorte": {
+   "922-1221": 23,
+   "2121-2420": 19,
+   "264-563": 10
+  },
+  "exe/NN3/corregido/recorte_sin_bordes": {
+   "922-1221": 23,
+   "2121-2420": 19,
+   "264-563": 10
+  },
+  "exe/NN4/fiel/contexto": {
+   "922-1221": 39,
+   "2121-2420": 37,
+   "264-563": 25
+  },
+  "exe/NN4/fiel/recorte": {
+   "922-1221": 31,
+   "2121-2420": 25,
+   "264-563": 15
+  },
+  "exe/NN4/fiel/recorte_sin_bordes": {
+   "922-1221": 31,
+   "2121-2420": 25,
+   "264-563": 15
+  },
+  "exe/NN4/corregido/contexto": {
+   "922-1221": 27,
+   "2121-2420": 31,
+   "264-563": 19
+  },
+  "exe/NN4/corregido/recorte": {
+   "922-1221": 21,
+   "2121-2420": 19,
+   "264-563": 10
+  },
+  "exe/NN4/corregido/recorte_sin_bordes": {
+   "922-1221": 21,
+   "2121-2420": 19,
+   "264-563": 10
+  }
+ }
+}
