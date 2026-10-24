@@ -1,0 +1,204 @@
+/* si-Fi+ — hoja de estilo.
+ *
+ * Los tokens de color son los mismos que `tools/sifi21_port/informe_html.py`, para que lo que
+ * se ve en pantalla y lo que se exporta sean la misma paleta. Decisiones de color validadas
+ * con el validador del skill de dataviz contra las dos superficies reales (#f4f5f6 y #1b1e22):
+ *
+ *   - El par categorico que lleva significado es azul (eficiencia) contra rojo (riesgo).
+ *     Pasa las seis verificaciones en los dos modos: dE 23,8 protan y 31,6 vision normal en
+ *     claro; 25,7 deutan y 31,9 normal en oscuro.
+ *   - El riesgo es ORDINAL, no categorico (un bloque perfecto es peor que un desajuste), asi
+ *     que es un solo hue en dos pasos: el rojo y el mismo rojo atenuado. Dos hues distintos
+ *     no pasan el piso de vision normal.
+ *   - La linea de «todos los siRNA» es plana en el tamano de la ventana, o sea una constante,
+ *     no una serie: va gris, punteada y con etiqueta directa. El gris falla el piso de croma
+ *     a proposito —tiene que leerse como contexto, no como entidad.
+ *
+ * El modo oscuro no es un volteo automatico: son pasos propios, validados contra su superficie.
+ */
+
+:root{
+  --bg:#ffffff; --surface:#f4f5f6; --surface-2:#eceef0;
+  --text:#16191c; --text-dim:#565d64; --line:#d4d8dc;
+  --accent:#1d5c4a; --accent-soft:#e3efea;
+  --warn:#8a4b1c; --warn-soft:#f6ece3;
+  --stop:#8a2b2b; --stop-soft:#f7e8e8;
+  --efic:#2a78d6; --risk:#d03b3b;
+  --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+    --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+    --accent:#6fc4a7; --accent-soft:#1c2b26;
+    --warn:#d79a68; --warn-soft:#2a221b;
+    --stop:#dd8b8b; --stop-soft:#2b1d1d;
+    --efic:#3987e5; --risk:#d03b3b;
+    --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121417; --surface:#1b1e22; --surface-2:#23272c;
+  --text:#e8eaec; --text-dim:#a0a7ae; --line:#343a40;
+  --accent:#6fc4a7; --accent-soft:#1c2b26;
+  --warn:#d79a68; --warn-soft:#2a221b;
+  --stop:#dd8b8b; --stop-soft:#2b1d1d;
+  --efic:#3987e5; --risk:#d03b3b;
+  --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:15px; line-height:1.55}
+.wrap{max-width:1180px; margin:0 auto; padding:0 16px}
+
+/* --- cabecera y navegacion --- */
+header{border-bottom:1px solid var(--line); padding:22px 0 0}
+.titulo{display:flex; flex-wrap:wrap; align-items:baseline; gap:12px; margin:0 0 4px}
+h1{font-size:1.5rem; font-weight:650; margin:0; letter-spacing:-.015em}
+h1 em{font-style:italic}
+.sub{color:var(--text-dim); font-size:.86rem; margin:0 0 14px}
+.motores{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; padding:0; list-style:none;
+  font-size:.78rem}
+.motores li{background:var(--surface); border:1px solid var(--line); padding:3px 9px;
+  border-radius:3px; color:var(--text-dim)}
+.motores li.falta{background:var(--stop-soft); border-color:var(--stop); color:var(--stop)}
+nav{display:flex; gap:2px}
+nav button{background:none; border:1px solid transparent; border-bottom:none;
+  padding:9px 18px; font:inherit; font-size:.9rem; color:var(--text-dim); cursor:pointer;
+  border-radius:4px 4px 0 0; margin-bottom:-1px}
+nav button:hover{color:var(--text); background:var(--surface)}
+nav button[aria-selected="true"]{background:var(--bg); border-color:var(--line);
+  color:var(--text); font-weight:650}
+
+main{padding:26px 0 70px}
+.vista[hidden]{display:none}
+h2{font-size:1.1rem; font-weight:650; margin:0 0 12px; letter-spacing:-.01em}
+h3{font-size:.95rem; font-weight:650; margin:22px 0 8px}
+p{margin:0 0 12px; max-width:72ch}
+.nota{font-size:.82rem; color:var(--text-dim)}
+
+/* --- disposicion de dos columnas --- */
+.cols{display:grid; grid-template-columns:320px minmax(0,1fr); gap:22px; align-items:start}
+@media (max-width:900px){ .cols{grid-template-columns:1fr} }
+
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:5px;
+  padding:16px}
+.panel + .panel{margin-top:14px}
+fieldset{border:none; border-top:1px solid var(--line); margin:16px 0 0; padding:14px 0 0}
+fieldset.primero{border-top:none; margin-top:0; padding-top:0}
+legend{font-size:.76rem; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--text-dim); padding:0; margin-bottom:10px; font-weight:650}
+
+label{display:block; font-size:.84rem; margin-bottom:3px; color:var(--text-dim)}
+.fila{display:flex; gap:10px; margin-bottom:10px}
+.fila > div{flex:1; min-width:0}
+input[type=text], input[type=number], select, textarea{
+  width:100%; font:inherit; font-size:.88rem; padding:6px 8px; color:var(--text);
+  background:var(--bg); border:1px solid var(--line); border-radius:3px}
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible{
+  outline:2px solid var(--accent); outline-offset:1px}
+textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.8rem;
+  line-height:1.4; resize:vertical; min-height:104px}
+.casilla{display:flex; align-items:flex-start; gap:7px; margin-bottom:7px; font-size:.86rem;
+  color:var(--text)}
+.casilla input{margin:3px 0 0; flex:none}
+.casilla span{color:var(--text-dim); font-size:.78rem; display:block}
+
+button{font:inherit}
+.boton{background:var(--accent); color:var(--bg); border:1px solid var(--accent);
+  padding:8px 18px; border-radius:4px; font-size:.9rem; font-weight:650; cursor:pointer;
+  width:100%}
+.boton:hover:not(:disabled){filter:brightness(1.12)}
+.boton:disabled{opacity:.5; cursor:default}
+.boton-2{background:var(--bg); color:var(--text); border:1px solid var(--line);
+  padding:5px 11px; border-radius:4px; font-size:.8rem; cursor:pointer; width:auto}
+.boton-2:hover{background:var(--surface-2)}
+.botones{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+
+/* --- avisos --- */
+.aviso{border:1px solid var(--line); border-left:3px solid var(--text-dim);
+  background:var(--surface); padding:10px 13px; border-radius:3px; margin:0 0 14px;
+  font-size:.86rem}
+.aviso.mal{border-left-color:var(--stop); background:var(--stop-soft); color:var(--stop)}
+.aviso.ojo{border-left-color:var(--warn); background:var(--warn-soft); color:var(--warn)}
+.aviso.bien{border-left-color:var(--accent); background:var(--accent-soft)}
+.aviso p:last-child{margin-bottom:0}
+.vacio{color:var(--text-dim); font-size:.9rem; padding:30px 0; text-align:center}
+
+/* --- numeros destacados --- */
+.kpis{display:flex; flex-wrap:wrap; gap:9px; margin:0 0 16px; padding:0; list-style:none}
+.kpis li{flex:1 1 118px; background:var(--surface); border:1px solid var(--line);
+  padding:10px 12px; border-radius:4px}
+.kpis .n{display:block; font-size:1.45rem; font-weight:650; line-height:1.1;
+  letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.kpis .k{display:block; font-size:.72rem; color:var(--text-dim); margin-top:2px}
+.etq{font-size:.76rem; color:var(--text-dim); font-variant-numeric:tabular-nums}
+
+/* --- graficos --- */
+figure{margin:0 0 16px; background:var(--surface); border:1px solid var(--line);
+  border-radius:5px; padding:14px}
+figcaption{font-size:.82rem; color:var(--text-dim); margin-top:8px; max-width:none}
+.plot{display:block; width:100%; height:auto; overflow:visible; touch-action:pan-y;
+  cursor:crosshair}
+.legend{display:flex; flex-wrap:wrap; gap:13px; list-style:none; padding:0;
+  margin:0 0 9px; font-size:.8rem; color:var(--text-dim)}
+.legend li{display:flex; align-items:center; gap:6px}
+.sw{width:11px; height:11px; border-radius:2px; display:inline-block; flex:none}
+.sw-efic{background:var(--efic)}
+.sw-off{background:var(--risk)}
+.sw-mm1{background:var(--risk); opacity:.45}
+.sw-todos{background:none; border-top:2px dashed var(--muted); height:0; border-radius:0}
+
+/* capas del svg: mismos nombres de clase que informe_html.py */
+.area{fill:var(--efic); opacity:.16}
+.line{fill:none; stroke:var(--efic); stroke-width:2; stroke-linejoin:round}
+.line-borde{stroke-dasharray:4 3; opacity:.6}
+.ref{fill:none; stroke:var(--muted); stroke-width:2; stroke-dasharray:5 4}
+.ref-lab{font-size:10px; fill:var(--muted); font-weight:650}
+.grid{stroke:var(--grid); stroke-width:1}
+.axis{stroke:var(--axis); stroke-width:1}
+.tick{font-size:10px; fill:var(--text-dim); font-variant-numeric:tabular-nums}
+.eje-lab{font-size:10px; fill:var(--text-dim); font-weight:650}
+.lane{fill:var(--surface-2)}
+.lane-lab{font-size:9px; fill:var(--text-dim)}
+.tick-efic{fill:var(--efic)}
+.tick-off{fill:var(--risk)}
+.tick-mm1{fill:var(--risk); opacity:.45}
+.band{fill:var(--muted); opacity:.14; stroke:var(--muted); stroke-width:1; stroke-opacity:.5}
+.band-best{fill:var(--efic); opacity:.10; stroke:var(--efic); stroke-width:1;
+  stroke-opacity:.6}
+.band-lab{font-size:10px; font-weight:650; text-anchor:middle; fill:var(--text-dim)}
+.band-best-lab{fill:var(--efic)}
+.sel{fill:var(--accent); opacity:.16; stroke:var(--accent); stroke-width:1}
+.cross{stroke:var(--text-dim); stroke-width:1; stroke-dasharray:3 3}
+.hit{fill:transparent}
+
+.lectura{font-size:.84rem; background:var(--surface-2); border:1px solid var(--line);
+  border-radius:3px; padding:8px 11px; margin:0 0 10px; min-height:40px;
+  font-variant-numeric:tabular-nums}
+.lectura b{font-weight:650}
+
+/* --- tablas --- */
+.tabla-marco{overflow:auto; max-height:460px; border:1px solid var(--line);
+  border-radius:4px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.8rem}
+th, td{padding:5px 9px; text-align:left; border-bottom:1px solid var(--line);
+  white-space:nowrap}
+thead th{position:sticky; top:0; background:var(--surface-2); z-index:1; font-weight:650;
+  font-size:.75rem; cursor:pointer; user-select:none}
+thead th:hover{color:var(--accent)}
+td.n, th.n{text-align:right; font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--surface-2)}
+tr.es-efic td:first-child{border-left:3px solid var(--efic)}
+.si{color:var(--accent); font-weight:650}
+.no{color:var(--text-dim)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.85em;
+  background:var(--surface-2); padding:1px 4px; border-radius:2px}
+
+/* --- progreso --- */
+.barra{height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden;
+  margin:8px 0}
+.barra > div{height:100%; background:var(--accent); transition:width .25s}

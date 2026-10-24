@@ -109,6 +109,21 @@ EXCEPCIONES: list[tuple[str, str]] = [
         "original y secuencias de control. Verificado que ninguna es de EPILAB.",
     ),
     (
+        "sifi_plus/datos_ejemplo/*",
+        "El dato de ejemplo de la interfaz es `NM_001111367.2`, el ARNm de la ferredoxina-6 "
+        "de Zea mays, con su accesion en el encabezado. Es RefSeq publico y no tiene relacion "
+        "con las cuatro regiones de EPILAB: la pasada contra la planilla da cero. Se eligio "
+        "el maiz y no el genoma del MRFV a proposito, porque `NC_002786.2` cubre el 90,5 % "
+        "de MP_MRFV y el 96,5 % de CP_MRFV (M9 §3.2) y, aunque eso es publico y no una fuga, "
+        "no conviene mandarselo al investigador dentro de nuestra herramienta.",
+    ),
+    (
+        "sifi_plus/test_api.py",
+        "Fixtures de prueba del criterio de baja complejidad: poli-A, un dinucleotido "
+        "alternado y un 21-mero sintetico de composicion normal. Verificado contra la "
+        "planilla: ninguna es de EPILAB.",
+    ),
+    (
         "pipeline/test_features.py",
         "Fixtures de prueba sinteticas (horquilla, secuencia suelta, CDS de juguete). "
         "Verificado que ninguna es de EPILAB.",

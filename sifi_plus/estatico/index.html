@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>si-Fi+</title>
+<link rel="stylesheet" href="/estatico/estilo.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="titulo">
+      <h1>si-Fi+</h1>
+      <span class="etq">port de si-Fi21 a Python 3 · criterio de eficiencia y tamizaje de off-targets</span>
+    </div>
+    <p class="sub">Todo corre en esta máquina. El servidor escucha sólo en 127.0.0.1:
+      ninguna secuencia sale de acá.</p>
+    <ul class="motores" id="motores"></ul>
+    <nav role="tablist">
+      <button role="tab" id="tab-diseno" aria-selected="true" data-vista="diseno">Diseño</button>
+      <button role="tab" id="tab-off" aria-selected="false" data-vista="off">Off-target</button>
+      <button role="tab" id="tab-rangos" aria-selected="false" data-vista="rangos">Rangos guardados</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ======================= DISEÑO ======================= -->
+<section class="vista" id="vista-diseno" role="tabpanel" aria-labelledby="tab-diseno">
+<div class="cols">
+
+  <form class="panel" id="form-diseno" autocomplete="off">
+    <fieldset class="primero">
+      <legend>Secuencia blanco</legend>
+      <!-- El texto de ejemplo se corta antes de los 21 nt a proposito: una racha de 21 es
+           exactamente lo que `tools/verificacion/sin_secuencias.py` no deja commitear, y
+           ponerle una excepcion a un archivo de interfaz para mostrar un placeholder seria
+           gastar la lista blanca en nada. -->
+      <textarea id="secuencia" placeholder="Pegá un FASTA, o la secuencia sola.&#10;&gt;mi_gen&#10;ACGTTGCAAGCTTGAC…"></textarea>
+      <div class="botones">
+        <button type="button" class="boton-2" id="btn-archivo">Abrir archivo…</button>
+        <select id="ejemplos" style="width:auto;flex:1"><option value="">— ejemplo —</option></select>
+      </div>
+      <input type="file" id="archivo" accept=".fasta,.fas,.fa,.fna,.txt" hidden>
+    </fieldset>
+
+    <fieldset>
+      <legend>Ajustes del siRNA</legend>
+      <div class="fila">
+        <div><label for="sirna_size">Tamaño (nt)</label>
+          <input type="number" id="sirna_size" min="10" max="50" step="1" value="21"></div>
+        <div><label for="largo_region">Región (nt)</label>
+          <input type="number" id="largo_region" min="20" max="2000" step="10" value="200"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Criterio de eficiencia</legend>
+      <div class="casilla"><input type="checkbox" id="strand_check" checked>
+        <label for="strand_check" style="margin:0">Selección de hebra
+          <span>ΔG del extremo 5′ antisentido ≥ el del sentido</span></label></div>
+      <div class="casilla"><input type="checkbox" id="end_check" checked>
+        <label for="end_check" style="margin:0">Diferencia de estabilidad de extremos
+          <span>ΔΔG por encima del umbral</span></label></div>
+      <div class="fila"><div>
+        <label for="end_stability_threshold">Umbral de extremos (kcal/mol)</label>
+        <input type="number" id="end_stability_threshold" step="0.05" value="1"></div></div>
+      <div class="casilla"><input type="checkbox" id="accessibility_check" checked>
+        <label for="accessibility_check" style="margin:0">Accesibilidad del sitio blanco
+          <span>probabilidad de desapareamiento del tramo</span></label></div>
+      <div class="fila">
+        <div><label for="accessibility_threshold">Umbral</label>
+          <input type="number" id="accessibility_threshold" min="0" max="1" step="0.01" value="0.1"></div>
+        <div><label for="accessibility_window">Ventana (u)</label>
+          <input type="number" id="accessibility_window" min="1" max="50" step="1" value="8"></div>
+      </div>
+      <div class="casilla"><input type="checkbox" id="terminal_check" checked>
+        <label for="terminal_check" style="margin:0">Regla del nucleótido terminal 5′
+          <span>preferencia por A/T en 19 o G/C en 2</span></label></div>
+      <div class="botones">
+        <button type="button" class="boton-2" data-preset="diseno">Defaults de diseño</button>
+        <button type="button" class="boton-2" data-preset="offtarget">Defaults de off-target</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Cómo se aplica la regla terminal</legend>
+      <div class="fila"><div>
+        <label for="modo">Modo</label>
+        <select id="modo">
+          <option value="corregido" selected>corregido — filtro adicional</option>
+          <option value="fiel">fiel — la rama del original, tal cual</option>
+        </select></div></div>
+      <p class="nota" id="nota-modo"></p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Cálculo</legend>
+      <div class="fila"><div>
+        <label for="backend">Motor de accesibilidad</label>
+        <select id="backend"></select></div></div>
+      <div class="fila">
+        <div><label for="temp_c">Temperatura (°C)</label>
+          <input type="number" id="temp_c" step="0.5" value="22"></div>
+        <div><label for="tabla_nn">Tabla de apilamiento</label>
+          <select id="tabla_nn">
+            <option value="NN3" selected>NN3 — Chen 2012 (la del original)</option>
+            <option value="NN4">NN4 — la de sifi21INTA</option>
+            <option value="NN1">NN1 — Freier 1986</option>
+            <option value="NN2">NN2 — Xia 1998</option>
+          </select></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Configuración, en una cadena</legend>
+      <div class="fila"><div>
+        <input type="text" id="config" value="siFi21_8_1.0_0.1_1111"
+               aria-label="cadena de configuración">
+      </div></div>
+      <p class="nota">El formato en que el investigador declaró la suya. Si la editás y
+        apretás Enter, el panel se acomoda.</p>
+    </fieldset>
+
+    <button type="submit" class="boton" id="btn-correr">Correr</button>
+  </form>
+
+  <div>
+    <div id="aviso-diseno"></div>
+    <div id="salida-diseno"></div>
+    <div class="vacio" id="vacio-diseno">
+      Pegá una secuencia y apretá <b>Correr</b>.
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ======================= OFF-TARGET ======================= -->
+<section class="vista" id="vista-off" role="tabpanel" aria-labelledby="tab-off" hidden>
+<div class="cols">
+
+  <form class="panel" id="form-off" autocomplete="off">
+    <fieldset class="primero">
+      <legend>Consulta</legend>
+      <p class="nota" id="off-consulta">Usa la secuencia de la pestaña Diseño.</p>
+      <div class="fila">
+        <div><label for="off_size">Tamaño (nt)</label>
+          <input type="number" id="off_size" min="10" max="50" value="21"></div>
+        <div><label for="off_block">Bloque perfecto</label>
+          <input type="number" id="off_block" min="5" max="50" value="19"></div>
+      </div>
+      <div class="casilla"><input type="checkbox" id="off_mm1">
+        <label for="off_mm1" style="margin:0">Buscar también con un desajuste
+          <span>63 variantes por ventana: lento en bases grandes</span></label></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Referencias a comparar</legend>
+      <p class="nota">Una corrida, todas las bases. El original elige una sola y hay que
+        correrlo una vez por cada una.</p>
+      <div id="bases"></div>
+      <div class="botones">
+        <button type="button" class="boton-2" id="btn-panel">Panel de riesgo completo</button>
+        <button type="button" class="boton-2" id="btn-ninguna">Ninguna</button>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="boton" id="btn-off">Tamizar</button>
+  </form>
+
+  <div>
+    <div id="aviso-off"></div>
+    <div id="salida-off"></div>
+    <div class="vacio" id="vacio-off">
+      Elegí las referencias y apretá <b>Tamizar</b>.
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ======================= RANGOS ======================= -->
+<section class="vista" id="vista-rangos" role="tabpanel" aria-labelledby="tab-rangos" hidden>
+  <h2>Rangos guardados</h2>
+  <p class="nota">Cada rango guarda sus coordenadas, sus conteos y la configuración que los
+    produjo — nunca la secuencia. Se escriben en <code id="ruta-salidas"></code>, fuera del
+    control de versiones.</p>
+  <div id="salida-rangos"></div>
+</section>
+
+</main>
+
+<script src="/estatico/app.js"></script>
+</body>
+</html>

@@ -1432,3 +1432,61 @@ son variables del desajuste de conteos que M1 vino a reconciliar.
    esa vía `[M]`. M7 la contestó a medias y propone **reportar con la advertencia, sin excluir**,
    porque excluirlas mueve la fracción de victorias de 75,6 % a 74,2 % `[M]`. Falta que el
    investigador lo confirme.
+
+## Pendientes abiertos por la interfaz del port (2026-10-23)
+
+### Para preguntarle al investigador
+
+1. **La licencia, otra vez, y ahora bloquea algo concreto.** D32 la dejó sin resolver: el
+   artículo de si-Fi declara CC BY-SA 4.0 y SourceForge declara CC BY-NC 2.0 `[?]`. Mientras
+   no se sepa cuál rige, `sifi_plus/` **no lleva archivo de licencia** y el nombre público
+   queda en suspenso («si-Fi+» es nombre de trabajo). Es el pedido 6 del lunes y ahora tiene
+   consecuencia práctica, no sólo formal.
+2. **Si la regla terminal se entiende sobre la posición 1 o sobre la 2.** El código comprueba
+   `sirna_sequence[1]`, que es la posición 2, donde la regla habla del extremo 5′ de la hebra
+   opuesta —la posición 1 en la geometría del propio si-Fi—. Corregir el índice cambia la rama
+   que decide en el **51,4 %** de las ventanas, 3.265 de 6.346 `[M]`. No lo tocamos: si es un
+   error de transcripción, hay una década de resultados calculados con el índice corrido.
+   Propuesta: agregarlo como tercer modo, nunca como el comportamiento por defecto.
+3. **Si quiere correrlo en su máquina.** Hoy la instalación está documentada pero no
+   empaquetada, y la decisión fue que el lunes la demo la corre el equipo. Si lo va a usar, el
+   empaquetado para Windows es una tarea aparte.
+4. **Si tiene una referencia para ponderar los desajustes por posición** (región semilla nt 2-8
+   contra posiciones 10-11), o si prefiere que lo propongamos nosotros con lo publicado y lo
+   marquemos como hipótesis.
+
+### Pendientes internos
+
+5. **Contrastar nuestra marca de baja complejidad contra `dustmasker`.** El criterio que
+   implementamos es nuestro `[H]` y está declarado en `sifi_plus/complejidad.py`; el
+   repositorio ya tiene una corrida del estándar en
+   `research/ola2/W5_secuencias_epilab/analisis/dustmasker_full.txt`. Hasta hacerlo, la marca
+   no puede subir de `[H]`.
+6. **Releer los tamizajes ya publicados con el descuento de baja complejidad.** Todo lo que
+   está en `research/` se corrió sin la marca. No cambia ningún número, pero sí puede cambiar
+   qué se afirma con él: cualquier afirmación sobre coincidencia perfecta de 21 nt en un no
+   objetivo hay que volver a mirarla. Afecta en particular a la lectura de que el riesgo está
+   concentrado en *Homalodisca vitripennis* —40 ventanas de `BicC_Dm` con 21/21 perfecto—, que
+   es una de las conclusiones más fuertes del entregable. **Esto es lo primero que haría antes
+   de la reunión** `[M]`.
+7. **La regla terminal con ventana de 22 nt.** El CLI y la interfaz ya aceptan
+   `--sirna-size 22`, pero la regla sigue mirando `size - 3` y `1`, que es lo que hace el
+   original. Nadie verificó que esas sean las posiciones que corresponden en 22 nt, y el
+   investigador confirmó que 21-22 es lo que tiene respaldo biológico (D35).
+8. **Integrar la conservación al perfil.** `tools/sifi21_port/conservacion.py` ya calcula
+   conservación por ventana y no está en la interfaz: hoy el perfil mira eficiencia y riesgo,
+   no estabilidad del blanco entre poblaciones del vector. Es la tercera columna que falta y el
+   cálculo ya existe.
+9. **Bowtie de 64 bits.** El 0.11.3 de 32 bits del instalador aborta con `-v 1` en bases de más
+   de ~114 MB `[M]`: ni el transcriptoma del maíz ni el genoma del vector. Es la pieza que
+   falta para reproducir la regla de conteo del original sobre las bases grandes.
+10. **Activar el gancho de pre-commit.** `git config core.hooksPath tools/verificacion/hooks`
+    sigue sin correrse (M9 §6), y ahora importa más: la carpeta nueva tiene fixtures de prueba
+    con nucleótidos, y aunque están exceptuadas con su motivo, el chequeo es lo que mantiene la
+    excepción honesta.
+11. **Mirar el resto de los gráficos del repositorio.** El pendiente de
+    `CAMINOS_PROBADOS.md:542` se cerró sólo para la interfaz nueva, que se abrió en Chrome y se
+    miró. Las cuatro fichas de gen de W5 y el informe de M7 siguen verificados nada más que
+    numéricamente. El caso nombrado como riesgo —el gráfico de `BicC_Dm`, que dibuja 2.500
+    marcas— sigue sin mirarse; en la interfaz nueva ese problema se resolvió dibujando una
+    marca por tramo contiguo y no por ventana, pero `informe_html.py` no tiene ese arreglo.

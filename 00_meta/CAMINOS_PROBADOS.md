@@ -1089,3 +1089,72 @@ primero que la librería**, porque el glosario tiene lo que las olas anteriores 
 librería sólo tiene lo que la librería trae. El error se destapó al revisar el glosario para
 decidir si había que agregarle un término, un paso que estuvo a punto de no hacerse porque parecía
 trámite. El costo fue un eje declarado imposible durante una vuelta entera de trabajo.
+
+## La interfaz del port (2026-10-23): qué se descartó al construirla
+
+### Construir la interfaz con Streamlit, Dash o FastAPI
+**Descartado.** Son la vía corta para una interfaz usable, pero meten una pila de terceros
+entre una secuencia no publicada y el disco, y obligan al investigador a resolver otra
+instalación. Con `http.server` de la biblioteca estándar el `requirements.txt` del port se
+queda en sus cuatro líneas y el socket queda atado a `127.0.0.1`, con lo que «nada sale de la
+máquina» pasa a ser una propiedad de la estructura en vez de una promesa en un documento.
+Ver D56. **Lección:** cuando la garantía que importa es de confidencialidad, la dependencia
+que no se agrega vale más que el código que ahorra.
+
+### Dibujar las tres curvas en un solo panel con dos ejes verticales
+**Descartado por el método del skill de dataviz.** El solapamiento no puede pasar del tamaño
+de la ventana y la densidad por región llega a decenas: son dos medidas con escalas distintas,
+y un gráfico de doble escala vertical es el error de visualización más común. Quedó en dos
+paneles que comparten el eje horizontal. El par categórico que sí lleva significado —azul para
+eficiencia, rojo para riesgo— se validó con el validador del skill contra las dos superficies
+reales: ΔE 23,8 protan y 31,6 visión normal en claro, 25,7 deutan y 31,9 normal en oscuro,
+las seis verificaciones en verde en los dos modos `[M]`.
+
+### Reusar `informe_html.svg()` para el informe exportado
+**Descartado.** Tiene las etiquetas de banda del informe de W5 («EPILAB», «más densa»)
+cableadas, que en una herramienta general son incorrectas. El informe exportado lo serializa
+el navegador desde el SVG que ya está en pantalla, así que el archivo es exactamente lo que el
+usuario vio y no hay un segundo dibujante que pueda discrepar. Ver D58.
+
+### Indexar el eje del gráfico por número de ventana
+**Descartado, y era un error que estaba escrito.** Hay `largo` posiciones y sólo
+`largo − size + 1` ventanas. Con el eje indexado por ventana, la curva de solapamiento —que
+tiene un punto por posición— se corría 20 posiciones hacia la derecha. El original usa la
+posición del ARNm («mRNA sequence position») y es lo correcto. **Lo encontró mirar la página,
+no un test** `[M]`.
+
+### Redibujar el gráfico en cada movimiento del mouse durante el arrastre
+**Descartado, y era otro error escrito.** Además de rehacer dos polilíneas de miles de puntos
+por píxel de mouse, reemplazaba el elemento del DOM y dejaba el manejador en curso sobre un
+nodo desprendido: ahí `getBoundingClientRect` devuelve cero, la división da `Infinity` y el
+rango seleccionado saltaba al final del gen. Quedó con los dos rectángulos de selección
+dibujados una sola vez y moviéndoles `x` y `width`. **Lección:** un test numérico no puede ver
+esto; el arrastre funcionaba en los datos y estaba roto en la pantalla.
+
+### Usar `with_suffix` para armar el nombre de un archivo exportado
+**Descartado.** Toma todo lo que sigue al último punto como extensión, y **toda accesión del
+NCBI tiene un punto**: `NC_002786.2_ventanas` y `NC_002786.2_features` terminaban los dos en
+`NC_002786.tsv`, uno pisando al otro. Es la misma clase de error que el
+`filename += filename + '.csv'` del original, que es lo que esto venía a corregir. Quedó como
+prueba de regresión en `sifi_plus/test_api.py`.
+
+### Mandar el genoma del MRFV como dato de ejemplo de la herramienta
+**Descartado.** `NC_002786.2` es público y M9 ya había concluido que no es una fuga, pero
+cubre el 90,5 % de `MP_MRFV` y el 96,5 % de `CP_MRFV`: mandarle al investigador una
+herramienta que trae adentro dos de sus cuatro regiones invita exactamente la conversación que
+la revisión venía a evitar. Se reemplazó por `NM_001111367.2`, el ARNm de la ferredoxina-6 de
+*Zea mays*. La pasada contra la planilla da **cero** sobre `sifi_plus/` completo `[M]`.
+
+### Dar por buena la coincidencia perfecta de 21 nt sin mirar la complejidad
+**Descartado, y cambia una lectura.** Nueve coincidencias exactas de un 21-mero son unas trece
+órdenes de magnitud más de lo que da el azar: eso tendría que haber sido la señal de que había
+que mirarlas. Eran la cola de poli-A. Ver D59. **Lección:** cuando un conteo de coincidencias
+exactas da mucho más de lo que el azar permite, la primera hipótesis es el artefacto, no la
+biología.
+
+### Tratar la interfaz como una reapertura del tablero descartado
+**No lo es, y conviene tenerlo escrito.** `CAMINOS_PROBADOS.md:203` descartó el tablero como
+**artefacto principal de la competencia**, por el criterio del organizador de que un equipo no
+debería ganar por la interfaz más vistosa. Esto es otra cosa: una herramienta de trabajo para
+el investigador que ya usa si-Fi y nos pidió conocer el port, cuyo valor es la paridad
+verificada y las correcciones medidas. Ver D55.
