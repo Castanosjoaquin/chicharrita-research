@@ -1,0 +1,846 @@
+{
+ "que_es_esto": "sensibilidad al criterio de riesgo; NO adopta ninguna regla. La eleccion es de M6 (#10) y del usuario.",
+ "panel": [
+  "A_mellifera",
+  "F_candida",
+  "H_axyridis",
+  "H_vitripennis",
+  "humano",
+  "maiz"
+ ],
+ "pesos_D18_aplicados": false,
+ "ancla_panel": {
+  "F_candida/perfecto_21": {
+   "obtenido": 0,
+   "esperado": 0,
+   "coincide": true
+  },
+  "F_candida/perfecto_ge19": {
+   "obtenido": 4,
+   "esperado": 4,
+   "coincide": true
+  },
+  "A_mellifera/perfecto_21": {
+   "obtenido": 0,
+   "esperado": 0,
+   "coincide": true
+  },
+  "A_mellifera/perfecto_ge19": {
+   "obtenido": 0,
+   "esperado": 0,
+   "coincide": true
+  },
+  "H_vitripennis/perfecto_21": {
+   "obtenido": 40,
+   "esperado": 40,
+   "coincide": true
+  },
+  "H_vitripennis/perfecto_ge19": {
+   "obtenido": 56,
+   "esperado": 56,
+   "coincide": true
+  },
+  "maiz/perfecto_21": {
+   "obtenido": 0,
+   "esperado": 0,
+   "coincide": true
+  },
+  "maiz/perfecto_ge19": {
+   "obtenido": 6,
+   "esperado": 6,
+   "coincide": true
+  },
+  "H_axyridis/perfecto_21": {
+   "obtenido": 3,
+   "esperado": 3,
+   "coincide": true
+  },
+  "H_axyridis/perfecto_ge19": {
+   "obtenido": 7,
+   "esperado": 7,
+   "coincide": true
+  },
+  "humano/perfecto_21": {
+   "obtenido": 0,
+   "esperado": 0,
+   "coincide": true
+  },
+  "humano/perfecto_ge19": {
+   "obtenido": 12,
+   "esperado": 12,
+   "coincide": true
+  }
+ },
+ "ventanas_con_coincidencia_en_el_gen": {
+  "perfecto_21": 43,
+  "perfecto_ge19": 85
+ },
+ "por_combinacion": {
+  "contexto / perfecto_21": {
+   "configuraciones": 4368,
+   "limpias_eficientes_vs_2121-2420": {
+    "gana": 1589,
+    "empata": 291,
+    "pierde": 2488,
+    "gana_pct": 36.4
+   },
+   "limpias_eficientes_vs_264-563": {
+    "gana": 4329,
+    "empata": 26,
+    "pierde": 13,
+    "gana_pct": 99.1
+   },
+   "riesgo_conservadora_menor_que_las_dos_pct": 0.0,
+   "riesgo_conservadora_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 22
+   },
+   "riesgo_conservadora_rango_en_las_celdas_por_defecto": {
+    "922-1221": [
+     0,
+     0
+    ],
+    "2121-2420": [
+     0,
+     0
+    ],
+    "264-563": [
+     22,
+     22
+    ]
+   },
+   "riesgo_mecanicista_menor_que_las_dos_pct": 0.0,
+   "riesgo_mecanicista_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
+   "riesgo_mecanicista_rango_en_las_celdas_por_defecto": {
+    "922-1221": [
+     0,
+     0
+    ],
+    "2121-2420": [
+     0,
+     0
+    ],
+    "264-563": [
+     0,
+     0
+    ]
+   }
+  },
+  "contexto / perfecto_ge19": {
+   "configuraciones": 4368,
+   "limpias_eficientes_vs_2121-2420": {
+    "gana": 1544,
+    "empata": 327,
+    "pierde": 2497,
+    "gana_pct": 35.3
+   },
+   "limpias_eficientes_vs_264-563": {
+    "gana": 4329,
+    "empata": 26,
+    "pierde": 13,
+    "gana_pct": 99.1
+   },
+   "riesgo_conservadora_menor_que_las_dos_pct": 100.0,
+   "riesgo_conservadora_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 3,
+    "2121-2420": 6,
+    "264-563": 33
+   },
+   "riesgo_conservadora_rango_en_las_celdas_por_defecto": {
+    "922-1221": [
+     3,
+     3
+    ],
+    "2121-2420": [
+     6,
+     6
+    ],
+    "264-563": [
+     33,
+     33
+    ]
+   },
+   "riesgo_mecanicista_menor_que_las_dos_pct": 0.0,
+   "riesgo_mecanicista_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
+   "riesgo_mecanicista_rango_en_las_celdas_por_defecto": {
+    "922-1221": [
+     0,
+     1
+    ],
+    "2121-2420": [
+     0,
+     0
+    ],
+    "264-563": [
+     0,
+     0
+    ]
+   }
+  },
+  "recorte / perfecto_21": {
+   "configuraciones": 4368,
+   "limpias_eficientes_vs_2121-2420": {
+    "gana": 3301,
+    "empata": 315,
+    "pierde": 752,
+    "gana_pct": 75.6
+   },
+   "limpias_eficientes_vs_264-563": {
+    "gana": 4349,
+    "empata": 8,
+    "pierde": 11,
+    "gana_pct": 99.6
+   },
+   "riesgo_conservadora_menor_que_las_dos_pct": 0.0,
+   "riesgo_conservadora_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 22
+   },
+   "riesgo_conservadora_rango_en_las_celdas_por_defecto": {
+    "922-1221": [
+     0,
+     0
+    ],
+    "2121-2420": [
+     0,
+     0
+    ],
+    "264-563": [
+     22,
+     22
+    ]
+   },
+   "riesgo_mecanicista_menor_que_las_dos_pct": 0.0,
+   "riesgo_mecanicista_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
+   "riesgo_mecanicista_rango_en_las_celdas_por_defecto": {
+    "922-1221": [
+     0,
+     0
+    ],
+    "2121-2420": [
+     0,
+     0
+    ],
+    "264-563": [
+     0,
+     0
+    ]
+   }
+  },
+  "recorte / perfecto_ge19": {
+   "configuraciones": 4368,
+   "limpias_eficientes_vs_2121-2420": {
+    "gana": 3314,
+    "empata": 309,
+    "pierde": 745,
+    "gana_pct": 75.9
+   },
+   "limpias_eficientes_vs_264-563": {
+    "gana": 4349,
+    "empata": 8,
+    "pierde": 11,
+    "gana_pct": 99.6
+   },
+   "riesgo_conservadora_menor_que_las_dos_pct": 100.0,
+   "riesgo_conservadora_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 3,
+    "2121-2420": 6,
+    "264-563": 33
+   },
+   "riesgo_conservadora_rango_en_las_celdas_por_defecto": {
+    "922-1221": [
+     3,
+     3
+    ],
+    "2121-2420": [
+     6,
+     6
+    ],
+    "264-563": [
+     33,
+     33
+    ]
+   },
+   "riesgo_mecanicista_menor_que_las_dos_pct": 0.0,
+   "riesgo_mecanicista_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
+   "riesgo_mecanicista_rango_en_las_celdas_por_defecto": {
+    "922-1221": [
+     0,
+     0
+    ],
+    "2121-2420": [
+     0,
+     0
+    ],
+    "264-563": [
+     0,
+     0
+    ]
+   }
+  }
+ },
+ "en_el_punto_por_defecto": {
+  "vienna/NN3/fiel/contexto/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 48,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 42,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 26,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN3/fiel/contexto/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 47,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 1
+   },
+   "2121-2420": {
+    "limpias_eficientes": 42,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 26,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN3/fiel/recorte/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 36,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 29,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 22,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN3/fiel/recorte/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 36,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 29,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 22,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN3/corregido/contexto/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 36,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 35,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 20,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN3/corregido/contexto/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 36,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 35,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 20,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN3/corregido/recorte/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 26,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 22,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 17,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN3/corregido/recorte/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 26,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 22,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 17,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN4/fiel/contexto/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 46,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 40,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 26,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN4/fiel/contexto/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 45,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 1
+   },
+   "2121-2420": {
+    "limpias_eficientes": 40,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 26,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN4/fiel/recorte/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 35,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 28,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 22,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN4/fiel/recorte/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 35,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 28,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 22,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN4/corregido/contexto/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 34,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 33,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 20,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN4/corregido/contexto/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 34,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 33,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 20,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN4/corregido/recorte/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 21,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 17,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "vienna/NN4/corregido/recorte/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 21,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 17,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN3/fiel/contexto/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 42,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 38,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN3/fiel/contexto/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 41,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 1
+   },
+   "2121-2420": {
+    "limpias_eficientes": 38,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN3/fiel/recorte/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 33,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 15,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN3/fiel/recorte/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 33,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 15,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN3/corregido/contexto/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 30,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 32,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 19,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN3/corregido/contexto/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 30,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 32,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 19,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN3/corregido/recorte/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 23,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 19,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 10,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN3/corregido/recorte/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 23,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 19,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 10,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN4/fiel/contexto/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 39,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 37,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN4/fiel/contexto/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 38,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 1
+   },
+   "2121-2420": {
+    "limpias_eficientes": 37,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN4/fiel/recorte/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 31,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 15,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN4/fiel/recorte/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 31,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 25,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 15,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN4/corregido/contexto/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 27,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 31,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 19,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN4/corregido/contexto/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 27,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 31,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 19,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN4/corregido/recorte/perfecto_21": {
+   "922-1221": {
+    "limpias_eficientes": 21,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 19,
+    "riesgo_conservadora": 0,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 10,
+    "riesgo_conservadora": 22,
+    "riesgo_mecanicista": 0
+   }
+  },
+  "exe/NN4/corregido/recorte/perfecto_ge19": {
+   "922-1221": {
+    "limpias_eficientes": 21,
+    "riesgo_conservadora": 3,
+    "riesgo_mecanicista": 0
+   },
+   "2121-2420": {
+    "limpias_eficientes": 19,
+    "riesgo_conservadora": 6,
+    "riesgo_mecanicista": 0
+   },
+   "264-563": {
+    "limpias_eficientes": 10,
+    "riesgo_conservadora": 33,
+    "riesgo_mecanicista": 0
+   }
+  }
+ }
+}
