@@ -57,4 +57,4 @@ Fuente: `resultados/riesgo_sensibilidad.json`. **No elige regla**: mide cuanto c
 
 Las columnas de alertas estan medidas en ViennaRNA 2.7.2, tabla NN3, modo `corregido` y punto por defecto. El conteo de la regla conservadora no depende de la configuracion —es coincidencia exacta de secuencia—; el de la mecanicista si, y sobre las ocho celdas del punto por defecto su rango es 922-1221 [0, 1]; 2121-2420 [0, 0]; 264-563 [0, 0].
 
-Ventanas del gen con coincidencia en el panel: 43 con `perfecto_21` y 85 con `perfecto_ge19`.
+Ventanas del gen con coincidencia en el panel: 43 con `perfecto_21` y 85 con `perfecto_ge19`. **Control de D59** (baja complejidad, que es lo que inflaba los conteos del MRFV con la cola de poli-A): de esas, 0 y 0 son de baja complejidad, y en las 2.500 ventanas del gen hay 0. Ninguna alerta de esta tabla es un artefacto de poli-A.

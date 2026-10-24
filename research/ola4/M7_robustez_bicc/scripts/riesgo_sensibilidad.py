@@ -67,6 +67,8 @@ RAIZ = AQUI.parents[4]
 SALIDA = AQUI.parents[1] / "resultados"
 CACHE = Path("/tmp/m7_prims")
 sys.path.insert(0, str(AQUI.parent))
+sys.path.insert(0, str(RAIZ))
+from sifi_plus.complejidad import es_baja  # noqa: E402  (criterio de D59)
 from grilla_parametros import (ACC_GRID, BACKENDS, DEF_ACC, DEF_END, END_GRID,  # noqa: E402
                                FOCO, K, MODOS, REGIONES, RIVALES, TABLAS,
                                eficientes, leer_fasta, primitivos)
@@ -101,11 +103,20 @@ def prims(seq: str, backend: str, tabla: str, clave: str) -> dict:
 
 
 def mascaras_alerta(n_vent: int) -> dict:
-    """Por ventana y por umbral: hay coincidencia en alguna referencia del panel."""
+    """Por ventana y por umbral: hay coincidencia en alguna referencia del panel.
+
+    Desde D59 cada conteo se informa en dos cifras, el total y cuanto de ese total es de
+    **baja complejidad**: la cola de poli-A de un transcrito coincide con la de cualquier
+    otro y eso no dice nada sobre el riesgo de un ARNdc. El criterio es el de
+    `sifi_plus/complejidad.py` —racha de un mismo nucleotido de 10 nt o mas, o dos
+    nucleotidos distintos o menos— y es nuestro `[H]`, no un estandar. Las ventanas **no
+    se descartan**: se marcan y se descuentan a la vista.
+    """
     if not OFFTARGET.exists():
         raise SystemExit("falta %s: corre offtarget_21nt.py (ver encabezado). "
                          "NO se declara cero." % OFFTARGET)
     m = {u: np.zeros(n_vent, dtype=bool) for u in UMBRALES}
+    baja = np.zeros(n_vent, dtype=bool)
     por_ref = {u: {} for u in UMBRALES}
     with OFFTARGET.open(encoding="utf-8") as fh:
         r = csv.DictReader(fh, delimiter="\t")
@@ -121,6 +132,8 @@ def mascaras_alerta(n_vent: int) -> dict:
             i = int(fila["pos"]) - 1
             if not 0 <= i < n_vent:
                 continue
+            if fila.get("sirna") and es_baja(fila["sirna"]):
+                baja[i] = True
             for c in cols:
                 base, crit = c.split("|")
                 if crit not in UMBRALES or base not in PANEL:
@@ -128,7 +141,7 @@ def mascaras_alerta(n_vent: int) -> dict:
                 if int(fila[c] or 0) > 0:
                     m[crit][i] = True
                     por_ref[crit][PANEL[base]][i] = True
-    return {"total": m, "por_referencia": por_ref}
+    return {"total": m, "por_referencia": por_ref, "baja_complejidad": baja}
 
 
 def ancla_panel(al: dict) -> dict:
@@ -190,9 +203,12 @@ def main() -> int:
                         # menos que la region.
                         ef = np.zeros(len(alerta), dtype=bool)
                         ef[:len(ef_rec)] = ef_rec
+                    bc = al["baja_complejidad"][sl]
                     fila["%s|limpias_eficientes" % nom] = int((ef & ~alerta).sum())
                     fila["%s|riesgo_conservadora" % nom] = int(alerta.sum())
+                    fila["%s|riesgo_conservadora_baja_compl" % nom] = int((alerta & bc).sum())
                     fila["%s|riesgo_mecanicista" % nom] = int((ef & alerta).sum())
+                    fila["%s|riesgo_mecanicista_baja_compl" % nom] = int((ef & alerta & bc).sum())
                     fila["%s|eficientes" % nom] = int(ef.sum())
                 filas.append(fila)
 
@@ -207,8 +223,14 @@ def main() -> int:
                           "La eleccion es de M6 (#10) y del usuario.",
            "panel": sorted(PANEL.values()), "pesos_D18_aplicados": False,
            "ancla_panel": anc,
-           "ventanas_con_coincidencia_en_el_gen": {u: int(al["total"][u].sum())
-                                                   for u in UMBRALES},
+           "criterio_de_baja_complejidad": "sifi_plus/complejidad.py (D59): racha de un "
+                                           "mismo nucleotido >= 10 nt, o <= 2 nucleotidos "
+                                           "distintos en la ventana. Es nuestro [H].",
+           "ventanas_con_coincidencia_en_el_gen": {
+               u: {"total": int(al["total"][u].sum()),
+                   "de_baja_complejidad": int((al["total"][u] & al["baja_complejidad"]).sum())}
+               for u in UMBRALES},
+           "ventanas_de_baja_complejidad_en_el_gen": int(al["baja_complejidad"].sum()),
            "por_combinacion": {}, "en_el_punto_por_defecto": {}}
     for marco, u in itertools.product(("contexto", "recorte"), UMBRALES):
         sel = [f for f in filas if f["marco"] == marco and f["umbral"] == u]
@@ -232,6 +254,9 @@ def main() -> int:
                    and f["tabla_nn"] == "NN3" and f["modo"] == "corregido"]
             bloque["riesgo_%s_en_vienna_NN3_corregido_defecto" % regla] = {
                 nom: ref[0]["%s|%s" % (nom, clave)] for nom in REGIONES} if ref else None
+            bloque["riesgo_%s_de_baja_complejidad" % regla] = {
+                nom: ref[0]["%s|%s_baja_compl" % (nom, clave)]
+                for nom in REGIONES} if ref else None
             # Rango sobre las ocho celdas del punto por defecto, para que se vea si la
             # celda elegida es representativa.
             todas = [f for f in sel if f["es_defecto"]]

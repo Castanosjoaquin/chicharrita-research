@@ -103,6 +103,14 @@ HECHO = [
     ("Checkpoint 2 · Decisiones de ranking y de etiquetas (Fase 1)",
      "D38 (dos listas por mecanismo), D39 (marcador [M] para lo medido por nosotros) y D40 (matar y esterilizar como dos ejes). Incluye la corrección de la lectura del par eth–burs-α.",
      ["docs/plan_checkpoint2/salidas/F1_decision_ranking.md", "00_meta/DECISIONS.md"]),
+    ("Robustez de la región <code>BicC_Dm</code> 922-1221 en los tres ejes (M7)",
+     "Sobre <strong>4.368 configuraciones</strong> —umbrales, modos, tablas de apilamiento y los dos motores de plegado— "
+     "922-1221 le gana a la región que eligió el laboratorio (264-563) en el 99,1 % contando dentro del gen y en el "
+     "99,6 % contando la molécula recortada, pero a 2121-2420 sólo en el 36,4 % en contexto y en el 75,6 % recortada: "
+     "el marco de conteo decide tanto como los umbrales. Al cambiar de referencia queda primera en las tres fuentes que "
+     "permiten compararla, y <code>GCWP01</code> no cubre un solo nucleótido de la región. El criterio de riesgo no "
+     "cambia quién gana, y bajo la regla mecanicista el riesgo de las tres regiones es cero.",
+     ["research/ola4/M7_robustez_bicc/REPORT.md", "research/ola4/M7_robustez_bicc/resultados/tabla_unica.md"]),
     ("Las 28 secuencias de Cedden: se dejan publicadas y declaradas (D41)",
      "La tabla unida a su razón de riesgo ya estaba en el remoto desde el 2026-10-21. Son datos públicos CC BY y no secuencias de EPILAB. "
      "Se decidió dejarla publicada con la advertencia de que la unión no tiene clave publicada.",
@@ -113,6 +121,13 @@ FALTA = [
     ("Fecha y texto del correo enviado", "decision", True,
      "El correo se envió, como confirmó el usuario, pero el repo no registra la fecha ni el texto enviado. "
      "El borrador tiene siete preguntas y <code>PLAN_DESARROLLO.md</code> §8 decía cinco."),
+    ("Qué cifra de ventanas eficientes se publica, y con qué argumento", "decision", True,
+     "Esta página y los entregables dicen que <code>BicC_Dm</code> 922-1221 «pasa de 20 a 36 ventanas que pasan el "
+     "filtro». Son los conteos <em>en contexto</em>; M7 midió que la cifra de la molécula que se sintetizaría es "
+     "<strong>26 contra 17</strong>, y que el «32 idénticas en los tres transcriptomas contra 22» de D25 mezcla "
+     "conservación con cobertura, porque <code>GCWP01</code> no cubre 922-1221. Las dos cifras y su fuente están en "
+     "<code>research/ola4/M7_robustez_bicc/NOTAS_PARA_META.md</code>. No se corrigió por cuenta propia: cambia una "
+     "recomendación publicada."),
     ("Confirmar el criterio de commits", "decision", False,
      "El prompt de C9 pide un commit por tarea y la regla general de la ola 3 dice no commitear (D5). Se "
      "siguió la instrucción específica del prompt; si se prefiere la regla general, se reescribe."),
@@ -126,10 +141,14 @@ LIMITES = [
      "Ningún dato experimental de silenciamiento en <i>Dalbulus maidis</i> respalda el umbral. Por eso el "
      "barrido mide fragilidad de la recomendación y no si el umbral es correcto: lo segundo necesita "
      "etiquetas que no existen."),
-    ("Los conteos absolutos no son comparables con la ola 2",
-     "No hay RNAplfold 2.1.5 en la máquina (el que instala si-Fi21 es un ejecutable de Windows), así que "
-     "todo corre con ViennaRNA 2.7.2. Las comparaciones internas de cada informe sí valen, porque usan el "
-     "mismo motor de los dos lados. Cada numero declara su backend y su modo."),
+    ("Los conteos absolutos de los dos motores no son comparables entre sí",
+     "<s>No hay RNAplfold 2.1.5 en la máquina (el que instala si-Fi21 es un ejecutable de Windows), así que "
+     "todo corre con ViennaRNA 2.7.2.</s> <strong>Corregido el 2026-10-24:</strong> M2 compiló RNAplfold 2.1.5 "
+     "desde el fuente oficial y reproduce los cuatro conteos publicados del binario del instalador, así que los "
+     "dos motores corren en esta máquina y M7 los usó como eje. Sigue valiendo lo esencial: los conteos de un "
+     "motor no se comparan con los del otro, y el motor mueve el resultado —en <code>BicC_Dm</code> da vuelta la "
+     "comparación entre 922-1221 y 2121-2420 en el punto por defecto—. Cada número declara su motor, su tabla de "
+     "apilamiento y su modo."),
     ("La validación está sub-potenciada por un factor 2,4 en n",
      "Dos ARNdc contra el mismo gen correlacionan 0,245, de modo que una correlación verdadera de 0,7 se "
      "observa como 0,35 y la potencia con n = 28 es 0,42; para 80 % harían falta n = 67. Comparar dos "

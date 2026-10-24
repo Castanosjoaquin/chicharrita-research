@@ -146,10 +146,16 @@ def main() -> int:
                      s["por_combinacion"]["contexto / perfecto_ge19"][
                          "riesgo_mecanicista_rango_en_las_celdas_por_defecto"].items()))
         L.append("")
+        c21 = s["ventanas_con_coincidencia_en_el_gen"]["perfecto_21"]
+        c19 = s["ventanas_con_coincidencia_en_el_gen"]["perfecto_ge19"]
         L.append("Ventanas del gen con coincidencia en el panel: %d con `perfecto_21` y %d "
-                 "con `perfecto_ge19`." % (
-                     s["ventanas_con_coincidencia_en_el_gen"]["perfecto_21"],
-                     s["ventanas_con_coincidencia_en_el_gen"]["perfecto_ge19"]))
+                 "con `perfecto_ge19`. **Control de D59** (baja complejidad, que es lo que "
+                 "inflaba los conteos del MRFV con la cola de poli-A): de esas, %d y %d son "
+                 "de baja complejidad, y en las 2.500 ventanas del gen hay %d. Ninguna "
+                 "alerta de esta tabla es un artefacto de poli-A." % (
+                     c21["total"], c19["total"], c21["de_baja_complejidad"],
+                     c19["de_baja_complejidad"],
+                     s["ventanas_de_baja_complejidad_en_el_gen"]))
 
     (SALIDA / "tabla_unica.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))

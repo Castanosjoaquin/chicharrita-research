@@ -71,10 +71,18 @@
    "coincide": true
   }
  },
+ "criterio_de_baja_complejidad": "sifi_plus/complejidad.py (D59): racha de un mismo nucleotido >= 10 nt, o <= 2 nucleotidos distintos en la ventana. Es nuestro [H].",
  "ventanas_con_coincidencia_en_el_gen": {
-  "perfecto_21": 43,
-  "perfecto_ge19": 85
+  "perfecto_21": {
+   "total": 43,
+   "de_baja_complejidad": 0
+  },
+  "perfecto_ge19": {
+   "total": 85,
+   "de_baja_complejidad": 0
+  }
  },
+ "ventanas_de_baja_complejidad_en_el_gen": 0,
  "por_combinacion": {
   "contexto / perfecto_21": {
    "configuraciones": 4368,
@@ -96,6 +104,11 @@
     "2121-2420": 0,
     "264-563": 22
    },
+   "riesgo_conservadora_de_baja_complejidad": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
    "riesgo_conservadora_rango_en_las_celdas_por_defecto": {
     "922-1221": [
      0,
@@ -112,6 +125,11 @@
    },
    "riesgo_mecanicista_menor_que_las_dos_pct": 0.0,
    "riesgo_mecanicista_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
+   "riesgo_mecanicista_de_baja_complejidad": {
     "922-1221": 0,
     "2121-2420": 0,
     "264-563": 0
@@ -151,6 +169,11 @@
     "2121-2420": 6,
     "264-563": 33
    },
+   "riesgo_conservadora_de_baja_complejidad": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
    "riesgo_conservadora_rango_en_las_celdas_por_defecto": {
     "922-1221": [
      3,
@@ -167,6 +190,11 @@
    },
    "riesgo_mecanicista_menor_que_las_dos_pct": 0.0,
    "riesgo_mecanicista_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
+   "riesgo_mecanicista_de_baja_complejidad": {
     "922-1221": 0,
     "2121-2420": 0,
     "264-563": 0
@@ -206,6 +234,11 @@
     "2121-2420": 0,
     "264-563": 22
    },
+   "riesgo_conservadora_de_baja_complejidad": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
    "riesgo_conservadora_rango_en_las_celdas_por_defecto": {
     "922-1221": [
      0,
@@ -222,6 +255,11 @@
    },
    "riesgo_mecanicista_menor_que_las_dos_pct": 0.0,
    "riesgo_mecanicista_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
+   "riesgo_mecanicista_de_baja_complejidad": {
     "922-1221": 0,
     "2121-2420": 0,
     "264-563": 0
@@ -261,6 +299,11 @@
     "2121-2420": 6,
     "264-563": 33
    },
+   "riesgo_conservadora_de_baja_complejidad": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
    "riesgo_conservadora_rango_en_las_celdas_por_defecto": {
     "922-1221": [
      3,
@@ -277,6 +320,11 @@
    },
    "riesgo_mecanicista_menor_que_las_dos_pct": 0.0,
    "riesgo_mecanicista_en_vienna_NN3_corregido_defecto": {
+    "922-1221": 0,
+    "2121-2420": 0,
+    "264-563": 0
+   },
+   "riesgo_mecanicista_de_baja_complejidad": {
     "922-1221": 0,
     "2121-2420": 0,
     "264-563": 0
