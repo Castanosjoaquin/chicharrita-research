@@ -1,0 +1,5033 @@
+{
+ "fuente": "research/ola3/C7_ranking_v2/resultados/ranking_v2.json",
+ "muestras": 2000,
+ "semilla": 7,
+ "A1_comparaciones": 162,
+ "A1_coinciden": 162,
+ "A2_comparaciones": 51,
+ "A2_coinciden": 51,
+ "A1": [
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "-",
+   "criterio": "ventanas",
+   "mio": 1243,
+   "publicado": 1243,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "-",
+   "criterio": "eficientes",
+   "mio": 123,
+   "publicado": 123,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "mm1_21",
+   "mio": 7,
+   "publicado": 7,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_ge19",
+   "mio": 9,
+   "publicado": 9,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "mm1_21",
+   "mio": 8,
+   "publicado": 8,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "perfecto_ge19",
+   "mio": 7,
+   "publicado": 7,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "mm1_21",
+   "mio": 4,
+   "publicado": 4,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "humano",
+   "criterio": "mm1_21",
+   "mio": 23,
+   "publicado": 23,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "humano",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "humano",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "mio": 18,
+   "publicado": 18,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "MP_MRFV",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "-",
+   "criterio": "ventanas",
+   "mio": 508,
+   "publicado": 508,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "-",
+   "criterio": "eficientes",
+   "mio": 30,
+   "publicado": 30,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "mm1_21",
+   "mio": 2,
+   "publicado": 2,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "mm1_21",
+   "mio": 2,
+   "publicado": 2,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "mm1_21",
+   "mio": 2,
+   "publicado": 2,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "mio": 2,
+   "publicado": 2,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 2,
+   "publicado": 2,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "humano",
+   "criterio": "mm1_21",
+   "mio": 2,
+   "publicado": 2,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "humano",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "humano",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "mio": 6,
+   "publicado": 6,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "CP_MRFV",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "-",
+   "criterio": "ventanas",
+   "mio": 2500,
+   "publicado": 2500,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "-",
+   "criterio": "eficientes",
+   "mio": 171,
+   "publicado": 171,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "mm1_21",
+   "mio": 7,
+   "publicado": 7,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_ge19",
+   "mio": 4,
+   "publicado": 4,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "F_candida",
+   "criterio": "mm1_21",
+   "mio": 6,
+   "publicado": 6,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_axyridis",
+   "criterio": "perfecto_21",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_axyridis",
+   "criterio": "perfecto_ge19",
+   "mio": 7,
+   "publicado": 7,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_axyridis",
+   "criterio": "mm1_21",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_axyridis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_axyridis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 40,
+   "publicado": 40,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 56,
+   "publicado": 56,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "mio": 56,
+   "publicado": 56,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 40,
+   "publicado": 40,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 12,
+   "publicado": 12,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "humano",
+   "criterio": "mm1_21",
+   "mio": 27,
+   "publicado": 27,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 6,
+   "publicado": 6,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "mio": 5,
+   "publicado": 5,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "BicC_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "-",
+   "criterio": "ventanas",
+   "mio": 471,
+   "publicado": 471,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "-",
+   "criterio": "eficientes",
+   "mio": 29,
+   "publicado": 29,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "mm1_21",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "F_candida",
+   "criterio": "mm1_21",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 7,
+   "publicado": 7,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "mio": 24,
+   "publicado": 24,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 2,
+   "publicado": 2,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 7,
+   "publicado": 7,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "humano",
+   "criterio": "mm1_21",
+   "mio": 6,
+   "publicado": 6,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "mio": 2,
+   "publicado": 2,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "ATPaseD_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "-",
+   "criterio": "ventanas",
+   "mio": 595,
+   "publicado": 595,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "-",
+   "criterio": "eficientes",
+   "mio": 37,
+   "publicado": 37,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "mm1_21",
+   "mio": 4,
+   "publicado": 4,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 5,
+   "publicado": 5,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "mio": 5,
+   "publicado": 5,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 6,
+   "publicado": 6,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "humano",
+   "criterio": "mm1_21",
+   "mio": 6,
+   "publicado": 6,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "eth_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "-",
+   "criterio": "ventanas",
+   "mio": 448,
+   "publicado": 448,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "-",
+   "criterio": "eficientes",
+   "mio": 25,
+   "publicado": 25,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "F_candida",
+   "criterio": "mm1_21",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_eficientes",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A1",
+   "gen": "bursA_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_21_posiciones",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  }
+ ],
+ "A2": [
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "geometrica/mecanicista/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.3,
+     99.7,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     99.9,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     0.0,
+     99.7,
+     0.1,
+     0.1,
+     0.1,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     99.8,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.3,
+     99.7,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     99.9,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     0.0,
+     99.7,
+     0.1,
+     0.1,
+     0.1,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     99.8,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "geometrica/mecanicista/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     79.2,
+     1.2,
+     4.5,
+     7.8,
+     3.8,
+     3.4
+    ],
+    "CP_MRFV": [
+     15.3,
+     22.1,
+     62.5,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     3.0,
+     14.1,
+     82.8,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     7.4,
+     92.5
+    ],
+    "eth_Dm": [
+     5.5,
+     63.8,
+     9.2,
+     11.5,
+     6.0,
+     4.2
+    ],
+    "bursA_Dm": [
+     0.0,
+     12.8,
+     20.8,
+     66.5,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     79.2,
+     1.2,
+     4.5,
+     7.8,
+     3.8,
+     3.4
+    ],
+    "CP_MRFV": [
+     15.3,
+     22.1,
+     62.5,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     3.0,
+     14.1,
+     82.8,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     7.4,
+     92.5
+    ],
+    "eth_Dm": [
+     5.5,
+     63.8,
+     9.2,
+     11.5,
+     6.0,
+     4.2
+    ],
+    "bursA_Dm": [
+     0.0,
+     12.8,
+     20.8,
+     66.5,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "geometrica/conservadora/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     98.0,
+     0.2,
+     0.6,
+     0.9,
+     0.2,
+     0.1
+    ],
+    "CP_MRFV": [
+     0.2,
+     2.3,
+     95.3,
+     2.1,
+     0.1,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     78.9,
+     21.1
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.3,
+     20.8,
+     78.8
+    ],
+    "eth_Dm": [
+     0.2,
+     96.2,
+     1.8,
+     1.9,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     1.6,
+     1.3,
+     2.4,
+     94.8,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     98.0,
+     0.2,
+     0.6,
+     0.9,
+     0.2,
+     0.1
+    ],
+    "CP_MRFV": [
+     0.2,
+     2.3,
+     95.3,
+     2.1,
+     0.1,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     78.9,
+     21.1
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.3,
+     20.8,
+     78.8
+    ],
+    "eth_Dm": [
+     0.2,
+     96.2,
+     1.8,
+     1.9,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     1.6,
+     1.3,
+     2.4,
+     94.8,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "geometrica/conservadora/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     72.8,
+     1.6,
+     3.9,
+     10.9,
+     4.7,
+     6.1
+    ],
+    "CP_MRFV": [
+     4.0,
+     21.4,
+     70.2,
+     4.4,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.4,
+     9.2,
+     44.9,
+     45.5
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.1,
+     0.1,
+     1.9,
+     49.9,
+     48.0
+    ],
+    "eth_Dm": [
+     8.2,
+     69.8,
+     13.2,
+     7.8,
+     0.7,
+     0.3
+    ],
+    "bursA_Dm": [
+     15.1,
+     7.0,
+     12.2,
+     65.8,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     72.8,
+     1.6,
+     3.9,
+     10.9,
+     4.7,
+     6.1
+    ],
+    "CP_MRFV": [
+     4.0,
+     21.4,
+     70.2,
+     4.4,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.4,
+     9.2,
+     44.9,
+     45.5
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.1,
+     0.1,
+     1.9,
+     49.9,
+     48.0
+    ],
+    "eth_Dm": [
+     8.2,
+     69.8,
+     13.2,
+     7.8,
+     0.7,
+     0.3
+    ],
+    "bursA_Dm": [
+     15.1,
+     7.0,
+     12.2,
+     65.8,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "suma/mecanicista/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     98.6,
+     0.1,
+     0.7,
+     0.6,
+     0.0,
+     0.1
+    ],
+    "CP_MRFV": [
+     1.2,
+     4.1,
+     94.7,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.6,
+     99.4,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     0.3,
+     99.7
+    ],
+    "eth_Dm": [
+     0.1,
+     94.7,
+     1.9,
+     2.6,
+     0.3,
+     0.3
+    ],
+    "bursA_Dm": [
+     0.0,
+     1.1,
+     2.7,
+     96.2,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     98.6,
+     0.1,
+     0.7,
+     0.6,
+     0.0,
+     0.1
+    ],
+    "CP_MRFV": [
+     1.2,
+     4.1,
+     94.7,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.6,
+     99.4,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     0.3,
+     99.7
+    ],
+    "eth_Dm": [
+     0.1,
+     94.7,
+     1.9,
+     2.6,
+     0.3,
+     0.3
+    ],
+    "bursA_Dm": [
+     0.0,
+     1.1,
+     2.7,
+     96.2,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "suma/mecanicista/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     77.8,
+     0.9,
+     6.7,
+     8.3,
+     4.3,
+     1.9
+    ],
+    "CP_MRFV": [
+     20.2,
+     26.2,
+     53.5,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     4.8,
+     12.6,
+     82.6,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     1.3,
+     5.5,
+     93.2
+    ],
+    "eth_Dm": [
+     1.9,
+     54.0,
+     13.4,
+     18.1,
+     7.5,
+     5.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     18.8,
+     21.5,
+     59.8,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     77.8,
+     0.9,
+     6.7,
+     8.3,
+     4.3,
+     1.9
+    ],
+    "CP_MRFV": [
+     20.2,
+     26.2,
+     53.5,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     4.8,
+     12.6,
+     82.6,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     1.3,
+     5.5,
+     93.2
+    ],
+    "eth_Dm": [
+     1.9,
+     54.0,
+     13.4,
+     18.1,
+     7.5,
+     5.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     18.8,
+     21.5,
+     59.8,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "suma/conservadora/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     86.2,
+     1.6,
+     4.9,
+     5.1,
+     1.6,
+     0.6
+    ],
+    "CP_MRFV": [
+     0.2,
+     16.2,
+     73.8,
+     9.6,
+     0.1,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.1,
+     30.6,
+     69.2
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.1,
+     0.5,
+     1.6,
+     67.5,
+     30.2
+    ],
+    "eth_Dm": [
+     0.8,
+     75.1,
+     10.3,
+     13.7,
+     0.1,
+     0.0
+    ],
+    "bursA_Dm": [
+     12.7,
+     7.0,
+     10.4,
+     69.9,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     86.2,
+     1.6,
+     4.9,
+     5.1,
+     1.6,
+     0.6
+    ],
+    "CP_MRFV": [
+     0.2,
+     16.2,
+     73.8,
+     9.6,
+     0.1,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.1,
+     30.6,
+     69.2
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.1,
+     0.5,
+     1.6,
+     67.5,
+     30.2
+    ],
+    "eth_Dm": [
+     0.8,
+     75.1,
+     10.3,
+     13.7,
+     0.1,
+     0.0
+    ],
+    "bursA_Dm": [
+     12.7,
+     7.0,
+     10.4,
+     69.9,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "suma/conservadora/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     72.7,
+     2.3,
+     6.7,
+     9.3,
+     5.7,
+     3.4
+    ],
+    "CP_MRFV": [
+     1.2,
+     27.4,
+     58.8,
+     12.3,
+     0.3,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.4,
+     0.8,
+     15.9,
+     82.9
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.2,
+     1.8,
+     6.8,
+     77.5,
+     13.7
+    ],
+    "eth_Dm": [
+     1.1,
+     60.3,
+     17.2,
+     20.6,
+     0.7,
+     0.1
+    ],
+    "bursA_Dm": [
+     24.9,
+     9.8,
+     15.1,
+     50.2,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     72.7,
+     2.3,
+     6.7,
+     9.3,
+     5.7,
+     3.4
+    ],
+    "CP_MRFV": [
+     1.2,
+     27.4,
+     58.8,
+     12.3,
+     0.3,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.4,
+     0.8,
+     15.9,
+     82.9
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.2,
+     1.8,
+     6.8,
+     77.5,
+     13.7
+    ],
+    "eth_Dm": [
+     1.1,
+     60.3,
+     17.2,
+     20.6,
+     0.7,
+     0.1
+    ],
+    "bursA_Dm": [
+     24.9,
+     9.8,
+     15.1,
+     50.2,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "cascada/mecanicista",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis",
+   "clave": "cascada/conservadora",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "geometrica/mecanicista/absoluta",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     0.1,
+     99.9,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     99.8,
+     0.1,
+     0.1,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.1,
+     99.8,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     0.1,
+     99.9,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     99.8,
+     0.1,
+     0.1,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.1,
+     99.8,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "geometrica/mecanicista/minmax",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     13.2,
+     86.8,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     5.0,
+     95.0
+    ],
+    "eth_Dm": [
+     71.6,
+     15.2,
+     8.2,
+     5.0
+    ],
+    "bursA_Dm": [
+     28.4,
+     71.6,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     13.2,
+     86.8,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     5.0,
+     95.0
+    ],
+    "eth_Dm": [
+     71.6,
+     15.2,
+     8.2,
+     5.0
+    ],
+    "bursA_Dm": [
+     28.4,
+     71.6,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "geometrica/conservadora/absoluta",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     78.8,
+     21.1
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     21.1,
+     78.8
+    ],
+    "eth_Dm": [
+     96.4,
+     3.6,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     3.6,
+     96.4,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     78.8,
+     21.1
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     21.1,
+     78.8
+    ],
+    "eth_Dm": [
+     96.4,
+     3.6,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     3.6,
+     96.4,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "geometrica/conservadora/minmax",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     1.9,
+     48.1,
+     50.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.2,
+     50.8,
+     49.0
+    ],
+    "eth_Dm": [
+     74.7,
+     23.2,
+     1.1,
+     1.0
+    ],
+    "bursA_Dm": [
+     25.3,
+     74.7,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     1.9,
+     48.1,
+     50.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.2,
+     50.8,
+     49.0
+    ],
+    "eth_Dm": [
+     74.7,
+     23.2,
+     1.1,
+     1.0
+    ],
+    "bursA_Dm": [
+     25.3,
+     74.7,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "suma/mecanicista/absoluta",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     0.6,
+     99.4,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.3,
+     99.7
+    ],
+    "eth_Dm": [
+     96.3,
+     3.0,
+     0.2,
+     0.3
+    ],
+    "bursA_Dm": [
+     3.6,
+     96.3,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     0.6,
+     99.4,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.3,
+     99.7
+    ],
+    "eth_Dm": [
+     96.3,
+     3.0,
+     0.2,
+     0.3
+    ],
+    "bursA_Dm": [
+     3.6,
+     96.3,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "suma/mecanicista/minmax",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     9.6,
+     90.4,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     4.0,
+     96.0
+    ],
+    "eth_Dm": [
+     73.8,
+     16.6,
+     5.7,
+     4.0
+    ],
+    "bursA_Dm": [
+     26.2,
+     73.8,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     9.6,
+     90.4,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     4.0,
+     96.0
+    ],
+    "eth_Dm": [
+     73.8,
+     16.6,
+     5.7,
+     4.0
+    ],
+    "bursA_Dm": [
+     26.2,
+     73.8,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "suma/conservadora/absoluta",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     0.1,
+     30.2,
+     69.7
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.1,
+     69.6,
+     30.3
+    ],
+    "eth_Dm": [
+     76.2,
+     23.6,
+     0.2,
+     0.0
+    ],
+    "bursA_Dm": [
+     23.9,
+     76.2,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     0.1,
+     30.2,
+     69.7
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.1,
+     69.6,
+     30.3
+    ],
+    "eth_Dm": [
+     76.2,
+     23.6,
+     0.2,
+     0.0
+    ],
+    "bursA_Dm": [
+     23.9,
+     76.2,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "suma/conservadora/minmax",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     0.8,
+     24.9,
+     74.4
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.5,
+     74.0,
+     25.5
+    ],
+    "eth_Dm": [
+     73.7,
+     25.1,
+     1.1,
+     0.1
+    ],
+    "bursA_Dm": [
+     26.4,
+     73.7,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     0.8,
+     24.9,
+     74.4
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.5,
+     74.0,
+     25.5
+    ],
+    "eth_Dm": [
+     73.7,
+     25.1,
+     1.1,
+     0.1
+    ],
+    "bursA_Dm": [
+     26.4,
+     73.7,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "cascada/mecanicista",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto",
+   "clave": "cascada/conservadora",
+   "publicado": {
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ],
+    "eth_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "geometrica/mecanicista/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     100.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     100.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "geometrica/mecanicista/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     51.5,
+     48.5
+    ],
+    "CP_MRFV": [
+     48.5,
+     51.5
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     51.5,
+     48.5
+    ],
+    "CP_MRFV": [
+     48.5,
+     51.5
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "geometrica/conservadora/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     98.4,
+     1.6
+    ],
+    "CP_MRFV": [
+     1.6,
+     98.4
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     98.4,
+     1.6
+    ],
+    "CP_MRFV": [
+     1.6,
+     98.4
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "geometrica/conservadora/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     51.5,
+     48.5
+    ],
+    "CP_MRFV": [
+     48.5,
+     51.5
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     51.5,
+     48.5
+    ],
+    "CP_MRFV": [
+     48.5,
+     51.5
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "suma/mecanicista/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     98.6,
+     1.4
+    ],
+    "CP_MRFV": [
+     1.4,
+     98.6
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     98.6,
+     1.4
+    ],
+    "CP_MRFV": [
+     1.4,
+     98.6
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "suma/mecanicista/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     51.5,
+     48.5
+    ],
+    "CP_MRFV": [
+     48.5,
+     51.5
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     51.5,
+     48.5
+    ],
+    "CP_MRFV": [
+     48.5,
+     51.5
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "suma/conservadora/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     88.5,
+     11.6
+    ],
+    "CP_MRFV": [
+     11.6,
+     88.5
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     88.5,
+     11.6
+    ],
+    "CP_MRFV": [
+     11.6,
+     88.5
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "suma/conservadora/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     51.5,
+     48.5
+    ],
+    "CP_MRFV": [
+     48.5,
+     51.5
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     51.5,
+     48.5
+    ],
+    "CP_MRFV": [
+     48.5,
+     51.5
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "cascada/mecanicista",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     100.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     100.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "virus",
+   "clave": "cascada/conservadora",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     100.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     100.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "geometrica/mecanicista/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.1,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.1,
+     99.8,
+     0.1,
+     0.1,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.1,
+     99.8,
+     0.1,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     99.9
+    ],
+    "eth_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     99.8,
+     0.1,
+     0.1
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.1,
+     99.8,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.1,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.1,
+     99.8,
+     0.1,
+     0.1,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.1,
+     99.8,
+     0.1,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     99.9
+    ],
+    "eth_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     99.8,
+     0.1,
+     0.1
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.1,
+     99.8,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "geometrica/mecanicista/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     72.7,
+     4.0,
+     3.4,
+     5.7,
+     10.8,
+     3.6
+    ],
+    "CP_MRFV": [
+     8.4,
+     13.7,
+     65.5,
+     7.6,
+     4.8,
+     0.0
+    ],
+    "BicC_Dm": [
+     12.0,
+     71.8,
+     9.9,
+     5.8,
+     0.5,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     8.2,
+     91.8
+    ],
+    "eth_Dm": [
+     1.6,
+     5.2,
+     14.0,
+     61.4,
+     13.2,
+     4.7
+    ],
+    "bursA_Dm": [
+     5.3,
+     5.3,
+     7.2,
+     19.6,
+     62.6,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     72.7,
+     4.0,
+     3.4,
+     5.7,
+     10.8,
+     3.6
+    ],
+    "CP_MRFV": [
+     8.4,
+     13.7,
+     65.5,
+     7.6,
+     4.8,
+     0.0
+    ],
+    "BicC_Dm": [
+     12.0,
+     71.8,
+     9.9,
+     5.8,
+     0.5,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     8.2,
+     91.8
+    ],
+    "eth_Dm": [
+     1.6,
+     5.2,
+     14.0,
+     61.4,
+     13.2,
+     4.7
+    ],
+    "bursA_Dm": [
+     5.3,
+     5.3,
+     7.2,
+     19.6,
+     62.6,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "geometrica/conservadora/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     98.7,
+     0.2,
+     0.2,
+     0.2,
+     0.5,
+     0.2
+    ],
+    "CP_MRFV": [
+     0.8,
+     2.1,
+     96.5,
+     0.2,
+     0.3,
+     0.1
+    ],
+    "BicC_Dm": [
+     0.0,
+     97.0,
+     2.0,
+     0.9,
+     0.1,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.1,
+     0.1,
+     99.7
+    ],
+    "eth_Dm": [
+     0.0,
+     0.2,
+     0.3,
+     96.8,
+     2.8,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.6,
+     0.5,
+     0.9,
+     1.8,
+     96.2,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     98.7,
+     0.2,
+     0.2,
+     0.2,
+     0.5,
+     0.2
+    ],
+    "CP_MRFV": [
+     0.8,
+     2.1,
+     96.5,
+     0.2,
+     0.3,
+     0.1
+    ],
+    "BicC_Dm": [
+     0.0,
+     97.0,
+     2.0,
+     0.9,
+     0.1,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     0.1,
+     0.1,
+     99.7
+    ],
+    "eth_Dm": [
+     0.0,
+     0.2,
+     0.3,
+     96.8,
+     2.8,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.6,
+     0.5,
+     0.9,
+     1.8,
+     96.2,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "geometrica/conservadora/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     35.5,
+     3.7,
+     5.5,
+     5.8,
+     26.9,
+     22.6
+    ],
+    "CP_MRFV": [
+     27.7,
+     39.8,
+     27.4,
+     3.8,
+     0.9,
+     0.4
+    ],
+    "BicC_Dm": [
+     20.6,
+     36.9,
+     27.5,
+     13.2,
+     1.9,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.2,
+     1.1,
+     21.8,
+     77.0
+    ],
+    "eth_Dm": [
+     0.8,
+     8.3,
+     29.8,
+     45.8,
+     15.3,
+     0.0
+    ],
+    "bursA_Dm": [
+     15.3,
+     11.4,
+     9.6,
+     30.5,
+     33.1,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     35.5,
+     3.7,
+     5.5,
+     5.8,
+     26.9,
+     22.6
+    ],
+    "CP_MRFV": [
+     27.7,
+     39.8,
+     27.4,
+     3.8,
+     0.9,
+     0.4
+    ],
+    "BicC_Dm": [
+     20.6,
+     36.9,
+     27.5,
+     13.2,
+     1.9,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.2,
+     1.1,
+     21.8,
+     77.0
+    ],
+    "eth_Dm": [
+     0.8,
+     8.3,
+     29.8,
+     45.8,
+     15.3,
+     0.0
+    ],
+    "bursA_Dm": [
+     15.3,
+     11.4,
+     9.6,
+     30.5,
+     33.1,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "suma/mecanicista/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     99.2,
+     0.1,
+     0.2,
+     0.3,
+     0.1,
+     0.1
+    ],
+    "CP_MRFV": [
+     0.2,
+     1.1,
+     96.5,
+     1.3,
+     0.8,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.1,
+     98.0,
+     1.1,
+     0.5,
+     0.3,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.4,
+     99.6
+    ],
+    "eth_Dm": [
+     0.0,
+     0.3,
+     1.4,
+     95.5,
+     2.5,
+     0.3
+    ],
+    "bursA_Dm": [
+     0.4,
+     0.5,
+     0.8,
+     2.5,
+     95.8,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     99.2,
+     0.1,
+     0.2,
+     0.3,
+     0.1,
+     0.1
+    ],
+    "CP_MRFV": [
+     0.2,
+     1.1,
+     96.5,
+     1.3,
+     0.8,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.1,
+     98.0,
+     1.1,
+     0.5,
+     0.3,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.4,
+     99.6
+    ],
+    "eth_Dm": [
+     0.0,
+     0.3,
+     1.4,
+     95.5,
+     2.5,
+     0.3
+    ],
+    "bursA_Dm": [
+     0.4,
+     0.5,
+     0.8,
+     2.5,
+     95.8,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "suma/mecanicista/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     72.0,
+     2.7,
+     6.2,
+     7.0,
+     9.6,
+     2.4
+    ],
+    "CP_MRFV": [
+     4.8,
+     14.9,
+     53.4,
+     13.4,
+     13.4,
+     0.0
+    ],
+    "BicC_Dm": [
+     5.9,
+     65.5,
+     12.3,
+     11.8,
+     4.5,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     7.0,
+     92.0
+    ],
+    "eth_Dm": [
+     1.2,
+     5.8,
+     15.3,
+     47.0,
+     25.0,
+     5.7
+    ],
+    "bursA_Dm": [
+     16.0,
+     11.1,
+     12.8,
+     19.7,
+     40.5,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     72.0,
+     2.7,
+     6.2,
+     7.0,
+     9.6,
+     2.4
+    ],
+    "CP_MRFV": [
+     4.8,
+     14.9,
+     53.4,
+     13.4,
+     13.4,
+     0.0
+    ],
+    "BicC_Dm": [
+     5.9,
+     65.5,
+     12.3,
+     11.8,
+     4.5,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     7.0,
+     92.0
+    ],
+    "eth_Dm": [
+     1.2,
+     5.8,
+     15.3,
+     47.0,
+     25.0,
+     5.7
+    ],
+    "bursA_Dm": [
+     16.0,
+     11.1,
+     12.8,
+     19.7,
+     40.5,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "suma/conservadora/absoluta",
+   "publicado": {
+    "MP_MRFV": [
+     91.8,
+     1.5,
+     1.9,
+     1.1,
+     1.4,
+     2.2
+    ],
+    "CP_MRFV": [
+     1.6,
+     14.1,
+     80.4,
+     2.1,
+     1.4,
+     0.4
+    ],
+    "BicC_Dm": [
+     0.1,
+     79.8,
+     10.3,
+     7.8,
+     1.7,
+     0.2
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.4,
+     0.8,
+     1.6,
+     97.2
+    ],
+    "eth_Dm": [
+     0.0,
+     1.2,
+     2.5,
+     77.7,
+     18.6,
+     0.0
+    ],
+    "bursA_Dm": [
+     6.3,
+     3.4,
+     4.4,
+     10.4,
+     75.4,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     91.8,
+     1.5,
+     1.9,
+     1.1,
+     1.4,
+     2.2
+    ],
+    "CP_MRFV": [
+     1.6,
+     14.1,
+     80.4,
+     2.1,
+     1.4,
+     0.4
+    ],
+    "BicC_Dm": [
+     0.1,
+     79.8,
+     10.3,
+     7.8,
+     1.7,
+     0.2
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.4,
+     0.8,
+     1.6,
+     97.2
+    ],
+    "eth_Dm": [
+     0.0,
+     1.2,
+     2.5,
+     77.7,
+     18.6,
+     0.0
+    ],
+    "bursA_Dm": [
+     6.3,
+     3.4,
+     4.4,
+     10.4,
+     75.4,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "suma/conservadora/minmax",
+   "publicado": {
+    "MP_MRFV": [
+     54.5,
+     4.2,
+     9.8,
+     7.5,
+     9.9,
+     14.2
+    ],
+    "CP_MRFV": [
+     11.1,
+     45.8,
+     33.0,
+     4.2,
+     4.5,
+     1.5
+    ],
+    "BicC_Dm": [
+     0.3,
+     30.4,
+     31.6,
+     28.2,
+     9.1,
+     0.3
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.6,
+     1.4,
+     5.3,
+     9.1,
+     83.7
+    ],
+    "eth_Dm": [
+     0.0,
+     5.4,
+     11.2,
+     37.4,
+     45.6,
+     0.3
+    ],
+    "bursA_Dm": [
+     34.1,
+     13.6,
+     13.2,
+     17.4,
+     21.8,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     54.5,
+     4.2,
+     9.8,
+     7.5,
+     9.9,
+     14.2
+    ],
+    "CP_MRFV": [
+     11.1,
+     45.8,
+     33.0,
+     4.2,
+     4.5,
+     1.5
+    ],
+    "BicC_Dm": [
+     0.3,
+     30.4,
+     31.6,
+     28.2,
+     9.1,
+     0.3
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.6,
+     1.4,
+     5.3,
+     9.1,
+     83.7
+    ],
+    "eth_Dm": [
+     0.0,
+     5.4,
+     11.2,
+     37.4,
+     45.6,
+     0.3
+    ],
+    "bursA_Dm": [
+     34.1,
+     13.6,
+     13.2,
+     17.4,
+     21.8,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "cascada/mecanicista",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "eth_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "eth_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "los_seis_recomendados",
+   "clave": "cascada/conservadora",
+   "publicado": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "eth_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": [
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "CP_MRFV": [
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "BicC_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "eth_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "regiones_recomendadas",
+   "clave": "-",
+   "publicado": {
+    "MP_MRFV": "72-271",
+    "CP_MRFV": "99-298",
+    "BicC_Dm": "2121-2420",
+    "ATPaseD_Dm": "72-371",
+    "eth_Dm": "114-313",
+    "bursA_Dm": "13-212"
+   },
+   "coincide": true,
+   "mio": {
+    "MP_MRFV": "72-271",
+    "CP_MRFV": "99-298",
+    "BicC_Dm": "2121-2420",
+    "ATPaseD_Dm": "72-371",
+    "eth_Dm": "114-313",
+    "bursA_Dm": "13-212"
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "geometrica/mecanicista/absoluta",
+   "publicado": {
+    "BicC_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     99.9
+    ],
+    "eth_Dm": [
+     0.0,
+     99.8,
+     0.1,
+     0.1
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.1,
+     99.8,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     99.9
+    ],
+    "eth_Dm": [
+     0.0,
+     99.8,
+     0.1,
+     0.1
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.1,
+     99.8,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "geometrica/mecanicista/minmax",
+   "publicado": {
+    "BicC_Dm": [
+     86.0,
+     7.9,
+     6.2,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     5.0,
+     95.0
+    ],
+    "eth_Dm": [
+     5.0,
+     70.9,
+     19.1,
+     5.0
+    ],
+    "bursA_Dm": [
+     9.1,
+     21.2,
+     69.7,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     86.0,
+     7.9,
+     6.2,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     5.0,
+     95.0
+    ],
+    "eth_Dm": [
+     5.0,
+     70.9,
+     19.1,
+     5.0
+    ],
+    "bursA_Dm": [
+     9.1,
+     21.2,
+     69.7,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "geometrica/conservadora/absoluta",
+   "publicado": {
+    "BicC_Dm": [
+     98.3,
+     1.2,
+     0.3,
+     0.1
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     99.8
+    ],
+    "eth_Dm": [
+     0.1,
+     96.6,
+     3.2,
+     0.1
+    ],
+    "bursA_Dm": [
+     1.6,
+     2.1,
+     96.3,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     98.3,
+     1.2,
+     0.3,
+     0.1
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.1,
+     99.8
+    ],
+    "eth_Dm": [
+     0.1,
+     96.6,
+     3.2,
+     0.1
+    ],
+    "bursA_Dm": [
+     1.6,
+     2.1,
+     96.3,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "geometrica/conservadora/minmax",
+   "publicado": {
+    "BicC_Dm": [
+     53.0,
+     20.4,
+     18.0,
+     8.6
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.1,
+     9.9,
+     89.9
+    ],
+    "eth_Dm": [
+     11.9,
+     55.2,
+     31.3,
+     1.6
+    ],
+    "bursA_Dm": [
+     35.1,
+     24.1,
+     40.8,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     53.0,
+     20.4,
+     18.0,
+     8.6
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.1,
+     9.9,
+     89.9
+    ],
+    "eth_Dm": [
+     11.9,
+     55.2,
+     31.3,
+     1.6
+    ],
+    "bursA_Dm": [
+     35.1,
+     24.1,
+     40.8,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "suma/mecanicista/absoluta",
+   "publicado": {
+    "BicC_Dm": [
+     98.8,
+     0.7,
+     0.6,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.3,
+     99.7
+    ],
+    "eth_Dm": [
+     0.2,
+     96.5,
+     2.9,
+     0.3
+    ],
+    "bursA_Dm": [
+     1.0,
+     2.8,
+     96.2,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     98.8,
+     0.7,
+     0.6,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     0.3,
+     99.7
+    ],
+    "eth_Dm": [
+     0.2,
+     96.5,
+     2.9,
+     0.3
+    ],
+    "bursA_Dm": [
+     1.0,
+     2.8,
+     96.2,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "suma/mecanicista/minmax",
+   "publicado": {
+    "BicC_Dm": [
+     83.0,
+     9.4,
+     7.7,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     4.0,
+     96.0
+    ],
+    "eth_Dm": [
+     3.0,
+     66.0,
+     26.9,
+     4.0
+    ],
+    "bursA_Dm": [
+     14.0,
+     24.6,
+     61.5,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     83.0,
+     9.4,
+     7.7,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     4.0,
+     96.0
+    ],
+    "eth_Dm": [
+     3.0,
+     66.0,
+     26.9,
+     4.0
+    ],
+    "bursA_Dm": [
+     14.0,
+     24.6,
+     61.5,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "suma/conservadora/absoluta",
+   "publicado": {
+    "BicC_Dm": [
+     86.2,
+     10.3,
+     2.4,
+     1.1
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     1.2,
+     98.8
+    ],
+    "eth_Dm": [
+     0.6,
+     78.7,
+     20.6,
+     0.1
+    ],
+    "bursA_Dm": [
+     13.2,
+     11.0,
+     75.8,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     86.2,
+     10.3,
+     2.4,
+     1.1
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     1.2,
+     98.8
+    ],
+    "eth_Dm": [
+     0.6,
+     78.7,
+     20.6,
+     0.1
+    ],
+    "bursA_Dm": [
+     13.2,
+     11.0,
+     75.8,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "suma/conservadora/minmax",
+   "publicado": {
+    "BicC_Dm": [
+     56.6,
+     29.4,
+     9.1,
+     4.9
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.6,
+     5.5,
+     93.9
+    ],
+    "eth_Dm": [
+     0.8,
+     48.8,
+     49.1,
+     1.2
+    ],
+    "bursA_Dm": [
+     42.5,
+     21.2,
+     36.2,
+     0.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     56.6,
+     29.4,
+     9.1,
+     4.9
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.6,
+     5.5,
+     93.9
+    ],
+    "eth_Dm": [
+     0.8,
+     48.8,
+     49.1,
+     1.2
+    ],
+    "bursA_Dm": [
+     42.5,
+     21.2,
+     36.2,
+     0.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "cascada/mecanicista",
+   "publicado": {
+    "BicC_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "eth_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "eth_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ]
+   }
+  },
+  {
+   "ancla": "A2",
+   "conjunto": "insecto_recomendados",
+   "clave": "cascada/conservadora",
+   "publicado": {
+    "BicC_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "eth_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ]
+   },
+   "coincide": true,
+   "mio": {
+    "BicC_Dm": [
+     100.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "ATPaseD_Dm": [
+     0.0,
+     0.0,
+     100.0,
+     0.0
+    ],
+    "eth_Dm": [
+     0.0,
+     100.0,
+     0.0,
+     0.0
+    ],
+    "bursA_Dm": [
+     0.0,
+     0.0,
+     0.0,
+     100.0
+    ]
+   }
+  }
+ ]
+}
