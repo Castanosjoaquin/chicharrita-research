@@ -108,6 +108,48 @@ def main() -> int:
     L.append("Conteos de la molecula recortada de EPILAB, para comparar: " +
              "; ".join("%s = %d (corregido), %d (fiel)" % (k, v["corregido"], v["fiel"])
                        for k, v in r["recorte_epilab"].items()) + ".")
+    L.append("")
+
+    # -- eje 3: sensibilidad al criterio de riesgo ---------------------------------------
+    ruta3 = SALIDA / "riesgo_sensibilidad.json"
+    if ruta3.exists():
+        s = json.loads(ruta3.read_text(encoding="utf-8"))
+        L.append("## Eje de criterios de riesgo — sensibilidad, no adopcion\n")
+        L.append("Fuente: `resultados/riesgo_sensibilidad.json`. **No elige regla**: mide "
+                 "cuanto cambia la comparacion segun cual se elija, que es lo que M6 (#10) "
+                 "tiene que decidir. Panel de C7 v2 (%s), sin los pesos de D18. "
+                 "«Limpias y eficientes» es eficiente y sin coincidencia, y **no depende de "
+                 "la regla**: una ventana eficiente con coincidencia es riesgosa para las "
+                 "dos. Lo que la regla cambia es el tamano del riesgo declarado.\n"
+                 % ", ".join(s["panel"]))
+        L.append("| Umbral (D28) | Marco | Config. | 922-1221 gana a 2121-2420 | gana a "
+                 "264-563 | Alertas, regla conservadora (922 / 2121 / 264) | Alertas, regla "
+                 "mecanicista |")
+        L.append("|---|---|---|---|---|---|---|")
+        for clave, b in s["por_combinacion"].items():
+            marco, umbral = [x.strip() for x in clave.split("/")]
+            con = b["riesgo_conservadora_en_vienna_NN3_corregido_defecto"]
+            mec = b["riesgo_mecanicista_en_vienna_NN3_corregido_defecto"]
+            L.append("| `%s` | %s | %d | %s | %s | %d / %d / %d | %d / %d / %d |" % (
+                umbral, marco, b["configuraciones"],
+                pct(b["limpias_eficientes_vs_2121-2420"]["gana_pct"]),
+                pct(b["limpias_eficientes_vs_264-563"]["gana_pct"]),
+                con["922-1221"], con["2121-2420"], con["264-563"],
+                mec["922-1221"], mec["2121-2420"], mec["264-563"]))
+        L.append("")
+        L.append("Las columnas de alertas estan medidas en ViennaRNA 2.7.2, tabla NN3, modo "
+                 "`corregido` y punto por defecto. El conteo de la regla conservadora no "
+                 "depende de la configuracion —es coincidencia exacta de secuencia—; el de "
+                 "la mecanicista si, y sobre las ocho celdas del punto por defecto su rango "
+                 "es %s." % "; ".join(
+                     "%s %s" % (k, v) for k, v in
+                     s["por_combinacion"]["contexto / perfecto_ge19"][
+                         "riesgo_mecanicista_rango_en_las_celdas_por_defecto"].items()))
+        L.append("")
+        L.append("Ventanas del gen con coincidencia en el panel: %d con `perfecto_21` y %d "
+                 "con `perfecto_ge19`." % (
+                     s["ventanas_con_coincidencia_en_el_gen"]["perfecto_21"],
+                     s["ventanas_con_coincidencia_en_el_gen"]["perfecto_ge19"]))
 
     (SALIDA / "tabla_unica.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
