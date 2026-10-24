@@ -120,6 +120,11 @@ Fracción de los 2.000 sorteos de cada punto en la que la afirmación **ya publi
 
 `[H]` Dos de esas mudanzas merecen atención opuesta. La de `BicC_Dm` es tranquilizadora: con el eje de exposición solo, la cascada elige por sí misma **922-1221**, que es la región que D25 ya recomienda por conservación entre fuentes públicas. Dos criterios independientes llegan al mismo lugar. La de `ATPaseD_Dm` es la que cambia una recomendación publicada: **137-436** es la región más conservada del gen y D25 la descartó explícitamente *porque estaba vetada*; sin el veto de *H. vitripennis* vuelve, y además tiene **24 ventanas eficientes contra las 18** de la región de la planilla y las mismas 3 coincidencias de 21/21 (que ahora cuentan como conservación) `[M]`.
 
+### Por qué las formas ponderadas casi no se mueven
+
+`[H]` No es que la exposición no importe: es que en escala absoluta el eje ponderado **no tiene palanca**, y eso ya estaba medido y publicado. La corrección B.2 de `entregables/para-el-investigador.md` dice que la limpieza varía un factor 1,015-1,064 entre candidatos contra 2,38-2,50 de la eficacia, de modo que mover el peso de una referencia dentro de un eje que ocupa el 6 % del rango del otro no puede dar vuelta un orden. Donde sí muerde es en **min-max**, que estira ese 6 % al rango completo: ahí el mismo par `BicC_Dm`/`ATPaseD_Dm` pasa del 68,7 % con exposición cero al 49,2 % con ρ = 1,00 —un volado— contra 98,5 % y 77,9 % en escala absoluta `[M]`. Las dos escalas están en [`resultados/tabla_afirmaciones_todas_las_combinaciones.tsv`](resultados/tabla_afirmaciones_todas_las_combinaciones.tsv), y cuál se publica sigue siendo una decisión abierta de B.2, anterior a esta línea.
+
+
 ### De dónde viene el cambio: del veto, no de la ponderación
 
 La columna «veto ciego» de [`resultados/tabla_afirmaciones.tsv`](resultados/tabla_afirmaciones.tsv) repite el punto ρ = 0 manteniendo la regla de veto de hoy, en la que **cualquier** referencia del panel veta tenga el peso que tenga. Con esa regla, A7 vuelve a 100 % y el orden de los seis vuelve a ser el publicado `[M]`. Las formas ponderadas, en cambio, dan **exactamente lo mismo** con las dos reglas de veto, porque una referencia de peso cero ya aportaba cero al promedio.
