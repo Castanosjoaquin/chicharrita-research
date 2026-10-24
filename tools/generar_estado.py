@@ -111,6 +111,19 @@ HECHO = [
      "permiten compararla, y <code>GCWP01</code> no cubre un solo nucleótido de la región. El criterio de riesgo no "
      "cambia quién gana, y bajo la regla mecanicista el riesgo de las tres regiones es cero.",
      ["research/ola4/M7_robustez_bicc/REPORT.md", "research/ola4/M7_robustez_bicc/resultados/tabla_unica.md"]),
+    ("Exposici\u00f3n y conservaci\u00f3n, separadas y medidas como sensibilidad (M5)",
+     "El peso \u00fanico de D18 se parte en dos vectores que el motor <strong>no puede</strong> combinar, y se mide en qu\u00e9 "
+     "fracci\u00f3n del espacio de repartos se sostiene cada afirmaci\u00f3n publicada: 2.000 sorteos en cada uno de nueve "
+     "valores del peso de exposici\u00f3n de <i>H. vitripennis</i>. <strong>Seis de siete aguantan</strong> entre el 96,0 % y el "
+     "100 %, incluido el orden de los dos primeros. La que se cae es el desempate del tercer puesto: en la cascada "
+     "<code>CP_MRFV</code> va antes que <code>ATPaseD_Dm</code> en el 100 % de los sorteos mientras esa referencia "
+     "conserve cualquier exposici\u00f3n, y en el <strong>0 %</strong> cuando es exactamente cero. No hay transici\u00f3n: el "
+     "efecto es binario y pasa entero por el veto, no por la ponderaci\u00f3n. Con exposici\u00f3n cero vuelven a la mesa tres "
+     "regiones hoy vetadas, entre ellas <code>ATPaseD_Dm</code> 137-436, la m\u00e1s conservada del gen. "
+     "<strong>Mide y propone; no aplica nada.</strong>",
+     ["research/ola4/M5_dos_ejes/REPORT.md",
+      "research/ola4/M5_dos_ejes/resultados/tabla_afirmaciones.tsv",
+      "tools/sifi21_port/ejes_separados.py"]),
     ("Las 28 secuencias de Cedden: se dejan publicadas y declaradas (D41)",
      "La tabla unida a su razón de riesgo ya estaba en el remoto desde el 2026-10-21. Son datos públicos CC BY y no secuencias de EPILAB. "
      "Se decidió dejarla publicada con la advertencia de que la unión no tiene clave publicada.",
@@ -128,6 +141,13 @@ FALTA = [
      "conservación con cobertura, porque <code>GCWP01</code> no cubre 922-1221. Las dos cifras y su fuente están en "
      "<code>research/ola4/M7_robustez_bicc/NOTAS_PARA_META.md</code>. No se corrigió por cuenta propia: cambia una "
      "recomendación publicada."),
+    ("Los dos pesos de M5: exposici\u00f3n y conservaci\u00f3n", "decision", True,
+     "Es el pedido 4 de la reuni\u00f3n. La medici\u00f3n ya est\u00e1 hecha y dice que la decisi\u00f3n no es <em>cu\u00e1nto</em> sino "
+     "<strong>cero o no cero</strong>: con la regla de riesgo de hoy, entre 0,05 y 1,00 de peso relativo al ma\u00edz no "
+     "cambia nada, y todo el cambio est\u00e1 entre 0,00 y 0,05, porque el veto es binario. Si se quiere un reparto "
+     "intermedio hay que resolver antes M6 (#10). Y si se adopta cero, dejan de estar sostenidas tres afirmaciones "
+     "publicadas, listadas en <code>research/ola4/M5_dos_ejes/NOTAS_PARA_META.md</code>. Tambi\u00e9n queda abierto si el "
+     "tercer puesto se reporta como empate declarado o se sigue ordenando."),
     ("Confirmar el criterio de commits", "decision", False,
      "El prompt de C9 pide un commit por tarea y la regla general de la ola 3 dice no commitear (D5). Se "
      "siguió la instrucción específica del prompt; si se prefiere la regla general, se reescribe."),
