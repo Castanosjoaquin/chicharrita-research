@@ -219,6 +219,15 @@ independiente la confirma.
 - El par 2 se corrió con la tabla transcrita y el par 1 con el default, de modo que los dos
   comparten el mismo perfil de `fiel`: los 142/39/223/35 de la columna izquierda de §2 son
   los mismos del par 1.
+- **La herramienta tiene 17 verificaciones sobre insumos sintéticos**, en
+  `scripts/test_comparar.py`, que corren sin el corpus y sin el motor: la aritmética de la
+  matriz, la atribución de cada término a su corte, el alineamiento con `--offset-b` y cinco
+  modos de fallar en silencio `[M]`. Dos de esas cinco cerraron huecos reales del comparador:
+  una posición repetida en el TSV pisaba a la anterior y bajaba el conteo sin avisar, y un
+  `is_efficient` que no fuera `True`/`False` —un 1/0, por ejemplo— daba cero eficientes de
+  los dos lados con la matriz cerrando igual. Las dos abortan ahora. Las guardas no cambian
+  ninguna salida publicada: se verificó corriendo la versión anterior y la actual sobre los
+  cuatro genes, en el par de modos y en el de recorte con desplazamiento, con salida idéntica.
 
 ## 7. Reproducir
 
@@ -238,6 +247,12 @@ Para un par suelto:
 ```sh
 python3 research/ola4/M2_ventana_a_ventana/scripts/comparar_ventanas.py \
         --a <tsv_a> --b <tsv_b> --etiquetas fiel,corregido --salida <prefijo>
+```
+
+Y las verificaciones de la herramienta, que no necesitan ni el corpus ni el motor:
+
+```sh
+python3 research/ola4/M2_ventana_a_ventana/scripts/test_comparar.py
 ```
 
 ## 8. Lo que queda

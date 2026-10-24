@@ -139,8 +139,30 @@ resume a nuestros dos primeros candidatos —38 ventanas eficientes en `MP_MRFV`
 No cambia qué región se recomienda —el orden de los cuatro se mantiene— pero sí cambia la
 cifra, y es la cifra que está en el entregable. De la diferencia, una parte es aritmética
 —dentro del gen la región tiene 200 posiciones de inicio porque las ventanas del final se
-completan con el nucleótido de al lado, y recortada tiene 180— y la otra es el borde: 27
+completan con el nucleótido de al lado, y recortada tiene 180— y la otra es el borde: 23
 ventanas cambiaron de veredicto en las cuatro regiones.
+
+> **Corrección (2026-10-23, línea M2).** Esta oración decía «27 ventanas cambiaron de
+> veredicto» y ese número es de otro conjunto de regiones. Con las regiones **vigentes**, que
+> son las de la tabla de arriba y donde `BicC_Dm` es 922–1221, son **23**: 6, 9, 3 y 5 en el
+> orden de las filas, que es lo que suman las dos últimas columnas de la tabla y lo que tienen
+> de filas los archivos `par4_recorte_*_cambios.tsv` de
+> `research/ola4/M2_ventana_a_ventana/resultados/` `[M]`. Los 27 son de las regiones
+> **recomendadas**, donde `BicC_Dm` es 2121–2420, en
+> `resultados/recorte_vs_contexto_recomendadas_flips_corregido_vienna.tsv` `[M]`. La tabla de
+> esta sección siempre fue la de vigentes y siempre sumó 23; estaba mal la prosa.
+>
+> **Y un segundo mecanismo de borde, que la derivación de abajo no cubre.** De esos 23
+> cambios, 22 cruzan por `target_site_accessibility` y **uno por `end_stability`**: `BicC_Dm`
+> en la posición 922 del gen, que es la posición 1 del recorte, con la brecha de ΔG pasando de
+> 2,1764 a 0,6287 `[M]`. El techo asimétrico que se deriva más abajo sale del tamaño de la
+> ventana de plegado y por lo tanto explica el mecanismo de accesibilidad, no éste: el ΔG no
+> depende de la ventana de plegado. La causa es que el original calcula los extremos con
+> nucleótidos colgantes (dangling ends) tomando el contexto dos posiciones antes de la
+> ventana, y en las dos primeras ventanas de una molécula ese contexto no existe, así que el
+> motor usa la variante sin colgantes. Está acotado a esas dos posiciones `[M]`. La predicción
+> del techo asimétrico sigue en pie para lo que mide; lo que no es cierto es que todo el
+> efecto de borde sea de accesibilidad.
 
 **La segunda corrige a C4 en su parte mecánica.** C4 observó que el cambio de veredicto llega
 hasta 54 nt de la unión y lo atribuyó a que si-Fi21 calcula la accesibilidad con una ventana de

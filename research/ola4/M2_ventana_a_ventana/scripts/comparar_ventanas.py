@@ -40,8 +40,15 @@ CONTINUOS = ["dg_sense5", "dg_antisense5", "ddg", "accessibility"]
 
 
 def leer(ruta: Path) -> dict[int, dict]:
+    filas: dict[int, dict] = {}
     with ruta.open(encoding="utf-8") as fh:
-        filas = {int(r["pos"]): r for r in csv.DictReader(fh, delimiter="\t")}
+        for r in csv.DictReader(fh, delimiter="\t"):
+            pos = int(r["pos"])
+            # Una posicion repetida pisaria a la anterior y el conteo saldria
+            # mas chico sin una sola linea de aviso.
+            if pos in filas:
+                raise SystemExit(f"{ruta}: la posicion {pos} aparece dos veces")
+            filas[pos] = r
     if not filas:
         raise SystemExit(f"{ruta}: vacio o sin columna pos")
     if "is_efficient" not in next(iter(filas.values())):
@@ -50,7 +57,12 @@ def leer(ruta: Path) -> dict[int, dict]:
 
 
 def _bool(valor: str) -> bool:
-    return str(valor).strip().lower() == "true"
+    v = str(valor).strip().lower()
+    # Un TSV que escribiera 1/0 en vez de True/False daria todo False, o sea
+    # cero eficientes de los dos lados, y la matriz de confusion cerraria igual.
+    if v not in ("true", "false"):
+        raise SystemExit(f"is_efficient tiene que ser true o false, no {valor!r}")
+    return v == "true"
 
 
 def comparar(a: dict[int, dict], b: dict[int, dict], offset_b: int = 1,

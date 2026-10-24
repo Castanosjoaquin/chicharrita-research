@@ -1067,3 +1067,25 @@ Lo que sigue es lo que nos corrigió, y de qué lado quedó cada cosa.
   aleatorización por intercambio no puede dar un p menor que 2/2^k, así que **con menos de 6
   discordantes ningún dato alcanza alfa 0,05** `[M]`. Pedir más datos del mismo tipo sin fijarse en
   la discordancia es gastar etiquetas para volver al mismo lugar.
+
+## Declarar que `RNA_NN4` no existe, buscándola en la librería y no en el glosario (2026-10-23, línea M2)
+
+**Descartado, y fue un error nuestro.** Al abrir el eje que el investigador pidió —comparar la
+tabla de vecinos más cercanos del original contra la del INTA— se buscó `RNA_NN4` en el módulo de
+Biopython que el port usa para las energías, donde las tablas de ARN son tres y la serie que llega
+al cuatro es de ADN. De ahí se concluyó que la tabla no existía y se escribió un ADR declarando el
+eje inviable tal como estaba pedido.
+
+**La tabla existe.** Está definida en el fork del INTA, es el único cambio químico entre si-Fi21 y
+la versión del INTA, estaba en `00_meta/GLOSARIO.md` desde la ola 3 y la línea C2 ya la había
+medido. No es una variante aproximable con la de Biopython: difiere de `RNA_NN3` en 22 de sus 28
+entradas. Hoy está transcrita en `tools/sifi21_port/sifi_energy.py:47`, con sus pruebas en
+`tools/sifi21_port/test_sifi.py`, y el eje se corrió completo: los resultados del par están en
+`research/ola4/M2_ventana_a_ventana/resultados/par2_tablas_*`. O sea que el eje nunca fue inviable;
+el ADR que lo declaraba así estaba mal y no sobrevivió.
+
+**La lección es dónde buscar: antes de declarar que algo no existe, el glosario del proyecto va
+primero que la librería**, porque el glosario tiene lo que las olas anteriores ya leyeron y la
+librería sólo tiene lo que la librería trae. El error se destapó al revisar el glosario para
+decidir si había que agregarle un término, un paso que estuvo a punto de no hacerse porque parecía
+trámite. El costo fue un eje declarado imposible durante una vuelta entera de trabajo.

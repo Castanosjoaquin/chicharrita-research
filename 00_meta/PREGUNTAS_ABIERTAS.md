@@ -1234,9 +1234,14 @@ que su propia carta hizo necesaria.
   desajuste: la planilla baja en tres genes y sube en uno. Es `[H]` hasta que la línea M1 la mida.
 - **Del efecto del recorte, cuánto es plegamiento y cuánto es tratamiento de posiciones.** Lo
   pregunta en su punto 2 y está contestado a medias: C13 §4 separa la parte aritmética (200
-  posiciones de inicio en contexto contra 180 recortada) de 27 cambios de veredicto por borde, y de
+  posiciones de inicio en contexto contra 180 recortada) de los cambios de veredicto por borde, y de
   esos hay dos identificados a 64 y 66 nt cuyos 21 nucleótidos son idénticos y a los que sólo les
-  cambió la accesibilidad `[M]`. Falta hacer esa partición para los 27, no para dos. Línea M2.
+  cambió la accesibilidad `[M]`. **Contestada por M2 (2026-10-23):** los cambios por borde son 23 y
+  no 27 —los 27 eran del conjunto `recomendadas`— y la partición está hecha para los 23: **22
+  cruzan por `target_site_accessibility` y 1 por `end_stability`** `[M]`. El de `end_stability` es
+  un mecanismo que C13 no cubría, de extremos sin nucleótidos colgantes en las dos primeras
+  ventanas del recorte. Detalle en `research/ola4/M2_ventana_a_ventana/` y corrección anotada en
+  C13 §4.
 - **Cuántas etiquetas de eficacia hacen falta para distinguir el modo fiel del corregido.** La
   validación retrospectiva da ρ = +0,142 [-0,247, +0,492] contra +0,024 [-0,356, +0,397], n = 29
   `[M]`: no se distinguen. El número de etiquetas necesario no está calculado. Línea M4.
@@ -1400,3 +1405,30 @@ es justamente el pendiente.
    porcentuales `[H]`; si en el ensayo resulta 25, el n por brazo sube de 32 a 49. Es el primer
    supuesto a revisar con los datos del propio ensayo, y conviene preguntarle al investigador si
    tiene una estimación de su sistema.
+
+## Pendientes abiertos por la línea M2 (2026-10-23)
+
+Los tres salen de comparar los perfiles por ventana en vez de los conteos finales. El primero
+condiciona qué puede hacer la herramienta cuando llegue el archivo del investigador; los otros dos
+son variables del desajuste de conteos que M1 vino a reconciliar.
+
+1. **¿La salida por ventana de Diego trae los términos intermedios o sólo el veredicto?** El
+   comparador de M2 atribuye el término que cruzó el corte leyendo la brecha de ΔG, la
+   accesibilidad y los cuatro booleanos de cada compuerta. Si su archivo trae sólo `is_efficient`,
+   la herramienta sigue dando la matriz de confusión y la lista de posiciones que cambian, pero la
+   columna `terminos_que_cruzan` sale vacía y el cambio queda sin causa atribuida. Es la primera
+   cosa que hay que preguntarle cuando mande el archivo, y conviene pedirle las columnas en el
+   mismo mensaje para no perder una vuelta.
+2. **¿Qué tabla de vecinos más cercanos usó el laboratorio, si corrió si-Fi?** Es una pregunta que
+   M2 hace inevitable: cambiar `RNA_NN3` por `RNA_NN4` mueve poco el conteo pero bastante el
+   conjunto. En `BicC_Dm`, modo corregido, el conteo pasa de 171 a 168 mientras **once ventanas
+   cambian de clase** `[M]`. O sea que dos corridas que informan casi el mismo número pueden no
+   estar señalando las mismas ventanas, y la parametrización es una variable más del desajuste. Si
+   corrieron si-Fi21 sin tocar nada es `RNA_NN3` y la pregunta se cierra sola; vale confirmarlo
+   porque es gratis.
+3. **Las dos primeras ventanas de un recorte: ¿se excluyen o se reportan con la advertencia?** M2
+   midió que ahí el original calcula los extremos sin nucleótidos colgantes, porque el siRNA de dos
+   posiciones antes no existe, y que una de las cuatro regiones vigentes cambia un veredicto por
+   esa vía `[M]`. M7 la contestó a medias y propone **reportar con la advertencia, sin excluir**,
+   porque excluirlas mueve la fracción de victorias de 75,6 % a 74,2 % `[M]`. Falta que el
+   investigador lo confirme.
