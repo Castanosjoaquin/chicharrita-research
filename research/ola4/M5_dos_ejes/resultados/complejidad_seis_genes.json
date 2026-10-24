@@ -1,0 +1,371 @@
+{
+ "criterio": "sifi_plus/complejidad.py: homopolimero >= 10 o bases distintas <= 2",
+ "fuente": "work/sifi_v2/offtarget_k21 y offtarget_dm_k21 (insumos locales)",
+ "por_gen": {
+  "MP_MRFV": {
+   "ventanas": 1243,
+   "baja_complejidad": 0,
+   "homopolimero_max": 5,
+   "bases_distintas_min": 3,
+   "umbral_homopolimero": 10,
+   "umbral_bases": 2
+  },
+  "CP_MRFV": {
+   "ventanas": 508,
+   "baja_complejidad": 0,
+   "homopolimero_max": 6,
+   "bases_distintas_min": 3,
+   "umbral_homopolimero": 10,
+   "umbral_bases": 2
+  },
+  "BicC_Dm": {
+   "ventanas": 2500,
+   "baja_complejidad": 0,
+   "homopolimero_max": 7,
+   "bases_distintas_min": 3,
+   "umbral_homopolimero": 10,
+   "umbral_bases": 2
+  },
+  "ATPaseD_Dm": {
+   "ventanas": 471,
+   "baja_complejidad": 0,
+   "homopolimero_max": 4,
+   "bases_distintas_min": 3,
+   "umbral_homopolimero": 10,
+   "umbral_bases": 2
+  },
+  "eth_Dm": {
+   "ventanas": 595,
+   "baja_complejidad": 0,
+   "homopolimero_max": 5,
+   "bases_distintas_min": 3,
+   "umbral_homopolimero": 10,
+   "umbral_bases": 2
+  },
+  "bursA_Dm": {
+   "ventanas": 448,
+   "baja_complejidad": 0,
+   "homopolimero_max": 5,
+   "bases_distintas_min": 3,
+   "umbral_homopolimero": 10,
+   "umbral_bases": 2
+  }
+ },
+ "conteos_con_coincidencia": [
+  {
+   "gen": "MP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "mm1_21",
+   "total": 8,
+   "baja_complejidad": 0,
+   "homopolimero_max": 5,
+   "bases_distintas_min": 3
+  },
+  {
+   "gen": "MP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "perfecto_ge19",
+   "total": 9,
+   "baja_complejidad": 0,
+   "homopolimero_max": 5,
+   "bases_distintas_min": 3
+  },
+  {
+   "gen": "CP_MRFV",
+   "referencia": "D_maidis",
+   "criterio": "mm1_21",
+   "total": 2,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "F_candida",
+   "criterio": "mm1_21",
+   "total": 6,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "F_candida",
+   "criterio": "perfecto_ge19",
+   "total": 4,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "mm1_21",
+   "total": 7,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 3
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "total": 56,
+   "baja_complejidad": 0,
+   "homopolimero_max": 7,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "total": 40,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "total": 56,
+   "baja_complejidad": 0,
+   "homopolimero_max": 4,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "total": 5,
+   "baja_complejidad": 0,
+   "homopolimero_max": 4,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "total": 6,
+   "baja_complejidad": 0,
+   "homopolimero_max": 4,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "H_axyridis",
+   "criterio": "mm1_21",
+   "total": 3,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "H_axyridis",
+   "criterio": "perfecto_21",
+   "total": 3,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "H_axyridis",
+   "criterio": "perfecto_ge19",
+   "total": 7,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "humano",
+   "criterio": "mm1_21",
+   "total": 27,
+   "baja_complejidad": 0,
+   "homopolimero_max": 5,
+   "bases_distintas_min": 3
+  },
+  {
+   "gen": "BicC_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "total": 12,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "F_candida",
+   "criterio": "mm1_21",
+   "total": 1,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "mm1_21",
+   "total": 1,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "total": 24,
+   "baja_complejidad": 0,
+   "homopolimero_max": 4,
+   "bases_distintas_min": 3
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "total": 3,
+   "baja_complejidad": 0,
+   "homopolimero_max": 2,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "total": 7,
+   "baja_complejidad": 0,
+   "homopolimero_max": 2,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "total": 2,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "total": 3,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 3
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "humano",
+   "criterio": "mm1_21",
+   "total": 6,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "total": 7,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "eth_Dm",
+   "referencia": "A_mellifera",
+   "criterio": "mm1_21",
+   "total": 4,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "eth_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "total": 5,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "eth_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "total": 1,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "eth_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "total": 5,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "eth_Dm",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "total": 1,
+   "baja_complejidad": 0,
+   "homopolimero_max": 2,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "eth_Dm",
+   "referencia": "humano",
+   "criterio": "mm1_21",
+   "total": 6,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 3
+  },
+  {
+   "gen": "eth_Dm",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "total": 6,
+   "baja_complejidad": 0,
+   "homopolimero_max": 3,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "bursA_Dm",
+   "referencia": "F_candida",
+   "criterio": "mm1_21",
+   "total": 1,
+   "baja_complejidad": 0,
+   "homopolimero_max": 2,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "bursA_Dm",
+   "referencia": "H_vitripennis",
+   "criterio": "mm1_21",
+   "total": 3,
+   "baja_complejidad": 0,
+   "homopolimero_max": 4,
+   "bases_distintas_min": 4
+  },
+  {
+   "gen": "bursA_Dm",
+   "referencia": "maiz",
+   "criterio": "mm1_21",
+   "total": 1,
+   "baja_complejidad": 0,
+   "homopolimero_max": 4,
+   "bases_distintas_min": 4
+  }
+ ]
+}

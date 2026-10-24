@@ -1,0 +1,10 @@
+id	afirmacion	publicada_en	conjunto	combinacion	muestras	rho_0.00	rho_0.05	rho_0.10	rho_0.20	rho_0.30	rho_0.45	rho_0.60	rho_0.80	rho_1.00	rho_0_veto_ciego
+A1	MP_MRFV va antes que CP_MRFV en escala absoluta	entregables/para-el-investigador.md, fila 3 (>= 78,5 %)	virus	geometrica/conservadora/absoluta	2000	98.6	98.6	98.6	98.6	98.6	98.6	98.6	98.6	98.6	98.6
+A2a	el orden de los dos primeros de los seis aguanta	D18, consecuencia; ranking_v2.json los_seis (98,0 / 96,2 %)	los_seis	geometrica/conservadora/absoluta	2000	96.5	96.7	96.6	96.5	96.6	96.4	96.2	96.0	96.0	96.5
+A2b	el orden de los dos primeros de la lista del insecto aguanta	ranking_v2.json insecto (96,4 / 96,4 %)	insecto	geometrica/conservadora/absoluta	2000	97.4	97.3	97.3	97.2	97.2	97.0	96.7	96.6	96.5	97.4
+A3	BicC_Dm primero en la lista del insecto con las regiones recomendadas	entregables/para-el-investigador.md, fila 3 (76-100 %)	insecto_recomendados	geometrica/conservadora/absoluta	2000	98.0	98.9	98.9	98.8	98.8	98.8	98.8	98.8	98.8	98.9
+A4	ATPaseD_Dm ultimo en la lista del insecto con las regiones recomendadas	entregables/para-el-investigador.md, fila 3	insecto_recomendados	geometrica/conservadora/absoluta	2000	99.9	99.9	99.9	99.9	100.0	100.0	100.0	100.0	100.0	99.9
+A5	eth va antes que burs-alpha en escala absoluta	entregables/checkpoint2-una-pagina.md, punto 5 (76-100 %)	insecto	geometrica/conservadora/absoluta	2000	97.4	97.4	97.4	97.2	97.2	97.0	96.7	96.6	96.5	97.4
+A6	BicC_Dm tercero y ATPaseD_Dm cuarto con las regiones de la planilla	ranking_v2.json insecto (78,8 %)	insecto	geometrica/conservadora/absoluta	2000	98.5	97.3	96.6	93.8	91.1	88.1	84.4	80.9	77.9	98.5
+A7	CP_MRFV va antes que ATPaseD_Dm (el par del 'tercer puesto' del issue #9)	C9 T1 bis: se da vuelta en el 3,3 % de la grilla de umbrales	los_seis	cascada/conservadora	2000	0.0	100.0	100.0	100.0	100.0	100.0	100.0	100.0	100.0	100.0
+A7b	CP_MRFV va antes que ATPaseD_Dm, en la forma geometrica	C9 T1 bis; D38 advierte que las dos listas no se comparan	los_seis	geometrica/conservadora/absoluta	2000	99.9	99.9	99.9	100.0	100.0	100.0	100.0	100.0	100.0	99.9

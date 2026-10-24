@@ -1,0 +1,42 @@
+gen	referencia	criterio	total	baja_complejidad	homopolimero_max	bases_distintas_min
+MP_MRFV	(todas las ventanas del gen)	-	1243	0	5	3
+MP_MRFV	D_maidis	mm1_21	8	0	5	3
+MP_MRFV	D_maidis	perfecto_ge19	9	0	5	3
+CP_MRFV	(todas las ventanas del gen)	-	508	0	6	3
+CP_MRFV	D_maidis	mm1_21	2	0	3	4
+BicC_Dm	(todas las ventanas del gen)	-	2500	0	7	3
+BicC_Dm	F_candida	mm1_21	6	0	3	4
+BicC_Dm	F_candida	perfecto_ge19	4	0	3	4
+BicC_Dm	A_mellifera	mm1_21	7	0	3	3
+BicC_Dm	H_vitripennis	mm1_21	56	0	7	4
+BicC_Dm	H_vitripennis	perfecto_21	40	0	3	4
+BicC_Dm	H_vitripennis	perfecto_ge19	56	0	4	4
+BicC_Dm	maiz	mm1_21	5	0	4	4
+BicC_Dm	maiz	perfecto_ge19	6	0	4	4
+BicC_Dm	H_axyridis	mm1_21	3	0	3	4
+BicC_Dm	H_axyridis	perfecto_21	3	0	3	4
+BicC_Dm	H_axyridis	perfecto_ge19	7	0	3	4
+BicC_Dm	humano	mm1_21	27	0	5	3
+BicC_Dm	humano	perfecto_ge19	12	0	3	4
+ATPaseD_Dm	(todas las ventanas del gen)	-	471	0	4	3
+ATPaseD_Dm	F_candida	mm1_21	1	0	3	4
+ATPaseD_Dm	A_mellifera	mm1_21	1	0	3	4
+ATPaseD_Dm	H_vitripennis	mm1_21	24	0	4	3
+ATPaseD_Dm	H_vitripennis	perfecto_21	3	0	2	4
+ATPaseD_Dm	H_vitripennis	perfecto_ge19	7	0	2	4
+ATPaseD_Dm	maiz	mm1_21	2	0	3	4
+ATPaseD_Dm	maiz	perfecto_ge19	3	0	3	3
+ATPaseD_Dm	humano	mm1_21	6	0	3	4
+ATPaseD_Dm	humano	perfecto_ge19	7	0	3	4
+eth_Dm	(todas las ventanas del gen)	-	595	0	5	3
+eth_Dm	A_mellifera	mm1_21	4	0	3	4
+eth_Dm	H_vitripennis	mm1_21	5	0	3	4
+eth_Dm	H_vitripennis	perfecto_21	1	0	3	4
+eth_Dm	H_vitripennis	perfecto_ge19	5	0	3	4
+eth_Dm	maiz	mm1_21	1	0	2	4
+eth_Dm	humano	mm1_21	6	0	3	3
+eth_Dm	humano	perfecto_ge19	6	0	3	4
+bursA_Dm	(todas las ventanas del gen)	-	448	0	5	3
+bursA_Dm	F_candida	mm1_21	1	0	2	4
+bursA_Dm	H_vitripennis	mm1_21	3	0	4	4
+bursA_Dm	maiz	mm1_21	1	0	4	4

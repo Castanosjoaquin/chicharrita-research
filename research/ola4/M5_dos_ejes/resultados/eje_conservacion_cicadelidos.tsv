@@ -1,0 +1,8 @@
+gen	etiqueta	region	eje_exposicion	eje_conservacion_1_cicadelido	eje_conservacion_2_cicadelidos	Hv_perfecto_21	Hv_perfecto_21_baja_complejidad	Hv_perfecto_ge19	Mq_perfecto_21	Mq_perfecto_21_baja_complejidad	Mq_perfecto_ge19	ventanas_en_algun_cicadelido	ventanas_en_los_dos
+MP_MRFV	region del ranking v2	1-200	0.024	0.0015	0.0015	0	0	0	0	0	0	0	0
+CP_MRFV	region del ranking v2	201-400	0.0069	0.0	0.0	0	0	0	0	0	0	0	0
+BicC_Dm	region del ranking v2	264-563	0.0124	0.099333	0.217667	22	0	30	10	0	28	32	0
+ATPaseD_Dm	region del ranking v2	151-450	0.009	0.031	0.107	3	0	7	12	0	17	15	0
+eth_Dm	region del ranking v2	114-313	0.0117	0.0045	0.105	0	0	0	9	0	20	9	0
+bursA_Dm	region del ranking v2	13-212	0.0	0.0	0.0345	0	0	0	0	0	0	0	0
+ATPaseD_Dm	D25 alternativa b	137-436	0.013	0.031	0.104	3	0	7	12	0	16	15	0

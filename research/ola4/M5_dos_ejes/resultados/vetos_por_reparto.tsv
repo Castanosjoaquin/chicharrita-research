@@ -1,0 +1,64 @@
+rho	gen	region	vetada	vetada_regla_actual	regiones_posibles	regiones_sin_veto
+0.0	MP_MRFV	1-200	False	False	1044	1044
+0.0	CP_MRFV	201-400	False	False	309	309
+0.0	BicC_Dm	264-563	False	True	2201	1899
+0.0	ATPaseD_Dm	151-450	False	True	172	172
+0.0	eth_Dm	114-313	False	False	396	396
+0.0	bursA_Dm	13-212	False	False	249	249
+0.0	ATPaseD_Dm (D25 alt. b)	137-436	False	True		
+0.05	MP_MRFV	1-200	False	False	1044	1044
+0.05	CP_MRFV	201-400	False	False	309	309
+0.05	BicC_Dm	264-563	True	True	2201	1384
+0.05	ATPaseD_Dm	151-450	True	True	172	92
+0.05	eth_Dm	114-313	False	False	396	196
+0.05	bursA_Dm	13-212	False	False	249	249
+0.05	ATPaseD_Dm (D25 alt. b)	137-436	True	True		
+0.1	MP_MRFV	1-200	False	False	1044	1044
+0.1	CP_MRFV	201-400	False	False	309	309
+0.1	BicC_Dm	264-563	True	True	2201	1384
+0.1	ATPaseD_Dm	151-450	True	True	172	92
+0.1	eth_Dm	114-313	False	False	396	196
+0.1	bursA_Dm	13-212	False	False	249	249
+0.1	ATPaseD_Dm (D25 alt. b)	137-436	True	True		
+0.2	MP_MRFV	1-200	False	False	1044	1044
+0.2	CP_MRFV	201-400	False	False	309	309
+0.2	BicC_Dm	264-563	True	True	2201	1384
+0.2	ATPaseD_Dm	151-450	True	True	172	92
+0.2	eth_Dm	114-313	False	False	396	196
+0.2	bursA_Dm	13-212	False	False	249	249
+0.2	ATPaseD_Dm (D25 alt. b)	137-436	True	True		
+0.3	MP_MRFV	1-200	False	False	1044	1044
+0.3	CP_MRFV	201-400	False	False	309	309
+0.3	BicC_Dm	264-563	True	True	2201	1384
+0.3	ATPaseD_Dm	151-450	True	True	172	92
+0.3	eth_Dm	114-313	False	False	396	196
+0.3	bursA_Dm	13-212	False	False	249	249
+0.3	ATPaseD_Dm (D25 alt. b)	137-436	True	True		
+0.45	MP_MRFV	1-200	False	False	1044	1044
+0.45	CP_MRFV	201-400	False	False	309	309
+0.45	BicC_Dm	264-563	True	True	2201	1384
+0.45	ATPaseD_Dm	151-450	True	True	172	92
+0.45	eth_Dm	114-313	False	False	396	196
+0.45	bursA_Dm	13-212	False	False	249	249
+0.45	ATPaseD_Dm (D25 alt. b)	137-436	True	True		
+0.6	MP_MRFV	1-200	False	False	1044	1044
+0.6	CP_MRFV	201-400	False	False	309	309
+0.6	BicC_Dm	264-563	True	True	2201	1384
+0.6	ATPaseD_Dm	151-450	True	True	172	92
+0.6	eth_Dm	114-313	False	False	396	196
+0.6	bursA_Dm	13-212	False	False	249	249
+0.6	ATPaseD_Dm (D25 alt. b)	137-436	True	True		
+0.8	MP_MRFV	1-200	False	False	1044	1044
+0.8	CP_MRFV	201-400	False	False	309	309
+0.8	BicC_Dm	264-563	True	True	2201	1384
+0.8	ATPaseD_Dm	151-450	True	True	172	92
+0.8	eth_Dm	114-313	False	False	396	196
+0.8	bursA_Dm	13-212	False	False	249	249
+0.8	ATPaseD_Dm (D25 alt. b)	137-436	True	True		
+1.0	MP_MRFV	1-200	False	False	1044	1044
+1.0	CP_MRFV	201-400	False	False	309	309
+1.0	BicC_Dm	264-563	True	True	2201	1384
+1.0	ATPaseD_Dm	151-450	True	True	172	92
+1.0	eth_Dm	114-313	False	False	396	196
+1.0	bursA_Dm	13-212	False	False	249	249
+1.0	ATPaseD_Dm (D25 alt. b)	137-436	True	True		

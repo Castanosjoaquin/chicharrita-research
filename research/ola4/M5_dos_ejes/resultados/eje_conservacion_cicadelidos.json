@@ -1,0 +1,161 @@
+{
+ "anclas": [
+  {
+   "gen": "BicC_Dm",
+   "region": null,
+   "publicado": 101
+  },
+  {
+   "gen": "BicC_Dm",
+   "region": [
+    2123,
+    2422
+   ],
+   "publicado": 19
+  },
+  {
+   "gen": "BicC_Dm",
+   "region": [
+    264,
+    563
+   ],
+   "publicado": 10
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "region": [
+    151,
+    450
+   ],
+   "publicado": 12
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "region": [
+    72,
+    371
+   ],
+   "publicado": 12
+  },
+  {
+   "gen": "eth_Dm",
+   "region": null,
+   "publicado": 21
+  }
+ ],
+ "nota": "Macrosteles quadrilineatus entra SOLO al eje de conservacion; su w_exposicion es cero y la vista de exposicion lo filtra, de modo que ningun numero de orden cambia. D23 lo saco del panel por exposicion.",
+ "filas": [
+  {
+   "gen": "MP_MRFV",
+   "etiqueta": "region del ranking v2",
+   "region": "1-200",
+   "eje_exposicion": 0.024,
+   "eje_conservacion_1_cicadelido": 0.0015,
+   "eje_conservacion_2_cicadelidos": 0.0015,
+   "Hv_perfecto_21": 0,
+   "Hv_perfecto_21_baja_complejidad": 0,
+   "Hv_perfecto_ge19": 0,
+   "Mq_perfecto_21": 0,
+   "Mq_perfecto_21_baja_complejidad": 0,
+   "Mq_perfecto_ge19": 0,
+   "ventanas_en_algun_cicadelido": 0,
+   "ventanas_en_los_dos": 0
+  },
+  {
+   "gen": "CP_MRFV",
+   "etiqueta": "region del ranking v2",
+   "region": "201-400",
+   "eje_exposicion": 0.0069,
+   "eje_conservacion_1_cicadelido": 0.0,
+   "eje_conservacion_2_cicadelidos": 0.0,
+   "Hv_perfecto_21": 0,
+   "Hv_perfecto_21_baja_complejidad": 0,
+   "Hv_perfecto_ge19": 0,
+   "Mq_perfecto_21": 0,
+   "Mq_perfecto_21_baja_complejidad": 0,
+   "Mq_perfecto_ge19": 0,
+   "ventanas_en_algun_cicadelido": 0,
+   "ventanas_en_los_dos": 0
+  },
+  {
+   "gen": "BicC_Dm",
+   "etiqueta": "region del ranking v2",
+   "region": "264-563",
+   "eje_exposicion": 0.0124,
+   "eje_conservacion_1_cicadelido": 0.099333,
+   "eje_conservacion_2_cicadelidos": 0.217667,
+   "Hv_perfecto_21": 22,
+   "Hv_perfecto_21_baja_complejidad": 0,
+   "Hv_perfecto_ge19": 30,
+   "Mq_perfecto_21": 10,
+   "Mq_perfecto_21_baja_complejidad": 0,
+   "Mq_perfecto_ge19": 28,
+   "ventanas_en_algun_cicadelido": 32,
+   "ventanas_en_los_dos": 0
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "etiqueta": "region del ranking v2",
+   "region": "151-450",
+   "eje_exposicion": 0.009,
+   "eje_conservacion_1_cicadelido": 0.031,
+   "eje_conservacion_2_cicadelidos": 0.107,
+   "Hv_perfecto_21": 3,
+   "Hv_perfecto_21_baja_complejidad": 0,
+   "Hv_perfecto_ge19": 7,
+   "Mq_perfecto_21": 12,
+   "Mq_perfecto_21_baja_complejidad": 0,
+   "Mq_perfecto_ge19": 17,
+   "ventanas_en_algun_cicadelido": 15,
+   "ventanas_en_los_dos": 0
+  },
+  {
+   "gen": "eth_Dm",
+   "etiqueta": "region del ranking v2",
+   "region": "114-313",
+   "eje_exposicion": 0.0117,
+   "eje_conservacion_1_cicadelido": 0.0045,
+   "eje_conservacion_2_cicadelidos": 0.105,
+   "Hv_perfecto_21": 0,
+   "Hv_perfecto_21_baja_complejidad": 0,
+   "Hv_perfecto_ge19": 0,
+   "Mq_perfecto_21": 9,
+   "Mq_perfecto_21_baja_complejidad": 0,
+   "Mq_perfecto_ge19": 20,
+   "ventanas_en_algun_cicadelido": 9,
+   "ventanas_en_los_dos": 0
+  },
+  {
+   "gen": "bursA_Dm",
+   "etiqueta": "region del ranking v2",
+   "region": "13-212",
+   "eje_exposicion": 0.0,
+   "eje_conservacion_1_cicadelido": 0.0,
+   "eje_conservacion_2_cicadelidos": 0.0345,
+   "Hv_perfecto_21": 0,
+   "Hv_perfecto_21_baja_complejidad": 0,
+   "Hv_perfecto_ge19": 0,
+   "Mq_perfecto_21": 0,
+   "Mq_perfecto_21_baja_complejidad": 0,
+   "Mq_perfecto_ge19": 0,
+   "ventanas_en_algun_cicadelido": 0,
+   "ventanas_en_los_dos": 0
+  },
+  {
+   "gen": "ATPaseD_Dm",
+   "etiqueta": "D25 alternativa b",
+   "region": "137-436",
+   "eje_exposicion": 0.013,
+   "eje_conservacion_1_cicadelido": 0.031,
+   "eje_conservacion_2_cicadelidos": 0.104,
+   "Hv_perfecto_21": 3,
+   "Hv_perfecto_21_baja_complejidad": 0,
+   "Hv_perfecto_ge19": 7,
+   "Mq_perfecto_21": 12,
+   "Mq_perfecto_21_baja_complejidad": 0,
+   "Mq_perfecto_ge19": 16,
+   "ventanas_en_algun_cicadelido": 15,
+   "ventanas_en_los_dos": 0
+  }
+ ]
+}
