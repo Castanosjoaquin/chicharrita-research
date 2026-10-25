@@ -129,6 +129,7 @@ ol.q li{margin:9px 0}
 <a href="#compara">7 · Qué compara el conteo</a>
 <a href="#recomendacion">8 · La recomendación</a>
 <a href="#abierto">9 · Lo que queda abierto</a>
+<a href="#expediente">Anexo · <code>BicC</code> 922-1221</a>
 </div></nav>
 
 <main>
@@ -649,6 +650,186 @@ y las suyas son el mismo número.</li>
 necesita ningún dato de EpiLab ni ningún archivo intermedio de sus diseños. Y el port de línea de
 comandos, acotado al código y sus pruebas, sin ninguna salida derivada de las secuencias del
 laboratorio.</p></div>
+
+<h2 id="expediente">Anexo · El expediente de <code>BicC_Dm</code> 922-1221</h2>
+
+<p class="lead">Las nueve secciones de arriba contestan la carta punto por punto, y por eso lo que
+sabemos de esta región quedó repartido entre cuatro de ellas. Este anexo la pone en un solo lugar:
+de dónde salió, qué le medimos, qué se sostiene, qué retiramos nosotros y qué no sabemos.</p>
+
+<p class="sub">No hay mediciones nuevas: todo lo que sigue sale de líneas ya corridas y cada bloque
+dice cuál. La única excepción es una lectura que surge de cruzar dos salidas que ya teníamos, y va
+marcada como pendiente de corrida propia.</p>
+
+<div class="kpis">
+<div class="kpi"><b>26</b><span>ventanas eficientes en la molécula de 300 nt que se sintetizaría <span class="m m-m">[M]</span></span></div>
+<div class="kpi"><b>0</b><span>coincidencias perfectas de 21 nt contra el panel de seis no objetivo <span class="m m-m">[M]</span></span></div>
+<div class="kpi"><b>99,1 a 99,9 %</b><span>de las 4.368 configuraciones en las que le gana a la región original, en los tres marcos <span class="m m-m">[M]</span></span></div>
+<div class="kpi"><b>22</b><span>coincidencias perfectas de 21 nt que tiene la región original contra el ortólogo del gen que se silencia <span class="m m-m">[M]</span></span></div>
+</div>
+
+<h3>De dónde salió: tres regiones del mismo gen, elegidas por tres criterios distintos</h3>
+
+<p>Conviene empezar por acá porque explica por qué hay tres candidatas y no dos, y por qué dos de
+las tres son nuestras. El gen tiene 2.520 nt y 2.500 ventanas posibles de 21 nt; una región de 300
+nt es una elección entre muchas, y cada uno de los tres criterios que se probaron eligió una
+distinta.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Región</th><th>Quién la eligió, y con qué criterio</th><th class="n">Molécula</th><th class="n">21/21</th><th class="n">≥ 19 nt</th></tr></thead>
+<tbody>
+<tr><td><code>264-563</code></td><td>EpiLab, en la planilla original</td><td class="n">17</td><td class="n"><strong>22</strong></td><td class="n">33</td></tr>
+<tr><td><code>2121-2420</code></td><td>nuestra línea C7, por densidad de ventanas eficientes y limpias</td><td class="n">22</td><td class="n">0</td><td class="n">6</td></tr>
+<tr><td><strong><code>922-1221</code></strong></td><td><strong>nuestra decisión D25, por conservación entre fuentes públicas</strong></td><td class="n"><strong>26</strong></td><td class="n"><strong>0</strong></td><td class="n"><strong>3</strong></td></tr>
+</tbody></table></div>
+
+<p>La que proponemos es la tercera. La segunda es la que proponíamos antes y hoy entra en la grilla
+como rival, no como candidata. <strong>La comparación que carga el peso de la propuesta es contra
+la primera</strong>, que es la única que no elegimos nosotros, y es también la que el pedido de tu
+carta señalaba al preguntar si la nuestra es superior «a la original»
+<span class="m m-r">[R]</span>.</p>
+
+<h3>Qué le medimos, línea por línea</h3>
+
+<div class="tw"><table>
+<thead><tr><th>Línea</th><th>Qué corrimos sobre esta región</th><th>Qué dio</th></tr></thead>
+<tbody>
+<tr><td>C7 · ola 3</td><td>ranking por densidad de ventanas eficientes y limpias</td><td>eligió 2121-2420; 922-1221 todavía no estaba en juego</td></tr>
+<tr><td>D25</td><td>conservación entre transcriptomas públicos</td><td>movió la recomendación a 922-1221</td></tr>
+<tr><td>M7 · eje 1</td><td>4.368 configuraciones de parámetros × 2 marcos</td><td>99,1 % contra la original, 36,4 % contra C7</td></tr>
+<tr><td>M7 · eje 2</td><td>blastn local contra cuatro fuentes, con recálculo y coincidencias</td><td>el orden entre regiones no se mueve nunca; Illinois no cubre la región</td></tr>
+<tr><td>M7 · eje 3</td><td>2 umbrales de riesgo × 2 reglas, cruzados con la grilla</td><td>no cambia quién gana; sí cambia cuántas alertas hay que justificar</td></tr>
+<tr><td>M6</td><td>la tabla de alertas con los cuatro campos que pediste</td><td>cero de 21/21; tres de bloque ≥ 19 nt, todas contra un ncRNA humano sin caracterizar</td></tr>
+<tr><td>M5</td><td>exposición y conservación separadas, barridas en nueve repartos</td><td>con exposición de <em>H. vitripennis</em> en cero, la cascada elige 922-1221 por sí sola</td></tr>
+<tr><td>N3</td><td>los tres marcos de conteo</td><td>36 / 29 / 26, y la partición de las diez de diferencia</td></tr>
+<tr><td>N10</td><td>tu función de conteo aplicada a regiones</td><td>33 a 33 contra C7; 33 a 19 contra la original</td></tr>
+</tbody></table></div>
+
+<h3>Contra la región original: la afirmación que sí defendemos</h3>
+
+<p>Es la única afirmación de esta página que aguanta todos los ejes a la vez, y conviene decir
+exactamente cuántos son, porque el valor del resultado está en que ninguno la mueve.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Eje</th><th>Qué se varió</th><th>Qué le pasa a la ventaja sobre 264-563</th></tr></thead>
+<tbody>
+<tr><td>parámetros</td><td>21 brechas × 26 cortes × 2 modos × 2 tablas × 2 motores</td><td>gana en el <strong>99,1 %</strong> (contexto), <strong>99,9 %</strong> (comparables) y <strong>99,6 %</strong> (molécula)</td></tr>
+<tr><td>margen</td><td>las mismas 4.368 configuraciones</td><td>mediana de <strong>+10 a +12 ventanas</strong>, contra +1 frente a C7</td></tr>
+<tr><td>dónde pierde</td><td>las celdas en contra, una por una</td><td>13 de 4.368, todas con brecha de estabilidad 1,8 a 2,0 contra un valor por defecto de 1,0</td></tr>
+<tr><td>marco</td><td>los tres marcos de la sección 6</td><td>gana en los tres; es en el marco intermedio donde la ventaja es más fuerte</td></tr>
+<tr><td>contador</td><td>la función histórica de la sección 1</td><td><strong>33 a 19</strong>: la ventaja no se inmuta</td></tr>
+<tr><td>referencia</td><td>cuatro fuentes, con la secuencia reconstruida de cada una</td><td>el orden no cambia en ninguna</td></tr>
+<tr><td>criterio de riesgo</td><td>21/21 perfecto contra bloque de ≥ 19 nt</td><td>no cambia quién gana; con el umbral laxo la ventaja se agranda</td></tr>
+</tbody></table></div>
+
+<div class="box why"><span class="tag">La lectura</span>
+<p>Siete ejes, y el peor caso es 99,1 %. <strong>Si esta propuesta se evalúa contra la región de la
+planilla, que es la comparación que importa para decidir qué se sintetiza, no hay ningún
+parámetro, marco, contador ni referencia de los que probamos que la dé vuelta</strong>
+<span class="m m-h">[H]</span>. Es lo contrario de lo que pasa con la comparación entre nuestras
+dos regiones, y por eso las presentamos con firmezas distintas.</p></div>
+
+<h3>Las 22 coincidencias de la región original, con su detalle</h3>
+
+<p>Este es el hallazgo que más pesa del lado del riesgo, y es el que justifica no sintetizar
+264-563 aunque todo lo demás quedara empatado. Las 22 ventanas con coincidencia perfecta de 21 nt
+de esa región son contra <em>Homalodisca vitripennis</em> —un cicadélido, pariente de la
+chicharrita, que está en el panel como no objetivo— y el transcripto impactado es
+<strong><code>protein bicaudal C homolog 1-A</code> (LOC124362408)</strong>, o sea el ortólogo del
+mismo gen que se quiere silenciar <span class="m m-m">[M]</span>.</p>
+
+<p>Y las posiciones no están dispersas, que es lo que haría pensar en coincidencia estadística:
+están en <strong>dos bloques corridos</strong>. Los arranques 446 a 463 son dieciocho consecutivos,
+lo que equivale a un tramo <strong>idéntico de 38 nt</strong> compartido con el ortólogo; los
+arranques 512 a 515 son otros cuatro, un segundo tramo idéntico de <strong>24 nt</strong>
+<span class="m m-m">[M]</span>. Eso es homología de secuencia, no azar.</p>
+
+<div class="box warn"><span class="tag">Las dos salvedades, que las decimos nosotros</span>
+<p><strong>Ninguna de las 22 es además eficiente.</strong> Bajo la regla mecanicista —la que sólo
+cuenta como riesgosa la ventana que es eficiente <em>y</em> tiene coincidencia— el riesgo de las
+tres regiones es cero, y esta diferencia se apaga <span class="m m-m">[M]</span>. Es la regla
+conservadora la que las cuenta, y cuál se adopta es parte de lo que hay que decidir.</p>
+<p><strong>Y la exposición de <em>H. vitripennis</em> en la Argentina es justamente el número que
+te pedimos en la sección 3.</strong> Si es cero, el veto se apaga por ese lado
+<span class="m m-h">[H]</span>. Aun así el dato cambia de eje y no desaparece: 22 ventanas que
+pegan perfecto en el ortólogo del blanco en otro cicadélido son la mejor señal disponible de que
+<strong>ese tramo es la parte conservada del gen</strong>, que es la que no conviene elegir si lo
+que se busca es especificidad.</p></div>
+
+<h3>El perfil de riesgo de la región que recomendamos</h3>
+
+<p>Del otro lado, 922-1221 tiene cero coincidencias perfectas de 21 nt contra las seis referencias
+no objetivo y tres ventanas con bloque de ≥ 19 nt, todas contra un mismo transcripto humano, un
+ncRNA sin caracterizar (<code>LOC124903225</code>), ninguna de ellas eficiente
+<span class="m m-m">[M]</span>. El control de baja complejidad da cero: en las 2.500 ventanas del
+gen el homopolímero más largo mide 7 nt contra un umbral de 10, así que ningún conteo de esta
+página lleva descuento <span class="m m-m">[M]</span>.</p>
+
+<div class="box ps"><span class="tag">Una lectura nueva, y la declaramos pendiente de corrida</span>
+<p>Las tres alertas de 922-1221 están en los arranques <strong>1217, 1218 y 1219</strong>
+<span class="m m-m">[M]</span>, que son tres consecutivos del extremo 3' de la región. Una ventana
+que arranca ahí usa las bases 1217 a 1239, o sea que <strong>se sale de la región</strong>: la
+molécula de 300 nt sólo tiene arranques hasta el 1201, y del 1202 al 1221 están los veinte que
+existen en el gen y no en la molécula —los mismos veinte del «límite físico» de la sección 6—.
+<strong>En el marco que publicamos, el de la molécula recortada, esas tres ventanas no existen y la
+región quedaría con cero alertas en los dos umbrales</strong> <span class="m m-h">[H]</span>. Las
+22 de la región original, en cambio, caen todas antes del arranque 543 y sí existen en su molécula.
+Esto sale de cruzar las posiciones de M6 con el marco de N3 y <strong>no lo corrimos como medición
+propia</strong>: el tamizaje de off-targets se corrió en el marco de contexto, sobre los 300
+arranques. Lo traemos como lectura a confirmar, no como número.</p></div>
+
+<h3>Contra nuestra propia región anterior: lo que retiramos</h3>
+
+<p>Acá va la autocrítica completa, porque es la parte del expediente donde más nos corregimos y
+preferimos traerla escrita. El argumento con el que defendíamos 922-1221 frente a 2121-2420 era el
+conteo —36 ventanas contra 35— y <strong>ese argumento ya no existe</strong>. Tres mediciones
+independientes, hechas en tres líneas distintas, apuntan al mismo lado: no sobrevive a la grilla de
+parámetros (36,4 % de 4.368 configuraciones, y 15,7 % en el modo del ranking), se vuelve margen
+mediano exactamente cero en el marco intermedio con 640 empates, y con tu función de conteo
+<strong>empata 33 a 33</strong> <span class="m m-m">[M]</span>. Con el motor del si-Fi original esa
+única ventana incluso se invierte.</p>
+
+<p>Lo mismo pasó con el segundo argumento. La razón escrita de D25 —«32 de 36 idénticas en los tres
+transcriptomas contra 22 de 35»— sumaba tres fuentes en un número y esa suma contaba la ausencia de
+datos como ausencia de contradicción, porque Illinois no cubre un solo nucleótido de 922-1221
+(sección 5). Medido por fuente separada, en el transcriptoma de Ohio <strong>2121-2420 está
+mejor</strong>: conserva 33 de 35 contra 32 de 36 <span class="m m-m">[M]</span>.</p>
+
+<div class="box warn"><span class="tag">Y la pregunta más incómoda, que preferimos hacerla nosotros</span>
+<p><strong>Nuestra propia cascada, con los pesos publicados, no elige 922-1221: elige
+2121-2420.</strong> El peso de exposición de <em>H. vitripennis</em> está hoy en 0,60, y en ese
+punto la regla mecánica del ranking devuelve la región de C7; recién con ese peso en cero la
+cascada elige 922-1221 por sí sola <span class="m m-m">[M]</span>. O sea que la región que
+recomendamos está vigente por una decisión del equipo —D25, por conservación y por perfil de
+off-target— y no porque el motor la devuelva. Si corrés nuestro pipeline con los pesos que están
+publicados, te sale la otra <span class="m m-h">[H]</span>. Es una de las razones por las que el
+número que te pedimos en la sección 3 no es un detalle de ponderación.</p></div>
+
+<p><strong>Lo que queda en pie, entonces, es una preferencia por riesgo y conservación, no por
+conteo:</strong> 3 alertas contra 6, cero coincidencias de 21/21 en las dos, y el genoma del Reino
+Unido con 36 de 36 idénticas frente a 27 idénticas más 8 que cruzan un empalme
+<span class="m m-m">[M]</span>. Es más débil que la comparación contra la región original y la
+presentamos como tal.</p>
+
+<h3>Qué no sabemos de esta región</h3>
+
+<p>Cinco cosas, y ninguna se arregla con más cómputo. <strong>Primera</strong>, el valor predictivo
+del criterio con el que la elegimos no está establecido: en este gen, 134 de las 223 ventanas
+eficientes del modo fiel —el 60,1 %— entran por la rama que saltea el veredicto termodinámico y
+decide mirando sólo la accesibilidad, que es justo el eje que más mueve la comparación
+<span class="m m-m">[M]</span>. <strong>Segunda</strong>, el fenotipo del gen lo tenemos sólo desde
+el resumen, porque el texto completo de la fuente no es de acceso abierto
+<span class="m m-q">[?]</span>, y es un fenotipo de oviposición y ovario: sirve para reducir la
+población entre generaciones y no para cortar la transmisión de una hembra que ya adquirió el
+patógeno. <strong>Tercera</strong>, ninguna de las tres fuentes públicas es una población de campo
+del noroeste argentino, así que lo que medimos es robustez entre fuentes públicas y no entre
+poblaciones. <strong>Cuarta</strong>, dentro de la región hay un empalme cerca de la posición 1118:
+veinte de sus ventanas no existen como tramo contiguo del genoma, ninguna de esas veinte es
+eficiente, y para el ARNdc no cambia nada, pero sí para cualquier búsqueda de off-targets contra
+base genómica <span class="m m-m">[M]</span>. <strong>Quinta</strong>, no sabemos si tu cifra para
+esta región y nuestro 26 son el mismo número, que es el cuarto pedido de la sección 9.</p>
+
+<p class="path">research/ola3/C7_ranking_v2/ · research/ola4/M5_dos_ejes/ · research/ola4/M6_alertas/ · research/ola4/M7_robustez_bicc/ · research/ola5/N3_marcos/ · research/ola5/N10_conteo_historico_por_region/ · entregables/recomendacion-defendida.md</p>
 
 <p class="fin">Equipo UdeSA · Joaquín, Lorenzo, Luca y Santino · Investigathon Y-Hat, track
 chicharrita del maíz. Cada número de esta página es reproducible desde el repositorio con el
