@@ -1569,7 +1569,12 @@ cierran, cuáles quedan y cuáles son nuevas.
 7. ~~El tercer marco cruzado con la grilla.~~ **Contestado el 2026-10-25** (`N3` §6): en el marco
    intermedio 922-1221 le gana a 2121-2420 en el **41,1 %** de las 4.368 configuraciones, con 640
    empates y margen mediano cero, y a 264-563 en el **99,9 %**, que es la fracción más alta de los
-   tres marcos `[M]`. Lo que queda es cruzarlo con el eje de referencia, que no está hecho.
+   tres marcos `[M]`. Cruzado con el eje de referencia (`N3` §7) se corrió **una de las cuatro
+   fuentes**: `GITV01`, la única cuya base está en esta máquina, donde el orden no se mueve y el
+   margen se abre. **Las otras tres quedan no corridas y el motivo es de insumos, no de método:**
+   en esta máquina no hay `blastn` ni `makeblastdb` y `work/W5/db/` no está en el árbol, así que
+   `GHCC01` y `GCWP01` no tienen base en disco y el genoma del Reino Unido, que sí la tiene, no se
+   puede recorrer sin un alineador de consultas largas `[?]`.
 8. **Las ventanas de juntura con apareamiento parcial.** Medimos que de las 240 ventanas de
    juntura de las doce quimeras, 4 son eficientes y ninguna de esas 4 tiene blanco continuo de
    21 nt `[M]`. Lo que no sabemos es si una complementariedad incompleta les da alguna actividad,

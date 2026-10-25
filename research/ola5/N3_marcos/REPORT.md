@@ -162,10 +162,77 @@ del de contexto que del de la molécula.
 dos de los tres.** Eso vuelve la elección del marco irrelevante para la afirmación que defendemos y
 decisiva para la que no.
 
-## 7. Lo que esta línea todavía no hace
+## 7. El marco intermedio en el eje de referencia
 
-`[?]` El marco intermedio cruzado con el eje de referencia. La sección 6 lo cruza con los
-parámetros; con las cuatro fuentes de `M7` §4 no está cruzado.
+**Agregado el 2026-10-25**, con `scripts/marco2_por_fuente.py`. Era el último hueco de cómputo de
+la ola. `M7` §4 recalculó la eficiencia **sobre la molécula recortada tal como la escribe cada
+fuente** —el marco 3— contra cuatro fuentes; faltaba el marco intermedio, que necesita reconstruir
+el **gen entero** por fuente y no sólo la región.
+
+### Tres de las cuatro fuentes no se pueden correr en esta máquina
+
+`[M]` Y conviene escribir el motivo, no el resultado faltante. `eje_referencia.py` de `M7` alinea
+con `blastn` local contra `work/W5/db/`. En esta máquina **no hay `blastn` ni `makeblastdb`**
+—verificado con `shutil.which`— y `work/W5/` no está en el árbol.
+
+| Fuente | Estado | Motivo |
+|---|---|---|
+| GHCC01 (Pergamino) | **no corrida** | la base no está en disco |
+| GCWP01 (Illinois) | **no corrida** | la base no está en disco; y no cubre un solo nucleótido de 922-1221 |
+| genoma del Reino Unido | **no corrida** | está en `work/offtarget_db/`, pero son 984 MB y sin alineador de consultas largas no se ubica el gen ni sus exones |
+| **GITV01 (Ohio State)** | **corrida** | los dos contigs que la ola 3 identificó como blanco principal están en `work/M1/bases/` |
+
+`[H]` La que quedó es la más informativa de las cuatro para esta pregunta: es la única donde los
+conteos recalculados **bajan** y la única donde 2121-2420 conserva una fracción mayor de sus
+eficientes que 922-1221 (33 de 35 contra 32 de 36). Si el marco intermedio tenía que aguantar en
+algún lugar, era ahí.
+
+### El método es otro, y eso salió a favor
+
+`[M]` El alineamiento se hizo con `PairwiseAligner` de Biopython —el método de `C8`— contra los
+contigs que la ola 3 ya había ubicado. `GITV01000968.1` cubre el gen **entero, 2.520 de 2.520
+posiciones, en un solo bloque sin huecos**, con **7 desajustes** contra la secuencia de EPILAB. El
+script exige esa cobertura y aborta si no la tiene: rellenar posiciones con bases de EPILAB daría
+una quimera y no una fuente.
+
+`[M]` **El ancla se reprodujo con el otro alineador.** En el marco 3 la reconstrucción da 25, 19 y
+17, que son exactamente los tres conteos que `M7` publicó con blastn. Dos métodos de alineamiento
+distintos dan los mismos tres números, así que **la reconstrucción no depende del alineador**.
+
+### Los tres marcos con la secuencia de GITV01
+
+`[M]` Modo `corregido`, ViennaRNA 2.7.2, tabla `RNA_NN3`, punto por defecto.
+
+| Región | EPILAB m1 / m2 / m3 | GITV01 m1 / m2 / m3 | Desajustes en la región |
+|---|---|---|---:|
+| 922-1221 | 36 / 29 / 26 | **34 / 27 / 25** | 2 |
+| 2121-2420 | 35 / 27 / 22 | **27 / 19 / 19** | 3 |
+| 264-563 | 20 / 15 / 17 | **20 / 15 / 17** | 0 |
+
+`[M]` **El orden no se mueve en ninguno de los tres marcos, y el margen se abre.** Con la
+secuencia de GITV01, 922-1221 le gana a 2121-2420 por 7 ventanas en el marco 1, por 8 en el marco
+2 y por 6 en el marco 3, contra 1, 2 y 4 con la secuencia de EPILAB.
+
+### Y esto corrige una lectura nuestra
+
+`[M]` `M7` §4 escribió que «la eficiencia casi no se mueve al cambiar de referencia» y que «que la
+secuencia cambie en tres o siete bases y el conteo se mueva en una o tres ventanas es consistente
+con lo que ya sabíamos del criterio». **En el marco 3 eso es cierto; en los marcos de contexto
+no.** Las mismas tres bases que mueven el conteo de 2121-2420 en tres ventanas al plegar la
+molécula sola lo mueven en **ocho** al plegar el gen completo: de 27 a 19 en el marco 2, que es el
+30 % del conteo por el 1 % de la secuencia.
+
+`[H]` El mecanismo es coherente y vale decirlo: **el marco de contexto amplifica el efecto de un
+cambio de secuencia, porque el plegado es global.** Un desajuste puede cambiar la accesibilidad de
+ventanas que están lejos de él, y la molécula recortada acota ese alcance por construcción. La
+consecuencia práctica es incómoda y es la misma de toda esta línea: el marco no es una convención
+de contabilidad, decide cuánta sensibilidad tiene el número a cada cosa que se cambie.
+
+## 8. Lo que esta línea todavía no hace
+
+`[?]` El marco intermedio en las otras tres fuentes del eje de referencia, por los motivos de la
+tabla de arriba. Hace falta `blastn` en el PATH y las bases de `work/W5/db/`; con eso, el camino
+corto es agregarle el marco intermedio a `eje_referencia.py` de `M7`, que ya hace las cuatro.
 
 ## Archivos
 
@@ -174,8 +241,10 @@ parámetros; con las cuatro fuentes de `M7` §4 no está cruzado.
 | `scripts/tres_marcos.py` | los tres marcos de las seis regiones, con las anclas que abortan |
 | `scripts/marco2_en_la_grilla.py` | el marco intermedio en las 4.368 configuraciones, con las cuatro fracciones de M7 como ancla |
 | `scripts/terminos_por_region.py` | el comparador de M2 sobre las tres regiones que M7 no cubrió, con las anclas de la sección 2 |
+| `scripts/marco2_por_fuente.py` | la reconstrucción del gen desde GITV01 y los tres marcos sobre esa secuencia, con el ancla de M7 §4 |
 | `resultados/tres_marcos.tsv` | la tabla de la sección 2 |
 | `resultados/tres_marcos.json` | lo mismo, con las posiciones que ganan y pierden en cada región |
 | `resultados/marco2_en_la_grilla.json` | las seis fracciones de la sección 6, con empates y margen mediano |
 | `resultados/terminos_*_cambios.tsv` | una fila por ventana que cambia, con el término que cruzó y cuánto se movió cada término continuo |
 | `resultados/terminos_por_region.json` | los seis pares de la sección 5 y el recuento por término |
+| `resultados/marco2_por_fuente.json` | los tres marcos con la secuencia de GITV01, los desajustes posición por posición y las tres fuentes no corridas con su motivo |

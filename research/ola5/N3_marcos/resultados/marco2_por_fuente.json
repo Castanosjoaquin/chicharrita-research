@@ -1,0 +1,109 @@
+{
+  "fuente": "GITV01000968.1",
+  "metodo": "PairwiseAligner local (el de C8), un bloque sin huecos",
+  "cobertura_del_gen": "2520/2520",
+  "desajustes_contra_epilab": 7,
+  "posiciones_con_desajuste": [
+    646,
+    1141,
+    1169,
+    1336,
+    2143,
+    2308,
+    2329
+  ],
+  "ancla_m7_marco3": {
+    "922-1221": 25,
+    "2121-2420": 19,
+    "264-563": 17
+  },
+  "configuracion": {
+    "modo": "corregido",
+    "backend": "vienna",
+    "tabla_nn": "NN3"
+  },
+  "regiones": {
+    "922-1221": {
+      "marco1": 34,
+      "marco2": 27,
+      "marco3": 25,
+      "epilab": [
+        36,
+        29,
+        26
+      ],
+      "desajustes_en_la_region": 2
+    },
+    "2121-2420": {
+      "marco1": 27,
+      "marco2": 19,
+      "marco3": 19,
+      "epilab": [
+        35,
+        27,
+        22
+      ],
+      "desajustes_en_la_region": 3
+    },
+    "264-563": {
+      "marco1": 20,
+      "marco2": 15,
+      "marco3": 17,
+      "epilab": [
+        20,
+        15,
+        17
+      ],
+      "desajustes_en_la_region": 0
+    }
+  },
+  "orden": {
+    "marco1": {
+      "valores": {
+        "922-1221": 34,
+        "2121-2420": 27,
+        "264-563": 20
+      },
+      "orden": [
+        "922-1221",
+        "2121-2420",
+        "264-563"
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    },
+    "marco2": {
+      "valores": {
+        "922-1221": 27,
+        "2121-2420": 19,
+        "264-563": 15
+      },
+      "orden": [
+        "922-1221",
+        "2121-2420",
+        "264-563"
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    },
+    "marco3": {
+      "valores": {
+        "922-1221": 25,
+        "2121-2420": 19,
+        "264-563": 17
+      },
+      "orden": [
+        "922-1221",
+        "2121-2420",
+        "264-563"
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    }
+  },
+  "fuentes_no_corridas": {
+    "GHCC01": "la base no esta en disco en esta maquina (work/W5/db/ no esta en el arbol)",
+    "GCWP01": "la base no esta en disco; ademas no cubre un solo nucleotido de 922-1221",
+    "genoma_GCA_975739785.1": "esta en work/offtarget_db/ pero son 984 MB y no hay blastn ni makeblastdb en esta maquina para ubicar el gen y sus exones"
+  }
+}
