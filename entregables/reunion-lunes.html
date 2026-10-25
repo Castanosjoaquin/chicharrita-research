@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reunión del lunes — lo que trae el equipo</title>
+<meta name="description" content="Carpeta de la reunión del lunes 26 de octubre de 2026: la función histórica de conteo reproducida, los tres marcos, las alertas de off-target, las referencias de BicC y la recomendación defendida.">
+<style>
+:root{
+  --bg:#ffffff; --fg:#17191c; --mut:#5b6470; --line:#dde1e6; --card:#f4f7f8; --card2:#eaeff1;
+  --verde:#17604a; --verde-b:#e7f1ec; --ocre:#a05a2c; --ocre-b:#f8efe6; --azul:#2a5fb0;
+  --azul-b:#e9eff8; --rojo:#b3332f; --rojo-b:#faebea; --viol:#5f4a9a; --viol-b:#eeebf6;
+  --amar:#8a6d0b; --amar-b:#faf3dd; --gris-b:#eef1f2;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#14171a; --fg:#e8eaec; --mut:#9aa4af; --line:#2c323a; --card:#1b1f24; --card2:#22272d;
+  --verde:#5fd0a2; --verde-b:#15271f; --ocre:#dba06a; --ocre-b:#2a2018; --azul:#7fa8ec;
+  --azul-b:#161e2b; --rojo:#f08b86; --rojo-b:#2a1817; --viol:#ad9ae0; --viol-b:#1e1a2a;
+  --amar:#d8b74a; --amar-b:#262012; --gris-b:#1f2429;
+}}
+:root[data-theme=dark]{
+  --bg:#14171a; --fg:#e8eaec; --mut:#9aa4af; --line:#2c323a; --card:#1b1f24; --card2:#22272d;
+  --verde:#5fd0a2; --verde-b:#15271f; --ocre:#dba06a; --ocre-b:#2a2018; --azul:#7fa8ec;
+  --azul-b:#161e2b; --rojo:#f08b86; --rojo-b:#2a1817; --viol:#ad9ae0; --viol-b:#1e1a2a;
+  --amar:#d8b74a; --amar-b:#262012; --gris-b:#1f2429;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:18px/1.62 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-text-size-adjust:100%}
+main{max-width:1060px;margin:0 auto;padding:0 20px 80px}
+h1{font-size:36px;line-height:1.15;margin:18px 0 8px;letter-spacing:-.015em}
+h2{font-size:26px;line-height:1.2;margin:52px 0 6px;letter-spacing:-.01em;
+  padding-top:14px;border-top:2px solid var(--line)}
+h3{font-size:20px;margin:30px 0 6px;line-height:1.25}
+p{margin:12px 0}
+a{color:var(--azul)}
+.kicker{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);
+  font-weight:600;margin:0}
+.lead{font-size:21px;color:var(--mut);margin:10px 0 22px;line-height:1.5}
+.sub{color:var(--mut);font-size:16px;margin:2px 0 18px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;
+  background:var(--card2);padding:1px 5px;border-radius:4px}
+.m{font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;padding:1px 5px;
+  border-radius:4px;border:1px solid currentColor;white-space:nowrap;vertical-align:1px}
+.m-e{color:var(--verde)}
+.m-r{color:var(--azul)}
+.m-m{color:var(--ocre)}
+.m-h{color:var(--viol)}
+.m-q{color:var(--mut)}
+header.top{padding:30px 0 0}
+nav.bar{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line);
+  padding:9px 0;margin-bottom:6px}
+nav.bar .wrap{max-width:1060px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:7px;
+  align-items:center}
+nav.bar a{font-size:13.5px;text-decoration:none;color:var(--mut);border:1px solid var(--line);
+  padding:3px 9px;border-radius:99px}
+nav.bar a:hover{color:var(--fg);border-color:var(--mut)}
+.box{background:var(--card);border-left:4px solid var(--azul);padding:14px 18px;
+  border-radius:0 8px 8px 0;margin:20px 0}
+.box .tag{display:block;font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--azul);font-weight:700;margin-bottom:3px}
+.box p{margin:7px 0}
+.why{border-left-color:var(--verde);background:var(--verde-b)}.why .tag{color:var(--verde)}
+.ps{border-left-color:var(--ocre);background:var(--ocre-b)}.ps .tag{color:var(--ocre)}
+.warn{border-left-color:var(--rojo);background:var(--rojo-b)}.warn .tag{color:var(--rojo)}
+.learn{border-left-color:var(--viol);background:var(--viol-b)}.learn .tag{color:var(--viol)}
+.quote{border-left:4px solid var(--line);background:transparent;padding:4px 0 4px 18px;
+  margin:18px 0;color:var(--fg);font-style:italic}
+.quote cite{display:block;font-style:normal;font-size:14px;color:var(--mut);margin-top:6px}
+figure{margin:26px 0;padding:0}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:14.5px;color:var(--mut);margin-top:8px;line-height:1.45}
+svg text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;fill:var(--fg)}
+svg .nb{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+svg .nb-v{fill:var(--verde-b);stroke:var(--verde);stroke-width:1.5}
+svg .nb-o{fill:var(--ocre-b);stroke:var(--ocre);stroke-width:1.5}
+svg .nb-a{fill:var(--azul-b);stroke:var(--azul);stroke-width:1.5}
+svg .nb-d{fill:none;stroke:var(--mut);stroke-width:1.5;stroke-dasharray:6 5}
+svg .ln{stroke:var(--mut);stroke-width:1.6;fill:none}
+svg .ln-v{stroke:var(--verde);stroke-width:2.4;fill:none}
+svg .ln-o{stroke:var(--ocre);stroke-width:2.4;fill:none}
+svg .t{font-size:15px}
+svg .ts{font-size:13px;fill:var(--mut)}
+svg .tt{font-size:16px;font-weight:700}
+svg .tk{font-size:12px;font-weight:700;letter-spacing:.06em;fill:var(--mut)}
+svg .num{font-size:14px;font-weight:700}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:15.5px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:14px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--line)}
+tbody tr:nth-child(even){background:var(--card)}
+td code{font-size:.85em}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.st{display:inline-block;font-size:13px;font-weight:700;padding:2px 9px;border-radius:99px;
+  white-space:nowrap}
+.st-ok{background:var(--verde-b);color:var(--verde);border:1px solid var(--verde)}
+.st-mid{background:var(--amar-b);color:var(--amar);border:1px solid var(--amar)}
+.st-no{background:var(--gris-b);color:var(--mut);border:1px solid var(--mut)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:22px 0}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:var(--card)}
+.kpi b{display:block;font-size:28px;line-height:1.1;letter-spacing:-.02em}
+.kpi span{display:block;font-size:14px;color:var(--mut);margin-top:4px;line-height:1.35}
+.leyenda{display:flex;flex-wrap:wrap;gap:14px;font-size:14.5px;color:var(--mut);margin:14px 0 0}
+.fin{color:var(--mut);font-size:15px;border-top:1px solid var(--line);margin-top:46px;
+  padding-top:16px}
+.path{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--mut)}
+ol.q{padding-left:24px}
+ol.q li{margin:9px 0}
+@media print{
+  nav.bar{display:none}
+  body{font-size:11pt;background:#fff;color:#000}
+  main{max-width:none;padding:0}
+  h1{font-size:23pt}h2{font-size:15pt;page-break-after:avoid}h3{font-size:12.5pt}
+  figure,table,.box,.kpi{page-break-inside:avoid}
+  h2,h3{break-after:avoid}
+  a{color:#000;text-decoration:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style></head>
+<body>
+
+<nav class="bar"><div class="wrap">
+<a href="#conteo">1 · El conteo</a>
+<a href="#ancho">2 · El ancho</a>
+<a href="#ejes">3 · Exposición y conservación</a>
+<a href="#alertas">4 · Alertas</a>
+<a href="#referencias">5 · Referencias de BicC</a>
+<a href="#marcos">6 · Marcos y junturas</a>
+<a href="#compara">7 · Qué compara el conteo</a>
+<a href="#recomendacion">8 · La recomendación</a>
+<a href="#abierto">9 · Lo que queda abierto</a>
+</div></nav>
+
+<main>
+<header class="top">
+<p class="kicker">Investigathon Y-Hat · track chicharrita del maíz · equipo UdeSA · lunes 26-10-2026</p>
+<h1>Lo que trae el equipo</h1>
+<p class="lead">Una sección por cada cosa que pedía la carta del 25 de octubre. El relato de cómo
+llegamos hasta acá está aparte, en <code>resumen_checkpoint2.html</code>; esto es sólo lo nuevo y
+lo que hay que decidir.</p>
+
+<div class="leyenda">
+<span><span class="m m-e">[E]</span> establecido en literatura revisada</span>
+<span><span class="m m-r">[R]</span> reportado por una o pocas fuentes</span>
+<span><span class="m m-m">[M]</span> medido por nosotros, reproducible desde el repo</span>
+<span><span class="m m-h">[H]</span> hipótesis nuestra</span>
+<span><span class="m m-q">[?]</span> incierto</span>
+</div>
+
+<div class="kpis">
+<div class="kpi"><b>4 de 4</b><span>conteos de la planilla reproducidos con la regla de la curva, sin usar ningún archivo de EpiLab <span class="m m-m">[M]</span></span></div>
+<div class="kpi"><b>5,7 a 17,4 %</b><span>de las ventanas eficientes que esconde la función histórica, según el gen: el sesgo no es constante <span class="m m-m">[M]</span></span></div>
+<div class="kpi"><b>26</b><span>ventanas eficientes de <code>BicC_Dm</code> 922-1221 en la molécula que se sintetizaría, y es la cifra que publicamos <span class="m m-m">[M]</span></span></div>
+<div class="kpi"><b>4 de 240</b><span>ventanas de juntura eficientes en las doce quimeras, y ninguna tiene blanco continuo <span class="m m-m">[M]</span></span></div>
+</div>
+</header>
+
+<h2 id="conteo">1 · El conteo: su explicación, verificada con insumos nuestros</h2>
+
+<p>La carta dice que la curva de eficiencia se construye asignando 20 posiciones de cobertura a
+cada ventana de 21 nt y que el contador identifica siRNAs nuevos a partir de los incrementos
+positivos de esa curva, de modo que cuando una ventana eficiente termina donde otra empieza los dos
+efectos se compensan y la segunda no se registra <span class="m m-r">[R]</span>.</p>
+
+<p>Implementamos esa regla y la aplicamos a las ventanas eficientes de nuestro propio port con la
+configuración que reconstruye las curvas —modo fiel, ViennaRNA 2.7.2, tabla <code>RNA_NN4</code>—.
+Los cuatro conteos de 138, 40, 218 y 35 pasan a <strong>114, 35, 199 y 33</strong>, que son los
+cuatro valores de la planilla, exactos <span class="m m-m">[M]</span>.</p>
+
+<figure>
+<svg viewBox="0 0 980 300" role="img" aria-label="Diagrama de la curva de cobertura: dos ventanas eficientes separadas por veinte posiciones producen un solo incremento positivo">
+  <text class="tt" x="12" y="24">Por qué el contador pierde una ventana</text>
+  <text class="tk" x="12" y="58">VENTANAS EFICIENTES, DE 21 NT</text>
+  <rect class="nb-v" x="140" y="70" width="152" height="20" rx="3"/>
+  <rect class="nb-o" x="300" y="70" width="152" height="20" rx="3"/>
+  <rect class="nb-v" x="620" y="70" width="152" height="20" rx="3"/>
+  <text class="ts" x="216" y="110" text-anchor="middle">arranca en p</text>
+  <text class="ts" x="376" y="110" text-anchor="middle">arranca en p + 20</text>
+  <text class="ts" x="696" y="110" text-anchor="middle">aislada</text>
+  <text class="tk" x="12" y="146">CURVA DE COBERTURA</text>
+  <path class="ln-o" d="M 60 230 L 140 230 L 140 196 L 452 196 L 452 230 L 620 230 L 620 196 L 772 196 L 772 230 L 920 230"/>
+  <path class="nb-d" d="M 300 160 L 300 240"/>
+  <text class="t" x="140" y="180" text-anchor="middle">+1</text>
+  <text class="t" x="300" y="180" text-anchor="middle">0</text>
+  <text class="t" x="620" y="180" text-anchor="middle">+1</text>
+  <text class="ts" x="140" y="264" text-anchor="middle">se cuenta</text>
+  <text class="ts" x="300" y="264" text-anchor="middle">no se cuenta</text>
+  <text class="ts" x="620" y="264" text-anchor="middle">se cuenta</text>
+  <text class="ts" x="500" y="290">La segunda ventana existe, es eficiente, y no entra al número.</text>
+</svg>
+<figcaption>La curva no baja al terminar la primera ventana porque la segunda empieza justo ahí:
+el incremento es cero y el contador no la registra. Con ventanas que se desplazan de a un
+nucleótido, eso pasa exactamente cuando dos arranques eficientes están separados por veinte
+posiciones. Un bloque de ventanas contiguas, en cambio, no pierde nada.</figcaption>
+</figure>
+
+<div class="tw"><table>
+<thead><tr><th>Gen</th><th class="n">Ventanas</th><th class="n">Eficientes</th><th class="n">Tapadas</th><th class="n">a = 19</th><th class="n">a = 20</th><th class="n">a = 21</th><th class="n">Planilla</th><th class="n">Sesgo</th></tr></thead>
+<tbody>
+<tr><td><code>MP_MRFV</code></td><td class="n">1.243</td><td class="n">138</td><td class="n">24</td><td class="n">120</td><td class="n"><strong>114</strong></td><td class="n">115</td><td class="n">114</td><td class="n">17,4 %</td></tr>
+<tr><td><code>CP_MRFV</code></td><td class="n">508</td><td class="n">40</td><td class="n">5</td><td class="n">35</td><td class="n"><strong>35</strong></td><td class="n">36</td><td class="n">35</td><td class="n">12,5 %</td></tr>
+<tr><td><code>BicC_Dm</code></td><td class="n">2.500</td><td class="n">218</td><td class="n">19</td><td class="n">196</td><td class="n"><strong>199</strong></td><td class="n">197</td><td class="n">199</td><td class="n">8,7 %</td></tr>
+<tr><td><code>ATPaseD_Dm</code></td><td class="n">471</td><td class="n">35</td><td class="n">2</td><td class="n">35</td><td class="n"><strong>33</strong></td><td class="n">33</td><td class="n">33</td><td class="n">5,7 %</td></tr>
+</tbody></table></div>
+
+<p><strong>El ancho queda identificado.</strong> El 19 acierta un gen y falla tres; el 21 acierta
+otro y falla tres; sólo el 20 acierta los cuatro <span class="m m-m">[M]</span>. Son cuatro
+ecuaciones y un parámetro entero, así que no es una regla ajustada a un número.</p>
+
+<div class="box why"><span class="tag">Lo que esto agrega a su hallazgo</span>
+<p><strong>El sesgo no es constante.</strong> Va del 5,7 % al 17,4 % y no sigue el largo del gen ni
+la cantidad de eficientes: lo fija cuán agrupadas están las ventanas, porque cada par a distancia
+veinte cuesta una unidad. La consecuencia es que <strong>dos cifras de la planilla perdieron
+fracciones distintas y no son comparables entre sí</strong> <span class="m m-h">[H]</span>. Es un
+quinto límite para la pregunta de qué permite comparar el número de eficientes.</p></div>
+
+<div class="box ps"><span class="tag">La pregunta que esto abre</span>
+<p>Si las curvas históricas reconstruyen 138, 40, 218 y 35, el método
+<code>siFi21_8_1.0_0.1_1111</code> corre con la tabla de Zuber y un motor equivalente a las
+ligaduras de ViennaRNA, y no con el si-Fi21 original —que da 133, 32, 212 y 42—
+<span class="m m-h">[H]</span>. Si es así, nuestra línea base para comparar contra la planilla deja
+de ser la del programa original. ¿Lo confirmás?</p></div>
+
+<p class="sub">Y queda cerrado lo nuestro: la hipótesis del conteo por aciertos de Bowtie
+<strong>no era la causa</strong> de estos cuatro números. Se conserva como hallazgo sobre la
+herramienta original —el <code>200 contra 199</code> de <code>BicC_Dm</code> era coincidencia, y el
+mecanismo verdadero da 199 clavado— y el pedido de la clasificación por ventana que te habíamos
+hecho se cae: ya no lo necesitamos.</p>
+<p class="path">research/ola5/N1_regla_de_conteo/ · 17 verificaciones en verde</p>
+
+<h2 id="ancho">2 · El ancho de cobertura: son dos curvas distintas</h2>
+
+<p>Si la función histórica usa 20 y nuestro módulo de curvas usa 21, ¿cuál está mal? Ninguna. La
+pantalla del si-Fi21 original dejó tres marcas registradas en nuestras notas de agosto: en
+<code>ATPaseD_Dm</code> la meseta de altura 9 va de 150 a 156, la de altura 8 de 287 a 297, y la
+línea azul queda plana en 21 <span class="m m-r">[R]</span>. Con ancho 21 las tres coinciden; con
+ancho 20 las tres caen un nucleótido antes <span class="m m-m">[M]</span>.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Ancho de cobertura</th><th>Meseta de altura 9</th><th>Meseta de altura 8</th><th class="n">Línea azul</th><th>Veredicto</th></tr></thead>
+<tbody>
+<tr><td>la pantalla del original <span class="m m-r">[R]</span></td><td>150-156</td><td>287-297</td><td class="n">21</td><td>—</td></tr>
+<tr><td>20</td><td>150-155</td><td>287-296</td><td class="n">20</td><td><span class="st st-no">no coincide</span></td></tr>
+<tr><td><strong>21</strong></td><td><strong>150-156</strong></td><td><strong>287-297</strong></td><td class="n"><strong>21</strong></td><td><span class="st st-ok">coincide</span></td></tr>
+</tbody></table></div>
+
+<p>Así que el «20 posiciones por ventana de 21 nt» describe la curva que ustedes guardan en la
+base, no el gráfico del si-Fi21. Las dos cosas son verdad a la vez, y distinguirlas evita que la
+revisión interna busque el problema en el gráfico <span class="m m-h">[H]</span>.</p>
+
+<div class="box warn"><span class="tag">Un defecto nuestro, que corregimos</span>
+<p>Nuestra verificación de la curva fijaba tramos, máximo y altura en cuatro posiciones: las
+cuatro aserciones pasan con 20 <em>y</em> con 21, porque miden alturas dentro de un tramo y no sus
+bordes <span class="m m-m">[M]</span>. Cuando te escribimos que reproducimos la curva «tramo por
+tramo», la afirmación era cierta a esa granularidad y no fijaba el ancho. Ahora el test fija las
+dos mesetas exactas y la línea azul, y el parámetro tiene nombre propio en el código.</p></div>
+<p class="path">research/ola5/N2_ancho_de_cobertura/ · sifi_plus/test_api.py, de 87 a 93 verificaciones</p>
+
+<h2 id="ejes">3 · Exposición ecológica frente a conservación de secuencia</h2>
+
+<p>El peso único que teníamos mezclaba dos cosas distintas, y las separamos:
+<strong>exposición</strong> es la probabilidad de contacto real con la formulación en la Argentina,
+y <strong>conservación</strong> es cuán informativa es una referencia sobre si la región está
+conservada entre cicadélidos. El motor ya no puede combinarlas en un número.</p>
+
+<p>Lo que entregamos no es un ranking con los pesos que nos parecieron: es la medición que la
+decisión necesita. De las siete afirmaciones publicadas que se pudieron medir, <strong>seis se
+sostienen en todo el rango del reparto</strong> —entre el 96,0 % y el 100 % de 2.000 sorteos en
+cada uno de nueve puntos—, incluido el orden de los dos primeros <span class="m m-m">[M]</span>.</p>
+
+<div class="box warn"><span class="tag">La que no se sostiene, y cómo se cae</span>
+<p>En la cascada —la regla con la que se eligieron las regiones del entregable—
+<code>CP_MRFV</code> va antes que <code>ATPaseD_Dm</code> en el <strong>100 %</strong> de los
+sorteos mientras <em>Homalodisca vitripennis</em> conserve cualquier exposición, y en el
+<strong>0 %</strong> cuando su exposición es exactamente cero <span class="m m-m">[M]</span>. No
+hay transición: el veto es binario y el reparto sólo decide si esa referencia está adentro o
+afuera. Con exposición cero, además, <strong>tres de las seis regiones recomendadas se
+mudan</strong>, y una vuelve a ser <code>ATPaseD_Dm</code> 137-436, la región más conservada del
+gen, que habíamos descartado <em>porque estaba vetada</em> <span class="m m-m">[M]</span>.</p></div>
+
+<p><strong>Lo que necesitamos de ustedes es un número y es el único con palanca:</strong> qué
+exposición tiene un cicadélido norteamericano en un lote argentino. Mueve el resultado más que
+cualquier umbral termodinámico de los que barrimos.</p>
+<p class="path">research/ola4/M5_dos_ejes/</p>
+
+<h2 id="alertas">4 · Las alertas de off-target: del veto a la carga de la prueba</h2>
+
+<p>Aceptamos la corrección: las coincidencias de 21 nt no son todas equivalentes y no se
+convierten en un veto ecológico universal, sino en alertas fuertes que hay que considerar y
+justificar <span class="m m-r">[R]</span>. El cambio no es de severidad, es de carga de la prueba,
+y lo que entregamos es la tabla que hace exigible el argumento.</p>
+
+<p>Hay <strong>17 alertas</strong> sobre las doce regiones candidatas, y las cuatro vigentes de los
+genes de EpiLab <strong>no tienen ninguna de 21/21</strong> <span class="m m-m">[M]</span>. La
+tabla no cambia el estado de lo que hoy recomendamos: cambia el de lo que hoy está descartado.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Los cuatro campos</th><th>De dónde sale</th><th>Qué dio</th></tr></thead>
+<tbody>
+<tr><td>qué organismo</td><td>el panel de referencias, con especie y rol</td><td>las tres alertas de 21/21 son contra <em>H. vitripennis</em></td></tr>
+<tr><td>su posibilidad de exposición</td><td>los dos valores, el nuevo y el anterior, más una marca de decisión abierta</td><td>abierta sólo para <em>H. vitripennis</em>: es el pedido de la sección 3</td></tr>
+<tr><td>qué gen está involucrado</td><td>la identidad del transcripto impactado, que antes se calculaba y se tiraba</td><td><strong>20 transcriptos</strong> citados con su anotación <span class="m m-m">[M]</span></td></tr>
+<tr><td>qué evidencia biológica hay</td><td>clave de vocabulario cerrado más la prosa</td><td>3 <code>ortologo_del_blanco</code>, 12 <code>gen_no_relacionado</code>, 2 sin anotación</td></tr>
+</tbody></table></div>
+
+<p>Una fila sin los cuatro campos no es una fila con celdas vacías: es un error de validación y no
+llega al disco. Y las 17 llevan <code>sin_bioensayo_consultado</code>, porque esta línea no abrió
+ninguna fuente experimental sobre esos organismos: eso queda declarado y no disimulado dentro del
+párrafo.</p>
+
+<div class="box learn"><span class="tag">El dato que conviene mirar juntos</span>
+<p>Las tres únicas regiones con coincidencia perfecta de 21 nt son <code>BicC_Dm</code> 264-563,
+<code>ATPaseD_Dm</code> 151-450 y <code>ATPaseD_Dm</code> 137-436, las tres contra
+<em>H. vitripennis</em>, y en las tres el transcripto impactado es <strong>el ortólogo del gen que
+se quiere silenciar</strong> <span class="m m-m">[M]</span>. No es un off-target incidental en un
+gen cualquiera: es el mismo gen en un pariente, que es el escenario en el que un ARNdc silenciaría
+al no objetivo <span class="m m-h">[H]</span>.</p></div>
+<p class="path">research/ola4/M6_alertas/</p>
+
+<h2 id="referencias">5 · Las referencias nuevas de <code>BicC</code>, y una autocorrección</h2>
+
+<p>Alineamos el gen contra cuatro fuentes con blastn local —nada se subió a ningún servicio— y de
+cada alineamiento leímos cómo escribe el gen cada fuente, para recalcular la eficiencia y contar
+coincidencias. <strong>La eficiencia casi no se mueve al cambiar de referencia y el orden no se
+mueve nunca</strong> <span class="m m-m">[M]</span>.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Fuente</th><th>Cobertura de 922-1221</th><th>Idénticas en 922-1221</th><th>Idénticas en 2121-2420</th></tr></thead>
+<tbody>
+<tr><td>GHCC01 · Pergamino, Argentina</td><td>completa</td><td>36 de 36</td><td>35 de 35</td></tr>
+<tr><td>GITV01 · Ohio State</td><td>completa</td><td>32 de 36</td><td>33 de 35</td></tr>
+<tr><td>GCWP01 · Illinois</td><td><strong>nula</strong></td><td>sin datos (36)</td><td>22 de 35, con 13 contradichas</td></tr>
+<tr><td>genoma <code>GCA_975739785.1</code> · Reino Unido</td><td>completa</td><td>36 de 36</td><td>27 idénticas, 8 cruzan un empalme</td></tr>
+</tbody></table></div>
+
+<div class="box warn"><span class="tag">Lo traemos nosotros antes de que lo preguntes</span>
+<p>El argumento con el que movimos la región —«32 de 36 idénticas en los tres transcriptomas contra
+22 de 35»— <strong>no es sostenible tal como está escrito</strong>. <code>GCWP01</code> no cubre un
+solo nucleótido de 922-1221: alinea con el gen en dos tramos, 2044-2467 y 249-433, y nada más
+<span class="m m-m">[M]</span>. El «32 contra 22» sale de contar la ausencia de datos como ausencia
+de contradicción. La decisión no se cae —el transcriptoma argentino y el genoma del Reino Unido
+favorecen a 922-1221— pero su razón hay que reescribirla con la cobertura declarada por fuente
+<span class="m m-h">[H]</span>.</p></div>
+
+<p>Un dato que aparece sólo con el genoma: <strong>dentro de 922-1221 hay un empalme</strong>.
+Veinte de sus 300 ventanas no existen como tramo contiguo del genoma y <em>ninguna de esas veinte
+es eficiente</em>, así que para el diseño no cambia nada; para cualquier búsqueda de off-targets
+contra base genómica, sí <span class="m m-m">[M]</span>.</p>
+<p class="path">research/ola4/M7_robustez_bicc/ · research/ola5/N5_ficha_grilla/</p>
+
+<h3>La ficha que pediste</h3>
+<p>Las <strong>4.368 configuraciones</strong> son el producto de cinco ejes: 21 brechas de
+estabilidad de extremos (0,0 a 2,0, paso 0,1) × 26 cortes de accesibilidad (0,05 a 0,30, paso
+0,01) × 2 modos del port × 2 tablas de apilamiento (<code>RNA_NN3</code> del original y
+<code>RNA_NN4</code> de <code>sifi21INTA</code>) × 2 motores de plegado (RNAplfold 2.1.5 y
+ViennaRNA 2.7.2). Cada una se mide en dos marcos, de donde salen 13.104 filas. Queda fijo: tamaño
+21 nt, ventana de accesibilidad <code>u = 8</code>, 22 °C y las cuatro casillas tildadas, o sea tu
+cadena <code>siFi21_8_1.0_0.1_1111</code> con los dos umbrales barridos.</p>
+<p><strong>C7 es <code>BicC_Dm</code> 2121-2420</strong>, la región que ganaba por densidad en
+nuestra línea C7 y que la decisión por conservación desplazó. En la grilla entra como rival, no
+como candidata.</p>
+
+<h2 id="marcos">6 · Los tres marcos, y las ventanas de juntura</h2>
+
+<p>El tercer marco que propusiste ya lo teníamos medido para 922-1221: <strong>es 29</strong>.</p>
+
+<figure>
+<svg viewBox="0 0 980 250" role="img" aria-label="Los tres marcos de conteo de una región de 300 nucleótidos dentro de un gen">
+  <text class="tt" x="12" y="24">Los tres marcos de una región de 300 nt</text>
+  <rect class="nb" x="40" y="48" width="900" height="24" rx="3"/>
+  <rect class="nb-v" x="380" y="48" width="180" height="24" rx="3"/>
+  <text class="ts" x="40" y="92">gen completo, 2.520 nt</text>
+  <text class="ts" x="470" y="92" text-anchor="middle">922-1221</text>
+  <path class="ln-v" d="M 380 134 L 560 134"/>
+  <text class="t" x="590" y="140">300 arranques, plegado en el gen</text>
+  <text class="num" x="930" y="140" text-anchor="end">36</text>
+  <path class="ln-o" d="M 380 174 L 548 174"/>
+  <text class="t" x="590" y="180">280 arranques, plegado en el gen</text>
+  <text class="num" x="930" y="180" text-anchor="end">29</text>
+  <path class="ln" d="M 380 214 L 548 214"/>
+  <text class="t" x="590" y="220">280 arranques, molécula sola</text>
+  <text class="num" x="930" y="220" text-anchor="end">26</text>
+</svg>
+<figcaption>De 36 a 29 son siete arranques que el gen tiene y la molécula no: límite físico, y el
+modelo de eficiencia no opina porque la ventana no existe. De 29 a 26 son tres ventanas que existen
+en los dos lados y cambian de veredicto porque el plegado cambia: contexto de accesibilidad. Del
+modelo de eficiencia no sale ninguna de las diez.</figcaption>
+</figure>
+
+<div class="tw"><table>
+<thead><tr><th>Región</th><th class="n">Contexto, todos</th><th class="n">Contexto, comparables</th><th class="n">Molécula</th><th class="n">Límite físico</th><th class="n">Contexto, neto</th></tr></thead>
+<tbody>
+<tr><td><code>MP_MRFV</code> 72-271</td><td class="n">38</td><td class="n">31</td><td class="n">27</td><td class="n">7</td><td class="n">4</td></tr>
+<tr><td><code>CP_MRFV</code> 99-298</td><td class="n">21</td><td class="n">20</td><td class="n">23</td><td class="n">1</td><td class="n">−3</td></tr>
+<tr><td><code>BicC_Dm</code> 922-1221</td><td class="n">36</td><td class="n">29</td><td class="n"><strong>26</strong></td><td class="n">7</td><td class="n">3</td></tr>
+<tr><td><code>ATPaseD_Dm</code> 72-371</td><td class="n">21</td><td class="n">17</td><td class="n">20</td><td class="n">4</td><td class="n">−3</td></tr>
+<tr><td><code>BicC_Dm</code> 2121-2420</td><td class="n">35</td><td class="n">27</td><td class="n">22</td><td class="n">8</td><td class="n">5</td></tr>
+<tr><td><code>BicC_Dm</code> 264-563</td><td class="n">20</td><td class="n">15</td><td class="n">17</td><td class="n">5</td><td class="n">−2</td></tr>
+</tbody></table></div>
+
+<p><strong>El recorte no baja los conteos: los mueve en direcciones distintas.</strong> Baja en
+tres regiones y sube en las otras tres <span class="m m-m">[M]</span>, así que un ranking armado en
+contexto no es el ranking de las moléculas que se sintetizarían. Y 922-1221 es la única de las seis
+que no gana ninguna ventana al recortarse: pierde tres y gana cero, que es el único sentido en el
+que su ventaja no depende del marco <span class="m m-h">[H]</span>.</p>
+
+<p class="sub">La regla operativa que sacamos de esto, y que vamos a aplicar a todo lo que
+publiquemos: <strong>cada conteo viaja con su marco</strong>, igual que viaja con su
+configuración.</p>
+
+<h3>Las quimeras: tenías razón en pedir que se evalúen por separado</h3>
+
+<p>La contabilidad primero, porque conviene escribirla una vez: con fragmentos de largo
+<em>L</em>, la molécula ensamblada tiene <em>ΣL</em> − 20 ventanas, repartidas en los
+<em>L</em> − 20 arranques de cada fragmento —los mismos que existen en su gen— más veinte por cada
+unión. O sea que <strong>una quimera no agrega ventanas: canjea los veinte arranques de la cola de
+cada fragmento por veinte de juntura</strong> <span class="m m-m">[M]</span>.</p>
+
+<div class="tw"><table>
+<thead><tr><th>De las 240 ventanas de juntura de las doce quimeras</th><th class="n">Cuántas</th></tr></thead>
+<tbody>
+<tr><td>eficientes (coincide con lo que ya habíamos medido por otro camino)</td><td class="n">4</td></tr>
+<tr><td>con blanco continuo de 21 nt en alguno de los cuatro genes</td><td class="n">8</td></tr>
+<tr><td><strong>eficientes y sin blanco continuo</strong></td><td class="n"><strong>4</strong></td></tr>
+</tbody></table></div>
+
+<p>Las cuatro eficientes no tienen blanco: es capacidad de silenciamiento gastada, y el conteo de
+eficientes de una quimera la cuenta como si valiera <span class="m m-h">[H]</span>. Y las ocho que
+sí tienen blanco son todas de los extremos de la unión —prestan uno, dos o tres nucleótidos al
+otro fragmento y los prestados coinciden por azar con el flanco que ese fragmento tenía en su
+gen—, ninguna es eficiente <span class="m m-m">[M]</span>. Lo que vale es la consecuencia
+metodológica: «cruza la juntura» y «no tiene blanco» no son sinónimos, y hay que medirlo.</p>
+<p class="path">research/ola5/N3_marcos/ · research/ola5/N4_quimeras/</p>
+
+<h2 id="compara">7 · Hasta dónde compara el número de eficientes</h2>
+
+<p>Compara <strong>regiones dentro de un mismo gen, con una sola configuración, una sola
+referencia, una sola unidad y un solo marco</strong>. No compara genes entre sí, y lo tenemos
+medido cinco veces.</p>
+
+<div class="tw"><table>
+<thead><tr><th class="n">#</th><th>El límite</th><th>Medido</th></tr></thead>
+<tbody>
+<tr><td class="n">1</td><td>el largo del gen</td><td>normalizando por ventanas, <code>BicC_Dm</code> pasa de primero por conteo a tercero por densidad, en las cuatro configuraciones medidas <span class="m m-m">[M]</span></td></tr>
+<tr><td class="n">2</td><td>la referencia y la unidad</td><td>el mismo gen, la misma configuración y la misma regla dan 0, 191, 200 o 212 según contra qué base se cuente; y sumar las filas o tomar la mayor da 779 o 32 <span class="m m-m">[M]</span></td></tr>
+<tr><td class="n">3</td><td>la versión del motor, la tabla y el largo de ventana</td><td>cambiar RNAplfold 2.1.5 por ViennaRNA 2.7.2 mueve los cuatro conteos e intercambia el tercer y el cuarto puesto; la tabla mueve catorce ventanas; a 22 nt los cuatro se mueven con signo distinto <span class="m m-m">[M]</span></td></tr>
+<tr><td class="n">4</td><td>el marco de conteo</td><td>la sección 6: baja en tres regiones y sube en tres <span class="m m-m">[M]</span></td></tr>
+<tr><td class="n">5</td><td><strong>la función histórica de conteo</strong></td><td><strong>nuevo:</strong> esconde entre el 5,7 % y el 17,4 % según el gen <span class="m m-m">[M]</span></td></tr>
+</tbody></table></div>
+
+<p>Los cinco límites acotan el uso; no lo anulan. Dentro de un gen, con todo declarado, el conteo
+ordena regiones, y hay dos fuentes abiertas que sostienen que ese orden tiene algo que ver con la
+realidad: en <em>Mythimna separata</em> la posición del fragmento de 200 pb dentro del gen cambió
+la eficacia y correlacionó con el número de siRNA eficientes predichos
+<span class="m m-e">[E]</span>; y en <em>Apolygus lucorum</em>, un hemíptero, fragmentos de 132 a
+140 pb dieron entre 58,9 % y 70,0 % de mortalidad <em>y otros del mismo largo no dieron nada</em>
+<span class="m m-e">[E]</span>. Elegir región importa, y el número no alcanza para predecir
+cuánto.</p>
+
+<p><strong>Para comparar estrategias dirigidas a genes distintos hace falta el eje de fenotipo,
+que nuestro ranking ya separa, y la comparación que decide es otra:</strong> el tiempo hasta el
+efecto contra la ventana de latencia del patógeno, que hoy es de unos 20 días
+<span class="m m-r">[R]</span> contra ensayos que miden el desenlace a los 4 o 5 días
+<span class="m m-r">[R]</span>.</p>
+<p class="path">research/ola4/M8_que_compara_el_conteo/</p>
+
+<h2 id="recomendacion">8 · La recomendación, defendida</h2>
+
+<p>Sobre el eje del vector recomendamos <strong><code>BicC_Dm</code> 922-1221</strong>, una
+molécula de 300 nt con <strong>26</strong> ventanas eficientes en el marco de la molécula. La
+recomendamos <strong>para reducir la población del vector entre generaciones, no para cortar la
+transmisión de la temporada en curso</strong>, y eso es la parte biológica de la propuesta y no una
+salvedad: el fenotipo publicado del gen es de oviposición y ovario, no de mortalidad rápida
+<span class="m m-r">[R]</span>. Si una hembra ya adquirió el patógeno, este mecanismo no impide que
+lo transmita <span class="m m-h">[H]</span>.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Candidato</th><th>A favor</th><th>En contra</th></tr></thead>
+<tbody>
+<tr><td><code>BicC_Dm</code></td><td>fenotipo publicado en la especie; región con cero coincidencias perfectas de 21 nt en el panel de seis; mejor conservación entre las fuentes que cubren la región</td><td>el fenotipo es poblacional, no bloquea transmisión; el texto completo de la fuente no es abierto <span class="m m-q">[?]</span></td></tr>
+<tr><td>V-ATPasa (<code>ATPaseD_Dm</code>)</td><td>el único con mortalidad medida <strong>por ingesta</strong>, que es la vía de campo: ~18 % de supervivencia a 4 días contra ~37 % del control <span class="m m-r">[R]</span></td><td>7 ventanas con bloque de ≥ 19 nt contra humano frente a 2,4 esperadas por azar <span class="m m-h">[H]</span>; sus dos regiones más conservadas son dos de las tres con 21/21 contra <em>H. vitripennis</em></td></tr>
+<tr><td><code>eth</code>, <code>burs-alpha</code></td><td>el knockdown más fuerte: ~90 % y ~95 %, supervivencia al 10 % al día 4 <span class="m m-r">[R]</span></td><td>por microinyección en ninfas de 5.º estadio; y el bioensayo de dieta en parafilm no sirve para ninfas, porque la dieta ya las mata <span class="m m-r">[R]</span></td></tr>
+<tr><td>blancos virales</td><td>actúan sobre el patógeno y no sobre el vector</td><td>otro eje: las dos listas no se comparan por conteo</td></tr>
+</tbody></table></div>
+
+<p><strong>La defensa, entonces, es ésta:</strong> de los candidatos del vector,
+<code>BicC_Dm</code> es el que mejor aguanta los tres ejes a la vez, y el eje en el que gana —el de
+riesgo— es el único de los tres que no es una predicción. No es el que tiene más ventanas
+eficientes ni el que tiene la evidencia de fenotipo más fuerte <span class="m m-h">[H]</span>.</p>
+
+<h3>Las incertidumbres, cada una con su número</h3>
+<ol class="q">
+<li><strong>El valor predictivo del criterio no está establecido.</strong> Con los 29 siRNA de la
+única serie etiquetada que encontramos, la comparación entre los dos modelos de la regla terminal
+no podía salir distinta: un solo discordante, p exacto 1,00, y harían falta
+<strong>2.784</strong> <span class="m m-m">[M]</span>. La correlación entre filtro y eficacia da
+ρ = +0,142, IC 95 % [−0,247, +0,492], n = 29: no concluyente <span class="m m-m">[M]</span>. Y en
+este gen, 134 de las 223 eficientes del modo fiel —el 60,1 %— entran por la rama que saltea el
+veredicto termodinámico <span class="m m-m">[M]</span>.</li>
+<li><strong>El marco decide tanto como los umbrales.</strong> Contra C7, 922-1221 gana en el 36,4 %
+de las 4.368 configuraciones en contexto y en el 75,6 % en la molécula
+<span class="m m-m">[M]</span>. Contra la región original, en cambio, gana en el 99,1 % y el
+99,6 %, con margen mediano de 10 a 12 ventanas. <strong>Lo que sostenemos con firmeza es «no
+264-563»; «922-1221 antes que 2121-2420» es más débil y lo presentamos así.</strong></li>
+<li><strong>La exposición de los no objetivo tiene palanca y no está decidida</strong> (sección 3).</li>
+<li><strong>Las cifras históricas pasaron por una función que esconde una fracción despareja</strong>
+(sección 1).</li>
+</ol>
+
+<h3>Qué la haría caer</h3>
+<p>Tres resultados, y los tres son experimentos: un bioensayo de dieta con oviposición medida más
+allá de la ventana de latencia; el ensayo prospectivo de <strong>32 siRNA por brazo</strong> que
+diseñamos, que discrimina los dos modelos del criterio; y un conteo de la región en el marco y con
+la función de conteo que use la planilla, para saber si nuestro 26 y su cifra son el mismo
+número.</p>
+<p class="path">entregables/recomendacion-defendida.md</p>
+
+<h2 id="abierto">9 · Lo que queda abierto, y lo que pedimos</h2>
+
+<div class="tw"><table>
+<thead><tr><th>Qué</th><th>Estado</th></tr></thead>
+<tbody>
+<tr><td>La clasificación por ventana de su corrida</td><td><span class="st st-ok">ya no hace falta</span> el conteo quedó explicado por otra vía</td></tr>
+<tr><td>Los FASTA exactos de los índices de Bowtie</td><td><span class="st st-mid">abierto</span> tenemos los nombres de las referencias, no la equivalencia confirmada</td></tr>
+<tr><td>Con qué tabla de apilamiento corre el método histórico</td><td><span class="st st-mid">abierto</span> pregunta nueva de la sección 1</td></tr>
+<tr><td>Si el contador histórico produjo también las cifras de las doce regiones</td><td><span class="st st-mid">abierto</span> si fue el mismo, esas comparaciones arrastran el sesgo desparejo</td></tr>
+<tr><td>El tercer marco cruzado con las 4.368 configuraciones</td><td><span class="st st-no">no corrido</span> está medido sólo en el punto por defecto</td></tr>
+<tr><td>La regla terminal: fiel contra filtro adicional</td><td><span class="st st-mid">las dos como hipótesis</span> coincidimos: no hay evidencia abierta que alcance para elegir</td></tr>
+</tbody></table></div>
+
+<h3>Las cuatro cosas que pedimos, y ninguna es un archivo con secuencias</h3>
+<ol class="q">
+<li><strong>Qué objetivo manda:</strong> cortar transmisión en la temporada o reducir la población
+entre generaciones. Decide el eje y, con él, el blanco.</li>
+<li><strong>El dato de latencia del MRFV</strong>, que hoy tenemos sólo para
+<em>Spiroplasma kunkelii</em> y de una fuente que no es la del patógeno que nos importa
+<span class="m m-q">[?]</span>.</li>
+<li><strong>La exposición que le asignan a <em>Homalodisca vitripennis</em></strong>, que es el
+único peso con palanca en todo el ranking.</li>
+<li><strong>El marco y la función de conteo de la planilla</strong>, para saber si nuestras cifras
+y las suyas son el mismo número.</li>
+</ol>
+
+<div class="box why"><span class="tag">Lo que ofrecemos</span>
+<p>La función de conteo y sus 17 verificaciones, para la revisión interna que anunciaste: no
+necesita ningún dato de EpiLab ni ningún archivo intermedio de sus diseños. Y el port de línea de
+comandos, acotado al código y sus pruebas, sin ninguna salida derivada de las secuencias del
+laboratorio.</p></div>
+
+<p class="fin">Equipo UdeSA · Joaquín, Lorenzo, Luca y Santino · Investigathon Y-Hat, track
+chicharrita del maíz. Cada número de esta página es reproducible desde el repositorio con el
+script y la entrada indicados en la línea correspondiente. Ninguna secuencia del laboratorio salió
+de nuestras máquinas: el motor de plegado, el alineador y el tamizaje de off-targets corren
+localmente.</p>
+</main>
+</body></html>
