@@ -190,6 +190,28 @@ def test_curva_del_rnai_design_plot():
     igual(altura_en(287), 8, "el tramo que contiene la posicion 287 mide 8")
     igual(altura_en(297), 8, "el tramo que contiene la posicion 297 mide 8")
 
+    # Las cuatro aserciones de arriba pasan con ancho de cobertura 20 y con 21: miden
+    # alturas adentro de un tramo y no sus bordes, asi que no fijan la convencion. Lo que
+    # la fija son las dos mesetas exactas y la linea azul, que con 20 caen un nucleotido
+    # antes (research/ola5/N2_ancho_de_cobertura/). Sin esto, el dia que alguien cambie el
+    # ancho el test sigue en verde y la curva deja de ser la del investigador.
+    def meseta(altura):
+        tramo, ini = [], None
+        for i, v in enumerate(s, start=1):
+            if v == altura and ini is None:
+                ini = i
+            elif v != altura and ini is not None:
+                tramo.append((ini, i - 1))
+                ini = None
+        if ini is not None:
+            tramo.append((ini, len(s)))
+        return tramo
+
+    igual(meseta(9), [(150, 156)], "la meseta de altura 9 va de 150 a 156")
+    igual([t for t in meseta(8) if t[0] == 287], [(287, 297)],
+          "la meseta de altura 8 va de 287 a 297")
+    igual(max(c["todos"]), 21, "la linea azul queda plana en 21")
+
 
 # --------------------------------------------------------------- el contrato
 
@@ -242,14 +264,14 @@ def test_densidad_contra_informe_html():
 
 def test_solapamiento_de_una_ventana():
     """Una sola ventana eficiente cubre exactamente `size` posiciones."""
-    s = perfil.solapamiento([10], largo=100, size=21)
+    s = perfil.solapamiento([10], largo=100, ancho_cobertura=21)
     igual(sum(1 for v in s if v == 1), 21, "una ventana cubre 21 posiciones")
     igual(s[9], 1, "cubre su propia posicion de arranque")
     igual(s[8], 0, "no cubre la anterior")
     igual(s[29], 1, "cubre hasta 21 nt despues")
     igual(s[30], 0, "y no mas")
     # Contra el borde se recorta y no se sale del array.
-    igual(len(perfil.solapamiento([95], largo=100, size=21)), 100,
+    igual(len(perfil.solapamiento([95], largo=100, ancho_cobertura=21)), 100,
           "una ventana contra el borde no desborda")
 
 

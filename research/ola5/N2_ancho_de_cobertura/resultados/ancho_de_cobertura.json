@@ -1,0 +1,162 @@
+{
+  "gen": "ATPaseD_Dm",
+  "backend": "exe",
+  "ruta_exe": "C:\\Users\\MODDE\\AppData\\Local\\siFi2015\\RNAplfold\\RNAplfold.exe",
+  "tabla_nn": "NN3",
+  "modo": "fiel",
+  "largo": 491,
+  "eficientes": 42,
+  "referencia": {
+    "tramos": 8,
+    "maximo": 9,
+    "alturas": {
+      "150": 9,
+      "156": 9,
+      "287": 8,
+      "297": 8
+    },
+    "meseta_9": [
+      150,
+      156
+    ],
+    "meseta_8": [
+      287,
+      297
+    ],
+    "azul_plana_en": 21
+  },
+  "por_ancho": {
+    "20": {
+      "tramos": 8,
+      "maximo": 9,
+      "alturas": {
+        "150": 9,
+        "156": 9,
+        "287": 8,
+        "297": 8
+      },
+      "bordes": [
+        [
+          1,
+          25,
+          5
+        ],
+        [
+          136,
+          169,
+          9
+        ],
+        [
+          210,
+          254,
+          3
+        ],
+        [
+          277,
+          322,
+          8
+        ],
+        [
+          363,
+          389,
+          2
+        ],
+        [
+          392,
+          418,
+          4
+        ],
+        [
+          434,
+          456,
+          4
+        ],
+        [
+          466,
+          490,
+          3
+        ]
+      ],
+      "meseta_9": [
+        150,
+        155
+      ],
+      "meseta_8_en_287": [
+        287,
+        296
+      ],
+      "azul_plana_en": 20,
+      "pasa_el_test_actual": true,
+      "coincide_con_la_pantalla": false
+    },
+    "21": {
+      "tramos": 8,
+      "maximo": 9,
+      "alturas": {
+        "150": 9,
+        "156": 9,
+        "287": 8,
+        "297": 8
+      },
+      "bordes": [
+        [
+          1,
+          26,
+          5
+        ],
+        [
+          136,
+          170,
+          9
+        ],
+        [
+          210,
+          255,
+          3
+        ],
+        [
+          277,
+          323,
+          8
+        ],
+        [
+          363,
+          390,
+          2
+        ],
+        [
+          392,
+          419,
+          4
+        ],
+        [
+          434,
+          457,
+          4
+        ],
+        [
+          466,
+          491,
+          3
+        ]
+      ],
+      "meseta_9": [
+        150,
+        156
+      ],
+      "meseta_8_en_287": [
+        287,
+        297
+      ],
+      "azul_plana_en": 21,
+      "pasa_el_test_actual": true,
+      "coincide_con_la_pantalla": true
+    }
+  },
+  "el_test_discrimina": false,
+  "anchos_que_pasan": [
+    "20",
+    "21"
+  ],
+  "ancho_de_la_pantalla": "21"
+}

@@ -19,6 +19,23 @@ Las tres curvas, que son tres preguntas distintas y conviene no confundir:
                  `ATPaseD_Dm`; ver `research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md`
                  lineas 85-89).
 
+**Cuidado con el ancho de cobertura, que no es el mismo en todas las curvas de este
+problema.** Hay dos objetos distintos y se parecen lo suficiente para confundirlos:
+
+  - la curva roja del si-Fi21 original asigna **21** posiciones a cada ventana de 21 nt. Es
+    la que calcula `solapamiento` y la que esta verificada: con 21 la meseta de altura 9
+    cae en 150-156, la de 8 en 287-297 y la linea azul queda plana en 21, que son las tres
+    marcas que se leyeron de la pantalla; con 20 las tres caen un nucleotido antes `[M]`
+    (`research/ola5/N2_ancho_de_cobertura/`);
+  - la curva historica que EPILAB guarda en su base asigna **20** `[R]`, y su contador
+    identifica siRNAs por los incrementos positivos de esa curva, lo que esconde una
+    ventana eficiente cada vez que otra termina donde esa empieza. Con 20 —y solo con 20—
+    se reproducen los cuatro conteos de la planilla `[M]`
+    (`research/ola5/N1_regla_de_conteo/`).
+
+O sea que el 20 no corrige a este modulo: pertenece a otra curva. Por eso el ancho es un
+parametro con nombre propio y no se deriva del tamano del siRNA adentro de la funcion.
+
   todos          cuantos siRNA cualesquiera se superponen a cada posicion. Es la linea azul
                  del original, plana en el tamano de la ventana salvo en los dos bordes.
 
@@ -35,16 +52,22 @@ array por array: si alguien cambia una, el test falla.
 from __future__ import annotations
 
 
-def solapamiento(posiciones_eficientes, largo: int, size: int) -> list[int]:
+def solapamiento(posiciones_eficientes, largo: int, ancho_cobertura: int) -> list[int]:
     """Curva roja del original: cuantos siRNA eficientes cubren cada posicion.
 
-    Un siRNA que empieza en `p` (1-based) cubre `p .. p+size-1`. Se acumula por diferencias
-    y se integra, para no pagar size operaciones por ventana.
+    Una ventana que empieza en `p` (1-based) cubre `p .. p + ancho_cobertura - 1`. Se
+    acumula por diferencias y se integra, para no pagar `ancho_cobertura` operaciones por
+    ventana.
+
+    `ancho_cobertura` **no** es el tamano del siRNA aunque para esta curva valgan lo mismo:
+    para la curva del si-Fi21 original va 21, y la curva historica de EPILAB usa 20 (ver el
+    encabezado del modulo). Quien llama elige, y `contrato` pasa `size` porque esta es la
+    curva de paridad.
     """
     delta = [0] * (largo + 2)
     for p in posiciones_eficientes:
         ini = max(1, p)
-        fin = min(largo, p + size - 1)
+        fin = min(largo, p + ancho_cobertura - 1)
         if ini > fin:
             continue
         delta[ini] += 1
