@@ -1,0 +1,192 @@
+{
+ "motor": "ViennaRNA 2.7.2, tabla NN3, punto por defecto",
+ "fuente_del_comparador": "research/ola4/M2_ventana_a_ventana/scripts/comparar_ventanas.py",
+ "anclas_n3": {
+  "MP_MRFV": [
+   31,
+   27,
+   5,
+   1
+  ],
+  "CP_MRFV": [
+   20,
+   23,
+   3,
+   6
+  ],
+  "ATPaseD_Dm": [
+   17,
+   20,
+   1,
+   4
+  ]
+ },
+ "pares": {
+  "MP_MRFV 72-271/corregido": {
+   "etiquetas": [
+    "contexto",
+    "recorte"
+   ],
+   "offset_b": 72,
+   "ventanas_comparadas": 180,
+   "ventanas_solo_en_contexto": 1063,
+   "ventanas_solo_en_recorte": 0,
+   "eficientes_contexto": 31,
+   "eficientes_recorte": 27,
+   "confusion": {
+    "ambos_si": 26,
+    "ambos_no": 148,
+    "solo_contexto": 5,
+    "solo_recorte": 1
+   },
+   "cambian": 6,
+   "terminos": [
+    "target_site_accessibility",
+    "thermo_efficient"
+   ],
+   "pierden": 5,
+   "ganan": 1,
+   "cambios_en_las_dos_primeras_posiciones": 0
+  },
+  "CP_MRFV 99-298/corregido": {
+   "etiquetas": [
+    "contexto",
+    "recorte"
+   ],
+   "offset_b": 99,
+   "ventanas_comparadas": 180,
+   "ventanas_solo_en_contexto": 328,
+   "ventanas_solo_en_recorte": 0,
+   "eficientes_contexto": 20,
+   "eficientes_recorte": 23,
+   "confusion": {
+    "ambos_si": 17,
+    "ambos_no": 154,
+    "solo_contexto": 3,
+    "solo_recorte": 6
+   },
+   "cambian": 9,
+   "terminos": [
+    "target_site_accessibility",
+    "thermo_efficient"
+   ],
+   "pierden": 3,
+   "ganan": 6,
+   "cambios_en_las_dos_primeras_posiciones": 0
+  },
+  "ATPaseD_Dm 72-371/corregido": {
+   "etiquetas": [
+    "contexto",
+    "recorte"
+   ],
+   "offset_b": 72,
+   "ventanas_comparadas": 280,
+   "ventanas_solo_en_contexto": 191,
+   "ventanas_solo_en_recorte": 0,
+   "eficientes_contexto": 17,
+   "eficientes_recorte": 20,
+   "confusion": {
+    "ambos_si": 16,
+    "ambos_no": 259,
+    "solo_contexto": 1,
+    "solo_recorte": 4
+   },
+   "cambian": 5,
+   "terminos": [
+    "target_site_accessibility",
+    "thermo_efficient"
+   ],
+   "pierden": 1,
+   "ganan": 4,
+   "cambios_en_las_dos_primeras_posiciones": 0
+  },
+  "MP_MRFV 72-271/fiel": {
+   "etiquetas": [
+    "contexto",
+    "recorte"
+   ],
+   "offset_b": 72,
+   "ventanas_comparadas": 180,
+   "ventanas_solo_en_contexto": 1063,
+   "ventanas_solo_en_recorte": 0,
+   "eficientes_contexto": 33,
+   "eficientes_recorte": 29,
+   "confusion": {
+    "ambos_si": 28,
+    "ambos_no": 146,
+    "solo_contexto": 5,
+    "solo_recorte": 1
+   },
+   "cambian": 6,
+   "terminos": [
+    "target_site_accessibility",
+    "thermo_efficient"
+   ],
+   "pierden": 5,
+   "ganan": 1,
+   "cambios_en_las_dos_primeras_posiciones": 0
+  },
+  "CP_MRFV 99-298/fiel": {
+   "etiquetas": [
+    "contexto",
+    "recorte"
+   ],
+   "offset_b": 99,
+   "ventanas_comparadas": 180,
+   "ventanas_solo_en_contexto": 328,
+   "ventanas_solo_en_recorte": 0,
+   "eficientes_contexto": 24,
+   "eficientes_recorte": 27,
+   "confusion": {
+    "ambos_si": 20,
+    "ambos_no": 149,
+    "solo_contexto": 4,
+    "solo_recorte": 7
+   },
+   "cambian": 11,
+   "terminos": [
+    "target_site_accessibility",
+    "thermo_efficient"
+   ],
+   "pierden": 4,
+   "ganan": 7,
+   "cambios_en_las_dos_primeras_posiciones": 0
+  },
+  "ATPaseD_Dm 72-371/fiel": {
+   "etiquetas": [
+    "contexto",
+    "recorte"
+   ],
+   "offset_b": 72,
+   "ventanas_comparadas": 280,
+   "ventanas_solo_en_contexto": 191,
+   "ventanas_solo_en_recorte": 0,
+   "eficientes_contexto": 22,
+   "eficientes_recorte": 23,
+   "confusion": {
+    "ambos_si": 19,
+    "ambos_no": 254,
+    "solo_contexto": 3,
+    "solo_recorte": 4
+   },
+   "cambian": 7,
+   "terminos": [
+    "target_site_accessibility",
+    "thermo_efficient"
+   ],
+   "pierden": 3,
+   "ganan": 4,
+   "cambios_en_las_dos_primeras_posiciones": 0
+  }
+ },
+ "ventanas_por_termino": {
+  "corregido": {
+   "target_site_accessibility": 20,
+   "thermo_efficient": 20
+  },
+  "fiel": {
+   "target_site_accessibility": 24,
+   "thermo_efficient": 20
+  }
+ }
+}

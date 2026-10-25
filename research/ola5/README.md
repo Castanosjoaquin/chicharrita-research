@@ -13,7 +13,7 @@ defendida en [`entregables/recomendacion-defendida.md`](../../entregables/recome
 | --- | --- | --- |
 | [`N1_regla_de_conteo/`](N1_regla_de_conteo/REPORT.md) | La función histórica de conteo, implementada y **reproducida con insumos propios**: 138, 40, 218 y 35 pasan a **114, 35, 199 y 33**, los cuatro valores de la planilla, exactos. El ancho de cobertura queda identificado en 20, porque 19 y 21 no dan los cuatro. Y el sesgo **no es constante**: va del 5,7 % al 17,4 % según el gen. | completa; 17 verificaciones en verde |
 | [`N2_ancho_de_cobertura/`](N2_ancho_de_cobertura/REPORT.md) | Si nuestra curva estaba mal por usar 21. **No**: son dos curvas distintas. Con 21 se reproducen las tres marcas leídas de la pantalla del original —meseta de 9 en 150-156, de 8 en 287-297, línea azul plana en 21—; con 20 las tres caen un nucleótido antes. Lo que sí era un defecto es que el test no distinguía las dos convenciones. | completa; el test pasa de 87 a 93 verificaciones |
-| [`N3_marcos/`](N3_marcos/REPORT.md) | Los tres marcos de conteo con nombre, medidos en las seis regiones vigentes y rivales, y la partición que pedía el punto 5: para 922-1221, de 36 a 29 son siete ventanas de **límite físico** y de 29 a 26 son tres de **contexto de accesibilidad**; del modelo de eficiencia no sale ninguna. El recorte **sube** el conteo en tres regiones y lo baja en tres. | completa; reproduce las seis anclas publicadas |
+| [`N3_marcos/`](N3_marcos/REPORT.md) | Los tres marcos de conteo con nombre, medidos en las seis regiones vigentes y rivales, y la partición que pedía el punto 5: para 922-1221, de 36 a 29 son siete ventanas de **límite físico** y de 29 a 26 son tres de **contexto de accesibilidad**; del modelo de eficiencia no sale ninguna. El recorte **sube** el conteo en tres regiones y lo baja en tres. Cruzado con la grilla, el marco intermedio deja la comparación contra C7 en **41,1 %** con margen mediano cero. Y las veinte ventanas que cambian de marco en las tres regiones nuevas cruzan **todas** por accesibilidad, ninguna en las dos primeras posiciones. | completa; reproduce las seis anclas publicadas, las cuatro fracciones de M7 y las tres anclas del comparador |
 | [`N4_quimeras/`](N4_quimeras/REPORT.md) | Las dos preguntas de las junturas, separadas como pidió. De las 240 ventanas de juntura de las doce quimeras, **4 son eficientes y ninguna de esas 4 tiene blanco continuo**; 8 sí tienen blanco y son todas de los extremos de la unión, ninguna eficiente. Una quimera **canjea** los veinte arranques de cola de cada fragmento por veinte de juntura. | completa; reproduce el ancla de C13 quimera por quimera |
 | [`N5_ficha_grilla/`](N5_ficha_grilla/REPORT.md) | La ficha de las 4.368 configuraciones —los cinco ejes con rango y paso, y lo que queda fijo— y la identidad de C7, que es `BicC_Dm` 2121-2420. Con la autocorrección de D25 encima. | completa; sin cómputo nuevo |
 | [`N9_paquete_port/`](N9_paquete_port/REPORT.md) | El paquete que se le puede mostrar: 36 archivos, cuatro con nucleótidos y los cuatro con fuente pública escrita, cero hallazgos sin exceptuar. | completa; falta decidir cómo se entrega |
@@ -43,12 +43,9 @@ defendida en [`entregables/recomendacion-defendida.md`](../../entregables/recome
 
 ## Lo que quedó sin hacer, y por qué
 
-- **El término que cruza el corte en las tres regiones nuevas de `N3`.** Están las posiciones que
-  cambian; el desglose por término está sólo para las tres regiones de `BicC_Dm`, en
-  `M7/resultados/recorte_*_cambios.tsv`. Es una corrida del comparador de `M2`, no una pregunta
-  abierta.
 - **El marco intermedio cruzado con el eje de referencia.** `N3` §6 lo cruzó con los parámetros;
-  con las cuatro fuentes de `M7` §4 no está cruzado `[?]`.
+  con las cuatro fuentes de `M7` §4 no está cruzado `[?]`. Es lo único de cómputo que queda de
+  esta ola.
 - **El apareamiento parcial de las ventanas de juntura.** Medimos la coincidencia exacta de 21 nt;
   si una complementariedad incompleta les da alguna actividad, esas ventanas no serían inútiles
   sino menos útiles, y no lo sabemos `[?]`.

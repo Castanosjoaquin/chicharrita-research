@@ -1,0 +1,7 @@
+pos	pos_recorte	contexto	recorte	terminos_que_cruzan	rama_terminal	dg_sense5_contexto	dg_sense5_recorte	dg_sense5_delta	dg_antisense5_contexto	dg_antisense5_recorte	dg_antisense5_delta	ddg_contexto	ddg_recorte	ddg_delta	accessibility_contexto	accessibility_recorte	accessibility_delta
+80	9	True	False	target_site_accessibility,thermo_efficient	3	-1.7692	-1.7692	0.0	-0.7132	-0.7132	0.0	1.0561	1.0561	0.0	0.130472	0.034856	-0.095616
+81	10	True	False	target_site_accessibility,thermo_efficient	2	-3.1365	-3.1365	0.0	-0.018	-0.018	0.0	3.1186	3.1186	0.0	0.126744	0.043499	-0.083245
+82	11	True	False	target_site_accessibility,thermo_efficient	2	-1.5881	-1.5881	0.0	1.3421	1.3421	0.0	2.9302	2.9302	0.0	0.129663	0.056482	-0.073181
+217	146	False	True	target_site_accessibility,thermo_efficient	2	-3.2876	-3.2876	0.0	1.6326	1.6326	0.0	4.9203	4.9203	0.0	0.073262	0.140778	0.067516
+240	169	True	False	target_site_accessibility,thermo_efficient	1	0.954	0.954	0.0	2.4084	2.4084	0.0	1.4545	1.4545	0.0	0.104669	0.055061	-0.049608
+241	170	True	False	target_site_accessibility,thermo_efficient	1	0.5218	0.5218	0.0	2.5943	2.5943	0.0	2.0725	2.0725	0.0	0.118138	0.06157	-0.056568

@@ -411,6 +411,14 @@ que su ventaja no depende del marco <span class="m m-h">[H]</span>.</p>
 publiquemos: <strong>cada conteo viaja con su marco</strong>, igual que viaja con su
 configuración.</p>
 
+<p>Y sabemos por qué cambian. Corrimos el comparador ventana a ventana sobre las tres regiones de
+los otros genes: de las veinte ventanas que cambian de veredicto, <strong>las veinte cruzan por
+accesibilidad</strong> —ninguna por selección de hebra, ninguna por estabilidad de extremos— y
+<strong>ninguna cae en las dos primeras posiciones del recorte</strong>, que es donde vive el
+artefacto de cálculo de extremos que habíamos encontrado <span class="m m-m">[M]</span>. O sea que
+el cambio de marco es borde de plegado y nada más: no es un artefacto de borde de nuestro
+código.</p>
+
 <h3>Y qué pasa con la comparación en cada marco</h3>
 
 <p>Cruzamos el marco intermedio con las 4.368 configuraciones, que era lo que faltaba: tu marco
@@ -580,7 +588,8 @@ número.</p>
 <tr><td>Con qué tabla de apilamiento corre el método histórico</td><td><span class="st st-mid">abierto</span> pregunta nueva de la sección 1</td></tr>
 <tr><td>Si el contador histórico produjo también las cifras de las doce regiones</td><td><span class="st st-mid">abierto</span> medimos qué pasa si fue el mismo: el sesgo por región va de 0 % a 22,2 % y el 36 contra 35 se vuelve empate. Nos falta saber si lo fue</td></tr>
 <tr><td>El tercer marco cruzado con las 4.368 configuraciones</td><td><span class="st st-ok">corrido</span> 41,1 % contra C7 y 99,9 % contra la región original</td></tr>
-<tr><td>El término que cruza el corte en las tres regiones que no son de <code>BicC</code></td><td><span class="st st-no">no corrido</span> están las posiciones que cambian, no el desglose por término</td></tr>
+<tr><td>El término que cruza el corte en las tres regiones que no son de <code>BicC</code></td><td><span class="st st-ok">corrido</span> las veinte ventanas que cambian cruzan por accesibilidad, ninguna por extremos ni por hebra, y ninguna cae en las dos primeras posiciones del recorte</td></tr>
+<tr><td>El marco intermedio cruzado con el eje de referencia</td><td><span class="st st-no">no corrido</span> está cruzado con los parámetros, no con las cuatro fuentes</td></tr>
 <tr><td>La regla terminal: fiel contra filtro adicional</td><td><span class="st st-mid">las dos como hipótesis</span> coincidimos: no hay evidencia abierta que alcance para elegir</td></tr>
 </tbody></table></div>
 

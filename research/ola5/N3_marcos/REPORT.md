@@ -98,15 +98,39 @@ en contexto, y el marco 2 es el que contesta la pregunta de accesibilidad en el 
 viaja con su marco**, igual que viaja con su configuración. Un conteo sin marco declarado no se
 puede comparar con otro, y las seis filas de arriba son la prueba.
 
-## 5. El término que cruza el corte, que esta línea no desagrega
+## 5. Qué término cruza el corte
 
-No reimplementa el comparador ventana a ventana. El detalle de **qué término cruzó el corte** en
-cada ventana que cambia —accesibilidad, estabilidad de extremos, selección de hebra— está medido
-para las tres regiones de `BicC_Dm` en `M7/resultados/recorte_*_cambios.tsv`, y de ahí sale que
-quince de las dieciséis ventanas que cambian en esas tres cruzan por accesibilidad y una por
-estabilidad de extremos en la posición 1 `[M]`. Para las tres regiones nuevas de esta tabla el
-término no está desagregado: están las posiciones que cambian, en
-`resultados/tres_marcos.json`.
+**Agregado el 2026-10-25**, con `scripts/terminos_por_region.py`. Para las tres regiones de
+`BicC_Dm` esto ya estaba medido en `M7`: quince de las dieciséis ventanas que cambian cruzan por
+accesibilidad y una por estabilidad de extremos en la posición 1 `[M]`. Faltaban las tres regiones
+vigentes de los otros genes, y se corrieron con el mismo comparador de `M2` —el que pidió el
+investigador en su carta del 22 de octubre— manejado igual que lo maneja `M7`, con `offset_b` en
+el inicio de la región. El script reproduce las tres anclas de la sección 2 y aborta si no.
+
+| Región | Modo | Contexto | Recorte | Cambian | Pierden | Ganan | En las dos primeras posiciones |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `MP_MRFV` 72-271 | corregido | 31 | 27 | 6 | 5 | 1 | **0** |
+| `CP_MRFV` 99-298 | corregido | 20 | 23 | 9 | 3 | 6 | **0** |
+| `ATPaseD_Dm` 72-371 | corregido | 17 | 20 | 5 | 1 | 4 | **0** |
+| `MP_MRFV` 72-271 | fiel | 33 | 29 | 6 | 5 | 1 | **0** |
+| `CP_MRFV` 99-298 | fiel | 24 | 27 | 11 | 4 | 7 | **0** |
+| `ATPaseD_Dm` 72-371 | fiel | 22 | 23 | 7 | 3 | 4 | **0** |
+
+`[M]` **Las veinte ventanas que cambian en el modo del ranking cruzan por accesibilidad, las
+veinte.** Ninguna cruza por selección de hebra y ninguna por estabilidad de extremos. Y **ninguna
+de las veinte cae en las dos primeras posiciones del recorte**, que es donde vive el artefacto de
+dG que encontró `M2` —el original calcula ahí los extremos sin nucleótidos colgantes porque el
+siRNA de dos posiciones antes no existe—. Así que en estas tres regiones ese artefacto no explica
+nada: **el cambio de marco es borde de plegado y nada más**.
+
+`[M]` En el modo `fiel` cambian veinticuatro, y hay cuatro que cruzan accesibilidad **sin** que se
+mueva el veredicto termodinámico: las cuatro son de **rama terminal 2**, el atajo que saltea el
+veredicto termodinámico y decide mirando sólo la accesibilidad. Son ventanas cuya estabilidad de
+extremos ya no pasaba de los dos lados, de modo que el término termodinámico era falso en ambos y
+el veredicto igual se dio vuelta. `[H]` Es la misma asimetría que midió `M3` —en `BicC_Dm`, 134 de
+las 223 eficientes del modo fiel entran por esa rama— apareciendo ahora en el cambio de marco: el
+atajo hace que el conteo del modo fiel sea **más** sensible al plegado que el del modo corregido,
+no menos.
 
 ## 6. El marco intermedio en las 4.368 configuraciones
 
@@ -140,12 +164,6 @@ decisiva para la que no.
 
 ## 7. Lo que esta línea todavía no hace
 
-`[?]` El término que cruza el corte en las tres regiones que no son de `BicC_Dm` —`MP_MRFV`
-72-271, `CP_MRFV` 99-298 y `ATPaseD_Dm` 72-371—. Están las posiciones que cambian de veredicto en
-`resultados/tres_marcos.json`; el desglose por término está sólo para las tres de `BicC_Dm`, en
-`M7/resultados/recorte_*_cambios.tsv`. Es una corrida del comparador de `M2` y no una pregunta
-abierta: se puede hacer cuando haga falta.
-
 `[?]` El marco intermedio cruzado con el eje de referencia. La sección 6 lo cruza con los
 parámetros; con las cuatro fuentes de `M7` §4 no está cruzado.
 
@@ -155,6 +173,9 @@ parámetros; con las cuatro fuentes de `M7` §4 no está cruzado.
 |---|---|
 | `scripts/tres_marcos.py` | los tres marcos de las seis regiones, con las anclas que abortan |
 | `scripts/marco2_en_la_grilla.py` | el marco intermedio en las 4.368 configuraciones, con las cuatro fracciones de M7 como ancla |
+| `scripts/terminos_por_region.py` | el comparador de M2 sobre las tres regiones que M7 no cubrió, con las anclas de la sección 2 |
 | `resultados/tres_marcos.tsv` | la tabla de la sección 2 |
 | `resultados/tres_marcos.json` | lo mismo, con las posiciones que ganan y pierden en cada región |
 | `resultados/marco2_en_la_grilla.json` | las seis fracciones de la sección 6, con empates y margen mediano |
+| `resultados/terminos_*_cambios.tsv` | una fila por ventana que cambia, con el término que cruzó y cuánto se movió cada término continuo |
+| `resultados/terminos_por_region.json` | los seis pares de la sección 5 y el recuento por término |
