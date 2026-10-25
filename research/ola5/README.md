@@ -1,6 +1,6 @@
 # Ola 5 — lo que sale de la carta del 25 de octubre
 
-Seis líneas con medición propia, `N1` a `N5` y `N9`, para contestar la respuesta del investigador
+Siete líneas con medición propia, `N1` a `N5`, `N9` y `N10`, para contestar la respuesta del investigador
 del **2026-10-25**, que resolvió la discrepancia de los cuatro conteos y abrió cuatro cosas nuevas.
 El plan que ordena las líneas, con la trazabilidad punto por punto de lo que pide la carta, es
 [`docs/plan_ola5/PLAN_OLA5.md`](../../docs/plan_ola5/PLAN_OLA5.md). La reunión era el lunes 26.
@@ -17,6 +17,7 @@ defendida en [`entregables/recomendacion-defendida.md`](../../entregables/recome
 | [`N4_quimeras/`](N4_quimeras/REPORT.md) | Las dos preguntas de las junturas, separadas como pidió. De las 240 ventanas de juntura de las doce quimeras, **4 son eficientes y ninguna de esas 4 tiene blanco continuo**; 8 sí tienen blanco y son todas de los extremos de la unión, ninguna eficiente. Una quimera **canjea** los veinte arranques de cola de cada fragmento por veinte de juntura. | completa; reproduce el ancla de C13 quimera por quimera |
 | [`N5_ficha_grilla/`](N5_ficha_grilla/REPORT.md) | La ficha de las 4.368 configuraciones —los cinco ejes con rango y paso, y lo que queda fijo— y la identidad de C7, que es `BicC_Dm` 2121-2420. Con la autocorrección de D25 encima. | completa; sin cómputo nuevo |
 | [`N9_paquete_port/`](N9_paquete_port/REPORT.md) | El paquete que se le puede mostrar: 36 archivos, cuatro con nucleótidos y los cuatro con fuente pública escrita, cero hallazgos sin exceptuar. | completa; falta decidir cómo se entrega |
+| [`N10_conteo_historico_por_region/`](N10_conteo_historico_por_region/REPORT.md) | La función histórica aplicada a **regiones** y no a genes. El sesgo por región va de **0 % a 22,2 %**, y en el marco de contexto el «36 contra 35» sobre la región de C7 **se vuelve un empate, 33 a 33**. Las dos formas de aplicar la regla a una región dan lo mismo en las seis. | completa; reproduce las anclas de N3 |
 
 ## Lo que hay que leer antes de usar estos números
 
@@ -32,16 +33,22 @@ defendida en [`entregables/recomendacion-defendida.md`](../../entregables/recome
   región se declara **sin datos**, no como cero.
 - **Dos cifras de la planilla no son comparables entre sí.** El sesgo de la función histórica de
   conteo depende de cuán agrupadas están las ventanas eficientes, no del largo ni de la calidad del
-  diseño. Es el quinto límite de `M8`.
+  diseño. Es el quinto límite de `M8`, y aplicado a regiones va de 0 % a 22,2 % (`N10`).
+- **El argumento de conteo contra `2121-2420` no existe.** Tres mediciones independientes apuntan
+  al mismo lado: el margen de una ventana no sobrevive a la grilla de parámetros (36,4 % en
+  contexto, 41,1 % en el marco intermedio), no sobrevive al cambio de marco, y no sobrevive al
+  contador histórico, que lo vuelve un empate. Lo que sostiene a 922-1221 frente a C7 es el perfil
+  de off-target y la conservación por fuente. Contra `264-563`, en cambio, la ventaja aguanta todo:
+  entre el 99,1 % y el 99,9 % en los tres marcos.
 
 ## Lo que quedó sin hacer, y por qué
 
-- **El marco intermedio cruzado con la grilla de 4.368 configuraciones.** Está medido sólo en el
-  punto por defecto. Si el investigador adopta ese marco como criterio, hace falta esa corrida
-  `[?]`.
 - **El término que cruza el corte en las tres regiones nuevas de `N3`.** Están las posiciones que
   cambian; el desglose por término está sólo para las tres regiones de `BicC_Dm`, en
-  `M7/resultados/recorte_*_cambios.tsv`.
+  `M7/resultados/recorte_*_cambios.tsv`. Es una corrida del comparador de `M2`, no una pregunta
+  abierta.
+- **El marco intermedio cruzado con el eje de referencia.** `N3` §6 lo cruzó con los parámetros;
+  con las cuatro fuentes de `M7` §4 no está cruzado `[?]`.
 - **El apareamiento parcial de las ventanas de juntura.** Medimos la coincidencia exacta de 21 nt;
   si una complementariedad incompleta les da alguna actividad, esas ventanas no serían inútiles
   sino menos útiles, y no lo sabemos `[?]`.

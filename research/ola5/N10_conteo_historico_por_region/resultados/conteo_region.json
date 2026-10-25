@@ -1,0 +1,298 @@
+{
+  "ancho": 20,
+  "configuracion": {
+    "modo": "corregido",
+    "backend": "vienna",
+    "tabla_nn": "NN3"
+  },
+  "filas": [
+    {
+      "gen": "MP_MRFV",
+      "inicio": 72,
+      "fin": 271,
+      "nota": "vigente",
+      "marcos": {
+        "contexto_todos": {
+          "directo": 38,
+          "historico_region": 31,
+          "tapadas_region": 7,
+          "historico_gen": 31,
+          "tapadas_gen": 7,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "contexto_comparables": {
+          "directo": 31,
+          "historico_region": 25,
+          "tapadas_region": 6,
+          "historico_gen": 25,
+          "tapadas_gen": 6,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "molecula": {
+          "directo": 27,
+          "historico_region": 21,
+          "tapadas_region": 6
+        }
+      }
+    },
+    {
+      "gen": "CP_MRFV",
+      "inicio": 99,
+      "fin": 298,
+      "nota": "vigente",
+      "marcos": {
+        "contexto_todos": {
+          "directo": 21,
+          "historico_region": 19,
+          "tapadas_region": 2,
+          "historico_gen": 19,
+          "tapadas_gen": 2,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "contexto_comparables": {
+          "directo": 20,
+          "historico_region": 18,
+          "tapadas_region": 2,
+          "historico_gen": 18,
+          "tapadas_gen": 2,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "molecula": {
+          "directo": 23,
+          "historico_region": 21,
+          "tapadas_region": 2
+        }
+      }
+    },
+    {
+      "gen": "BicC_Dm",
+      "inicio": 922,
+      "fin": 1221,
+      "nota": "vigente, D25",
+      "marcos": {
+        "contexto_todos": {
+          "directo": 36,
+          "historico_region": 33,
+          "tapadas_region": 3,
+          "historico_gen": 33,
+          "tapadas_gen": 3,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "contexto_comparables": {
+          "directo": 29,
+          "historico_region": 26,
+          "tapadas_region": 3,
+          "historico_gen": 26,
+          "tapadas_gen": 3,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "molecula": {
+          "directo": 26,
+          "historico_region": 23,
+          "tapadas_region": 3
+        }
+      }
+    },
+    {
+      "gen": "ATPaseD_Dm",
+      "inicio": 72,
+      "fin": 371,
+      "nota": "vigente",
+      "marcos": {
+        "contexto_todos": {
+          "directo": 21,
+          "historico_region": 21,
+          "tapadas_region": 0,
+          "historico_gen": 21,
+          "tapadas_gen": 0,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "contexto_comparables": {
+          "directo": 17,
+          "historico_region": 17,
+          "tapadas_region": 0,
+          "historico_gen": 17,
+          "tapadas_gen": 0,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "molecula": {
+          "directo": 20,
+          "historico_region": 20,
+          "tapadas_region": 0
+        }
+      }
+    },
+    {
+      "gen": "BicC_Dm",
+      "inicio": 2121,
+      "fin": 2420,
+      "nota": "rival, la de C7",
+      "marcos": {
+        "contexto_todos": {
+          "directo": 35,
+          "historico_region": 33,
+          "tapadas_region": 2,
+          "historico_gen": 33,
+          "tapadas_gen": 2,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "contexto_comparables": {
+          "directo": 27,
+          "historico_region": 25,
+          "tapadas_region": 2,
+          "historico_gen": 25,
+          "tapadas_gen": 2,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "molecula": {
+          "directo": 22,
+          "historico_region": 21,
+          "tapadas_region": 1
+        }
+      }
+    },
+    {
+      "gen": "BicC_Dm",
+      "inicio": 264,
+      "fin": 563,
+      "nota": "rival, la que eligio EPILAB",
+      "marcos": {
+        "contexto_todos": {
+          "directo": 20,
+          "historico_region": 19,
+          "tapadas_region": 1,
+          "historico_gen": 19,
+          "tapadas_gen": 1,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "contexto_comparables": {
+          "directo": 15,
+          "historico_region": 15,
+          "tapadas_region": 0,
+          "historico_gen": 15,
+          "tapadas_gen": 0,
+          "tapadas_por_un_vecino_de_afuera": 0
+        },
+        "molecula": {
+          "directo": 17,
+          "historico_region": 17,
+          "tapadas_region": 0
+        }
+      }
+    }
+  ],
+  "ordenes": {
+    "contexto_todos/directo": {
+      "valores": {
+        "922": 36,
+        "2121": 35,
+        "264": 20
+      },
+      "orden": [
+        922,
+        2121,
+        264
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    },
+    "contexto_todos/historico_region": {
+      "valores": {
+        "922": 33,
+        "2121": 33,
+        "264": 19
+      },
+      "orden": [
+        922,
+        2121,
+        264
+      ],
+      "gana_922_a_2121": false,
+      "empate_922_2121": true
+    },
+    "contexto_todos/historico_gen": {
+      "valores": {
+        "922": 33,
+        "2121": 33,
+        "264": 19
+      },
+      "orden": [
+        922,
+        2121,
+        264
+      ],
+      "gana_922_a_2121": false,
+      "empate_922_2121": true
+    },
+    "contexto_comparables/directo": {
+      "valores": {
+        "922": 29,
+        "2121": 27,
+        "264": 15
+      },
+      "orden": [
+        922,
+        2121,
+        264
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    },
+    "contexto_comparables/historico_region": {
+      "valores": {
+        "922": 26,
+        "2121": 25,
+        "264": 15
+      },
+      "orden": [
+        922,
+        2121,
+        264
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    },
+    "contexto_comparables/historico_gen": {
+      "valores": {
+        "922": 26,
+        "2121": 25,
+        "264": 15
+      },
+      "orden": [
+        922,
+        2121,
+        264
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    },
+    "molecula/directo": {
+      "valores": {
+        "922": 26,
+        "2121": 22,
+        "264": 17
+      },
+      "orden": [
+        922,
+        2121,
+        264
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    },
+    "molecula/historico_region": {
+      "valores": {
+        "922": 23,
+        "2121": 21,
+        "264": 17
+      },
+      "orden": [
+        922,
+        2121,
+        264
+      ],
+      "gana_922_a_2121": true,
+      "empate_922_2121": false
+    }
+  }
+}

@@ -98,7 +98,7 @@ en contexto, y el marco 2 es el que contesta la pregunta de accesibilidad en el 
 viaja con su marco**, igual que viaja con su configuración. Un conteo sin marco declarado no se
 puede comparar con otro, y las seis filas de arriba son la prueba.
 
-## 5. Lo que esta línea no hace
+## 5. El término que cruza el corte, que esta línea no desagrega
 
 No reimplementa el comparador ventana a ventana. El detalle de **qué término cruzó el corte** en
 cada ventana que cambia —accesibilidad, estabilidad de extremos, selección de hebra— está medido
@@ -108,14 +108,53 @@ estabilidad de extremos en la posición 1 `[M]`. Para las tres regiones nuevas d
 término no está desagregado: están las posiciones que cambian, en
 `resultados/tres_marcos.json`.
 
-`[?]` El marco 2 no está corrido sobre la grilla de 4.368 configuraciones. `M7` cruzó los marcos 1
-y 3 con la grilla; el marco 2 está medido sólo en el punto por defecto. Si el investigador quiere
-el tercer marco como criterio, hace falta esa corrida.
+## 6. El marco intermedio en las 4.368 configuraciones
+
+**Agregado el 2026-10-25**, con `scripts/marco2_en_la_grilla.py`. Era el hueco que esta línea dejó
+declarado: `M7` había cruzado la grilla con los marcos 1 y 3, y el intermedio estaba medido sólo en
+el punto por defecto. Como el investigador propone explorar ese marco, la pregunta es si la
+comparación aguanta ahí.
+
+`[M]` El script importa `primitivos` y `eficientes` de `M7/scripts/grilla_parametros.py` —las
+mismas rutinas verificadas contra `apply_rules` del port— y **reproduce las cuatro fracciones
+publicadas por M7**, que es su ancla, además de los nueve conteos del punto por defecto.
+
+| Marco | vs 2121-2420 | empates | margen mediano | vs 264-563 | margen mediano |
+|---|---:|---:|---:|---:|---:|
+| 1 · contexto, todos | 36,4 % | 291 | −1,5 | 99,1 % | +10,0 |
+| **2 · comparables** | **41,1 %** | **640** | **0,0** | **99,9 %** | **+10,0** |
+| 3 · molécula | 75,6 % | 315 | +3,0 | 99,6 % | +12,0 |
+
+`[M]` **El marco intermedio no rescata la comparación contra C7: la deja en una moneda al aire.**
+41,1 % de las 4.368 configuraciones, con 640 empates —el número más alto de los tres marcos— y un
+**margen mediano de exactamente cero**. Queda entre los otros dos, como era de esperar, y más cerca
+del de contexto que del de la molécula.
+
+`[M]` **Y es el marco donde la ventaja sobre la región del laboratorio es más fuerte de las tres:**
+99,9 %, con sólo 2 empates en 4.368 configuraciones.
+
+`[H]` La conclusión práctica para la reunión: **cualquiera de los tres marcos que se adopte, «no
+264-563» se sostiene entre el 99,1 % y el 99,9 %; «922-1221 antes que 2121-2420» no se sostiene en
+dos de los tres.** Eso vuelve la elección del marco irrelevante para la afirmación que defendemos y
+decisiva para la que no.
+
+## 7. Lo que esta línea todavía no hace
+
+`[?]` El término que cruza el corte en las tres regiones que no son de `BicC_Dm` —`MP_MRFV`
+72-271, `CP_MRFV` 99-298 y `ATPaseD_Dm` 72-371—. Están las posiciones que cambian de veredicto en
+`resultados/tres_marcos.json`; el desglose por término está sólo para las tres de `BicC_Dm`, en
+`M7/resultados/recorte_*_cambios.tsv`. Es una corrida del comparador de `M2` y no una pregunta
+abierta: se puede hacer cuando haga falta.
+
+`[?]` El marco intermedio cruzado con el eje de referencia. La sección 6 lo cruza con los
+parámetros; con las cuatro fuentes de `M7` §4 no está cruzado.
 
 ## Archivos
 
 | Archivo | Qué es |
 |---|---|
 | `scripts/tres_marcos.py` | los tres marcos de las seis regiones, con las anclas que abortan |
+| `scripts/marco2_en_la_grilla.py` | el marco intermedio en las 4.368 configuraciones, con las cuatro fracciones de M7 como ancla |
 | `resultados/tres_marcos.tsv` | la tabla de la sección 2 |
 | `resultados/tres_marcos.json` | lo mismo, con las posiciones que ganan y pierden en cada región |
+| `resultados/marco2_en_la_grilla.json` | las seis fracciones de la sección 6, con empates y margen mediano |

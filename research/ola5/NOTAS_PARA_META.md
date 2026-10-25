@@ -11,6 +11,7 @@ qué entró y dónde, para poder auditarlo.
 | **D62** | La discrepancia de los cuatro conteos es de la función de conteo, no de la termodinámica. Retira la hipótesis del conteo por aciertos de Bowtie como causa, sin retirarla como hallazgo. Deja abierto con qué tabla de apilamiento corre el método histórico. |
 | **D63** | Cada conteo se publica con su marco declarado, y hay tres marcos con nombre. La cifra de una región candidata es la de la molécula recortada. |
 | **D64** | La razón escrita de D25 se reemplaza por la cobertura declarada por fuente. La decisión de recomendar 922-1221 no se revierte. |
+| **D65** | El conteo de eficientes deja de ser argumento entre 922-1221 y 2121-2420: tres mediciones independientes lo vuelven un empate. Lo que sostiene la preferencia es el off-target y la conservación por fuente. Contra 264-563 nada de esto aplica. |
 
 ## `CAMINOS_PROBADOS.md`
 
@@ -53,3 +54,5 @@ ella va `[R]`, y lo que reprodujimos nosotros va `[M]` con el script que lo repr
 | `entregables/respuesta-al-mentor.md` | nota: la carta se envió, qué quedó confirmado y qué se cayó |
 | `sifi_plus/perfil.py` | el encabezado distingue las dos curvas; `solapamiento` recibe `ancho_cobertura` y no `size` |
 | `sifi_plus/test_api.py` | tres aserciones que fijan el ancho; de 87 a 93 verificaciones |
+| `00_meta/DECISIONS.md`, nota de D18 y alternativa (a) de D25 | las dos citas del «36 ventanas contra 35» como criterio, corregidas por D65 |
+| `00_meta/PREGUNTAS_ABIERTAS.md`, preguntas 2 y 7 | la 7 queda contestada por `N3` §6; la 2 queda acotada por `N10`, que midió la consecuencia aunque no el hecho |

@@ -1549,9 +1549,11 @@ cierran, cuáles quedan y cuáles son nuevas.
    *et al.* 2022— y no los 133, 32, 212 y 42 del si-Fi21 original. Si corre con Zuber, la línea
    base para comparar contra la planilla cambia `[?]`.
 2. **¿El contador por incrementos produjo también las cifras de las doce regiones candidatas de la
-   planilla, o sólo las de los cuatro genes completos?** Si fue el mismo, las comparaciones entre
-   regiones de la planilla arrastran un sesgo que va del 5,7 % al 17,4 % según el gen y no es
-   constante `[?]`.
+   planilla, o sólo las de los cuatro genes completos?** Sigue abierta, pero ya no a ciegas:
+   `N10` midió qué pasaría si fue el mismo. El sesgo por región va de **0 % a 22,2 %** —la región
+   vigente de `ATPaseD_Dm` no pierde ninguna ventana y la de `MP_MRFV` pierde más de un quinto— y
+   en el marco de contexto el «36 contra 35» de `BicC_Dm` **se vuelve un empate, 33 a 33** `[M]`.
+   Lo que falta es sólo saber si lo fue `[?]`.
 3. **¿El ancho de cobertura de la curva histórica es 20 confirmado, y la línea de todos los siRNA
    también?** Si la línea azul de su curva usa 20, su meseta es 20 y no 21; es un chequeo de un
    minuto del lado de ellos y cierra la distinción de N2 `[?]`.
@@ -1564,9 +1566,10 @@ cierran, cuáles quedan y cuáles son nuevas.
    *Spiroplasma kunkelii*, que no es el patógeno que nos importa `[?]`.
 6. **¿Qué exposición le asignan a *Homalodisca vitripennis*?** Es el único peso con palanca de todo
    el ranking: con exposición cero se mudan tres de las seis regiones recomendadas `[M]`.
-7. **El tercer marco cruzado con la grilla.** Si adoptan el marco intermedio —21-meros que existen
-   en la molécula, accesibilidad evaluada en el transcrito en contexto— como criterio, hace falta
-   cruzarlo con las 4.368 configuraciones; hoy está medido sólo en el punto por defecto `[?]`.
+7. ~~El tercer marco cruzado con la grilla.~~ **Contestado el 2026-10-25** (`N3` §6): en el marco
+   intermedio 922-1221 le gana a 2121-2420 en el **41,1 %** de las 4.368 configuraciones, con 640
+   empates y margen mediano cero, y a 264-563 en el **99,9 %**, que es la fracción más alta de los
+   tres marcos `[M]`. Lo que queda es cruzarlo con el eje de referencia, que no está hecho.
 8. **Las ventanas de juntura con apareamiento parcial.** Medimos que de las 240 ventanas de
    juntura de las doce quimeras, 4 son eficientes y ninguna de esas 4 tiene blanco continuo de
    21 nt `[M]`. Lo que no sabemos es si una complementariedad incompleta les da alguna actividad,

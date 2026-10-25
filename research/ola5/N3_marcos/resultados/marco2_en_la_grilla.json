@@ -1,0 +1,80 @@
+{
+  "configuraciones": 4368,
+  "ejes": {
+    "end_thr": 21,
+    "acc_thr": 26,
+    "modos": [
+      "fiel",
+      "corregido"
+    ],
+    "tablas": [
+      "NN3",
+      "NN4"
+    ],
+    "backends": [
+      "vienna",
+      "exe"
+    ]
+  },
+  "ancla_punto_por_defecto": {
+    "922-1221": [
+      36,
+      29,
+      26
+    ],
+    "2121-2420": [
+      35,
+      27,
+      22
+    ],
+    "264-563": [
+      20,
+      15,
+      17
+    ]
+  },
+  "fracciones": {
+    "contexto_todos/2121-2420": {
+      "configuraciones": 4368,
+      "gana": 1589,
+      "fraccion": 0.3638,
+      "empates": 291,
+      "margen_mediano": -1.5
+    },
+    "contexto_todos/264-563": {
+      "configuraciones": 4368,
+      "gana": 4329,
+      "fraccion": 0.9911,
+      "empates": 26,
+      "margen_mediano": 10.0
+    },
+    "contexto_comparables/2121-2420": {
+      "configuraciones": 4368,
+      "gana": 1794,
+      "fraccion": 0.4107,
+      "empates": 640,
+      "margen_mediano": 0.0
+    },
+    "contexto_comparables/264-563": {
+      "configuraciones": 4368,
+      "gana": 4364,
+      "fraccion": 0.9991,
+      "empates": 2,
+      "margen_mediano": 10.0
+    },
+    "molecula/2121-2420": {
+      "configuraciones": 4368,
+      "gana": 3301,
+      "fraccion": 0.7557,
+      "empates": 315,
+      "margen_mediano": 3.0
+    },
+    "molecula/264-563": {
+      "configuraciones": 4368,
+      "gana": 4349,
+      "fraccion": 0.9957,
+      "empates": 8,
+      "margen_mediano": 12.0
+    }
+  }
+}
