@@ -1,0 +1,1437 @@
+{
+  "configuracion": {
+    "modo": "corregido",
+    "backend": "vienna",
+    "tabla_nn": "NN3",
+    "sirna_size": 21
+  },
+  "regiones": {
+    "MP_MRFV": [
+      72,
+      271
+    ],
+    "CP_MRFV": [
+      99,
+      298
+    ],
+    "BicC_Dm": [
+      922,
+      1221
+    ],
+    "ATPaseD_Dm": [
+      72,
+      371
+    ]
+  },
+  "blancos_pretendidos": [
+    "MP_MRFV",
+    "CP_MRFV",
+    "BicC_Dm",
+    "ATPaseD_Dm"
+  ],
+  "ancla_c13_total": 4,
+  "totales": {
+    "junturas": 240,
+    "eficientes": 4,
+    "con_blanco": 8,
+    "efic_sin_blanco": 4
+  },
+  "filas": [
+    {
+      "quimera": "MP_MRFV + CP_MRFV",
+      "primera": "MP_MRFV",
+      "segunda": "CP_MRFV",
+      "largo": 400,
+      "ventanas": 380,
+      "ventanas_propias": 360,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_con_blanco_continuo": 0,
+      "juntura_eficientes_sin_blanco": 0,
+      "ancla_c13": 0,
+      "detalle": [
+        {
+          "pos_en_quimera": 181,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 182,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 183,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 184,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 185,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 186,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 187,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 188,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 189,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 190,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 191,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 192,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 193,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 194,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 195,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 196,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 197,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 198,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 199,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 200,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "MP_MRFV + BicC_Dm",
+      "primera": "MP_MRFV",
+      "segunda": "BicC_Dm",
+      "largo": 500,
+      "ventanas": 480,
+      "ventanas_propias": 460,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_con_blanco_continuo": 3,
+      "juntura_eficientes_sin_blanco": 0,
+      "ancla_c13": 0,
+      "detalle": [
+        {
+          "pos_en_quimera": 181,
+          "eficiente": false,
+          "blancos_continuos": [
+            "MP_MRFV"
+          ]
+        },
+        {
+          "pos_en_quimera": 182,
+          "eficiente": false,
+          "blancos_continuos": [
+            "MP_MRFV"
+          ]
+        },
+        {
+          "pos_en_quimera": 183,
+          "eficiente": false,
+          "blancos_continuos": [
+            "MP_MRFV"
+          ]
+        },
+        {
+          "pos_en_quimera": 184,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 185,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 186,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 187,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 188,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 189,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 190,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 191,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 192,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 193,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 194,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 195,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 196,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 197,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 198,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 199,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 200,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "MP_MRFV + ATPaseD_Dm",
+      "primera": "MP_MRFV",
+      "segunda": "ATPaseD_Dm",
+      "largo": 500,
+      "ventanas": 480,
+      "ventanas_propias": 460,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_con_blanco_continuo": 0,
+      "juntura_eficientes_sin_blanco": 0,
+      "ancla_c13": 0,
+      "detalle": [
+        {
+          "pos_en_quimera": 181,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 182,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 183,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 184,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 185,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 186,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 187,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 188,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 189,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 190,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 191,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 192,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 193,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 194,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 195,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 196,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 197,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 198,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 199,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 200,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "CP_MRFV + MP_MRFV",
+      "primera": "CP_MRFV",
+      "segunda": "MP_MRFV",
+      "largo": 400,
+      "ventanas": 380,
+      "ventanas_propias": 360,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_con_blanco_continuo": 1,
+      "juntura_eficientes_sin_blanco": 0,
+      "ancla_c13": 0,
+      "detalle": [
+        {
+          "pos_en_quimera": 181,
+          "eficiente": false,
+          "blancos_continuos": [
+            "CP_MRFV"
+          ]
+        },
+        {
+          "pos_en_quimera": 182,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 183,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 184,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 185,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 186,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 187,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 188,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 189,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 190,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 191,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 192,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 193,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 194,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 195,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 196,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 197,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 198,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 199,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 200,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "CP_MRFV + BicC_Dm",
+      "primera": "CP_MRFV",
+      "segunda": "BicC_Dm",
+      "largo": 500,
+      "ventanas": 480,
+      "ventanas_propias": 460,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 1,
+      "juntura_con_blanco_continuo": 1,
+      "juntura_eficientes_sin_blanco": 1,
+      "ancla_c13": 1,
+      "detalle": [
+        {
+          "pos_en_quimera": 181,
+          "eficiente": false,
+          "blancos_continuos": [
+            "CP_MRFV"
+          ]
+        },
+        {
+          "pos_en_quimera": 182,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 183,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 184,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 185,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 186,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 187,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 188,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 189,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 190,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 191,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 192,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 193,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 194,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 195,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 196,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 197,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 198,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 199,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 200,
+          "eficiente": true,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "CP_MRFV + ATPaseD_Dm",
+      "primera": "CP_MRFV",
+      "segunda": "ATPaseD_Dm",
+      "largo": 500,
+      "ventanas": 480,
+      "ventanas_propias": 460,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_con_blanco_continuo": 2,
+      "juntura_eficientes_sin_blanco": 0,
+      "ancla_c13": 0,
+      "detalle": [
+        {
+          "pos_en_quimera": 181,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 182,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 183,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 184,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 185,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 186,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 187,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 188,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 189,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 190,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 191,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 192,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 193,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 194,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 195,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 196,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 197,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 198,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 199,
+          "eficiente": false,
+          "blancos_continuos": [
+            "ATPaseD_Dm"
+          ]
+        },
+        {
+          "pos_en_quimera": 200,
+          "eficiente": false,
+          "blancos_continuos": [
+            "ATPaseD_Dm"
+          ]
+        }
+      ]
+    },
+    {
+      "quimera": "BicC_Dm + MP_MRFV",
+      "primera": "BicC_Dm",
+      "segunda": "MP_MRFV",
+      "largo": 500,
+      "ventanas": 480,
+      "ventanas_propias": 460,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_con_blanco_continuo": 1,
+      "juntura_eficientes_sin_blanco": 0,
+      "ancla_c13": 0,
+      "detalle": [
+        {
+          "pos_en_quimera": 281,
+          "eficiente": false,
+          "blancos_continuos": [
+            "BicC_Dm"
+          ]
+        },
+        {
+          "pos_en_quimera": 282,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 283,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 284,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 285,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 286,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 287,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 288,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 289,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 290,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 291,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 292,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 293,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 294,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 295,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 296,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 297,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 298,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 299,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 300,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "BicC_Dm + CP_MRFV",
+      "primera": "BicC_Dm",
+      "segunda": "CP_MRFV",
+      "largo": 500,
+      "ventanas": 480,
+      "ventanas_propias": 460,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 1,
+      "juntura_con_blanco_continuo": 0,
+      "juntura_eficientes_sin_blanco": 1,
+      "ancla_c13": 1,
+      "detalle": [
+        {
+          "pos_en_quimera": 281,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 282,
+          "eficiente": true,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 283,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 284,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 285,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 286,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 287,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 288,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 289,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 290,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 291,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 292,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 293,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 294,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 295,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 296,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 297,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 298,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 299,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 300,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "BicC_Dm + ATPaseD_Dm",
+      "primera": "BicC_Dm",
+      "segunda": "ATPaseD_Dm",
+      "largo": 600,
+      "ventanas": 580,
+      "ventanas_propias": 560,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_con_blanco_continuo": 0,
+      "juntura_eficientes_sin_blanco": 0,
+      "ancla_c13": 0,
+      "detalle": [
+        {
+          "pos_en_quimera": 281,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 282,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 283,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 284,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 285,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 286,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 287,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 288,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 289,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 290,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 291,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 292,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 293,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 294,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 295,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 296,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 297,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 298,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 299,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 300,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "ATPaseD_Dm + MP_MRFV",
+      "primera": "ATPaseD_Dm",
+      "segunda": "MP_MRFV",
+      "largo": 500,
+      "ventanas": 480,
+      "ventanas_propias": 460,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_con_blanco_continuo": 0,
+      "juntura_eficientes_sin_blanco": 0,
+      "ancla_c13": 0,
+      "detalle": [
+        {
+          "pos_en_quimera": 281,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 282,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 283,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 284,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 285,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 286,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 287,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 288,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 289,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 290,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 291,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 292,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 293,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 294,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 295,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 296,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 297,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 298,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 299,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 300,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "ATPaseD_Dm + CP_MRFV",
+      "primera": "ATPaseD_Dm",
+      "segunda": "CP_MRFV",
+      "largo": 500,
+      "ventanas": 480,
+      "ventanas_propias": 460,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 1,
+      "juntura_con_blanco_continuo": 0,
+      "juntura_eficientes_sin_blanco": 1,
+      "ancla_c13": 1,
+      "detalle": [
+        {
+          "pos_en_quimera": 281,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 282,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 283,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 284,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 285,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 286,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 287,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 288,
+          "eficiente": true,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 289,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 290,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 291,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 292,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 293,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 294,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 295,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 296,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 297,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 298,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 299,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 300,
+          "eficiente": false,
+          "blancos_continuos": []
+        }
+      ]
+    },
+    {
+      "quimera": "ATPaseD_Dm + BicC_Dm",
+      "primera": "ATPaseD_Dm",
+      "segunda": "BicC_Dm",
+      "largo": 600,
+      "ventanas": 580,
+      "ventanas_propias": 560,
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 1,
+      "juntura_con_blanco_continuo": 0,
+      "juntura_eficientes_sin_blanco": 1,
+      "ancla_c13": 1,
+      "detalle": [
+        {
+          "pos_en_quimera": 281,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 282,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 283,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 284,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 285,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 286,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 287,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 288,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 289,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 290,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 291,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 292,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 293,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 294,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 295,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 296,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 297,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 298,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 299,
+          "eficiente": false,
+          "blancos_continuos": []
+        },
+        {
+          "pos_en_quimera": 300,
+          "eficiente": true,
+          "blancos_continuos": []
+        }
+      ]
+    }
+  ]
+}

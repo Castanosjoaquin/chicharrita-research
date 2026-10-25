@@ -1,0 +1,215 @@
+{
+  "configuracion": {
+    "modo": "corregido",
+    "backend": "vienna",
+    "tabla_nn": "NN3",
+    "temp_c": 22.0,
+    "criterio": {
+      "sirna_size": 21,
+      "end_stability_threshold": 1.0,
+      "accessibility_threshold": 0.1,
+      "accessibility_window": 8,
+      "strand_check": true,
+      "end_check": true,
+      "accessibility_check": true,
+      "terminal_check": true
+    }
+  },
+  "anclas_marco1": {
+    "MP_MRFV_72": 38,
+    "CP_MRFV_99": 21,
+    "BicC_Dm_922": 36,
+    "ATPaseD_Dm_72": 21,
+    "BicC_Dm_2121": 35,
+    "BicC_Dm_264": 20
+  },
+  "anclas_tres_marcos": {
+    "BicC_Dm_922": [
+      36,
+      29,
+      26
+    ],
+    "BicC_Dm_2121": [
+      35,
+      27,
+      22
+    ],
+    "BicC_Dm_264": [
+      20,
+      15,
+      17
+    ]
+  },
+  "filas": [
+    {
+      "gen": "MP_MRFV",
+      "inicio": 72,
+      "fin": 271,
+      "largo": 200,
+      "nota": "vigente",
+      "arranques_marco1": 200,
+      "arranques_comparables": 180,
+      "marco1_contexto_todos": 38,
+      "marco2_contexto_comparables": 31,
+      "marco3_molecula": 27,
+      "limite_fisico": 7,
+      "contexto_neto": 4,
+      "pierden": 5,
+      "ganan": 1,
+      "posiciones_que_pierden": [
+        80,
+        81,
+        82,
+        240,
+        241
+      ],
+      "posiciones_que_ganan": [
+        217
+      ]
+    },
+    {
+      "gen": "CP_MRFV",
+      "inicio": 99,
+      "fin": 298,
+      "largo": 200,
+      "nota": "vigente",
+      "arranques_marco1": 200,
+      "arranques_comparables": 180,
+      "marco1_contexto_todos": 21,
+      "marco2_contexto_comparables": 20,
+      "marco3_molecula": 23,
+      "limite_fisico": 1,
+      "contexto_neto": -3,
+      "pierden": 3,
+      "ganan": 6,
+      "posiciones_que_pierden": [
+        129,
+        131,
+        212
+      ],
+      "posiciones_que_ganan": [
+        106,
+        109,
+        266,
+        267,
+        276,
+        278
+      ]
+    },
+    {
+      "gen": "BicC_Dm",
+      "inicio": 922,
+      "fin": 1221,
+      "largo": 300,
+      "nota": "vigente, D25",
+      "arranques_marco1": 300,
+      "arranques_comparables": 280,
+      "marco1_contexto_todos": 36,
+      "marco2_contexto_comparables": 29,
+      "marco3_molecula": 26,
+      "limite_fisico": 7,
+      "contexto_neto": 3,
+      "pierden": 3,
+      "ganan": 0,
+      "posiciones_que_pierden": [
+        922,
+        968,
+        969
+      ],
+      "posiciones_que_ganan": [],
+      "ancla_m7": [
+        36,
+        29,
+        26
+      ]
+    },
+    {
+      "gen": "ATPaseD_Dm",
+      "inicio": 72,
+      "fin": 371,
+      "largo": 300,
+      "nota": "vigente",
+      "arranques_marco1": 300,
+      "arranques_comparables": 280,
+      "marco1_contexto_todos": 21,
+      "marco2_contexto_comparables": 17,
+      "marco3_molecula": 20,
+      "limite_fisico": 4,
+      "contexto_neto": -3,
+      "pierden": 1,
+      "ganan": 4,
+      "posiciones_que_pierden": [
+        287
+      ],
+      "posiciones_que_ganan": [
+        96,
+        337,
+        338,
+        349
+      ]
+    },
+    {
+      "gen": "BicC_Dm",
+      "inicio": 2121,
+      "fin": 2420,
+      "largo": 300,
+      "nota": "rival, la de C7",
+      "arranques_marco1": 300,
+      "arranques_comparables": 280,
+      "marco1_contexto_todos": 35,
+      "marco2_contexto_comparables": 27,
+      "marco3_molecula": 22,
+      "limite_fisico": 8,
+      "contexto_neto": 5,
+      "pierden": 6,
+      "ganan": 1,
+      "posiciones_que_pierden": [
+        2147,
+        2148,
+        2149,
+        2150,
+        2151,
+        2346
+      ],
+      "posiciones_que_ganan": [
+        2373
+      ],
+      "ancla_m7": [
+        35,
+        27,
+        22
+      ]
+    },
+    {
+      "gen": "BicC_Dm",
+      "inicio": 264,
+      "fin": 563,
+      "largo": 300,
+      "nota": "rival, la que eligio EPILAB",
+      "arranques_marco1": 300,
+      "arranques_comparables": 280,
+      "marco1_contexto_todos": 20,
+      "marco2_contexto_comparables": 15,
+      "marco3_molecula": 17,
+      "limite_fisico": 5,
+      "contexto_neto": -2,
+      "pierden": 2,
+      "ganan": 4,
+      "posiciones_que_pierden": [
+        506,
+        507
+      ],
+      "posiciones_que_ganan": [
+        269,
+        270,
+        271,
+        272
+      ],
+      "ancla_m7": [
+        20,
+        15,
+        17
+      ]
+    }
+  ]
+}

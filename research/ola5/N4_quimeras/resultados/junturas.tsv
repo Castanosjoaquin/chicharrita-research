@@ -1,0 +1,13 @@
+quimera	largo	ventanas	ventanas_propias	ventanas_de_juntura	juntura_eficientes	juntura_con_blanco_continuo	juntura_eficientes_sin_blanco
+CP_MRFV + BicC_Dm	500	480	460	20	1	1	1
+BicC_Dm + CP_MRFV	500	480	460	20	1	0	1
+ATPaseD_Dm + CP_MRFV	500	480	460	20	1	0	1
+ATPaseD_Dm + BicC_Dm	600	580	560	20	1	0	1
+MP_MRFV + CP_MRFV	400	380	360	20	0	0	0
+MP_MRFV + BicC_Dm	500	480	460	20	0	3	0
+MP_MRFV + ATPaseD_Dm	500	480	460	20	0	0	0
+CP_MRFV + MP_MRFV	400	380	360	20	0	1	0
+CP_MRFV + ATPaseD_Dm	500	480	460	20	0	2	0
+BicC_Dm + MP_MRFV	500	480	460	20	0	1	0
+BicC_Dm + ATPaseD_Dm	600	580	560	20	0	0	0
+ATPaseD_Dm + MP_MRFV	500	480	460	20	0	0	0
