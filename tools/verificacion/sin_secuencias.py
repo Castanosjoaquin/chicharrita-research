@@ -110,6 +110,21 @@ EXCEPCIONES: list[tuple[str, str]] = [
         "insumos locales. La pasada 3 da cero contra las cuatro regiones de EPILAB.",
     ),
     (
+        "research/ola3/C4_offtargets_quimeras_largo/resultados/q2_aciertos_localizados.tsv",
+        "D61: decision tomada el 2026-10-25, se dejan como estan. Son las 25 ventanas que "
+        "pegan en maiz, no una serie consecutiva, asi que no reconstruyen la region: cubren "
+        "46 de 200 nt de MP_MRFV y 48 de 300 de BicC_Dm, en tramos contiguos de 23 y 25 nt. "
+        "El repositorio es privado. La regla del CLAUDE.md prohibe subir las secuencias a "
+        "servicios web que las procesen, no tenerlas en el arbol. Las dos regiones virales "
+        "ademas son subcadenas del genoma publico NC_002786.2.",
+    ),
+    (
+        "research/ola3/C13_quimeras_region_recomendada/resultados/empalme_maiz_detalle.json",
+        "D61: mismo criterio y misma decision que q2_aciertos_localizados.tsv. Son 3 "
+        "ventanas de 21 nt del empalme de C13, que por construccion no es subcadena de "
+        "ninguna region.",
+    ),
+    (
         "tools/sifi21_port/conservacion.py",
         "Los cebadores son la Tabla 1 de Andrada et al. 2026 (Front Insect Sci "
         "6:1811933, leida en PMC13279319), publicada.",

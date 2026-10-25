@@ -230,13 +230,14 @@ el día que lo haya el salteo sería invisible.
 
 ## 6. Lo que queda, y es del usuario
 
-1. **Qué se hace con `q2_aciertos_localizados.tsv`** (§3.1) y con las 3 ventanas del
-   empalme (§3.4). Las opciones son dejarlo y declararlo, como hizo D41; quitar la
-   columna `sirna` con un commit nuevo, que lo deja en el historial; o reescribir el
-   historial, que es destructivo para quien ya clonó. **Recomendación: la primera o la
-   segunda, nunca la tercera**, con el mismo criterio de D41: retirar algo ya publicado
-   no lo borra de las copias existentes. El dato está en un repositorio privado y son 25
-   ventanas que no reconstruyen la región.
+1. ~~Qué se hace con `q2_aciertos_localizados.tsv` (§3.1) y con las 3 ventanas del
+   empalme (§3.4)~~ **Decidido el 25 de octubre: se dejan como están** (ADR **D61**). La
+   regla del `CLAUDE.md` prohíbe subir las secuencias a servicios web que las procesen, no
+   tenerlas en el árbol; el repositorio es privado, verificado; y las 28 ventanas son
+   sueltas y no reconstruyen la región. Los dos archivos entran a la lista blanca con esa
+   decisión y su motivo por escrito. Lo que queda vivo es el escenario de compartir: si se
+   diera acceso al repositorio entero en vez del paquete autocontenido, estos fragmentos
+   van adentro y la decisión hay que releerla.
 2. ~~Confirmar la procedencia de `dsrip_vatpaseA.csv` con Luca~~ **Resuelto sin
    preguntar** (§3.3 bis): sale del genoma público `GCA_975739785.1` y está exceptuado.
 3. ~~Activar el gancho~~ **Hecho en este clon**: `git config core.hooksPath
@@ -258,13 +259,20 @@ el día que lo haya el salteo sería invisible.
 ## 7. Criterio de terminado
 
 El issue pide que la verificación corra sobre el árbol y sobre el historial y dé cero
-hallazgos no exceptuados, **o** que los hallazgos estén listados y resueltos. Al 24 de
-octubre los dos modos dan **la misma cifra y los mismos dos archivos**: 28 hallazgos no
-exceptuados, 25 en `q2_aciertos_localizados.tsv` y 3 en `empalme_maiz_detalle.json`
-`[M]`. De los tres archivos que la primera corrida dejó abiertos, el de §3.3 está
-resuelto y exceptuado con su motivo; los otros dos son el mismo caso y esperan una sola
-decisión, que es la del §6.1. Las tareas 1 a 3 están hechas y el gancho está activo; la 4
-espera al usuario.
+hallazgos no exceptuados, **o** que los hallazgos estén listados y resueltos.
+
+**Al 25 de octubre se cumple por la primera vía: los dos modos dan cero.** El árbol, sobre
+1.068 archivos de texto, y el historial, sobre 164 commits, no reportan ningún hallazgo no
+exceptuado `[M]`. De los tres archivos que la primera corrida dejó abiertos, el de §3.3 se
+resolvió verificando su procedencia y los otros dos con la decisión D61. Las tareas 1 a 3
+están hechas y el gancho está activo. La 4 —cómo se comparte el port— es del usuario y
+sigue abierta.
+
+**Con una salvedad que hay que leer junto al cero:** la pasada 3, la única que distingue
+una fuga de un dato público, **no corrió en esta máquina**, porque no están ni
+`YHat-Biotech/Sequences_EPILAB.xlsx` ni `openpyxl`. El cero de arriba es de las pasadas 1 y
+2. La herramienta lo declara en vez de callarlo, y por eso el gancho rechaza: un cero sin
+la pasada 3 no significa que no haya secuencias de EPILAB, significa que no se miró.
 
 ## 8. Reproducir
 
