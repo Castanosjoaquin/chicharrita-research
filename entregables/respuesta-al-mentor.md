@@ -1,5 +1,16 @@
 # Respuesta a la carta del 22 de octubre — borrador
 
+> **Nota del 2026-10-25: esta carta se envio y ya tiene respuesta.** De lo que afirma, dos cosas
+> quedaron confirmadas y una se cayo. Confirmado: que la version del INTA cambia la tabla de
+> vecinos mas cercanos, y que el conteo del original es por acierto de Bowtie y no por ventana
+> —«la observacion que hicieron sigue siendo valida e interesante»— `[R]`. Caido: que el conteo
+> por acierto fuera **la explicacion** de los 114, 35, 199 y 33. La causa es la funcion historica
+> de conteo del laboratorio, y la reprodujimos (D62,
+> [`research/ola5/N1_regla_de_conteo/`](../research/ola5/N1_regla_de_conteo/REPORT.md)). Con eso,
+> el pedido 1 de esta carta —la clasificacion por ventana de su corrida— se retira, y el pedido 2
+> sigue abierto porque no verifico los FASTA de los indices. Lo que trae el equipo a la reunion
+> esta en [`reunion-lunes.html`](reunion-lunes.html).
+
 **Estado: APROBADO PARA ENVIO, PENDIENTE DE REVISION DEL EQUIPO** (decision del usuario del
 2026-10-22, D50). Se manda antes de la reunion del lunes 26, despues de que el equipo lo evalue.
 El envio lo hace el equipo, no el agente. Si no se llega a revisarlo a tiempo no se manda nada y

@@ -1,5 +1,19 @@
 # M1 — Reconciliacion de conteos: la matriz corrio, y explica un gen de cuatro
 
+> **Nota del 2026-10-25, que cambia el titular de esta linea.** La discrepancia de los cuatro
+> conteos **quedo explicada, y no por esta via**. La carta del investigador del 25 de octubre
+> informa que la funcion historica de conteo asigna 20 posiciones de cobertura a cada ventana de
+> 21 nt y cuenta los incrementos positivos de esa curva `[R]`; aplicada esa regla a nuestras
+> propias ventanas eficientes, los cuatro valores de la planilla salen exactos `[M]`
+> ([`research/ola5/N1_regla_de_conteo/`](../../ola5/N1_regla_de_conteo/REPORT.md), D62). Lo que
+> sigue valiendo de M1, sin cambios: que la columna «Efficient siRNA hits» del original cuenta
+> aciertos de Bowtie en la hebra `+` y no ventanas, que una base genomica puede borrar un gen
+> entero de la tabla —`ATPaseD_Dm` da 0— y la matriz de once bases con sus treinta y ocho celdas.
+> Lo que hay que leer distinto: **el «200 contra 199» de `BicC_Dm` era coincidencia**, no un
+> acierto parcial de la hipotesis; el mecanismo verdadero da 199 clavado. Y el pedido 1 de la
+> reunion, la clasificacion por ventana de su corrida, se retira porque ya no contesta nada
+> (`00_meta/CAMINOS_PROBADOS.md`).
+
 **Ola 4, linea M1.** La pregunta que abre esta linea viene de la carta del investigador del 22
 de octubre de 2026 y de lo que aparecio al seguir su pista hasta el fuente: la columna
 «Efficient siRNA hits» del si-Fi21 original no cuenta ventanas, cuenta aciertos de Bowtie, asi

@@ -1158,3 +1158,31 @@ biología.
 debería ganar por la interfaz más vistosa. Esto es otra cosa: una herramienta de trabajo para
 el investigador que ya usa si-Fi y nos pidió conocer el port, cuyo valor es la paridad
 verificada y las correcciones medidas. Ver D55.
+
+### Explicar los cuatro conteos de la planilla con el conteo por aciertos de Bowtie
+**Descartado como causa, conservado como hallazgo.** La columna «Efficient siRNA hits» del si-Fi21
+original cuenta aciertos de Bowtie en la hebra `+` agrupados por referencia y no ventanas, y eso
+es cierto, está leído del fuente y sigue valiendo para cualquier corrida de esa herramienta. Lo
+que no era es la explicación de los 114, 35, 199 y 33 de la planilla: la causa es la función
+histórica de conteo del laboratorio (D62), que reproduce los cuatro exactos. **Lección, y es la
+que más rinde:** la hipótesis acertó un gen de cuatro con un error de uno —200 contra 199 en
+`BicC_Dm`— y eso no era evidencia parcial a favor, era coincidencia; el mecanismo verdadero da los
+cuatro clavados. Una explicación candidata que acierta una de cuatro cosas con error de uno no
+está «casi bien»: está sin confirmar, y conviene seguir buscando una que acierte las cuatro.
+
+### Corregir a 20 el ancho de cobertura de nuestra curva de solapamiento
+**Descartado: son dos curvas distintas.** Cuando N1 midió que la función histórica usa 20
+posiciones por ventana de 21 nt, lo primero que pareció es que `sifi_plus/perfil.py`, que usa 21,
+estaba mal. No lo está: la pantalla del si-Fi21 original tiene tres marcas registradas —meseta de
+altura 9 en 150-156, de altura 8 en 287-297 y línea azul plana en 21— y con ancho 21 las tres
+coinciden, con 20 las tres caen un nucleótido antes `[M]`. El 20 pertenece a la curva que el
+laboratorio guarda en su base, no al gráfico del programa. **Lo que sí era un defecto** es que
+nuestro test fijaba alturas dentro de los tramos y no sus bordes, así que pasaba con las dos
+convenciones: ver `research/ola5/N2_ancho_de_cobertura/`.
+
+### Pedirle al laboratorio la clasificación por ventana de su corrida
+**Retirado, por innecesario.** Era el pedido 1 de la reunión y estaba bien pedido: sin él no
+podíamos verificar la hipótesis del conteo por acierto, sólo acotarla. Dejó de hacer falta cuando
+la causa apareció por otra vía y la pudimos reproducir con insumos propios (D62). Queda como
+antecedente de que un pedido de datos se justifica por la pregunta que contesta, y cuando la
+pregunta se cierra el pedido se retira en vez de quedar en la lista.

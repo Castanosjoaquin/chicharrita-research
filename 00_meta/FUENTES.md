@@ -512,3 +512,9 @@ cada carpeta de `research/ola3/`. Acá van las que cambian lo que el proyecto pu
 - Huesken *et al.* 2005, *Nature Biotechnology*, doi 10.1038/nbt1118 — **no abierta**. Se usa sólo
   como identificador del conjunto; todo número sobre ella viene de Vert 2006 y Thang 2015.
 - `genomernai.org` — **no accesible** desde esta máquina (error de TLS). No se cita.
+- **Carta del investigador del 2026-10-25** (comunicación personal, no publicada). Resuelve la
+  discrepancia de los cuatro conteos: la curva histórica asigna 20 posiciones de cobertura por
+  ventana de 21 nt y el contador suma los incrementos positivos. Confirma el marco de la molécula
+  final (280 ventanas en 300 nt), propone un tercer marco de accesibilidad, separa las dos
+  preguntas de las quimeras y mantiene los dos modelos de la regla terminal como hipótesis. Todo
+  lo que se cite de ella va `[R]`; lo que reprodujimos nosotros va `[M]` y dice con qué script.

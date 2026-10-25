@@ -159,6 +159,38 @@ del final de la ventana y 59 corriente arriba de su comienzo**, porque el criter
 accesibilidad de un tramo de 8 nt que termina en el ultimo nucleotido de la ventana `[M]` el
 numero, `[H]` la derivacion.
 
+## 4 bis. Depende de la funcion con la que se cuente la curva
+
+**Agregado el 2026-10-25.** Este limite no estaba cuando se escribio la linea y es el que mas
+directamente afecta a la tabla de la seccion 1, porque alcanza a la fila «Planilla de EPILAB».
+
+`[R]` La carta del investigador del 25 de octubre explica que la curva de eficiencia de su
+plataforma se construye asignando **20 posiciones de cobertura** a cada ventana de 21 nt y que el
+contador identifica siRNAs nuevos a partir de los **incrementos positivos** de esa curva, de modo
+que cuando una ventana eficiente termina donde otra empieza los dos efectos se compensan y la
+segunda no se registra.
+
+`[M]` Reproducido con insumos propios (`research/ola5/N1_regla_de_conteo/`): sobre las ventanas
+eficientes del port con la configuracion que reconstruye las curvas —modo `fiel`, ViennaRNA 2.7.2,
+tabla `RNA_NN4`, que da 138, 40, 218 y 35— el conteo por incrementos con ancho 20 da **114, 35,
+199 y 33**, que son los cuatro de la planilla, y los anchos 19 y 21 no dan los cuatro.
+
+| Gen | Eficientes | Tapadas | Conteo historico | Sesgo |
+|---|---:|---:|---:|---:|
+| `MP_MRFV` | 138 | 24 | 114 | 17,4 % |
+| `CP_MRFV` | 40 | 5 | 35 | 12,5 % |
+| `BicC_Dm` | 218 | 19 | 199 | 8,7 % |
+| `ATPaseD_Dm` | 35 | 2 | 33 | 5,7 % |
+
+`[H]` **Lo que esto le hace a la seccion 1.** El sesgo no es constante: va del 5,7 % al 17,4 % y lo
+fija cuan agrupadas estan las ventanas eficientes, no el largo del gen ni la calidad del diseno.
+Asi que la fila «Planilla de EPILAB» de la tabla de densidad compara cuatro numeros que perdieron
+fracciones distintas, y **dos cifras de la planilla no son comparables ni entre si**. Es el mismo
+tipo de problema que los cuatro limites anteriores —software y contabilidad, no biologia— pero
+aparece despues de todos ellos: una cifra puede estar bien medida, bien normalizada, con su
+referencia y su marco declarados, y seguir habiendo pasado por una funcion de agregacion que le
+saco una fraccion desigual.
+
 ## 5. Lo que el numero si permite, para no tirar al chico con el agua
 
 Los cuatro limites acotan el uso; no lo anulan. Dentro de un mismo gen, con una sola

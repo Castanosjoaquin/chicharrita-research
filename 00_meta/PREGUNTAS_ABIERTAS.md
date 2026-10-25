@@ -1514,3 +1514,68 @@ de apoyarse en la herramienta para decidir que algo se puede compartir.
 4. **En el historial, una línea agregada cuyo contenido empieza con `++` se confunde con
    una cabecera de diff y se saltea.** Improbable, pero es un `startswith` sobre texto que
    escribe cualquiera. Arreglo: reconocer cabeceras sólo fuera de los *hunks*.
+
+## 2026-10-25 — Lo que abre y lo que cierra la carta del investigador del 25 de octubre
+
+La carta resuelve la discrepancia de los cuatro conteos (D62). Esto es el saldo: qué preguntas se
+cierran, cuáles quedan y cuáles son nuevas.
+
+### Se cierran
+
+- **Por qué la planilla declara 114, 35, 199 y 33 y cualquier corrida da más.** Explicado por la
+  función histórica de conteo y **reproducido** por nosotros `[M]`
+  (`research/ola5/N1_regla_de_conteo/`).
+- **Si el umbral de estabilidad de extremos estaba en 1,75.** No era la causa; la coincidencia era
+  circunstancial `[R]`.
+- **El pedido 1 de la reunión**, la clasificación por ventana de su corrida: ya no hace falta.
+
+### Siguen abiertas
+
+- **Los FASTA exactos de los índices de Bowtie de cada corrida histórica.** La carta nombra las
+  referencias principales —`Dalbulus_maidis_genome_v1` y `Maize_rayado_fino_virus_genome_v1`— y
+  dice explícitamente que **no verificó los FASTA**, así que prefiere no dar la equivalencia por
+  confirmada `[?]`. Sin eso no se puede cerrar qué base produjo cada fila de la tabla del
+  original, que es lo que M1 dejó medido y sin explicar.
+- **La regla terminal: rama fiel contra filtro adicional.** Las dos quedan como hipótesis hasta
+  tener evidencia que permita evaluar cuál predice mejor los resultados experimentales `[R]`, y M4
+  midió que la evidencia abierta no alcanza: harían falta 2.784 siRNA replicando el único diseño
+  etiquetado que encontramos `[M]`. Coincidimos con él; no es una pregunta que podamos cerrar
+  nosotros.
+
+### Nuevas
+
+1. **¿Con qué tabla de apilamiento corre el método histórico `siFi21_8_1.0_0.1_1111`?** Las curvas
+   reconstruyen 138, 40, 218 y 35, que son los valores de `sifi21INTA` por defecto —tabla de Zuber
+   *et al.* 2022— y no los 133, 32, 212 y 42 del si-Fi21 original. Si corre con Zuber, la línea
+   base para comparar contra la planilla cambia `[?]`.
+2. **¿El contador por incrementos produjo también las cifras de las doce regiones candidatas de la
+   planilla, o sólo las de los cuatro genes completos?** Si fue el mismo, las comparaciones entre
+   regiones de la planilla arrastran un sesgo que va del 5,7 % al 17,4 % según el gen y no es
+   constante `[?]`.
+3. **¿El ancho de cobertura de la curva histórica es 20 confirmado, y la línea de todos los siRNA
+   también?** Si la línea azul de su curva usa 20, su meseta es 20 y no 21; es un chequeo de un
+   minuto del lado de ellos y cierra la distinción de N2 `[?]`.
+4. **¿Qué objetivo manda: cortar transmisión en la temporada o reducir la población entre
+   generaciones?** Decide el eje y, con él, el blanco: el fenotipo publicado de `BicC` es de
+   oviposición, así que actúa sobre la generación siguiente y no sobre la transmisión del individuo
+   ya expuesto `[H]`. Es la pregunta que más cambia la recomendación y no es una medición nuestra.
+5. **¿Cuál es la ventana de latencia del MRFV?** La cifra de unos 20 días que usamos es del
+   investigador (D34) `[R]` y la única fuente abierta que pudimos abrir da 18 a 22 días para
+   *Spiroplasma kunkelii*, que no es el patógeno que nos importa `[?]`.
+6. **¿Qué exposición le asignan a *Homalodisca vitripennis*?** Es el único peso con palanca de todo
+   el ranking: con exposición cero se mudan tres de las seis regiones recomendadas `[M]`.
+7. **El tercer marco cruzado con la grilla.** Si adoptan el marco intermedio —21-meros que existen
+   en la molécula, accesibilidad evaluada en el transcrito en contexto— como criterio, hace falta
+   cruzarlo con las 4.368 configuraciones; hoy está medido sólo en el punto por defecto `[?]`.
+8. **Las ventanas de juntura con apareamiento parcial.** Medimos que de las 240 ventanas de
+   juntura de las doce quimeras, 4 son eficientes y ninguna de esas 4 tiene blanco continuo de
+   21 nt `[M]`. Lo que no sabemos es si una complementariedad incompleta les da alguna actividad,
+   que es lo que decidiría si son inútiles o sólo menos útiles `[?]`.
+
+### Una limitación operativa, para quien clone el repositorio
+
+El gancho de pre-commit llama a `python3`, y en la máquina donde se corrió la ola 5 el `python3`
+del PATH **no tiene `openpyxl`**, mientras el intérprete de Anaconda sí. El gancho entonces
+rechaza con «no se pudo verificar», que es el comportamiento correcto —es fail-closed— pero obliga
+a correr las dos pasadas a mano con el intérprete que tenga la dependencia. Queda anotado porque
+es la segunda vez que ese gancho cuesta tiempo por el mensaje y no por el hallazgo.
