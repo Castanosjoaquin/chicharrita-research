@@ -144,6 +144,53 @@ def escanear(aut, sirnas, ruta_db):
     return hits
 
 
+def iter_db_anotado(ruta):
+    """Igual que `iter_db`, pero conserva la cabecera completa: (acc, descripcion, seq).
+
+    La accesion es el primer token de la cabecera —lo mismo que devuelve `iter_db`— y
+    la descripcion es el resto de la linea, p. ej. «PREDICTED: Homalodisca vitripennis
+    protein bicaudal C homolog 1-A (LOC124362408), mRNA». Sale de disco: la anotacion
+    del transcripto impactado no necesita ningun servicio web (CLAUDE.md).
+    """
+    abrir = gzip.open if str(ruta).endswith(".gz") else open
+    acc, desc, buf = None, "", []
+    with abrir(ruta, "rt") as fh:
+        for linea in fh:
+            if linea.startswith(">"):
+                if acc is not None:
+                    yield acc, desc, "".join(buf)
+                cab = linea[1:].strip().split(None, 1)
+                acc, desc, buf = cab[0], (cab[1] if len(cab) > 1 else ""), []
+            else:
+                buf.append(linea.strip().upper())
+    if acc is not None:
+        yield acc, desc, "".join(buf)
+
+
+def escanear_con_identidad(aut, sirnas, ruta_db):
+    """Una pasada por la base que **no tira** la identidad del transcripto impactado.
+
+    `escanear()` ya calcula el conjunto de accesiones por ventana, pero `main()` escribe
+    solo su tamaño (`len(refs)`): la identidad se computa y se descarta. D48 pide un
+    cuarto campo por alerta —que gen esta involucrado— y ese campo sale de aca mas la
+    cabecera del FASTA de referencia.
+
+    Devuelve `(hits, anotacion)`, donde `hits` es **identico** a lo que devuelve
+    `escanear()` con los mismos argumentos (`{criterio: {idx_sirna: set(accesiones)}}`)
+    y `anotacion` es `{accesion: descripcion}` para las accesiones impactadas.
+    """
+    hits = {"perfecto_21": {}, "perfecto_ge19": {}, "mm1_21": {}}
+    anotacion = {}
+    for ref, desc, seq in iter_db_anotado(ruta_db):
+        if not seq:
+            continue
+        for _, cargas in aut.iter(seq):
+            anotacion[ref] = desc
+            for idx, crit in cargas:
+                hits[crit].setdefault(idx, set()).add(ref)
+    return hits, anotacion
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
