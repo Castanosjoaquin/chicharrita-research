@@ -1514,30 +1514,3 @@ de apoyarse en la herramienta para decidir que algo se puede compartir.
 4. **En el historial, una línea agregada cuyo contenido empieza con `++` se confunde con
    una cabecera de diff y se saltea.** Improbable, pero es un `startswith` sobre texto que
    escribe cualquiera. Arreglo: reconocer cabeceras sólo fuera de los *hunks*.
-
-## La licencia de si-Fi21 es un problema de publicación, no de mostrarle el port a Diego (2026-10-25)
-
-Queda para el lunes, como **pedido 6**, y conviene llegar con la pregunta bien acotada.
-
-**si-Fi21 no salió del corpus.** El material oficial entrega dos herramientas bajo el rótulo
-«Herramientas de diseño y verificación de off targets», y son dos enlaces de
-`YHat-Biotech/Links de interes.docx`: **dsRNAEngineer** y el **BLAST del NCBI**. No trae código,
-binarios ni documentación local (W2 REPORT, encabezado). A si-Fi21 llegamos nosotros, por el
-relevamiento de Cedden 2026 y el artículo de Lück *et al.* 2019, de modo que
-`tools/sifi21_port/` es un derivado nuestro de software de terceros que elegimos nosotros. Que
-una herramienta venga del corpus no cambiaría su licencia, pero sí cambia de quién es la
-decisión de usarla: esta fue nuestra.
-
-**Mostrarle el port a Diego no depende de la licencia.** Enseñarle el código a un colega no es
-redistribuir, y ninguna de las tres declaraciones en conflicto de D32 lo prohíbe. Lo único que
-había que esperar era que la auditoría de M9 pasara sobre `tools/sifi21_port/`, y pasó. Falta
-elegir el canal, que es la tarea 4 del issue #13.
-
-**La licencia pesa cuando se publica:** el entregable del Investigathón, un repositorio público
-o cualquier cosa disponible para terceros. Las tres declaraciones son CC BY-SA 4.0 (artículo,
-p. 9), CC BY-NC-SA 2.0 Generic (README del repositorio oficial) y CC BY-NC-SA (última página del
-manual) `[?]`; las dos últimas tienen cláusula NonCommercial, incompatible con la primera. El
-pedido del lunes sigue en pie como consulta a quien usa la herramienta, no como permiso.
-
-Nadie del equipo es abogado y esto no es asesoramiento legal: es el registro de una
-contradicción que está en las propias fuentes.

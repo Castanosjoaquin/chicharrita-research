@@ -571,18 +571,6 @@ mejor llegar con el análisis de qué cambiarían y la decisión tomada con él 
 6. **La licencia del original** y de dónde sacar la versión que ellos usan, que es lo que M9
    necesita para poder compartir el port sin una pregunta abierta.
 
-   > **Precisión del 25 de octubre, y acota el pedido.** si-Fi21 **no es una herramienta del
-   > corpus**: lo que `YHat-Biotech/Links de interes.docx` entrega bajo «Herramientas de diseño
-   > y verificación de off targets» son dsRNAEngineer y el BLAST del NCBI, y nada más (W2
-   > REPORT, encabezado). A si-Fi21 llegamos nosotros, por Cedden 2026 y Lück *et al.* 2019, y
-   > `tools/sifi21_port/` es un derivado nuestro de software de terceros que elegimos nosotros.
-   > Consecuencia práctica: **mostrarle el port a Diego no depende de la licencia** —enseñarle
-   > el código a un colega no es redistribuir, y ninguna de las tres declaraciones lo prohíbe—,
-   > así que eso puede hacerse apenas se elija el canal. La licencia pesa recién cuando el port
-   > se **publica**: el entregable del Investigathón, un repositorio público o cualquier cosa
-   > que quede disponible para terceros. El pedido del lunes sigue en pie, pero como consulta a
-   > quien usa la herramienta, no como permiso que necesitemos de él.
-
 ## 7. Riesgos de este plan
 
 - **M1 puede no cerrar.** Si ninguna base reproduce los cuatro números, el plan no da una
