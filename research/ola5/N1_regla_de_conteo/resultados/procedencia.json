@@ -1,0 +1,43 @@
+{
+  "versiones": {
+    "python": "3.13.15",
+    "plataforma": "Windows-11-10.0.26300-SP0",
+    "viennarna": "2.7.2",
+    "biopython": "1.88"
+  },
+  "configuracion": {
+    "modo": "fiel",
+    "backend": "vienna",
+    "tabla_nn": "NN4",
+    "temp_c": 22.0,
+    "criterio": {
+      "sirna_size": 21,
+      "end_stability_threshold": 1.0,
+      "accessibility_threshold": 0.1,
+      "accessibility_window": 8,
+      "strand_check": true,
+      "end_check": true,
+      "accessibility_check": true,
+      "terminal_check": true
+    }
+  },
+  "entradas": {
+    "MP_MRFV": {
+      "ruta": "work\\sifi_check\\MP_MRFV_full.fasta",
+      "md5": "9959e6c70dda49d0e39ba8f598deb611"
+    },
+    "CP_MRFV": {
+      "ruta": "work\\sifi_check\\CP_MRFV_full.fasta",
+      "md5": "45e6a35c3773f1795aea49105226240a"
+    },
+    "BicC_Dm": {
+      "ruta": "work\\sifi_check\\BicC_Dm_full.fasta",
+      "md5": "37dc8bb4fb5ec12ab4a54bdd199a6e69"
+    },
+    "ATPaseD_Dm": {
+      "ruta": "work\\sifi_check\\ATPaseD_Dm_full.fasta",
+      "md5": "016be568224b9050e6c084b461f905d8"
+    }
+  },
+  "trabajo": "C:\\Users\\MODDE\\AppData\\Local\\Temp\\claude\\C--Users-MODDE-Desktop-varios-chicharrita-research\\5f29010c-8091-4a16-bed6-c065d337e61f\\scratchpad\\n1_trabajo"
+}
