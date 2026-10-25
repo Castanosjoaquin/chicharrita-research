@@ -291,6 +291,64 @@ def veto(g: dict, ini: int, fin: int, pesos: dict | None, excluir: set) -> bool:
     return False
 
 
+# ----------------------------------------------- D48: la alerta en lugar del booleano
+
+class CompuertaRetirada(RuntimeError):
+    """Se pidio un veredicto automatico bajo la regla de alerta de D48.
+
+    D48 no baja la severidad: cambia la carga de la prueba. La coincidencia perfecta de
+    21 nt sigue siendo una alerta fuerte, pero quien la acepta o la bloquea es una
+    persona con una justificacion escrita que cita la fila de `alertas.tsv`, no este
+    codigo. La forma `cascada` ES la compuerta automatica —resta 1.000 a la region
+    vetada— y por eso no tiene sentido bajo esta regla.
+    """
+
+
+def alertas_de_region(g: dict, ini: int, fin: int, pesos: dict | None,
+                      excluir: set) -> list[dict]:
+    """Las coincidencias de la region por referencia y umbral de D28. **No decide nada.**
+
+    Reemplaza el valor de retorno de `veto()` —un booleano— por la lista de lo que hay
+    que justificar. Los dos umbrales van siempre los dos y estan anidados: toda ventana
+    con `perfecto_21` tiene tambien un bloque perfecto de >= 19 nt. `pesos` filtra igual
+    que en `veto()`: con `None` se miran todas las referencias del panel, y con el vector
+    de exposicion solo las de peso no nulo.
+    """
+    out = []
+    for ref, crits in sorted(g["riesgo"].items()):
+        if ref in excluir:
+            continue
+        if pesos is not None and pesos.get(ref, 0.0) <= 0.0:
+            continue
+        v21 = crits["perfecto_21"][ini - 1:fin]
+        v19 = crits["perfecto_ge19"][ini - 1:fin]
+        if not v21.any() and not v19.any():
+            continue
+        out.append({"referencia": ref, "corto": R.corto(ref),
+                    "ventanas_perfecto_21": int(v21.sum()),
+                    "ventanas_perfecto_ge19": int(v19.sum()),
+                    "posiciones_perfecto_21": [int(i) + ini for i in np.flatnonzero(v21)],
+                    "posiciones_perfecto_ge19": [int(i) + ini for i in np.flatnonzero(v19)]})
+    return out
+
+
+def estado_region(g: dict, ini: int, fin: int, pesos: dict | None, excluir: set) -> dict:
+    """El estado de la region bajo D48. **Nunca** devuelve «descartada» ni «aceptada».
+
+    Los dos unicos estados que este codigo puede producir son «sin alertas» y «con
+    alertas, pendiente de justificacion». La tercera y la cuarta posibilidad —aceptada
+    con justificacion, bloqueada con justificacion— las escribe una persona.
+    """
+    al = alertas_de_region(g, ini, fin, pesos, excluir)
+    n21 = sum(a["ventanas_perfecto_21"] for a in al)
+    n19 = sum(a["ventanas_perfecto_ge19"] for a in al)
+    return {"alertas": al, "n_referencias_con_alerta": len(al),
+            "ventanas_perfecto_21": n21, "ventanas_perfecto_ge19": n19,
+            "estado": "sin alertas" if not al else "con alertas, pendiente de justificacion",
+            "decide": "el codigo" if not al else "el usuario",
+            "vetada_regla_anterior": bool(veto(g, ini, fin, pesos, excluir))}
+
+
 # ------------------------------------------------- el orden, que SOLO ve la exposicion
 
 def barrer_exposicion(cands: list[dict], genes: dict, w_exposicion: dict, forma: str,
@@ -300,8 +358,18 @@ def barrer_exposicion(cands: list[dict], genes: dict, w_exposicion: dict, forma:
 
     `regla_veto`  'exposicion' saca del dato las referencias de exposicion cero, de modo
                   que no vetan; 'ciego' conserva la regla de hoy, en la que cualquier
-                  referencia del panel veta tenga el peso que tenga.
+                  referencia del panel veta tenga el peso que tenga; 'alerta' es D48 y
+                  **no veta nada**: devuelve `vetadas` vacio y el inventario de alertas
+                  por candidato, para que la decision la tome quien la tiene que firmar.
+                  Con 'alerta' la forma `cascada` levanta `CompuertaRetirada`, porque la
+                  cascada es literalmente la compuerta que D48 retira.
     """
+    if regla_veto == "alerta" and forma == "cascada":
+        raise CompuertaRetirada(
+            "la forma 'cascada' resta 1.000 a la region vetada, que es el veredicto "
+            "automatico que D48 reemplaza por una alerta justificada. Bajo la regla de "
+            "alerta el motor informa las alertas (ver `estado_region`) y no ordena por "
+            "veto; el orden ponderado se pide con 'geometrica' o 'suma'.")
     g = vista(genes, w_exposicion) if regla_veto == "exposicion" else genes
     refs = [r for r in w_exposicion if w_exposicion[r] > 0.0]
     frec = {c["gen"]: [0] * len(cands) for c in cands}
@@ -316,13 +384,17 @@ def barrer_exposicion(cands: list[dict], genes: dict, w_exposicion: dict, forma:
             frec[n][i] += 1
         clave = tuple(n for n, _ in orden)
         ordenes[clave] = ordenes.get(clave, 0) + 1
-    vetadas = [c["gen"] for c in cands
-               if veto(g[c["gen"]], c["region"][0], c["region"][1],
-                       w_exposicion if regla_veto == "exposicion" else None,
-                       R.excluidas_de(c, "off"))]
+    pesos_veto = w_exposicion if regla_veto == "exposicion" else None
+    vetadas = [] if regla_veto == "alerta" else [
+        c["gen"] for c in cands
+        if veto(g[c["gen"]], c["region"][0], c["region"][1], pesos_veto,
+                R.excluidas_de(c, "off"))]
+    alertadas = {c["gen"]: estado_region(g[c["gen"]], c["region"][0], c["region"][1],
+                                         pesos_veto, R.excluidas_de(c, "off"))
+                 for c in cands} if regla_veto == "alerta" else {}
     return {"frecuencia": {n: [round(100.0 * v / muestras, 1) for v in frec[n]]
                            for n in frec},
             "ordenes": sorted(({"orden": list(k), "pct": round(100.0 * v / muestras, 1)}
                                for k, v in ordenes.items()), key=lambda d: -d["pct"]),
-            "vetadas": vetadas, "muestras": muestras,
-            "referencias_con_exposicion": len(refs)}
+            "vetadas": vetadas, "alertadas": alertadas, "regla_veto": regla_veto,
+            "muestras": muestras, "referencias_con_exposicion": len(refs)}
