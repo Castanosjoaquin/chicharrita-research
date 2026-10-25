@@ -374,9 +374,18 @@ al plegar el gen completo: de 27 a 19, el 30 % del conteo por el 1 % de la secue
 porque el plegado es global <span class="m m-h">[H]</span>. El orden entre regiones no se mueve, y
 con esta fuente el margen de 922-1221 se abre en los tres marcos.</p></div>
 
-<p class="sub">De las cuatro fuentes esto se corrió en una: es la única cuya base está en nuestra
-máquina. Las otras tres quedan declaradas como no corridas, con el motivo —falta
-<code>blastn</code> y faltan las bases— y no como un cero.</p>
+<p>El genoma del Reino Unido lo reconstruimos también, y <strong>sin ningún alineador</strong>:
+los aciertos exactos de 21-meros que ya teníamos mapeados dan los 20 exones del locus y la
+coordenada genómica de cada posición del gen. Reproduce los dos conteos que ya teníamos para esa
+fuente, 26 y 22 <span class="m m-m">[M]</span>. Y da un resultado que vale solo: en las 2.425
+posiciones que el ensamblado cubre, <strong>el genoma escribe el gen exactamente igual que
+EPILAB</strong>, cero desajustes. Lo único que esa fuente aporta al eje de referencia es
+estructura de empalmes, no variación de secuencia <span class="m m-h">[H]</span>.</p>
+
+<p class="sub">De las cuatro fuentes se corrieron dos. Al genoma le faltan 95 posiciones del gen
+—88 son la cola 3'— así que ahí el marco de contexto no se puede calcular sin inventar bases, y se
+declara no corrido. <code>GHCC01</code> necesita un contig que no está en esta máquina y
+<code>GCWP01</code> no cubre la región. Ninguna de esas ausencias se informa como un cero.</p>
 
 <p class="path">research/ola4/M7_robustez_bicc/ · research/ola5/N3_marcos/ · research/ola5/N5_ficha_grilla/</p>
 
@@ -618,7 +627,7 @@ número.</p>
 <tr><td>Si el contador histórico produjo también las cifras de las doce regiones</td><td><span class="st st-mid">abierto</span> medimos qué pasa si fue el mismo: el sesgo por región va de 0 % a 22,2 % y el 36 contra 35 se vuelve empate. Nos falta saber si lo fue</td></tr>
 <tr><td>El tercer marco cruzado con las 4.368 configuraciones</td><td><span class="st st-ok">corrido</span> 41,1 % contra C7 y 99,9 % contra la región original</td></tr>
 <tr><td>El término que cruza el corte en las tres regiones que no son de <code>BicC</code></td><td><span class="st st-ok">corrido</span> las veinte ventanas que cambian cruzan por accesibilidad, ninguna por extremos ni por hebra, y ninguna cae en las dos primeras posiciones del recorte</td></tr>
-<tr><td>El marco intermedio cruzado con el eje de referencia</td><td><span class="st st-mid">una de cuatro fuentes</span> corrido con GITV01; las otras tres no tienen base en nuestra máquina y nos falta <code>blastn</code></td></tr>
+<tr><td>El marco intermedio cruzado con el eje de referencia</td><td><span class="st st-mid">dos de cuatro fuentes</span> GITV01 completo y el genoma sólo en el marco de la molécula, porque al gen le faltan 95 posiciones en ese ensamblado. GHCC01 necesita un contig que no tenemos en disco; GCWP01 no cubre la región</td></tr>
 <tr><td>La regla terminal: fiel contra filtro adicional</td><td><span class="st st-mid">las dos como hipótesis</span> coincidimos: no hay evidencia abierta que alcance para elegir</td></tr>
 </tbody></table></div>
 

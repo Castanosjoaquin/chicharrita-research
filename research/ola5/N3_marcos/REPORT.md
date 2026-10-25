@@ -169,17 +169,19 @@ la ola. `M7` §4 recalculó la eficiencia **sobre la molécula recortada tal com
 fuente** —el marco 3— contra cuatro fuentes; faltaba el marco intermedio, que necesita reconstruir
 el **gen entero** por fuente y no sólo la región.
 
-### Tres de las cuatro fuentes no se pueden correr en esta máquina
+### Qué fuente se pudo correr, y con qué
 
-`[M]` Y conviene escribir el motivo, no el resultado faltante. `eje_referencia.py` de `M7` alinea
-con `blastn` local contra `work/W5/db/`. En esta máquina **no hay `blastn` ni `makeblastdb`**
-—verificado con `shutil.which`— y `work/W5/` no está en el árbol.
+`[M]` `eje_referencia.py` de `M7` alinea con `blastn` local contra `work/W5/db/`. En esta máquina
+**no hay `blastn` ni `makeblastdb`** —verificado con `shutil.which`— y `work/W5/` no está en el
+árbol, así que esta línea tuvo que reconstruir cada fuente con lo que sí hay en disco. Dos de las
+cuatro quedaron afuera y por motivos distintos, y **conviene escribir el motivo y no el resultado
+faltante**: una fuente sin datos no es una fuente con cero.
 
 | Fuente | Estado | Motivo |
 |---|---|---|
 | GHCC01 (Pergamino) | **no corrida** | la base no está en disco |
 | GCWP01 (Illinois) | **no corrida** | la base no está en disco; y no cubre un solo nucleótido de 922-1221 |
-| genoma del Reino Unido | **no corrida, y el motivo que escribimos primero estaba mal** | ver la nota de abajo: el locus ya está en disco |
+| genoma del Reino Unido | **corrida en el marco 3; los de contexto no se pueden** | el locus ya estaba en disco; al gen le faltan 95 posiciones en el ensamblado y los marcos de contexto pliegan el gen completo |
 | **GITV01 (Ohio State)** | **corrida** | los dos contigs que la ola 3 identificó como blanco principal están en `work/M1/bases/` |
 
 > **Corrección del mismo día, y es la segunda vez que este proyecto comete este error.** El
@@ -191,10 +193,10 @@ con `blastn` local contra `work/W5/db/`. En esta máquina **no hay `blastn` ni `
 > Con eso el gen se reconstruye sin alineador de consultas largas y sin blastn: los aciertos
 > exactos dan el mapeo posición del gen → posición del genoma por tramos, los saltos de offset
 > marcan los empalmes, y el transcrito tal como lo escribe el genoma es leer la base genómica de
-> cada posición mapeada. Además `work/M1/bases/dmaid_genoma.fa` está sin comprimir. La corrida
-> queda pendiente, pero **por no haberla hecho y no por falta de insumos**. Es la misma lección
-> que ya tenía este repositorio con Bowtie y RNAplfold: antes de declarar que falta una
-> herramienta o un dato, mirar lo que otra línea dejó en `work/`.
+> cada posición mapeada. Además `work/M1/bases/dmaid_genoma.fa` está sin comprimir. **Se corrió
+> así, y el resultado está en la sección siguiente.** Es la misma lección que ya tenía este
+> repositorio con Bowtie y RNAplfold: antes de declarar que falta una herramienta o un dato,
+> mirar lo que otra línea dejó en `work/`.
 
 `[H]` La que se corrió es la más informativa de las cuatro para esta pregunta: es la única donde los
 conteos recalculados **bajan** y la única donde 2121-2420 conserva una fracción mayor de sus
@@ -242,6 +244,38 @@ ventanas que están lejos de él, y la molécula recortada acota ese alcance por
 consecuencia práctica es incómoda y es la misma de toda esta línea: el marco no es una convención
 de contabilidad, decide cuánta sensibilidad tiene el número a cada cosa que se cambie.
 
+### El genoma del Reino Unido, reconstruido sin blastn
+
+`[M]` Con los 2.170 aciertos exactos de `M1` sobre `OZ319706.1` salen **20 exones** en un locus
+de **37,0 kb** (38.450.006-38.487.037), y el mapeo posición por posición del gen. Del gen quedan
+**95 posiciones sin datos** en el ensamblado, en cuatro tramos: 394, 1318, 1405-1409 y
+**2433-2520**, o sea que 88 de las 95 son la cola 3' del gen.
+
+`[M]` **El ancla se reprodujo sin blastn.** En el marco 3 da **26** para 922-1221 y **22** para
+2121-2420, que son los dos conteos que `M7` publicó para esta fuente con blastn. Aritmética sobre
+aciertos de bowtie y alineamiento con blastn dan lo mismo.
+
+| Región | EPILAB m1 / m2 / m3 | Genoma m1 / m2 / m3 | Desajustes | Empalmes | Sin datos |
+|---|---|---|---:|---:|---:|
+| 922-1221 | 36 / 29 / 26 | — / — / **26** | 0 | 1 | 0 |
+| 2121-2420 | 35 / 27 / 22 | — / — / **22** | 0 | 3 | 0 |
+| 264-563 | 20 / 15 / 17 | — / — / — | 0 | 4 | 1 |
+
+`[M]` **Los marcos de contexto no se pueden calcular con esta fuente, y el motivo no es la
+herramienta.** Pliegan el gen completo, y al gen le faltan 95 posiciones; rellenarlas sería
+inventar bases, y como el plegado es global una base inventada mueve la accesibilidad de ventanas
+que están lejos de ella. La primera versión de este script las rellenaba con `A` y daba 34 y 26
+para las dos regiones: dos números que no significan nada y que conviene decir que estuvieron
+escritos un rato. 264-563 además pierde el marco 3, porque la posición 394 no tiene datos.
+
+`[M]` **Y hay un resultado que vale por sí mismo: cero desajustes.** En las 2.425 posiciones del
+gen que el ensamblado cubre, el genoma escribe el gen **exactamente** como lo escribe EPILAB.
+`[H]` O sea que esta fuente no aporta variación de secuencia al eje de referencia: lo único que
+aporta es **estructura de empalmes** —uno dentro de 922-1221, tres dentro de 2121-2420, cuatro
+dentro de 264-563—, que afecta a si un 21-mero existe como tramo contiguo del genoma y no a cómo
+se pliega el transcrito. Dicho de otro modo: el marco 2 de esta fuente sería el de EPILAB, 29 y
+27, si supiéramos qué dicen esas 95 posiciones.
+
 ## 8. Lo que esta línea todavía no hace
 
 `[?]` El marco intermedio en las otras tres fuentes, y las tres están en situaciones distintas:
@@ -253,8 +287,9 @@ de contabilidad, decide cuánta sensibilidad tiene el número a cada cosa que se
   posiciones del gen en dos HSPs sobre un único contig, `GHCC01002326.1` `[M]`. Con ese contig
   solo, la reconstrucción es la misma que se hizo acá para `GITV01`: sin blastn y sin base
   completa.
-- **El genoma del Reino Unido no necesita nada nuevo**, por la corrección de arriba: el locus está
-  pinchado en `OZ319706.1:38.450.005-38.513.631` y el FASTA está en `work/M1/bases/`.
+- **El genoma del Reino Unido ya está corrido** en el marco 3, y sus marcos de contexto no son un
+  pendiente sino un imposible con este ensamblado: faltan 95 posiciones del gen y esos marcos
+  pliegan el gen completo. Para cerrarlos haría falta un ensamblado que cubra la cola 3'.
 
 ## Archivos
 
@@ -264,9 +299,11 @@ de contabilidad, decide cuánta sensibilidad tiene el número a cada cosa que se
 | `scripts/marco2_en_la_grilla.py` | el marco intermedio en las 4.368 configuraciones, con las cuatro fracciones de M7 como ancla |
 | `scripts/terminos_por_region.py` | el comparador de M2 sobre las tres regiones que M7 no cubrió, con las anclas de la sección 2 |
 | `scripts/marco2_por_fuente.py` | la reconstrucción del gen desde GITV01 y los tres marcos sobre esa secuencia, con el ancla de M7 §4 |
+| `scripts/marco2_genoma.py` | la reconstrucción desde el genoma sin blastn, por aritmética sobre los aciertos de bowtie de M1 |
 | `resultados/tres_marcos.tsv` | la tabla de la sección 2 |
 | `resultados/tres_marcos.json` | lo mismo, con las posiciones que ganan y pierden en cada región |
 | `resultados/marco2_en_la_grilla.json` | las seis fracciones de la sección 6, con empates y margen mediano |
 | `resultados/terminos_*_cambios.tsv` | una fila por ventana que cambia, con el término que cruzó y cuánto se movió cada término continuo |
 | `resultados/terminos_por_region.json` | los seis pares de la sección 5 y el recuento por término |
-| `resultados/marco2_por_fuente.json` | los tres marcos con la secuencia de GITV01, los desajustes posición por posición y las tres fuentes no corridas con su motivo |
+| `resultados/marco2_por_fuente.json` | los tres marcos con la secuencia de GITV01, los desajustes posición por posición y las fuentes no corridas con su motivo |
+| `resultados/marco2_genoma.json` | los exones, el locus, los tramos sin datos y los marcos que se pudieron calcular |

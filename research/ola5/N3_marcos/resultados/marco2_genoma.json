@@ -1,0 +1,85 @@
+{
+  "fuente": "genoma GCA_975739785.1, OZ319706.1",
+  "tramos_sin_datos": [
+    [
+      394,
+      394
+    ],
+    [
+      1318,
+      1318
+    ],
+    [
+      1405,
+      1409
+    ],
+    [
+      2433,
+      2520
+    ]
+  ],
+  "marcos_de_contexto_corridos": false,
+  "metodo": "aritmetica sobre los aciertos exactos de bowtie de M1; sin blastn",
+  "aciertos_exactos": 2170,
+  "exones_detectados": 20,
+  "locus": [
+    38450006,
+    38487037
+  ],
+  "posiciones_sin_datos": 95,
+  "desajustes_contra_epilab": 0,
+  "ancla_m7_marco3": {
+    "922-1221": 26,
+    "2121-2420": 22
+  },
+  "configuracion": {
+    "modo": "corregido",
+    "backend": "vienna",
+    "tabla_nn": "NN3"
+  },
+  "regiones": {
+    "922-1221": {
+      "epilab": [
+        36,
+        29,
+        26
+      ],
+      "desajustes_en_la_region": 0,
+      "empalmes_en_la_region": 1,
+      "posiciones_sin_datos_en_la_region": 0,
+      "marco3": 26,
+      "marco1": null,
+      "marco2": null,
+      "marcos_de_contexto_no_corridos": "el gen tiene 95 posiciones sin datos en el ensamblado, y los marcos de contexto pliegan el gen completo"
+    },
+    "2121-2420": {
+      "epilab": [
+        35,
+        27,
+        22
+      ],
+      "desajustes_en_la_region": 0,
+      "empalmes_en_la_region": 3,
+      "posiciones_sin_datos_en_la_region": 0,
+      "marco3": 22,
+      "marco1": null,
+      "marco2": null,
+      "marcos_de_contexto_no_corridos": "el gen tiene 95 posiciones sin datos en el ensamblado, y los marcos de contexto pliegan el gen completo"
+    },
+    "264-563": {
+      "epilab": [
+        20,
+        15,
+        17
+      ],
+      "desajustes_en_la_region": 0,
+      "empalmes_en_la_region": 4,
+      "posiciones_sin_datos_en_la_region": 1,
+      "marco3": null,
+      "marco3_no_corrido": "la region tiene 1 posiciones sin datos en el ensamblado",
+      "marco1": null,
+      "marco2": null,
+      "marcos_de_contexto_no_corridos": "el gen tiene 95 posiciones sin datos en el ensamblado, y los marcos de contexto pliegan el gen completo"
+    }
+  }
+}

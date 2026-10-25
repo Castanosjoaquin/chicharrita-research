@@ -43,11 +43,12 @@ defendida en [`entregables/recomendacion-defendida.md`](../../entregables/recome
 
 ## Lo que quedó sin hacer, y por qué
 
-- **El marco intermedio en tres de las cuatro fuentes del eje de referencia.** Se corrió con
-  `GITV01`, que es la única cuya base está en esta máquina; las otras tres quedan **no corridas con
-  su motivo** —no hay `blastn` ni `makeblastdb` acá y `work/W5/db/` no está en el árbol— en `N3`
-  §7. Con `blastn` en el PATH, el camino corto es agregarle el marco intermedio a
-  `eje_referencia.py` de `M7` `[?]`.
+- **El marco intermedio en dos de las cuatro fuentes del eje de referencia.** Se corrió con
+  `GITV01` —completo— y con el genoma del Reino Unido, que reconstruimos sin blastn por aritmética
+  sobre los aciertos de bowtie de `M1` y donde sólo el marco de la molécula es calculable, porque
+  al gen le faltan 95 posiciones en ese ensamblado. `GHCC01` necesita un único contig público,
+  `GHCC01002326.1`, que no está en esta máquina; `GCWP01` no es un pendiente sino un límite,
+  porque cubre 609 de 2.520 posiciones y ninguna de 922-1221 `[?]`. Todo en `N3` §7.
 - **El apareamiento parcial de las ventanas de juntura.** Medimos la coincidencia exacta de 21 nt;
   si una complementariedad incompleta les da alguna actividad, esas ventanas no serían inútiles
   sino menos útiles, y no lo sabemos `[?]`.
