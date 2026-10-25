@@ -1,0 +1,144 @@
+gen	region	pos	organismo_corto	criterio	transcripto	gen_simbolo	gen_locus
+MP_MRFV	72-271	95	D_maidis	perfecto_ge19	OZ319709.1	(sin anotación de gen)	(sin LOC)
+MP_MRFV	72-271	96	D_maidis	perfecto_ge19	OZ319709.1	(sin anotación de gen)	(sin LOC)
+MP_MRFV	72-271	97	D_maidis	perfecto_ge19	OZ319709.1	(sin anotación de gen)	(sin LOC)
+MP_MRFV	72-271	106	maiz	perfecto_ge19	XM_008647293.4	Zea mays rop guanine nucleotide exchange factor 10	LOC103626931
+MP_MRFV	72-271	107	maiz	perfecto_ge19	XM_008647293.4	Zea mays rop guanine nucleotide exchange factor 10	LOC103626931
+MP_MRFV	72-271	108	maiz	perfecto_ge19	XM_008647293.4	Zea mays rop guanine nucleotide exchange factor 10	LOC103626931
+BicC_Dm	922-1221	1217	humano	perfecto_ge19	XR_007063892.1	Homo sapiens uncharacterized LOC124903225	LOC124903225
+BicC_Dm	922-1221	1218	humano	perfecto_ge19	XR_007063892.1	Homo sapiens uncharacterized LOC124903225	LOC124903225
+BicC_Dm	922-1221	1219	humano	perfecto_ge19	XR_007063892.1	Homo sapiens uncharacterized LOC124903225	LOC124903225
+ATPaseD_Dm	72-371	136	humano	perfecto_ge19	XM_047420445.1	Homo sapiens phosphodiesterase 1C	PDE1C
+ATPaseD_Dm	72-371	137	humano	perfecto_ge19	XM_047420445.1	Homo sapiens phosphodiesterase 1C	PDE1C
+ATPaseD_Dm	72-371	138	humano	perfecto_ge19	XM_047420445.1	Homo sapiens phosphodiesterase 1C	PDE1C
+ATPaseD_Dm	72-371	211	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	72-371	212	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	72-371	213	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	72-371	214	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+eth_Dm	114-313	151	humano	perfecto_ge19	XM_047430759.1	Homo sapiens StAR related lipid transfer domain containing 13	STARD13
+eth_Dm	114-313	152	humano	perfecto_ge19	XM_047430759.1	Homo sapiens StAR related lipid transfer domain containing 13	STARD13
+eth_Dm	114-313	153	humano	perfecto_ge19	XM_047430759.1	Homo sapiens StAR related lipid transfer domain containing 13	STARD13
+MP_MRFV	1-200	95	D_maidis	perfecto_ge19	OZ319709.1	(sin anotación de gen)	(sin LOC)
+MP_MRFV	1-200	96	D_maidis	perfecto_ge19	OZ319709.1	(sin anotación de gen)	(sin LOC)
+MP_MRFV	1-200	97	D_maidis	perfecto_ge19	OZ319709.1	(sin anotación de gen)	(sin LOC)
+MP_MRFV	1-200	106	maiz	perfecto_ge19	XM_008647293.4	Zea mays rop guanine nucleotide exchange factor 10	LOC103626931
+MP_MRFV	1-200	107	maiz	perfecto_ge19	XM_008647293.4	Zea mays rop guanine nucleotide exchange factor 10	LOC103626931
+MP_MRFV	1-200	108	maiz	perfecto_ge19	XM_008647293.4	Zea mays rop guanine nucleotide exchange factor 10	LOC103626931
+BicC_Dm	264-563	386	maiz	perfecto_ge19	NM_001154697.2	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	386	maiz	perfecto_ge19	XM_008677183.3	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	386	maiz	perfecto_ge19	XR_564801.3	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	387	maiz	perfecto_ge19	NM_001154697.2	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	387	maiz	perfecto_ge19	XM_008677183.3	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	387	maiz	perfecto_ge19	XR_564801.3	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	388	maiz	perfecto_ge19	NM_001154697.2	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	388	maiz	perfecto_ge19	XM_008677183.3	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	388	maiz	perfecto_ge19	XR_564801.3	Zea mays serine esterase family protein	LOC100281777
+BicC_Dm	264-563	444	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	445	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	446	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	446	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	447	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	447	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	448	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	448	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	449	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	449	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	450	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	450	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	451	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	451	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	452	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	452	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	453	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	453	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	454	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	454	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	455	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	455	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	456	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	456	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	457	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	457	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	458	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	458	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	459	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	459	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	460	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	460	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	461	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	461	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	462	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	462	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	463	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	463	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	464	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	465	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	510	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	511	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	512	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	512	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	513	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	513	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	514	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	514	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	515	H_vitripennis	perfecto_21	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	515	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	516	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	264-563	517	H_vitripennis	perfecto_ge19	XM_046816879.1	Homalodisca vitripennis protein bicaudal C homolog 1-A	LOC124362408
+BicC_Dm	2121-2420	2135	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2135	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2135	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2135	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2135	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2135	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2135	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2135	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2136	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2136	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2136	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2136	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2136	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2136	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2136	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2136	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2137	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2137	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2137	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2137	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2137	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2137	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2137	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2137	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2121-2420	2361	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+BicC_Dm	2121-2420	2362	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+BicC_Dm	2121-2420	2363	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+ATPaseD_Dm	151-450	211	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	151-450	212	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	151-450	213	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	151-450	214	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	151-450	390	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	391	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	392	H_vitripennis	perfecto_21	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	392	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	393	H_vitripennis	perfecto_21	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	393	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	394	H_vitripennis	perfecto_21	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	394	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	395	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	151-450	396	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	137	humano	perfecto_ge19	XM_047420445.1	Homo sapiens phosphodiesterase 1C	PDE1C
+ATPaseD_Dm	137-436	138	humano	perfecto_ge19	XM_047420445.1	Homo sapiens phosphodiesterase 1C	PDE1C
+ATPaseD_Dm	137-436	211	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	137-436	212	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	137-436	213	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	137-436	214	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	137-436	390	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	391	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	392	H_vitripennis	perfecto_21	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	392	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	393	H_vitripennis	perfecto_21	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	393	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	394	H_vitripennis	perfecto_21	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	394	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	395	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+ATPaseD_Dm	137-436	396	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
