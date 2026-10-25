@@ -580,18 +580,8 @@ mejor llegar con el análisis de qué cambiarían y la decisión tomada con él 
    > el código a un colega no es redistribuir, y ninguna de las tres declaraciones lo prohíbe—,
    > así que eso puede hacerse apenas se elija el canal. La licencia pesa recién cuando el port
    > se **publica**: el entregable del Investigathón, un repositorio público o cualquier cosa
-   > que quede disponible para terceros.
-   >
-   > **Y por eso este pedido se parte en dos, porque la mitad estaba mal dirigida.** La
-   > licencia **no se le pregunta a Diego**: no es software suyo, es de Lück, Douchkov y el
-   > grupo del IPK Gatersleben, y él no puede resolver una contradicción que está en las
-   > publicaciones de otros. Esa mitad sale de la lista del lunes y pasa a ser trabajo nuestro:
-   > mirar el `LICENSE` del repositorio oficial y, si las tres declaraciones siguen en
-   > conflicto, **cumplir la más restrictiva**, que es lo que corresponde cuando una obra se
-   > declara de forma contradictoria. Lo que sí queda como pedido del lunes es la otra mitad,
-   > **qué versión de si-Fi usan y de dónde la bajaron**, que es sobre ellos y es lo que M1
-   > necesita: corrieron `siFi21_8_1.0_0.1_1111` y no sabemos contra qué build. Eso vale por
-   > reproducibilidad, no por permiso.
+   > que quede disponible para terceros. El pedido del lunes sigue en pie, pero como consulta a
+   > quien usa la herramienta, no como permiso que necesitemos de él.
 
 ## 7. Riesgos de este plan
 

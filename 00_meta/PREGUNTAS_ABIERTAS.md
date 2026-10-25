@@ -1536,16 +1536,8 @@ elegir el canal, que es la tarea 4 del issue #13.
 **La licencia pesa cuando se publica:** el entregable del Investigathón, un repositorio público
 o cualquier cosa disponible para terceros. Las tres declaraciones son CC BY-SA 4.0 (artículo,
 p. 9), CC BY-NC-SA 2.0 Generic (README del repositorio oficial) y CC BY-NC-SA (última página del
-manual) `[?]`; las dos últimas tienen cláusula NonCommercial, incompatible con la primera.
-
-**A Diego no hay que preguntarle esto.** El software es de Lück, Douchkov y el grupo del IPK
-Gatersleben; él no puede resolver una contradicción que está en las publicaciones de otros, y su
-respuesta no sería autoridad sobre nada. La licencia es trabajo nuestro: mirar el `LICENSE` del
-repositorio oficial y, si las tres declaraciones siguen en conflicto, **cumplir la más
-restrictiva** —CC BY-NC-SA—, que es lo que corresponde cuando una obra se declara de forma
-contradictoria. Lo único que sí es pregunta para ellos es **qué versión de si-Fi usan y de dónde
-la bajaron**, que no es un tema de permiso sino de reproducibilidad: corrieron
-`siFi21_8_1.0_0.1_1111` y no sabemos contra qué build, que es lo que M1 necesita cerrar.
+manual) `[?]`; las dos últimas tienen cláusula NonCommercial, incompatible con la primera. El
+pedido del lunes sigue en pie como consulta a quien usa la herramienta, no como permiso.
 
 Nadie del equipo es abogado y esto no es asesoramiento legal: es el registro de una
 contradicción que está en las propias fuentes.
