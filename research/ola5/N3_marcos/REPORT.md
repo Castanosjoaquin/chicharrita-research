@@ -179,10 +179,24 @@ con `blastn` local contra `work/W5/db/`. En esta máquina **no hay `blastn` ni `
 |---|---|---|
 | GHCC01 (Pergamino) | **no corrida** | la base no está en disco |
 | GCWP01 (Illinois) | **no corrida** | la base no está en disco; y no cubre un solo nucleótido de 922-1221 |
-| genoma del Reino Unido | **no corrida** | está en `work/offtarget_db/`, pero son 984 MB y sin alineador de consultas largas no se ubica el gen ni sus exones |
+| genoma del Reino Unido | **no corrida, y el motivo que escribimos primero estaba mal** | ver la nota de abajo: el locus ya está en disco |
 | **GITV01 (Ohio State)** | **corrida** | los dos contigs que la ola 3 identificó como blanco principal están en `work/M1/bases/` |
 
-`[H]` La que quedó es la más informativa de las cuatro para esta pregunta: es la única donde los
+> **Corrección del mismo día, y es la segunda vez que este proyecto comete este error.** El
+> motivo que escribimos para el genoma —«son 984 MB y sin alineador de consultas largas no se
+> ubica el gen»— **no se sostiene**: el locus ya estaba en disco. `M1` había mapeado los 21-meros
+> del gen contra el genoma con el bowtie del instalador de si-Fi2015, y
+> `work/M1/hits/dmaid_genoma_BicC_Dm.txt` tiene **2.178 aciertos exactos, todos en `OZ319706.1`
+> y en la hebra `+`, entre los offsets 38.450.005 y 38.513.631** —un locus de 63,6 kb— `[M]`.
+> Con eso el gen se reconstruye sin alineador de consultas largas y sin blastn: los aciertos
+> exactos dan el mapeo posición del gen → posición del genoma por tramos, los saltos de offset
+> marcan los empalmes, y el transcrito tal como lo escribe el genoma es leer la base genómica de
+> cada posición mapeada. Además `work/M1/bases/dmaid_genoma.fa` está sin comprimir. La corrida
+> queda pendiente, pero **por no haberla hecho y no por falta de insumos**. Es la misma lección
+> que ya tenía este repositorio con Bowtie y RNAplfold: antes de declarar que falta una
+> herramienta o un dato, mirar lo que otra línea dejó en `work/`.
+
+`[H]` La que se corrió es la más informativa de las cuatro para esta pregunta: es la única donde los
 conteos recalculados **bajan** y la única donde 2121-2420 conserva una fracción mayor de sus
 eficientes que 922-1221 (33 de 35 contra 32 de 36). Si el marco intermedio tenía que aguantar en
 algún lugar, era ahí.
@@ -230,9 +244,17 @@ de contabilidad, decide cuánta sensibilidad tiene el número a cada cosa que se
 
 ## 8. Lo que esta línea todavía no hace
 
-`[?]` El marco intermedio en las otras tres fuentes del eje de referencia, por los motivos de la
-tabla de arriba. Hace falta `blastn` en el PATH y las bases de `work/W5/db/`; con eso, el camino
-corto es agregarle el marco intermedio a `eje_referencia.py` de `M7`, que ya hace las cuatro.
+`[?]` El marco intermedio en las otras tres fuentes, y las tres están en situaciones distintas:
+
+- **`GCWP01` no es un pendiente, es un límite.** Cubre 609 de las 2.520 posiciones del gen y deja
+  1.931 ventanas sin datos, y de 922-1221 no cubre ni un nucleótido `[M]`. Con la base en disco el
+  resultado sería el mismo: esa región no se puede evaluar ahí.
+- **`GHCC01` necesita un solo registro público.** `M7` registró que la fuente cubre las 2.520
+  posiciones del gen en dos HSPs sobre un único contig, `GHCC01002326.1` `[M]`. Con ese contig
+  solo, la reconstrucción es la misma que se hizo acá para `GITV01`: sin blastn y sin base
+  completa.
+- **El genoma del Reino Unido no necesita nada nuevo**, por la corrección de arriba: el locus está
+  pinchado en `OZ319706.1:38.450.005-38.513.631` y el FASTA está en `work/M1/bases/`.
 
 ## Archivos
 
