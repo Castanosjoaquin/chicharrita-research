@@ -74,14 +74,36 @@ aislado distinto del de la referencia; no se midió cuántas posiciones difieren
 - `baseline_dsrip/dsrip_vatpaseA.csv`: 5.473 rachas y 3 cadenas, la mayor de **1.845 nt**,
   que es exactamente el largo del CDS de V-ATPase A de *D. maidis* declarado en el README
   de la carpeta `[M]`. **No es ninguna de las cuatro regiones de EPILAB** (pasada 3 da
-  cero) `[M]`, pero su procedencia exacta no se verificó: el README dice que el CDS se
-  reconstruyó desde `pipeline/salida/sirna_vatpaseA.csv`, que no se versiona, y no se
-  comprobó contra qué genoma `[?]`. **Queda sin exceptuar a propósito**, como pregunta
-  para Luca, que corrió esa línea.
+  cero) `[M]`. La primera corrida lo dejó sin exceptuar porque el README sólo decía que el
+  CDS se había reconstruido desde `pipeline/salida/sirna_vatpaseA.csv`, que no se versiona,
+  y un cero contra la planilla no es una procedencia. **Ahora está verificado y
+  exceptuado** (§3.3 bis).
 
 Este archivo es la razón por la que la pasada 2 reporta la dirección: la columna
 `antisense_5_3` es el complemento reverso de la ventana, así que encadena al revés.
 Mirando un solo sentido no se veía, y reconstruye igual.
+
+### 3.3 bis La procedencia del CDS de V-ATPase A, resuelta sin salir de la máquina
+
+La pregunta no necesitaba al NCBI ni a quien corrió la línea: la respuesta estaba en las
+salidas del propio pipeline. De las 1.825 ventanas del CDS, **25 sobreviven al tamizaje y
+aparecen en `sirna_finales.csv` y en `sirna_cercanos.csv` con su columna `locus`**, y las
+25 caen en el mismo: `L06020`, que `candidatos_alto.csv` ubica en
+**`OZ319711.1:47.265.953-47.286.132`, hebra `+`, 11 exones** `[M]`. `OZ319711.1` es uno de
+los diez cromosomas de `GCA_975739785.1` (ihDalMaid1.1, Wellcome Sanger), el ensamblado
+público de *Dalbulus maidis* sobre el que el pipeline mapeó con miniprot las proteínas de
+referencia; la de este locus es `A0A1I9WLH3_NILLU`, de UniProt. El ortólogo de *Drosophila*
+que le asigna la tabla es `Vha68-2`, que es la subunidad A de la V-ATPasa, así que el
+nombre del archivo también cierra `[M]`.
+
+El CDS reconstruido es un marco de lectura limpio: **1.845 nt, ATG inicial, 614 codones
+más el stop `TAA`, cero stops internos** `[M]`. Eso es consistente con una subunidad A de
+V-ATPasa y descarta que la concatenación de ventanas haya armado un artefacto.
+
+Con la procedencia escrita, el archivo pasa a la lista blanca. Se reproduce con
+`scripts/procedencia_vatpasea.py`, **con insumos locales**: `pipeline/salida/` está en
+`.gitignore` porque sus derivados llevan fenotipos de iBeetle-Base. Si falta, el script lo
+dice y no devuelve nada. Salida en `resultados/procedencia_vatpasea.json`.
 
 ### 3.4 El resto
 
@@ -118,6 +140,27 @@ Sobre los 128 commits, en modo `--solo-epilab`, el único hallazgo es el mismo
 aparecen**, lo que confirma que la reescritura de aquellos tres commits locales funcionó
 y que nunca llegaron al historial publicado `[M]`.
 
+**Las tres pasadas sobre el historial, y un filtro que faltaba.** La corrida del 23 de
+octubre fue en `--solo-epilab`; corriendo las tres pasadas sobre los 159 commits de hoy
+aparecieron tres archivos más, y uno de ellos destapó un defecto de la herramienta.
+`sifi_plus/datos_ejemplo/NM_001111367.2.fasta` y `sifi_plus/test_api.py` son de la línea
+de la interfaz y ya estaban exceptuados en el árbol, con su accesión. El tercero,
+`research/ola2/W6_agentes_ciencia/index.html`, era **el mismo falso positivo de base64 que
+§5 da por corregido**: el descarte de tramos que son el interior de otro token vivía sólo
+en `buscar_rachas`, que es la pasada 1 del modo árbol, y el modo historial repetía el
+recorrido por su cuenta sin ese filtro. Un filtro que existe en un camino y no en el otro
+no es un filtro: ahora el modo historial llama a la misma función. Corregido, el historial
+da **28 hallazgos no exceptuados, exactamente los mismos dos archivos que el árbol** `[M]`.
+
+**Lo que el modo historial sigue sin mirar, y conviene no olvidarlo:** corre la pasada 1 y
+la pasada 3, pero **no corre la pasada 2**, la de columnas de k-meros solapados, que es
+justamente la que atrapa el patrón del incidente de C9 cuando los k-meros miden menos de
+21 nt. Y la pasada 3 se aplica línea de diff por línea de diff, así que un k-mero partido
+por un salto de línea no se ve. Las dos cosas son consecuencia de recorrer líneas sueltas
+en vez de reconstruir el texto agregado por archivo. Quedan anotadas en
+`00_meta/PREGUNTAS_ABIERTAS.md`: mientras tanto, **el modo historial contesta «esto estuvo»
+y no «esto no estuvo»**.
+
 **Limitación del modo historial, declarada:** la cobertura se calcula por línea agregada
 del diff, no por archivo, así que los porcentajes de ese modo son un piso y no la cifra
 real (una línea de FASTA de 70 nt reporta 35 % de una región de 200). Para la cifra hay
@@ -125,12 +168,14 @@ que usar el modo árbol. El modo historial sirve para contestar si algo estuvo, 
 
 ## 5. Lista blanca
 
-Siete entradas, cada una con su motivo y su accesión cuando la tiene: el CSV de Cedden
+Catorce entradas, cada una con su motivo y su accesión cuando la tiene: el CSV de Cedden
 (D41), los ejemplos de W2 (accesiones del NCBI declaradas en su README),
 `candidatos_c5.fa` (accesión en cada cabecera), `ventanas_multigen.csv` (*T. castaneum*
-público), los datos de R7 (PDB 8P6P, 7P6Z, 7OOC y ARNr 16S), los cebadores de
-`conservacion.py` (Tabla 1 de Andrada *et al.* 2026, PMC13279319) y tres archivos con
-fixtures de prueba o 21-meros citados en el cuerpo de un informe.
+público), `dsrip_vatpaseA.csv` (locus `L06020` de `GCA_975739785.1`, §3.3 bis), los datos
+de R7 (PDB 8P6P, 7P6Z, 7OOC y ARNr 16S), el dato de ejemplo de la interfaz
+(`NM_001111367.2`, ferredoxina-6 de maíz), los cebadores de `conservacion.py` (Tabla 1 de
+Andrada *et al.* 2026, PMC13279319) y cinco archivos con fixtures de prueba o 21-meros
+citados en el cuerpo de un informe.
 
 Una excepción sin motivo escrito no es una excepción. El motivo tiene que decir por qué
 el dato es público, no por qué molesta el hallazgo.
@@ -142,6 +187,47 @@ embebidas en base64 que por azar contienen tramos largos de A, C, G y T. Se corr
 la herramienta y no por excepción, porque el problema es general: si el carácter pegado
 al tramo es alfanumérico y no es un nucleótido, el tramo es el interior de otro token.
 
+## 5 bis. «No pude mirar» no es «miré y no encontré»
+
+La línea M7 anotó que el gancho rechazaba con el mensaje equivocado: cuando falta la
+planilla o falta `openpyxl`, la pasada contra EPILAB no corre y el gancho decía
+«RECHAZADO: hay secuencias de EPILAB en lo que estas por commitear». Rechazar es lo
+correcto —es fail-closed, y el proyecto ya se quemó una vez tomando un archivo vacío por
+un cero medido—, pero el texto afirmaba un hallazgo que no hubo y mandaba a buscar
+secuencias que no existen.
+
+La herramienta ya distinguía los dos casos en su código de salida: **0 sin hallazgos, 1
+hallazgos no exceptuados, 2 no se pudo verificar**. El gancho era el que no los miraba.
+Ahora ramifica por código, y el 1 queda reservado para «miré y encontré»: cualquier otro
+código —127 si falta `python3`, una excepción que se escapa, un Ctrl-C— cae en «no pude
+verificar», que rechaza igual pero no manda a buscar secuencias que no existen. De paso,
+el aviso decía siempre «no esta en disco» aunque la causa fuera `openpyxl`: la razón se
+calcula una sola vez en `motivo_sin_epilab()` y se imprime tal cual. Los dos casos tienen
+prueba en `scripts/prueba_detector.py`.
+
+## 5 ter. Tres defectos que encontró la revisión de este mismo cambio
+
+Los tres estaban en la herramienta desde antes y los tres la debilitaban en silencio.
+
+**La lista blanca tapaba también los hallazgos de la pasada 3.** Era el peor: una
+excepción dice «en este archivo hay nucleótidos y son públicos», y se estaba leyendo como
+«en este archivo no hay nada de EPILAB», que es justo lo que la excepción no puede
+contestar. Con un comodín como `ejemplos/*` o `datos/*` alcanzaba con que un archivo
+exceptuado tuviera una región del laboratorio para que `--solo-epilab` diera cero y el
+gancho pasara. **Los hallazgos de EPILAB ya no se exceptúan nunca**, con lista blanca o
+sin ella.
+
+**`git` fallaba hacia el lado abierto.** El envoltorio descartaba el código de salida, así
+que un `index.lock`, un objeto ausente o el directorio equivocado devolvían una cadena
+vacía, y una cadena vacía se lee como «no hay nada que reportar». El gancho podía pasar
+sin haber mirado un solo archivo. Ahora una falla de `git` levanta `GitFallo` y sale 2, el
+código de «no pude verificar».
+
+**El recorrido del árbol usaba `git ls-files` sin `-z`.** Un path no ASCII sale
+entrecomillado y con escapes octales, no existe en disco con ese nombre, y se salteaba sin
+aviso. Hoy no hay ninguno versionado, así que no cambia ninguna cifra; se arregla porque
+el día que lo haya el salteo sería invisible.
+
 ## 6. Lo que queda, y es del usuario
 
 1. **Qué se hace con `q2_aciertos_localizados.tsv`** (§3.1) y con las 3 ventanas del
@@ -151,9 +237,16 @@ al tramo es alfanumérico y no es un nucleótido, el tramo es el interior de otr
    segunda, nunca la tercera**, con el mismo criterio de D41: retirar algo ya publicado
    no lo borra de las copias existentes. El dato está en un repositorio privado y son 25
    ventanas que no reconstruyen la región.
-2. **Confirmar la procedencia de `dsrip_vatpaseA.csv`** con Luca (§3.3).
-3. **Activar el gancho**, que requiere un comando que el sandbox no puede correr:
-   `git config core.hooksPath tools/verificacion/hooks`.
+2. ~~Confirmar la procedencia de `dsrip_vatpaseA.csv` con Luca~~ **Resuelto sin
+   preguntar** (§3.3 bis): sale del genoma público `GCA_975739785.1` y está exceptuado.
+3. ~~Activar el gancho~~ **Hecho en este clon**: `git config core.hooksPath
+   tools/verificacion/hooks` corre y queda en `.git/config`. Sigue haciendo falta una vez
+   por clon. **Ojo con la consecuencia:** el gancho es fail-closed, así que mientras no
+   estén `YHat-Biotech/Sequences_EPILAB.xlsx` en disco **y** `openpyxl` en el `python3` del
+   PATH, rechaza todos los commits. En esta máquina faltan los dos, de modo que hoy hay
+   que commitear con un intérprete que tenga `openpyxl` y el corpus a mano, o con
+   `--no-verify` cuando el commit no toca secuencias. El mensaje del rechazo ahora
+   distingue los dos casos (§5 bis).
 4. **Cómo se comparte el port.** Es la tarea 4 del issue y no se hace sin confirmación. La
    recomendación del issue sigue en pie: un paquete con `tools/sifi21_port/` y nada más,
    porque es autocontenido y no arrastra `work/` ni los resultados derivados. Nótese que
@@ -165,9 +258,13 @@ al tramo es alfanumérico y no es un nucleótido, el tramo es el interior de otr
 ## 7. Criterio de terminado
 
 El issue pide que la verificación corra sobre el árbol y sobre el historial y dé cero
-hallazgos no exceptuados, **o** que los hallazgos estén listados y resueltos. No da cero:
-quedan tres archivos listados en §3.1, §3.3 y §3.4, con su cifra y su decisión pendiente.
-Las tareas 1 a 3 están hechas; la 4 espera al usuario.
+hallazgos no exceptuados, **o** que los hallazgos estén listados y resueltos. Al 24 de
+octubre los dos modos dan **la misma cifra y los mismos dos archivos**: 28 hallazgos no
+exceptuados, 25 en `q2_aciertos_localizados.tsv` y 3 en `empalme_maiz_detalle.json`
+`[M]`. De los tres archivos que la primera corrida dejó abiertos, el de §3.3 está
+resuelto y exceptuado con su motivo; los otros dos son el mismo caso y esperan una sola
+decisión, que es la del §6.1. Las tareas 1 a 3 están hechas y el gancho está activo; la 4
+espera al usuario.
 
 ## 8. Reproducir
 
@@ -176,6 +273,8 @@ python3 tools/verificacion/sin_secuencias.py --solo-epilab          # la pasada 
 python3 tools/verificacion/sin_secuencias.py --solo-epilab --historial
 python3 tools/verificacion/sin_secuencias.py                        # las tres pasadas
 python3 tools/verificacion/sin_secuencias.py --staged                # lo que corre el gancho
+python3 research/ola4/M9_auditoria_secuencias/scripts/prueba_detector.py       # casos sinteticos
+python3 research/ola4/M9_auditoria_secuencias/scripts/procedencia_vatpasea.py  # insumos locales
 ```
 
 La pasada contra EPILAB necesita `YHat-Biotech/Sequences_EPILAB.xlsx` en disco, que no se

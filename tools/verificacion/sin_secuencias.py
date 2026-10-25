@@ -99,6 +99,17 @@ EXCEPCIONES: list[tuple[str, str]] = [
         "iBeetle-Base, que no estan en este archivo.",
     ),
     (
+        "baseline_dsrip/dsrip_vatpaseA.csv",
+        "El CDS de 1.845 nt sale del genoma publico de Dalbulus maidis GCA_975739785.1 "
+        "(ihDalMaid1.1, Wellcome Sanger): las 25 ventanas que sobreviven al tamizaje caen "
+        "todas en el locus L06020, OZ319711.1:47265953-47286132 (+), 11 exones, ortologo "
+        "de Drosophila Vha68-2, mapeado con miniprot desde la proteina publica "
+        "A0A1I9WLH3_NILLU. Marco abierto limpio: ATG inicial, 614 aa, stop final, cero "
+        "stops internos. Verificado por "
+        "`research/ola4/M9_auditoria_secuencias/scripts/procedencia_vatpasea.py`, con "
+        "insumos locales. La pasada 3 da cero contra las cuatro regiones de EPILAB.",
+    ),
+    (
         "tools/sifi21_port/conservacion.py",
         "Los cebadores son la Tabla 1 de Andrada et al. 2026 (Front Insect Sci "
         "6:1811933, leida en PMC13279319), publicada.",
@@ -122,6 +133,15 @@ EXCEPCIONES: list[tuple[str, str]] = [
         "Fixtures de prueba del criterio de baja complejidad: poli-A, un dinucleotido "
         "alternado y un 21-mero sintetico de composicion normal. Verificado contra la "
         "planilla: ninguna es de EPILAB.",
+    ),
+    (
+        "research/ola4/M1_conteo_y_referencia/scripts/test_conteo_por_acierto.py",
+        "Constantes de juguete escritas a mano para construir los casos que la regla de "
+        "conteo necesita (una ventana que no pega, una que pega en la hebra menos, una "
+        "que pega dos veces): tramos cortos de poli-A/C/G/T, `ACGT` repetido y unos "
+        "pocos 21-45 meros de composicion mixta armados a mano. El propio docstring "
+        "declara que los insumos son sinteticos y el archivo no lee ninguna secuencia "
+        "real. La pasada contra la planilla, que es la que decide, no se exceptua nunca.",
     ),
     (
         "pipeline/test_features.py",
@@ -328,10 +348,24 @@ def _cadenas_de_serie(valores: list[tuple[int, str]], ruta: str) -> list[dict]:
 # --- Recorridos -------------------------------------------------------------
 
 
+class GitFallo(RuntimeError):
+    """`git` devolvio un codigo distinto de cero. No se sigue con un texto vacio."""
+
+
 def _git(args: list[str], raiz: Path) -> str:
-    return subprocess.run(
+    """Corre git y **exige** que haya salido bien.
+
+    Tragarse el codigo de salida convierte cualquier falla de git —un `index.lock`, un
+    objeto que no esta, el directorio equivocado— en una cadena vacia, y una cadena vacia
+    se lee como «no hay nada que reportar». Eso es fail-open en la pieza que tiene que ser
+    fail-closed: el gancho pasaria sin haber mirado un solo archivo.
+    """
+    r = subprocess.run(
         ["git", *args], cwd=raiz, capture_output=True, text=True, errors="replace"
-    ).stdout
+    )
+    if r.returncode != 0:
+        raise GitFallo(f"git {' '.join(args)} fallo con codigo {r.returncode}: {r.stderr.strip()}")
+    return r.stdout
 
 
 def _leer(raiz: Path, ruta: str, desde_indice: bool) -> str | None:
@@ -355,11 +389,14 @@ def _leer(raiz: Path, ruta: str, desde_indice: bool) -> str | None:
 def escanear_arbol(
     raiz: Path, desde_indice: bool, epilab: tuple[dict, dict] | None, solo_epilab: bool
 ) -> tuple[list[dict], int]:
+    # `-z` y separacion por NUL: sin eso, un path no ASCII sale entrecomillado y con
+    # escapes octales, no existe en disco con ese nombre y `_leer` lo saltea sin avisar.
+    # Hoy no hay ninguno versionado, pero el dia que lo haya el salteo seria silencioso.
     if desde_indice:
-        salida = _git(["diff", "--cached", "--name-only", "--diff-filter=ACM"], raiz)
+        salida = _git(["diff", "--cached", "-z", "--name-only", "--diff-filter=ACM"], raiz)
     else:
-        salida = _git(["ls-files"], raiz)
-    rutas = [r for r in salida.split("\n") if r.strip()]
+        salida = _git(["ls-files", "-z"], raiz)
+    rutas = [r for r in salida.split("\x00") if r.strip()]
     hallazgos: list[dict] = []
     leidos = 0
     for ruta in rutas:
@@ -394,16 +431,28 @@ def _revcomp(s: str) -> str:
     return s.translate(str.maketrans("ACGT", "TGCA"))[::-1]
 
 
+def motivo_sin_epilab(raiz: Path) -> str | None:
+    """Por que no se puede correr la pasada contra EPILAB, o None si se puede.
+
+    El motivo se separa del cargador porque «no pude mirar» y «mire y no encontre» son
+    resultados distintos, y el gancho los tiene que poder distinguir: rechazar esta bien
+    —es fail-closed— pero el texto no puede afirmar un hallazgo que no hubo.
+    """
+    if not (raiz / RUTA_EPILAB).is_file():
+        return f"{RUTA_EPILAB} no esta en disco"
+    try:
+        import openpyxl  # noqa: F401
+    except ImportError:
+        return "falta openpyxl en este interprete"
+    return None
+
+
 def cargar_kmeros_epilab(raiz: Path) -> tuple[dict[str, str], dict[str, str]] | None:
     """Devuelve ({kmero: region}, {region: secuencia}), o None si no hay fuente local."""
+    if motivo_sin_epilab(raiz) is not None:
+        return None
     ruta = raiz / RUTA_EPILAB
-    if not ruta.is_file():
-        return None
-    try:
-        import openpyxl
-    except ImportError:
-        print("  aviso: falta openpyxl, la pasada contra EPILAB no se corre", file=sys.stderr)
-        return None
+    import openpyxl
 
     wb = openpyxl.load_workbook(ruta, data_only=True)
     kmeros: dict[str, str] = {}
@@ -435,6 +484,10 @@ def cargar_kmeros_epilab(raiz: Path) -> tuple[dict[str, str], dict[str, str]] | 
                         kmeros[var] = nombre
                         kmeros[var.replace("T", "U")] = nombre
     return (kmeros, regiones) if kmeros else None
+
+
+def motivo_sin_kmeros() -> str:
+    return f"{RUTA_EPILAB} esta en disco pero no tiene ningun tramo de {LARGO_RACHA} nt o mas"
 
 
 def buscar_epilab(
@@ -515,17 +568,18 @@ def escanear_historial(
                 hallazgos.append(h)
         if solo_epilab:
             continue
-        for m in RE_RACHA.finditer(cuerpo):
-            tramo = m.group(0)
-            if not _es_secuencia(tramo):
-                continue
+        # La pasada 1 se reusa entera en vez de repetir el recorrido aca: el descarte de
+        # tramos que son el interior de otro token (una fuente woff2 en base64 que por
+        # azar tiene ACGT) vivia solo en `buscar_rachas`, y el modo historial lo volvia a
+        # reportar. Un filtro que existe en un camino y no en el otro no es un filtro.
+        for h in buscar_rachas(cuerpo, archivo):
             hallazgos.append(
                 {
                     "tipo": "racha_historial",
                     "commit": commit,
                     "archivo": archivo,
-                    "largo_nt": len(tramo),
-                    "huella": _huella(tramo),
+                    "largo_nt": h["largo_nt"],
+                    "huella": h["huella"],
                 }
             )
     return hallazgos, len(commits)
@@ -547,15 +601,20 @@ def main() -> int:
     ap.add_argument("--json", metavar="ARCHIVO", help="escribe el reporte completo en JSON")
     args = ap.parse_args()
 
-    raiz = Path(
-        _git(["rev-parse", "--show-toplevel"], Path(__file__).resolve().parent).strip()
-        or Path(__file__).resolve().parents[2]
-    )
+    try:
+        raiz = Path(
+            _git(["rev-parse", "--show-toplevel"], Path(__file__).resolve().parent).strip()
+            or Path(__file__).resolve().parents[2]
+        )
+    except GitFallo as e:
+        print(f"  no se pudo ubicar el repositorio: {e}", file=sys.stderr)
+        return 2
 
     epilab = cargar_kmeros_epilab(raiz)
     if epilab is None:
         print(
-            f"  aviso: {RUTA_EPILAB} no esta en disco; la pasada contra EPILAB NO se corrio.\n"
+            f"  aviso: {motivo_sin_epilab(raiz) or motivo_sin_kmeros()};"
+            " la pasada contra EPILAB NO se corrio.\n"
             "  Un cero en este modo no significa que no haya secuencias de EPILAB: significa"
             " que no se miro.",
             file=sys.stderr,
@@ -565,16 +624,31 @@ def main() -> int:
     else:
         print(f"  referencia EPILAB: {len(epilab[1])} regiones, {len(epilab[0])} 21-meros")
 
-    if args.historial:
-        hallazgos, n_unidades = escanear_historial(raiz, epilab, args.solo_epilab)
-        unidad = f"{n_unidades} commits"
-    else:
-        hallazgos, n_unidades = escanear_arbol(
-            raiz, args.staged, epilab, args.solo_epilab
-        )
-        unidad = f"{n_unidades} archivos de texto"
+    try:
+        if args.historial:
+            hallazgos, n_unidades = escanear_historial(raiz, epilab, args.solo_epilab)
+            unidad = f"{n_unidades} commits"
+        else:
+            hallazgos, n_unidades = escanear_arbol(
+                raiz, args.staged, epilab, args.solo_epilab
+            )
+            unidad = f"{n_unidades} archivos de texto"
+    except GitFallo as e:
+        # No se pudo recorrer: eso es «no mire», no «mire y no encontre». Sale 2 para
+        # que el gancho lo diga con el texto correcto y rechace igual.
+        print(f"  el recorrido no se pudo completar: {e}", file=sys.stderr)
+        return 2
 
+    # La lista blanca dice «en este archivo hay nucleotidos y son publicos». No dice, ni
+    # puede decir, «en este archivo no hay secuencias de EPILAB»: eso lo contesta la
+    # pasada 3 mirando la planilla. Si la excepcion tapara tambien los hallazgos de la
+    # pasada 3, bastaria con que un archivo exceptuado por publico —o peor, uno que cae
+    # bajo un comodin como `ejemplos/*`— tuviera una region del laboratorio para que el
+    # gancho pasara sin decir nada. Los hallazgos de EPILAB no se exceptuan nunca.
     for h in hallazgos:
+        if h["tipo"].startswith("kmero_de_epilab"):
+            h["exceptuado"] = False
+            continue
         motivo = None if args.sin_excepciones else esta_exceptuada(h["archivo"])
         h["exceptuado"] = motivo is not None
         if motivo:
@@ -652,4 +726,13 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # El 1 queda reservado para «mire y encontre». Cualquier excepcion que se escape es
+    # «no pude mirar», y sale 2, que es lo que el gancho sabe leer.
+    try:
+        sys.exit(main())
+    except Exception as e:  # noqa: BLE001
+        import traceback
+
+        traceback.print_exc()
+        print(f"  la verificacion se corto: {type(e).__name__}", file=sys.stderr)
+        sys.exit(2)

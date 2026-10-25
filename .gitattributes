@@ -1,0 +1,5 @@
+# Los ganchos de git corren con /bin/sh. Con core.autocrlf=true —que es el valor por
+# defecto de Git para Windows, y el que tiene esta maquina— un clon nuevo los escribiria
+# con CRLF y sh fallaria con «\r: command not found», es decir que la verificacion de
+# secuencias quedaria rota en silencio en cada clon nuevo. Se fuerza LF.
+tools/verificacion/hooks/* text eol=lf

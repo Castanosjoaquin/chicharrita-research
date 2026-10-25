@@ -41,4 +41,27 @@ for nombre, (ruta, txt, n_rachas, n_cadenas) in casos.items():
 
 print("falsos positivos de base64:",
       len(S.buscar_rachas('src:url(data:font/woff2;base64,d09GMgABAAAAAFY4' + gen[:40] + 'YagSwbga9OHIEO)', 'x.html')))
+
+# «No pude mirar» no es «mire y no encontre»: el gancho rechaza en los dos casos, pero el
+# mensaje tiene que distinguirlos, y para eso necesita saber por que no corrio la pasada.
+import tempfile  # noqa: E402
+
+with tempfile.TemporaryDirectory() as tmp:
+    vacia = Path(tmp)
+    motivo = S.motivo_sin_epilab(vacia)
+    ok = motivo is not None and "no esta en disco" in motivo
+    fallas += not ok
+    print(f"{'ok ' if ok else 'FALLA'} {'planilla ausente':34s} motivo={motivo!r}")
+
+    (vacia / S.RUTA_EPILAB).parent.mkdir(parents=True, exist_ok=True)
+    (vacia / S.RUTA_EPILAB).touch()
+    motivo = S.motivo_sin_epilab(vacia)
+    try:
+        import openpyxl  # noqa: F401
+        esperado = motivo is None
+    except ImportError:
+        esperado = motivo is not None and "openpyxl" in motivo
+    fallas += not esperado
+    print(f"{'ok ' if esperado else 'FALLA'} {'planilla presente':34s} motivo={motivo!r}")
+
 sys.exit(1 if fallas else 0)

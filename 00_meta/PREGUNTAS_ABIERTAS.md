@@ -1490,3 +1490,27 @@ son variables del desajuste de conteos que M1 vino a reconciliar.
     numéricamente. El caso nombrado como riesgo —el gráfico de `BicC_Dm`, que dibuja 2.500
     marcas— sigue sin mirarse; en la interfaz nueva ese problema se resolvió dibujando una
     marca por tramo contiguo y no por ventana, pero `informe_html.py` no tiene ese arreglo.
+
+## Cuatro agujeros conocidos de `tools/verificacion/sin_secuencias.py` (M9, 2026-10-24)
+
+Los cuatro salieron de la revisión del cambio de hoy y ninguno se arregló en él. No
+cambian ninguna cifra publicada, pero cada uno es un punto ciego que conviene cerrar antes
+de apoyarse en la herramienta para decidir que algo se puede compartir.
+
+1. **El modo historial no corre la pasada 2.** Recorre línea de diff por línea de diff, así
+   que las columnas de k-meros solapados —el patrón del incidente de C9 cuando los k-meros
+   miden menos de 21 nt— no se ven en el historial, sólo en el árbol. Por la misma razón, la
+   pasada 3 pierde todo k-mero partido por un salto de línea. Arreglo: reconstruir el texto
+   agregado por archivo y por commit, y correrle las tres pasadas.
+2. **El descarte de «tramo dentro de un token mayor» es más ancho que su motivo.** Se
+   escribió para las fuentes woff2 en base64, pero descarta cualquier tramo con un vecino
+   alfanumérico que no sea nucleótido, en los dos modos. Un tramo pegado a una etiqueta
+   —`seqACGTACGT...`— se saltea. Arreglo: exigir contexto de base64 real en vez de
+   cualquier letra.
+3. **Las excepciones son por archivo entero.** El motivo describe el dato que había el día
+   que se escribió; cualquier fila agregada después a un archivo exceptuado queda fuera de
+   las pasadas 1 y 2 sin que nadie la mire. Arreglo: exceptuar por huella del tramo. Esto
+   ya no afecta a la pasada 3, que desde hoy no se exceptúa nunca.
+4. **En el historial, una línea agregada cuyo contenido empieza con `++` se confunde con
+   una cabecera de diff y se saltea.** Improbable, pero es un `startswith` sobre texto que
+   escribe cualquiera. Arreglo: reconocer cabeceras sólo fuera de los *hunks*.

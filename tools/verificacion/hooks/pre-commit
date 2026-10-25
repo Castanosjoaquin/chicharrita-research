@@ -6,6 +6,12 @@
 #      un dato publico. Si falta YHat-Biotech/ en disco, se declara no corrida;
 #   2. rachas de 21 nt o mas y columnas de k-meros solapados, con la lista blanca.
 #
+# Codigos de salida de sin_secuencias.py: 0 sin hallazgos, 1 hallazgos no exceptuados,
+# 2 no se pudo verificar. Los tres rechazan el commit —es fail-closed a proposito— pero
+# solo el 1 afirma un hallazgo. Cualquier otro codigo (127 si falta python3, 130 de un
+# Ctrl-C, lo que sea) se trata como «no pude verificar»: afirmar un hallazgo que no hubo
+# manda a buscar secuencias que no existen, que es el defecto que anoto M7.
+#
 # Instalacion (una vez por clon):
 #     git config core.hooksPath tools/verificacion/hooks
 #
@@ -13,21 +19,50 @@
 #     git commit --no-verify
 set -e
 
-echo "pre-commit: sin_secuencias.py sobre el indice"
-if ! python3 tools/verificacion/sin_secuencias.py --staged --solo-epilab; then
+no_pude_verificar() {
     echo ""
-    echo "RECHAZADO: hay secuencias de EPILAB en lo que estas por commitear."
-    echo "Quitalas del indice. Si creés que es un dato publico, agregá la excepción"
-    echo "con su motivo en EXCEPCIONES de tools/verificacion/sin_secuencias.py."
+    echo "RECHAZADO: no se pudo verificar (codigo $1)."
+    echo "No es un hallazgo: es que la verificacion no corrio. Hace falta python3 en el"
+    echo "PATH, YHat-Biotech/Sequences_EPILAB.xlsx en disco y openpyxl en ese python3."
+    echo "Con un interprete que lo tenga:"
+    echo "    PATH=<env con openpyxl>/bin:\$PATH git commit ..."
+    echo "Si el commit no toca secuencias y hay que seguir igual: git commit --no-verify."
     exit 1
-fi
+}
 
-if ! python3 tools/verificacion/sin_secuencias.py --staged; then
-    echo ""
-    echo "RECHAZADO: hay secuencias de nucleotidos sin exceptuar en el indice."
-    echo "Revisalas una por una. Si son publicas, agregá la excepción con su motivo"
-    echo "y su accesión en EXCEPCIONES de tools/verificacion/sin_secuencias.py."
-    exit 1
-fi
+corrida() {
+    set +e
+    python3 tools/verificacion/sin_secuencias.py "$@"
+    estado=$?
+    set -e
+}
+
+echo "pre-commit: sin_secuencias.py sobre el indice"
+
+corrida --staged --solo-epilab
+case "$estado" in
+    0) ;;
+    1)
+        echo ""
+        echo "RECHAZADO: hay secuencias de EPILAB en lo que estas por commitear."
+        echo "Quitalas del indice. La lista blanca no sirve para esto: una excepcion dice"
+        echo "que un archivo tiene nucleotidos publicos, no que no tenga los del laboratorio."
+        exit 1
+        ;;
+    *) no_pude_verificar "$estado" ;;
+esac
+
+corrida --staged
+case "$estado" in
+    0) ;;
+    1)
+        echo ""
+        echo "RECHAZADO: hay secuencias de nucleotidos sin exceptuar en el indice."
+        echo "Revisalas una por una. Si son publicas, agrega la excepcion con su motivo"
+        echo "y su accesion en EXCEPCIONES de tools/verificacion/sin_secuencias.py."
+        exit 1
+        ;;
+    *) no_pude_verificar "$estado" ;;
+esac
 
 echo "pre-commit: sin hallazgos"

@@ -1,0 +1,34 @@
+{
+  "entrada": "pipeline/salida/sirna_vatpaseA.csv (no versionada)",
+  "ventanas": 1825,
+  "ventanas_ubicadas": 25,
+  "cobertura": 1.37,
+  "cds": {
+    "largo_nt": 1845,
+    "empieza_en_ATG": true,
+    "termina_en_stop": true,
+    "stops_internos": 0,
+    "aminoacidos": 614
+  },
+  "ventanas_por_locus": {
+    "sirna_finales.csv": {
+      "L06020": 25
+    },
+    "sirna_cercanos.csv": {
+      "L06020": 25
+    }
+  },
+  "locus": {
+    "locus": "L06020",
+    "cromosoma": "OZ319711.1",
+    "inicio": "47265953",
+    "fin": "47286132",
+    "hebra": "+",
+    "gen_drosophila": "Vha68-2",
+    "mejor_hit_tribolium": "TC008354",
+    "mejor_hit_nilaparvata": "A0A1I9WLH3_NILLU",
+    "tcas_exones": "11"
+  },
+  "cromosoma_de_ihDalMaid1_1": true,
+  "conclusion": "las 25 ventanas del CDS que sobreviven al tamizaje caen todas en L06020, en un cromosoma de ihDalMaid1.1 (GCA_975739785.1), publico. Las demas no aparecen en las salidas del pipeline porque el tamizaje las descarto, no porque se hayan ubicado en otro lado."
+}
