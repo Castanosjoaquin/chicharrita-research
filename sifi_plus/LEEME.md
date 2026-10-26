@@ -12,10 +12,22 @@ aclare, esta carpeta no lleva archivo de licencia y el nombre queda en suspenso.
 
 ## Cómo se abre
 
-Doble clic en `abrir.bat`. Levanta un servidor local y abre el navegador. Si falta Python o
-alguna dependencia, lo dice y deja la ventana abierta para que se pueda leer.
+Doble clic en `abrir.bat` (Windows) o en `abrir.command` (macOS). Levanta un servidor local
+y abre el navegador. Si falta Python o alguna dependencia, lo dice y deja la ventana abierta
+para que se pueda leer.
 
 Desde la línea de comandos es `python servidor.py`, y acepta `--puerto` y `--no-abrir`.
+
+En macOS hay dos diferencias que el `.command` resuelve solo. Si el Python es de Homebrew,
+`pip install` falla con «externally-managed-environment»: en ese caso arma un entorno propio
+en `sifi_plus/.venv-sifi` (ignorado por git) y lo reusa en las corridas siguientes. Y el
+motor RNAplfold 2.1.5 no va a estar, porque es el `.exe` que instala si-Fi21 en Windows: se
+corre con ViennaRNA, y los conteos de los dos motores **no son intercambiables**. Si se
+compila el binario de la versión 2.1.5, se apunta con `export SIFI_RNAPLFOLD=/ruta/absoluta`
+antes de abrirlo.
+
+La primera vez, macOS puede avisar que el archivo viene de un desarrollador no identificado:
+clic derecho sobre `abrir.command` → Abrir → Abrir.
 
 **El servidor escucha sólo en `127.0.0.1`.** No es una promesa en un documento: el socket no
 está atado a ninguna interfaz de red, así que no hay a dónde salir. Es lo que exige la regla

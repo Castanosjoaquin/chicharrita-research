@@ -20,6 +20,10 @@ pipeline/datos/
 __pycache__/
 *.pyc
 
+# Entorno que arma sifi_plus/abrir.command cuando el Python del sistema no deja
+# instalar (el "externally-managed-environment" de Homebrew). Se regenera solo.
+sifi_plus/.venv-sifi/
+
 # Corpus oficial suelto en la raiz: secuencias no publicadas de EPILAB.
 # El original no se mueve ni se renombra (regla del CLAUDE.md), pero no entra a git.
 Sequences_EPILAB.xlsx
