@@ -1,0 +1,281 @@
+# 3-audio investigador.m4a duracion=440.0s
+[00:00] Siempre tener en cuenta que...
+[00:04] No, no, tanque este no sabe ni un grado.
+[00:09] Siempre tener en cuenta el objetivo, ¿no?
+[00:12] Al final y al cabo queremos que una molécula de ARN genere la mayor...
+[00:18] con la mayor precisión que podamos predecir, que no lo sabemos,
+[00:21] moléculas de 21 nucleótidos que vayan a un target que está en una planta o en un insecto
+[00:27] y lo corte
+[00:28] y haga el efecto
+[00:29] que tiene
+[00:30] sí
+[00:30] sí porque viste
+[00:31] que te habíamos mandado
+[00:32] que habíamos tratado
+[00:32] como otra ventana
+[00:33] está buenísima
+[00:35] la ventana esa
+[00:36] ustedes quieren proponer
+[00:37] nuevas ventanas
+[00:38] porque
+[00:38] vio más eficiente
+[00:40] los soft targets
+[00:41] fueron mejores
+[00:41] el bicho ese
+[00:42] yo no lo tenía
+[00:43] claro tenía una chicharrita
+[00:44] de Estados Unidos
+[00:45] de otro lado
+[00:45] y que no está en Argentina
+[00:46] a eso me refiero
+[00:48] a eso me refiero
+[00:49] que además tenía
+[00:50] crees que eran
+[00:51] ortogonales
+[00:53] o algo así
+[00:53] no si no
+[00:54] ortogonales es otra cosa
+[00:55] como que era algo evolutivo
+[01:02] que lo podías hacer
+[01:04] tener todas las charritas
+[01:05] la ventana que estaba propuesta
+[01:07] tenía muchas coincidencias con esas
+[01:10] y entonces
+[01:11] claro, me voy a afectar a esa
+[01:13] y ahí vos podés pensar, bueno, esa no está en Argentina
+[01:16] o sea que puede no importar
+[01:18] puede venir eventualmente y tal vez si la querés matar
+[01:20] entonces
+[01:21] igual si vos querés ser específico para esta
+[01:24] mostrar que esas posibles
+[01:28] decisiones están presentes
+[01:30] es como el
+[01:32] extra que me parece vuelta
+[01:34] yo no te voy a
+[01:34] va a estar buenísimo lo que me muestres
+[01:37] está buenísimo que andas un día e hiciste una
+[01:39] cosita así, no te la voy a evaluar
+[01:42] esa yo en el sentido del código
+[01:43] si, el por qué
+[01:46] lo hicieron, para qué lo hicieron, qué compararon
+[01:48] qué cosas medio biológicas
+[01:50] vieron, vaya que no te voy a hablar
+[01:52] tampoco lo biológico
+[01:53] ese mix
+[01:56] entre la propuesta
+[01:58] el algo superador
+[02:00] o lo que vos pensás que es mejor
+[02:01] y el para qué
+[02:03] así que está
+[02:05] buenísimo
+[02:07] lo que plantea
+[02:09] ¿tienes alguna otra pregunta?
+[02:12] ya casi lo tienen
+[02:13] sí, sí
+[02:16] cerrado todo ahora
+[02:16] van a ir con ese candidato
+[02:19] o con uno
+[02:20] sí, tengo que armar todo
+[02:22] pero
+[02:23] ¿cómo?
+[02:24] o sea
+[02:24] tenemos que terminar
+[02:24] de armar todo
+[02:25] para que volvamos
+[02:26] a ser el poste
+[02:26] pero
+[02:26] que además
+[02:27] de que vengan
+[02:27] de todo esto
+[02:28] yo lo que sentía
+[02:29] es que
+[02:29] creo que nos falta
+[02:30] un diferencial
+[02:31] para poder
+[02:31] mostrarnos más
+[02:33] y ganar capos
+[02:33] posiblemente
+[02:34] yo lo que proponía
+[02:35] y no sé
+[02:36] qué sentido biológico
+[02:37] tenga
+[02:37] capaz vos corregime
+[02:38] capaz de agarrar
+[02:39] un genoma
+[02:40] de un efecto parecido
+[02:41] porque creo que
+[02:42] este no está todo taggeado
+[02:43] no tenemos todo
+[02:43] el genoma taggeado
+[02:44] que hace cada gen
+[02:45] no, viste que yo
+[02:46] a ustedes
+[02:47] no, a otros
+[02:48] les mandé
+[02:49] creo que a otros chicos
+[02:50] nos preguntaron
+[02:51] por el transcriptoma
+[02:52] el trastectoma en NCBI
+[02:54] que es donde sacamos la mayor cantidad de cosas
+[02:56] no está, está en otro lado
+[02:58] o puede pasar a otro lado
+[02:59] ¿puedo poner un nuevo diseño ahí también?
+[03:02] para hacer un nuevo diseño
+[03:03] los ID's están hechos por el que hizo
+[03:06] el trastectoma, no coinciden
+[03:08] los nombres, no vas a poder
+[03:10] encontrar, pero sí por identidad o homología
+[03:12] es lo que quería preguntar
+[03:13] yo les mando ahora
+[03:15] les mando el trastectoma en un zip
+[03:18] que creo es chiquito
+[03:20] con el trastectoma que está publicado
+[03:22] y entonces
+[03:24] perdón
+[03:24] que te interrumpí
+[03:24] vos querías decir
+[03:25] no yo lo que decía
+[03:26] como no teníamos
+[03:26] el taggeado
+[03:28] que hace cada gen
+[03:29] dije bueno capaz
+[03:29] podemos encontrar
+[03:30] algún genoma
+[03:30] que tenga todos los transcriptomas
+[03:31] y nos diga que hace
+[03:32] y por homología
+[03:33] capaz por blast
+[03:34] o por estilo
+[03:35] tipo llevarlo
+[03:36] si tenés una similitud de gen
+[03:37] puede ser
+[03:38] que haga lo mismo
+[03:39] totalmente
+[03:39] si vos encontrás
+[03:41] en uno
+[03:41] que está mejor anotado
+[03:42] y encontrás genes
+[03:43] que son esenciales
+[03:46] para ese bicho
+[03:46] entonces le haces homología
+[03:48] haces blast
+[03:48] contra el transcriptoma
+[03:49] y yo te paso
+[03:50] encontrás
+[03:51] la mayor cantidad
+[03:52] encontró su gen
+[03:53] que dice
+[03:53] bla bla bla
+[03:54] no sabes que es
+[03:55] lo asocias
+[03:56] porque es por el más parecido
+[03:58] y ese puede ser
+[03:59] un nuevo candidato
+[03:59] para diseñar
+[04:00] y eso es tan buenísimo
+[04:01] porque
+[04:02] hiciste una búsqueda
+[04:03] biológica
+[04:05] de contexto
+[04:06] biológico
+[04:07] y lo pusiste
+[04:08] en el nuevo
+[04:09] programita
+[04:10] y chequeaste
+[04:11] y tal vez
+[04:12] ese gen
+[04:12] es mejor
+[04:13] porque tiene
+[04:13] 0 targets
+[04:14] genera mucho más eficientes
+[04:16] según
+[04:16] la fórmula
+[04:18] eso también
+[04:19] la fórmula
+[04:20] de decisión
+[04:21] de eficiente, tal vez más que decir
+[04:23] eso no, mostrame
+[04:25] qué cosas, qué características hiciste
+[04:27] cuál tiene más peso
+[04:29] o no, si probás un par de
+[04:31] pesos distintos y cambia mucho
+[04:33] o todo medio parecido y en realidad
+[04:35] tal vez esos pesos no importan tanto
+[04:36] al final de vuelta vas a tener que ir a la planta
+[04:39] y probar
+[04:39] si te mareamos los pesos
+[04:42] bueno, el de
+[04:44] Delta G, me acuerdo de la sección
+[04:46] que al final ahí yo chequeando
+[04:48] tal vez cambia un poco
+[04:50] pero la diferencia entre los 130 y los 114 era esto, que hacía cada 20 nucleótidos y ponía 21 y esta diferencia.
+[04:59] Sí, igual también esto nos sirvió para darles cierto grado de incertidumbre, para otra habilidad más.
+[05:05] Sí, a fin de cuentas no podemos ser mucho más del lado computacional, creo yo.
+[05:08] No, no, para mí...
+[05:10] En la más validez que tenemos para probar este gen me parece mejor, pero ya a un punto que no.
+[05:13] Y otro que digamos era, creo que el BIC puede ser que esté enfocado a que disminuya la población.
+[05:21] Claro, porque tiene que ver con la ovoposición, o sea, para que tenga hijitos, para hacerlo mal y pronto.
+[05:27] Claro, no sé si le cambiaba la decisión o no.
+[05:31] en general
+[05:33] lo que nosotros
+[05:34] los planteos
+[05:35] que hacemos nosotros
+[05:36] son
+[05:36] tratar de armar
+[05:37] quimeras
+[05:38] justamente
+[05:38] atacando
+[05:40] genes
+[05:41] con que tengan
+[05:42] distintas
+[05:43] características
+[05:45] vos podés atacar
+[05:46] la reproducción
+[05:47] del bicho
+[05:47] podés atacarle
+[05:49] no sé
+[05:49] algún gen
+[05:50] que esté involucrado
+[05:50] en las alas
+[05:51] si no tiene alas
+[05:52] por más que ande ahí
+[05:53] no importa
+[05:54] otro que sea
+[05:55] súper esencial
+[05:56] y que si no lo tiene
+[05:56] se muere
+[05:57] entonces si vos
+[05:58] tratás de armar quimeras
+[05:59] y ahí de vuelta
+[06:01] pensás en la biología, aquí mirá
+[06:03] si yo armo región del VIXE y con el otro
+[06:05] cuando yo los pego
+[06:07] uno al lado del otro, yo le calculo eficiencia, eficiencia, eficiencia
+[06:09] cuando empiezo a calcular eficiencia acá
+[06:11] entre este medio
+[06:12] calculás, te va a dar
+[06:14] porque vos lo estás mirando termodinámicamente
+[06:17] pero biológicamente
+[06:18] una molécula que se genera acá, ¿a quién le va a pegar?
+[06:21] a este, a este, a ninguno, no va a encontrar
+[06:23] entonces, esas diferencias
+[06:25] estaría bueno tenerlas, ¿para qué tengo que hablar con ellos?
+[06:29] eso es un punto a tener en cuenta
+[06:31] porque ahí volvés a la biología.
+[06:34] A mí me puede decir que es el mejor eficiente del mundo,
+[06:36] pero si no va a encontrar su target en la planta
+[06:38] o en el insecto, no va a ser.
+[06:40] Ahora lo calculamos así
+[06:42] y yo ahora lo calculo.
+[06:43] Esos son los detalles que está bueno tener en cuenta
+[06:46] y que puede dar un diferencial.
+[06:49] Así que espero que me den bien.
+[06:52] Ahora me tengo que acordar, me voy a anotar.
+[06:54] Pasando el cartón.
+[06:57] Y claro, eso.
+[06:59] No sé, yo no tengo preguntas, pero...
+[07:07] Si no hay cosas, te preguntamos por mail.
+[07:09] Sí, sí, sí, pregunto en web, te invuelvo a mandar por mail.
+[07:12] Si no la mandas a cagar el domingo, la semana.
+[07:16] Gracias.
+[07:17] No, por favor.

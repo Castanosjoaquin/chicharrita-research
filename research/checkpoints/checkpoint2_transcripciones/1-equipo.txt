@@ -1,0 +1,2 @@
+# 1-lo que se corto.opus duracion=20.3s
+[00:00] Me acabo de dar cuenta que se cortó, pero bueno, la primera parte era, nada, vos subís un transcriptoma a la plataforma y con un modelo de lenguaje, sabiendo qué hace cada gen, podés categorizar cada gen y fijarte cuáles te pueden servir y cuáles no. Y el resto creo que está hecho.

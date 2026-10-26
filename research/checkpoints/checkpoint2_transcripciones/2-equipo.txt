@@ -1,0 +1,8 @@
+# 2-primera_parte que no se grabo.opus duracion=86.5s
+[00:00] Entonces, esto podría cerrar el plan completo, o sea vos con un transcriptoma de un patógeno o un insecto, vos acá podés seleccionar genes que te pueden llegar a servir, junto a estos vos podés con su secuencia genotípica, digamos su gen, agarrar y saber qué elegís.
+[00:30] ver su suficiencia, calcular todo lo que hicimos y su ventana óptima. Junto a esto mismo podés
+[00:42] generar dentro de la misma plataforma un lugar donde podés generar quimeras y después
+[00:53] eso podes ver el pipeline. Encima además lo que se podría hacer es que si vos tenés
+[01:02] trascendentoma de otro insecto patógeno, tenés los trascendentomas pero si el genoma
+[01:10] completo del insecto patógeno objetivo vos podes generar una parte por homología, ver
+[01:21] qué genes pueden llegar a servir y qué no, y lo mismo, completar el pipeline.

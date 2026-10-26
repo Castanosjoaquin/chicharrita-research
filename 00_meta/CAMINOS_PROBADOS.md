@@ -1186,3 +1186,55 @@ podíamos verificar la hipótesis del conteo por acierto, sólo acotarla. Dejó 
 la causa apareció por otra vía y la pudimos reproducir con insumos propios (D62). Queda como
 antecedente de que un pedido de datos se justifica por la pregunta que contesta, y cuando la
 pregunta se cierra el pedido se retira en vez de quedar en la lista.
+
+## Checkpoint 2 (2026-10-26): lo que se descartó al transcribir y mapear la reunión
+
+La reunión está transcripta en
+[`research/checkpoints/checkpoint2.md`](../research/checkpoints/checkpoint2.md), con las
+salidas crudas del modelo en `checkpoint2_transcripciones/`. A diferencia de la carta del 25,
+esta vez el investigador no corrigió nada de fondo, así que lo que sigue es lo que
+descartamos **nosotros** al procesarla.
+
+- **Leer los audios 1, 2, 4 y 5 como palabra del investigador. Descartado al transcribirlos.**
+  Se nos pasaron como «lo que entendió un amigo de la primera parte del audio del investigador
+  que no se grabó», y la tentación era usarlos para reconstruir el tramo perdido. No son eso:
+  son la propuesta propia de un compañero, grabada después de la reunión. El audio 4 lo dice
+  —*«un audio que me acabo de mandar a mí mismo para cerrar una idea»*— y el 5 la encuadra como
+  *«basado en lo que nos dijo el tipo»*. Usarlos como fuente habría puesto en boca del
+  investigador un pipeline de plataforma que él nunca mencionó. Van en sección aparte y
+  marcados `[H]`. **La primera parte de la reunión sigue sin registro, y eso se declara en vez
+  de rellenarse.** La lección es la de siempre acá, con una vuelta de tuerca: la etiqueta que
+  trae un insumo describe lo que el que lo mandó creía que era, no lo que es; se verifica
+  abriéndolo.
+
+- **Categorizar genes con un modelo de lenguaje. Descartado, y era una propuesta nuestra.**
+  El paso 2 del pipeline que propone el audio 2 es subir un transcriptoma y que un modelo de
+  lenguaje diga qué hace cada gen y cuáles sirven como blanco. Produce afirmaciones sin fuente
+  verificable, que es exactamente lo que `CLAUDE.md` prohíbe y lo contrario de lo que el
+  investigador dice que evalúa —*«qué cosas medio biológicas vieron»*—. Se reemplaza por la
+  versión que él validó en la misma reunión: **transferir la anotación por homología** contra
+  un organismo mejor anotado, con la identidad del alineamiento como evidencia y la literatura
+  sosteniendo la esencialidad en el organismo de origen. Un modelo de lenguaje puede ordenar y
+  resumir esa evidencia; no generarla. No se pierde el paso: se le pone fuente.
+
+- **Insistir por el peso de exposición de *Homalodisca vitripennis*. Retirado por contestado
+  en forma ambivalente, a propósito.** Era el único parámetro con palanca y lo habíamos pedido
+  en el correo del 22 y otra vez en la reunión. La respuesta fue las dos cosas a la vez —que
+  el organismo no está en la Argentina y *«puede no importar»*, y que *«puede venir
+  eventualmente»*— más el criterio de qué hacer con eso: *«mostrar que esas posibles decisiones
+  están presentes es como el extra»* `[R]`. Aclaró además que ese organismo **no estaba en su
+  panel**, así que no hay práctica del laboratorio que copiar. Pasa a D66. La lección: cuando
+  la segunda respuesta a la misma pregunta es deliberadamente ambivalente, la pregunta está
+  contestada —lo que se pedía no existe— y repreguntar es pedirle a alguien que invente un
+  número para que nosotros no tengamos que declarar una decisión.
+
+- **Declarar que el eje de movilidad no tenía candidatos. Evitado al verificar.** Al escribir
+  el mapeo de la reunión se dio por sentado que de los tres ejes que pidió —reproducción, alas,
+  letalidad— el de alas había que salir a buscarlo en la literatura, y así quedó escrito en el
+  primer borrador de `checkpoint2.md`, de `PREGUNTAS_ABIERTAS.md` y de D67. Al abrir
+  `research/ola3/C5_estructura_genes_ingenieria_inversa/catalogo_genes_blanco.md` para citarlo,
+  la fila `DM-02` —`V-ATPase B` en *D. maidis*, **alas deformes**, fuente leída completa— lo
+  desmiente `[M]`. Los tres archivos se corrigieron en la misma pasada. La lección es de
+  inventario y ya nos pasó una vez con el `RNAplfold` del instalador de si-Fi2015: **antes de
+  declarar que algo falta, abrir el archivo donde estaría**. Un hueco declarado sin verificar
+  cuesta una línea de trabajo que no hacía falta.

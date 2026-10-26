@@ -1587,3 +1587,66 @@ del PATH **no tiene `openpyxl`**, mientras el intérprete de Anaconda sí. El ga
 rechaza con «no se pudo verificar», que es el comportamiento correcto —es fail-closed— pero obliga
 a correr las dos pasadas a mano con el intérprete que tenga la dependencia. Queda anotado porque
 es la segunda vez que ese gancho cuesta tiempo por el mensaje y no por el hallazgo.
+
+## 2026-10-26 — Lo que abre y lo que cierra el checkpoint 2
+
+La reunión del 26 de octubre está transcripta y mapeada en
+[`research/checkpoints/checkpoint2.md`](../research/checkpoints/checkpoint2.md). A diferencia
+de la carta del 25, esta vez **no corrigió nada de fondo**: validó la recomendación y abrió una
+línea de diseño nueva. Este es el saldo.
+
+### Se cierran
+
+- **La exposición de *Homalodisca vitripennis*.** Era el único peso con palanca y lo pedíamos
+  como número. **No va a haber número, y la pregunta se retira.** Dijo las dos cosas a la vez:
+  que el organismo no está en la Argentina y *«puede no importar»*, y que *«puede venir
+  eventualmente y tal vez si la querés matar»* `[R]`. Lo que pidió en cambio es que la decisión
+  esté a la vista: *«mostrar que esas posibles decisiones están presentes es como el extra»*
+  `[R]`. Pasa de pendiente bloqueante a decisión declarada del equipo, con la consecuencia ya
+  medida al lado —con exposición cero se mudan tres de las seis regiones recomendadas,
+  `research/ola4/M5_dos_ejes/` `[M]`.
+- **Qué transcriptoma de *D. maidis* usan.** No está en NCBI, *«está en otro lado»*, y se
+  comprometió a mandarlo en un zip `[R]`. La pregunta se cierra; lo que queda es el insumo.
+- **Si la lectura de `BicC_Dm` como gen poblacional es correcta.** Confirmada por él:
+  *«claro, porque tiene que ver con la oviposición»* `[R]`. Sostiene
+  `entregables/recomendacion-defendida.md` §1.
+- **Con qué nivel de justificación hay que defender los pesos del ranking.** Pidió exactamente
+  el análisis de sensibilidad que ya está hecho —*«si probás un par de pesos distintos y cambia
+  mucho, o todo medio parecido»*— y cerró con el argumento de por qué no hace falta más:
+  *«al final, de vuelta, vas a tener que ir a la planta y probar»* `[R]`.
+
+### Siguen abiertas
+
+- **Qué objetivo manda: cortar transmisión en la temporada o bajar población entre
+  generaciones.** Es la misma pregunta que abrió la carta del 25 y sigue sin respuesta. Él
+  confirmó el fenotipo de `BicC` y dijo explícitamente que **no sabe si eso cambia la
+  decisión** `[?]`. Es la que más mueve la recomendación y no es una medición nuestra.
+- **Si una complementariedad incompleta da actividad en las ventanas de juntura.** No se la
+  preguntamos y él no la tocó. Sigue siendo el límite declarado de `research/ola5/N4_quimeras/`
+  `[?]`.
+- Todo lo que la carta del 25 dejó abierto y esta reunión no tocó: los FASTA de los índices de
+  Bowtie, la tabla de apilamiento del método histórico, el marco con el que la planilla contó
+  las doce regiones, el ancho de cobertura de la línea azul y la latencia del MRFV.
+
+### Nuevas
+
+1. **La secuencia de `V-ATPase B` de *Dalbulus maidis*.** Propuso armar quimeras combinando
+   fenotipos que no se solapan y dio tres ejes: reproducción, alas y letalidad `[R]`. Al
+   revisar el catálogo contra ese pedido apareció que **los tres ejes ya tienen candidato en
+   la especie**: `BicC` (`DM-01`, oviposición casi nula), **`V-ATPase B` (`DM-02`, alas
+   deformes** y supervivencia 16 % al día 4) y `V-ATPase D` (`DM-03`, supervivencia 18 % al
+   día 4 y efecto en alas **no** significativo), los tres de fuente leída completa `[M]`. Las
+   dos subunidades del mismo complejo se separan justo por el eje que él nombró. Lo que falta
+   no es bibliografía: es **la secuencia de `V-ATPase B`**, que no está en el panel de
+   trabajo y puede salir del transcriptoma que va a mandar `[?]`.
+2. **Qué quimeras de fenotipos complementarios tienen sentido biológico.** La maquinaria de
+   evaluación existe y la juntura ya está medida; lo que no existe es el criterio de qué
+   combinar con qué. Es la única línea de cómputo nueva que deja la reunión `[H]`.
+3. **Cuándo llega el zip del transcriptoma.** Lo ofreció él en la reunión. Mientras no esté,
+   la línea `C11` —conservación de `eth` y `burs-alpha`— sigue bloqueada por insumo, y no se
+   puede verificar contra la fuente del laboratorio ninguna posición de la planilla. Si no
+   llega en un par de días conviene recordárselo `[?]`.
+4. **Los identificadores de ese transcriptoma no van a servir para buscar por nombre.** Avisó
+   que *«los IDs están hechos por el que hizo el transcriptoma, no coinciden los nombres, no
+   vas a poder encontrar, pero sí por identidad o homología»* `[R]`. O sea que la entrada es
+   alineamiento y hay que presupuestar esa pasada, no leer una anotación.
