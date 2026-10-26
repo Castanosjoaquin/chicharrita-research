@@ -51,14 +51,54 @@ TEMPERATURE = 22.0  # C; usada tanto para dG como para RNAplfold
 OVERHANG = 2
 END_NUCLEOTIDES = 3
 
-# Ruta por defecto del RNAplfold que trae el instalador de si-Fi21 en Windows. En otra
-# plataforma se apunta con la variable de entorno SIFI_RNAPLFOLD a un binario de la misma
-# version (ViennaRNA 2.1.5); la linea M2 lo compila desde el tag v2.1.5 del fuente oficial
-# para poder correr el par de motores fuera de Windows.
-RNAPLFOLD_EXE = os.environ.get(
-    "SIFI_RNAPLFOLD",
-    r"C:\Program Files (x86)\siFi21\ToCopy\RNAplfold\RNAplfold.exe",
-)
+# Donde esta el RNAplfold 2.1.5, que es el binario con el que corre el original.
+#
+# `SIFI_RNAPLFOLD` manda siempre que este definida: es la forma de apuntar a un binario
+# compilado a mano fuera de Windows (la linea M2 lo compila desde el tag v2.1.5 del fuente
+# oficial, con la receta del encabezado de research/ola4/M2_ventana_a_ventana/scripts/
+# correr_pares.py).
+#
+# Sin esa variable se prueban las ubicaciones conocidas en Windows, en orden. Hasta M11 la
+# unica era `ToCopy\RNAplfold\`, y eso daba un falso «no disponible» en la maquina donde el
+# original efectivamente corrio: `ToCopy\` es la carpeta DESDE la cual el instalador copia,
+# no donde deja el binario. El instalador de si-Fi2015 lo deja bajo `%LOCALAPPDATA%\siFi2015\`
+# (research/ola4/M1_conteo_y_referencia/REPORT.md §1), asi que esa va primero.
+#
+# No se busca un `RNAplfold` suelto en el PATH, y es a proposito: el que este en el PATH es
+# casi seguro un ViennaRNA moderno, este backend se llama «2.1.5» en la interfaz, y los dos
+# motores no dan lo mismo. Elegir un binario de otra version por conveniencia convertiria la
+# etiqueta del motor en una mentira. Para eso esta la variable de entorno, que es explicita.
+
+
+def _rutas_rnaplfold() -> list[str]:
+    local = os.environ.get("LOCALAPPDATA", "")
+    rutas = []
+    if local:
+        rutas.append(os.path.join(local, "siFi2015", "RNAplfold", "RNAplfold.exe"))
+        rutas.append(os.path.join(local, "siFi2015", "RNAplfold.exe"))
+    rutas.append(r"C:\Program Files (x86)\siFi21\ToCopy\RNAplfold\RNAplfold.exe")
+    return rutas
+
+
+RUTAS_RNAPLFOLD = _rutas_rnaplfold()
+
+
+def resolver_rnaplfold() -> str:
+    """La ruta del RNAplfold 2.1.5 a usar: la variable de entorno, o la primera que exista.
+
+    Si no existe ninguna devuelve la ultima candidata, para que el mensaje de error pueda
+    nombrar una ruta concreta en vez de quedarse en «no se encontro».
+    """
+    desde_env = os.environ.get("SIFI_RNAPLFOLD")
+    if desde_env:
+        return desde_env
+    for ruta in RUTAS_RNAPLFOLD:
+        if os.path.isfile(ruta):
+            return ruta
+    return RUTAS_RNAPLFOLD[-1]
+
+
+RNAPLFOLD_EXE = resolver_rnaplfold()
 
 
 @dataclass

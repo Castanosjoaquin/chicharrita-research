@@ -26,7 +26,13 @@ SALIDAS = RAIZ / "work" / "sifi_plus"
 sys.path.insert(0, str(PORT))
 sys.path.insert(0, str(AQUI))
 
-from sifi_core import DEFAULTS, RNAPLFOLD_EXE, SifiEngine, best_region  # noqa: E402
+from sifi_core import (  # noqa: E402
+    DEFAULTS,
+    RUTAS_RNAPLFOLD,
+    SifiEngine,
+    best_region,
+    resolver_rnaplfold,
+)
 
 import perfil  # noqa: E402
 
@@ -51,16 +57,18 @@ def motores() -> list[dict]:
                     "motivo": "no se puede importar el modulo RNA: %s. "
                               "Instalalo con: pip install ViennaRNA==2.7.2" % e})
 
-    exe = Path(os.environ.get("SIFI_RNAPLFOLD", RNAPLFOLD_EXE))
+    exe = Path(resolver_rnaplfold())
     if exe.is_file():
         out.append({"id": "exe", "nombre": "RNAplfold 2.1.5 (el de si-Fi21)",
                     "disponible": True, "motivo": "", "ruta": str(exe)})
     else:
         out.append({"id": "exe", "nombre": "RNAplfold 2.1.5 (el de si-Fi21)",
                     "disponible": False,
-                    "motivo": "no esta en %s. Es el binario que instala si-Fi21; si lo "
-                              "tenes en otro lugar, exporta SIFI_RNAPLFOLD con su ruta "
-                              "absoluta." % exe})
+                    "motivo": "no lo encontre. Busque en: %s. Es el binario que trae el "
+                              "instalador de si-Fi2015 (ViennaRNA 2.1.5); si lo tenes en "
+                              "otro lugar, o lo compilaste fuera de Windows, exporta "
+                              "SIFI_RNAPLFOLD con su ruta absoluta."
+                              % "; ".join(RUTAS_RNAPLFOLD)})
     return out
 
 
