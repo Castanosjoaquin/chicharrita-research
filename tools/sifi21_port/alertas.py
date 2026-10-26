@@ -185,9 +185,163 @@ def clasificar_evidencia(gen_blanco: str, anotacion: str) -> str:
     return "gen_no_relacionado"
 
 
+# ------------------------------------------------- la compuerta que D48 deja abierta
+
+# D48 retira el veto automatico y con eso **invierte el default**: la compuerta
+# descartaba por omision y la tabla no descarta nada, asi que una alerta **no leida**
+# queda operativamente igual que una alerta aceptada. M6 lo midio y lo dejo declarado
+# como lo que no puede hacer cumplir el software. Esto es lo minimo que si puede: negarse
+# a tratar una region como usable mientras alguna de sus filas siga sin decidir.
+#
+# Lo que esto NO hace, y conviene que quede escrito al lado del codigo que lo hace:
+#   * no decide que alertas se aceptan. Eso es del usuario y es el punto entero de D48;
+#   * no verifica si la justificacion es cierta, pertinente ni suficiente;
+#   * no se aplica a ningun entregable por su cuenta. Es una funcion disponible, con su
+#     prueba, igual que `regla_veto='alerta'`: se implementa sin adoptar.
+
+DECISIONES = ("pendiente", "aceptada", "bloqueante")
+# El texto con el que sale la tabla recien construida. Reescribir una palabra no es decidir.
+MARCA_PENDIENTE = "pendiente"
+
+
+class AlertaSinDecidir(RuntimeError):
+    """Se trato como usable una region con alertas que nadie decidio todavia.
+
+    No es lo mismo que «la region esta bloqueada»: es que **no se sabe**, y bajo D48 no
+    saber tiene que costar algo, porque si no una alerta no leida vale lo mismo que una
+    aceptada.
+    """
+
+
+def cita_la_fila(fila: dict, texto: str) -> bool:
+    """D48 pide que la justificacion «cite la fila». Verificable: que la nombre.
+
+    Alcanza con que mencione el LOC del gen impactado o una de las accesiones de
+    transcripto de esa fila. Es un piso mecanico y deliberadamente grosero —se puede
+    cumplir pegando una accesion— pero distingue una justificacion escrita **sobre esta
+    fila** de un parrafo generico copiado a todas.
+    """
+    t = (texto or "")
+    candidatos = [c for c in [fila.get("gen_locus", "")] if c and not c.startswith("(")]
+    candidatos += [a.strip() for a in (fila.get("gen_transcriptos") or "").split(",") if a.strip()]
+    return any(c in t for c in candidatos)
+
+
+def validar_decision(fila: dict) -> None:
+    """Valida el par (decision, justificacion) de una fila ya completa.
+
+    `pendiente` es un estado legitimo y no falla: la tabla se entrega asi a proposito.
+    Lo que falla es **decidir sin justificar**, que es la forma de aceptar una alerta
+    reescribiendo una palabra.
+    """
+    d = (fila.get("decision_usuario") or "").strip()
+    if d not in DECISIONES:
+        raise FilaIncompleta("decision_usuario %r no esta en el vocabulario cerrado %s"
+                             % (d, DECISIONES))
+    if d == MARCA_PENDIENTE:
+        return
+    j = (fila.get("justificacion_usuario") or "").strip()
+    donde = "%s %s / %s" % (fila.get("gen", "?"), fila.get("region", "?"),
+                            fila.get("organismo_corto", "?"))
+    if j.startswith(MARCA_PENDIENTE):
+        raise FilaIncompleta(
+            "la fila (%s) dice '%s' pero su justificacion sigue siendo el texto de "
+            "relleno. D48 pide una justificacion escrita, no cambiar una palabra." % (donde, d))
+    if len(j) < PROSA_MINIMA:
+        raise FilaIncompleta(
+            "la justificacion de (%s) tiene %d caracteres y el minimo es %d: una palabra "
+            "no es una justificacion" % (donde, len(j), PROSA_MINIMA))
+    if not cita_la_fila(fila, j):
+        raise FilaIncompleta(
+            "la justificacion de (%s) no cita la fila: tiene que nombrar el LOC o una de "
+            "las accesiones (%s). D48 pide que la justificacion cite la fila."
+            % (donde, fila.get("gen_transcriptos", "")))
+
+
+def filas_de_region(filas: list[dict], gen: str, region: str) -> list[dict]:
+    return [f for f in filas if f.get("gen") == gen and f.get("region") == region]
+
+
+def estado_decision(filas: list[dict], gen: str, region: str,
+                    umbral: str = "perfecto_21") -> dict:
+    """Estado de decision de una region. **No** dice si la region sirve ni si es segura.
+
+    `umbral` elige que alertas obligan a justificar. Por defecto `perfecto_21`, que es lo
+    que D48 dice literalmente —«cada coincidencia perfecta de 21 nt ... genera una fila»—;
+    con `perfecto_ge19` obligan tambien las del umbral laxo de D28, que la tabla informa
+    al lado pero sobre las que D48 no se pronuncia. Los dos numeros valen la pena y por
+    eso el umbral es un parametro y no una constante.
+    """
+    if umbral not in ("perfecto_21", "perfecto_ge19"):
+        raise ValueError("umbral %r: los de D28 son perfecto_21 y perfecto_ge19" % umbral)
+    col = "ventanas_%s" % umbral
+    mias = [f for f in filas_de_region(filas, gen, region) if int(f.get(col) or 0) > 0]
+    for f in mias:
+        validar_decision(f)
+    pendientes = [f for f in mias if (f.get("decision_usuario") or "").strip() == MARCA_PENDIENTE]
+    bloqueantes = [f for f in mias if (f.get("decision_usuario") or "").strip() == "bloqueante"]
+    if not mias:
+        estado = "sin alertas en este umbral"
+    elif pendientes:
+        estado = "sin decidir"
+    elif bloqueantes:
+        estado = "decidida: bloqueante"
+    else:
+        estado = "decidida: aceptada con justificacion"
+    return {"gen": gen, "region": region, "umbral": umbral, "alertas": len(mias),
+            "pendientes": len(pendientes), "bloqueantes": len(bloqueantes),
+            "estado": estado,
+            "organismos_pendientes": sorted({f["organismo_corto"] for f in pendientes}),
+            "decide": "el usuario" if pendientes else "ya decidido"}
+
+
+def exigir_decidida(filas: list[dict], gen: str, region: str,
+                    umbral: str = "perfecto_21") -> dict:
+    """Puerta: levanta `AlertaSinDecidir` si queda una alerta sin decidir.
+
+    Una region **sin alertas** pasa, y eso no es una laguna: no hay nada que justificar.
+    Una region con alertas **todas decididas** pasa tambien, incluso si alguna es
+    `bloqueante` —quien llama decide que hacer con eso, y el estado se lo dice—. Lo unico
+    que esta funcion impide es seguir de largo sin que nadie haya mirado.
+    """
+    est = estado_decision(filas, gen, region, umbral)
+    if est["pendientes"]:
+        raise AlertaSinDecidir(
+            "%s %s tiene %d alerta(s) de %s sin decidir (%s) y no se puede tratar como "
+            "usable: D48 pide que la region se acepte o se descarte con una justificacion "
+            "escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv"
+            % (gen, region, est["pendientes"], umbral,
+               ", ".join(est["organismos_pendientes"])))
+    return est
+
+
+def regiones_sin_decidir(filas: list[dict], umbral: str = "perfecto_21") -> list[dict]:
+    """Inventario de lo que falta decidir, para mirarlo de una sola vez."""
+    vistas, out = [], []
+    for f in filas:
+        clave = (f.get("gen"), f.get("region"))
+        if clave in vistas:
+            continue
+        vistas.append(clave)
+        out.append(estado_decision(filas, clave[0], clave[1], umbral))
+    return out
+
+
+def leer(ruta: Path) -> list[dict]:
+    """Lee `alertas.tsv` y valida las filas. No decide nada."""
+    with Path(ruta).open(encoding="utf-8") as fh:
+        filas = list(csv.DictReader(fh, delimiter="\t"))
+    validar(filas)
+    for f in filas:
+        validar_decision(f)
+    return filas
+
+
 def escribir(filas: list[dict], ruta: Path, columnas: list[str]) -> None:
     """Escribe el TSV validando antes. Una fila incompleta no llega al disco."""
     validar(filas)
+    for f in filas:
+        validar_decision(f)
     ruta.parent.mkdir(parents=True, exist_ok=True)
     with ruta.open("w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=columnas, delimiter="\t", extrasaction="ignore")

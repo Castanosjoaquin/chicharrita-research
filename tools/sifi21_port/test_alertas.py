@@ -66,6 +66,10 @@ def fila_completa() -> dict:
         "evidencia_bioensayo": "sin_bioensayo_consultado",
         "evidencia_prosa": "el transcripto impactado es el ortologo del gen que se silencia, "
                            "asi que el escenario es el de silenciar al no objetivo.",
+        # las dos columnas de decision son parte del contrato de la tabla: una fila
+        # siempre declara su estado, aunque ese estado sea «todavia no lo decidio nadie»
+        "decision_usuario": "pendiente",
+        "justificacion_usuario": "pendiente: la escribe el usuario, no el motor",
     }
 
 
@@ -195,6 +199,97 @@ else:
     check(a == b, "los dos escaneos dan el mismo dict de referencias por ventana")
     check(anot and all(isinstance(v, str) and v for v in anot.values()),
           "y la version con identidad ademas trae la anotacion de %d accesiones" % len(anot))
+
+print("7. la compuerta: «pendiente» no pasa en silencio")
+
+def fila_alerta(**kw):
+    f = fila_completa()
+    f.update({"ventanas_perfecto_21": "22", "ventanas_perfecto_ge19": "30"})
+    f.update(kw)
+    return f
+
+# una region sin alertas pasa, y no es una laguna: no hay nada que justificar
+sin = [fila_alerta(gen="CP_MRFV", region="99-298",
+                   ventanas_perfecto_21="0", ventanas_perfecto_ge19="0")]
+est = AL.exigir_decidida(sin, "CP_MRFV", "99-298")
+check(est["estado"] == "sin alertas en este umbral" and est["alertas"] == 0,
+      "una region sin alertas pasa la compuerta")
+
+# una region con una alerta pendiente NO pasa
+pend = [fila_alerta()]
+try:
+    AL.exigir_decidida(pend, "BicC_Dm", "264-563")
+    check(False, "una alerta pendiente deberia levantar AlertaSinDecidir")
+except AL.AlertaSinDecidir as e:
+    check("264-563" in str(e) and "H_vitripennis" in str(e),
+          "una alerta pendiente levanta AlertaSinDecidir y nombra la region y el organismo")
+
+# decidir reescribiendo una palabra NO alcanza
+try:
+    AL.exigir_decidida([fila_alerta(decision_usuario="aceptada")], "BicC_Dm", "264-563")
+    check(False, "aceptar sin justificar deberia fallar")
+except AL.FilaIncompleta as e:
+    check("relleno" in str(e), "aceptar dejando el texto de relleno falla")
+
+# una justificacion generica, que no cita la fila, tampoco
+generica = fila_alerta(decision_usuario="aceptada",
+                       justificacion_usuario="Lo discutimos en la reunion y nos parece "
+                                             "que el riesgo es aceptable para esta region.")
+try:
+    AL.exigir_decidida([generica], "BicC_Dm", "264-563")
+    check(False, "una justificacion que no cita la fila deberia fallar")
+except AL.FilaIncompleta as e:
+    check("no cita la fila" in str(e), "una justificacion generica que no cita la fila falla")
+
+# citando la accesion, pasa
+buena = fila_alerta(decision_usuario="aceptada",
+                    justificacion_usuario="Se acepta: el acierto es contra XM_046816879.1, el "
+                                          "ortologo de bicaudal C de un cicadelido ausente en la "
+                                          "Argentina, asi que la exposicion es la que decide.")
+est = AL.exigir_decidida([buena], "BicC_Dm", "264-563")
+check(est["estado"] == "decidida: aceptada con justificacion" and est["pendientes"] == 0,
+      "con la justificacion que cita la accesion, la region pasa")
+
+# bloqueante tambien es decidir: pasa la compuerta y el estado lo dice
+bloq = fila_alerta(decision_usuario="bloqueante",
+                   justificacion_usuario="Se bloquea: XM_046816879.1 es el ortologo exacto del "
+                                         "gen blanco y no aceptamos silenciar al pariente.")
+est = AL.exigir_decidida([bloq], "BicC_Dm", "264-563")
+check(est["estado"] == "decidida: bloqueante" and est["bloqueantes"] == 1,
+      "una fila bloqueante pasa la compuerta y el estado dice que esta bloqueada")
+
+# el vocabulario de decision es cerrado
+try:
+    AL.validar_decision(fila_alerta(decision_usuario="mas o menos"))
+    check(False, "una decision fuera del vocabulario deberia fallar")
+except AL.FilaIncompleta:
+    check(True, "una decision fuera del vocabulario cerrado falla")
+
+# el umbral es un parametro: una fila con 0 de 21/21 y 3 de >=19 obliga solo en el laxo
+laxa = [fila_alerta(gen="BicC_Dm", region="922-1221", organismo_corto="humano",
+                    ventanas_perfecto_21="0", ventanas_perfecto_ge19="3")]
+check(AL.exigir_decidida(laxa, "BicC_Dm", "922-1221", "perfecto_21")["alertas"] == 0,
+      "con umbral perfecto_21 una alerta de solo >=19 nt no obliga")
+try:
+    AL.exigir_decidida(laxa, "BicC_Dm", "922-1221", "perfecto_ge19")
+    check(False, "con umbral perfecto_ge19 esa misma fila deberia obligar")
+except AL.AlertaSinDecidir:
+    check(True, "con umbral perfecto_ge19 esa misma fila obliga a justificar")
+
+# leer() valida al abrir: una tabla con una decision invalida no se puede leer
+import tempfile as _tf
+with _tf.TemporaryDirectory() as tmp:
+    ruta = Path(tmp) / "alertas.tsv"
+    AL.escribir([fila_alerta()], ruta, list(fila_alerta()))
+    check(len(AL.leer(ruta)) == 1, "leer() abre una tabla con filas pendientes")
+    texto = ruta.read_text(encoding="utf-8").replace("\tpendiente\t", "\taceptada\t")
+    ruta.write_text(texto, encoding="utf-8")
+    try:
+        AL.leer(ruta)
+        check(False, "leer() deberia rechazar una tabla aceptada sin justificar")
+    except AL.FilaIncompleta:
+        check(True, "leer() rechaza una tabla donde se acepto sin justificar")
+
 
 print()
 if SALTEADAS:

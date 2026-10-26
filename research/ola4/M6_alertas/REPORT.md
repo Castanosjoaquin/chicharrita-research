@@ -226,6 +226,53 @@ cuatro campos están y tienen la forma declarada**. Que el argumento sea bueno n
 verificar ningún script, y simular lo contrario sería el peor resultado posible de esta
 línea.
 
+## 5 bis. La compuerta que D48 deja abierta, y qué umbral la dispara
+
+*Agregado el 2026-10-26, después del cierre del issue, sobre el punto que §5 dejó
+declarado como lo que el software no puede hacer cumplir.*
+
+De los cinco modos de fallar que enumera §5, hay uno que **sí** se puede atrapar en
+código, y es el más peligroso: que el default se haya invertido. La compuerta descartaba
+por omisión; la tabla no descarta nada, así que una alerta no leída queda operativamente
+igual que una aceptada. `alertas.exigir_decidida()` se niega a tratar una región como
+usable mientras alguna de sus filas siga en «pendiente», y `alertas.leer()` valida las
+decisiones al abrir la tabla. No decide qué alertas se aceptan —eso sigue siendo del
+usuario— ni se aplica a ningún entregable por su cuenta: se implementa sin adoptar, la
+misma postura que `regla_veto="alerta"`.
+
+Lo que la compuerta exige para dar por decidida una fila es lo que pide D48 y nada más:
+una decisión del vocabulario cerrado (`pendiente`, `aceptada`, `bloqueante`) y, si no es
+«pendiente», una justificación escrita que **cite la fila**, verificado como que nombre
+el LOC o una de las accesiones de esa fila. Es un piso mecánico y grosero —se cumple
+pegando una accesión— pero distingue una justificación escrita sobre esa fila de un
+párrafo genérico copiado a todas, y rechaza la forma más barata de aceptar una alerta,
+que es reescribir una palabra y dejar el texto de relleno. `bloqueante` también pasa la
+compuerta: bloquear es decidir, y el estado lo dice.
+
+`[M]` **Y acá aparece lo que no estaba escrito en ningún lado: de qué umbral obliga a
+justificar depende casi todo.** D48 habla textualmente de «cada coincidencia perfecta de
+21 nt»; la tabla informa además el bloque de ≥ 19 nt porque D28 lo manda, pero D48 no se
+pronuncia sobre él. Corrida sobre las doce regiones:
+
+| Umbral que obliga | Regiones que pasan | Frenadas | De ellas, vigentes |
+|---|---|---|---|
+| `perfecto_21` (D48 literal) | 9 de 12 | 3 | **0** |
+| `perfecto_ge19` (umbral laxo de D28) | 3 de 12 | 9 | **4** |
+
+`[H]` Con el umbral de D48 literal la compuerta confirma lo que dice §1: las tres
+frenadas son `BicC_Dm` 264-563 y `ATPaseD_Dm` 151-450 y 137-436, exactamente las que el
+veto ya descartaba, y **ninguna región vigente se mueve**. Con el umbral laxo, en cambio,
+se frenan cuatro de las seis vigentes —`MP_MRFV` 72-271, `BicC_Dm` 922-1221, `ATPaseD_Dm`
+72-371 y `eth_Dm` 114-313— que hoy recomendamos sin que nadie haya escrito un párrafo
+sobre sus alertas de ≥ 19 nt. La diferencia entre «D48 no toca lo que recomendamos» y
+«D48 congela cuatro de las seis recomendadas» es enteramente esa elección, y es una
+decisión que no está tomada. Por eso el umbral es un parámetro de la función y no una
+constante, y por eso van las dos cifras.
+
+Se reproduce con `python research/ola4/M6_alertas/scripts/compuerta.py`; la salida está
+en `resultados/compuerta.json` y las once verificaciones de la compuerta, en
+`tools/sifi21_port/test_alertas.py` §7.
+
 ## 6. D59, las dos cifras
 
 `[M]` Todo conteo de esta tabla va con su descuento de baja complejidad, y el descuento es

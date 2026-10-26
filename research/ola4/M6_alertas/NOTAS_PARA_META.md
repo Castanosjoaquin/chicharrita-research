@@ -38,6 +38,15 @@ nadie presta atención. Las columnas `decision_usuario` y `justificacion_usuario
 pendiente** `[H]`. Si se adopta D48 conviene que la decisión diga explícitamente quién
 firma y en qué momento del proceso, porque eso no lo puede hacer cumplir el software.
 
+**Entrada nueva: «pendiente» deja de pasar en silencio, pero sólo si alguien llama a la
+compuerta.** `alertas.exigir_decidida()` se niega a tratar una región como usable
+mientras alguna de sus filas siga sin decidir, y exige que la justificación de una fila
+decidida **cite la fila** —que nombre el LOC o una accesión—, lo que rechaza la forma más
+barata de aceptar una alerta, que es reescribir una palabra y dejar el texto de relleno.
+Se implementa sin adoptar, igual que `regla_veto='alerta'`: hoy ningún entregable la
+llama. Si D48 se adopta, la decisión tiene que decir **en qué punto del proceso se llama
+a esa función**, porque es lo único que impide que el default invertido pase inadvertido.
+
 **Insumo para la decisión sobre los dos pesos de M5, medido acá.** Las tres regiones que
 el veto de hoy descarta —`BicC_Dm` 264-563, `ATPaseD_Dm` 151-450 y 137-436— dejan de
 estar vetadas bajo la regla ponderada por exposición **sin que nadie escriba nada**,
@@ -56,20 +65,36 @@ salida intermedia que M5 dijo que no existía con la regla de riesgo de hoy.
    de 21/21 y donde el transcripto impactado es el ortólogo del blanco—, y sobre captación
    de ARNdc en *Zea mays* y en humano para los aciertos de ≥ 19 nt. Mientras eso falte, el
    campo 4 informa identidad y conteos, no evidencia de efecto.
-2. **La clase de blanco de D28 no está resuelta para los aciertos genómicos.** Las dos
-   filas de `MP_MRFV` contra *D. maidis* caen en el ensamblado genómico (cromosomas 6 y
-   X), que no trae anotación de gen: no se puede decir si el acierto está en exón,
-   intrón o región intergénica, que es justamente la clasificación que pide D28. Se
-   declara como `sin_anotacion_de_gen` y no se inventa un gen. Resolverlo necesita el GFF
-   del ensamblado, que no está en `work/W5/ref/`.
+2. **La clase de blanco de D28 no está resuelta para los aciertos genómicos, y el dato
+   que pedí para resolverla no existe.** Las dos filas de `MP_MRFV` contra *D. maidis*
+   caen en el ensamblado genómico (cromosomas 6 y X), que no trae anotación de gen: no se
+   puede decir si el acierto está en exón, intrón o región intergénica, que es justamente
+   la clasificación que pide D28. Se declara como `sin_anotacion_de_gen` y no se inventa
+   un gen. **Corrección del 2026-10-26**: esta nota decía que resolverlo necesitaba «el
+   GFF del ensamblado». Consultado NCBI Datasets, *Dalbulus maidis* tiene **tres
+   ensamblados públicos y ninguno está anotado** —`GCA_975739785.1` (cromosoma, el que
+   usamos), `GCA_975739835.1` y `GCA_054756405.1`— y el nuestro no tiene par RefSeq `[M]`.
+   No hay GFF que esperar. El sustituto factible, con insumos que ya están en disco, es
+   probar esos mismos 21-meros contra los tres transcriptomas públicos de *D. maidis*
+   (`TSA_GCWP01`, `TSA_GHCC01`, `TSA_GITV01`): no da la clase exón/intrón/intergénico,
+   pero sí contesta si el acierto cae en secuencia **expresada**, que es la mitad que
+   D28 usa para la asimetría entre genoma y transcriptoma. No corrido.
 3. **Qué valor toma la exposición de *H. vitripennis*** (pedido 4 del lunes). Es la
    decisión que cambia la lectura de las tres filas de 21/21 —señal de conservación o
    riesgo ecológico de primer orden sobre el ortólogo exacto del blanco— y la tabla está
    construida para servir con los dos valores sin recalcularse.
-4. **Quién escribe y quién firma las justificaciones.** D48 cambia la carga de la prueba
+4. **Qué umbral dispara la obligación de justificar, que D48 no dice y que cambia casi
+   todo.** D48 habla textualmente de «cada coincidencia perfecta de 21 nt»; la tabla
+   informa además el bloque de ≥ 19 nt porque lo manda D28, pero D48 no se pronuncia
+   sobre él. Medido con la compuerta sobre las doce regiones: con `perfecto_21` pasan 9 y
+   se frenan 3, **ninguna vigente**; con `perfecto_ge19` pasan 3 y se frenan 9, **cuatro
+   de ellas vigentes** (`MP_MRFV` 72-271, `BicC_Dm` 922-1221, `ATPaseD_Dm` 72-371 y
+   `eth_Dm` 114-313) `[M]`. O sea que esa elección es la diferencia entre que D48 no
+   toque nada de lo que recomendamos y que congele cuatro de las seis recomendadas.
+5. **Quién escribe y quién firma las justificaciones.** D48 cambia la carga de la prueba
    pero no dice de quién es la carga. Dos personas pueden justificar la misma fila en
    direcciones opuestas y las dos pasar la validación mecánica.
-5. **El criterio de baja complejidad sigue sin contrastarse contra `dustmasker`**, que es
+6. **El criterio de baja complejidad sigue sin contrastarse contra `dustmasker`**, que es
    lo que D59 dejó pendiente. No afecta a esta tabla, donde el descuento es cero.
 
 

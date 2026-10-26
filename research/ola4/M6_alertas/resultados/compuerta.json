@@ -1,0 +1,398 @@
+{
+ "tabla": "research/ola4/M6_alertas/resultados/alertas.tsv",
+ "filas": 17,
+ "umbrales": {
+  "perfecto_21": {
+   "pasan": 9,
+   "frenadas": 3,
+   "frenadas_vigentes": 0,
+   "detalle": [
+    {
+     "gen": "MP_MRFV",
+     "region": "72-271",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "sí",
+     "que_es": "recomendada por C7 v2",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "CP_MRFV",
+     "region": "99-298",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "sí",
+     "que_es": "recomendada por C7 v2",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "922-1221",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "sí",
+     "que_es": "recomendada por D25, por conservación",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "ATPaseD_Dm",
+     "region": "72-371",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "sí",
+     "que_es": "recomendada por C7 v2 y mantenida por D25",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "eth_Dm",
+     "region": "114-313",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "sí",
+     "que_es": "propuesta por C7 v2 (gen nuevo)",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "bursA_Dm",
+     "region": "13-212",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "sí",
+     "que_es": "propuesta por C7 v2 (gen nuevo)",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "MP_MRFV",
+     "region": "1-200",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "planilla de EPILAB",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "CP_MRFV",
+     "region": "201-400",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "planilla de EPILAB",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "264-563",
+     "umbral": "perfecto_21",
+     "alertas": 1,
+     "pendientes": 1,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "H_vitripennis"
+     ],
+     "decide": "el usuario",
+     "mensaje": "BicC_Dm 264-563 tiene 1 alerta(s) de perfecto_21 sin decidir (H_vitripennis) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "planilla de EPILAB",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "2121-2420",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2, desplazada por D25",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "ATPaseD_Dm",
+     "region": "151-450",
+     "umbral": "perfecto_21",
+     "alertas": 1,
+     "pendientes": 1,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "H_vitripennis"
+     ],
+     "decide": "el usuario",
+     "mensaje": "ATPaseD_Dm 151-450 tiene 1 alerta(s) de perfecto_21 sin decidir (H_vitripennis) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "planilla de EPILAB",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "ATPaseD_Dm",
+     "region": "137-436",
+     "umbral": "perfecto_21",
+     "alertas": 1,
+     "pendientes": 1,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "H_vitripennis"
+     ],
+     "decide": "el usuario",
+     "mensaje": "ATPaseD_Dm 137-436 tiene 1 alerta(s) de perfecto_21 sin decidir (H_vitripennis) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "la más conservada, alternativa b de D25, vetada",
+     "resultado": "FRENADA"
+    }
+   ]
+  },
+  "perfecto_ge19": {
+   "pasan": 3,
+   "frenadas": 9,
+   "frenadas_vigentes": 4,
+   "detalle": [
+    {
+     "gen": "MP_MRFV",
+     "region": "72-271",
+     "umbral": "perfecto_ge19",
+     "alertas": 2,
+     "pendientes": 2,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "D_maidis",
+      "maiz"
+     ],
+     "decide": "el usuario",
+     "mensaje": "MP_MRFV 72-271 tiene 2 alerta(s) de perfecto_ge19 sin decidir (D_maidis, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "sí",
+     "que_es": "recomendada por C7 v2",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "CP_MRFV",
+     "region": "99-298",
+     "umbral": "perfecto_ge19",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "sí",
+     "que_es": "recomendada por C7 v2",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "922-1221",
+     "umbral": "perfecto_ge19",
+     "alertas": 1,
+     "pendientes": 1,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "humano"
+     ],
+     "decide": "el usuario",
+     "mensaje": "BicC_Dm 922-1221 tiene 1 alerta(s) de perfecto_ge19 sin decidir (humano) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "sí",
+     "que_es": "recomendada por D25, por conservación",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "ATPaseD_Dm",
+     "region": "72-371",
+     "umbral": "perfecto_ge19",
+     "alertas": 2,
+     "pendientes": 2,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "humano"
+     ],
+     "decide": "el usuario",
+     "mensaje": "ATPaseD_Dm 72-371 tiene 2 alerta(s) de perfecto_ge19 sin decidir (humano) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "sí",
+     "que_es": "recomendada por C7 v2 y mantenida por D25",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "eth_Dm",
+     "region": "114-313",
+     "umbral": "perfecto_ge19",
+     "alertas": 1,
+     "pendientes": 1,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "humano"
+     ],
+     "decide": "el usuario",
+     "mensaje": "eth_Dm 114-313 tiene 1 alerta(s) de perfecto_ge19 sin decidir (humano) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "sí",
+     "que_es": "propuesta por C7 v2 (gen nuevo)",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "bursA_Dm",
+     "region": "13-212",
+     "umbral": "perfecto_ge19",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "sí",
+     "que_es": "propuesta por C7 v2 (gen nuevo)",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "MP_MRFV",
+     "region": "1-200",
+     "umbral": "perfecto_ge19",
+     "alertas": 2,
+     "pendientes": 2,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "D_maidis",
+      "maiz"
+     ],
+     "decide": "el usuario",
+     "mensaje": "MP_MRFV 1-200 tiene 2 alerta(s) de perfecto_ge19 sin decidir (D_maidis, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "planilla de EPILAB",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "CP_MRFV",
+     "region": "201-400",
+     "umbral": "perfecto_ge19",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "planilla de EPILAB",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "264-563",
+     "umbral": "perfecto_ge19",
+     "alertas": 2,
+     "pendientes": 2,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "H_vitripennis",
+      "maiz"
+     ],
+     "decide": "el usuario",
+     "mensaje": "BicC_Dm 264-563 tiene 2 alerta(s) de perfecto_ge19 sin decidir (H_vitripennis, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "planilla de EPILAB",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "2121-2420",
+     "umbral": "perfecto_ge19",
+     "alertas": 2,
+     "pendientes": 2,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "humano",
+      "maiz"
+     ],
+     "decide": "el usuario",
+     "mensaje": "BicC_Dm 2121-2420 tiene 2 alerta(s) de perfecto_ge19 sin decidir (humano, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2, desplazada por D25",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "ATPaseD_Dm",
+     "region": "151-450",
+     "umbral": "perfecto_ge19",
+     "alertas": 2,
+     "pendientes": 2,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "H_vitripennis",
+      "humano"
+     ],
+     "decide": "el usuario",
+     "mensaje": "ATPaseD_Dm 151-450 tiene 2 alerta(s) de perfecto_ge19 sin decidir (H_vitripennis, humano) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "planilla de EPILAB",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "ATPaseD_Dm",
+     "region": "137-436",
+     "umbral": "perfecto_ge19",
+     "alertas": 3,
+     "pendientes": 3,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "H_vitripennis",
+      "humano"
+     ],
+     "decide": "el usuario",
+     "mensaje": "ATPaseD_Dm 137-436 tiene 3 alerta(s) de perfecto_ge19 sin decidir (H_vitripennis, humano) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "la más conservada, alternativa b de D25, vetada",
+     "resultado": "FRENADA"
+    }
+   ]
+  }
+ }
+}
