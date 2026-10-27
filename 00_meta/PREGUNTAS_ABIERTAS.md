@@ -2357,7 +2357,178 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     30 % de cobertura ordene nada. Si los dos rótulos miden lo mismo, conviene colapsarlos en «no
     alta» y no sugerir una gradación que no se midió. No se revisó el umbral.
 
+65. **`D67` define tres mecanismos y el catálogo tiene cuatro.** Las quimeras se arman por
+    combinación de fenotipos que no se solapan —reproducción, movilidad, letalidad— y al
+    asignarle su mecanismo a cada una de las 36 filas de `C5` aparecen cuatro que no entran
+    en ninguno de los tres: `CI-07` (clatrina, baja la colonización del fitoplasma), `CI-09`
+    (natterina y lectina, reduce la multiplicación), `HE-07` (`NcSP75`, proteína salival de
+    la transmisión) y `HE-11` (*Graminella nigrifrons*, interacción con *Maize fine streak
+    virus*). Describen **menos transmisión con el insecto vivo** `[R]`, que es el mecanismo
+    más alineado con el objetivo sanitario del proyecto y el que menos se parece a los otros
+    tres: no reduce la población ni mata, corta la cadena. `F3` lo agrega como categoría
+    declarada `transmision` en su propia salida (`D84`), pero **ampliar `D67` no es de esta
+    línea**: hay que decidir si el cuarto mecanismo entra al armado de quimeras, y si entra,
+    si una quimera «letalidad + transmisión» tiene sentido biológico o si son el mismo eje
+    visto a dos tiempos `[H]`. Pregunta para el investigador.
+
+66. **Los dos candidatos cuyo silenciamiento empeora las cosas, y la pregunta que abren.**
+    `CI-08` (`uk1_LRR`, receptor putativo de adhesión) dice que silenciarlo **aumentó** la
+    colonización del vector por el fitoplasma, y `CI-13` (`NcHig`, factor neural antiviral)
+    que silenciarlo **aumenta** la infección del sistema nervioso por el virus `[R]`. `F3`
+    los deja fuera del orden y los publica como `fenotipo_invertido` (`D84`), que es lo
+    correcto para un recomendador. Pero la lectura interesante es la inversa y no es nuestra:
+    si silenciar esos genes aumenta la colonización, son parte de la **defensa del vector**
+    contra el patógeno, y entonces la pregunta de diseño es si hay algo que hacer con eso en
+    la dirección opuesta —no silenciarlos— que esté fuera de lo que este proyecto hace con
+    ARNi `[H]`. Preguntar, no suponer.
+
+67. **Faltan `work/sifi_v2/` y los tres TSA de *Dalbulus maidis* en la máquina de Santino, y
+    son los insumos de dos de los cinco ejes de `F3`.** Verificado con `test -d` y con un
+    `find` sobre todo el disco del proyecto: `work/sifi_v2/` **no existe** —ni `salida_k21`,
+    ni `offtarget_k21`, ni `offtarget_dm_k21`— y `work/W5/ref/` tiene **sólo**
+    `humano_rna.fna.gz` y su `.sha256`, no los `TSA_GCWP01/GHCC01/GITV01.fasta` `[M]`. Sin
+    el primero no hay eje de off-target por gen; sin los segundos no hay eje de conservación
+    entre poblaciones. Se piden al grupo —los tiene la máquina de Joaquín, según `D83`— y con
+    el pedido va la advertencia que `PENDIENTE.md` de `R11` ya dejó escrita: **no se
+    regeneran acá con otra versión del motor**, porque el conteo de ventanas eficientes se
+    mueve con la versión de ViennaRNA y con la tabla de vecinos, y un `work/` reconstruido en
+    otro entorno convierte un pendiente de insumo declarado en una discrepancia nueva.
+
+68. **«Esta máquina», dos veces el mismo día, sin nombrar la máquina.** `D71` pide que cada
+    verificación de entorno diga **en qué máquina** se hizo, y es la regla que vuelve
+    utilizables los pendientes de `R11`. Dos artefactos del 27 de octubre no la siguen:
+    `prompts/F3.md` dice «**esta máquina** tiene `work/` completo» y `D83` dice que
+    `work/sifi_v2/` «**existe y está completo en esta máquina**». Las dos afirmaciones son
+    ciertas en la máquina de Joaquín, que es donde se escribieron, y **falsas en la de
+    Santino**, que es donde se leyeron `[M]`. No es un reproche: es que el costo de la
+    omisión no lo paga quien escribe. Leída en la máquina equivocada, la primera hace creer
+    que un eje es calculable y la segunda invita a «arreglar» el hueco regenerando el
+    insumo, que es justo lo que la entrada 67 dice que no hay que hacer. La forma barata de
+    cerrarlo: cuando una afirmación de entorno entra a un archivo versionado, el nombre de la
+    máquina va en la misma oración, como lo hace `PENDIENTE.md` de `R11`.
+
+69. **Se contesta la sub-pregunta del issue #27 sobre el zip, y la respuesta es no.** El
+    issue dejaba planteado, sobre el eje de expresión en el tejido expuesto, «habría que ver
+    si el zip lo trae». No lo trae: `work/zip_diego/` tiene **un solo archivo**, el
+    transcriptoma `Dalbulus_maidis_transcriptome_GITV01.fas`, sin tabla de expresión ni
+    metadatos de muestra, y sus cuatro estadísticas reproducen exactamente las del TSA
+    público que `W3` bajó del FTP del NCBI en la ola 2 —56.117 secuencias, 94.702.486 pb, la
+    más larga 205.383, la más corta 200 `[M]`—. No es una omisión del envío: un TSA es un
+    ensamblado y no contiene abundancia por muestra, y las 56.117 cabeceras son uniformes,
+    con **cero** menciones de tejido, cobertura, TPM o librería `[M]`. El eje 5 queda
+    declarado faltante, como el `PREREGISTRO.md` lo escribió **antes** de abrir el zip
+    (`research/ola6/F3_recomendador_genes/resultados/verificacion_zip_expresion.md`).
+    **Lo que queda abierto es otra cosa, y conviene no confundirlas:** el único proyecto de
+    lecturas fichado, `PRJNA631706` (16 corridas, 42.305 MB), contrasta *naive* contra
+    expuesto a MRFV a 4 h y 7 días, y **ninguna muestra nombra un tejido**: es insecto
+    entero. Daría un eje de **respuesta de expresión a la exposición al virus**, que no
+    tenemos y que es interesante por sí mismo, pero no contesta si el gen se expresa donde
+    el ARNdc ingerido llega `[H]`. Costaría 42 GB y un mapeador que esta máquina no tiene.
+
+70. **El mecanismo `movilidad` de `D67` tiene un solo candidato en las 36 filas de `C5`, y
+    su réplica más cercana es negativa.** Al asignar el mecanismo de fenotipo de las 36 filas
+    desde el campo `resultado`, el reparto queda: letalidad 16, reproducción 13,
+    **transmisión 4** y **movilidad 1** `[M]`. El único de movilidad es `DM-02`
+    (`V-ATPase B` de *Dalbulus maidis*), y su apoyo es la frase «alas deformes», sin magnitud
+    ni estadístico. `DM-03` es la otra subunidad de la misma bomba, en la misma especie y con
+    la misma vía de entrega, y ahí el efecto sobre alas **se midió y no dio significativo**
+    `[M]`. `[H]` Si las quimeras se arman combinando mecanismos que no se solapan (`D67`),
+    una de las tres patas del esquema se apoya en una fila cuya replicación más cercana
+    falló, y el mecanismo que `D67` no reconoce —transmisión, entrada 65— tiene cuatro veces
+    más candidatos. No es de esta línea decidirlo: `F3` publica el reparto y la quimera de
+    `O3` no se toca. Lo que hay que preguntar es si «movilidad» sigue siendo una pata del
+    esquema con este respaldo, o si el tercer eje del armado debería ser transmisión.
+
+71. **Dos filas del catálogo traen mortalidad que su propia fuente desatribuye del blanco, y
+    una de las dos trae un número grande.** `HE-08` lo dice directamente («mortalidad alta
+    por la dosis, no por el blanco») y ya estaba visto. `HE-04` es el mismo caso y es más
+    peligroso: trae 64 % de mortalidad a 120 h creciente con la dosis, **y** la fuente aclara
+    que el knockdown no correlaciona con la dosis y que el control de dsGFP a 500 y
+    1000 ng/µL ya mata más que el de sacarosa `[R]`. Las dos quedaron etiquetadas
+    `sin_fenotipo_atribuible_al_blanco` y fuera del orden. `[H]` La pregunta que abren no es
+    de `F3`: si a esas dosis el dsRNA mata por sí mismo, cualquier bioensayo de ingesta del
+    proyecto que use dosis de ese orden necesita su propio control de dsRNA no relacionado, y
+    conviene saber si los trabajos que sostienen nuestras cifras de letalidad lo tienen. Es
+    una pregunta para el investigador.
+
+72. **Cinco fuentes que el eje de esencialidad de `F3` necesita y no se pudieron abrir, con el
+    motivo de cada una.** `CLAUDE.md` pide anotarlas en vez de citarlas, así que acá están.
+    *(a)* **Park y colaboradores 2002**, *Development*, el nulo de `eth`: HTTP 403. Es la
+    primaria del único número del eje que hoy se cita desde una ficha secundaria —el 98 % de
+    mortalidad en la transición del primer al segundo estadio larval, tomado de la ficha de
+    InteractiveFly—, así que es la más importante de recuperar. *(b)* El trabajo de `Laccase2`
+    en *Bemisia tabaci*: HTTP 403 desde DOAJ. Sería la fuente más pertinente de esa vía por ser
+    un hemíptero, y cubre dos candidatos (`CI-11`, `CI-12`), hoy en `E0`. *(c)* La revisión de
+    *Frontiers in Physiology* doi 10.3389/fphys.2020.591569, que según la búsqueda describe a
+    `Lac2` como esencial para pigmentación y endurecimiento: el PDF llegó como binario
+    ilegible. *(d)* La ficha de FlyBase de `pontin` (`FBgn0040078`): se descargó vacía; dejaría
+    `DE-02` en `E2` en vez de `E0`. *(e)* **Collier y colaboradores 2000**, *Genetics*, que
+    según la búsqueda describe alelos letales recesivos de `emb` —el ortólogo de XPO1— que
+    mueren sin pasar al tercer estadio: no se abrió, y dejaría `DE-05` en `E3`. Además quedan
+    **tres vías sin búsqueda propia** en esta pasada, y conviene decirlo como lo que es —falta
+    de trabajo, no falta de fuente—: troponina C (`CI-10`), transformer-2 (`DE-03`), y
+    natterina y legumaína (`CI-09`), más la proteína salival `NcSP75` (`HE-07`).
+
+73. **Una contradicción entre dos tamizajes de la misma especie sobre la actina, que afecta a
+    `CI-05`.** `Ulrich` y colaboradores 2015 ponen al grupo de organización del citoesqueleto
+    como el tercero más predictivo de letalidad en *Tribolium castaneum*, con 37 de 66 genes
+    nuevos letales `[R]`. `Buer` y colaboradores 2024, el tamizaje genómico de **la misma
+    especie** y nueve años posterior, dice explícitamente que la β-actina **no** quedó en
+    ninguno de sus conjuntos de blancos efectivos `[R]`. Las dos cosas pueden ser ciertas a la
+    vez —la vía como grupo es letal y ese gen puntual no es un buen blanco— pero para el eje de
+    esencialidad de un candidato cuyo gen **es** actina muscular la diferencia importa. Se
+    resolvió bajando la vía a `E2` y declarando el `[?]`, no promediando. `[H]` Si alguien
+    consigue el dato por gen del segundo trabajo, esto se cierra en una dirección o en la otra.
+
+74. **«Matar o esterilizar» queda contestada en parte, y conviene ser preciso sobre cuánto.**
+    El issue #27 decía que `F3` es lo que volvería decidible esta pregunta, que venía abierta
+    desde el checkpoint 2. **Lo que ahora sí se puede afirmar:** el ranking tiene eje de
+    fenotipo, que antes no tenía, y con él se ve que de los 25 candidatos ordenados hay 16 con
+    letalidad, 13 con reproducción, 4 con transmisión y 1 con movilidad `[M]`; que los tres
+    primeros de la cohorte A son de letalidad (`DM-02`, `DM-03`, `DM-05`); y que el mejor
+    candidato de reproducción, `DM-01` (`BicC`), queda en el grupo del puesto 5 porque su vía
+    **esteriliza y no mata**, lo que el eje 2 puntúa `E1` por ser función condicional.
+    **Lo que sigue sin poder afirmarse, y es el centro de la pregunta:** que el orden *cambie*
+    según el objetivo. El criterio de `D84` **no tiene un parámetro de objetivo**: tiene un eje
+    de fenotipo que promedia mecanismos en vez de filtrar por ellos, así que la diferencia de
+    puesto entre `DM-05` y `DM-01` no sale de haber elegido matar en vez de esterilizar —sale
+    del nivel de esencialidad de sus vías—. `[H]` Lo que haría falta es un **segundo orden** con
+    el eje de fenotipo filtrado por mecanismo y no promediado, corrido dos veces, y comparar los
+    dos. Es una línea nueva y no un parámetro de ésta, y es barata: los dos ejes ya están
+    calculados y versionados. Mientras eso no se haga, la respuesta honesta a si el orden de los
+    candidatos del insecto cambia según el objetivo sigue siendo que **no se sabe**, con la
+    diferencia de que ahora se sabe exactamente qué falta para saberlo.
+
+75. **Se cierra la entrada 74, y la respuesta es que sí: el orden de los candidatos del insecto
+    cambia según el objetivo.** El segundo orden de `F3`
+    (`research/ola6/F3_recomendador_genes/scripts/04_segundo_orden.py`) corre el criterio de
+    `D84` dos veces con todo idéntico —pesos, escalas, cohortes, umbral de empate— y lo único
+    que cambia es quién es elegible: «matar» exige el mecanismo `letalidad`, «esterilizar»
+    exige `reproduccion`. La regla de lectura se declaró en el script antes de mirar el
+    resultado. El primer puesto de la cohorte A es `DM-02`, `DM-03` y `DM-05` para matar, con
+    puntaje 1,0000, y `CI-01`, `CI-02`, `CI-03`, `DE-01` y `DM-01` para esterilizar, con
+    0,7908: **los dos grupos no comparten un solo candidato** `[M]`. Con eso queda contestada
+    la pregunta que venía abierta desde el checkpoint 2, y que el investigador había dicho que
+    no sabía si cambiaba la decisión `[?]`.
+    **Las tres lecturas que valen más que el sí.** *(a)* La vía de esterilizar está **peor
+    sostenida**: ningún candidato de ese objetivo llega a 1,0000, porque los tres que están en
+    el máximo de los dos ejes son todos de letalidad; no tenemos ningún candidato que esterilice
+    y a la vez tenga evidencia de primer nivel en nuestra especie y vía de esencialidad
+    demostrada `[M]`. *(b)* Esterilizar **saca a *Dalbulus maidis* del podio**: de los cinco del
+    grupo líder sólo `DM-01` es de nuestra especie, y entra empatado con dos cicadélidos y un
+    delfácido, así que el objetivo cambia también de qué especie viene la evidencia en la que
+    uno se apoya. *(c)* La quimera de `O3` resulta ser **un miembro del grupo líder de cada
+    objetivo** —`BicC_Dm` de esterilizar, `V-ATPase B` de matar—, lo que es una confirmación
+    independiente de su armado, porque `O3` eligió esos dos genes por `D67` y por disponibilidad
+    de secuencia, antes de que este eje existiera `[H]`.
+    **Lo que sigue abierto, y no es poco:** elegir el objetivo. `F3` no lo elige y no debe; es
+    decisión del equipo y del investigador, y ahora tiene la tabla que antes no tenía.
 ### Ola 6, el barrido de corridas pendientes del issue #37 (2026-10-27)
+
+> Se publicaron como **65 a 74** y se renumeraron a **76 a 85** al mergear: `F3` (issue #27)
+> había usado 65 a 75 en la misma jornada. La equivalencia, por si alguien llega desde un
+> commit que cita los números viejos: 65→76, 66→77, 67→78, 68→79, 69→80, 70→81, 71→82,
+> 72→83, 73→84, 74→85.
 
 > Todas estas se midieron en **la máquina de Joaquín** (macOS, Darwin 27.0.0), con `work/`
 > en disco (14 GB) y el entorno `w5bio` de `micromamba`, que es el único de los doce que
@@ -2365,7 +2536,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
 > Biopython 1.88, `ahocorasick`, numpy 2.4.6, BLAST+ 2.17.0 y los ejecutables `RNAfold` y
 > `RNAplfold` `[M]`.
 
-65. **El entorno estaba medido mal otra vez, y en la dirección de siempre.** `PLAN_OLA6.md`
+76. **El entorno estaba medido mal otra vez, y en la dirección de siempre.** `PLAN_OLA6.md`
     dice que en esta máquina «faltan `RNAplfold` y `RNAfold`», con la salvedad de que eso
     «no se volvió a medir contra los `envs/`» `[?]`. Medido ahora: **están**, los dos, en
     `envs/w5bio/bin/` junto con los otros veintisiete ejecutables de ViennaRNA `[M]`. Esa
@@ -2376,7 +2547,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     hecho de entorno viene marcado `[?]` porque no se volvió a medir, lo que corresponde no
     es arrastrarlo: es medirlo, que cuesta un `ls`.
 
-66. **El censo de generadores pasó de 2 de 8 a 7 de 8, y el que queda no es de insumo.**
+77. **El censo de generadores pasó de 2 de 8 a 7 de 8, y el que queda no es de insumo.**
     Corrido de punta a punta con `work/` en disco, y después de las dos correcciones que
     siguen, terminan con código 0 **siete** de los ocho: `ranking.py ranking`,
     `ranking.py nulo`, `ranking_v2.py`, `tabla_alertas.py`, `compuerta.py`,
@@ -2398,11 +2569,11 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
       donde el proyecto quiere que se detenga: en una firma. Es el único que sigue sin
       terminar, y su error cambió de `RegionNoTamizada` a `AlertaSinDecidir`, que es
       exactamente un paso de avance: la región ya está tamizada y lo que falta es que una
-      persona la firme. Ver la entrada 67.
+      persona la firme. Ver la entrada 78.
     * `01_region_vatpase_b.py` fallaba con `StopIteration` por un desencuentro de rutas, no
-      por falta de datos. Ver la entrada 68.
+      por falta de datos. Ver la entrada 79.
 
-67. **La compuerta encontró una región nueva, y es la misma ventana de siempre vista desde
+78. **La compuerta encontró una región nueva, y es la misma ventana de siempre vista desde
     un nucleótido más adelante.** `sensibilidad_reparto.py` levantó
     `RegionNoTamizada: eth_Dm 194-393`. Medida la cosa entera en vez de iterar —los nueve
     `rho` del barrido de exposición, los seis genes, sin dejar que la compuerta corte en la
@@ -2427,7 +2598,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     la ventana introduce un acierto perfecto que la región vigente 114-313 no tiene— ahora
     tiene **dos** regiones que lo sostienen en vez de una.
 
-68. **`work/O3/` de esta máquina tiene otro layout que el que el script de `O3` pide, y la
+79. **`work/O3/` de esta máquina tiene otro layout que el que el script de `O3` pide, y la
     diferencia no era de datos.** `01_region_vatpase_b.py` busca
     `work/O3/sifi/full_corregido/`, `work/O3/offtarget/` y `work/O3/offtarget_humano/`, y lo
     que hay en disco es `work/O3/salida/` y `work/O3/offtarget/cds_completo/`, de otra
@@ -2447,7 +2618,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     todos los conteos coincidan prueba que la secuencia es la misma, pero el generador de
     ese FASTA no está en el repositorio.
 
-69. **La grilla fina de `O4` no pide 136.446 plegados: pide 129.761.738.** La entrada 48
+80. **La grilla fina de `O4` no pide 136.446 plegados: pide 129.761.738.** La entrada 48
     publica «136.446 plegados `[M]`, que entran en unas horas de esta máquina». Medido hoy,
     con los insumos en disco y el enumerador versionado: con `--paso 1` la grilla tiene
     **2.133.868.568 combinaciones antes de podar**, de las cuales **129.430.632** son
@@ -2468,8 +2639,13 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     resultado —si el primer puesto de la grilla gruesa sobrevive a una retícula diez veces
     más fina— no entró en esta sesión.
 
-70. **El eje de off-target por gen de `F3` no se desbloquea con `work/`, y la casilla lo
-    decía mal.** El issue #37 lo anota como «Necesita: `work/sifi_v2/`». Medido: las 28
+81. **El eje de off-target por gen de `F3` no se desbloquea con `work/`, y la casilla lo
+    decía mal.** Esta entrada completa la **67** y el §4 del `REPORT.md` de `F3`, que
+    declararon el eje faltante «por falta de `work/sifi_v2/`» desde una máquina donde ese
+    directorio no existe. Medido desde la máquina donde **sí** está: no alcanza, y el
+    segundo motivo que `F3` ya había identificado —que los conteos de las 8 filas están
+    contra otro panel, el de cinco referencias— no es el único que queda en pie. El issue
+    #37 lo anota como «Necesita: `work/sifi_v2/`». Medido: las 28
     filas del catálogo de `C5` que no tienen `ventanas_21nt` son de **15 especies
     distintas** —*Euscelidius variegatus*, *Nephotettix cincticeps*, *Nilaparvata lugens*,
     *Rhodnius prolixus* y once más—, y `work/sifi_v2/salida_k21` tiene **seis** genes, los
@@ -2478,7 +2654,10 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     accesión (`Rpn6_Stitanus_GJQL01135962`, `ATPsynBeta_Mquadrilineatus_XM_054410120` y
     cuatro más) y que no viven en `work/sifi_v2/`. O sea que lo que falta para ese eje no es
     un directorio de trabajo: son **28 secuencias de transcripto** que hay que recuperar una
-    por una. `[H]` Y hay una segunda diferencia que conviene no pasar por alto antes de
+    por una. `[H]` La consecuencia para el pedido de la entrada 67: mandar `work/sifi_v2/` a
+    la máquina de Santino destraba el eje de **conservación** —que sólo necesita los tres
+    TSA— y **no** el de off-target por gen, que seguirá faltando con el directorio en disco.
+    Vale pedirlo igual, pero conviene que el pedido diga cuál de los dos ejes destraba. `[H]` Y hay una segunda diferencia que conviene no pasar por alto antes de
     mezclar las 8 con cualquier fila nueva: las 8 publicadas se tamizaron contra un panel de
     **cinco** referencias (*D. maidis*, *M. quadrilineatus*, *H. vitripennis*, *Zea mays*,
     *Apis mellifera*), que no es el panel de seis de `C7` v2 y `M6`.
@@ -2489,7 +2668,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     de la primera corrida, y ese preregistro todavía no existe. La casilla queda
     desbloqueada por insumo y frenada por preregistro, que no es lo mismo.
 
-71. **La vuelta de la reciprocidad de `R8` contra un proteoma anotado confirma lo publicado,
+82. **La vuelta de la reciprocidad de `R8` contra un proteoma anotado confirma lo publicado,
     y de paso mide la limitación de las variantes de empalme.** El §7 de `R8` declara que
     ninguna de las seis referencias es un proteoma y que por eso la vuelta usó el ORF más
     largo del transcripto. En esta máquina **sí hay** un proteoma anotado del organismo de
@@ -2512,7 +2691,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     Un ortólogo recíproco evaluado por accesión de proteína sobre un proteoma con isoformas
     declara no recíprocos pares que sí lo son, y el error va en la dirección conservadora.
 
-72. **Cuatro de las diez anclas «salteadas por insumo» no eran de insumo: eran del
+83. **Cuatro de las diez anclas «salteadas por insumo» no eran de insumo: eran del
     directorio desde donde se corre el test.** El issue #37 dice que hay que correr los
     tests a mano con `cd tools\sifi21_port && python test_alertas.py`. Hecho así,
     `test_ranking.py` saltea cuatro anclas diciendo que falta
@@ -2526,7 +2705,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     porque falta X» que se cumple sólo desde cierto directorio informa mal, y lo que
     conviene es que el mensaje diga la ruta que se intentó, no la ruta relativa.
 
-73. **El panel de `work/sifi_check/offtarget_full/` es el de las seis sin la humana, y ahora
+84. **El panel de `work/sifi_check/offtarget_full/` es el de las seis sin la humana, y ahora
     está dicho.** El issue #37 advierte que al pedir ese archivo hay que decir con qué panel
     se construyó, porque los dos juegos de anclas publicadas piden paneles distintos
     (`D83`). Medido sobre su propio `offtarget_resumen.json`: las bases son **seis** —
@@ -2534,7 +2713,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     **no incluye la referencia humana** `[M]`. Con ese archivo `test_ranking.py` pasa sus
     cuatro anclas de `sifi21_reproduccion.md` §4.
 
-74. **El gancho de pre-commit corrió completo por primera vez, y la predicción de que
+85. **El gancho de pre-commit corrió completo por primera vez, y la predicción de que
     rechazaría igual era falsa.** La entrada 55 anotaba, leído y no corrido: «el gancho de
     pre-commit debería rechazar aunque `openpyxl` esté, porque su código pide además la
     planilla de EPILAB» `[H]`. Medido al commitear este barrido: con `w5bio` en el `PATH`

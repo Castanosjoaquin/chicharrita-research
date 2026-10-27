@@ -1,0 +1,12 @@
+id	gen	especie	etiqueta_de_ausencia	por_que_no_entra	frases_de_apoyo	marcador_evidencia
+CI-08	uk1_LRR	Euscelidius variegatus	fenotipo_invertido	silenciarlo empeora el problema: fuera del orden, sin puntaje negativo	silenciarlo AUMENTO la colonizacion del vector por el fitoplasma	R
+CI-13	NcHig	Nephotettix cincticeps	fenotipo_invertido	silenciarlo empeora el problema: fuera del orden, sin puntaje negativo	silenciarlo AUMENTA la infeccion del sistema nervioso	R
+DE-06	eth y burs-alpha	Delphacodes kuscheli	sin_fenotipo_publicado	el catalogo dice que el diseno es el mismo que en D. maidis pero no trae la magnitud: asignarle la letalidad de DM-05 y DM-06 seria inferirla de otra fila	ver fuente para la magnitud por especie	E
+DM-04	Dmai-dsRNase-2	Dalbulus maidis	potenciador_de_entrega	no es un blanco por su fenotipo: es un co-blanco que mejora la entrega. Sin fenotipo propio, no compite en el orden	mejora la respuesta al ARNdc	E
+HE-03	JHAMT y vitelogenina	Halyomorpha halys	sin_fenotipo_publicado	reporta que el silenciamiento ocurre, no que produzca un desenlace	silenciamiento por varias vias de entrega	R
+HE-04	catepsina D, quitina sintasa, IAP	Diaphorina citri	sin_fenotipo_atribuible_al_blanco	la propia fuente dice que el control de dsGFP a 500 y 1000 ng/uL ya mata mas que el de sacarosa: hay 64 % de mortalidad y no es atribuible al blanco	el knockdown NO correlaciona con la dosis	E
+HE-06	actina	Homalodisca vitripennis	sin_fenotipo_publicado	el desenlace reportado es molecular, no fenotipico	efecto sobre el ARNm de actina	R
+HE-08	dosis alta de dsRNA (control)	Nephotettix cincticeps	sin_fenotipo_atribuible_al_blanco	control negativo que el propio catalogo trae	mortalidad alta por la dosis, no por el blanco	R
+HE-09	hexamerina	Circulifer haematoceps	fenotipo_fuera_de_los_cuatro	silenciarla bajaria la inmunidad del vector frente a Spiroplasma; el signo para nuestro objetivo no es determinable con lo que la fuente dice	necesaria para la respuesta inmune	R
+HE-10	varios	Amrasca biguttula	sin_fenotipo_publicado	la fila documenta que el RNAi funciona en la especie, sin blanco ni desenlace	demostracion de RNAi en un cicadelido del algodon	R
+HE-11	respuesta inmune	Graminella nigrifrons	sin_fenotipo_publicado	no reporta un desenlace medido; la interaccion con el virus no es, por si sola, una reduccion de transmision medida	RNAi funcional en la interaccion con el virus	R

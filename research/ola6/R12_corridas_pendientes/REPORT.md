@@ -110,13 +110,13 @@ Eso cierra también la casilla del **#30**, cuyo pendiente era que el orden en q
 regeneración completa estaba «inferido del código, no medido»: la regeneración completa, con
 las seis regiones de 22 nt en el inventario, **no falla en ningún punto** `[M]`.
 
-## 7. `V-ATPase B` y las junturas, al inventario (`D78`, implementada en `D87`)
+## 7. `V-ATPase B` y las junturas, al inventario (`D78`, implementada en `D88`)
 
 `D78` había decidido que las dos entraran y dejado la corrida pendiente. Al correrla apareció
 que faltaba algo más que la corrida: **soporte en el generador**. Agregar la región a
 `REGIONES` falla con `KeyError`, porque cada gen se resuelve contra el catálogo del ranking, y
 el camino obvio —meter el gen ahí— habría movido `ranking_v2.json`. El razonamiento y la
-alternativa elegida están en `D87`; acá va lo medido.
+alternativa elegida están en `D88`; acá va lo medido.
 
 **La matriz de `V-ATPase B` 517-816**, cuatro filas, **cero coincidencias perfectas de 21 nt**
 en las cuatro, y tres de ellas contra el **ortólogo del blanco** en un no objetivo `[M]`:
@@ -214,10 +214,12 @@ va en la dirección conservadora: declara no recíprocos pares que sí lo son.
 plegados y «unas horas de esta máquina». Son **129.761.738** `[M]`, unos 71 días a las 21
 plegados por segundo que mide esta máquina. El tope hizo exactamente su trabajo —detener y
 declarar el tamaño medido— y de paso dejó el costo de las cuatro retículas, que es lo que
-faltaba para decidir. La decisión está en `D88`; la retícula de `--paso 10` (173.289 plegados,
+faltaba para decidir. La decisión está en `D89`; la retícula de `--paso 10` (173.289 plegados,
 unas 5,4 h) quedó lanzada y no terminó dentro de la sesión.
 
-**Los dos ejes de `F3` (#27).** El de off-target por gen **no se desbloquea con `work/`**, y la
+**Los dos ejes de `F3` (#27).** `F3` se cerró en paralelo a este barrido (issue #27, `D87`) y
+dejó los dos ejes declarados faltantes desde una máquina sin `work/`; esto los mide desde la
+que lo tiene. El de off-target por gen **no se desbloquea con `work/`**, y la
 casilla lo decía mal: las 28 filas del catálogo sin `ventanas_21nt` son de **15 especies
 distintas**, y lo que falta son sus 28 secuencias de transcripto, no un directorio de trabajo
 `[M]`. El de conservación entre poblaciones **sí** tiene su insumo —los tres TSA están, con

@@ -1400,8 +1400,19 @@ proteoma anotado y transcriptos, y leerlo de las dos maneras contra la misma ref
 *M. quadrilineatus* lo cumple. Da miles de pares, no necesita curación manual y la comparación es
 pareada gen a gen. Es el patrón a usar la próxima vez que haya que medir cuánto cuesta un paso del
 pipeline: buscar dónde existe la versión curada del mismo dato.
+- **La suma ponderada sobre los 36 candidatos del recomendador de genes, descartada antes de
+  escribirla** (`F3`, ola 6, `D87`). Es la forma obvia: normalizar los cinco ejes a [0, 1],
+  ponderarlos y sumar, con un orden único de 36 filas al final. No se hace porque **28 de las
+  36 filas no tienen el eje de off-target calculado** y ninguna tiene el de expresión en
+  tejido expuesto `[M]`, así que la suma obliga a imputar el hueco, y toda imputación —cero,
+  la media, el peor caso— fabrica un número que la fuente no da y lo publica con la misma
+  tipografía que los medidos. Se reemplaza por **cohortes**: los candidatos se agrupan por
+  qué ejes tienen calculados y se ordenan dentro de su cohorte, sin comparar entre cohortes.
+  El precio es que no hay un único primer puesto, y es un precio que conviene pagar: el
+  repositorio ya midió que rellenar un hueco con lo que parece razonable —elegir el gen por
+  nombre en vez de por ortología recíproca— movió el conteo de ventanas eficientes un 65 %.
 
-## Correr la grilla fina de `O4` subiendo el tope como autorizaba el issue — descartado por costo medido (2026-10-27, `D88`)
+## Correr la grilla fina de `O4` subiendo el tope como autorizaba el issue — descartado por costo medido (2026-10-27, `D89`)
 
 El issue **#37** autorizaba explícitamente «subir el tope a propósito y declararlo» para la
 corrida de `--paso 1` del enumerador de quimeras, sobre la base de que pedía 136.446 plegados.
@@ -1423,7 +1434,7 @@ que se apoya en un número conviene verificarla contra el número antes de usarl
 hubiera existido, la corrida habría arrancado y nadie se habría enterado del error hasta
 mirar el reloj a los dos meses.
 
-## Meter `V-ATPase B` al catálogo del ranking para que entre al inventario — descartado por mover una cifra publicada (2026-10-27, `D87`)
+## Meter `V-ATPase B` al catálogo del ranking para que entre al inventario — descartado por mover una cifra publicada (2026-10-27, `D88`)
 
 Para que `D78` entrara en efecto hacía falta que `tabla_alertas.py` conociera el gen, y el
 camino corto era agregarlo a `ranking_v2.NUEVOS`, que es el catálogo que ya existía para los

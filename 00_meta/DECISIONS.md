@@ -1528,9 +1528,25 @@ lecturas; no explica por qué el brazo P, que es el diseño de `C12` corrido com
 10 puntos por encima de lo que `C12` publicó en los tramos altos —submuestra, reverso parcial o
 `diamond` contra BLAST+, no se separó—; y no toca el diseño ni el ranking, que siguen bajo `D37`.
 
+## D87 — Los pesos del recomendador de genes: cohortes por ejes disponibles, y ningún hueco rellenado
+**Fecha:** 2026-10-27
+**Quién:** el equipo, sobre la línea `F3` de la ola 6 (issue #27), etiquetado `decide-usuario`. Propuesta escrita y commiteada el 2026-10-27 antes de rankear (`5880625`); **confirmada por el usuario el 2026-10-27**, sobre las cuatro opciones de abajo y después de verificar que el zip no trae el eje de expresión (entrada 69). El criterio completo, con los cinco ejes y las reglas de exclusión, está en `research/ola6/F3_recomendador_genes/PREREGISTRO.md`, commiteado antes del primer cálculo.
+**Decisión:** el recomendador ordena **filas del catálogo de `C5`** (36) sobre cuatro ejes con peso —fenotipo 0,40, esencialidad o vía 0,25, off-target contra el panel de seis 0,25 y conservación entre poblaciones 0,10— y un quinto eje, **expresión en el tejido expuesto, con peso 0,00 y declarado faltante** en el mismo lugar donde se publica el orden. La agregación **no** es una suma ponderada sobre los 36: los candidatos se agrupan en **cohortes** según qué ejes tienen calculados, se ordenan dentro de su cohorte con los pesos renormalizados sobre los ejes presentes, y **entre cohortes no se compara**. Los empates a menos de 0,05 se publican como empate declarado, como en `R6`.
+
+**Por qué no la suma ponderada, que es la forma obvia.** 28 de las 36 filas no tienen `ventanas_21nt` calculadas —sólo las tienen `DM-05`, `DM-06`, `CI-01`, `CI-02`, `CI-03`, `CI-10`, `DE-02` y `DE-05`— y ninguna de las 36 tiene el eje de expresión `[M]`. Una suma sobre ejes ausentes obliga a imputar, y toda imputación —cero, la media, el peor caso— fabrica un número que la fuente no da. El repositorio ya midió lo que cuesta ese atajo en esta misma cadena: elegir el gen por nombre en vez de por ortología recíproca movió el conteo de ventanas eficientes un **65 %** `[M]`. La cohorte es la forma de no comparar lo que no es comparable sin por eso dejar de ordenar lo que sí.
+
+**Las tres cosas que el catálogo rompe, y que la propuesta resuelve antes de medir.** Al recorrer las 36 filas aparecen tres casos que los tres mecanismos de `D67` no cubren. Primero, hay un **cuarto mecanismo**: `CI-07`, `CI-09`, `HE-07` y `HE-11` describen *menos transmisión con el insecto vivo*, que no es reproducción, ni movilidad, ni letalidad, y que es el mecanismo más alineado con el objetivo sanitario del proyecto; se agrega como categoría declarada `transmision` y se anota como entrada abierta porque amplía un ADR ajeno. Segundo, **dos candidatos tienen el fenotipo de signo invertido**: `CI-08` (`uk1_LRR`) aumentó la colonización del vector por el fitoplasma al silenciarlo, y `CI-13` (`NcHig`) aumenta la infección del sistema nervioso por el virus `[R]`; silenciarlos empeora el problema, así que **no entran al orden** y se publican aparte como `fenotipo_invertido`, sin puntaje negativo, porque un puntaje sugeriría que compiten. Tercero, `HE-08` dice textualmente «mortalidad alta por la dosis, no por el blanco»: **no cuenta como letalidad**, y es el control negativo que el propio catálogo trae.
+
+**El peso del off-target es el que más se discutió, y queda en 0,25 por una razón que conviene dejar escrita.** Es el único eje de los cuatro que **no depende del criterio de eficiencia sin validar**, lo que lo vuelve el más sólido metodológicamente, y ése es el argumento para subirlo. En contra: hoy está calculado para 8 de 36 filas, así que subirle el peso concentra el orden en la cohorte chica y deja a las otras 28 ordenadas casi sólo por fenotipo, con la ilusión de que el criterio es el mismo para todas. Se mantiene en 0,25, igual que esencialidad, y el `REPORT.md` va a publicar **en qué rango del peso de fenotipo cambia el primer puesto**, que es lo que vuelve informada la elección del equipo.
+
+**Alternativas consideradas:** (a) fenotipo 0,50 y off-target 0,20, que premia la evidencia experimental y castiga poco el riesgo; (b) la propuesta de arriba; (c) off-target 0,40 y fenotipo 0,30, que ordena por el eje más sólido aunque sea el que menos candidatos tienen calculado; (d) suma ponderada sobre los 36 con imputación del hueco, descartada por lo de arriba y anotada en `CAMINOS_PROBADOS.md`.
+**Criterio:** la propuesta es la que mantiene el orden legible cuando un eje falta, que es el caso **mayoritario** y no la excepción. Sobre (a), el eje de fenotipo es el único con evidencia experimental pero es también el que hereda la extrapolación entre especies, y 23 de sus 36 filas son `[R]` y no `[E]` `[M]`: concentrar 0,50 ahí apoya el orden en el eje con más supuestos. Sobre (c), es defendible y es la que elegiría si el off-target estuviera calculado para los 36; con 8 de 36 produce un orden cuyo criterio efectivo cambia según la cohorte sin decirlo.
+**Consecuencia si se confirma:** se puede calcular el eje de fenotipo y el orden de las cohortes que no necesitan `work/sifi_v2/`. **Ninguna cifra publicada se mueve**: esta línea no toca `ranking.py`, `ranking_v2.py` ni `research/ola4/M6_alertas/`, y su salida es un archivo nuevo.
 ---
 
-## D87 — `D78` se implementa con un catálogo de inventario aparte del catálogo del ranking
+## D88 — `D78` se implementa con un catálogo de inventario aparte del catálogo del ranking
+> Se publicó como `D87` y se renumeró a `D88` al mergear: `F3` (issue #27) había tomado
+> ese número en la misma jornada. La grilla fina, que se publicó como `D88`, es `D89`.
 **Fecha:** 2026-10-27
 **Quién:** el equipo, sobre el issue **#37** (barrido de corridas pendientes), implementando `D78`, que decidió el qué y dejó el cómo abierto.
 **Decisión:** la región candidata de `V-ATPase B` y las dos junturas de quimera entran al inventario de `M6` por un **catálogo propio** —`CANDIDATOS_EXTRA` y `JUNTURAS` en `tabla_alertas.py`, con su hermano `GENES_EXTRA` en `identidad.py`— y **no** agregando el gen a `ranking_v2.NUEVOS`.
@@ -1551,7 +1567,7 @@ Para las junturas, el agujero que `D78` nombra queda **cerrado y verificado** co
 
 ---
 
-## D88 — La grilla fina de `O4` no se corre, y el motivo es que el número que decía que entraba estaba mal
+## D89 — La grilla fina de `O4` no se corre, y el motivo es que el número que decía que entraba estaba mal
 **Fecha:** 2026-10-27
 **Quién:** el equipo, sobre el issue **#37** y la entrada 48 de `PREGUNTAS_ABIERTAS.md`.
 **Decisión:** la corrida de `--paso 1` del enumerador de quimeras **no se hace**, y el tope declarado de 5.000 plegados **no se sube** para ella. En su lugar se corre la retícula de `--paso 10`, con el tope subido a propósito y declarado, y se publica el costo medido de las cuatro retículas.
