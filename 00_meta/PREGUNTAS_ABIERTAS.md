@@ -1676,3 +1676,12 @@ línea de diseño nueva. Este es el saldo.
    violó en 204 ventanas cambiadas de cuatro tablas distintas, pero **con un gen nuevo —`V-ATPase
    B`— no sabemos cuántas heredadas se van a mover ni en qué dirección** `[?]`. Se mide al correr,
    no se estima.
+8. **`entregables/critica-herramientas.html` no sale de `md_a_html.py`.** Regenerarlo desde su
+   `.md` da un archivo distinto en 26 líneas de texto, y la diferencia no es del conversor: el
+   `.html` commiteado tiene una cabecera que el `.md` no tiene —«Investigathon Y-Hat · track
+   chicharrita / ARNi · entregable · pedido 5 del checkpoint»— y otro subtítulo `[M]`. O sea que
+   se escribió o se editó a mano, y la regla del repositorio —el markdown es la fuente de verdad
+   y el HTML sólo la vista de lectura— no se cumple en ese par. **No se regeneró a propósito:**
+   regenerarlo borraría esa cabecera, que puede ser deliberada. Hay que decidir cuál de los dos
+   manda antes de tocarlo `[?]`. Los otros tres pares `.md`/`.html` de `entregables/` sí
+   reproducen desde el conversor, verificado.
