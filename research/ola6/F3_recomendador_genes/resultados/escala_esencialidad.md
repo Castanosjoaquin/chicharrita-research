@@ -43,7 +43,7 @@ y ninguno es un tamizaje de esencialidad, así que la evidencia de este eje hay 
    La extrapolación entre especies es lo que este eje aporta y también su límite.
 
 5. **Un nivel `E0` no baja el puesto de nadie.** Un candidato cuya vía quedó en `E0` sale a la
-   cohorte de los que no tienen el eje 2, por la regla de cohortes de `D84`: no se compara con
+   cohorte de los que no tienen el eje 2, por la regla de cohortes de `D87`: no se compara con
    los que sí lo tienen.
 
 ## Las 16 vías a cubrir, y cuántos candidatos dependen de cada una

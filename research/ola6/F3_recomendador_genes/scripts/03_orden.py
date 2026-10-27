@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Paso 3 y 4 de F3 — el orden por cohortes, la salida y el analisis de sensibilidad.
 
-Criterio: `PREREGISTRO.md` y `D84` (pesos confirmados por el usuario el 2026-10-27).
+Criterio: `PREREGISTRO.md` y `D87` (pesos confirmados por el usuario el 2026-10-27).
 Escalas: `resultados/escala_fenotipo.md` (eje 1) y `resultados/escala_esencialidad.md`
 (eje 2), las dos commiteadas antes de este calculo.
 
-Pesos de `D84`: fenotipo 0,40, esencialidad 0,25, off-target 0,25, conservacion 0,10 y
+Pesos de `D87`: fenotipo 0,40, esencialidad 0,25, off-target 0,25, conservacion 0,10 y
 expresion en tejido expuesto 0,00 declarado faltante. Los ejes 3, 4 y 5 **no son calculables**
 —el 3 por dos razones, ver `escala_fenotipo.md`— asi que el peso se renormaliza sobre los ejes
-presentes de cada cohorte, que es la regla de `D84` §4.2.
+presentes de cada cohorte, que es la regla de `D87` §4.2.
 
 Lo que este script NO hace: comparar candidatos de cohortes distintas, desempatar diferencias
 menores a 0,05, y puntuar cualquier eje que no este calculado.
@@ -27,7 +27,7 @@ RAIZ = Path(__file__).resolve().parents[4]
 BLOQUE = Path(__file__).resolve().parents[1]
 CATALOGO = RAIZ / "research/ola3/C5_estructura_genes_ingenieria_inversa/catalogo_genes_blanco.json"
 
-PESOS_D84 = {"fenotipo": 0.40, "esencialidad": 0.25, "off_target": 0.25,
+PESOS_D87 = {"fenotipo": 0.40, "esencialidad": 0.25, "off_target": 0.25,
              "conservacion": 0.10, "expresion_tejido": 0.00}
 
 EJES_NO_CALCULABLES = {
@@ -104,12 +104,12 @@ def main() -> int:
             "evidencia_negativa_medida": f["evidencia_negativa_medida"],
         })
 
-    # --- Cohortes: por que ejes tiene calculados cada candidato (D84 4.2) ---
+    # --- Cohortes: por que ejes tiene calculados cada candidato (D87 4.2) ---
     coh_a = [r for r in en_orden if r["_e"] is not None]
     coh_b = [r for r in en_orden if r["_e"] is None]
-    base_a = PESOS_D84["fenotipo"] + PESOS_D84["esencialidad"]
-    w_fen_a = PESOS_D84["fenotipo"] / base_a
-    w_ese_a = PESOS_D84["esencialidad"] / base_a
+    base_a = PESOS_D87["fenotipo"] + PESOS_D87["esencialidad"]
+    w_fen_a = PESOS_D87["fenotipo"] / base_a
+    w_ese_a = PESOS_D87["esencialidad"] / base_a
 
     for r in coh_a:
         r["cohorte"] = "A: ejes 1 y 2"
@@ -197,8 +197,8 @@ def main() -> int:
         "fecha": "2026-10-27",
         "criterio": {
             "preregistro": "research/ola6/F3_recomendador_genes/PREREGISTRO.md",
-            "adr_pesos": "D84, confirmado por el usuario el 2026-10-27",
-            "pesos_declarados": PESOS_D84,
+            "adr_pesos": "D87, confirmado por el usuario el 2026-10-27",
+            "pesos_declarados": PESOS_D87,
             "escala_eje1": "resultados/escala_fenotipo.md",
             "escala_eje2": "resultados/escala_esencialidad.md",
             "umbral_de_empate": UMBRAL_EMPATE,
@@ -219,8 +219,8 @@ def main() -> int:
                 1 for r in coh_a if r["eje2_fuente_primaria_abierta"] == "no"),
         },
         "sensibilidad_cohorte_A": {
-            "lider_con_los_pesos_de_D84": lider_d84,
-            "peso_de_fenotipo_en_D84_renormalizado": round(w_fen_a, 4),
+            "lider_con_los_pesos_de_D87": lider_d84,
+            "peso_de_fenotipo_en_D87_renormalizado": round(w_fen_a, 4),
             "cambios_de_primer_puesto_al_mover_el_peso_de_fenotipo_de_0_a_1": cambios,
         },
         "entorno": {
@@ -251,7 +251,7 @@ def main() -> int:
             print(f"   {r['puesto_en_su_cohorte']:>2}. {r['id']} {r['puntaje']:.4f}  "
                   f"{r['eje1_nivel']}/{r['eje2_nivel']}  {r['gen'][:26]}{emp}")
     print()
-    print(f"  lider de A con los pesos de D84: {lider_d84}")
+    print(f"  lider de A con los pesos de D87: {lider_d84}")
     print(f"  cambios de primer puesto al mover el peso de fenotipo de 0 a 1: {len(cambios)}")
     for c in cambios:
         print(f"    en w_fenotipo ~ {c['peso_fenotipo_aprox']}: {c['de']} -> {c['a']}")

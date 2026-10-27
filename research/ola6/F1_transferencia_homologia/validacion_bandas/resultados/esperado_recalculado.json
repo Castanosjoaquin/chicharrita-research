@@ -1,0 +1,60 @@
+{
+ "n_orfs": 10280,
+ "esperado_con_bandas_C12": 0.8119,
+ "esperado_con_bandas_brazo_O": 0.8853,
+ "esperado_reponderado_por_cobertura": 0.8742,
+ "cobertura_cubierta_por_el_reponderado": "10275/10280",
+ "concordancia_brazo_O": {
+  "por_banda": {
+   "<40": {
+    "conc": 0.5646,
+    "n": 147
+   },
+   "40-60": {
+    "conc": 0.7425,
+    "n": 1375
+   },
+   "60-80": {
+    "conc": 0.8276,
+    "n": 4960
+   },
+   "80-90": {
+    "conc": 0.8853,
+    "n": 3234
+   },
+   ">=90": {
+    "conc": 0.9289,
+    "n": 2153
+   }
+  },
+  "por_cobertura": {
+   "cobertura_alta": {
+    "conc": 0.8672,
+    "n": 10617
+   },
+   "parcial": {
+    "conc": 0.686,
+    "n": 1032
+   },
+   "fragmento": {
+    "conc": 0.7136,
+    "n": 220
+   }
+  }
+ },
+ "distribucion_GITV01": {
+  "por_banda": {
+   ">=90": 4467,
+   "80-90": 3233,
+   "60-80": 2132,
+   "40-60": 401,
+   "<40": 47
+  },
+  "por_cobertura": {
+   "cobertura_alta": 8574,
+   "parcial": 1400,
+   "fragmento": 306
+  }
+ },
+ "nota": "La cifra que F1 publica es la primera. El preregistro de esta validacion fija que no se corrige nada hacia arriba, asi que las otras dos se reportan como medicion y no reemplazan al 81 % del informe de F1."
+}

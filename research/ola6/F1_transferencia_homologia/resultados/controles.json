@@ -1,0 +1,42 @@
+{
+ "positivo_MQ": {
+  "orf": "GITV01003502.1 + 2-1552",
+  "mejor_hit_estricta": "V-type proton ATPase subunit B",
+  "pident_estricta": 100.0,
+  "categoria_estricta": "d_empate",
+  "categoria_ampliada": "f_reciproco_con_nombre",
+  "ampliada_ref": "V-type proton ATPase subunit B",
+  "ampliada_pident": "100",
+  "pasa_estricta": false,
+  "pasa_ampliada": true
+ },
+ "cordura_bicc_MQ": {
+  "orfs_con_reciproco_ampliada": [
+   {
+    "orf_aa": "799",
+    "producto": "protein bicaudal C-like",
+    "pident": "88.4",
+    "categoria_estricta": "f_reciproco_con_nombre"
+   },
+   {
+    "orf_aa": "726",
+    "producto": "pyridoxal-dependent decarboxylase domain-containing protein 1-like isoform X1",
+    "pident": "96.3",
+    "categoria_estricta": "f_reciproco_con_nombre"
+   }
+  ],
+  "algun_bicaudal": true
+ },
+ "senuelo": {
+  "MQ": {
+   "consultas": 1000,
+   "con_hit": 0,
+   "tasa": 0.0
+  },
+  "HV": {
+   "consultas": 1000,
+   "con_hit": 0,
+   "tasa": 0.0
+  }
+ }
+}

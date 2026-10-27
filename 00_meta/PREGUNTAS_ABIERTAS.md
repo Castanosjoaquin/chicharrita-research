@@ -2218,7 +2218,146 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     no sabe si el panel con el que se la llama es el adecuado para esa corrida, que es el
     límite que `D77` se puso a sí mismo.
 
-54. **`D67` define tres mecanismos y el catálogo tiene cuatro.** Las quimeras se arman por
+### Ola 6, el entorno de la máquina de Joaquín, vuelto a medir (2026-10-27)
+
+54. **Sí hay alineadores en esta máquina, y el hecho anotado que decía lo contrario estaba
+    midiendo mal.** El índice de la ola 6 (issue #29) y el issue #25 (`F1`) registran, con
+    `command -v`, que no hay `blastn`, `tblastn`, `makeblastdb`, `miniprot`, `diamond`,
+    `bowtie` ni `bowtie2`, y sobre eso se decidió mandar `F1` y `R8` a otra máquina. **La
+    medición era correcta y la conclusión no:** `command -v` mira el `PATH`, y las
+    herramientas están instaladas en entornos de `micromamba` que no están activados. Hay
+    **BLAST+ 2.17.0** (`blastn`, `blastp`, `blastx`, `tblastn`, `makeblastdb`) y **DIAMOND
+    2.2.8** en `~/.claude-science/conda/envs/alineador/bin/`, **miniprot 0.18-r281** en
+    `envs/bioinfo/bin/`, otro BLAST+ 2.17.0 completo en `envs/w5bio/bin/` y `bowtie` en
+    `envs/w2tools/bin/` y `envs/c2sifi/bin/` `[M]`. No es que respondan `--version`: se
+    corrió una prueba de verdad, `makeblastdb` sobre `work/sifi_check/BicC_Dm_full.fasta` y
+    `tblastn` con `work/W5/ref/prot_BicC.faa` contra esa base, que devuelve alineamientos
+    reales —`XP_001944274.2` a 46,8 % de identidad sobre 743 aminoácidos con *e*-valor 0,0, y
+    `NP_723949.1` a 55,3 % sobre 360 con 2,6e-124— y `miniprot` sobre el mismo par devuelve
+    seis líneas de salida `[M]`.
+    `[H]` La consecuencia práctica es que **`F1` (#25) no está bloqueado por entorno en esta
+    máquina**: tiene las dos piezas que el issue pide, un alineador de proteína contra
+    nucleótido (`tblastn` y `miniprot`) y uno de proteína contra proteína para la ortología
+    recíproca (`diamond`, `blastp`). Lo que falta para la primera corrida real es el
+    transcriptoma del investigador. La etiqueta `necesita-entorno` del issue se deja puesta
+    porque sigue siendo cierta para quien lo tome en otra máquina — por `D78`, en la de Luca
+    no hay BLAST+ ni ViennaRNA. **[Corregido por la entrada 61: la cita es a `D71`, no a
+    `D78`, y ViennaRNA sí está en el `python3` de WSL de esa máquina. BLAST+ sí falta.]**
+    `[H]` Y la lección de método, que es hermana de la de `D83`: **`command -v` contesta «no
+    está en el `PATH`», no «no está instalado»**, y la diferencia entre las dos cosas
+    reasignó trabajo entre máquinas. Antes de declarar que una herramienta falta conviene
+    mirar también los entornos de `micromamba`: `micromamba env list` y un `ls` de cada
+    `bin/`.
+
+### Ola 6, cierre de `F1` (`D84`, issue #25, 2026-10-27)
+
+55. **¿Por qué 25.812 de los 56.117 contigs de `GITV01` (46,0 %) no tienen ningún ORF de ≥ 100 aa?**
+    Sólo 1.071 miden menos de 300 nt, así que el tamaño no lo explica. Puede ser ruido no
+    codificante, UTR, fragmentos o marcos rotos por errores de ensamblado. No se midió `[?]`.
+56. **¿Aplican las bandas de concordancia de `C12` a ORF de un TSA?** Se midieron entre dos
+    proteomas RefSeq completos y anotados; un ORF de un transcriptoma puede ser parcial, quimérico
+    o con el marco corrido. `F1` las aplica por supuesto `[H]`, y el 81 % esperado de la lectura
+    inclusiva vale sólo si el supuesto vale. Una validación posible: tomar un subconjunto de
+    contigs cuyos genes tengan anotación independiente (los de la curación de `C5`).
+57. **¿Cuál es la regla de empate correcta para un transcriptoma redundante?** La mitad de los ORF
+    con hit queda en empate bajo la regla estricta, y el 46,3 % de los empates inversos no son copias
+    idénticas. Falta saber si esos ORF son isoformas, parálogos o fragmentos del mismo gen. Una
+    medida es agrupar los contigs por gen (`cd-hit` o equivalente) y repetir la reciprocidad entre
+    grupos; no se hizo.
+58. **Taxonomía de los dos proteomas de referencia, sin fuente abierta.** El preregistro dice que
+    *Macrosteles* y *Dalbulus* son Deltocephalinae y *Homalodisca* un Cicadellinae. Para *Dalbulus* el
+    catálogo de `C5` lo registra; para los otros dos no abrí ninguna fuente taxonómica. Queda
+    pendiente antes de repetirlo en un entregable.
+59. **¿Confirmación del investigador de que `GITV01` es lo que quería mandar?** El archivo es el TSA
+    público de Ohio State, que el repositorio ya conocía; no se sabe si él lo eligió por eso o si el
+    otro transcriptoma que mencionó es distinto. Pregunta para la próxima comunicación.
+60. **`F2` necesita lo que `F1` no entrega.** Los términos GO, los dominios conservados y los papers
+    no están en la salida de `F1` (sólo nombre de producto, identidad, cobertura y banda), y no hay
+    ninguno versionado. Sin una fuente de esos tres, `F2` sólo puede resumir el nombre de producto.
+
+### Ola 6, el entorno de la máquina de Luca, medido por primera vez (issue #29, 2026-10-27)
+
+*Esta entrada se escribió como 55 y se renumeró a 61 al mergear: la sesión de `F1` escribió
+55-60 el mismo día y ya estaban en `origin`. Mismo caso que `D85`.*
+
+61. **En la máquina de Luca hay ViennaRNA, y la entrada 54 dice que no.** La entrada 54 cierra
+    con «por `D78`, en la de Luca no hay BLAST+ ni ViennaRNA». Las dos mitades fallan. La cita
+    es a la decisión equivocada: `D78` es la que mete `V-ATPase B` y las junturas al inventario,
+    y la que habla de esta máquina es `D71`, que dice otra cosa —«vale para la máquina que se
+    verificó y **no** para la de Luca, donde hay `miniprot` 0.18-r281 en WSL con el ensamblado
+    indexado»—. `D71` **no menciona ViennaRNA en ningún lado**; de BLAST+ sí habla, pero para
+    decir que faltaba **en la máquina del issue**, que es la otra. Y la mitad de ViennaRNA
+    tampoco se sostiene: aplicando a esta máquina la propia lección de la entrada 54, el módulo
+    `RNA` (ViennaRNA 2.7.2, el mismo que usó `C13`) **está instalado**, en el `python3` de WSL
+    `[M]`. La mitad de BLAST+ sí es correcta: acá no está `[M]`. El intérprete donde estaba
+    ViennaRNA no es el del `PATH` de Windows; de qué intérprete salió el hecho viejo no consta
+    (`PLAN_OLA6.md` §1 dice que la máquina de ese diagnóstico tampoco consta).
+    Medido hoy, aquí, con `command -v` sobre los dos lados y `importlib` sobre los dos
+    intérpretes `[M]`:
+
+    | | Windows (`python` 3.10.11) | WSL (`/usr/bin/python3` 3.12.3) |
+    | --- | --- | --- |
+    | módulo `RNA` (ViennaRNA) | **no está** | **está**: 2.7.2, rueda de `pip` |
+    | módulo `Bio` (Biopython) | **no está** | **no está** |
+    | módulo `ahocorasick` | **no está** | **no está** |
+    | `numpy`, `scipy`, `pandas` | 1.26.3 / 1.11.4 / 2.3.3 | **no están** |
+    | `openpyxl` | **está**: 3.1.5 | no medido |
+    | `RNAfold`, `RNAplfold` (ejecutables) | **no están** | **no están**: la rueda de `pip` trae el módulo y no los binarios |
+    | `blastn`, `tblastn`, `makeblastdb`, `diamond` | **no están** | **no están** |
+    | `bowtie`, `bowtie2` | **no están** | **no están** |
+    | `miniprot` | **no está** | **está**: 0.18-r281, compilado en `~/yhat/tools/miniprot/`, fuera del `PATH` |
+    | `micromamba`, `conda` | **no están** | sin entornos en `~` |
+
+    No hay aquí el reparto de `micromamba` que tiene la máquina de Joaquín: lo que hay está
+    repartido entre los dos intérpretes, y **ninguno de los dos corre el port entero solo**. El
+    de Windows tiene `numpy` y no ViennaRNA; el de WSL tiene ViennaRNA y no `numpy`. `[H]` El
+    backend `exe` del port no debería correr en ninguno de los dos: necesita `RNAfold` y
+    `RNAplfold`, que no están en ninguno `[M]`, pero no se corrió para comprobarlo. `work/` y
+    `YHat-Biotech/` **no existen** en esta máquina `[M]`, así que todo script que los lea queda
+    sin correr aquí. `[H]` Y el gancho de pre-commit debería rechazar aunque `openpyxl` esté,
+    porque su código pide además la planilla de EPILAB (`tools/verificacion/hooks/pre-commit`,
+    líneas 26-30); leído, no corrido.
+    `[H]` La consecuencia para el reparto de trabajo: `F1` (#25) **sigue necesitando otra
+    máquina o una instalación**, porque aquí falta el alineador proteína contra proteína que
+    pide la ortología recíproca —no hay `diamond` ni `blastp`— aunque `miniprot` cubra la otra
+    mitad, que es exactamente lo que `D71` ya había usado para `O2`. Lo que **sí** destraba la
+    corrección es el eje de ViennaRNA: una corrida que solo necesite el módulo `RNA` y no
+    `numpy` corre aquí, y hasta hoy el plan la daba por imposible en esta máquina.
+    `[H]` La lección, que es la de la entrada 54 una vuelta más: **decir en qué máquina no
+    alcanza si la máquina tiene dos intérpretes.** Hay que decir en cuál, y medirlo en los dos.
+    En la de Joaquín el reparto lo hacía `micromamba`; en esta lo hace la frontera
+    Windows/WSL. Y al anotar un hecho de entorno sobre una máquina ajena conviene citar la
+    decisión que de verdad lo registra: la entrada 54 citó `D78` por `D71`.
+
+### Ola 6, validación del supuesto de las bandas y cierre de `F1` (`D86`, issue #25, 2026-10-27)
+
+**Se cierra la 56.** El supuesto se midió y se sostiene: el paso por ORF de seis marcos no degrada
+la concordancia (85,0 % contra 85,0 % sobre los 11.727 genes presentes en los dos brazos, sin que
+ningún IC95 se separe en ninguna de las cinco bandas). La diferencia máxima entre brazos es de
+**0,6 puntos** y cae en la banda < 40 %, que por preregistro no decide porque no llega a n = 100;
+entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `research/ola6/F1_transferencia_homologia/validacion_bandas/REPORT.md`.
+
+62. **¿Por qué el par completo no reproduce lo que publicó `C12`?** El brazo P es el diseño de
+    `C12` —MQ contra HV, proteínas curadas, recíproco— corrido entero, y da 85,1 % contra el 78,2 %
+    publicado, con los tres tramos altos entre 6 y 10 puntos por encima y diez veces más pares
+    `[M]`. Las candidatas son dos y no se separaron: `C12` usó una submuestra de 4.000 consultas con
+    un **reverso parcial** (sólo los 3.100 mejores hits), que puede declarar recíprocos pares que no
+    lo son, y corrió con BLAST+ en vez de `diamond`, que no dan la misma `pident`. Separarlas es
+    barato: repetir el brazo P con `blastp` del entorno `alineador`. **Hasta que se haga, las bandas
+    publicadas de `C12` quedan en duda, y las usa `F1` y cualquier cosa que cite el 78,2 %.**
+63. **¿Cuánto cuesta el error de ensamblado de novo, que la validación no cubre?** Se midió el
+    efecto de traducir en seis marcos sobre transcriptos **curados** de RefSeq. La quimera, el
+    fragmento y el marco roto de un TSA ensamblado de novo no están en ese diseño; sólo se acotó por
+    cobertura, que estima 1,1 puntos. Medirlo exigiría un organismo con TSA de novo **y** proteoma
+    anotado, los dos públicos, y no se buscó si existe.
+64. **El rótulo de cobertura separa «alta» del resto, pero no separa `parcial` de `fragmento`.**
+    La concordancia del par `fragmento` (71,4 %, IC95 65,1–76,9, n = 220) es nominalmente mayor que
+    la del `parcial` (68,6 %, IC95 65,7–71,4, n = 1.032) `[M]`: los intervalos se solapan de lado a
+    lado, así que la inversión **no** es un hallazgo, pero tampoco hay evidencia de que el corte en
+    30 % de cobertura ordene nada. Si los dos rótulos miden lo mismo, conviene colapsarlos en «no
+    alta» y no sugerir una gradación que no se midió. No se revisó el umbral.
+
+65. **`D67` define tres mecanismos y el catálogo tiene cuatro.** Las quimeras se arman por
     combinación de fenotipos que no se solapan —reproducción, movilidad, letalidad— y al
     asignarle su mecanismo a cada una de las 36 filas de `C5` aparecen cuatro que no entran
     en ninguno de los tres: `CI-07` (clatrina, baja la colonización del fitoplasma), `CI-09`
@@ -2232,7 +2371,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     si una quimera «letalidad + transmisión» tiene sentido biológico o si son el mismo eje
     visto a dos tiempos `[H]`. Pregunta para el investigador.
 
-55. **Los dos candidatos cuyo silenciamiento empeora las cosas, y la pregunta que abren.**
+66. **Los dos candidatos cuyo silenciamiento empeora las cosas, y la pregunta que abren.**
     `CI-08` (`uk1_LRR`, receptor putativo de adhesión) dice que silenciarlo **aumentó** la
     colonización del vector por el fitoplasma, y `CI-13` (`NcHig`, factor neural antiviral)
     que silenciarlo **aumenta** la infección del sistema nervioso por el virus `[R]`. `F3`
@@ -2243,7 +2382,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     la dirección opuesta —no silenciarlos— que esté fuera de lo que este proyecto hace con
     ARNi `[H]`. Preguntar, no suponer.
 
-56. **Faltan `work/sifi_v2/` y los tres TSA de *Dalbulus maidis* en la máquina de Santino, y
+67. **Faltan `work/sifi_v2/` y los tres TSA de *Dalbulus maidis* en la máquina de Santino, y
     son los insumos de dos de los cinco ejes de `F3`.** Verificado con `test -d` y con un
     `find` sobre todo el disco del proyecto: `work/sifi_v2/` **no existe** —ni `salida_k21`,
     ni `offtarget_k21`, ni `offtarget_dm_k21`— y `work/W5/ref/` tiene **sólo**
@@ -2255,7 +2394,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     mueve con la versión de ViennaRNA y con la tabla de vecinos, y un `work/` reconstruido en
     otro entorno convierte un pendiente de insumo declarado en una discrepancia nueva.
 
-57. **«Esta máquina», dos veces el mismo día, sin nombrar la máquina.** `D71` pide que cada
+68. **«Esta máquina», dos veces el mismo día, sin nombrar la máquina.** `D71` pide que cada
     verificación de entorno diga **en qué máquina** se hizo, y es la regla que vuelve
     utilizables los pendientes de `R11`. Dos artefactos del 27 de octubre no la siguen:
     `prompts/F3.md` dice «**esta máquina** tiene `work/` completo» y `D83` dice que
@@ -2264,11 +2403,11 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     Santino**, que es donde se leyeron `[M]`. No es un reproche: es que el costo de la
     omisión no lo paga quien escribe. Leída en la máquina equivocada, la primera hace creer
     que un eje es calculable y la segunda invita a «arreglar» el hueco regenerando el
-    insumo, que es justo lo que la entrada 56 dice que no hay que hacer. La forma barata de
+    insumo, que es justo lo que la entrada 67 dice que no hay que hacer. La forma barata de
     cerrarlo: cuando una afirmación de entorno entra a un archivo versionado, el nombre de la
     máquina va en la misma oración, como lo hace `PENDIENTE.md` de `R11`.
 
-58. **Se contesta la sub-pregunta del issue #27 sobre el zip, y la respuesta es no.** El
+69. **Se contesta la sub-pregunta del issue #27 sobre el zip, y la respuesta es no.** El
     issue dejaba planteado, sobre el eje de expresión en el tejido expuesto, «habría que ver
     si el zip lo trae». No lo trae: `work/zip_diego/` tiene **un solo archivo**, el
     transcriptoma `Dalbulus_maidis_transcriptome_GITV01.fas`, sin tabla de expresión ni
@@ -2286,7 +2425,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     tenemos y que es interesante por sí mismo, pero no contesta si el gen se expresa donde
     el ARNdc ingerido llega `[H]`. Costaría 42 GB y un mapeador que esta máquina no tiene.
 
-59. **El mecanismo `movilidad` de `D67` tiene un solo candidato en las 36 filas de `C5`, y
+70. **El mecanismo `movilidad` de `D67` tiene un solo candidato en las 36 filas de `C5`, y
     su réplica más cercana es negativa.** Al asignar el mecanismo de fenotipo de las 36 filas
     desde el campo `resultado`, el reparto queda: letalidad 16, reproducción 13,
     **transmisión 4** y **movilidad 1** `[M]`. El único de movilidad es `DM-02`
@@ -2295,12 +2434,12 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     la misma vía de entrega, y ahí el efecto sobre alas **se midió y no dio significativo**
     `[M]`. `[H]` Si las quimeras se arman combinando mecanismos que no se solapan (`D67`),
     una de las tres patas del esquema se apoya en una fila cuya replicación más cercana
-    falló, y el mecanismo que `D67` no reconoce —transmisión, entrada 54— tiene cuatro veces
+    falló, y el mecanismo que `D67` no reconoce —transmisión, entrada 65— tiene cuatro veces
     más candidatos. No es de esta línea decidirlo: `F3` publica el reparto y la quimera de
     `O3` no se toca. Lo que hay que preguntar es si «movilidad» sigue siendo una pata del
     esquema con este respaldo, o si el tercer eje del armado debería ser transmisión.
 
-60. **Dos filas del catálogo traen mortalidad que su propia fuente desatribuye del blanco, y
+71. **Dos filas del catálogo traen mortalidad que su propia fuente desatribuye del blanco, y
     una de las dos trae un número grande.** `HE-08` lo dice directamente («mortalidad alta
     por la dosis, no por el blanco») y ya estaba visto. `HE-04` es el mismo caso y es más
     peligroso: trae 64 % de mortalidad a 120 h creciente con la dosis, **y** la fuente aclara
@@ -2312,7 +2451,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     conviene saber si los trabajos que sostienen nuestras cifras de letalidad lo tienen. Es
     una pregunta para el investigador.
 
-61. **Cinco fuentes que el eje de esencialidad de `F3` necesita y no se pudieron abrir, con el
+72. **Cinco fuentes que el eje de esencialidad de `F3` necesita y no se pudieron abrir, con el
     motivo de cada una.** `CLAUDE.md` pide anotarlas en vez de citarlas, así que acá están.
     *(a)* **Park y colaboradores 2002**, *Development*, el nulo de `eth`: HTTP 403. Es la
     primaria del único número del eje que hoy se cita desde una ficha secundaria —el 98 % de
@@ -2330,7 +2469,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     de trabajo, no falta de fuente—: troponina C (`CI-10`), transformer-2 (`DE-03`), y
     natterina y legumaína (`CI-09`), más la proteína salival `NcSP75` (`HE-07`).
 
-62. **Una contradicción entre dos tamizajes de la misma especie sobre la actina, que afecta a
+73. **Una contradicción entre dos tamizajes de la misma especie sobre la actina, que afecta a
     `CI-05`.** `Ulrich` y colaboradores 2015 ponen al grupo de organización del citoesqueleto
     como el tercero más predictivo de letalidad en *Tribolium castaneum*, con 37 de 66 genes
     nuevos letales `[R]`. `Buer` y colaboradores 2024, el tamizaje genómico de **la misma
@@ -2341,7 +2480,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     resolvió bajando la vía a `E2` y declarando el `[?]`, no promediando. `[H]` Si alguien
     consigue el dato por gen del segundo trabajo, esto se cierra en una dirección o en la otra.
 
-63. **«Matar o esterilizar» queda contestada en parte, y conviene ser preciso sobre cuánto.**
+74. **«Matar o esterilizar» queda contestada en parte, y conviene ser preciso sobre cuánto.**
     El issue #27 decía que `F3` es lo que volvería decidible esta pregunta, que venía abierta
     desde el checkpoint 2. **Lo que ahora sí se puede afirmar:** el ranking tiene eje de
     fenotipo, que antes no tenía, y con él se ve que de los 25 candidatos ordenados hay 16 con
@@ -2360,7 +2499,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     candidatos del insecto cambia según el objetivo sigue siendo que **no se sabe**, con la
     diferencia de que ahora se sabe exactamente qué falta para saberlo.
 
-64. **Se cierra la entrada 63, y la respuesta es que sí: el orden de los candidatos del insecto
+75. **Se cierra la entrada 74, y la respuesta es que sí: el orden de los candidatos del insecto
     cambia según el objetivo.** El segundo orden de `F3`
     (`research/ola6/F3_recomendador_genes/scripts/04_segundo_orden.py`) corre el criterio de
     `D84` dos veces con todo idéntico —pesos, escalas, cohortes, umbral de empate— y lo único

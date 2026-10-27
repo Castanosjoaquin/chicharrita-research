@@ -2,7 +2,7 @@
 
 **Issue [#27](../../../../issues/27). Ola 6, grupo C. Fecha: 2026-10-27.**
 Criterio: [`PREREGISTRO.md`](PREREGISTRO.md), commiteado antes del primer cálculo
-(`5880625`). Pesos: `D84`, confirmados por el equipo el 2026-10-27. Escalas de los dos ejes
+(`5880625`). Pesos: `D87`, confirmados por el equipo el 2026-10-27. Escalas de los dos ejes
 calculados: [`resultados/escala_fenotipo.md`](resultados/escala_fenotipo.md) y
 [`resultados/escala_esencialidad.md`](resultados/escala_esencialidad.md), las dos commiteadas
 antes del cálculo que las usa.
@@ -32,7 +32,7 @@ explícitamente», y es bueno que coincida, porque se llegó por caminos distint
 
 Hay **dos cohortes** y no un ranking único, porque de los cinco ejes sólo dos son calculables
 y no todos los candidatos tienen los dos. Entre cohortes **no se compara**: es la regla de
-`D84` §4.2, y existe para que nadie mejore ni empeore su puesto por un eje que no tiene.
+`D87` §4.2, y existe para que nadie mejore ni empeore su puesto por un eje que no tiene.
 
 ### Cohorte A — ejes 1 y 2 (17 candidatos)
 
@@ -53,7 +53,7 @@ Pesos renormalizados sobre los dos ejes presentes: fenotipo **0,615**, esenciali
 | 15 | `CI-05` | `muscle actin` | `F1` | `E2` | 0,4569 |
 | 16 | `HE-01`, `HE-05` | `Bicaudal-C` | `F1` | `E1` | 0,3300 |
 
-Los puestos 1, 5, 10 y 16 son **empates declarados** por la regla de los 0,05 de `D84` §4.3.
+Los puestos 1, 5, 10 y 16 son **empates declarados** por la regla de los 0,05 de `D87` §4.3.
 El grupo del puesto 5 tiene cinco miembros y es el caso que la regla existe para manejar:
 `DM-01` queda a **0,0485** de los otros cuatro, por debajo del umbral, así que el grupo se
 declara en vez de desempatarse. No es que `DM-01` «empate con `CI-01`»; es que la diferencia
@@ -99,7 +99,7 @@ embrionaria en ratón y de nulo no viable en levadura que lo dejarían en `E2`; 
 quedó en `E0` porque Collier y colaboradores 2000 no se abrió, y según la búsqueda describe
 alelos letales recesivos que lo dejarían en `E3`. Es decir que **el límite entre las dos
 cohortes depende hoy de qué páginas cargaron**, y eso es un artefacto de método que hay que
-arreglar, no una propiedad de los genes. Está anotado como entrada 61 de la ola 6, con las
+arreglar, no una propiedad de los genes. Está anotado como entrada 72 de la ola 6, con las
 cinco fuentes y el motivo de cada una.
 
 **El criterio premia la evidencia en la propia especie, y los tres primeros son los tres genes
@@ -161,7 +161,7 @@ filtrando por mecanismo en vez de promediarlo. **Y la respuesta es que sí: el o
 
 ## 7. El segundo orden — sí, el objetivo reordena los candidatos
 
-`scripts/04_segundo_orden.py` corre el criterio de `D84` dos veces, con todo idéntico —pesos,
+`scripts/04_segundo_orden.py` corre el criterio de `D87` dos veces, con todo idéntico —pesos,
 escalas, cohortes, umbral de empate de 0,05— y lo único que cambia es quién es elegible:
 «matar» exige el mecanismo `letalidad`, «esterilizar» exige `reproduccion`. Los puntajes **no
 se recalculan**, porque no dependen del mecanismo, así que cada orden es una subsecuencia del

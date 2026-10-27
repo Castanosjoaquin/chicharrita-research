@@ -16,7 +16,7 @@ Corre **el mismo criterio dos veces**, filtrando por mecanismo en vez de promedi
   objetivo «matar»       -> solo los candidatos cuyo mecanismo incluye `letalidad`
   objetivo «esterilizar» -> solo los candidatos cuyo mecanismo incluye `reproduccion`
 
-Todo lo demas es idéntico: los pesos de `D84`, las dos escalas, las cohortes por ejes
+Todo lo demas es idéntico: los pesos de `D87`, las dos escalas, las cohortes por ejes
 disponibles y el umbral de empate de 0,05. **Los puntajes no se recalculan** —no dependen del
 mecanismo— asi que cada orden es una subsecuencia del orden global. Lo que cambia es *quien es
 elegible*, y por lo tanto quien queda primero.
@@ -43,7 +43,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[4]
 BLOQUE = Path(__file__).resolve().parents[1]
 
-PESOS_D84 = {"fenotipo": 0.40, "esencialidad": 0.25}
+PESOS_D87 = {"fenotipo": 0.40, "esencialidad": 0.25}
 UMBRAL_EMPATE = 0.05
 
 OBJETIVOS = {
@@ -77,8 +77,8 @@ def ordenar(candidatos: list) -> dict:
     """Mismo criterio que 03_orden.py: cohortes por ejes disponibles y pesos renormalizados."""
     coh_a = [r for r in candidatos if r["eje2_puntaje"]]
     coh_b = [r for r in candidatos if not r["eje2_puntaje"]]
-    base = PESOS_D84["fenotipo"] + PESOS_D84["esencialidad"]
-    w_f, w_e = PESOS_D84["fenotipo"] / base, PESOS_D84["esencialidad"] / base
+    base = PESOS_D87["fenotipo"] + PESOS_D87["esencialidad"]
+    w_f, w_e = PESOS_D87["fenotipo"] / base, PESOS_D87["esencialidad"] / base
     for r in coh_a:
         r["puntaje"] = w_f * float(r["eje1_puntaje"]) + w_e * float(r["eje2_puntaje"])
     for r in coh_b:
@@ -141,7 +141,7 @@ def main() -> int:
         "regla_de_lectura_declarada_antes": (
             "cambia si y solo si el grupo del primer puesto de la cohorte A no es el mismo "
             "conjunto en los dos objetivos"),
-        "criterio": "el mismo de D84 y de 03_orden.py; los puntajes NO se recalculan, solo "
+        "criterio": "el mismo de D87 y de 03_orden.py; los puntajes NO se recalculan, solo "
                     "cambia quien es elegible",
         "objetivos": {k: {"mecanismo_exigido": v["mecanismo_exigido"], "glosa": v["glosa"],
                           "elegibles": sum(1 for f in filas_salida if f["objetivo"] == k),

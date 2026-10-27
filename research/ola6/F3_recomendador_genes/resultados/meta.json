@@ -1,5 +1,5 @@
 {
- "commit_al_correr": "aeabb4f",
+ "commit_al_correr": "76d0d8a",
  "conteos": {
   "cohorte_A_ejes_1_y_2": 17,
   "cohorte_B_solo_eje_1": 8,
@@ -9,7 +9,7 @@
   "fuera_del_orden": 11
  },
  "criterio": {
-  "adr_pesos": "D84, confirmado por el usuario el 2026-10-27",
+  "adr_pesos": "D87, confirmado por el usuario el 2026-10-27",
   "escala_eje1": "resultados/escala_fenotipo.md",
   "escala_eje2": "resultados/escala_esencialidad.md",
   "pesos_declarados": {
@@ -85,11 +85,11 @@
     "peso_fenotipo_aprox": 1.0
    }
   ],
-  "lider_con_los_pesos_de_D84": [
+  "lider_con_los_pesos_de_D87": [
    "DM-02",
    "DM-03",
    "DM-05"
   ],
-  "peso_de_fenotipo_en_D84_renormalizado": 0.6154
+  "peso_de_fenotipo_en_D87_renormalizado": 0.6154
  }
 }

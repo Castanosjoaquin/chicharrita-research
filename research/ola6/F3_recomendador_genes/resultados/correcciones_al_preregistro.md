@@ -61,7 +61,7 @@ negativa `[M]`.
 `[H]` La consecuencia para `D67` es directa y no es de esta línea resolverla: si las quimeras
 se arman combinando mecanismos que no se solapan, una de las tres patas del esquema se apoya
 en una fila, y el mecanismo que `D67` **no** reconoce —transmisión— tiene cuatro veces más
-candidatos que ésa. Va como entrada abierta, junto con la 54.
+candidatos que ésa. Va como entrada abierta, junto con la 65.
 
 ---
 

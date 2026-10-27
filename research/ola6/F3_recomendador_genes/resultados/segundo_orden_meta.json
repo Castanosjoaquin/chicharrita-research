@@ -8,7 +8,7 @@
   "DE-05",
   "HE-07"
  ],
- "criterio": "el mismo de D84 y de 03_orden.py; los puntajes NO se recalculan, solo cambia quien es elegible",
+ "criterio": "el mismo de D87 y de 03_orden.py; los puntajes NO se recalculan, solo cambia quien es elegible",
  "objetivos": {
   "esterilizar": {
    "elegibles": 13,

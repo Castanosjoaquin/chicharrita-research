@@ -1,0 +1,109 @@
+{
+ "consulta": "work/F1/GITV01.fas",
+ "consulta_sha256": "c83d832c7e4cf557671ad36a12b0a2c49a82f6fe2d84952ab1816437129f9cc3",
+ "contigs": 56117,
+ "orfs": 105871,
+ "diamond": "diamond version 2.2.8",
+ "parametros": {
+  "min_aa": 100,
+  "evalue": "1e-10",
+  "hits": 5,
+  "sensibilidad": "--more-sensitive",
+  "max_hsps": 1,
+  "unidad": "ORF (enmienda 1)"
+ },
+ "referencias": {
+  "MQ": {
+   "proteoma": "work/F1/ref/GCF_028750875.1_UCM_ALF_1.0_protein.faa",
+   "proteoma_sha256": "1ea13a15f993da629b1daf8951ad2f54d9f62319d92294db77dff3f711992810",
+   "proteinas": 34269,
+   "categorias_por_orf": {
+    "b_sin_hit": 73499,
+    "c_hit_no_reciproco": 10203,
+    "d_empate": 16233,
+    "e_reciproco_sin_nombre": 1376,
+    "f_reciproco_con_nombre": 4560
+   },
+   "categorias_por_contig": {
+    "a_sin_orf": 25812,
+    "b_sin_hit": 8261,
+    "c_hit_no_reciproco": 6110,
+    "d_empate": 10586,
+    "e_reciproco_sin_nombre": 1238,
+    "f_reciproco_con_nombre": 4110
+   },
+   "proteinas_de_referencia_distintas_con_recip": 5936,
+   "contigs_con_2_o_mas_recip_a_refs_distintas": 523,
+   "empates_por_lado": {
+    "directo": 9086,
+    "inverso": 4741,
+    "ambos": 2406
+   },
+   "empates_directos_homonimos_H": 8458,
+   "ampliada_H_post_hoc": {
+    "categorias_por_orf": {
+     "b_sin_hit": 73499,
+     "c_hit_no_reciproco": 17069,
+     "d_empate": 3034,
+     "e_reciproco_sin_nombre": 1989,
+     "f_reciproco_con_nombre": 10280
+    },
+    "categorias_por_contig": {
+     "a_sin_orf": 25812,
+     "b_sin_hit": 8261,
+     "c_hit_no_reciproco": 10383,
+     "d_empate": 2266,
+     "e_reciproco_sin_nombre": 1563,
+     "f_reciproco_con_nombre": 7832
+    },
+    "proteinas_de_referencia_distintas_con_recip": 9567
+   }
+  },
+  "HV": {
+   "proteoma": "work/F1/ref/GCF_021130785.1_UT_GWSS_2.1_protein.faa",
+   "proteoma_sha256": "fa6f44f11de5c2ff60ae425a102d7e983b8138dd428d81cff87b707fd85998b3",
+   "proteinas": 31163,
+   "categorias_por_orf": {
+    "b_sin_hit": 76476,
+    "c_hit_no_reciproco": 10118,
+    "d_empate": 13623,
+    "e_reciproco_sin_nombre": 1472,
+    "f_reciproco_con_nombre": 4182
+   },
+   "categorias_por_contig": {
+    "a_sin_orf": 25812,
+    "b_sin_hit": 10328,
+    "c_hit_no_reciproco": 6036,
+    "d_empate": 8933,
+    "e_reciproco_sin_nombre": 1221,
+    "f_reciproco_con_nombre": 3787
+   },
+   "proteinas_de_referencia_distintas_con_recip": 5654,
+   "contigs_con_2_o_mas_recip_a_refs_distintas": 571,
+   "empates_por_lado": {
+    "directo": 6575,
+    "inverso": 5289,
+    "ambos": 1759
+   },
+   "empates_directos_homonimos_H": 6006,
+   "ampliada_H_post_hoc": {
+    "categorias_por_orf": {
+     "b_sin_hit": 76476,
+     "c_hit_no_reciproco": 16009,
+     "d_empate": 2328,
+     "e_reciproco_sin_nombre": 2228,
+     "f_reciproco_con_nombre": 8830
+    },
+    "categorias_por_contig": {
+     "a_sin_orf": 25812,
+     "b_sin_hit": 10328,
+     "c_hit_no_reciproco": 9854,
+     "d_empate": 1760,
+     "e_reciproco_sin_nombre": 1533,
+     "f_reciproco_con_nombre": 6830
+    },
+    "proteinas_de_referencia_distintas_con_recip": 8500
+   }
+  }
+ }
+}

@@ -1,0 +1,49 @@
+regla	analisis	brazo	banda	n	aciertos	concordancia	ic95_lo	ic95_hi	c12_concordancia	c12_n
+estricta	no_pareado	P	<40	73	38	0.5205	0.4078	0.6312	0.25	16
+estricta	no_pareado	P	40-60	689	497	0.7213	0.6867	0.7535	0.761	134
+estricta	no_pareado	P	60-80	2235	1829	0.8183	0.8018	0.8338	0.768	456
+estricta	no_pareado	P	80-90	1394	1233	0.8845	0.8667	0.9002	0.786	336
+estricta	no_pareado	P	>=90	797	745	0.9348	0.9154	0.9499	0.862	210
+estricta	no_pareado	P	total	5188	4342	0.8369				
+estricta	no_pareado	O	<40	71	37	0.5211	0.4069	0.6332	0.25	16
+estricta	no_pareado	O	40-60	693	494	0.7128	0.6781	0.7453	0.761	134
+estricta	no_pareado	O	60-80	2253	1849	0.8207	0.8043	0.836	0.768	456
+estricta	no_pareado	O	80-90	1396	1235	0.8847	0.8668	0.9004	0.786	336
+estricta	no_pareado	O	>=90	796	743	0.9334	0.9139	0.9487	0.862	210
+estricta	no_pareado	O	total	5209	4358	0.8366				
+estricta	pareado	P	<40	70	36	0.5143	0.3995	0.6275	0.25	16
+estricta	pareado	P	40-60	672	482	0.7173	0.6821	0.75	0.761	134
+estricta	pareado	P	60-80	2189	1793	0.8191	0.8024	0.8347	0.768	456
+estricta	pareado	P	80-90	1378	1217	0.8832	0.8651	0.8991	0.786	336
+estricta	pareado	P	>=90	778	727	0.9344	0.9148	0.9498	0.862	210
+estricta	pareado	P	total	5087	4255	0.8364				
+estricta	pareado	O	<40	70	36	0.5143	0.3995	0.6275	0.25	16
+estricta	pareado	O	40-60	677	481	0.7105	0.6752	0.7434	0.761	134
+estricta	pareado	O	60-80	2193	1798	0.8199	0.8032	0.8354	0.768	456
+estricta	pareado	O	80-90	1371	1213	0.8848	0.8668	0.9006	0.786	336
+estricta	pareado	O	>=90	778	727	0.9344	0.9148	0.9498	0.862	210
+estricta	pareado	O	total	5089	4255	0.8361				
+ampliada	no_pareado	P	<40	148	83	0.5608	0.4803	0.6382	0.25	16
+ampliada	no_pareado	P	40-60	1368	1024	0.7485	0.7249	0.7708	0.761	134
+ampliada	no_pareado	P	60-80	5003	4159	0.8313	0.8207	0.8414	0.768	456
+ampliada	no_pareado	P	80-90	3316	2930	0.8836	0.8722	0.8941	0.786	336
+ampliada	no_pareado	P	>=90	2240	2084	0.9304	0.9191	0.9402	0.862	210
+ampliada	no_pareado	P	total	12075	10280	0.8513				
+ampliada	no_pareado	O	<40	147	83	0.5646	0.4838	0.6421	0.25	16
+ampliada	no_pareado	O	40-60	1375	1021	0.7425	0.7188	0.765	0.761	134
+ampliada	no_pareado	O	60-80	4960	4105	0.8276	0.8169	0.8379	0.768	456
+ampliada	no_pareado	O	80-90	3234	2863	0.8853	0.8738	0.8958	0.786	336
+ampliada	no_pareado	O	>=90	2153	2000	0.9289	0.9173	0.939	0.862	210
+ampliada	no_pareado	O	total	11869	10072	0.8486				
+ampliada	pareado	P	<40	145	81	0.5586	0.4773	0.6369	0.25	16
+ampliada	pareado	P	40-60	1345	1005	0.7472	0.7233	0.7697	0.761	134
+ampliada	pareado	P	60-80	4871	4045	0.8304	0.8196	0.8407	0.768	456
+ampliada	pareado	P	80-90	3220	2846	0.8839	0.8723	0.8945	0.786	336
+ampliada	pareado	P	>=90	2146	1993	0.9287	0.917	0.9388	0.862	210
+ampliada	pareado	P	total	11727	9970	0.8502				
+ampliada	pareado	O	<40	147	83	0.5646	0.4838	0.6421	0.25	16
+ampliada	pareado	O	40-60	1352	1006	0.7441	0.7202	0.7666	0.761	134
+ampliada	pareado	O	60-80	4889	4054	0.8292	0.8184	0.8395	0.768	456
+ampliada	pareado	O	80-90	3202	2835	0.8854	0.8739	0.896	0.786	336
+ampliada	pareado	O	>=90	2141	1988	0.9285	0.9168	0.9387	0.862	210
+ampliada	pareado	O	total	11731	9966	0.8495				

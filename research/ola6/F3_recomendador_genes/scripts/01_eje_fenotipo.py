@@ -34,7 +34,7 @@ CATALOGO = RAIZ / "research/ola3/C5_estructura_genes_ingenieria_inversa/catalogo
 SALIDA = Path(__file__).resolve().parents[1] / "resultados/eje_fenotipo.tsv"
 
 # Los cuatro mecanismos: los tres de D67 más `transmision`, que el catálogo tiene y D67 no
-# (entrada 54 de la ola 6). Un candidato puede tener más de uno.
+# (entrada 65 de la ola 6). Un candidato puede tener más de uno.
 MECANISMOS = ("reproduccion", "movilidad", "letalidad", "transmision")
 
 # Las etiquetas de ausencia. Son excluyentes entre sí y con los mecanismos: una fila con

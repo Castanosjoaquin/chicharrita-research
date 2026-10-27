@@ -5,7 +5,7 @@ archivos de `00_meta/`; esta página es el registro de qué fue a dónde y por q
 
 ## A `DECISIONS.md`
 
-**`D84` — los pesos del recomendador.** Aplicado, y **confirmado por el usuario** el
+**`D87` — los pesos del recomendador.** Aplicado, y **confirmado por el usuario** el
 2026-10-27 sobre cuatro opciones presentadas. Fenotipo 0,40, esencialidad 0,25, off-target
 0,25, conservación 0,10, expresión en tejido expuesto 0,00 y declarada faltante; agregación por
 **cohortes** según qué ejes tiene calculado cada candidato, sin comparar entre cohortes y sin
@@ -14,28 +14,28 @@ decisión al confirmarse (`44e156d`).
 
 ## A `PREGUNTAS_ABIERTAS.md`
 
-De la ola 6, entradas **54 a 63**:
+De la ola 6, entradas **65 a 75**:
 
-- **54** — `D67` define tres mecanismos y el catálogo tiene un cuarto: menos transmisión con el
+- **65** — `D67` define tres mecanismos y el catálogo tiene un cuarto: menos transmisión con el
   insecto vivo, cuatro filas. Ampliar `D67` no es de esta línea.
-- **55** — los dos candidatos de signo invertido abren la pregunta contraria a la nuestra: si
+- **66** — los dos candidatos de signo invertido abren la pregunta contraria a la nuestra: si
   silenciarlos favorece al patógeno, son parte de la defensa del vector.
-- **56** — faltan `work/sifi_v2/` y los tres TSA en esta máquina, con la advertencia de no
+- **67** — faltan `work/sifi_v2/` y los tres TSA en esta máquina, con la advertencia de no
   regenerarlos con otra versión del motor.
-- **57** — «esta máquina» sin nombrar la máquina, dos veces el mismo día, contra lo que pide
+- **68** — «esta máquina» sin nombrar la máquina, dos veces el mismo día, contra lo que pide
   `D71`.
-- **58** — el zip del investigador no trae el eje de expresión, y no podía traerlo.
-- **59** — el mecanismo `movilidad` de `D67` tiene **un** candidato en 36 filas, y su réplica
+- **69** — el zip del investigador no trae el eje de expresión, y no podía traerlo.
+- **70** — el mecanismo `movilidad` de `D67` tiene **un** candidato en 36 filas, y su réplica
   más cercana es negativa.
-- **60** — dos filas traen mortalidad que su propia fuente desatribuye del blanco, y una trae
+- **71** — dos filas traen mortalidad que su propia fuente desatribuye del blanco, y una trae
   un número grande (64 %).
-- **61** — las cinco fuentes que el eje 2 necesita y no se pudieron abrir, con el motivo de
+- **72** — las cinco fuentes que el eje 2 necesita y no se pudieron abrir, con el motivo de
   cada una, más las tres vías sin búsqueda propia.
-- **62** — dos tamizajes de la misma especie se contradicen sobre la actina; se resolvió
+- **73** — dos tamizajes de la misma especie se contradicen sobre la actina; se resolvió
   bajando el nivel y declarando el `[?]`, no promediando.
-- **63** — «matar o esterilizar» quedó contestada **en parte** por el orden de §2, y la entrada
+- **74** — «matar o esterilizar» quedó contestada **en parte** por el orden de §2, y la entrada
   dice exactamente qué faltaba: un segundo orden con el eje de fenotipo filtrado por mecanismo.
-- **64** — **cierra la 63, y la respuesta es que sí**: el orden cambia según el objetivo, y los
+- **75** — **cierra la 74, y la respuesta es que sí**: el orden cambia según el objetivo, y los
   dos grupos del primer puesto no comparten un solo candidato. Con las tres lecturas que valen
   más que el sí —la vía de esterilizar está peor sostenida, esterilizar saca a *Dalbulus
   maidis* del podio, y la quimera de `O3` resulta ser un miembro del grupo líder de cada
