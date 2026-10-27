@@ -48,7 +48,16 @@ from statistics import median
 
 VENTANA = 21
 AGREGACIONES = ("frac_buenos", "media", "mediana", "p10", "buenos_limpios")
-UMBRAL_OFF_ALERTA = 17
+# Los dos niveles de D28 (00_meta/DECISIONS.md). El de descarte, 21 nt, tiene bioensayo detras
+# en insectos; el de alerta es el bloque perfecto de >= 19 nt, convencion del campo con
+# fundamento mecanico declarado y sin experimento. D28 decidio ademas que no se reportan
+# coincidencias de 16 a 18 nt como off-targets: a 19 nt el azar explica el total de
+# coincidencias, y a 16 nt estan a la par del azar con la misma composicion.
+# El valor estuvo en 17 hasta el 2026-10-27 y lo sube D90, que mide el costo de dejarlo ahi:
+# sobre las 23.612 ventanas de `baseline_dsrip/ventanas_multigen.csv` el umbral 17 marca 2.338
+# ventanas en alerta y el 19 marca 436, o sea que la banda de 17 a 18 nt aportaba 1.902
+# ventanas, el 81,4 % de las alertas, integramente por debajo del piso de D28 [M].
+UMBRAL_OFF_ALERTA = 19
 UMBRAL_OFF_DESCARTAR = 21
 
 

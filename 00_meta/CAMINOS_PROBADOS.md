@@ -1411,3 +1411,31 @@ pipeline: buscar dónde existe la versión curada del mismo dato.
   El precio es que no hay un único primer puesto, y es un precio que conviene pagar: el
   repositorio ya midió que rellenar un hueco con lo que parece razonable —elegir el gen por
   nombre en vez de por ortología recíproca— movió el conteo de ventanas eficientes un 65 %.
+
+## Ola 6 (2026-10-27): dejar `UMBRAL_OFF_ALERTA` en 17 con un criterio escrito
+
+- **Probado y descartado: justificar el 17 en vez de alinearlo.** El issue #18 permitia las dos
+  salidas, y la de dejar la constante en 17 exigia escribir en el codigo «que criterio distinto
+  esta implementando». Se busco ese criterio y no se sostiene. El unico que parecia honesto era
+  que el nivel de alerta no es un piso de reporte sino un desempate entre regiones **del mismo
+  gen**, donde el fondo de azar es compartido y un acierto corto solo moveria preferencias sin
+  afirmar nada hacia afuera `[H]`. Dos mediciones lo tumban: la banda de 17 a 18 nt son 1.902 de
+  las 2.338 ventanas en alerta, el 81,4 %, de modo que el desempate lo decidia el ruido y no la
+  senal `[M]`; y `n_off_alerta` es una columna de salida del modulo, o sea que el 17 **si**
+  reportaba hacia afuera coincidencias de 16 a 18 nt como off-target, que es exactamente lo que
+  D28 prohibio. Se alineo a 19 (ver `D90`).
+- **No se regenero `baseline_dsrip/region_multigen_resultados.csv`, a proposito.** Es la unica
+  salida versionada que depende de la constante, y sus columnas `frac_regiones_con_alerta` y
+  `alerta_en_mejor_media` reproducen los numeros del umbral 17 en los 20 de 20 loci `[M]`. Sus
+  insumos —`investigathon/dsrip_baseline/multigen/`— no estan en esta maquina, asi que
+  regenerarlo pedia sustituir la linea de base de dsRIP por otra cosa. Queda como instantanea
+  historica, declarado en `D90`. El comando exacto para cuando el corpus vuelva a estar:
+  `python3 baseline_dsrip/region_multigen.py` (rutas absolutas adentro del script, hay que
+  ajustarlas), y lo mismo para `region_nulo_multigen.py` y `region_analisis.py`, que tambien
+  leen de ese arbol. **PENDIENTE**, no fallido.
+- **Lo que si se pudo correr, y alcanzo para medir el alcance.** `python3
+  pipeline/region_scoring.py baseline_dsrip/ventanas_multigen.csv --csv <salida>` con 17 y con
+  19, y la comparacion celda por celda de las 18.032 regiones: cambian `n_off_alerta` y
+  `buenos_limpios` y nada mas `[M]`. Ese archivo es el unico versionado con la columna
+  `off_target_max`, asi que para cualquier otra entrada `hay_off` es falso y la constante no
+  tiene efecto alguno `[M]`.
