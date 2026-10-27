@@ -14,37 +14,36 @@
   "firmada": {
    "perfecto_21": {
     "regiones": 18,
-    "pasan": 17,
-    "frenadas": 1,
+    "pasan": 18,
+    "frenadas": 0,
     "frenadas_vigentes": 0,
-    "bloqueantes": 3,
+    "bloqueantes": 4,
     "bloqueantes_vigentes": 0,
-    "frenadas_detalle": [
-     "eth_Dm 193-392 (vigente=no)"
-    ],
+    "frenadas_detalle": [],
     "bloqueantes_detalle": [
      "BicC_Dm 264-563",
      "ATPaseD_Dm 151-450",
-     "ATPaseD_Dm 137-436"
+     "ATPaseD_Dm 137-436",
+     "eth_Dm 193-392"
     ]
    },
    "perfecto_ge19": {
     "regiones": 18,
-    "pasan": 14,
-    "frenadas": 4,
+    "pasan": 15,
+    "frenadas": 3,
     "frenadas_vigentes": 0,
-    "bloqueantes": 3,
+    "bloqueantes": 4,
     "bloqueantes_vigentes": 0,
     "frenadas_detalle": [
      "MP_MRFV 162-361 (vigente=no)",
      "BicC_Dm 2119-2418 (vigente=no)",
-     "ATPaseD_Dm 71-370 (vigente=no)",
-     "eth_Dm 193-392 (vigente=no)"
+     "ATPaseD_Dm 71-370 (vigente=no)"
     ],
     "bloqueantes_detalle": [
      "BicC_Dm 264-563",
      "ATPaseD_Dm 151-450",
-     "ATPaseD_Dm 137-436"
+     "ATPaseD_Dm 137-436",
+     "eth_Dm 193-392"
     ]
    }
   },

@@ -494,8 +494,8 @@ if TABLA.exists() and FIRMAS.exists():
     with TABLA.open(encoding="utf-8") as fh:
         reales = list(_csv2.DictReader(fh, delimiter="\t"))
     inf = AL.aplicar_decisiones(reales, AL.leer_decisiones(FIRMAS))
-    check(inf["firmadas"] == len(AL.leer_decisiones(FIRMAS)) == 17,
-          "las 17 firmas de D68 se aplican, cada una sobre su fila (%d filas en la tabla)"
+    check(inf["firmadas"] == len(AL.leer_decisiones(FIRMAS)) == 18,
+          "las 18 firmas se aplican, cada una sobre su fila (%d filas en la tabla)"
           % len(reales))
     sin_firma = {(g, r) for g, r, _o, _l in inf["sin_firma"]}
     # Cuatro de las seis regiones de k=22, no seis: `CP_MRFV` 77-276 y `bursA_Dm` 44-243
@@ -503,11 +503,9 @@ if TABLA.exists() and FIRMAS.exists():
     # acierto. Que esas dos no aparezcan aca es exactamente el hecho por el que D72 hizo
     # falta: desde `alertas.tsv` son indistinguibles de una region nunca tamizada, y la
     # unica forma de saber que si se miraron es que esten en el inventario.
-    con_filas = {(g, r) for g, r in K22 if AL.filas_de_region(reales, g, r)}
-    check(sin_firma == con_filas and sin_firma == {
-              ("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
-              ("ATPaseD_Dm", "71-370"), ("eth_Dm", "193-392")},
-          "las unicas filas pendientes son las de las cuatro regiones de k=22 con alertas")
+    check(sin_firma == {("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
+                        ("ATPaseD_Dm", "71-370")},
+          "las unicas filas pendientes son las de tres regiones de k=22, sin alertas de 21/21")
     inv_k22 = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
     check(all(not AL.filas_de_region(reales, g, r) and (g, r) in inv_k22
               for g, r in (("CP_MRFV", "77-276"), ("bursA_Dm", "44-243"))),
@@ -523,11 +521,25 @@ if TABLA.exists() and FIRMAS.exists():
     check(tres == ["decidida: bloqueante"] * 3,
           "las tres regiones de D68 con coincidencia perfecta de 21 nt quedan bloqueantes")
     # Y la cuarta, que es el hallazgo de R7: `eth_Dm` 193-392 —una de las seis que el
-    # ranking recomienda a k=22— tiene una coincidencia perfecta de 21 nt, contra
-    # *Homalodisca vitripennis*, y queda **sin decidir**. No se firma desde una prueba:
-    # firmar es del equipo (D48, D68) y lo que la prueba fija es que sin firma no pasa.
-    check(AL.estado_decision(reales, "eth_Dm", "193-392")["estado"] == "sin decidir",
-          "eth_Dm 193-392 tiene un acierto perfecto de 21 nt y queda sin decidir")
+    # ranking recomienda a k=22— tiene una coincidencia perfecta de 21 nt contra
+    # *Homalodisca vitripennis*, y el equipo la firmo **bloqueante con condicion**, por
+    # la misma forma que D68 uso para ATPaseD_Dm 137-436 (ver D73). La prueba fija las dos
+    # mitades que importan y que no son lo mismo: la region **pasa** la compuerta, porque
+    # bloquear es decidir, y su estado dice que esta bloqueada, o sea que el que llama
+    # tiene que descartarla. Un `check` de «pasa» a secas se leeria como «se puede usar».
+    inv_real = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
+    est_eth = AL.exigir_decidida(reales, "eth_Dm", "193-392", inventario=inv_real)
+    check(est_eth["estado"] == "decidida: bloqueante" and est_eth["bloqueantes"] == 1
+          and est_eth["pendientes"] == 0,
+          "eth_Dm 193-392 pasa la compuerta y queda bloqueante: pasar no es poder usarse")
+    # las cuatro bloqueantes del proyecto, que son exactamente las cuatro filas con 21/21
+    cuatro = {(f["gen"], f["region"]) for f in reales
+              if int(f["ventanas_perfecto_21"] or 0) > 0}
+    check(cuatro == {("BicC_Dm", "264-563"), ("ATPaseD_Dm", "151-450"),
+                     ("ATPaseD_Dm", "137-436"), ("eth_Dm", "193-392")}
+          and all(AL.estado_decision(reales, g, r)["estado"] == "decidida: bloqueante"
+                  for g, r in cuatro),
+          "las cuatro filas con coincidencia perfecta de 21 nt estan las cuatro bloqueantes")
 else:
     SALTEADAS.append("§8.9 la tabla real o el archivo de firmas no estan en disco")
 
@@ -689,11 +701,18 @@ if TABLA.exists():
                 R.region_recomendada({"mejores": [{"region": reg}]}, gen, umbral, TABLA)
             except AL.CompuertaCerrada:
                 frenadas[umbral].add((gen, reg))
-    check(frenadas["perfecto_21"] == {("eth_Dm", "193-392")},
-          "a k=22 y con D48 literal frena una sola region: eth_Dm 193-392")
-    check(frenadas["perfecto_ge19"] == {("eth_Dm", "193-392"), ("MP_MRFV", "162-361"),
-                                        ("BicC_Dm", "2119-2418"), ("ATPaseD_Dm", "71-370")},
-          "a k=22 y con el umbral laxo de D28 frenan cuatro de las seis")
+    check(frenadas["perfecto_21"] == set(),
+          "a k=22 y con D48 literal ya no frena ninguna: las seis pasan la compuerta (D73)")
+    check(frenadas["perfecto_ge19"] == {("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
+                                        ("ATPaseD_Dm", "71-370")},
+          "a k=22 y con el umbral laxo de D28 siguen frenando tres de las seis")
+    # Que las seis pasen no es que las seis sirvan, y la diferencia esta medida: una de
+    # las seis esta firmada bloqueante, asi que una corrida de k=22 que recomiende sin
+    # mirar el estado recomendaria una region que el equipo descarto por escrito.
+    bloq_k22 = {(g, r) for g, r in K22
+                if AL.estado_decision(reales, g, r)["estado"] == "decidida: bloqueante"}
+    check(bloq_k22 == {("eth_Dm", "193-392")},
+          "de las seis de k=22 que pasan, una esta bloqueante y hay que descartarla")
     check(frenadas["perfecto_21"] <= frenadas["perfecto_ge19"],
           "lo que frena el umbral literal lo frena tambien el laxo: los dos estan anidados")
     R._ALERTAS_LEIDAS.clear()

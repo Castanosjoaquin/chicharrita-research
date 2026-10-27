@@ -626,3 +626,53 @@ fallaría una regeneración completa `[H]`.
   `work/sifi_v2/salida_k22`, los perfiles de ViennaRNA de la corrida de 22 nt, que no se versionan
   `[M]`. La compuerta queda ejercida por la §9 contra la tabla real y contra tablas sintéticas, que
   es donde se mide el comportamiento que cambió.
+
+### Addendum del addendum (2026-10-27, más tarde) — la fila de `eth_Dm` 193-392 queda firmada
+
+El equipo firmó la fila que el addendum anterior dejó frenando la corrida de 22 nt. El veredicto es
+**`bloqueante` con la condición como parte de la firma** —bloqueante mientras la exposición de
+*Homalodisca vitripennis* siga siendo una decisión abierta—, que es la forma que `D68` ya había
+usado para `ATPaseD_Dm` 137-436. El ADR es `D73`; `decisiones.tsv` pasa de diecisiete a dieciocho
+entradas y las otras cinco filas de las regiones de 22 nt **siguen en «pendiente»**.
+
+Por qué el precedente no alcanzaba para deducir el veredicto, que es lo que hizo falta decidir
+explícitamente `[M]`:
+
+| | las 14 aceptadas de `D68` | las 3 bloqueantes de `D68` | `eth_Dm` 193-392 |
+| --- | --- | --- | --- |
+| ventanas con 21/21 perfecto | 0 en todas | ≥ 1 en las tres | **1** |
+| organismo | humano, maíz, *D. maidis* | *H. vitripennis* en las tres | ***H. vitripennis*** |
+| gen impactado | no relacionado | **ortólogo del blanco** en las tres | **no relacionado** (quitinasa 2 probable) |
+| en ventana predicha eficiente | — | 2 de 3 en dos de las filas | **no**, 0 de 1 |
+
+Comparte con las bloqueantes el umbral y el organismo, y con las aceptadas el que el gen impactado
+no sea el ortólogo. Ninguna regla derivada de las firmas anteriores la decide.
+
+**El estado de la compuerta después de la firma** `[M]`:
+
+| | `perfecto_21` (D48 literal) | `perfecto_ge19` (umbral laxo de D28) |
+| --- | --- | --- |
+| regiones que pasan | **18 de 18** | **15 de 18** |
+| frenadas | 0 | 3, ninguna vigente: `MP_MRFV` 162-361, `BicC_Dm` 2119-2418, `ATPaseD_Dm` 71-370 |
+| de las que pasan, bloqueantes | **4** (eran 3), ninguna vigente | 4, ninguna vigente |
+
+La corrida de 22 nt ya no levanta `AlertaSinDecidir`: las seis regiones pasan la compuerta. Las
+primeras veintitrés líneas de `alertas.tsv` quedaron idénticas byte a byte y lo único que cambió es
+la línea de esa fila, con su decisión y su justificación `[M]`. `jaccard_21_22` sigue intacto. La
+cadena entera vuelve a ser idempotente y `test_alertas.py` pasa.
+
+#### Lo que la firma destapa, y que antes no se podía ver
+
+Pasar la compuerta y poder usarse no son lo mismo, y hasta hoy esa distinción era teórica. Las tres
+regiones que `D68` firmó bloqueantes **no las recomienda ninguna de las dos corridas** del ranking,
+así que la regla de `D69` —«bloquear es decidir, y el que llama tiene que descartarla»— nunca se
+ejerció sobre una recomendación real. Con esta firma sí: **`eth_Dm` 193-392 es la primera región
+bloqueante que una corrida del ranking efectivamente recomienda**, y `ranking.region_recomendada()`
+**la devuelve igual** —verificado, devuelve `(193, 392)`— porque descartar no es su trabajo `[M]`.
+
+O sea que el modo de fallar se corrió un casillero: ya no es «se recomienda una región cuya alerta
+nadie leyó» —eso lo cerraron `D48`, `D69` y `D72`— sino «se recomienda una región cuya alerta
+alguien leyó **y bloqueó**». La compuerta hace exactamente lo que `D69` decidió que hiciera, y el
+que tendría que descartar es quien consuma la recomendación. Queda anotado en
+`00_meta/PREGUNTAS_ABIERTAS.md` y **no se cambió acá**: tocarlo sería revisar `D69` de paso, en una
+corrida cuyo objeto era firmar una fila.

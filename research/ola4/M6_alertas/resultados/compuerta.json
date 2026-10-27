@@ -3,15 +3,16 @@
  "filas": 23,
  "umbrales": {
   "perfecto_21": {
-   "pasan": 17,
-   "frenadas": 1,
+   "pasan": 18,
+   "frenadas": 0,
    "frenadas_vigentes": 0,
-   "bloqueantes": 3,
+   "bloqueantes": 4,
    "bloqueantes_vigentes": 0,
    "bloqueantes_detalle": [
     "BicC_Dm 264-563",
     "ATPaseD_Dm 151-450",
-    "ATPaseD_Dm 137-436"
+    "ATPaseD_Dm 137-436",
+    "eth_Dm 193-392"
    ],
    "detalle": [
     {
@@ -243,17 +244,14 @@
      "region": "193-392",
      "umbral": "perfecto_21",
      "alertas": 1,
-     "pendientes": 1,
-     "bloqueantes": 0,
-     "estado": "sin decidir",
-     "organismos_pendientes": [
-      "H_vitripennis"
-     ],
-     "decide": "el usuario",
-     "mensaje": "eth_Dm 193-392 tiene 1 alerta(s) de perfecto_21 sin decidir (H_vitripennis) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "pendientes": 0,
+     "bloqueantes": 1,
+     "estado": "decidida: bloqueante",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
-     "resultado": "FRENADA"
+     "resultado": "pasa"
     },
     {
      "gen": "bursA_Dm",
@@ -272,15 +270,16 @@
    ]
   },
   "perfecto_ge19": {
-   "pasan": 14,
-   "frenadas": 4,
+   "pasan": 15,
+   "frenadas": 3,
    "frenadas_vigentes": 0,
-   "bloqueantes": 3,
+   "bloqueantes": 4,
    "bloqueantes_vigentes": 0,
    "bloqueantes_detalle": [
     "BicC_Dm 264-563",
     "ATPaseD_Dm 151-450",
-    "ATPaseD_Dm 137-436"
+    "ATPaseD_Dm 137-436",
+    "eth_Dm 193-392"
    ],
    "detalle": [
     {
@@ -522,17 +521,14 @@
      "region": "193-392",
      "umbral": "perfecto_ge19",
      "alertas": 1,
-     "pendientes": 1,
-     "bloqueantes": 0,
-     "estado": "sin decidir",
-     "organismos_pendientes": [
-      "H_vitripennis"
-     ],
-     "decide": "el usuario",
-     "mensaje": "eth_Dm 193-392 tiene 1 alerta(s) de perfecto_ge19 sin decidir (H_vitripennis) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "pendientes": 0,
+     "bloqueantes": 1,
+     "estado": "decidida: bloqueante",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
-     "resultado": "FRENADA"
+     "resultado": "pasa"
     },
     {
      "gen": "bursA_Dm",
