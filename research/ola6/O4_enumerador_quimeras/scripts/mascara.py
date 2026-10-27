@@ -160,10 +160,25 @@ def fragmentos_admisibles(vetada: np.ndarray, largo: int, paso: int = 1,
     else:
         ultimo = min(n_vent - largo + 1, (hasta or n_vent) - largo + 1)
         ancho = largo
+    primero = max(1, desde)
     salida = []
-    for a in range(max(1, desde), ultimo + 1, paso):
+    for a in range(primero, ultimo + 1, paso):
         if not vetada[a - 1:a - 1 + ancho].any():
             salida.append(a)
+    if paso > 1:
+        # **La reticula se ancla a las rachas admisibles, y no solo a la posicion 1.**
+        # Medido en `V-ATPase B`: su unica isla admisible de 300 nt arranca en 517 y mide
+        # 21 nt de ancho, y con paso 50 la reticula 1, 51, 101, ... **no toca ninguna de
+        # sus 21 posiciones**, asi que la region que el proyecto eligio en `D74` no
+        # aparecia en la grilla. Una grilla gruesa que se ancla en el origen no es una
+        # muestra uniforme del gen: es una muestra que ignora las islas mas angostas, que
+        # son justamente las que el veto deja. Agregar el arranque de cada racha cuesta
+        # una posicion por isla, conserva el determinismo y no es muestreo.
+        for ini, fin in rachas_admisibles(vetada):
+            for a in (ini, fin - ancho + 1):
+                if primero <= a <= ultimo and not vetada[a - 1:a - 1 + ancho].any():
+                    salida.append(a)
+        salida = sorted(set(salida))
     return salida
 
 

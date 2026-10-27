@@ -103,6 +103,7 @@ ESPERADAS = {
     "heredadas_que_cambiaron", "max_nt_hasta_la_union_de_un_cambio",
     "ventanas_juntura", "ef_juntura", "juntura_con_blanco_continuo",
     "fabricados_21_refs", "fabricados_ge19_refs", "fabricados_refs",
+    "aporte_del_bloque_mas_repartido", "bloques_fabricados_con_aporte_ge5",
     "fabricados_en_ventana_eficiente", "existe_en_el_genoma_del_vector",
     "alerta_juntura_nueva"}
 check(set(f) == ESPERADAS,

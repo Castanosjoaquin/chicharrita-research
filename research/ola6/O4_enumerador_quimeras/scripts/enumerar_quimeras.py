@@ -251,9 +251,17 @@ def tamizar_junturas(candidatos: list[dict], genes: dict) -> dict:
 
     salida: dict[int, dict] = {}
     for (j, s, largo), refs in golpes.items():
+        # Cuanto aporta cada gen a este bloque. Importa leerlo: un bloque de 19 nt que
+        # toma 18 de un gen y 1 del otro es casi el gen solo, y **tiene una chance de uno
+        # en cuatro de existir en cualquier referencia que contenga al gen padre**, porque
+        # basta con que el nucleotido siguiente del padre coincida. Un bloque repartido
+        # 10/9 es otra cosa. `D74` reporto justamente el aporte: 18 y 1.
+        izq_nt = VENTANA - 1 - s
+        aporte = min(izq_nt, largo - izq_nt)
         for i in por_40mero[claves[j]]:
-            d = salida.setdefault(i, {"por_largo": {}, "ventanas": set()})
+            d = salida.setdefault(i, {"por_largo": {}, "ventanas": set(), "aportes": []})
             d["por_largo"].setdefault(largo, set()).update(refs)
+            d["aportes"].append(aporte)
             # Ventanas de juntura (1 a 20) que contienen enteramente a este bloque.
             for j_vent in range(1, VENTANA):
                 if j_vent - 1 <= s and s + largo <= j_vent - 1 + VENTANA:
@@ -285,7 +293,7 @@ def cuentas_de(c: dict, genes: dict, perf_q: dict, perf_izq: dict, perf_der: dic
         if any(mero in g["seq"] or OT.rc(mero) in g["seq"] for g in genes.values()):
             con_blanco += 1
 
-    jj = juntura or {"por_largo": {}, "ventanas": set()}
+    jj = juntura or {"por_largo": {}, "ventanas": set(), "aportes": []}
     # El genoma del vector es on-target de los dos genes del insecto: un acierto ahi no es
     # riesgo, es el blanco, y se informa aparte para no contarlo como off-target.
     vector = {R.DMAIDIS}
@@ -319,6 +327,12 @@ def cuentas_de(c: dict, genes: dict, perf_q: dict, perf_izq: dict, perf_der: dic
         "fabricados_21_refs": len(fab21),
         "fabricados_ge19_refs": len(fab_ge19),
         "fabricados_refs": ",".join(sorted(R.corto(r) for r in fab21 | fab_ge19)),
+        # Cuanto aporta el gen menos representado en el bloque fabricado mas repartido, y
+        # cuantos bloques estan repartidos de verdad. Un bloque con aporte 1 es el gen
+        # solo mas un nucleotido: existe por azar en una de cada cuatro referencias que
+        # contengan al padre, asi que no se lee igual que uno repartido.
+        "aporte_del_bloque_mas_repartido": max(jj["aportes"]) if jj["aportes"] else 0,
+        "bloques_fabricados_con_aporte_ge5": sum(1 for x in jj["aportes"] if x >= 5),
         # La ventana de juntura que arranca en `p` es la numero `p - (corte - 20)` del
         # 40-mero, porque su primer nucleotido es el `corte - 19` de la quimera.
         "fabricados_en_ventana_eficiente": sum(
