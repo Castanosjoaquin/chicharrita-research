@@ -2764,3 +2764,22 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
    contradiccion como pendiente y ya no lo esta. No se edito porque ese archivo es de la linea
    `R3`, que se cerro en otra sesion: hay que actualizar esa fila o confirmar que la pagina se
    regenera sola `[?]`.
+
+### Ola 6, la brecha con `C12` descompuesta (`D91`, pregunta 62, 2026-10-27)
+
+**Se cierra la 62.** La brecha es el normalizador de nombres (+7,0 de 6,45 puntos); el alineador
+aporta +0,18 y el protocolo −0,73. La tabla de `C12` queda como está, válida para su propio
+criterio. Detalle en `research/ola6/R13_brecha_c12/REPORT.md`.
+
+88. **¿Cuál de los dos criterios de nombre es el que hay que usar?** No se decidió y no se midió.
+    El de `F1` colapsa `isoform Xn`, `-like` y `homolog`; el de `C12` no colapsaba al menos los dos
+    primeros. Que *ankyrin-3-like isoform X2* y *ankyrin-3-like isoform X8* sean el mismo gen es
+    evidente, pero `-like` es otra cosa: *proteína X* y *proteína X-like* pueden ser parálogos
+    distintos, y el normalizador de `F1` los cuenta como acuerdo. **El 21,6 % de los pares que
+    recupera son por `-like`**, así que la elección mueve cerca de 1,5 puntos. Separar los dos
+    sufijos y medirlos aparte es barato y no se hizo `[?]`.
+89. **El normalizador de `C12` no existe como código y no se puede reconstruir.** Sólo sabemos, por
+    diferencia, que dejaba pasar los sufijos de isoforma. Cualquier intento de reproducir
+    exactamente su 78,2 % va a fallar por esto, y conviene saberlo antes de intentarlo. La lección
+    general ya está en `CAMINOS_PROBADOS.md`: una regla de comparación descrita en prosa y no
+    versionada no es reproducible aunque los datos sí lo sean.

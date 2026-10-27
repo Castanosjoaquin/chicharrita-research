@@ -1,0 +1,56 @@
+{
+ "pares_reciprocos_con_nombre": 1081,
+ "acuerdos_sin_normalizar": 406,
+ "acuerdos_con_normalizador_F1": 921,
+ "concordancia_sin_normalizar": 0.3756,
+ "concordancia_con_normalizador_F1": 0.852,
+ "pares_que_el_normalizador_convierte_en_acuerdo": 515,
+ "pares_que_el_normalizador_rompe": 0,
+ "por_patron": {
+  "sufijo de isoforma (isoform Xn)": {
+   "n": 401,
+   "pct": 77.9
+  },
+  "sufijo -like": {
+   "n": 111,
+   "pct": 21.6
+  },
+  "sufijo homolog": {
+   "n": 2,
+   "pct": 0.4
+  },
+  "otro": {
+   "n": 1,
+   "pct": 0.2
+  }
+ },
+ "ejemplos": {
+  "sufijo de isoforma (isoform Xn)": [
+   "kelch-like protein diablo isoform X1  ||  kelch-like protein diablo",
+   "ankyrin-3-like isoform X2  ||  ankyrin-3-like isoform X8",
+   "MTOR-associated protein MEAK7-like  ||  MTOR-associated protein MEAK7 isoform X1",
+   "protein adenylyltransferase Fic-like isoform X1  ||  protein adenylyltransferase Fic",
+   "katanin p60 ATPase-containing subunit A-like 1 isoform X1  ||  katanin p60 ATPase-containing subunit A-like 1",
+   "pyrokinin-1 receptor-like  ||  pyrokinin-1 receptor-like isoform X3",
+   "transmembrane protein 234 homolog  ||  transmembrane protein 234 homolog isoform X1",
+   "transcriptional repressor p66-beta-like isoform X2  ||  transcriptional repressor p66-beta isoform X3"
+  ],
+  "sufijo -like": [
+   "tudor domain-containing protein 3  ||  tudor domain-containing protein 3-like",
+   "tRNA (cytosine(72)-C(5))-methyltransferase NSUN6-like  ||  tRNA (cytosine(72)-C(5))-methyltransferase NSUN6",
+   "nuclear envelope integral membrane protein-like  ||  nuclear envelope integral membrane protein 1-like",
+   "protein artichoke-like  ||  protein artichoke",
+   "methylosome subunit pICln-like  ||  methylosome subunit pICln",
+   "F-box/LRR-repeat protein 7  ||  F-box/LRR-repeat protein 7-like",
+   "BCL2/adenovirus E1B 19 kDa protein-interacting protein 3  ||  BCL2/adenovirus E1B 19 kDa protein-interacting protein 3-like",
+   "eukaryotic translation initiation factor 4H-like  ||  eukaryotic translation initiation factor 4H"
+  ],
+  "sufijo homolog": [
+   "dynein axonemal assembly factor 1  ||  dynein axonemal assembly factor 1 homolog",
+   "xenotropic and polytropic retrovirus receptor 1 homolog  ||  xenotropic and polytropic retrovirus receptor 1"
+  ],
+  "otro": [
+   "putative defense protein 1  ||  putative defense protein 3"
+  ]
+ }
+}
