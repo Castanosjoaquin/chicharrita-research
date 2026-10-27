@@ -10,9 +10,16 @@ un nucleotido de cada uno de los dos genes. Esa es la distincion que decide la a
 es la misma que `empalme_maiz_detalle.py` hizo para C13 en un caso.
 
 Que hace: por cada una de las 20 ventanas de cada juntura, enumera sus bloques de 19, 20
-y 21 nt, los busca **exactos y en las dos hebras** en las seis referencias del panel con
-un automata de Aho-Corasick, y reporta de cada acierto el largo del bloque, su offset, el
-aporte de cada gen, si cruza la union y en que secuencias de la referencia cae.
+y 21 nt, los busca **exactos y en las dos hebras** en las seis referencias del panel
+—incluida la humana, que el preregistro §2.4 exige y que no vive en `work/offtarget_db/`—
+con un automata de Aho-Corasick, y reporta de cada acierto el largo del bloque, su offset,
+el aporte de cada gen, si cruza la union y en que secuencias de la referencia cae.
+
+**Blanco continuo** se mide con el metodo de `research/ola5/N4_quimeras/scripts/junturas.py`,
+que es el que manda el preregistro §5.2: un 21-mero tiene blanco continuo si existe como
+tramo contiguo en **uno de los dos genes que se quieren silenciar**, en cualquiera de las
+dos hebras. No es lo mismo que buscarlo en el genoma entero del vector: un 21-mero de
+juntura puede existir en otra parte del genoma sin que eso silencie el blanco pretendido.
 
 Que NO hace, y conviene leerlo al lado del resultado:
 
@@ -50,18 +57,21 @@ RAIZ = Path(__file__).resolve().parents[4]
 BLOQUE = Path(__file__).resolve().parents[1]
 RESULTADOS = BLOQUE / "resultados"
 DB = RAIZ / "work/offtarget_db"
+#: La humana no esta en `work/offtarget_db/` y el preregistro la exige en el panel (§2.4).
+HUMANA = RAIZ / "work/W5/ref/humano_rna.fna.gz"
 SIFI = RAIZ / "work/C13/sifi"
 
 sys.path.insert(0, str(RAIZ / "tools/sifi21_port"))
 sys.path.insert(0, str(RAIZ / "research/ola3/C13_quimeras_region_recomendada/scripts"))
 import ranking as R       # noqa: E402  los nombres y los pesos del panel
+import ranking_v2 as V    # noqa: E402  solo para registrar el panel de seis
 import quimeras_v2 as QV  # noqa: E402  los recortes y los conjuntos
 
 COMP = str.maketrans("ACGT", "TGCA")
 VENTANA = 21
 #: El conjunto de O3, con las mismas coordenadas con las que corrio el evaluador.
 GEN_SPEC = ["BicC_Dm=922-1221",
-            "VATPaseB_Dm=242-541:work/O3/fasta/VATPaseB_Dm_full.fasta"]
+            "VATPaseB_Dm=517-816:work/O3/fasta/VATPaseB_Dm_full.fasta"]
 
 
 def rc(s: str) -> str:
@@ -88,9 +98,22 @@ def main(argv=None) -> int:
     ap.add_argument("--min-bloque", type=int, default=19, dest="min_bloque")
     a = ap.parse_args(argv)
 
+    # Sin esto `R.corto()` no reconoce `humano_rna` y lo etiqueta como el vector, que es
+    # on-target: un acierto en la humana quedaria clasificado como blanco y no como riesgo.
+    V.con_panel(sin_humano=False)
+
     conjunto = QV.registrar_conjunto("o3", GEN_SPEC)
     genes = QV.regiones_de(conjunto)
     regiones = QV.recortar(conjunto)
+
+    # Los blancos pretendidos, enteros y en las dos hebras. Es el metodo de
+    # `research/ola5/N4_quimeras/scripts/junturas.py`, que es el que manda el preregistro
+    # (§5.2): un 21-mero «tiene blanco continuo» si existe como tramo contiguo en el gen
+    # que se quiere silenciar, no en cualquier parte del genoma.
+    blancos = {}
+    for g in genes:
+        s = QV.leer_fasta_simple(QV.fasta_full(g)).upper()
+        blancos[g] = (s, rc(s))
 
     fichas, buscar = [], {}
     for izq, der in ((genes[0], genes[1]), (genes[1], genes[0])):
@@ -117,7 +140,10 @@ def main(argv=None) -> int:
                         "bloque_hash": hash_corto(bloque),
                         "nt_de_izquierda": desde_izq,
                         "nt_de_derecha": largo - desde_izq,
-                        "cruza_la_union": 0 < desde_izq < largo})
+                        "cruza_la_union": 0 < desde_izq < largo,
+                        "blanco_continuo_en": [g for g, (d, r) in blancos.items()
+                                               if vent in d or vent in r]
+                        if largo == VENTANA else []})
                     i = len(fichas) - 1
                     buscar.setdefault(bloque, []).append(i)
                     buscar.setdefault(rc(bloque), []).append(i)
@@ -131,7 +157,11 @@ def main(argv=None) -> int:
     aut.make_automaton()
 
     aciertos: dict[int, dict[str, set]] = {}
-    for ruta in sorted(DB.glob("*.fna.gz")):
+    refs = sorted(DB.glob("*.fna.gz")) + [HUMANA]
+    if not HUMANA.exists():
+        raise SystemExit("falta la referencia humana en %s; el panel del "
+                         "preregistro es de seis" % HUMANA)
+    for ruta in refs:
         ref = ruta.name.replace(".fna.gz", "")
         n_rec = n_hit = 0
         nombre_rec, buf = None, []
@@ -175,10 +205,9 @@ def main(argv=None) -> int:
         del_q = [f for f in fichas if f["quimera"] == nombre]
         con_acierto = [f for f in salida if f["quimera"] == nombre]
         ventanas_ef = sorted({f["j"] for f in del_q if f["ventana_eficiente"]})
-        # blanco continuo: el 21-mero entero de la ventana existe en el genoma del vector
-        blanco = sorted({f["j"] for f in con_acierto
-                         if f["bloque_largo"] == VENTANA
-                         and R.corto(R.DMAIDIS) in f["aciertos"]})
+        # blanco continuo por el metodo de N4: el 21-mero existe en un gen blanco
+        blanco = sorted({f["j"] for f in del_q
+                         if f["bloque_largo"] == VENTANA and f["blanco_continuo_en"]})
         # fabricado por el empalme: bloque que cruza la union, en una referencia que no
         # es el vector (en el vector seria blanco, no riesgo)
         fabricados = [f for f in con_acierto if f["cruza_la_union"]
@@ -212,8 +241,7 @@ def main(argv=None) -> int:
     (RESULTADOS / ("juntura_detalle_%s.json" % suf)).write_text(json.dumps({
         "modo": a.modo, "backend": a.backend, "min_bloque": a.min_bloque,
         "coordenadas": {g: list(QV.CONJUNTOS[conjunto][g]) for g in genes},
-        "panel": sorted(R.corto(r.name.replace(".fna.gz", ""))
-                        for r in DB.glob("*.fna.gz")),
+        "panel": sorted(R.corto(r.name.replace(".fna.gz", "")) for r in refs),
         "limite": "localiza coincidencia exacta de 19 a 21 nt; los aciertos de un "
                   "desapareo (mm1_21) quedan como cuenta del tamizado, sin bloque",
         "sin_secuencias": "las ventanas y los bloques van por hash: BicC_Dm es una de "

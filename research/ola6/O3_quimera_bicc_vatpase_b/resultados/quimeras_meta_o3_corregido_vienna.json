@@ -6,8 +6,8 @@
       1221
     ],
     "VATPaseB_Dm": [
-      242,
-      541
+      517,
+      816
     ]
   },
   "modo": "corregido",
@@ -18,7 +18,7 @@
   },
   "eficientes_region_suelta": {
     "BicC_Dm": 26,
-    "VATPaseB_Dm": 5
+    "VATPaseB_Dm": 14
   },
   "n_quimeras": 2,
   "comando_run_sifi": "C:\\Users\\MODDE\\miniconda3\\python.exe C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\tools\\sifi21_port\\run_sifi.py C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\fasta\\o3\\regiones.fasta C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\fasta\\o3\\quimeras.fasta --modo corregido --backend vienna --salida C:\\Users\\MODDE\\Desktop\\varios\\chicharrita-research\\work\\C13\\sifi\\o3_corregido_vienna",

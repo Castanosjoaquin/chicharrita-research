@@ -148,6 +148,10 @@ def main(argv=None):
                     help="nombre del conjunto que arma --gen (default: adhoc)")
     ap.add_argument("--resultados", default=None, type=Path,
                     help="directorio de salida; por default el de C13")
+    ap.add_argument("--db", nargs="+", default=None, type=Path,
+                    help="las referencias del panel. Por default los .fna.gz de "
+                         "work/offtarget_db/, que son cinco del panel mas el genoma del "
+                         "vector; la humana vive aparte y hay que nombrarla")
     a = ap.parse_args(argv)
     if a.gen:
         a.conjunto = QV.registrar_conjunto(a.nombre, a.gen)
@@ -171,9 +175,13 @@ def main(argv=None):
     escribir_consultas(regiones, quimeras, consultas, genes)
     tsv_off = dir_off / "offtarget_por_sirna.tsv"
     if a.rehacer or not tsv_off.exists():
+        refs = a.db if a.db else sorted(DB.glob("*.fna.gz"))
+        faltan = [str(p) for p in refs if not p.exists()]
+        if faltan:
+            raise SystemExit("faltan referencias del panel: %s" % ", ".join(faltan))
         cmd = [sys.executable, str(RAIZ / "tools/sifi21_port/offtarget_21nt.py"),
                "--consulta", str(consultas), "--mm1",
-               "--db", *[str(p) for p in sorted(DB.glob("*.fna.gz"))],
+               "--db", *[str(p) for p in refs],
                "--salida", str(dir_off)]
         print("$ " + " ".join(cmd), flush=True)
         r = subprocess.run(cmd, cwd=str(RAIZ), text=True)

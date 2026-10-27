@@ -1,0 +1,146 @@
+{
+  "paso": "O3 paso 1 — region de V-ATPase B segun PREREGISTRO.md §2",
+  "consulta": "VATPaseB_Dm_OZ319705.1_38943269_38957327",
+  "cds_nt": 1503,
+  "ventanas": 1483,
+  "eficientes_cds": 73,
+  "criterio": {
+    "fuente": "research/ola6/O3_quimera_bicc_vatpase_b/PREREGISTRO.md §2",
+    "largo_nt": 300,
+    "modo": "corregido",
+    "backend": "vienna",
+    "tabla_nn": "NN3",
+    "regla": "conservadora (solo_eficientes=False)",
+    "forma": "cascada (veto por perfecto_21, orden por buenos_limpios)",
+    "panel": [
+      "A_mellifera",
+      "F_candida",
+      "H_axyridis",
+      "H_vitripennis",
+      "humano",
+      "maiz"
+    ],
+    "panel_con_humano": true,
+    "excluidas_on_target": [
+      "D_maidis"
+    ],
+    "pesos": {
+      "maiz": 1.0,
+      "H_axyridis": 0.8,
+      "A_mellifera": 0.8,
+      "H_vitripennis": 0.6,
+      "F_candida": 0.4,
+      "humano": 1.0
+    },
+    "banda_borde_nt": 59,
+    "inicios_admisibles": [
+      60,
+      1145
+    ],
+    "marco": "marco 1 de D63; la cifra publicable es el marco 3, en tres_marcos"
+  },
+  "verificacion": "el ordenador restringido, sin restriccion, reproduce ranking.alternativas() celda por celda",
+  "region_de_o3": {
+    "coordenadas": "517-816",
+    "inicio": 517,
+    "fin": 816,
+    "conservadora": {
+      "n_ventanas": 300,
+      "eficientes": 15,
+      "eficacia": 0.05,
+      "limpieza": 0.931,
+      "buenos_limpios": 11,
+      "con_off_target": 69,
+      "con_21_perfecto": 0,
+      "vetada": false
+    },
+    "mecanicista": {
+      "n_ventanas": 300,
+      "eficientes": 15,
+      "eficacia": 0.05,
+      "limpieza": 0.996,
+      "buenos_limpios": 11,
+      "con_off_target": 69,
+      "con_21_perfecto": 0,
+      "vetada": false
+    },
+    "es_region_recomendada": false,
+    "por_que_no": "es el insumo de la medicion de O3 (PREREGISTRO §3). Desde D72 la compuerta rechaza una region ausente del inventario de M6 con alertas.RegionNoTamizada: para recomendarla hay que tamizarla primero"
+  },
+  "con_restriccion_de_borde": {
+    "regiones_posibles": 1086,
+    "no_vetadas": 1,
+    "mejores": [
+      {
+        "region": "517-816",
+        "puntaje": 11.0,
+        "eficientes": 15,
+        "con_off_target": 69,
+        "con_21_perfecto": 0,
+        "buenos_limpios": 11,
+        "eficacia": 0.05,
+        "limpieza": 0.931
+      }
+    ]
+  },
+  "sin_restriccion_de_borde": {
+    "regiones_posibles": 1184,
+    "no_vetadas": 1,
+    "mejores": [
+      {
+        "region": "517-816",
+        "puntaje": 11.0,
+        "eficientes": 15,
+        "con_off_target": 69,
+        "con_21_perfecto": 0,
+        "buenos_limpios": 11,
+        "eficacia": 0.05,
+        "limpieza": 0.931
+      }
+    ]
+  },
+  "la_restriccion_cambia_la_eleccion": false,
+  "veto_por_referencia_en_el_cds": {
+    "F_candida": {
+      "ventanas_perfecto_21": 0,
+      "ventanas_perfecto_ge19": 3,
+      "ventanas_mm1_21": 23,
+      "peso": 0.4
+    },
+    "A_mellifera": {
+      "ventanas_perfecto_21": 0,
+      "ventanas_perfecto_ge19": 0,
+      "ventanas_mm1_21": 3,
+      "peso": 0.8
+    },
+    "H_vitripennis": {
+      "ventanas_perfecto_21": 38,
+      "ventanas_perfecto_ge19": 82,
+      "ventanas_mm1_21": 187,
+      "peso": 0.6
+    },
+    "maiz": {
+      "ventanas_perfecto_21": 12,
+      "ventanas_perfecto_ge19": 22,
+      "ventanas_mm1_21": 41,
+      "peso": 1.0
+    },
+    "H_axyridis": {
+      "ventanas_perfecto_21": 0,
+      "ventanas_perfecto_ge19": 8,
+      "ventanas_mm1_21": 67,
+      "peso": 0.8
+    },
+    "humano": {
+      "ventanas_perfecto_21": 21,
+      "ventanas_perfecto_ge19": 59,
+      "ventanas_mm1_21": 106,
+      "peso": 1.0
+    }
+  },
+  "tamizados": [
+    "work\\O3\\offtarget\\offtarget_por_sirna.tsv",
+    "work\\O3\\offtarget_humano\\offtarget_por_sirna.tsv"
+  ],
+  "python": "3.13.15"
+}

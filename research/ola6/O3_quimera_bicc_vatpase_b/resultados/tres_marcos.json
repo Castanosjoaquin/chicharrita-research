@@ -213,28 +213,23 @@
     },
     {
       "gen": "VATPaseB_Dm",
-      "inicio": 242,
-      "fin": 541,
+      "inicio": 517,
+      "fin": 816,
       "largo": 300,
-      "nota": "candidata de O3, D72",
+      "nota": "region de O3, D74",
       "arranques_marco1": 300,
       "arranques_comparables": 280,
-      "marco1_contexto_todos": 13,
-      "marco2_contexto_comparables": 6,
-      "marco3_molecula": 5,
-      "limite_fisico": 7,
+      "marco1_contexto_todos": 15,
+      "marco2_contexto_comparables": 15,
+      "marco3_molecula": 14,
+      "limite_fisico": 0,
       "contexto_neto": 1,
-      "pierden": 3,
-      "ganan": 2,
+      "pierden": 1,
+      "ganan": 0,
       "posiciones_que_pierden": [
-        273,
-        274,
-        275
+        755
       ],
-      "posiciones_que_ganan": [
-        264,
-        265
-      ]
+      "posiciones_que_ganan": []
     }
   ]
 }

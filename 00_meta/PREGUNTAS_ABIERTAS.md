@@ -1818,33 +1818,47 @@ línea de diseño nueva. Este es el saldo.
     bloqueante (entrada 20).
 ### Ola 6, cierre de `O3` (2026-10-27)
 
-15. **Los dos aciertos con un desapareo en maíz que la auditoría de juntura no puede ubicar.**
-    En el orden `V-ATPase B` + `BicC_Dm` hay **2 ventanas de juntura con `mm1_21` en el
-    transcriptoma de *Zea mays*** `[M]`, y ninguna de las dos moléculas las hereda de sus
-    partes: son secuencia que fabrica el empalme. `02_juntura_detalle.py` localiza coincidencia
-    exacta de 19 a 21 nt, así que de esas dos tiene la cuenta y no el bloque ni el transcripto
-    `[?]`. No son veto —el veto es la coincidencia perfecta de 21 nt (`D48`) y el peso de
-    `mm1_21` es 0,30 contra 1,00— pero quedan declaradas. Ubicarlas pide extender la auditoría
-    al caso de un desapareo.
+15. **Dónde caen los aciertos con un desapareo de las ventanas de juntura.**
+    `02_juntura_detalle.py` localiza coincidencia exacta de 19 a 21 nt; de los aciertos con
+    un desapareo tiene la cuenta del tamizado y no el bloque ni el transcripto `[?]`.
+    Ubicarlos pide extender la auditoría al caso de un desapareo, que es la misma lógica
+    con un autómata por posición de error.
 16. **El ranking de regiones se sigue armando en el marco 1 y la cifra que se publica es la
-    del marco 3.** Esto **no es un hallazgo de `O3`**: los tres marcos, sus nombres y la regla
-    de que la cifra publicable es la de la molécula son `D63` y `research/ola5/N3_marcos/`, y
-    ahí están medidos en seis regiones. Lo que `O3` agrega es la séptima fila, con la misma
-    herramienta y con las seis anclas reproducidas en la misma corrida: `V-ATPase B` 242-541
-    da **13 / 6 / 5**, con 7 de límite físico y 1 de contexto neto `[M]`
-    (`research/ola6/O3_quimera_bicc_vatpaseb/resultados/tres_marcos.{tsv,json}`). Lo que queda
-    abierto es lo que `D63` dejó escrito y no se tocó: **un ranking armado en el marco 1 no es
-    el ranking de las moléculas**, y la región candidata de `V-ATPase B` se eligió en el marco
-    1 porque es el camino que eligió las regiones publicadas. Rehacer la elección en el marco
-    3 cambiaría el orden de las 1.184 candidatas y no se midió `[?]`. Es vecino del issue #20
-    (`R6`, el tercer marco y el empate declarado) y no se adelanta acá.
-17. **Si conviene testear las dos mitades por separado antes de la quimera.** Silenciando dos
-    genes a la vez, un bioensayo negativo no dice cuál mitad falló. Se suma un dato que vuelve
-    la pregunta concreta: la mitad de `V-ATPase B` aporta **5** ventanas eficientes contra 26
-    de `BicC_Dm` `[M]`, así que si el efecto de movilidad y mortalidad depende de esa mitad, la
-    molécula está apostando a la parte floja del diseño `[H]`. Es una pregunta para el
-    investigador, y la contesta un experimento, no una pasada más.
+    del marco 3.** Esto **no es un hallazgo de `O3`**: los tres marcos, sus nombres y la
+    regla de que la cifra publicable es la de la molécula son `D63` y
+    `research/ola5/N3_marcos/`. Lo que `O3` agrega es la séptima fila, con la misma
+    herramienta y con las seis anclas reproducidas en la misma corrida: `V-ATPase B`
+    517-816 da **15 / 15 / 14** `[M]`. Lo que queda abierto es lo que `D63` ya decía: **un
+    ranking armado en el marco 1 no es el ranking de las moléculas**, y rehacer la elección
+    en el marco 3 cambiaría el orden de las 1.184 candidatas y no se midió `[?]`. Vecino
+    del issue #20 y no se adelanta acá.
+17. **Si conviene testear las dos mitades por separado antes de la quimera.** Silenciando
+    dos genes a la vez, un bioensayo negativo no dice cuál mitad falló. Dos datos vuelven la
+    pregunta concreta: la mitad de `V-ATPase B` aporta 14 ventanas eficientes contra 26 de
+    `BicC_Dm`, y su región es **la única admisible del gen** `[M]`, así que si el efecto de
+    movilidad y mortalidad depende de esa mitad, la molécula apuesta a la parte más
+    restringida del diseño `[H]`. Es una pregunta para el investigador y la contesta un
+    experimento.
 18. **Si la región candidata de `V-ATPase B` entra al inventario de alertas.** Hoy no tiene
-    fila en las doce de `M6`, y por eso se llama candidata y no recomendada (`D72`). Depende
-    del tamizado que ordena `D70` (issue #30), que además tiene que cubrir las seis regiones de
-    22 nt: son siete regiones nuevas, no una.
+    fila en las de `M6`, y desde `D72` la compuerta la **rechaza** con
+    `alertas.RegionNoTamizada` en vez de dejarla pasar. Son siete regiones nuevas a tamizar
+    contando las seis de 22 nt, no una.
+19. **Las junturas no tienen lugar en el inventario de `M6`.** El generador tamiza
+    **regiones**, y una juntura no es una región de ningún gen: es secuencia que fabrica el
+    ensamblado. La fila de alerta de `O3` está escrita con el esquema de columnas de `M6`
+    para que se pueda pegar, pero nadie la pegó, y mientras no se integre una quimera puede
+    pasar la compuerta con su empalme sin tamizar `[?]`.
+20. **`ranking.py ranking` no termina desde `D72`.** La compuerta dispara dentro de
+    `cmd_ranking` y aborta con `RegionNoTamizada` porque la cascada elige para `BicC_Dm` la
+    región 2123-2422, que no está entre las 18 del inventario `[M]`. El mensaje de error
+    dice cómo arreglarlo —agregarla a `REGIONES` en `tabla_alertas.py` y correr el script—
+    pero hasta que alguien lo haga, el comando que regenera el ranking no corre. Es de la
+    línea del issue #30 y `O3` no lo tocó porque toca números publicados.
+21. **El panel de `work/sifi_check/` estaba incompleto y nadie lo había notado.** El
+    tamizado que vivía ahí se había corrido con cinco referencias más el genoma del vector,
+    **sin la humana**, y por eso dos de los cuatro `buenos_limpios` del nivel 3 de `C7` no
+    se reproducían. Regenerado con las seis, los cuatro dan exacto `[M]`. Queda la pregunta
+    de **qué otros números del repositorio se calcularon con el insumo incompleto**: `C6` y
+    `C7` tienen la humana en sus propias salidas, pero cualquier corrida posterior que haya
+    leído `work/sifi_check/offtarget_full/` sin regenerarlo arrastra el faltante `[?]`.
+    `work/` no se versiona, así que esto no se puede auditar desde git.

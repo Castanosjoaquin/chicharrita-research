@@ -1293,26 +1293,29 @@ descartamos **nosotros** al procesarla.
   contra *Homalodisca vitripennis* que la región vigente del mismo gen no tiene `[M]`. El
   issue aceptaba las dos salidas, pasar o quedar frenada con el motivo declarado, y la
   segunda es la que deja el hecho a la vista en vez de absorberlo.
-## Ola 6 (2026-10-27): elegir la región de `V-ATPase B` por la forma que da más eficientes
+## Ola 6 (2026-10-27): elegir la región de `V-ATPase B` mirando el conteo, y tamizar con cinco referencias
 
-- **Qué se intentó y se descartó.** Tomar **858-1157** como región de trabajo de
-  `V-ATPase B`, que es la que pone primera la forma `geometrica` del ranking y la que
-  cualquiera elegiría mirando el conteo: **25** ventanas eficientes contra 13 de la elegida,
-  casi el doble `[M]`. Las dos cifras son del marco 1, el del ranking (`D63`).
-- **Por qué se descartó.** Tiene **16 ventanas con coincidencia perfecta de 21 nt** en el
-  panel, o sea que está **vetada** por la cascada, que es la regla que el proyecto ya usaba
-  para las regiones publicadas `[M]`. El heurístico de densidad que trae `run_sifi.py`
-  (`--region 200`) cae en la misma zona —devuelve 1001-1200 con 22 eficientes— y por el mismo
-  motivo: **ordena por eficientes y no mira off-targets**.
+- **Qué se intentó y se descartó, dos veces.** Primero, elegir la región de `V-ATPase B` por
+  la forma del ranking que da más ventanas eficientes. Después, y peor, **medir todo con el
+  panel incompleto**: el tamizado de `work/offtarget_db/` tiene cinco referencias del panel
+  más el genoma del vector, y **la humana vive aparte**, en `work/W5/ref/humano_rna.fna.gz`,
+  que en esta máquina no estaba. Con cinco referencias la región elegida fue 242-541 y
+  parecía limpia.
+- **Por qué se descartó.** Con el panel de seis que exige el preregistro, **242-541 está
+  vetada**: pisa las ventanas 514, 515 y 516, que tienen coincidencia perfecta de 21 nt
+  `[M]`. Y el tablero entero cambia: de 1.184 regiones de 300 nt, con cinco referencias
+  sobrevivían 400 y con seis sobrevive **una**. La humana aporta sola 21 ventanas vetadas del
+  gen `[M]`. O sea que el error no movió un número al margen: cambió la respuesta.
 - **Lo que el descarte deja medido, y vale más que la región.** En este gen la eficacia y la
-  limpieza están enfrentadas, y se puede cuantificar: de las **1.184** regiones de 300 nt que
-  caben en el CDS, **784 están vetadas** `[M]`. La conservación que vuelve atractivo a un gen
-  esencial de un complejo como la V-ATPasa es la misma que le trae off-targets —12 ventanas con
-  21/21 en *Zea mays* y 38 en *Homalodisca vitripennis* en el gen entero—, mientras `BicC_Dm`
-  en su región vigente tiene cero en todo el panel `[M]`. Es el argumento más concreto que
-  tenemos de por qué el eje de riesgo no se lee después del de eficacia: elegido por conteo,
-  este gen entra vetado.
-- **Qué queda en pie.** La región **242-541**, no vetada, con sus 13 eficientes todas limpias,
-  como **candidata** y no como recomendada (`D72`). Y la discrepancia entre las dos formas
-  escrita en `research/ola6/O3_quimera_bicc_vatpaseb/resultados/region_vatpase_b.json`, que es
-  el lugar donde se puede auditar.
+  limpieza están enfrentadas y se puede cuantificar: 71 de las 1.483 ventanas del CDS tienen
+  21/21 en el panel, y dejan un único hueco de 300 ventanas —517-816—, que es exactamente el
+  largo pedido. A 301 nt no hay ninguna región admisible `[M]`. La conservación que vuelve
+  atractivo a un gen esencial de un complejo como la V-ATPasa es la misma que le trae
+  off-targets, mientras `BicC_Dm` en su región vigente tiene cero en todo el panel.
+- **La lección operativa, que no es sobre este gen.** Un tamizado sin su panel completo no
+  es un tamizado conservador: es un tamizado **optimista**, y falla en la dirección que no se
+  nota, porque todo sale más limpio. El único motivo por el que se detectó es que el
+  preregistro pedía un ancla contra números publicados, y dos de los cuatro
+  `buenos_limpios` del nivel 3 de `C7` no cerraban. **Antes de leer un tamizado hay que
+  contar las referencias que entraron**, y el script que elige la región ahora aborta si el
+  panel no tiene seis.

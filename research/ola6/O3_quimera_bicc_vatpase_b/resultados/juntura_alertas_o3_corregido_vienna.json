@@ -1,0 +1,47 @@
+[
+  {
+    "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+    "j": 1,
+    "pos_en_la_quimera": 281,
+    "ventana_eficiente": false,
+    "bloque_largo": 19,
+    "bloque_hash": "87c675c27301",
+    "nt_de_izquierda": 18,
+    "nt_de_derecha": 1,
+    "organismo_corto": "maiz",
+    "secuencias": [
+      "NM_001153025.1",
+      "XM_020544485.2"
+    ]
+  },
+  {
+    "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+    "j": 2,
+    "pos_en_la_quimera": 282,
+    "ventana_eficiente": false,
+    "bloque_largo": 19,
+    "bloque_hash": "87c675c27301",
+    "nt_de_izquierda": 18,
+    "nt_de_derecha": 1,
+    "organismo_corto": "maiz",
+    "secuencias": [
+      "NM_001153025.1",
+      "XM_020544485.2"
+    ]
+  },
+  {
+    "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+    "j": 3,
+    "pos_en_la_quimera": 283,
+    "ventana_eficiente": false,
+    "bloque_largo": 19,
+    "bloque_hash": "87c675c27301",
+    "nt_de_izquierda": 18,
+    "nt_de_derecha": 1,
+    "organismo_corto": "maiz",
+    "secuencias": [
+      "NM_001153025.1",
+      "XM_020544485.2"
+    ]
+  }
+]
