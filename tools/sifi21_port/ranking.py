@@ -1009,6 +1009,12 @@ def main(argv=None) -> int:
                         "estado_regiones.tsv al lado, que es el inventario de regiones "
                         "tamizadas que la compuerta exige desde D72; por "
                         "defecto %s" % TABLA_ALERTAS)
+    # `cmd_ranking` escribe `salida` en JSON si se le pasa `--json`, y el subparser nunca
+    # declaro la opcion: el comando corria entero, imprimia los tres niveles y los barridos
+    # y recien al final moria con AttributeError sobre `a.json`. Esta desde el commit de
+    # C1 (2026-10-20) y no tiene nada que ver con la compuerta de D72.
+    r.add_argument("--json", default=None,
+                   help="si se pasa, escribe el ranking completo en ese archivo")
     r.add_argument("--umbral-compuerta", dest="umbral_compuerta",
                    choices=("perfecto_21", "perfecto_ge19"), default=UMBRAL_COMPUERTA,
                    help="umbral de D28 con el que la compuerta exige decision; por "

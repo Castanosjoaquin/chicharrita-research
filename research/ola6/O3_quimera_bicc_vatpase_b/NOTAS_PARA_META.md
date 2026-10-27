@@ -1,8 +1,9 @@
 # Notas de la línea O3 (ola 6)
 
 Esta línea la corrió la sesión principal, así que `00_meta/` **sí** se actualizó
-directamente: `D74` en `DECISIONS.md`, siete entradas nuevas en `PREGUNTAS_ABIERTAS.md` (15
-a 21 de la ola 6), una en `CAMINOS_PROBADOS.md` y dos filas en `GLOSARIO.md` («región
+directamente: `D74` en `DECISIONS.md`, siete entradas nuevas en `PREGUNTAS_ABIERTAS.md` (se
+publicaron como 15 a 21 de la ola 6 y se renumeraron a **27 a 33**, porque esos números ya
+estaban usados), una en `CAMINOS_PROBADOS.md` y dos filas en `GLOSARIO.md` («región
 candidata» y «bloque fabricado por el empalme»). Este archivo queda con lo que es propio del
 bloque.
 
@@ -15,7 +16,7 @@ bloque.
 sin haber visto el preregistro, y esa primera medición **está descartada**: el criterio
 propio corría con cinco referencias y eligió una región que el panel completo veta. El
 descarte está documentado en `CAMINOS_PROBADOS.md` y la lección operativa, en
-`PREGUNTAS_ABIERTAS.md` 21. Donde este bloque se desvía del preregistro, lo dice.
+`PREGUNTAS_ABIERTAS.md` 33 (publicada como 21). Donde este bloque se desvía del preregistro, lo dice.
 
 ## Las anclas, y por qué la tercera es la que valió la pena
 
