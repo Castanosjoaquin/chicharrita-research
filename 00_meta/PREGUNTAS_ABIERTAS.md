@@ -2168,3 +2168,52 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     repartido 5/5 o mejor `[M]`. Un bloque de 19 nt con 18 de un gen y 1 del otro existe por
     azar en una de cada cuatro referencias que contengan al gen padre, así que el conteo de
     alertas no se lee sin el aporte al lado.
+
+### Ola 6, cierre de `R9` (`D83`, issue #33, 2026-10-27)
+
+50. **Se cierra la entrada 35, y se cierra dándola vuelta: las dos tandas de cifras nunca
+    compitieron por el mismo archivo.** La entrada 35 mide bien los dos lados y los lee como
+    una contradicción entre cifras publicadas; no lo son. Son dos mediciones distintas, cada
+    una con su panel declarado en su propio informe y **cada una con su propio directorio de
+    trabajo**. El nivel 3 de `C7` nunca salió de `work/sifi_check/`: sale de `work/sifi_v2/`,
+    con los comandos de `C7` §9, y ese directorio está completo en esta máquina. Regenerado
+    hoy entero reproduce `research/ola3/C7_ranking_v2/resultados/ranking_v2.json` **idéntico
+    valor por valor y con el mismo orden de claves** —`tools/verificacion/comparar_json.py`—
+    y sus cuatro `buenos_limpios` del nivel 3 dan 37, 20, 34 y 17 exactos, con `BicC_Dm` en
+    2121-2420 `[M]`. El panel de `work/sifi_check/offtarget_full/`, por su lado, tiene una
+    prueba más dura que la prosa: reconstruido con el comando de `sifi21_reproduccion.md` §4
+    reproduce **byte a byte** el `md5` que `tools/sifi21_port/README.md` publica desde el
+    commit `478f165`, `a3229e733e4dc70c308c901583b4e4c3` `[M]`. Lo que estaba mal era el
+    ancla C de `O3`, que pedía el nivel 3 de `C7` leyendo el directorio de otra línea; ahora
+    lee `work/sifi_v2/` y **sus cuatro números esperados no se tocaron**. Con el archivo
+    devuelto a su panel, `test_ranking.py` pasa 55 de 55 sin saltear ninguna, las tres anclas
+    de `O3` pasan y `ranking.py ranking` sale con 0 — las tres cosas **a la vez**, que hasta
+    hoy no había pasado `[M]`. Ninguna cifra publicada se movió.
+51. **Se contesta la pregunta general de la entrada 33, y la respuesta es corta.** Quiénes
+    leen `work/sifi_check/offtarget_full/`: las anclas de `test_ranking.py`, `ranking.py` por
+    su valor por defecto —y a través de él `research/ola2/W7_ranking/ranking.json`—,
+    `cruce.py`, `informe_html.py` y el ancla C de `O3`. Todos menos el último son de la
+    línea `W5`/`W7` y por lo tanto del panel correcto por construcción: la referencia humana
+    entra al proyecto recién en `C6`, que la puso en un directorio aparte
+    (`offtarget_panel_nuevo/`), y `C7` armó el suyo desde cero en `work/sifi_v2/`. El único
+    consumidor que leyó el directorio con la expectativa de otro panel era el ancla C, y es
+    el que se corrigió. O sea que **ninguna otra salida del repositorio arrastra el
+    faltante**, y la entrada 33 se cierra con eso `[M]`.
+52. **La otra salida publicada que lee ese directorio también se regeneró, y tampoco se
+    movió.** `research/ola2/W7_ranking/ranking.json` se rehízo de punta a punta con el
+    comando de `W7` §«Cómo reproducirlo» —2.000 muestras, el `offtarget_full/` ya devuelto a
+    su panel y los cuatro `work/sifi_check/offtarget_mm1_<gen>/`, que no estaban en esta
+    máquina y se reconstruyeron en esta corrida con el mismo panel de §4— y
+    `tools/verificacion/comparar_json.py` lo da **idéntico valor por valor y con el mismo
+    orden de claves** contra el publicado `[M]`. Con eso quedan verificados los dos únicos
+    archivos de resultados del repositorio que dependen de este insumo. Lo que **no** se
+    pudo comprobar es el respaldo: `work/O3/respaldo/`, el directorio donde `O3` dice haber
+    dejado los archivos de cinco referencias, **no existe** en esta máquina, así que
+    `offtarget_full/` no se restauró sino que se **reconstruyó** —que es más fuerte, porque
+    reproduce el `md5` publicado— pero significa que en otra máquina el respaldo puede estar
+    o no estar `[?]`.
+53. **Lo que sigue sin estar decidido, y no es de esta línea.** Si el panel de seis es el
+    panel **correcto** para decidir una molécula es la pregunta de `C6` y sigue abierta;
+    `D83` sólo dice cuál panel corresponde a cuál archivo. Y sigue abierto que la compuerta
+    no sabe si el panel con el que se la llama es el adecuado para esa corrida, que es el
+    límite que `D77` se puso a sí mismo.

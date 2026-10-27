@@ -42,6 +42,14 @@ falla en la dirección optimista, que es la que no se nota.
 Los archivos que se reemplazaron están respaldados en `work/O3/respaldo/`:
 `offtarget_full_cinco_refs/` y `offtarget_mm1_<gen>_cinco_refs/`, los cuatro.
 
+**Corregido por `D83` (issue #33).** El diagnóstico de arriba era al revés: el tamizado de
+`work/sifi_check/` no estaba incompleto, tenía el panel que `sifi21_reproduccion.md` §4
+publica por accesión, y el que leía el directorio equivocado era el ancla C. El nivel 3 de
+`C7` vive en `work/sifi_v2/`. El ancla C ahora lee ahí, con los mismos cuatro números
+esperados, y `work/sifi_check/offtarget_full/` volvió a su panel. El respaldo que esta nota
+menciona no existe en la máquina donde se corrigió: el archivo se reconstruyó con el comando
+de §4 y reproduce el `md5` publicado en `tools/sifi21_port/README.md` `[M]`.
+
 ## Qué código se tocó, y por qué en el bloque de otro
 
 Cuatro scripts de líneas anteriores recibieron banderas nuevas. **Ninguno cambió su

@@ -129,6 +129,37 @@ python cruce.py --gen BicC_Dm --region 264 563 \
 
 Dependencia extra: `pyahocorasick`.
 
+### Un directorio de trabajo por panel, y cuál es cuál (D83)
+
+Un tamizado no se identifica por el gen ni por *k*: se identifica por el **panel**. El
+mismo comando con una referencia de más da números distintos y plausibles, así que un
+directorio reconstruido con otro panel no se nota como «otro panel» sino como una cifra
+publicada que cambió sola. Por eso cada panel tiene su directorio, y acá está cuál es cuál.
+`work/` no se versiona, así que esta tabla es el único registro de qué tiene que haber en
+cada máquina.
+
+| Directorio | Panel | Quién lo publica | Lo leen |
+| --- | --- | --- | --- |
+| `work/sifi_check/offtarget_full/` | las cinco de RefSeq de `work/offtarget_db/` **más el genoma del vector**, sin humano | `research/ola2/W5_secuencias_epilab/sifi21_reproduccion.md` §4 | las anclas §2, §3 y §4 de `test_ranking.py`, `ranking.py ranking`, `cruce.py`, `informe_html.py` |
+| `work/sifi_check/offtarget_panel_nuevo/`, `offtarget_22nt/` | *Macrosteles* y humano, aparte | `research/ola3/C6_panel_y_largo/REPORT.md` §9 | `panel_y_k.py` |
+| `work/sifi_v2/offtarget_k21/` + `offtarget_dm_k21/` | las cinco **más humano**, con el vector en el segundo archivo | `research/ola3/C7_ranking_v2/REPORT.md` §2 y §9 | `ranking_v2.py`, el ancla C de `research/ola6/O3_quimera_bicc_vatpase_b/scripts/00_anclas.py` |
+
+El de `sifi_check` se reconstruye **con este comando y no otro**, que es el de `§4` y el
+que reproduce el `md5` de más abajo; el `*_full.fasta` del glob son los cuatro genes de
+EPILAB y nada más, y va **sin** `--mm1` (el de un desajuste vive en
+`work/sifi_check/offtarget_mm1_<gen>/`):
+
+```bash
+python tools/sifi21_port/offtarget_21nt.py \
+    --consulta work/sifi_check/MP_MRFV_full.fasta work/sifi_check/CP_MRFV_full.fasta \
+               work/sifi_check/BicC_Dm_full.fasta work/sifi_check/ATPaseD_Dm_full.fasta \
+    --db work/offtarget_db/*.fna.gz --salida work/sifi_check/offtarget_full
+```
+
+Y el de `sifi_v2`, con los comandos de `C7` §9. `test_ranking.py` comprueba el panel del
+primero contra la lista de accesiones de `§4` **antes** de leer ninguna ancla, y si no
+coincide dice qué referencia sobra o falta en vez de dejar que el número cambie solo.
+
 > **El tamaño de ventana está parametrizado y la equivalencia en 21 está
 > verificada.** `--size` cambia *k* y `--min-block` el bloque; con los valores por
 > defecto la salida es **idéntica byte a byte** a la de antes de parametrizar
