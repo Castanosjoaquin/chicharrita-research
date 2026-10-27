@@ -1685,3 +1685,30 @@ línea de diseño nueva. Este es el saldo.
    regenerarlo borraría esa cabecera, que puede ser deliberada. Hay que decidir cuál de los dos
    manda antes de tocarlo `[?]`. Los otros tres pares `.md`/`.html` de `entregables/` sí
    reproducen desde el conversor, verificado.
+
+### Ola 6, cierre de `O2` (2026-10-27)
+
+9. **Se cierra la entrada 5 de esta seccion, y de la entrada 1 de la ola 5 la parte de la
+   secuencia.** La subunidad B esta recuperada por homologia local: los tres transcriptomas
+   publicos **si la contienen** —dos de ellos entera, al 100 % de identidad sobre las 500
+   posiciones— y el genoma `ihDalMaid1.1` tiene su locus en el cromosoma 2 con el CDS verificado
+   `[M]`. Ver `D69` y `research/ola6/O2_vatpase_b/REPORT.md`. El zip del investigador sigue
+   valiendo, pero como **verificacion** del CDS y no como condicion para arrancar `O3`.
+10. **La entrada 6 de esta seccion vale para una maquina y no para la otra, y eso hay que decirlo
+    al asignar.** En la maquina de Luca hay `miniprot` 0.18-r281 compilado en WSL
+    (`~/yhat/tools/miniprot/`), el ensamblado `ihDalMaid1.1` con su indice `genome.mpi` ya
+    construido y los transcriptomas RefSeq de dos cicadelidos parientes en `~/yhat/data/` `[M]`.
+    Lo que sigue faltando en las dos es **ViennaRNA y BLAST+**, que es lo que todavia frena `O3`
+    y `F1`. La regla de no confundir «no pude buscar» con «no esta» necesita, para aplicarse, que
+    cada entrada de entorno diga **en que maquina** se verifico.
+11. **Las tres posiciones en que difieren los dos CDS de `V-ATPase B`.** El CDS del genoma y el
+    del transcriptoma de Pergamino coinciden en 1.500 de 1.503 nucleotidos y codifican la misma
+    proteina; las tres diferencias estan en las posiciones 615, 678 y 1254 del CDS y son
+    sinonimas `[M]`. No se puede distinguir en esta pasada variacion entre poblaciones de un
+    error de ensamblado en cualquiera de los dos `[?]`. Para la proteina da lo mismo, pero **una
+    ventana de 21 nt que caiga sobre una de las tres tiene veredicto dependiente de cual CDS se
+    use**, y al disenar sobre este gen hay que mirarlo.
+12. **Cuantas copias del gen tiene el genoma.** La vuelta del reciproco devuelve, en los dos
+    parientes, pares de transcriptos de la **misma** subunidad para A y D, y `GITV01` devuelve
+    dos contigs con la proteina completa de B. Parece redundancia de ensamblado, pero el numero
+    de copias no se midio y con una pasada de alineamiento no se decide `[?]`.

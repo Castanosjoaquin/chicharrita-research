@@ -518,3 +518,21 @@ cada carpeta de `research/ola3/`. Acá van las que cambian lo que el proyecto pu
   final (280 ventanas en 300 nt), propone un tercer marco de accesibilidad, separa las dos
   preguntas de las quimeras y mantiene los dos modelos de la regla terminal como hipótesis. Todo
   lo que se cite de ella va `[R]`; lo que reprodujimos nosotros va `[M]` y dice con qué script.
+- **Accesiones publicas usadas en `O2` (consultadas el 2026-10-27, todas abiertas en su registro
+  del NCBI o de UniProt, ninguna reconstruida de memoria).** Proteinas: `AGJ51963.1` «V-ATPase B
+  subunit [*Peregrinus maidis*]», 500 aa, registro de 2013 —es la subunidad B del `DE-01` del
+  catalogo de `C5`—; `XP_054288745.1`, `XP_054260731.1` y `XP_054264527.1`, subunidades B, A y D
+  de *Macrosteles quadrilineatus* (RefSeq); y `P31409` (`VATB_DROME`, `Vha55`) de Swiss-Prot,
+  490 aa, que es una de las siete proteinas de control de `pipeline/`. Secuencias codificantes de
+  referencia: `XM_054432770.1` (CDS 40..1542, `protein_id` `XP_054288745.1`) y `XM_046812795.1`
+  (CDS 61..1563) `[E]` para la secuencia publicada. Transcriptomas: los tres TSA de *Dalbulus
+  maidis* bajados del FTP del GenBank (`https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/`,
+  `tsa.{GCWP,GHCC,GITV}.1.fsa_nt.gz`), 25.662 + 55.286 + 56.117 = **137.065** contigs, el mismo
+  total que declara `C11`; sumas SHA-256 en `research/ola6/O2_vatpase_b/resultados/tsa_sha256.txt`.
+  El detalle, con URL y el por que de cada una, esta en `research/ola6/O2_vatpase_b/fuentes.json`.
+- **Jones, Bernal y Medina 2021** y **Yao, Rotenberg, Afsharifar, Barandoc-Alviar y Whitfield
+  2013, PLoS ONE 8(8):e70243** — **no abiertas en la ola 6**. El fenotipo de `DM-02` y el
+  bioensayo de `DE-01` se citan en `O2` por el catalogo de `C5`, que registra la primera como
+  leida completa en la ola 2 y la segunda como leida completa en `C5`; de la segunda, lo que `O2`
+  abrio es el registro de la accesion `AGJ51963.1`, no el articulo. Todo fenotipo que `O2` cite
+  va `[R]` y nombra al catalogo como intermediario.

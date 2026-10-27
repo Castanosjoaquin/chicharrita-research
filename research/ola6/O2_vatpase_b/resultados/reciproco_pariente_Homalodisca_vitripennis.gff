@@ -1,0 +1,17 @@
+##gff-version 3
+##PAF	VATPaseB_Dm_OZ319705.1_38943269_38957327_prot	500	0	500	+	XM_046812795.1	2142	60	1560	1491	1500	0	AS:i:2558	ms:i:2558	np:i:498	fs:i:0	st:i:0	da:i:0	do:i:0	cg:Z:500M	cs:Z::3*aagQ:14*gtaA:464*actA:16
+XM_046812795.1	miniprot	mRNA	61	1563	2558	+	.	ID=MP000001;Rank=1;Identity=0.9940;Positive=0.9960;Target=VATPaseB_Dm_OZ319705.1_38943269_38957327_prot 1 500
+XM_046812795.1	miniprot	CDS	61	1563	2558	+	0	Parent=MP000001;Rank=1;Identity=0.9940;Target=VATPaseB_Dm_OZ319705.1_38943269_38957327_prot 1 500
+XM_046812795.1	miniprot	stop_codon	1561	1563	0	+	0	Parent=MP000001;Rank=1
+##PAF	VATPaseA_Dm_OZ319711.1_47265953_47286132_prot	614	0	614	+	XM_046807894.1	3042	160	2002	1791	1842	0	AS:i:3076	ms:i:3076	np:i:604	fs:i:0	st:i:0	da:i:-1	do:i:0	cg:Z:614M	cs:Z:*aagM*atgS*cctN:1*cagK:5*gacE*aagR:99*cacQ:17*actQ:3*aacA:5*actI:37*tccP:4*actK:4*gttM:11*tatF:69*attV:299*ggcS:2*aacS:41
+XM_046807894.1	miniprot	mRNA	161	2005	3076	+	.	ID=MP000002;Rank=1;Identity=0.9723;Positive=0.9837;Target=VATPaseA_Dm_OZ319711.1_47265953_47286132_prot 1 614
+XM_046807894.1	miniprot	CDS	161	2005	3076	+	0	Parent=MP000002;Rank=1;Identity=0.9723;Target=VATPaseA_Dm_OZ319711.1_47265953_47286132_prot 1 614
+XM_046807894.1	miniprot	stop_codon	2003	2005	0	+	0	Parent=MP000002;Rank=1
+##PAF	VATPaseA_Dm_OZ319711.1_47265953_47286132_prot	614	0	614	+	XM_046807892.1	3055	173	2015	1791	1842	0	AS:i:3076	ms:i:3076	np:i:604	fs:i:0	st:i:0	da:i:-1	do:i:0	cg:Z:614M	cs:Z:*aagM*atgS*cctN:1*cagK:5*gacE*aagR:99*cacQ:17*actQ:3*aacA:5*actI:37*tccP:4*actK:4*gttM:11*tatF:69*attV:299*ggcS:2*aacS:41
+XM_046807892.1	miniprot	mRNA	174	2018	3076	+	.	ID=MP000003;Rank=2;Identity=0.9723;Positive=0.9837;Target=VATPaseA_Dm_OZ319711.1_47265953_47286132_prot 1 614
+XM_046807892.1	miniprot	CDS	174	2018	3076	+	0	Parent=MP000003;Rank=2;Identity=0.9723;Target=VATPaseA_Dm_OZ319711.1_47265953_47286132_prot 1 614
+XM_046807892.1	miniprot	stop_codon	2016	2018	0	+	0	Parent=MP000003;Rank=2
+##PAF	VATPaseD_Dm_OZ319711.1_30145193_30154045_prot	245	0	245	+	XM_046807969.1	1659	116	848	696	735	0	AS:i:1115	ms:i:1115	np:i:235	fs:i:0	st:i:0	da:i:0	do:i:0	cg:Z:232M1I12M	cs:Z::4*gacE:15*ggtS:142*atcT:57*cttI*ctcN:2*gagA*ggtN*aaaL*gatA*tcaM*tacE*aacS+A:12
+XM_046807969.1	miniprot	mRNA	117	851	1115	+	.	ID=MP000004;Rank=1;Identity=0.9469;Positive=0.9592;Target=VATPaseD_Dm_OZ319711.1_30145193_30154045_prot 1 245
+XM_046807969.1	miniprot	CDS	117	851	1115	+	0	Parent=MP000004;Rank=1;Identity=0.9469;Target=VATPaseD_Dm_OZ319711.1_30145193_30154045_prot 1 245
+XM_046807969.1	miniprot	stop_codon	849	851	0	+	0	Parent=MP000004;Rank=1

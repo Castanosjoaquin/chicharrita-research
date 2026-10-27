@@ -1,0 +1,24 @@
+##gff-version 3
+##PAF	AGJ51963.1	500	0	500	+	GHCC01013224.1	2118	29	1529	1449	1500	0	AS:i:2487	ms:i:2487	np:i:490	fs:i:0	st:i:0	da:i:0	do:i:0	cg:Z:500M	cs:Z::1*tcgA:1*cagP:1*ggaT*attL:2*aaaA:2*cttS:22*tcaC:4*cccS:18*cgcK:5*atcV:10*tccT:2*gttI:128*cacS:160*cacQ:7*atcV:105*gccT:14*cctN:1
+GHCC01013224.1	miniprot	mRNA	30	1532	2487	+	.	ID=MP000001;Rank=1;Identity=0.9660;Positive=0.9800;Target=AGJ51963.1 1 500
+GHCC01013224.1	miniprot	CDS	30	1532	2487	+	0	Parent=MP000001;Rank=1;Identity=0.9660;Target=AGJ51963.1 1 500
+GHCC01013224.1	miniprot	stop_codon	1530	1532	0	+	0	Parent=MP000001;Rank=1
+##PAF	XP_054288745.1	500	0	500	+	GHCC01013224.1	2118	29	1529	1500	1500	0	AS:i:2570	ms:i:2570	np:i:500	fs:i:0	st:i:0	da:i:0	do:i:0	cg:Z:500M	cs:Z::500
+GHCC01013224.1	miniprot	mRNA	30	1532	2570	+	.	ID=MP000002;Rank=1;Identity=1.0000;Positive=1.0000;Target=XP_054288745.1 1 500
+GHCC01013224.1	miniprot	CDS	30	1532	2570	+	0	Parent=MP000002;Rank=1;Identity=1.0000;Target=XP_054288745.1 1 500
+GHCC01013224.1	miniprot	stop_codon	1530	1532	0	+	0	Parent=MP000002;Rank=1
+##PAF	XP_054260731.1	614	0	614	+	GHCC01051025.1	2841	45	1888	1827	1843	0	AS:i:3118	ms:i:3118	np:i:613	fs:i:1	st:i:0	da:i:0	do:i:0	cg:Z:4M1F610M	cs:Z::4-a:1*aaaR:5*agaK:117*caaS:9*attV:424*tctA:49
+GHCC01051025.1	miniprot	mRNA	46	1891	3118	+	.	ID=MP000003;Rank=1;Identity=0.9913;Positive=0.9978;Frameshift=1;Target=XP_054260731.1 1 614
+GHCC01051025.1	miniprot	CDS	46	1891	3118	+	0	Parent=MP000003;Rank=1;Identity=0.9913;Frameshift=1;Target=XP_054260731.1 1 614
+GHCC01051025.1	miniprot	stop_codon	1889	1891	0	+	0	Parent=MP000003;Rank=1
+##PAF	XP_054264527.1	245	0	245	+	GHCC01051703.1	1966	87	822	708	735	0	AS:i:1151	ms:i:1151	np:i:240	fs:i:0	st:i:0	da:i:0	do:i:0	cg:Z:245M	cs:Z::4*gaaD:43*agtG:110*gaaD:3*accI:49*ggcV:4*caaL:2*atcT:7*atgL:1*tcgA:13
+GHCC01051703.1	miniprot	mRNA	88	825	1151	+	.	ID=MP000004;Rank=1;Identity=0.9633;Positive=0.9796;Target=XP_054264527.1 1 245
+GHCC01051703.1	miniprot	CDS	88	825	1151	+	0	Parent=MP000004;Rank=1;Identity=0.9633;Target=XP_054264527.1 1 245
+GHCC01051703.1	miniprot	stop_codon	823	825	0	+	0	Parent=MP000004;Rank=1
+##PAF	sp|P31409|VATB_DROME	490	0	490	+	GHCC01013224.1	2118	47	1517	1437	1470	0	AS:i:2472	ms:i:2472	np:i:486	fs:i:0	st:i:0	da:i:18	do:i:12	cg:Z:490M	cs:Z:*attM*ggtN:1*aaaQ:2*cttQ*aaaR:51*atcV:68*tacF:74*gagT:167*atcV:105*gccS*acaI:11
+GHCC01013224.1	miniprot	mRNA	48	1517	2472	+	.	ID=MP000005;Rank=1;Identity=0.9776;Positive=0.9918;Target=sp|P31409|VATB_DROME 1 490
+GHCC01013224.1	miniprot	CDS	48	1517	2472	+	0	Parent=MP000005;Rank=1;Identity=0.9776;Target=sp|P31409|VATB_DROME 1 490
+##PAF	VATPaseB_Dm_OZ319705.1_38943269_38957327_prot	500	0	500	+	GHCC01013224.1	2118	29	1529	1500	1500	0	AS:i:2570	ms:i:2570	np:i:500	fs:i:0	st:i:0	da:i:0	do:i:0	cg:Z:500M	cs:Z::500
+GHCC01013224.1	miniprot	mRNA	30	1532	2570	+	.	ID=MP000006;Rank=1;Identity=1.0000;Positive=1.0000;Target=VATPaseB_Dm_OZ319705.1_38943269_38957327_prot 1 500
+GHCC01013224.1	miniprot	CDS	30	1532	2570	+	0	Parent=MP000006;Rank=1;Identity=1.0000;Target=VATPaseB_Dm_OZ319705.1_38943269_38957327_prot 1 500
+GHCC01013224.1	miniprot	stop_codon	1530	1532	0	+	0	Parent=MP000006;Rank=1

@@ -1,0 +1,15 @@
+{
+  "contig_tsa": "GHCC01013224.1",
+  "tramo_tsa": "30-1532(+)",
+  "largo_cds_tsa_nt": 1503,
+  "largo_cds_genoma_nt": 1503,
+  "proteina_tsa_aa": 500,
+  "proteina_igual_a_la_del_genoma": true,
+  "nt_distintos": 3,
+  "identidad_nt_pct": 99.8,
+  "posiciones_distintas_1based": [
+    615,
+    678,
+    1254
+  ]
+}

@@ -1,0 +1,9 @@
+[M::mp_ntseq_read@0.132*1.03] read 28305469 bases in 25662 contigs
+[M::mp_idx_build@0.133*1.02] 246052 blocks
+[M::mp_idx_build@0.322*5.01] collected syncmers
+[M::mp_idx_build@0.797*2.63] 11201647 kmer-block pairs
+[M::mp_idx_print_stat] 1417403 distinct k-mers; mean occ of infrequent k-mers: 7.90; 0 frequent k-mers accounting for 0 occurrences
+[M::worker_pipeline::0.844*2.51] mapped 6 sequences
+[M::main] Version: 0.18-r281
+[M::main] CMD: /home/lucafassio/yhat/tools/miniprot/miniprot -t 8 --gff --outn=5 --outs=0.5 /tmp/tmp.hNJK7dbW4o/ref.fna /tmp/tmp.hNJK7dbW4o/q.faa
+[M::main] Real time: 0.853 sec; CPU: 2.120 sec; Peak RSS: 0.222 GB

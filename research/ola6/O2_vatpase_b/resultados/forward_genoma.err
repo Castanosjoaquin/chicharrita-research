@@ -1,0 +1,18 @@
+[M::mp_idx_restore@2.750*0.94] loaded the index
+[M::mp_idx_print_stat] 2333711 distinct k-mers; mean occ of infrequent k-mers: 138.28; 156 frequent k-mers accounting for 5564637 occurrences
+[M::worker_pipeline::2.801*0.96] mapped 5 sequences
+[M::main] Version: 0.18-r281
+[M::main] CMD: /home/lucafassio/yhat/tools/miniprot/miniprot -t 8 --gff --outn=5 --outs=0.5 /home/lucafassio/yhat/data/genome.mpi /mnt/c/Proyectos/yHat/.claude/worktrees/o2-vatpase-b-f47717/research/ola6/O2_vatpase_b/consultas/consultas_vatpase.faa
+[M::main] Real time: 2.812 sec; CPU: 2.689 sec; Peak RSS: 1.765 GB
+[M::mp_idx_restore@0.476*0.98] loaded the index
+[M::mp_idx_print_stat] 2333711 distinct k-mers; mean occ of infrequent k-mers: 138.28; 156 frequent k-mers accounting for 5564637 occurrences
+[M::worker_pipeline::0.525*1.04] mapped 5 sequences
+[M::main] Version: 0.18-r281
+[M::main] CMD: /home/lucafassio/yhat/tools/miniprot/miniprot -t 8 --aln --outn=5 --outs=0.5 /home/lucafassio/yhat/data/genome.mpi /mnt/c/Proyectos/yHat/.claude/worktrees/o2-vatpase-b-f47717/research/ola6/O2_vatpase_b/consultas/consultas_vatpase.faa
+[M::main] Real time: 0.536 sec; CPU: 0.553 sec; Peak RSS: 1.762 GB
+[M::mp_idx_restore@0.482*0.99] loaded the index
+[M::mp_idx_print_stat] 2333711 distinct k-mers; mean occ of infrequent k-mers: 138.28; 156 frequent k-mers accounting for 5564637 occurrences
+[M::worker_pipeline::0.543*1.03] mapped 5 sequences
+[M::main] Version: 0.18-r281
+[M::main] CMD: /home/lucafassio/yhat/tools/miniprot/miniprot -t 8 --trans --outn=5 --outs=0.5 /home/lucafassio/yhat/data/genome.mpi /mnt/c/Proyectos/yHat/.claude/worktrees/o2-vatpase-b-f47717/research/ola6/O2_vatpase_b/consultas/consultas_vatpase.faa
+[M::main] Real time: 0.560 sec; CPU: 0.566 sec; Peak RSS: 1.765 GB
