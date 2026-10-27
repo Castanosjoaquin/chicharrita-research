@@ -323,7 +323,7 @@ def correr_k(trabajo: Path, k: int, muestras: int, semilla: int, completo: bool,
            "pesos_base_criterio": wc,
            "regiones": {c["gen"]: "%d-%d" % c["region"] for c in cands},
            "regiones_recomendadas": {c["gen"]: "%d-%d" % c["region"] for c in cands_rec},
-           # D74: el estado de alertas de cada region recomendada, al lado de la region.
+           # D75: el estado de alertas de cada region recomendada, al lado de la region.
            # Una region firmada `bloqueante` pasa la compuerta (D69) y aparece aca igual;
            # lo que no puede pasar es que aparezca sin decir que esta bloqueada. El caso
            # medido es `eth_Dm` 193-392 a k=22 (D73).

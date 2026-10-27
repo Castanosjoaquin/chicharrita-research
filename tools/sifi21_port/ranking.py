@@ -725,7 +725,7 @@ def inventario_de(tabla: Path | None = None) -> set:
 
 
 class Region(tuple):
-    """La region recomendada **y el estado de sus alertas**, que viajan juntos (D74).
+    """La region recomendada **y el estado de sus alertas**, que viajan juntos (D75).
 
     Es una tupla `(ini, fin)` de dos elementos, asi que todo lo que ya desempaquetaba o
     comparaba el resultado de `region_recomendada()` sigue funcionando igual. Lo que
@@ -782,7 +782,7 @@ def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
                              umbral if umbral is not None else UMBRAL_COMPUERTA,
                              inventario=inventario_de(tabla))
     ini, fin = (int(x) for x in region.split("-"))
-    # El estado viaja con la region (D74). Una region bloqueante sale igual, porque
+    # El estado viaja con la region (D75). Una region bloqueante sale igual, porque
     # bloquear es decidir (D69), pero el que la recibe no puede no verlo.
     return Region(ini, fin, est["estado"],
                   "bloqueante" if est["bloqueantes"] else "")

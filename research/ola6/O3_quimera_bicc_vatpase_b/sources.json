@@ -1,0 +1,103 @@
+{
+  "nota": "O3 no abrio literatura nueva. La unica fuente externa que se cita es el fenotipo de V-ATPase B por entrega oral en Dalbulus maidis, que ya estaba registrada como leida en texto completo por la ola 2 y se cita desde ahi, con su marcador [R] y su condicion de preprint. Todo lo demas de este bloque es interno al repositorio o medido por nosotros.",
+  "externas_citadas_desde_el_registro": [
+    {
+      "id_en_FUENTES": "S18",
+      "id_en_W6": "PRB-04",
+      "titulo": "Assessing the Functionality of RNA Interference (RNAi) in the Phloem-feeding Maize pest Dalbulus maidis",
+      "autores": "Jones TL, Bernal JS, Medina RF",
+      "anio": 2021,
+      "venue": "bioRxiv 2021.09.29.462424 (preprint)",
+      "doi": "10.1101/2021.09.29.462424",
+      "tipo": "preprint sin revision por pares",
+      "registro": [
+        "00_meta/FUENTES.md, fila S18 y la correccion del 2026-10-22 que la declara abierta completa",
+        "research/ola2/W6_agentes_ciencia/sources.json, entrada PRB-04"
+      ],
+      "uso_en_O3": "Es la evidencia de fenotipo que justifica elegir V-ATPase B como la mitad de la quimera que aporta movilidad y mortalidad: entrega oral en dieta artificial, expresion reducida, mortalidad mayor y deformacion de alas. No sostiene ninguna afirmacion sobre la secuencia que usamos ni sobre la eficacia de la region elegida.",
+      "estado_en_O3": "no reabierta en esta linea; citada desde el registro",
+      "marcador": "R"
+    }
+  ],
+  "internas": [
+    {
+      "bloque": "research/ola6/O2_vatpase_b",
+      "aporta": "el CDS de V-ATPase B, su locus y las tres posiciones en que difieren los dos CDS independientes"
+    },
+    {
+      "bloque": "research/ola3/C13_quimeras_region_recomendada",
+      "aporta": "el evaluador de quimeras que O3 generalizo, el ancla contra C4, la banda de contexto asimetrica y la economia del tamizado de juntura"
+    },
+    {
+      "bloque": "research/ola3/C4_offtargets_quimeras_largo",
+      "aporta": "la tabla de las doce quimeras contra la que se verifica el evaluador, fila por fila y en los dos modos"
+    },
+    {
+      "bloque": "research/ola5/N3_marcos",
+      "aporta": "los tres marcos de conteo (D63) y la herramienta que O3 generalizo con --gen para medir la region nueva"
+    },
+    {
+      "bloque": "research/ola5/N4_quimeras",
+      "aporta": "la contabilidad de la juntura y el limite de medir coincidencia exacta de 21 nt"
+    },
+    {
+      "bloque": "research/ola3/C7_ranking_v2",
+      "aporta": "el marco y la forma con los que se eligieron las regiones publicadas"
+    },
+    {
+      "bloque": "research/ola4/M6_alertas",
+      "aporta": "el inventario de doce regiones del que esta region candidata NO forma parte"
+    },
+    {
+      "bloque": "tools/sifi21_port",
+      "aporta": "el motor de eficiencia, el tamizado de off-target y el ranking, usados sin modificar"
+    },
+    {
+      "bloque": "research/ola3/C6_panel_y_largo",
+      "aporta": "la URL y la procedencia de la referencia humana del panel"
+    }
+  ],
+  "referencias_de_secuencia": [
+    {
+      "archivo": "work/offtarget_db/GCA_975739785.1_ihDalMaid1.1_genomic.fna.gz",
+      "especie": "Dalbulus maidis",
+      "rol": "genoma del vector; on-target de los dos genes de la quimera"
+    },
+    {
+      "archivo": "work/offtarget_db/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna.fna.gz",
+      "especie": "Zea mays",
+      "rol": "el cultivo que se protege"
+    },
+    {
+      "archivo": "work/offtarget_db/GCF_914767665.1_icHarAxyr1.1_rna.fna.gz",
+      "especie": "Harmonia axyridis",
+      "rol": "enemigo natural"
+    },
+    {
+      "archivo": "work/offtarget_db/GCF_003254395.2_Amel_HAv3.1_rna.fna.gz",
+      "especie": "Apis mellifera",
+      "rol": "polinizador"
+    },
+    {
+      "archivo": "work/offtarget_db/GCF_021130785.1_UT_GWSS_2.1_rna.fna.gz",
+      "especie": "Homalodisca vitripennis",
+      "rol": "cicadelido no objetivo"
+    },
+    {
+      "archivo": "work/offtarget_db/GCF_002217175.1_ASM221717v1_rna.fna.gz",
+      "especie": "Folsomia candida",
+      "rol": "fauna del suelo"
+    },
+    {
+      "archivo": "work/W5/ref/humano_rna.fna.gz",
+      "especie": "Homo sapiens",
+      "rol": "no objetivo de maxima consecuencia; lo nombro el investigador. Peso 1,00",
+      "accesion": "GCF_000001405.40_GRCh38.p14_rna",
+      "origen": "FTP publico del NCBI, la misma URL que registra research/ola3/C6_panel_y_largo/REPORT.md",
+      "bajada": "2026-10-27 por esta linea; 135.516.534 bytes, 186.185 transcriptos",
+      "sha256": "e214c2e0a00a5e8726487b611fc5afb166ca776b11106f1211ee7d14c095d9e2",
+      "nota": "No esta en work/offtarget_db/ y hay que nombrarla aparte. El nombre del archivo importa: el identificador del panel es `humano_rna` y offtarget_21nt.py toma el nombre de la base del nombre del archivo."
+    }
+  ],
+  "confidencialidad": "Ninguna secuencia salio de la maquina: las seis referencias se leen de disco y todo el alineamiento y el plegado corrieron en local. Ninguna salida de este bloque escribe bases: BicC_Dm es una de las cuatro secuencias de EPILAB y las ventanas y los bloques de la auditoria de juntura van por hash corto. tools/verificacion/sin_secuencias.py queda en la linea base de seis hallazgos no exceptuados, ninguno de este bloque. La referencia humana se bajo del FTP publico del NCBI, que es trafico entrante: no se subio nada. El tamizado de work/sifi_check/ se regenero con las seis referencias y los archivos de cinco quedaron respaldados en work/O3/respaldo/."
+}

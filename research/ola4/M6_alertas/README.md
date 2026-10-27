@@ -8,7 +8,7 @@ Implementa **D48**. Entregables:
   vive la firma, por qué la compuerta se llama desde el port y con qué umbral, y el
   tamizado de las seis regiones de 22 nt con la exigencia de presencia (D72), la firma de
   `eth_Dm` 193-392 (D73) y la región diecinueve que la compuerta encontró al regenerar la
-  corrida de 22 nt (D74).
+  corrida de 22 nt (D75).
 - [`NOTAS_PARA_META.md`](NOTAS_PARA_META.md) — separado por destino.
 - `resultados/alertas.tsv` — una fila por coincidencia (región × organismo × gen) con los
   cuatro campos obligatorios; el mismo contenido partido en `resultados/alertas_por_region/`.

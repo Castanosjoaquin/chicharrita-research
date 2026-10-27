@@ -1817,12 +1817,58 @@ línea de diseño nueva. Este es el saldo.
     ADR, sobre todo porque la corrida que se regeneraría ahora incluye una región firmada
     bloqueante (entrada 20).
 
+### Ola 6, cierre de `O3` (2026-10-27)
+
+15. **Dónde caen los aciertos con un desapareo de las ventanas de juntura.**
+    `02_juntura_detalle.py` localiza coincidencia exacta de 19 a 21 nt; de los aciertos con
+    un desapareo tiene la cuenta del tamizado y no el bloque ni el transcripto `[?]`.
+    Ubicarlos pide extender la auditoría al caso de un desapareo, que es la misma lógica
+    con un autómata por posición de error.
+16. **El ranking de regiones se sigue armando en el marco 1 y la cifra que se publica es la
+    del marco 3.** Esto **no es un hallazgo de `O3`**: los tres marcos, sus nombres y la
+    regla de que la cifra publicable es la de la molécula son `D63` y
+    `research/ola5/N3_marcos/`. Lo que `O3` agrega es la séptima fila, con la misma
+    herramienta y con las seis anclas reproducidas en la misma corrida: `V-ATPase B`
+    517-816 da **15 / 15 / 14** `[M]`. Lo que queda abierto es lo que `D63` ya decía: **un
+    ranking armado en el marco 1 no es el ranking de las moléculas**, y rehacer la elección
+    en el marco 3 cambiaría el orden de las 1.184 candidatas y no se midió `[?]`. Vecino
+    del issue #20 y no se adelanta acá.
+17. **Si conviene testear las dos mitades por separado antes de la quimera.** Silenciando
+    dos genes a la vez, un bioensayo negativo no dice cuál mitad falló. Dos datos vuelven la
+    pregunta concreta: la mitad de `V-ATPase B` aporta 14 ventanas eficientes contra 26 de
+    `BicC_Dm`, y su región es **la única admisible del gen** `[M]`, así que si el efecto de
+    movilidad y mortalidad depende de esa mitad, la molécula apuesta a la parte más
+    restringida del diseño `[H]`. Es una pregunta para el investigador y la contesta un
+    experimento.
+18. **Si la región candidata de `V-ATPase B` entra al inventario de alertas.** Hoy no tiene
+    fila en las de `M6`, y desde `D72` la compuerta la **rechaza** con
+    `alertas.RegionNoTamizada` en vez de dejarla pasar. Son siete regiones nuevas a tamizar
+    contando las seis de 22 nt, no una.
+19. **Las junturas no tienen lugar en el inventario de `M6`.** El generador tamiza
+    **regiones**, y una juntura no es una región de ningún gen: es secuencia que fabrica el
+    ensamblado. La fila de alerta de `O3` está escrita con el esquema de columnas de `M6`
+    para que se pueda pegar, pero nadie la pegó, y mientras no se integre una quimera puede
+    pasar la compuerta con su empalme sin tamizar `[?]`.
+20. **`ranking.py ranking` no termina desde `D72`.** La compuerta dispara dentro de
+    `cmd_ranking` y aborta con `RegionNoTamizada` porque la cascada elige para `BicC_Dm` la
+    región 2123-2422, que no está entre las 18 del inventario `[M]`. El mensaje de error
+    dice cómo arreglarlo —agregarla a `REGIONES` en `tabla_alertas.py` y correr el script—
+    pero hasta que alguien lo haga, el comando que regenera el ranking no corre. Es de la
+    línea del issue #30 y `O3` no lo tocó porque toca números publicados.
+21. **El panel de `work/sifi_check/` estaba incompleto y nadie lo había notado.** El
+    tamizado que vivía ahí se había corrido con cinco referencias más el genoma del vector,
+    **sin la humana**, y por eso dos de los cuatro `buenos_limpios` del nivel 3 de `C7` no
+    se reproducían. Regenerado con las seis, los cuatro dan exacto `[M]`. Queda la pregunta
+    de **qué otros números del repositorio se calcularon con el insumo incompleto**: `C6` y
+    `C7` tienen la humana en sus propias salidas, pero cualquier corrida posterior que haya
+    leído `work/sifi_check/offtarget_full/` sin regenerarlo arrastra el faltante `[?]`.
+    `work/` no se versiona, así que esto no se puede auditar desde git.
 ### Ola 6, cierre de las entradas 20 y 22 (2026-10-27)
 
 23. **Se cierran las entradas 20 y 22.** El estado de alertas viaja con la región
     recomendada (`ranking.Region`, con `estado` y `bloqueante`) y el JSON de `C7` lo
     publica como `estado_alertas_recomendadas` y `recomendadas_bloqueantes`; la corrida de
-    22 nt está regenerada, con sus tres insumos construidos en esta máquina (`D74`).
+    22 nt está regenerada, con sus tres insumos construidos en esta máquina (`D75`).
     Ninguna cifra publicada se movió: el JSON es idéntico valor por valor y sólo agrega
     esas dos claves por bloque `[M]`. La entrada 21 **sigue abierta** y pasó a ser el
     issue `R8` (#32), porque necesita un alineador y esta máquina no tiene ninguno.
@@ -1838,7 +1884,7 @@ línea de diseño nueva. Este es el saldo.
     salgan de otros bloques de otros generadores y que nadie haya tamizado; la forma de
     saberlo no es buscarlas a mano otra vez sino que la compuerta las encuentre, que es lo
     que acaba de pasar. Mientras cada generador no se corra de punta a punta, no hay garantía.
-25. **`ranking_v2.json` no es byte-reproducible, y no lo introdujo `D74`.** El orden de las
+25. **`ranking_v2.json` no es byte-reproducible, y no lo introdujo `D75`.** El orden de las
     claves dentro de `riesgo_por_referencia` depende del orden en que se pasaron las
     referencias a `offtarget_21nt.py`, y ese orden **no está registrado en ninguna parte**
     —ni en el JSON ni en el resumen de la matriz—. Regenerar el archivo reordena esas claves
@@ -1854,3 +1900,30 @@ línea de diseño nueva. Este es el saldo.
     coincidencia perfecta de 21 nt— pero es una inconsistencia real: una región podría
     quedar frenada por una alerta de un organismo que la corrida no está considerando. Si
     alguna vez una fila humana de esas regiones pasa a tener 21/21, esto empieza a importar.
+
+### Nota de numeración y un cruce entre `O3` y `R7` (2026-10-27, en el merge)
+
+Las dos líneas numeraron en paralelo y la sección de `O3` **repite los números 15 a 21**,
+que ya usaban las secciones de `R7` y de la firma de `eth_Dm`. Las entradas valen igual;
+lo que no se puede es citarlas por número sin decir de qué sección. Queda por arreglar y
+no se arregló en el merge: renumerar entradas que ya están publicadas y citadas desde
+commits es peor que la ambigüedad, y la decisión de qué convención adoptar —numerar por
+sección o seguido en todo el archivo— es del equipo `[?]`.
+
+Y un cruce, con cuidado en qué parte está medida. **La entrada 20 de la sección de `O3`**
+—«`ranking.py ranking` no termina desde `D72`», porque la cascada elige para `BicC_Dm` la
+región 2123-2422 que no estaba en el inventario— nombra **exactamente** la región que `D75`
+agregó al inventario. Las dos líneas la encontraron por separado y por caminos distintos:
+`O3` corriendo `ranking.py ranking` y `R7` regenerando `ranking_v2.json`. Lo que está
+medido es que la causa que esa entrada nombra ya no está: 2123-2422 está en el inventario y
+la compuerta no vuelve a levantar `RegionNoTamizada` sobre ella `[M]`. Lo que **no** se pudo
+verificar es que el comando termine, porque `ranking.py ranking` no corre en esta máquina
+por otro motivo: `work/sifi_check/` sólo tiene los FASTA, le faltan `salida/` y
+`offtarget_full/`, y falla ahí **antes** de llegar a la compuerta `[M]`. Así que la entrada
+20 queda **abierta hasta que alguien la corra donde esos insumos estén** —la máquina de
+`O3`—; lo que se puede afirmar es que su causa declarada está resuelta `[H]`.
+
+Lo que de la entrada 18 de `O3` **no** se cierra es la región candidata de `V-ATPase B`:
+ese gen no está entre los seis que tamiza el generador de `M6` y meterlo pide su propia
+matriz de off-target, así que es trabajo de `O3` y no de esta línea.
+

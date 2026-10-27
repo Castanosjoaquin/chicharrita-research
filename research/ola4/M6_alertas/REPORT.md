@@ -680,7 +680,7 @@ corrida cuyo objeto era firmar una fila.
 ### Addendum (2026-10-27, cierre) — la compuerta encuentra una región más, y la corrida de 22 nt queda regenerada
 
 Con la fila de `eth_Dm` 193-392 firmada, se hicieron las dos cosas que quedaban: que el estado de
-alertas viaje con la región recomendada, y regenerar la corrida de 22 nt. El ADR es `D74`.
+alertas viaje con la región recomendada, y regenerar la corrida de 22 nt. El ADR es `D75`.
 
 #### Lo que la compuerta encontró en su primer uso real
 

@@ -1,0 +1,493 @@
+{
+  "modo": "corregido",
+  "backend": "vienna",
+  "min_bloque": 19,
+  "coordenadas": {
+    "BicC_Dm": [
+      922,
+      1221
+    ],
+    "VATPaseB_Dm": [
+      517,
+      816
+    ]
+  },
+  "panel": [
+    "A_mellifera",
+    "D_maidis",
+    "F_candida",
+    "H_axyridis",
+    "H_vitripennis",
+    "humano",
+    "maiz"
+  ],
+  "limite": "localiza coincidencia exacta de 19 a 21 nt; los aciertos de un desapareo (mm1_21) quedan como cuenta del tamizado, sin bloque",
+  "sin_secuencias": "las ventanas y los bloques van por hash: BicC_Dm es una de las cuatro secuencias de EPILAB (CLAUDE.md, incidente de C9)",
+  "resumen": {
+    "Q_BicC_Dm__VATPaseB_Dm": {
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 2,
+      "juntura_eficientes_j": [
+        4,
+        7
+      ],
+      "juntura_con_blanco_continuo_21nt": 0,
+      "juntura_eficientes_con_blanco_continuo": 0,
+      "bloques_con_acierto": 8,
+      "bloques_fabricados_por_el_empalme": 0,
+      "referencias_fabricadas": []
+    },
+    "Q_VATPaseB_Dm__BicC_Dm": {
+      "ventanas_de_juntura": 20,
+      "juntura_eficientes": 0,
+      "juntura_eficientes_j": [],
+      "juntura_con_blanco_continuo_21nt": 0,
+      "juntura_eficientes_con_blanco_continuo": 0,
+      "bloques_con_acierto": 11,
+      "bloques_fabricados_por_el_empalme": 3,
+      "referencias_fabricadas": [
+        "maiz"
+      ]
+    }
+  },
+  "bloques_con_acierto": [
+    {
+      "quimera": "Q_BicC_Dm__VATPaseB_Dm",
+      "izquierda": "BicC_Dm",
+      "derecha": "VATPaseB_Dm",
+      "j": 1,
+      "pos_en_la_quimera": 281,
+      "ventana_eficiente": false,
+      "ventana_hash": "88034d280557",
+      "bloque_largo": 19,
+      "bloque_offset": 0,
+      "bloque_hash": "efc45097e2e6",
+      "nt_de_izquierda": 19,
+      "nt_de_derecha": 0,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319706.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_BicC_Dm__VATPaseB_Dm",
+      "izquierda": "BicC_Dm",
+      "derecha": "VATPaseB_Dm",
+      "j": 1,
+      "pos_en_la_quimera": 281,
+      "ventana_eficiente": false,
+      "ventana_hash": "88034d280557",
+      "bloque_largo": 19,
+      "bloque_offset": 1,
+      "bloque_hash": "76ae024d260c",
+      "nt_de_izquierda": 19,
+      "nt_de_derecha": 0,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319706.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_BicC_Dm__VATPaseB_Dm",
+      "izquierda": "BicC_Dm",
+      "derecha": "VATPaseB_Dm",
+      "j": 1,
+      "pos_en_la_quimera": 281,
+      "ventana_eficiente": false,
+      "ventana_hash": "88034d280557",
+      "bloque_largo": 20,
+      "bloque_offset": 0,
+      "bloque_hash": "95024ccb6b9e",
+      "nt_de_izquierda": 20,
+      "nt_de_derecha": 0,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319706.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_BicC_Dm__VATPaseB_Dm",
+      "izquierda": "BicC_Dm",
+      "derecha": "VATPaseB_Dm",
+      "j": 2,
+      "pos_en_la_quimera": 282,
+      "ventana_eficiente": false,
+      "ventana_hash": "2200d3554272",
+      "bloque_largo": 19,
+      "bloque_offset": 0,
+      "bloque_hash": "76ae024d260c",
+      "nt_de_izquierda": 19,
+      "nt_de_derecha": 0,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319706.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_BicC_Dm__VATPaseB_Dm",
+      "izquierda": "BicC_Dm",
+      "derecha": "VATPaseB_Dm",
+      "j": 19,
+      "pos_en_la_quimera": 299,
+      "ventana_eficiente": false,
+      "ventana_hash": "0d7305e3b408",
+      "bloque_largo": 19,
+      "bloque_offset": 2,
+      "bloque_hash": "d35397a513da",
+      "nt_de_izquierda": 0,
+      "nt_de_derecha": 19,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319705.1"
+        ],
+        "humano": [
+          "NM_001692.4",
+          "XM_011532907.3"
+        ]
+      },
+      "on_target_del_vector": false
+    },
+    {
+      "quimera": "Q_BicC_Dm__VATPaseB_Dm",
+      "izquierda": "BicC_Dm",
+      "derecha": "VATPaseB_Dm",
+      "j": 20,
+      "pos_en_la_quimera": 300,
+      "ventana_eficiente": false,
+      "ventana_hash": "c08e3da8f9bc",
+      "bloque_largo": 19,
+      "bloque_offset": 1,
+      "bloque_hash": "d35397a513da",
+      "nt_de_izquierda": 0,
+      "nt_de_derecha": 19,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319705.1"
+        ],
+        "humano": [
+          "NM_001692.4",
+          "XM_011532907.3"
+        ]
+      },
+      "on_target_del_vector": false
+    },
+    {
+      "quimera": "Q_BicC_Dm__VATPaseB_Dm",
+      "izquierda": "BicC_Dm",
+      "derecha": "VATPaseB_Dm",
+      "j": 20,
+      "pos_en_la_quimera": 300,
+      "ventana_eficiente": false,
+      "ventana_hash": "c08e3da8f9bc",
+      "bloque_largo": 19,
+      "bloque_offset": 2,
+      "bloque_hash": "ae273753f276",
+      "nt_de_izquierda": 0,
+      "nt_de_derecha": 19,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319705.1"
+        ],
+        "humano": [
+          "NM_001692.4",
+          "XM_011532907.3"
+        ]
+      },
+      "on_target_del_vector": false
+    },
+    {
+      "quimera": "Q_BicC_Dm__VATPaseB_Dm",
+      "izquierda": "BicC_Dm",
+      "derecha": "VATPaseB_Dm",
+      "j": 20,
+      "pos_en_la_quimera": 300,
+      "ventana_eficiente": false,
+      "ventana_hash": "c08e3da8f9bc",
+      "bloque_largo": 20,
+      "bloque_offset": 1,
+      "bloque_hash": "bbc7cef22a58",
+      "nt_de_izquierda": 0,
+      "nt_de_derecha": 20,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319705.1"
+        ],
+        "humano": [
+          "NM_001692.4",
+          "XM_011532907.3"
+        ]
+      },
+      "on_target_del_vector": false
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 1,
+      "pos_en_la_quimera": 281,
+      "ventana_eficiente": false,
+      "ventana_hash": "cc21482d58a9",
+      "bloque_largo": 19,
+      "bloque_offset": 0,
+      "bloque_hash": "4503b66e2120",
+      "nt_de_izquierda": 19,
+      "nt_de_derecha": 0,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319705.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 1,
+      "pos_en_la_quimera": 281,
+      "ventana_eficiente": false,
+      "ventana_hash": "cc21482d58a9",
+      "bloque_largo": 19,
+      "bloque_offset": 1,
+      "bloque_hash": "c57b653b4462",
+      "nt_de_izquierda": 19,
+      "nt_de_derecha": 0,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319705.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 1,
+      "pos_en_la_quimera": 281,
+      "ventana_eficiente": false,
+      "ventana_hash": "cc21482d58a9",
+      "bloque_largo": 19,
+      "bloque_offset": 2,
+      "bloque_hash": "87c675c27301",
+      "nt_de_izquierda": 18,
+      "nt_de_derecha": 1,
+      "cruza_la_union": true,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "maiz": [
+          "NM_001153025.1",
+          "XM_020544485.2"
+        ]
+      },
+      "on_target_del_vector": false
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 1,
+      "pos_en_la_quimera": 281,
+      "ventana_eficiente": false,
+      "ventana_hash": "cc21482d58a9",
+      "bloque_largo": 20,
+      "bloque_offset": 0,
+      "bloque_hash": "df53fca308df",
+      "nt_de_izquierda": 20,
+      "nt_de_derecha": 0,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319705.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 2,
+      "pos_en_la_quimera": 282,
+      "ventana_eficiente": false,
+      "ventana_hash": "7f8a8ed7d386",
+      "bloque_largo": 19,
+      "bloque_offset": 0,
+      "bloque_hash": "c57b653b4462",
+      "nt_de_izquierda": 19,
+      "nt_de_derecha": 0,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319705.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 2,
+      "pos_en_la_quimera": 282,
+      "ventana_eficiente": false,
+      "ventana_hash": "7f8a8ed7d386",
+      "bloque_largo": 19,
+      "bloque_offset": 1,
+      "bloque_hash": "87c675c27301",
+      "nt_de_izquierda": 18,
+      "nt_de_derecha": 1,
+      "cruza_la_union": true,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "maiz": [
+          "NM_001153025.1",
+          "XM_020544485.2"
+        ]
+      },
+      "on_target_del_vector": false
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 3,
+      "pos_en_la_quimera": 283,
+      "ventana_eficiente": false,
+      "ventana_hash": "ecd948f4b867",
+      "bloque_largo": 19,
+      "bloque_offset": 0,
+      "bloque_hash": "87c675c27301",
+      "nt_de_izquierda": 18,
+      "nt_de_derecha": 1,
+      "cruza_la_union": true,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "maiz": [
+          "NM_001153025.1",
+          "XM_020544485.2"
+        ]
+      },
+      "on_target_del_vector": false
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 19,
+      "pos_en_la_quimera": 299,
+      "ventana_eficiente": false,
+      "ventana_hash": "cbf7807c4c74",
+      "bloque_largo": 19,
+      "bloque_offset": 2,
+      "bloque_hash": "71fcdbcac6ea",
+      "nt_de_izquierda": 0,
+      "nt_de_derecha": 19,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319706.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 20,
+      "pos_en_la_quimera": 300,
+      "ventana_eficiente": false,
+      "ventana_hash": "58160db4ebab",
+      "bloque_largo": 19,
+      "bloque_offset": 1,
+      "bloque_hash": "71fcdbcac6ea",
+      "nt_de_izquierda": 0,
+      "nt_de_derecha": 19,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319706.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 20,
+      "pos_en_la_quimera": 300,
+      "ventana_eficiente": false,
+      "ventana_hash": "58160db4ebab",
+      "bloque_largo": 19,
+      "bloque_offset": 2,
+      "bloque_hash": "ba652c7492fc",
+      "nt_de_izquierda": 0,
+      "nt_de_derecha": 19,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319706.1"
+        ]
+      },
+      "on_target_del_vector": true
+    },
+    {
+      "quimera": "Q_VATPaseB_Dm__BicC_Dm",
+      "izquierda": "VATPaseB_Dm",
+      "derecha": "BicC_Dm",
+      "j": 20,
+      "pos_en_la_quimera": 300,
+      "ventana_eficiente": false,
+      "ventana_hash": "58160db4ebab",
+      "bloque_largo": 20,
+      "bloque_offset": 1,
+      "bloque_hash": "74502c8ebb2a",
+      "nt_de_izquierda": 0,
+      "nt_de_derecha": 20,
+      "cruza_la_union": false,
+      "blanco_continuo_en": [],
+      "aciertos": {
+        "D_maidis": [
+          "OZ319706.1"
+        ]
+      },
+      "on_target_del_vector": true
+    }
+  ],
+  "python": "3.13.15"
+}

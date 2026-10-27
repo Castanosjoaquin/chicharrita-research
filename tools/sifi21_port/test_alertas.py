@@ -505,7 +505,7 @@ if TABLA.exists() and FIRMAS.exists():
     # unica forma de saber que si se miraron es que esten en el inventario.
     # Cuatro regiones pendientes: tres de k=22 y `BicC_Dm` 2123-2422, que es la que la
     # compuerta de D72 encontro al regenerar C7 —sale del bloque `efecto_humano`, la
-    # corrida con la referencia humana fuera del panel (D74)—. Ninguna de las cuatro
+    # corrida con la referencia humana fuera del panel (D75)—. Ninguna de las cuatro
     # tiene alertas de 21/21, asi que ninguna frena en el umbral vigente.
     check(sin_firma == {("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
                         ("ATPaseD_Dm", "71-370"), ("BicC_Dm", "2123-2422")},
@@ -682,7 +682,7 @@ for funcion in ("def completar_regiones(", "def recomendadas("):
     check("R.region_recomendada(" in cuerpo,
           "ranking_v2.%s pasa por la compuerta" % funcion[4:-1])
 
-# y el JSON que escribe ranking_v2 lleva el estado de cada region recomendada (D74), que
+# y el JSON que escribe ranking_v2 lleva el estado de cada region recomendada (D75), que
 # es donde el estado le sirve a quien lee el resultado y no solo a quien llama la funcion
 cuerpo_k = FUENTES["ranking_v2.py"].split("def correr_k(")[1].split("\ndef ")[0]
 check('"estado_alertas_recomendadas"' in cuerpo_k
@@ -728,10 +728,10 @@ if TABLA.exists():
     check(bloq_k22 == {("eth_Dm", "193-392")},
           "de las seis de k=22 que pasan, una esta bloqueante y hay que descartarla")
 
-    # 9. el estado viaja con la region (D74). Lo que se prueba acá no es que el atributo
+    # 9. el estado viaja con la region (D75). Lo que se prueba acá no es que el atributo
     #    exista —eso es trivial— sino las dos mitades que lo hacen util: que la region
     #    bloqueante **sale** (no se frena, D69 intacto) y que **no se la puede recibir sin
-    #    el estado**, que era el agujero que D73 destapó. Antes de D74 el que llamaba
+    #    el estado**, que era el agujero que D73 destapó. Antes de D75 el que llamaba
     #    recibia un par de enteros indistinguible del de una region limpia.
     R._ALERTAS_LEIDAS.clear()
     reg = R.region_recomendada({"mejores": [{"region": "193-392"}]}, "eth_Dm", tabla=TABLA)
