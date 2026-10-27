@@ -3,3 +3,9 @@
 # con CRLF y sh fallaria con «\r: command not found», es decir que la verificacion de
 # secuencias quedaria rota en silencio en cada clon nuevo. Se fuerza LF.
 tools/verificacion/hooks/* text eol=lf
+
+# Las salidas de F4 se generan con LF (`lineterminator="\n"` en el escritor) y con
+# core.autocrlf=true un clon nuevo las escribiria con CRLF: regenerarlas daria un diff de
+# archivo entero sin que cambie un solo dato, que es el modo de falla que ya se pago una vez.
+# Se fuerza LF para que «generado contra commiteado» siga siendo una comparacion util.
+research/ola6/F4_pares_por_mecanismo/resultados/* text eol=lf

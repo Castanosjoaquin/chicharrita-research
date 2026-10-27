@@ -2366,7 +2366,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     virus*). Describen **menos transmisión con el insecto vivo** `[R]`, que es el mecanismo
     más alineado con el objetivo sanitario del proyecto y el que menos se parece a los otros
     tres: no reduce la población ni mata, corta la cadena. `F3` lo agrega como categoría
-    declarada `transmision` en su propia salida (`D84`), pero **ampliar `D67` no es de esta
+    declarada `transmision` en su propia salida (`D87`), pero **ampliar `D67` no es de esta
     línea**: hay que decidir si el cuarto mecanismo entra al armado de quimeras, y si entra,
     si una quimera «letalidad + transmisión» tiene sentido biológico o si son el mismo eje
     visto a dos tiempos `[H]`. Pregunta para el investigador.
@@ -2375,7 +2375,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     `CI-08` (`uk1_LRR`, receptor putativo de adhesión) dice que silenciarlo **aumentó** la
     colonización del vector por el fitoplasma, y `CI-13` (`NcHig`, factor neural antiviral)
     que silenciarlo **aumenta** la infección del sistema nervioso por el virus `[R]`. `F3`
-    los deja fuera del orden y los publica como `fenotipo_invertido` (`D84`), que es lo
+    los deja fuera del orden y los publica como `fenotipo_invertido` (`D87`), que es lo
     correcto para un recomendador. Pero la lectura interesante es la inversa y no es nuestra:
     si silenciar esos genes aumenta la colonización, son parte de la **defensa del vector**
     contra el patógeno, y entonces la pregunta de diseño es si hay algo que hacer con eso en
@@ -2489,7 +2489,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     candidato de reproducción, `DM-01` (`BicC`), queda en el grupo del puesto 5 porque su vía
     **esteriliza y no mata**, lo que el eje 2 puntúa `E1` por ser función condicional.
     **Lo que sigue sin poder afirmarse, y es el centro de la pregunta:** que el orden *cambie*
-    según el objetivo. El criterio de `D84` **no tiene un parámetro de objetivo**: tiene un eje
+    según el objetivo. El criterio de `D87` **no tiene un parámetro de objetivo**: tiene un eje
     de fenotipo que promedia mecanismos en vez de filtrar por ellos, así que la diferencia de
     puesto entre `DM-05` y `DM-01` no sale de haber elegido matar en vez de esterilizar —sale
     del nivel de esencialidad de sus vías—. `[H]` Lo que haría falta es un **segundo orden** con
@@ -2502,7 +2502,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
 75. **Se cierra la entrada 74, y la respuesta es que sí: el orden de los candidatos del insecto
     cambia según el objetivo.** El segundo orden de `F3`
     (`research/ola6/F3_recomendador_genes/scripts/04_segundo_orden.py`) corre el criterio de
-    `D84` dos veces con todo idéntico —pesos, escalas, cohortes, umbral de empate— y lo único
+    `D87` dos veces con todo idéntico —pesos, escalas, cohortes, umbral de empate— y lo único
     que cambia es quién es elegible: «matar» exige el mecanismo `letalidad`, «esterilizar»
     exige `reproduccion`. La regla de lectura se declaró en el script antes de mirar el
     resultado. El primer puesto de la cohorte A es `DM-02`, `DM-03` y `DM-05` para matar, con
@@ -2877,3 +2877,87 @@ criterio. Detalle en `research/ola6/R13_brecha_c12/REPORT.md`.
     convertía esos mismos cinco en «escribe en versionado». Las dos son del mismo tipo que
     la de `command -v` (entrada 54): **la herramienta contestó con precisión una pregunta
     que no era la que había que hacerle.**
+
+### Ola 6, cierre de `F4` (`D93`, issue #39, 2026-10-27)
+
+*Nota de numeración: estas cinco entradas se escribieron como 88 a 92 contra el `main` de la
+mañana, que llegaba hasta la 87 y tenía un hueco entre la 75 y la 86. Al integrar, el hueco
+estaba lleno y las cuatro que faltaban ya existían, así que las cinco se corrieron a **92-96**
+y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se los quedaron
+`R13` y `R12`. Ninguna entrada ajena se tocó y ninguna cifra cambió al renumerar.*
+
+92. **El cuarto mecanismo no tiene ni un candidato en nuestra especie, y eso le pone precio a la
+    pregunta de la entrada 70.** Esa entrada dejó planteado si «movilidad» sigue siendo una pata
+    del esquema de `D67` con el respaldo que tiene —una fila, `DM-02`, con la réplica más cercana
+    negativa— o si el tercer eje debería ser transmisión, que tiene cuatro veces más candidatos y
+    es el mecanismo más alineado con el objetivo sanitario. `F4` midió el otro platillo: de los
+    cuatro candidatos de `transmision`, **ninguno es de *Dalbulus maidis*** `[M]`. Son tres de
+    *Euscelidius variegatus* —uno compartido con *Scaphoideus titanus*— y uno de *Peregrinus
+    maidis*. Así que **ninguna** de las 118 combinaciones con transmisión tiene las dos mitades
+    medidas en nuestra especie (cero de 51, cero de 63 y cero de 4), contra 8 de las 229 del
+    esquema de tres mecanismos `[M]`. `[H]` La elección queda entre una pata que descansa en
+    **una fila de nuestra especie** y una que descansa en **cuatro filas de otras especies**, con
+    la transferencia de ortología en el medio (`F1`, con su banda de concordancia). No es un
+    argumento en contra de transmisión: es lo que hay que poner al lado del argumento a favor.
+    Pregunta para el investigador, y si entra al armado pide su propio ADR (entrada 65).
+
+93. **La entrada 65 nombra cuatro filas de transmisión y la tabla que se publicó tiene otras
+    cuatro.** La 65 dice que al asignar mecanismo aparecen «cuatro que no entran en ninguno de
+    los tres: `CI-07`, `CI-09`, `HE-07` y `HE-11`». Las cuatro filas que `eje_fenotipo.tsv`
+    publica con `transmision` son `CI-06`, `CI-07`, `CI-09` y `DE-05` `[M]`. Las dos listas
+    tienen cuatro elementos y comparten dos, lo que vuelve la discrepancia fácil de no ver. La
+    tabla es la que manda y el motivo está en ella: `HE-07` quedó en `letalidad|reproduccion`
+    porque «la FUNCIÓN es una proteína salival de la ingestión de floema, lo que invita a leerlo
+    como transmisión» pero `resultado` mide longevidad, desarrollo y huevos, y se asignó por el
+    resultado; `HE-11` quedó en `sin_fenotipo_publicado` porque la interacción con el virus no es,
+    por sí sola, una reducción de transmisión medida; y entraron `CI-06` (menos adquisición de
+    fitoplasma) y `DE-05` (menor acumulación del rabdovirus MMV). O sea que la 65 se escribió a
+    mitad de la asignación y quedó vieja en sus ejemplos, no en su planteo: el cuarto mecanismo
+    existe y tiene cuatro candidatos. **Qué hay que hacer:** corregir los cuatro identificadores
+    de la entrada 65 o agregarle una línea que diga cuáles son hoy. No se editó acá porque es
+    entrada de otra línea y conviene que el cambio lo vea quien la escribió `[?]`.
+
+94. **«Fenotipos que no se solapan» tiene dos lecturas, y toda combinación de letalidad con
+    movilidad falla la segunda.** `D67` arma las quimeras «por combinación de fenotipos que no se
+    solapan» y `O4` lo implementa sobre los dos ejes **declarados**: exige que el eje de cada gen
+    sea distinto. Con la tabla de `F3` en la mano se puede medir la otra lectura —que los
+    **conjuntos** de mecanismos de los dos candidatos sean disjuntos— y da que **las 15 de 15**
+    combinaciones de letalidad con movilidad la fallan `[M]`. El motivo es aritmético y por eso
+    inevitable: el único candidato de movilidad, `DM-02`, **también** tiene letalidad, así que
+    cualquier par que lo use para esa pata trae letalidad por partida doble. En reproducción +
+    letalidad el solape aparece en 147 de 201 asignaciones `[M]`. `[H]` La consecuencia práctica
+    es que la segunda pata de esas quimeras agrega menos de lo que su rótulo promete, y el
+    bioensayo no lo va a distinguir: `O3` §6 ya advirtió que silenciando dos genes a la vez un
+    resultado negativo no dice cuál mitad falló. **Qué hay que decidir:** si `D67` se lee sobre
+    los ejes declarados o sobre los conjuntos. `F4` informa el solape por par y **no** cambió el
+    criterio, porque mover la lectura vigente de `D67` movería lo que `O4` ya verifica y lo que
+    `O3` ya midió. Pregunta para el equipo y para el investigador.
+
+95. **Cuatro filas del catálogo son más de un gen, y hasta que no se diga cuál, los pares que las
+    usan no son insumo del enumerador.** Una quimera se arma con un gen; una fila, no siempre lo
+    es. `DE-01` es `V-ATPase B` **y** `V-ATPase D`; `DE-04` agrupa tres transportadores ABC con
+    desenlaces **distintos** —la letalidad es de `ABCE` y `ABCF`, la reproducción de `ABCB`—;
+    `CI-09` agrupa tres genes y además dos especies; `CI-11` agrupa `NcLac2` y `NcLac5` y el
+    desenlace descrito es del primero `[R]`. De las 201 asignaciones de reproducción + letalidad,
+    **63 involucran una de esas filas** `[M]`. `F4` las detecta con dos detectores y aborta si no
+    coinciden, pero detectarlas no las resuelve: hay que abrir la fuente y decir qué gen sostiene
+    qué mecanismo. En `DE-04` la propia nota del catálogo ya lo dice y alcanzaría con partir la
+    fila; en las otras tres hace falta leer el trabajo. **Es falta de trabajo, no falta de
+    fuente** `[H]`, y es la misma clase de pendiente que la entrada 72 declara para el eje de
+    esencialidad.
+
+96. **Cuatro citas de `PREGUNTAS_ABIERTAS.md` apuntaban al ADR equivocado, y se corrigieron
+    acá.** Las entradas 65, 66, 74 y 75 citaban el criterio del recomendador de genes de `F3`
+    como **`D84`**, y `D84` es el ADR de `F1` —transferencia de anotación por ortología
+    recíproca—. El criterio de `F3` es **`D87`**, «los pesos del recomendador de genes: cohortes
+    por ejes disponibles, y ningún hueco rellenado» `[M]`. Las cuatro son inequívocas: una dice
+    «corre el criterio de `D84` dos veces con todo idéntico —pesos, escalas, cohortes, umbral de
+    empate—» y `D84` no tiene pesos, ni cohortes, ni umbral de empate. **Causa:** la línea `F3`
+    escribió esas entradas con la numeración que tenía antes de integrarse, y al mergear `main`
+    su ADR se renumeró de `D84` a `D87`; las entradas se renumeraron y estas cuatro citas
+    internas quedaron apuntando al número viejo, que entretanto se lo había quedado `F1`. Es el
+    modo de falla propio de renumerar: lo que se arregla son los encabezados y lo que queda viejo
+    son las referencias en el cuerpo. **Se corrigieron las cuatro** —el `D84` del encabezado del
+    cierre de `F1`, línea 2252, es correcto y se dejó—. `[H]` La forma barata de que no vuelva a
+    pasar: cuando una renumeración toca un ADR, buscar el número viejo en todo `00_meta/` antes
+    de cerrar, no sólo en los títulos.

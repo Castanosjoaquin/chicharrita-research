@@ -1,0 +1,31 @@
+{
+  "nota": "F4 no abrio literatura nueva: es una feature de computo sobre datos que el repositorio ya tenia. Toda la evidencia de fenotipo que esta linea usa viene de la asignacion que F3 hizo sobre el catalogo de C5, fila por fila, con la frase textual de la fuente al lado y un script que falla si la frase no esta. Esta linea no verifica esas fuentes de nuevo: hereda la asignacion y la verifica contra la tabla, que es otra cosa y conviene no confundirlas.",
+  "externas_citadas_desde_el_registro": [
+    {
+      "id_en_FUENTES": "catalogo C5",
+      "titulo": "Catalogo de genes blanco con fenotipo reportado por RNAi, las 36 filas",
+      "uso_en_F4": "es la fuente de todo mecanismo que esta linea usa, por intermedio de eje_fenotipo.tsv de F3. El catalogo NO tiene columna de eje: la asignacion la hizo una persona leyendo el campo `resultado` de cada fila y el script de F3 la verifica contra el texto. F4 no reasigna ningun mecanismo y no abre ninguna de esas fuentes.",
+      "marcador": "R"
+    },
+    {
+      "id_en_FUENTES": "S18",
+      "titulo": "Assessing the Functionality of RNA Interference (RNAi) in the Phloem-feeding Maize pest Dalbulus maidis",
+      "doi": "10.1101/2021.09.29.462424",
+      "tipo": "preprint sin revision por pares",
+      "uso_en_F4": "sostiene las filas DM-01 a DM-06, que son las cinco elegibles de la especie blanco y las dos del unico par que D67 ya habia armado a mano. Es tambien la fuente de las dos frases del eje de movilidad y de su contraevidencia: «alas deformes» en DM-02 y «efecto en alas no significativo» en DM-03. No sostiene ninguna afirmacion sobre eficacia de ningun par.",
+      "marcador": "R"
+    }
+  ],
+  "internas": [
+    {"bloque": "research/ola6/F3_recomendador_genes", "aporta": "eje_fenotipo.tsv, que es la unica entrada de datos de esta linea; y orden_genes.tsv y fuera_del_orden.tsv, contra los que corre el ancla 2"},
+    {"bloque": "research/ola6/O4_enumerador_quimeras", "aporta": "el enumerador al que esta linea le conecta el eje, su preregistro —que declaro el eje como entrada declarada y no inferida— y el ancla 2 contra la que se verifico la corrida de punta a punta"},
+    {"bloque": "research/ola6/O3_quimera_bicc_vatpase_b", "aporta": "el unico par de candidatos que ya estaba armado a mano, elegido por D67 y por disponibilidad de secuencia, que es el caso del ancla 3"},
+    {"bloque": "research/ola3/C5_estructura_genes_ingenieria_inversa", "aporta": "el catalogo de 36 filas y la marca de los dos candidatos a excluir explicitamente, a la que la regla de elegibilidad llega por otro camino"},
+    {"bloque": "research/ola4/M6_alertas", "aporta": "la forma de tener una tabla declarada como entrada del generador y no como salida suya (D68), que es la que usa contraevidencia.tsv"}
+  ],
+  "decisiones_que_esta_linea_hereda_y_no_discute": [
+    {"adr": "D67", "que": "una quimera se arma por combinacion de fenotipos que no se solapan, y la juntura se cuenta aparte"},
+    {"adr": "D87", "que": "la categoria declarada `transmision` de F3, que D67 no tiene y que esta linea deja detras de una puerta"},
+    {"adr": "D78", "que": "la clave propia de la juntura en el inventario de M6, decidida y no implementada (PREGUNTAS_ABIERTAS 41)"}
+  ]
+}
