@@ -148,7 +148,8 @@ def completar_regiones(genes: dict, wr, wc, umbral=None, tabla=None) -> list[dic
     """Region propuesta para los nuevos: la mejor por cascada, igual que W7 recomienda.
 
     Pasa por `R.region_recomendada()`, o sea por la compuerta de alertas de D48: una
-    region con una fila de alerta en «pendiente» no sale de aca (D69).
+    region con una fila de alerta en «pendiente» no sale de aca (D69), ni una region que
+    no este en el inventario de regiones tamizadas de M6 (D72).
     """
     cands = []
     for c in R.CANDIDATOS:
@@ -164,7 +165,14 @@ def completar_regiones(genes: dict, wr, wc, umbral=None, tabla=None) -> list[dic
 
 
 def recomendadas(cands, genes, wr, wc, umbral=None, tabla=None) -> list[dict]:
-    """Las regiones que el ranking recomienda, cada una pasada por la compuerta de D48."""
+    """Las regiones que el ranking recomienda, cada una pasada por la compuerta de D48.
+
+    Desde D72 la compuerta exige presencia en el inventario, y eso tiene una consecuencia
+    que conviene leer aca: **una corrida con un `k` cuyas regiones no se tamizaron no
+    produce recomendaciones**, levanta `alertas.RegionNoTamizada`. Es el caso medido de la
+    corrida a 22 nt, y es el comportamiento buscado: la alternativa era publicar seis
+    regiones que nadie habia tamizado.
+    """
     out = []
     for c in cands:
         largo = c["region"][1] - c["region"][0] + 1
@@ -346,8 +354,10 @@ def main(argv=None) -> int:
     ap.add_argument("--semilla", type=int, default=7)
     ap.add_argument("--json", required=True)
     ap.add_argument("--alertas", default=None, type=Path,
-                    help="tabla de alertas de M6 que consulta la compuerta de D48; por "
-                         "defecto %s" % R.TABLA_ALERTAS)
+                    help="tabla de alertas de M6 que consulta la compuerta de D48, con su "
+                         "estado_regiones.tsv al lado, que es el inventario de regiones "
+                         "tamizadas que la compuerta exige desde D72; por defecto %s"
+                         % R.TABLA_ALERTAS)
     ap.add_argument("--umbral-compuerta", dest="umbral_compuerta",
                     choices=("perfecto_21", "perfecto_ge19"), default=R.UMBRAL_COMPUERTA,
                     help="umbral de D28 con el que la compuerta exige decision; por "

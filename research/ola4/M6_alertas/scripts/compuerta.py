@@ -8,7 +8,8 @@ región como usable mientras alguna de sus filas siga sin decidir.
 
 **No decide nada.** No dice qué alertas se aceptan y no verifica si una justificación es
 cierta ni suficiente. Este script es el **inventario** de la compuerta: la corre sobre las
-doce regiones para mirar el estado de una sola vez, y no produce ninguna recomendación.
+dieciocho regiones del inventario para mirar el estado de una sola vez, y no produce
+ninguna recomendación.
 Quien la aplica de verdad, desde D69, es `ranking.region_recomendada()` en el port: ahí
 está el único punto donde una región se vuelve recomendación, y por eso llamarla desde
 acá nunca alcanzó para dar la tarea por hecha.
@@ -34,9 +35,12 @@ import alertas as AL   # noqa: E402
 TABLA = RAIZ / "research/ola4/M6_alertas/resultados/alertas.tsv"
 ESTADOS = RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv"
 SALIDA = RAIZ / "research/ola4/M6_alertas/resultados/compuerta.json"
-# Las doce regiones, en el orden de estado_regiones.tsv: las que no tienen ninguna fila
-# de alerta no aparecen en alertas.tsv y hay que traerlas de ahí, porque «sin alertas» es
-# un estado que la compuerta tiene que poder informar.
+# Las regiones del inventario, en el orden de estado_regiones.tsv: las que no tienen
+# ninguna fila de alerta no aparecen en alertas.tsv y hay que traerlas de ahí, porque «sin
+# alertas» es un estado que la compuerta tiene que poder informar. Desde D72 ese archivo
+# es además **el inventario que la compuerta exige**: por eso este script nunca puede ver
+# una `RegionNoTamizada` —itera justo sobre las regiones presentes— y es `ranking.py`,
+# que itera sobre lo que el orden propone, el que sí puede.
 import csv  # noqa: E402
 
 
@@ -45,6 +49,7 @@ def main() -> int:
     with ESTADOS.open(encoding="utf-8") as fh:
         regiones = [(r["gen"], r["region"], r["vigente"], r["que_es"])
                     for r in csv.DictReader(fh, delimiter="\t")]
+    inventario = {(g, r) for g, r, _v, _q in regiones}
     print("tabla: %d filas, %d regiones\n" % (len(filas), len(regiones)))
 
     salida = {"tabla": str(TABLA.relative_to(RAIZ)), "filas": len(filas), "umbrales": {}}
@@ -53,7 +58,8 @@ def main() -> int:
         detalle, pasan, frenadas = [], [], []
         for gen, region, vigente, que_es in regiones:
             try:
-                est = AL.exigir_decidida(filas, gen, region, umbral)
+                est = AL.exigir_decidida(filas, gen, region, umbral,
+                                         inventario=inventario)
                 pasan.append((gen, region, vigente, est["estado"]))
                 marca = "pasa"
             except AL.AlertaSinDecidir as e:
@@ -70,7 +76,7 @@ def main() -> int:
         # se ve: una región `bloqueante` pasa la compuerta —bloquear es decidir, y la
         # compuerta sólo impide seguir de largo sin que nadie haya mirado— pero el que
         # llama tiene que descartarla. Un resumen de «pasan 12 de 12, frenadas 0» sin
-        # esta cifra se lee como «las doce sirven», que es exactamente al revés.
+        # esta cifra se lee como «todas sirven», que es exactamente al revés.
         bloq = [(g, r, v) for g, r, v, e in pasan if e == "decidida: bloqueante"]
         bv = sum(1 for _g, _r, v in bloq if v == "sí")
         print("  -> pasan %d de %d; frenadas %d, de las cuales %d son regiones vigentes"

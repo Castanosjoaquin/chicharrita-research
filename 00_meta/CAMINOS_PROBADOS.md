@@ -1264,3 +1264,32 @@ descartamos **nosotros** al procesarla.
   eficacia se recalcula, con las dos cuentas por separado.** La lección es la misma que `C13`
   ya había dejado y que el atajo repetía: sumar los dos conteos y agregarle las del medio erra
   por hasta 4 ventanas y con el signo equivocado.
+
+## `R7` (2026-10-27) — tres atajos descartados al cerrar la compuerta de alertas
+
+- **Derivar la presencia de las filas de `alertas.tsv`, sin inventario aparte.** Era el
+  camino que no agregaba ningún archivo: si una región tiene filas, se tamizó. Descartado
+  porque es justamente lo imposible y está medido: de las seis regiones de k=22 que
+  entraron al inventario, **dos** —`CP_MRFV` 77-276 y `bursA_Dm` 44-243— se tamizaron
+  contra las seis referencias del panel y **no dieron ningún acierto**, así que tienen
+  cero filas `[M]`. En la tabla de alertas son indistinguibles de una región que nunca se
+  miró. La lección, que vale más allá de esta línea: **un archivo que sólo lista hallazgos
+  nunca puede afirmar «se miró y no hay»**, y por eso el dato de presencia tiene que vivir
+  en uno que enumere lo evaluado — acá `estado_regiones.tsv`, que lista las dieciocho
+  regiones con sus conteos, incluidos los ceros.
+- **Dejar `inventario` con un valor por defecto, para no tocar las llamadas existentes.**
+  Era el camino barato: cuatro sitios de llamada en el port y una docena en las pruebas se
+  habrían quedado como estaban. Descartado porque convierte la compuerta en algo que se
+  desactiva **olvidándolo**, en silencio, que es la misma clase de falla que `D69` cerró al
+  decidir que una tabla ausente no vale como «cero alertas». El parámetro quedó obligatorio
+  y por nombre, así que olvidarlo es un `TypeError` ruidoso; el costo fue actualizar las
+  llamadas una vez y hay una prueba que lo fija.
+- **Firmar las seis filas nuevas para que la corrida de 22 nt volviera a pasar.** Era
+  tentador porque dejaba el criterio del issue cerrado con las dos casillas en verde y sin
+  nada frenado. Descartado por dos motivos, y el segundo es el que importa: firmar es una
+  decisión del equipo que `D48` pide por escrito y citando la fila, y `D68` ejerció caso por
+  caso con su argumento; y **una firma puesta por la misma línea que agregó la fila habría
+  tapado el hallazgo** — que `eth_Dm` 193-392 tiene una coincidencia perfecta de 21 nt
+  contra *Homalodisca vitripennis* que la región vigente del mismo gen no tiene `[M]`. El
+  issue aceptaba las dos salidas, pasar o quedar frenada con el motivo declarado, y la
+  segunda es la que deja el hecho a la vista en vez de absorberlo.

@@ -1,4 +1,4 @@
-"""M6: la tabla de alertas de D48 y el estado de las doce regiones bajo la regla nueva.
+"""M6: la tabla de alertas de D48 y el estado de las dieciocho regiones de la regla nueva.
 
 Qué hace, en orden, y **aborta si un ancla falla**:
 
@@ -16,7 +16,13 @@ Qué hace, en orden, y **aborta si un ancla falla**:
 
 Después construye `alertas.tsv` con los cuatro campos obligatorios de D48, lo valida con
 `alertas.validar()` —una fila sin los cuatro campos aborta— y escribe el estado de las
-doce regiones. **No decide nada**: ninguna región se acepta ni se descarta acá.
+dieciocho regiones. **No decide nada**: ninguna región se acepta ni se descarta acá.
+
+Las seis últimas entraron con `R7` (D70, D72): son las que el ranking recomienda a k=22 y
+hasta entonces **no estaban tamizadas**, así que atravesaban la compuerta sin que nadie
+hubiera mirado sus alertas. Entran al inventario con las mismas cuatro columnas
+obligatorias de D48 que las otras doce, y sus filas salen en «pendiente», que es correcto:
+una firma la escribe una persona y `aplicar_decisiones()` no la autogenera.
 
     python research/ola4/M6_alertas/scripts/tabla_alertas.py
 """
@@ -46,8 +52,14 @@ SALIDA = RAIZ / "research/ola4/M6_alertas/resultados"
 DECISIONES = RAIZ / "research/ola4/M6_alertas/decisiones.tsv"
 REF_DIR = "work/W5/ref"
 
-# Las doce regiones. «qué es» sale de los ADR citados; la columna `vigente` dice si hoy
-# es la región que el proyecto recomienda para ese gen.
+# Las dieciocho regiones. «qué es» sale de los ADR citados; la columna `vigente` dice si
+# hoy es la región que el proyecto recomienda para ese gen, y ninguna de las seis de k=22
+# lo es: las vigentes son las seis de k=21 de arriba.
+#
+# El orden de esta lista es el orden de las filas de `alertas.tsv`, así que las seis de
+# k=22 van al final a propósito: agregarlas no mueve ni una línea de las que ya estaban,
+# y eso hace que el diff de la tabla sea legible y que se vea que ninguna firma de D68
+# quedó debajo de una fila distinta.
 REGIONES = [
     ("MP_MRFV", (72, 271), "recomendada por C7 v2", True),
     ("CP_MRFV", (99, 298), "recomendada por C7 v2", True),
@@ -61,6 +73,14 @@ REGIONES = [
     ("BicC_Dm", (2121, 2420), "recomendada por C7 v2, desplazada por D25", False),
     ("ATPaseD_Dm", (151, 450), "planilla de EPILAB", False),
     ("ATPaseD_Dm", (137, 436), "la más conservada, alternativa b de D25, vetada", False),
+    # R7 (D70): las seis que el ranking recomienda a k=22, leídas de
+    # research/ola3/C7_ranking_v2/resultados/ranking_v2.json, clave k.22.regiones_recomendadas.
+    ("MP_MRFV", (162, 361), "recomendada por C7 v2 a k=22", False),
+    ("CP_MRFV", (77, 276), "recomendada por C7 v2 a k=22", False),
+    ("BicC_Dm", (2119, 2418), "recomendada por C7 v2 a k=22", False),
+    ("ATPaseD_Dm", (71, 370), "recomendada por C7 v2 a k=22", False),
+    ("eth_Dm", (193, 392), "recomendada por C7 v2 a k=22", False),
+    ("bursA_Dm", (44, 243), "recomendada por C7 v2 a k=22", False),
 ]
 # El archivo de referencia de cada organismo, que es la fuente del cuarto campo.
 ARCHIVO = {
@@ -146,9 +166,17 @@ def a4_fichas(genes: dict) -> list[dict]:
         clave = (gen, "%d-%d" % (ini, fin))
         f = fichas.get(clave)
         if f is None:
+            # Las fichas publicadas son las de k=21. Las dos regiones de D25 no tienen
+            # ficha porque nacieron después del JSON; las seis de k=22 no tienen ficha
+            # **en k=21** porque son de la otra corrida, y el ancla no puede compararlas
+            # contra algo que ese bloque del JSON no publica. Decir cuál de los dos
+            # motivos es importa: el primero es una región sin publicar, el segundo es
+            # una región publicada en otro `k`.
+            motivo = ("sin ficha publicada (región de D25)" if "D25" in _que
+                      else "sin ficha publicada en k=21 (región recomendada a k=22)")
             filas.append({"ancla": "A4", "region": "%s %s" % clave, "referencia": "-",
                           "criterio": "-", "mio": None, "publicado": None,
-                          "nota": "sin ficha publicada (región de D25)", "coincide": True})
+                          "nota": motivo, "coincide": True})
             continue
         mio = conteos_de_region(genes[gen], ini, fin,
                                R.excluidas_de(por_gen[gen], "off"))
@@ -304,7 +332,12 @@ def construir(genes: dict, identidad: list[dict], complejidad: dict) -> list[dic
 
 
 def estados(genes: dict, filas: list[dict]) -> list[dict]:
-    """El estado de las doce regiones bajo la regla nueva, y bajo las dos anteriores."""
+    """El estado de las dieciocho regiones bajo la regla nueva, y bajo las dos anteriores.
+
+    Esta es la salida que desde D72 hace de **inventario**: `alertas.exigir_decidida()` le
+    exige a la región estar acá, y es el único archivo que puede decir «tamizada, cero
+    aciertos», porque en `alertas.tsv` eso y «nunca tamizada» son las mismas cero filas.
+    """
     por_gen = {c["gen"]: c for c in list(R.CANDIDATOS) + V.NUEVOS}
     w = E.vector_exposicion()
     out = []
