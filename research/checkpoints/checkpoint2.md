@@ -383,6 +383,10 @@ quimeras por fenotipos complementarios—.
 
 ### Lo que conviene hacer para cerrar
 
+> Esto es el resumen. El plan ejecutable, con una tarea autocontenida por pendiente y la
+> separación entre lo que se puede hacer ya y lo que espera el transcriptoma, está en
+> [`docs/plan_cierre/PLAN_CIERRE.md`](../../docs/plan_cierre/PLAN_CIERRE.md).
+
 En orden, y con el criterio de que lo barato y de alto impacto va primero:
 
 1. **Subir la juntura al entregable.** Está medido y él lo nombró como diferencial; hoy vive
