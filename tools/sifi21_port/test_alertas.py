@@ -494,8 +494,8 @@ if TABLA.exists() and FIRMAS.exists():
     with TABLA.open(encoding="utf-8") as fh:
         reales = list(_csv2.DictReader(fh, delimiter="\t"))
     inf = AL.aplicar_decisiones(reales, AL.leer_decisiones(FIRMAS))
-    check(inf["firmadas"] == len(AL.leer_decisiones(FIRMAS)) == 18,
-          "las 18 firmas se aplican, cada una sobre su fila (%d filas en la tabla)"
+    check(inf["firmadas"] == len(AL.leer_decisiones(FIRMAS)) == 19,
+          "las 19 firmas se aplican, cada una sobre su fila (%d filas en la tabla)"
           % len(reales))
     sin_firma = {(g, r) for g, r, _o, _l in inf["sin_firma"]}
     # Cuatro de las seis regiones de k=22, no seis: `CP_MRFV` 77-276 y `bursA_Dm` 44-243
@@ -521,14 +521,19 @@ if TABLA.exists() and FIRMAS.exists():
     # candidata de `O3`, el unico gen del inventario que **no** tiene ficha de ranking.
     # Sus cuatro filas —maiz, *H. axyridis*, *H. vitripennis* y humano— quedan en
     # «pendiente» porque la firma la escribe una persona, y ninguna trae 21/21.
-    # La septima es la juntura de `Q_VATPaseB_Dm__BicC_Dm`, que entro con `D78` por la
-    # clave `(quimera <nombre>, "juntura")`. Sus tres bloques fabricados son de 19 nt, asi
-    # que no trae 21/21 y frena solo en el umbral laxo.
+    # La sexta es la juntura de `Q_VATPaseB_Dm__BicC_Dm`, que entro con `D78` por la clave
+    # `(quimera <nombre>, "juntura")`. Sus tres bloques fabricados son de 19 nt, asi que no
+    # trae 21/21 y frena solo en el umbral laxo.
+    #
+    # `eth_Dm` 194-393 estuvo aca y **salio**: el equipo la firmo bloqueante el mismo dia,
+    # con la asimetria de `rho` como motivo propio (ver `decisiones.tsv`). Era la unica
+    # pendiente con 21/21, asi que su firma es la que vuelve a dejar vacio el conjunto del
+    # `check` que sigue.
     check(sin_firma == {("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
                         ("ATPaseD_Dm", "71-370"), ("BicC_Dm", "2123-2422"),
-                        ("eth_Dm", "194-393"), ("VATPaseB_Dm", "517-816"),
+                        ("VATPaseB_Dm", "517-816"),
                         ("quimera Q_VATPaseB_Dm__BicC_Dm", "juntura")},
-          "las siete regiones con filas pendientes son las esperadas")
+          "las seis regiones con filas pendientes son las esperadas")
 
     # `D78`, las tres mitades que la decision pide y que no son la misma. La que importa
     # es la segunda: en `alertas.tsv` una quimera tamizada sin aciertos y una que nadie
@@ -555,8 +560,13 @@ if TABLA.exists() and FIRMAS.exists():
     con_21 = {(g, r) for g, r in sin_firma
               if any(int(f["ventanas_perfecto_21"] or 0) > 0 for f in reales
                      if (f["gen"], f["region"]) == (g, r))}
-    check(con_21 == {("eth_Dm", "194-393")},
-          "y la unica pendiente con coincidencia perfecta de 21 nt es eth_Dm 194-393")
+    # Vuelve a ser el conjunto vacio, y las dos afirmaciones —«estas son las pendientes» y
+    # «ninguna trae 21/21»— vuelven a coincidir. Siguen en dos `check` separados a
+    # proposito: coincidieron, dejaron de coincidir cuando entro 194-393 y volvieron a
+    # coincidir cuando se la firmo, asi que no son la misma propiedad aunque hoy den lo
+    # mismo. Pegarlas otra vez seria volver a perder la distincion.
+    check(con_21 == set(),
+          "y ninguna de las pendientes trae coincidencia perfecta de 21 nt")
     inv_k22 = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
     check(all(not AL.filas_de_region(reales, g, r) and (g, r) in inv_k22
               for g, r in (("CP_MRFV", "77-276"), ("bursA_Dm", "44-243"))),
@@ -597,9 +607,8 @@ if TABLA.exists() and FIRMAS.exists():
                      ("eth_Dm", "194-393")},
           "las cinco filas con coincidencia perfecta de 21 nt son las esperadas")
     check(all(AL.estado_decision(reales, g, r)["estado"] == "decidida: bloqueante"
-              for g, r in con_21 - {("eth_Dm", "194-393")})
-          and AL.estado_decision(reales, "eth_Dm", "194-393")["pendientes"] == 1,
-          "cuatro de las cinco estan bloqueantes y eth_Dm 194-393 sigue en pendiente")
+              for g, r in con_21),
+          "las cinco estan bloqueantes, 194-393 incluida desde que se la firmo")
 else:
     SALTEADAS.append("§8.9 la tabla real o el archivo de firmas no estan en disco")
 

@@ -81,7 +81,7 @@
    "codigo": 0,
    "motivo": "",
    "falta": "",
-   "segundos": 0.9
+   "segundos": 0.6
   },
   {
    "nombre": "ranking.py nulo",
@@ -105,7 +105,7 @@
    "codigo": 0,
    "motivo": "",
    "falta": "",
-   "segundos": 57.9
+   "segundos": 31.6
   },
   {
    "nombre": "M6 tabla_alertas.py",
@@ -117,7 +117,7 @@
    "codigo": 0,
    "motivo": "",
    "falta": "",
-   "segundos": 22.7
+   "segundos": 14.3
   },
   {
    "nombre": "M6 compuerta.py",
@@ -148,12 +148,12 @@
    "ruta": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py",
    "produce": "la columna region_recomendada de regiones_recomendadas_por_reparto.tsv, que sale de ranking_v2.recomendadas() via anclas.py",
    "insumo": "work/sifi_v2 (lo pide anclas.correr())",
-   "comando": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py --muestras 50",
-   "corrio": false,
-   "codigo": 1,
-   "motivo": "alertas.AlertaSinDecidir: eth_Dm 194-393 tiene 1 alerta(s) de perfecto_21 sin decidir (H_vitripennis) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+   "comando": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py --muestras 50 --resultados work/R11_censo/m5_sensibilidad",
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
    "falta": "",
-   "segundos": 27.2
+   "segundos": 19.0
   },
   {
    "nombre": "O3 01_region_vatpase_b.py",
@@ -165,7 +165,7 @@
    "codigo": 0,
    "motivo": "",
    "falta": "",
-   "segundos": 0.3
+   "segundos": 0.2
   }
  ]
 }

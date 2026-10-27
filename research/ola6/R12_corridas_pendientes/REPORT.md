@@ -5,8 +5,10 @@ no por falta de decisión», con una casilla por corrida y su línea **Necesita*
 el resultado de agarrar ese inventario en la máquina donde los insumos están —la de Joaquín,
 con `work/` en disco— y correrlo entero.
 
-El resultado corto: **de las catorce casillas, nueve se cerraron con la corrida hecha, tres
-cambiaron de naturaleza al medirlas y dos siguen abiertas con el motivo corregido.** Y el
+El resultado corto: **de las catorce casillas, diez se cerraron con la corrida hecha, dos
+cambiaron de naturaleza al medirlas y dos siguen abiertas con el motivo corregido.** La décima
+—el censo de los ocho generadores— se cerró cuando el equipo firmó la fila que frenaba al
+octavo (`D91`), ya empezado este informe. Y el
 hallazgo que atraviesa todo el barrido no es ninguna de las mediciones nuevas: es que **de los
 cinco bloqueos que el inventario atribuía a falta de insumo, tres no eran de insumo**. Uno era
 un parámetro que el propio censo cambiaba, otro era el directorio desde donde se corre un
@@ -26,11 +28,13 @@ Esos dos últimos son la celda que faltaba: `PLAN_OLA6.md` los daba por ausentes
 salvedad de que no se habían vuelto a medir contra los `envs/`. Están. **De la lista original
 de herramientas faltantes de esta máquina no falta ninguna** `[M]`.
 
-## 2. Los ocho generadores, de 2 de 8 a 7 de 8
+## 2. Los ocho generadores, de 2 de 8 a 8 de 8
 
 La casilla principal del #35 pedía correr los ocho generadores de punta a punta y dejar que
-la compuerta señalara las regiones sin tamizar. Iban 2 de 8. Van **7 de 8** `[M]`, y de los
-tres que fallaban en la primera pasada **ninguno fallaba por falta de insumo**:
+la compuerta señalara las regiones sin tamizar. Iban 2 de 8. Van **8 de 8** `[M]`, en tres
+pasos: cinco en la primera pasada, siete tras las dos correcciones de §3 y §5, y el octavo
+cuando se firmó la fila que lo frenaba (`D91`, §4). De los tres que fallaban en la primera
+pasada, **ninguno fallaba por falta de insumo**:
 
 | Generador | Antes | Ahora | Por qué |
 | --- | --- | --- | --- |
@@ -40,7 +44,7 @@ tres que fallaban en la primera pasada **ninguno fallaba por falta de insumo**:
 | `M6 tabla_alertas.py` | no corría | **OK** | tenía los insumos |
 | `M6 compuerta.py` | OK | OK | no cuenta para el criterio: itera sobre el inventario |
 | `M6 umbral_compuerta.py` | OK | OK | idem |
-| `M5 sensibilidad_reparto.py` | no corría | **frena en una firma** | llegó al final de la cadena de insumos (§4) |
+| `M5 sensibilidad_reparto.py` | no corría | **OK** | llegó al final de la cadena de insumos y frenaba en una firma, que se escribió (§4) |
 | `O3 01_region_vatpase_b.py` | no corría | **OK** | desencuentro de rutas en `work/O3/`, no falta de datos (§5) |
 
 ## 3. El ancla que el censo rompía solo
@@ -74,11 +78,23 @@ todas las letras, como el issue pide—, pero es **la misma que ya tenía `eth_D
 mismo organismo, mismo locus (`LOC124369889`, quitinasa 2 probable), **misma posición 347**,
 los mismos conteos de `D28` `[M]`. Es un acierto visto desde una región corrida un nucleótido.
 
-La fila queda **sin firmar**, que es lo correcto. Y la consecuencia es la parte que importa
-para el inventario de pendientes: mientras siga sin firmar, `sensibilidad_reparto.py` **no
-termina**, y su error pasó de `RegionNoTamizada` a `AlertaSinDecidir`. O sea que ese pendiente
+La fila salió **sin firmar**, que es lo correcto, y la consecuencia fue la parte que importa
+para el inventario de pendientes: mientras estuvo sin firmar, `sensibilidad_reparto.py` **no
+terminaba**, y su error pasó de `RegionNoTamizada` a `AlertaSinDecidir`. O sea que ese pendiente
 dejó de ser «falta `work/`» y pasó a ser «falta una firma», que es **otra clase de pendiente**
 y está en manos del equipo, no de una máquina.
+
+**Firmada bloqueante el mismo día (`D91`), y con eso el censo llegó a 8 de 8.** La firma no es
+una copia de la de 193-392, aunque los dos motivos de ésa apliquen palabra por palabra. Tiene
+un tercero que es propio: **acá la región y el peso están acoplados.** 194-393 aparece sólo con
+`rho` = 0,00, así que el contrafáctico de la firma vieja —«con el 0,60 de `D18` sería el acierto
+más fuerte de la región»— acá no existe: con 0,60 la región no se recomienda. Si la exposición
+de *H. vitripennis* se cierra en 0,00 la región existe y su alerta pesa poco; si se cierra en
+0,60 la fila es irrelevante porque **la región desaparece**. Al revisarla hay que mirar primero
+si sigue siendo recomendada con el peso que se decida.
+
+En el umbral `perfecto_21` la compuerta pasa ahora **23 de 23**: 194-393 era la única que
+frenaba ahí `[M]`.
 
 ## 5. `work/O3/` tenía otro layout, y ninguna cifra se movió al rehacerlo
 

@@ -2,9 +2,9 @@
 
 > **ESTADO AL 2026-10-27 (issue #37, bloque `R12`).** Este archivo se escribio desde una
 > maquina sin `work/`, y las corridas que pide **se hicieron** en la maquina de Joaquin, donde
-> los insumos estan. El censo pasa **7 de 8**; la matriz de `V-ATPase B` y las dos junturas
+> los insumos estan. El censo pasa **8 de 8**; la matriz de `V-ATPase B` y las dos junturas
 > **estan en el inventario** (`D88`); `ranking_v2.json` **es byte-reproducible** y reproduce el
-> publicado. Lo que sigue pendiente ya no es insumo: son **cinco filas sin firmar** y una
+> publicado. Lo que sigue pendiente ya no es insumo: son **cuatro filas sin firmar** y una
 > corrida que cuesta 71 dias (`D89`). El resultado completo esta en
 > `research/ola6/R12_corridas_pendientes/REPORT.md`. Lo que sigue se deja como estaba, porque
 > es el pedido tal como se escribio y vale para quien lo tome en otra maquina.

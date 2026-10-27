@@ -107,8 +107,15 @@ GENERADORES = [
      "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)"},
     {"nombre": "M5 sensibilidad_reparto.py",
      "ruta": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py",
+     # `--resultados` a `work/`, y **esto no es cosmetico**: mientras este generador
+     # fallaba por insumo no escribia nada, y al destrabarse (issue #37) empezo a escribir
+     # en `research/ola4/M5_dos_ejes/resultados/`, que es lo que se versiona. Con los
+     # `--muestras 50` del censo eso sobreescribe las cifras publicadas de M5 con una
+     # corrida de cincuenta sorteos. Un censo que verifica si un generador corre no puede
+     # dejar su salida de prueba donde vive la salida publicada.
      "comando": [sys.executable, "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py",
-                 "--muestras", "50"],
+                 "--muestras", "50",
+                 "--resultados", "work/R11_censo/m5_sensibilidad"],
      "produce": ("la columna region_recomendada de regiones_recomendadas_por_reparto.tsv, "
                  "que sale de ranking_v2.recomendadas() via anclas.py"),
      "insumo": "work/sifi_v2 (lo pide anclas.correr())"},

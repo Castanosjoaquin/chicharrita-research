@@ -2547,13 +2547,13 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     hecho de entorno viene marcado `[?]` porque no se volvió a medir, lo que corresponde no
     es arrastrarlo: es medirlo, que cuesta un `ls`.
 
-77. **El censo de generadores pasó de 2 de 8 a 7 de 8, y el que queda no es de insumo.**
-    Corrido de punta a punta con `work/` en disco, y después de las dos correcciones que
-    siguen, terminan con código 0 **siete** de los ocho: `ranking.py ranking`,
-    `ranking.py nulo`, `ranking_v2.py`, `tabla_alertas.py`, `compuerta.py`,
-    `umbral_compuerta.py` y `01_region_vatpase_b.py` `[M]`. En la primera pasada eran cinco
-    y los tres que faltaban fallaban por tres motivos distintos, de los cuales **ninguno
-    era falta de insumo**:
+77. **El censo de generadores pasó de 2 de 8 a 8 de 8, y ninguno de los seis que se
+    destrabaron lo estaba por el motivo que el inventario le atribuía.**
+    Corrido de punta a punta con `work/` en disco, terminan con código 0 **los ocho** `[M]`.
+    Llegó ahí en tres pasos: cinco en la primera pasada, siete tras las dos correcciones que
+    siguen, y el octavo —`sensibilidad_reparto.py`— cuando el equipo firmó la fila que lo
+    frenaba (`D91`). Los tres que fallaban en la primera pasada lo hacían por tres motivos
+    distintos y **ninguno era falta de insumo**:
 
     * `ranking_v2.py` **no fallaba por insumo**: el censo lo invoca con `--muestras 50`
       para ir rápido, y el ancla del barrido compara frecuencias contra `W7` con igualdad
@@ -2566,10 +2566,10 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
       ignora. Conviene que el censo corra los generadores con sus defaults, o que declare
       al lado qué parámetro cambió.
     * `sensibilidad_reparto.py` llegó hasta el final de la cadena de insumos y se detuvo
-      donde el proyecto quiere que se detenga: en una firma. Es el único que sigue sin
-      terminar, y su error cambió de `RegionNoTamizada` a `AlertaSinDecidir`, que es
-      exactamente un paso de avance: la región ya está tamizada y lo que falta es que una
-      persona la firme. Ver la entrada 78.
+      donde el proyecto quiere que se detenga: en una firma. Su error pasó de
+      `RegionNoTamizada` a `AlertaSinDecidir` —un paso de avance: la región ya estaba
+      tamizada y lo que faltaba era que una persona la firmara— y **terminó el mismo día**,
+      cuando esa firma se escribió (`D91`). Ver la entrada 78.
     * `01_region_vatpase_b.py` fallaba con `StopIteration` por un desencuentro de rutas, no
       por falta de datos. Ver la entrada 79.
 
@@ -2585,18 +2585,22 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     Agregada al inventario, **trae una coincidencia perfecta de 21 nt**, y es la misma que
     ya tenía `eth_Dm` 193-392: mismo organismo (*H. vitripennis*), mismo locus
     (`LOC124369889`, quitinasa 2 probable), **misma posición 347**, los mismos conteos de
-    `D28` (1 de 21/21 y 5 de ≥ 19 nt, 0 eficientes) `[M]`. La fila queda **sin firmar**, que
-    es lo que corresponde: la firma la escribe una persona. Y mientras siga sin firmar,
-    `sensibilidad_reparto.py` **no termina** —levanta `AlertaSinDecidir`—, lo que convierte
-    ese pendiente de «falta `work/`» en «falta una firma», que es una clase distinta de
-    pendiente y está en manos del equipo, no de una máquina.
+    `D28` (1 de 21/21 y 5 de ≥ 19 nt, 0 eficientes) `[M]`. La fila salió **sin firmar**, que
+    es lo que corresponde: la firma la escribe una persona. Y mientras estuvo sin firmar,
+    `sensibilidad_reparto.py` **no terminaba** —levantaba `AlertaSinDecidir`—, lo que
+    convirtió ese pendiente de «falta `work/`» en «falta una firma»: una clase distinta de
+    pendiente, en manos del equipo y no de una máquina.
 
-    `[H]` La firma de 193-392 es «bloqueante con condición» y su justificación aplica
-    palabra por palabra a 194-393, porque es literalmente el mismo acierto. Pero copiarla
-    sería el motor firmando por una persona, que es justo lo que `D48` prohíbe. Lo que sí
-    se puede decir es que el argumento contra la propuesta de 22 nt para `eth_Dm` —correr
-    la ventana introduce un acierto perfecto que la región vigente 114-313 no tiene— ahora
-    tiene **dos** regiones que lo sostienen en vez de una.
+    **Firmada el mismo día, bloqueante, por `D91`.** Con la firma puesta el generador
+    termina y el censo llega a 8 de 8 `[M]`. Lo que la firma agrega y no estaba en la de
+    193-392 es que **acá la región y el peso están acoplados**: ésta aparece sólo con
+    `rho` = 0,00, así que si la exposición de *H. vitripennis* se cerrara en 0,60 la fila no
+    se vuelve más fuerte —como pasaría con 193-392— sino que **la región desaparece**. Al
+    revisarla hay que mirar primero si sigue siendo recomendada con el peso que se decida.
+
+    `[H]` Y el argumento contra la propuesta de 22 nt para `eth_Dm` —correr la ventana
+    introduce un acierto perfecto que la región vigente 114-313 no tiene— ahora tiene
+    **dos** regiones que lo sostienen en vez de una.
 
 79. **`work/O3/` de esta máquina tiene otro layout que el que el script de `O3` pide, y la
     diferencia no era de datos.** `01_region_vatpase_b.py` busca
@@ -2764,3 +2768,24 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
    contradiccion como pendiente y ya no lo esta. No se edito porque ese archivo es de la linea
    `R3`, que se cerro en otra sesion: hay que actualizar esa fila o confirmar que la pagina se
    regenera sola `[?]`.
+
+88. **El censo de generadores escribía su salida de prueba encima de las cifras publicadas,
+    y el defecto estuvo invisible mientras el generador fallaba.** `sensibilidad_reparto.py`
+    escribe en `research/ola4/M5_dos_ejes/resultados/`, que es un directorio versionado, y
+    no tenía forma de mandar la salida a otro lado. El censo de `R11` lo corre con
+    `--muestras 50` para ir rápido. Mientras el generador moría por insumo eso no tenía
+    consecuencia, porque no llegaba a escribir nada; **al destrabarse y terminar, la primera
+    corrida reemplazó los dos archivos publicados de esa línea con una corrida de cincuenta
+    sorteos en vez de los dos mil del default** `[M]`: 39.675 líneas insertadas y 101.943
+    borradas entre `sensibilidad_reparto.json` y `.tsv`. Se revirtió antes de commitear y se
+    le agregó `--resultados` al script, con el patrón que `quimeras_v2.py` y `ranking_v2.py`
+    ya usaban; el censo ahora escribe en `work/R11_censo/m5_sensibilidad`.
+
+    `[H]` Es el hermano del defecto de la entrada 77 y el más caro de los dos, porque no
+    avisa: aquél rompía un ancla y gritaba «ANCLA ROTA», éste deja los archivos **con
+    aspecto normal** y sólo se nota en el `git diff`. Y tiene una forma general que conviene
+    mirar en el resto del repositorio: **un verificador que corre generadores hereda el
+    poder de escritura de todo lo que corre**, así que un script que no sabe separar «dónde
+    publico» de «dónde escribo cuando me están probando» no se puede censar sin riesgo. Lo
+    que lo hizo invisible durante tres corridas del censo es justamente lo que el censo
+    estaba midiendo: que el generador fallara.

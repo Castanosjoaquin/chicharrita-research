@@ -3,16 +3,17 @@
  "filas": 32,
  "umbrales": {
   "perfecto_21": {
-   "pasan": 22,
-   "frenadas": 1,
+   "pasan": 23,
+   "frenadas": 0,
    "frenadas_vigentes": 0,
-   "bloqueantes": 4,
+   "bloqueantes": 5,
    "bloqueantes_vigentes": 0,
    "bloqueantes_detalle": [
     "BicC_Dm 264-563",
     "ATPaseD_Dm 151-450",
     "ATPaseD_Dm 137-436",
-    "eth_Dm 193-392"
+    "eth_Dm 193-392",
+    "eth_Dm 194-393"
    ],
    "detalle": [
     {
@@ -343,20 +344,17 @@
      "region": "194-393",
      "umbral": "perfecto_21",
      "alertas": 1,
-     "pendientes": 1,
-     "bloqueantes": 0,
-     "estado": "sin decidir",
-     "organismos_pendientes": [
-      "H_vitripennis"
-     ],
-     "decide": "el usuario",
+     "pendientes": 0,
+     "bloqueantes": 1,
+     "estado": "decidida: bloqueante",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
      "panel": null,
      "organismos_fuera_del_panel": [],
      "pendientes_fuera_del_panel": [],
-     "mensaje": "eth_Dm 194-393 tiene 1 alerta(s) de perfecto_21 sin decidir (H_vitripennis) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
      "vigente": "no",
      "que_es": "recomendada con el reparto de exposicion de D47 (rho=0,00)",
-     "resultado": "FRENADA"
+     "resultado": "pasa"
     },
     {
      "gen": "VATPaseB_Dm",
@@ -412,16 +410,17 @@
    ]
   },
   "perfecto_ge19": {
-   "pasan": 16,
-   "frenadas": 7,
+   "pasan": 17,
+   "frenadas": 6,
    "frenadas_vigentes": 0,
-   "bloqueantes": 4,
+   "bloqueantes": 5,
    "bloqueantes_vigentes": 0,
    "bloqueantes_detalle": [
     "BicC_Dm 264-563",
     "ATPaseD_Dm 151-450",
     "ATPaseD_Dm 137-436",
-    "eth_Dm 193-392"
+    "eth_Dm 193-392",
+    "eth_Dm 194-393"
    ],
    "detalle": [
     {
@@ -766,20 +765,17 @@
      "region": "194-393",
      "umbral": "perfecto_ge19",
      "alertas": 1,
-     "pendientes": 1,
-     "bloqueantes": 0,
-     "estado": "sin decidir",
-     "organismos_pendientes": [
-      "H_vitripennis"
-     ],
-     "decide": "el usuario",
+     "pendientes": 0,
+     "bloqueantes": 1,
+     "estado": "decidida: bloqueante",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
      "panel": null,
      "organismos_fuera_del_panel": [],
      "pendientes_fuera_del_panel": [],
-     "mensaje": "eth_Dm 194-393 tiene 1 alerta(s) de perfecto_ge19 sin decidir (H_vitripennis) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
      "vigente": "no",
      "que_es": "recomendada con el reparto de exposicion de D47 (rho=0,00)",
-     "resultado": "FRENADA"
+     "resultado": "pasa"
     },
     {
      "gen": "VATPaseB_Dm",
