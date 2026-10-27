@@ -168,6 +168,9 @@ de seis sobre los genes **enteros**, que el de `O3` no cubría para `BicC_Dm`—
 minutos cada uno.
 
 ```bash
+# 0. el FASTA de consultas con los dos genes enteros (no se versiona)
+python research/ola6/O4_enumerador_quimeras/scripts/00_consultas.py
+
 # 1. el tamizado del panel de seis sobre los dos genes enteros
 python tools/sifi21_port/offtarget_21nt.py \
     --consulta work/O4/fasta/consultas_genes_enteros.fasta --mm1 \
@@ -192,10 +195,14 @@ python research/ola6/O4_enumerador_quimeras/scripts/enumerar_quimeras.py \
     --nombre o4_cobertura_fenotipica
 ```
 
-El archivo `work/O4/fasta/consultas_genes_enteros.fasta` lo arma el paso 1 del `REPORT` de
-`O2`/`O3` a partir de los dos FASTA de `work/O3/fasta/`, y **no se versiona**: el `.gitignore`
-del bloque rechaza `*.fasta` y `*.fna`, porque `BicC_Dm` es una de las cuatro secuencias de
-EPILAB.
+El paso 0 existe porque el tamizado que dejó `O3` cubre `V-ATPase B` entero pero de
+`BicC_Dm` sólo su región de 300 nt, y para enumerar fragmentos a lo largo del gen hace falta
+la máscara del gen completo. Su salida **no se versiona** —son las dos secuencias, y
+`BicC_Dm` es una de las cuatro de EPILAB—, así que el `.gitignore` del bloque rechaza
+`*.fasta` y `*.fna`. Si falta el CDS de `V-ATPase B`, que tampoco se versiona, lo regenera
+`research/ola6/O2_vatpase_b/scripts/02_extraer_cds.py`, y `mascara.py` **aborta** si el
+tamizado no cubre el gen entero, para que ese faltante no produzca una grilla podada con una
+máscara parcial.
 
 Con `--paso 1` la misma grilla pide **136.446** plegados, que exceden el tope declarado de
 5.000: la corrida **se detiene y lo dice**, con el tamaño medido y el paso más fino que
