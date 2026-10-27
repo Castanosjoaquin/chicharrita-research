@@ -112,3 +112,38 @@ Los números tal como salgan, con los controles. No hay umbral de éxito para la
 anotados: lo que se busca es la contabilidad completa y las bandas. La primera corrida real
 contesta la pregunta del issue sobre `GHCC01` por el accesión (`GITV01` ≠ `GHCC01`) y no por
 alineamiento.
+
+---
+
+## Enmienda 1 — 2026-10-27, escrita después de la corrida v1 y antes de la v2
+
+**Qué pasó.** La corrida v1 (un ORF por contig, como decía el método) **falló el control positivo
+que este mismo documento fijó**: `GITV01003502.1` devolvió una vitelogenina de 622 aa (75,6 % de
+identidad) en lugar de la subunidad B de la V-ATPasa. El contig mide 8.004 nt, la V-ATPasa B es
+un ORF de 517 aa en la hebra `+` y hay otro gen más largo en la hebra `-`. Es el límite 3 de arriba,
+que había declarado sin medir. Según el control, **la v1 no se lee**: sus conteos quedan en
+`resultados/v1_resumen_un_orf_por_contig.json` sólo como evidencia del fallo, y las tablas no se
+versionan.
+
+**Qué cambia en la v2** (todo lo demás, igual):
+
+1. **Todos los ORF ≥ 100 aa** de los seis marcos entran, no sólo el más largo. La unidad de
+   análisis pasa de contig a ORF; la tabla tiene una fila por ORF más una fila por cada contig
+   sin ORF ≥ 100 aa (categoría a).
+2. **La contabilidad se hace en los dos niveles.** Por ORF, las categorías b–f suman el total de
+   ORF. Por contig, cada contig cae en una sola categoría, la **mejor** de las de sus ORF, en el
+   orden f > e > d > c > b > a. Las dos sumas se verifican y el script aborta si no cierran.
+3. **Se reporta cuántos contigs tienen ≥ 2 ORF recíprocos hacia referencias distintas**: es un
+   indicador de contig con más de un gen o quimérico, no una conclusión.
+
+**Lo que ya había visto en la v1 cuando escribí esto, dicho para que no parezca preregistro
+puro:** el 16 % de los contigs cayó en «empate» (8.856 de 56.117), muy por encima de lo que
+esperaba. La explicación probable es que RefSeq trae isoformas con el mismo bitscore. **La
+definición preregistrada de empate no cambia** y es la que cuenta como categoría d. Se agrega, como
+lectura secundaria rotulada `[H]` y post hoc, la columna `empate_homonimo`: verdadera si todos
+los sujetos empatados del lado directo tienen el mismo nombre normalizado. No mueve ninguna
+categoría; sólo permite leer cuánto de d es isoformas.
+
+**Controles de la v2:** el positivo es el mismo (V-ATPasa B, contig `GITV01003502.1`, identidad
+≥ 99 %, ahora sobre el ORF de 517 aa); el negativo (señuelo, 1.000 ORF barajados, semilla 0) se
+toma de los ORF de la v2. Si el positivo falla otra vez, se declara y no se lee.

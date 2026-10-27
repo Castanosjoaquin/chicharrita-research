@@ -1,0 +1,50 @@
+{
+ "consulta": "work/F1/GITV01.fas",
+ "consulta_sha256": "c83d832c7e4cf557671ad36a12b0a2c49a82f6fe2d84952ab1816437129f9cc3",
+ "contigs": 56117,
+ "diamond": "diamond version 2.2.8",
+ "parametros": {
+  "min_aa": 100,
+  "evalue": "1e-10",
+  "hits": 5,
+  "sensibilidad": "--more-sensitive",
+  "max_hsps": 1
+ },
+ "referencias": {
+  "MQ": {
+   "proteoma": "work/F1/ref/GCF_028750875.1_UCM_ALF_1.0_protein.faa",
+   "proteoma_sha256": "1ea13a15f993da629b1daf8951ad2f54d9f62319d92294db77dff3f711992810",
+   "proteinas": 34269,
+   "categorias": {
+    "a_sin_orf": 25812,
+    "b_sin_hit": 9470,
+    "c_hit_no_reciproco": 6652,
+    "d_empate": 8856,
+    "e_reciproco_sin_nombre": 1269,
+    "f_reciproco_con_nombre": 4058
+   },
+   "proteinas_de_referencia_distintas_con_recip": 5327
+  },
+  "HV": {
+   "proteoma": "work/F1/ref/GCF_021130785.1_UT_GWSS_2.1_protein.faa",
+   "proteoma_sha256": "fa6f44f11de5c2ff60ae425a102d7e983b8138dd428d81cff87b707fd85998b3",
+   "proteinas": 31163,
+   "categorias": {
+    "a_sin_orf": 25812,
+    "b_sin_hit": 11586,
+    "c_hit_no_reciproco": 6457,
+    "d_empate": 7248,
+    "e_reciproco_sin_nombre": 1326,
+    "f_reciproco_con_nombre": 3688
+   },
+   "proteinas_de_referencia_distintas_con_recip": 5014
+  }
+ },
+ "estado": "v1 DESCARTADA POR SU PROPIO CONTROL: no se lee. Ver PREREGISTRO.md, Enmienda 1.",
+ "control_positivo": {
+  "contig": "GITV01003502.1",
+  "esperado": "V-ATPase B (XP_054288745.1), identidad >= 99 %",
+  "obtenido": "ORF de 622 aa de la hebra - asignado a 'vitellogenin-1-like' (XP_054267469.1), 75,6 % de identidad, categoria c_hit_no_reciproco",
+  "causa": "el contig mide 8.004 nt y tiene la V-ATPase B (ORF de 517 aa, hebra +, marco 1) y otro gen en la hebra opuesta (622 aa); 'el ORF mas largo por contig' elige el otro"
+ }
+}
