@@ -2638,10 +2638,28 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
 
     Lo que el enumerador ofrece como pasos intermedios, medido en la misma corrida:
     `--paso 2` pide 16.816.657, `--paso 5` pide 1.177.056 y `--paso 10` pide **173.289**
-    `[M]`. El último es el único que entra en una tarde: lanzado en esta máquina avanza a
-    8,8 combinaciones por segundo, o sea unas **5,4 horas** `[M]`. Queda corriendo y su
-    resultado —si el primer puesto de la grilla gruesa sobrevive a una retícula diez veces
-    más fina— no entró en esta sesión.
+    `[M]`. El último es el único que entra en una tarde, y **se corrió**: 169.648
+    combinaciones más 3.641 fragmentos, en unas cinco horas de esta máquina `[M]`.
+
+    **Y contesta la pregunta: el paso mueve el primer puesto.** La grilla gruesa daba
+    `Q_BicC_Dm_1951-2450__VATPaseB_Dm_1001-1100` con 64 ventanas heredadas eficientes. Con
+    `--paso 10` el primero es `Q_BicC_Dm_1961-2460__VATPaseB_Dm_1001-1100` con **65**, y el
+    de la gruesa cae al **puesto 2** `[M]`. El ganador nuevo arranca diez nucleótidos más
+    adelante, en una ubicación que la retícula de paso 50 **no tocaba**, que es exactamente
+    el mecanismo que la entrada 48 temía cuando lo planteó para las islas angostas. Las
+    combinaciones con alerta de juntura nueva pasan de 515 de 3.204 (16,1 %) a 15.763 de
+    169.648 (9,3 %) `[M]`.
+
+    `[H]` Pero el margen es **una ventana** sobre 65, así que conviene no leerlo como «la
+    grilla gruesa eligió mal». Lo que queda medido es más modesto y más útil: el orden de
+    esta grilla **no es estable al paso**, de modo que el primer puesto de cualquiera de las
+    dos es un artefacto de la retícula tanto como del criterio. Eso refuerza lo que `D65` ya
+    había decidido por otra vía —que el conteo no es lo que decide entre candidatos— y se
+    suma al aviso que viaja con este objetivo: el criterio de eficiencia de si-Fi21 no está
+    validado en hemípteros, ρ = +0,142, IC95 [−0,247, +0,492], n = 29. Un reordenamiento por
+    una ventana, bajo un criterio con ese intervalo, no mueve ninguna recomendación.
+    `[?]` Y lo que sigue sin saberse es si `--paso 1` movería **otra vez** el primer puesto:
+    la sucesión 50 → 10 lo movió una vez, y de ahí no se sigue que haya convergido.
 
 81. **El eje de off-target por gen de `F3` no se desbloquea con `work/`, y la casilla lo
     decía mal.** Esta entrada completa la **67** y el §4 del `REPORT.md` de `F3`, que

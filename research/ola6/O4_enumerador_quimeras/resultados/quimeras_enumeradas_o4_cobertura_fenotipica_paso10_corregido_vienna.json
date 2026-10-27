@@ -1,0 +1,59 @@
+{
+  "objetivo": "cobertura_fenotipica",
+  "advertencia": "el criterio de eficiencia de si-Fi21 no esta validado en hemipteros: rho = +0,142, IC95 [-0,247, +0,492], n = 29",
+  "genes": {
+    "BicC_Dm": {
+      "ruta": "work/O3/fasta/BicC_Dm_full.fasta",
+      "n": 2520,
+      "desde": 1,
+      "hasta": 2520
+    },
+    "VATPaseB_Dm": {
+      "ruta": "work/O3/fasta/VATPaseB_Dm_full.fasta",
+      "n": 1503,
+      "desde": 1,
+      "hasta": 1503
+    }
+  },
+  "ejes_declarados": {
+    "BicC_Dm": {
+      "eje": "reproduccion",
+      "fuente": "C5/DM-01"
+    },
+    "VATPaseB_Dm": {
+      "eje": "movilidad",
+      "fuente": "C5/DM-02"
+    }
+  },
+  "grilla": {
+    "combinaciones_antes_de_podar": 218126888,
+    "combinaciones_admisibles": 169648,
+    "paso": 10,
+    "l1_min": 100,
+    "l1_max": 500,
+    "largo_total": 600,
+    "marco_de_la_grilla": 2
+  },
+  "plegados": 173289,
+  "tamizado_de_juntura": {
+    "que_se_busca": "bloques de 19, 20 y 21 nt que cruzan la union, exactos y en las dos hebras; fabricado es el bloque que toma al menos un nucleotido de cada gen (paso 2 de O3, C13)",
+    "bloques_por_juntura": 57,
+    "mm1_21": "fuera de esta cuenta: un desajuste no tiene bloque contiguo que localizar. Es desviacion declarada del §4 del preregistro"
+  },
+  "modo": "corregido",
+  "backend": "vienna",
+  "temp_c": 22.0,
+  "tabla_nn": "NN3",
+  "marcos": {
+    "grilla": 2,
+    "riesgo": 2,
+    "nota": "el largo total es nucleotidos (marco 2 de D63); la lectura de marco 1 de cada fragmento viaja en sus dos columnas"
+  },
+  "clave_de_la_juntura_en_el_inventario_de_M6": {
+    "clave": "(quimera <nombre>, \"juntura\")",
+    "quien_la_decidio": "D78, con granularidad quimera x organismo x gen impactado y los j fuera de la clave",
+    "estado": "decidida y NO implementada por falta de insumo (PREGUNTAS_ABIERTAS 41), asi que una quimera todavia puede pasar la compuerta con su empalme sin tamizar",
+    "la_fila_completa": "la produce research/ola6/O3_quimera_bicc_vatpase_b/scripts/03_alerta_d48.py, que resuelve las anotaciones"
+  },
+  "python": "3.11.17"
+}

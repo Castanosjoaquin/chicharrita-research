@@ -230,8 +230,24 @@ va en la dirección conservadora: declara no recíprocos pares que sí lo son.
 plegados y «unas horas de esta máquina». Son **129.761.738** `[M]`, unos 71 días a las 21
 plegados por segundo que mide esta máquina. El tope hizo exactamente su trabajo —detener y
 declarar el tamaño medido— y de paso dejó el costo de las cuatro retículas, que es lo que
-faltaba para decidir. La decisión está en `D89`; la retícula de `--paso 10` (173.289 plegados,
-unas 5,4 h) quedó lanzada y no terminó dentro de la sesión.
+faltaba para decidir. La decisión está en `D89`.
+
+**La retícula de `--paso 10` sí se corrió, y contesta la mitad contestable de la entrada 48:
+el paso mueve el primer puesto.** 169.648 combinaciones más 3.641 fragmentos, en unas cinco
+horas `[M]`. El primero de la grilla gruesa —`Q_BicC_Dm_1951-2450__VATPaseB_Dm_1001-1100`, 64
+ventanas heredadas— cae al **puesto 2**, y el nuevo primero es
+`Q_BicC_Dm_1961-2460__VATPaseB_Dm_1001-1100` con **65**, que arranca diez nucleótidos más
+adelante: una ubicación que la retícula de paso 50 **no tocaba**, que es el mecanismo exacto
+que la entrada 48 temía. Las alertas de juntura pasan de 515 de 3.204 (16,1 %) a 15.763 de
+169.648 (9,3 %) `[M]`.
+
+`[H]` El margen es **una ventana** sobre 65, así que no se lee como «la gruesa eligió mal».
+Lo medido es más modesto y más útil: **el orden de esta grilla no es estable al paso**, de
+modo que el primer puesto de cualquiera de las dos es un artefacto de la retícula tanto como
+del criterio — que además no está validado (ρ = +0,142, IC95 [−0,247, +0,492], n = 29). Eso
+refuerza lo que `D65` ya decidió por otra vía: el conteo no es lo que decide entre candidatos.
+`[?]` Si `--paso 1` lo movería otra vez sigue sin saberse: 50 → 10 lo movió una vez y de ahí
+no se sigue que haya convergido.
 
 **Los dos ejes de `F3` (#27).** `F3` se cerró en paralelo a este barrido (issue #27, `D87`) y
 dejó los dos ejes declarados faltantes desde una máquina sin `work/`; esto los mide desde la
