@@ -526,7 +526,10 @@ def main(argv=None) -> int:
             "un par no pasa todavia por el inventario de alertas de M6: la clave de juntura "
             "que D78 le dio a una quimera no esta implementada (PREGUNTAS_ABIERTAS 41)"],
         "python": sys.version.split()[0],
-    }, indent=2, ensure_ascii=False, sort_keys=False) + "\n", encoding="utf-8")
+        # `newline="\n"` no es cosmetico: sin el, en Windows `write_text` escribe CRLF y el
+        # archivo en disco deja de coincidir con el commiteado, que `.gitattributes` fuerza a
+        # LF. Con los dos lados en LF, regenerar y comparar vuelve a ser una verificacion.
+    }, indent=2, ensure_ascii=False, sort_keys=False) + "\n", encoding="utf-8", newline="\n")
 
     donde = res.relative_to(RAIZ) if res.is_relative_to(RAIZ) else res
     print("\nescrito en %s" % donde)
