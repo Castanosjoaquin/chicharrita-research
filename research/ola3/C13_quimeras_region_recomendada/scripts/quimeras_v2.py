@@ -29,6 +29,20 @@ Uso:
         --conjunto epilab       --modo fiel --backend vienna   # verificacion
     python research/ola3/C13_quimeras_region_recomendada/scripts/quimeras_v2.py \
         --conjunto recomendadas --modo fiel --backend vienna   # lo nuevo
+
+Genes que no son los cuatro de EPILAB (O3, issue #23). Hasta la ola 6 este script tenia
+`REGIONES` y `CONJUNTOS` fijos y no aceptaba un gen nuevo. Ahora `--gen` arma un conjunto
+ad hoc sin tocar los tres conjuntos publicados ni el ancla de C4, que sigue siendo lo que
+autoriza a leer cualquier numero nuevo:
+
+    python .../quimeras_v2.py --nombre o3 \
+        --gen BicC_Dm=922-1221 \
+        --gen VATPaseB_Dm=242-541:work/O3/fasta/VATPaseB_Dm_full.fasta \
+        --modo corregido --backend vienna
+
+Un gen cuyo FASTA no esta en `work/sifi_check/<gen>_full.fasta` lo trae con `:ruta`. Con
+dos genes salen las dos quimeras, que son los dos ordenes, porque el orden cambia el
+resultado y esta medido (C13: +3 y -3 con las mismas dos regiones).
 """
 
 from __future__ import annotations
@@ -66,8 +80,59 @@ CONJUNTOS = {
     "vigentes": {"MP_MRFV": (72, 271), "CP_MRFV": (99, 298),
                  "BicC_Dm": (922, 1221), "ATPaseD_Dm": (72, 371)},
 }
+#: Orden de los genes por conjunto. Los tres publicados usan `REGIONES`; un conjunto ad
+#: hoc de `--gen` trae su propio orden, el de la linea de comandos.
+ORDEN: dict[str, list[str]] = {}
+#: FASTA del gen entero para los genes que no estan en `work/sifi_check/`. Lo llena
+#: `registrar_conjunto` desde `--gen NOMBRE=a-b:ruta`.
+FASTA_EXTRA: dict[str, Path] = {}
 # Tablas de C4 contra las que se verifica el conjunto epilab, una por modo.
 DIR_C4 = RAIZ / "research/ola3/C4_offtargets_quimeras_largo/resultados"
+
+
+def regiones_de(conjunto: str) -> list[str]:
+    """Los genes del conjunto, en orden. Los tres publicados son los cuatro de EPILAB."""
+    return ORDEN.get(conjunto, REGIONES)
+
+
+def registrar_conjunto(nombre: str, especificaciones: list[str]) -> str:
+    """Arma un conjunto ad hoc desde `--gen NOMBRE=a-b[:ruta_fasta]`.
+
+    No toca los tres conjuntos publicados: agrega uno nuevo con su propio orden. Si el
+    nombre ya existe, aborta, para que una corrida ad hoc no pueda sobreescribir en
+    silencio las coordenadas de `epilab`, `recomendadas` o `vigentes`.
+    """
+    if nombre in CONJUNTOS:
+        raise SystemExit("el conjunto '%s' ya existe; elegi otro --nombre" % nombre)
+    coords, orden = {}, []
+    for spec in especificaciones:
+        if "=" not in spec:
+            raise SystemExit("--gen pide NOMBRE=a-b[:ruta], llego '%s'" % spec)
+        gen, resto = spec.split("=", 1)
+        tramo, _, ruta = resto.partition(":")
+        if "-" not in tramo:
+            raise SystemExit("--gen pide NOMBRE=a-b[:ruta], llego '%s'" % spec)
+        a, b = (int(x) for x in tramo.split("-", 1))
+        if a < 1 or b < a:
+            raise SystemExit("%s: la region %d-%d no es valida" % (gen, a, b))
+        if gen in coords:
+            raise SystemExit("%s aparece dos veces en --gen" % gen)
+        coords[gen] = (a, b)
+        orden.append(gen)
+        if ruta:
+            p = Path(ruta)
+            p = p if p.is_absolute() else RAIZ / p
+            if not p.exists():
+                raise SystemExit("%s: no esta %s" % (gen, p))
+            FASTA_EXTRA[gen] = p
+    if len(orden) < 2:
+        raise SystemExit("hacen falta al menos dos --gen para armar una quimera")
+    CONJUNTOS[nombre], ORDEN[nombre] = coords, orden
+    return nombre
+
+
+def fasta_full(gen: str) -> Path:
+    return FASTA_EXTRA.get(gen, FULL / ("%s_full.fasta" % gen))
 
 
 def tabla_c4(modo: str, backend: str) -> Path:
@@ -97,11 +162,11 @@ def es_eficiente(fila) -> bool:
 
 
 def recortar(conjunto: str) -> dict:
-    """Recorta las cuatro regiones del gen completo y, si se puede, se autocontrola."""
+    """Recorta las regiones del gen completo y, si se puede, se autocontrola."""
     coords = CONJUNTOS[conjunto]
     regiones = {}
     for g, (a, b) in coords.items():
-        full = leer_fasta_simple(FULL / ("%s_full.fasta" % g))
+        full = leer_fasta_simple(fasta_full(g))
         if b > len(full):
             raise SystemExit("%s: la region %d-%d no cabe en %d nt" % (g, a, b, len(full)))
         regiones[g] = full[a - 1:b]
@@ -140,32 +205,47 @@ def verificar_contra_c4(filas_out, modo: str, backend: str):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--conjunto", choices=tuple(CONJUNTOS), default="recomendadas")
+    ap.add_argument("--conjunto", default="recomendadas",
+                    help="uno de los publicados (%s) o el --nombre de un conjunto "
+                         "armado con --gen" % ", ".join(CONJUNTOS))
     ap.add_argument("--modo", choices=("fiel", "corregido"), default="fiel")
     ap.add_argument("--backend", choices=("exe", "vienna"), default="vienna")
+    ap.add_argument("--gen", action="append", default=[], metavar="NOMBRE=a-b[:ruta]",
+                    help="gen y region de un conjunto ad hoc; se repite por gen")
+    ap.add_argument("--nombre", default="adhoc",
+                    help="nombre del conjunto que arma --gen (default: adhoc)")
+    ap.add_argument("--resultados", default=None, type=Path,
+                    help="directorio de salida; por default el de C13. Una corrida de "
+                         "otro bloque escribe en el suyo y no ensucia el registro de C13")
     a = ap.parse_args(argv)
+    if a.gen:
+        a.conjunto = registrar_conjunto(a.nombre, a.gen)
+    elif a.conjunto not in CONJUNTOS:
+        raise SystemExit("el conjunto '%s' no existe y no hay --gen" % a.conjunto)
+    genes = regiones_de(a.conjunto)
     suf = "%s_%s_%s" % (a.conjunto, a.modo, a.backend)
 
     dir_q = SALIDA_TRABAJO / "fasta" / a.conjunto
     dir_q.mkdir(parents=True, exist_ok=True)
     dir_sifi = SALIDA_TRABAJO / "sifi" / suf
     dir_sifi.mkdir(parents=True, exist_ok=True)
-    RESULTADOS.mkdir(parents=True, exist_ok=True)
+    res = a.resultados or RESULTADOS
+    res.mkdir(parents=True, exist_ok=True)
 
     regiones = recortar(a.conjunto)
-    for g in REGIONES:
+    for g in genes:
         a1, b1 = CONJUNTOS[a.conjunto][g]
         print("region %-12s %d-%d  %4d nt" % (g, a1, b1, len(regiones[g])))
 
     quimeras = {}
-    for izq, der in itertools.permutations(REGIONES, 2):
+    for izq, der in itertools.permutations(genes, 2):
         quimeras["Q_%s__%s" % (izq, der)] = {
             "izq": izq, "der": der,
             "seq": regiones[izq] + regiones[der], "corte": len(regiones[izq])}
     escribir_fasta(dir_q / "quimeras.fasta",
                    [(n, d["seq"]) for n, d in quimeras.items()])
     escribir_fasta(dir_q / "regiones.fasta",
-                   [("%s_sel" % g, regiones[g]) for g in REGIONES])
+                   [("%s_sel" % g, regiones[g]) for g in genes])
     print("escritas %d quimeras en %s" % (len(quimeras), dir_q / "quimeras.fasta"))
 
     cmd = [sys.executable, str(RAIZ / "tools/sifi21_port/run_sifi.py"),
@@ -185,7 +265,7 @@ def main(argv=None):
         return dir_sifi / ("%s_%s_%s.tsv" % (nombre, a.modo, a.backend))
 
     perfil = {g: {int(f["pos"]): es_eficiente(f)
-                  for f in leer_tsv(tsv_de("%s_sel" % g))} for g in REGIONES}
+                  for f in leer_tsv(tsv_de("%s_sel" % g))} for g in genes}
     for n in quimeras:
         quimeras[n]["perfil"] = {int(f["pos"]): es_eficiente(f)
                                  for f in leer_tsv(tsv_de(n))}
@@ -229,11 +309,11 @@ def main(argv=None):
             "ventanas_heredadas_que_cambiaron": len(flips),
         })
 
-    with open(RESULTADOS / ("quimeras_eficiencia_%s.tsv" % suf), "w",
+    with open(res / ("quimeras_eficiencia_%s.tsv" % suf), "w",
               encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(filas_out[0].keys()), delimiter="\t")
         w.writeheader(); w.writerows(filas_out)
-    with open(RESULTADOS / ("quimeras_ventanas_cambiadas_%s.tsv" % suf), "w",
+    with open(res / ("quimeras_ventanas_cambiadas_%s.tsv" % suf), "w",
               encoding="utf-8", newline="") as fh:
         if detalle_flip:
             w = csv.DictWriter(fh, fieldnames=list(detalle_flip[0].keys()),
@@ -241,11 +321,11 @@ def main(argv=None):
             w.writeheader(); w.writerows(detalle_flip)
         else:
             fh.write("sin_cambios\n")
-    (RESULTADOS / ("quimeras_meta_%s.json" % suf)).write_text(json.dumps({
+    (res / ("quimeras_meta_%s.json" % suf)).write_text(json.dumps({
         "conjunto": a.conjunto, "coordenadas": CONJUNTOS[a.conjunto],
         "modo": a.modo, "backend": a.backend,
         "regiones": {g: len(s) for g, s in regiones.items()},
-        "eficientes_region_suelta": {g: sum(perfil[g].values()) for g in REGIONES},
+        "eficientes_region_suelta": {g: sum(perfil[g].values()) for g in genes},
         "n_quimeras": len(quimeras), "comando_run_sifi": " ".join(cmd),
         "python": sys.version.split()[0],
     }, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -260,7 +340,7 @@ def main(argv=None):
     if a.conjunto == "epilab":
         print()
         verificar_contra_c4(filas_out, a.modo, a.backend)
-    print("\nescrito en %s" % RESULTADOS)
+    print("\nescrito en %s" % res)
     return 0
 
 

@@ -1264,3 +1264,27 @@ descartamos **nosotros** al procesarla.
   eficacia se recalcula, con las dos cuentas por separado.** La lección es la misma que `C13`
   ya había dejado y que el atajo repetía: sumar los dos conteos y agregarle las del medio erra
   por hasta 4 ventanas y con el signo equivocado.
+
+## Ola 6 (2026-10-27): elegir la región de `V-ATPase B` por la forma que da más eficientes
+
+- **Qué se intentó y se descartó.** Tomar **858-1157** como región de trabajo de
+  `V-ATPase B`, que es la que pone primera la forma `geometrica` del ranking y la que
+  cualquiera elegiría mirando el conteo: **25** ventanas eficientes contra 13 de la elegida,
+  casi el doble `[M]`. Las dos cifras son del marco 1, el del ranking (`D63`).
+- **Por qué se descartó.** Tiene **16 ventanas con coincidencia perfecta de 21 nt** en el
+  panel, o sea que está **vetada** por la cascada, que es la regla que el proyecto ya usaba
+  para las regiones publicadas `[M]`. El heurístico de densidad que trae `run_sifi.py`
+  (`--region 200`) cae en la misma zona —devuelve 1001-1200 con 22 eficientes— y por el mismo
+  motivo: **ordena por eficientes y no mira off-targets**.
+- **Lo que el descarte deja medido, y vale más que la región.** En este gen la eficacia y la
+  limpieza están enfrentadas, y se puede cuantificar: de las **1.184** regiones de 300 nt que
+  caben en el CDS, **784 están vetadas** `[M]`. La conservación que vuelve atractivo a un gen
+  esencial de un complejo como la V-ATPasa es la misma que le trae off-targets —12 ventanas con
+  21/21 en *Zea mays* y 38 en *Homalodisca vitripennis* en el gen entero—, mientras `BicC_Dm`
+  en su región vigente tiene cero en todo el panel `[M]`. Es el argumento más concreto que
+  tenemos de por qué el eje de riesgo no se lee después del de eficacia: elegido por conteo,
+  este gen entra vetado.
+- **Qué queda en pie.** La región **242-541**, no vetada, con sus 13 eficientes todas limpias,
+  como **candidata** y no como recomendada (`D72`). Y la discrepancia entre las dos formas
+  escrita en `research/ola6/O3_quimera_bicc_vatpaseb/resultados/region_vatpase_b.json`, que es
+  el lugar donde se puede auditar.

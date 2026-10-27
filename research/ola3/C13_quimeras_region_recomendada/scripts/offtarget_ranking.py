@@ -65,10 +65,10 @@ VENTANA = 21
 VIRALES = {"MP_MRFV", "CP_MRFV"}
 
 
-def escribir_consultas(regiones: dict, quimeras: dict, ruta: Path):
-    """Las 4 regiones y, por quimera, el tramo de 40 nt que cruza la union."""
+def escribir_consultas(regiones: dict, quimeras: dict, ruta: Path, genes: list):
+    """Las regiones del conjunto y, por quimera, el tramo de 40 nt que cruza la union."""
     with open(ruta, "w", encoding="utf-8") as fh:
-        for g in QV.REGIONES:
+        for g in genes:
             fh.write(">%s_sel\n%s\n" % (g, regiones[g]))
         for n, d in quimeras.items():
             corte = d["corte"]
@@ -135,16 +135,32 @@ def ejes_de(n, eficiente, riesgo, excluir, solo_eficientes):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--conjunto", choices=tuple(QV.CONJUNTOS), default="recomendadas")
+    ap.add_argument("--conjunto", default="recomendadas",
+                    help="uno de los publicados (%s) o el --nombre de un conjunto "
+                         "armado con --gen" % ", ".join(QV.CONJUNTOS))
     ap.add_argument("--modo", choices=("fiel", "corregido"), default="fiel")
     ap.add_argument("--backend", choices=("exe", "vienna"), default="vienna")
     ap.add_argument("--rehacer-tamizaje", action="store_true", dest="rehacer")
+    ap.add_argument("--gen", action="append", default=[], metavar="NOMBRE=a-b[:ruta]",
+                    help="gen y region de un conjunto ad hoc; se repite por gen. Tiene "
+                         "que ser el mismo --gen con el que corrio quimeras_v2.py")
+    ap.add_argument("--nombre", default="adhoc",
+                    help="nombre del conjunto que arma --gen (default: adhoc)")
+    ap.add_argument("--resultados", default=None, type=Path,
+                    help="directorio de salida; por default el de C13")
     a = ap.parse_args(argv)
+    if a.gen:
+        a.conjunto = QV.registrar_conjunto(a.nombre, a.gen)
+    elif a.conjunto not in QV.CONJUNTOS:
+        raise SystemExit("el conjunto '%s' no existe y no hay --gen" % a.conjunto)
+    genes = QV.regiones_de(a.conjunto)
+    res = a.resultados or RESULTADOS
+    res.mkdir(parents=True, exist_ok=True)
     suf = "%s_%s_%s" % (a.conjunto, a.modo, a.backend)
 
     regiones = QV.recortar(a.conjunto)
     quimeras = {}
-    for izq, der in itertools.permutations(QV.REGIONES, 2):
+    for izq, der in itertools.permutations(genes, 2):
         quimeras["Q_%s__%s" % (izq, der)] = {
             "izq": izq, "der": der,
             "seq": regiones[izq] + regiones[der], "corte": len(regiones[izq])}
@@ -152,7 +168,7 @@ def main(argv=None):
     dir_off = TRABAJO / "offtarget" / a.conjunto
     dir_off.mkdir(parents=True, exist_ok=True)
     consultas = dir_off / "consultas.fasta"
-    escribir_consultas(regiones, quimeras, consultas)
+    escribir_consultas(regiones, quimeras, consultas, genes)
     tsv_off = dir_off / "offtarget_por_sirna.tsv"
     if a.rehacer or not tsv_off.exists():
         cmd = [sys.executable, str(RAIZ / "tools/sifi21_port/offtarget_21nt.py"),
@@ -187,7 +203,7 @@ def main(argv=None):
     for solo in (False, True):
         regla = "mecanicista" if solo else "conservadora"
 
-        for g in QV.REGIONES:
+        for g in genes:
             n = len(regiones[g]) - VENTANA + 1
             claves = {p: ("%s_sel" % g, p) for p in range(1, n + 1)}
             riesgo = matriz(n, filas_off, cols, claves)
@@ -246,11 +262,11 @@ def main(argv=None):
                             detalle[nombre]["empalme_con_acierto"][
                                 "%s|%s" % (R.corto(ref), crit)] = cuenta
 
-    with open(RESULTADOS / ("ejes_ranking_%s.tsv" % suf), "w", encoding="utf-8",
+    with open(res / ("ejes_ranking_%s.tsv" % suf), "w", encoding="utf-8",
               newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(filas[0].keys()), delimiter="\t")
         w.writeheader(); w.writerows(filas)
-    (RESULTADOS / ("empalmes_offtarget_%s.json" % suf)).write_text(
+    (res / ("empalmes_offtarget_%s.json" % suf)).write_text(
         json.dumps(detalle, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print("\nregla conservadora, trato del vector segun la clase")
@@ -266,7 +282,7 @@ def main(argv=None):
             f["objeto"], f["trato_dmaidis"], f["n_ventanas"], f["eficientes"],
             f["eficacia"], f["limpieza"], f["buenos_limpios"],
             "SI" if f["vetada"] else "no"))
-    print("\nescrito en %s" % RESULTADOS)
+    print("\nescrito en %s" % res)
     return 0
 
 

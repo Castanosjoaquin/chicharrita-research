@@ -1,0 +1,8 @@
+gen	inicio	fin	largo	nota	arranques_marco1	arranques_comparables	marco1_contexto_todos	marco2_contexto_comparables	marco3_molecula	limite_fisico	contexto_neto	pierden	ganan
+MP_MRFV	72	271	200	vigente	200	180	38	31	27	7	4	5	1
+CP_MRFV	99	298	200	vigente	200	180	21	20	23	1	-3	3	6
+BicC_Dm	922	1221	300	vigente, D25	300	280	36	29	26	7	3	3	0
+ATPaseD_Dm	72	371	300	vigente	300	280	21	17	20	4	-3	1	4
+BicC_Dm	2121	2420	300	rival, la de C7	300	280	35	27	22	8	5	6	1
+BicC_Dm	264	563	300	rival, la que eligio EPILAB	300	280	20	15	17	5	-2	2	4
+VATPaseB_Dm	242	541	300	candidata de O3, D72	300	280	13	6	5	7	1	3	2

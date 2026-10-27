@@ -38,10 +38,18 @@ Configuracion: punto por defecto, modo `corregido` —el del ranking—, ViennaR
 
 Uso (desde la raiz del repositorio):
     python research/ola5/N3_marcos/scripts/tres_marcos.py
+
+Una region de un gen que no es uno de los cuatro de EPILAB se agrega con `--gen`, sin tocar
+las seis de arriba ni sus anclas, que se siguen verificando en la misma corrida (O3, issue
+#23). El gen necesita su FASTA entero, que para los cuatro de EPILAB esta en
+`work/sifi_check/` y para uno nuevo se pasa con `:ruta`:
+
+    python research/ola5/N3_marcos/scripts/tres_marcos.py         --gen VATPaseB_Dm=242-541:work/O3/fasta/VATPaseB_Dm_full.fasta         --nota "candidata de O3, D72" --salida research/ola6/O3_quimera_bicc_vatpaseb/resultados
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -89,7 +97,42 @@ def eficientes(seq: str) -> set[int]:
     return {w.pos for w in ventanas if w.is_efficient}
 
 
-def main() -> int:
+def agregar(especificaciones: list[str], nota: str) -> None:
+    """Suma regiones de `--gen NOMBRE=a-b[:ruta]` a GENES, FASTA y REGIONES."""
+    for spec in especificaciones:
+        if "=" not in spec:
+            raise SystemExit("--gen pide NOMBRE=a-b[:ruta], llego '%s'" % spec)
+        gen, resto = spec.split("=", 1)
+        tramo, _, ruta = resto.partition(":")
+        if "-" not in tramo:
+            raise SystemExit("--gen pide NOMBRE=a-b[:ruta], llego '%s'" % spec)
+        ini, fin = (int(x) for x in tramo.split("-", 1))
+        if ruta:
+            q = Path(ruta)
+            FASTA[gen] = q if q.is_absolute() else RAIZ / q
+        elif gen not in FASTA:
+            raise SystemExit("%s no esta en work/sifi_check/; pasale el FASTA con :ruta" % gen)
+        if not FASTA[gen].exists():
+            raise SystemExit("%s: no esta %s" % (gen, FASTA[gen]))
+        if gen not in GENES:
+            GENES.append(gen)
+        REGIONES.append((gen, ini, fin, nota))
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--gen", action="append", default=[], metavar="NOMBRE=a-b[:ruta]",
+                    help="region extra a medir; se repite. No toca las seis publicadas")
+    ap.add_argument("--nota", default="agregada por --gen",
+                    help="la columna `nota` de las regiones que agrega --gen")
+    ap.add_argument("--salida", default=None, type=Path,
+                    help="directorio de salida; por default el de N3")
+    a = ap.parse_args(argv)
+    salida = a.salida or SALIDA
+    if a.gen:
+        agregar(a.gen, a.nota)
+
     faltan = [g for g in GENES if not FASTA[g].exists()]
     if faltan:
         raise SystemExit("faltan los FASTA de %s en work/sifi_check/; `work/` no esta en git"
@@ -149,7 +192,7 @@ def main() -> int:
     if roto:
         raise SystemExit("anclas rotas:\n  " + "\n  ".join(roto))
 
-    SALIDA.mkdir(parents=True, exist_ok=True)
+    salida.mkdir(parents=True, exist_ok=True)
     cols = ["gen", "inicio", "fin", "largo", "nota", "arranques_marco1",
             "arranques_comparables", "marco1_contexto_todos",
             "marco2_contexto_comparables", "marco3_molecula", "limite_fisico",
@@ -157,8 +200,8 @@ def main() -> int:
     lineas = ["\t".join(cols)]
     for f in filas:
         lineas.append("\t".join(str(f[c]) for c in cols))
-    (SALIDA / "tres_marcos.tsv").write_text("\n".join(lineas) + "\n", encoding="utf-8")
-    (SALIDA / "tres_marcos.json").write_text(
+    (salida / "tres_marcos.tsv").write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    (salida / "tres_marcos.json").write_text(
         json.dumps({"configuracion": {"modo": "corregido", "backend": "vienna",
                                       "tabla_nn": "NN3", "temp_c": 22.0,
                                       "criterio": dict(DEFAULTS)},
@@ -177,7 +220,7 @@ def main() -> int:
                  f["marco3_molecula"], f["limite_fisico"], f["contexto_neto"],
                  f["pierden"], f["ganan"]))
     print("\ntodas las anclas publicadas se reprodujeron")
-    print("resultados en %s" % SALIDA)
+    print("resultados en %s" % salida)
     return 0
 
 

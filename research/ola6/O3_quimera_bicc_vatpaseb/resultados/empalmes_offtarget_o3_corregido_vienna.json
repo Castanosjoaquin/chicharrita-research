@@ -1,0 +1,20 @@
+{
+  "Q_BicC_Dm__VATPaseB_Dm": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 1,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_ge19": 3,
+      "D_maidis|mm1_21": 3
+    }
+  },
+  "Q_VATPaseB_Dm__BicC_Dm": {
+    "ventanas_empalme": 20,
+    "empalme_eficientes": 1,
+    "empalme_con_acierto": {
+      "D_maidis|perfecto_21": 1,
+      "D_maidis|perfecto_ge19": 5,
+      "D_maidis|mm1_21": 2,
+      "maiz|mm1_21": 2
+    }
+  }
+}
