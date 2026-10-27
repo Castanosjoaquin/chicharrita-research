@@ -104,3 +104,28 @@ Esto está decidido **antes** de ver el número, para no elegir después:
 `resultados/descomposicion.json` (los tres sumandos con su signo, el control de réplica y el
 veredicto según el criterio de arriba), `resultados/bandas_por_paso.tsv` (una fila por paso × banda,
 con n, aciertos, concordancia e IC95 de Wilson) y `REPORT.md`. Ninguna salida lleva secuencia.
+
+---
+
+## Enmienda 1 — los tres pasos usan la misma regla de reciprocidad (2026-10-27)
+
+**Escrita después de una primera corrida y antes de la que se publica.** Es una corrección de
+método, no un cambio de criterio: el criterio de atribución y el control de réplica siguen siendo
+los de arriba, sin tocar.
+
+La primera implementación del **paso B** tomaba los pares ya clasificados de la validación de
+`D86`, que aplican la **regla estricta de `F1`**: un empate en el primer puesto descalifica el par.
+El **paso A**, en cambio, reconstruye los pares desde los TSV de `C12` con «el mejor hit del mejor
+hit», sin tratamiento de empates, porque es lo que describe `C12`. Con eso, la diferencia A → B no
+aislaba el alineador: lo confundía con la regla de empates, y se veía en el conteo —1.081 pares en
+A contra 690 en B sobre las mismas 4.000 consultas—.
+
+**Corrección:** los pasos B y C se recalculan leyendo los TSV crudos de `diamond`
+(`work/F1v/trabajo/`) con la **misma función y la misma regla de reciprocidad** que el paso A. Así
+entre A y B cambia únicamente el alineador, y entre B y C únicamente el recorte. El paso C deja de
+tomarse del resumen de `D86` y se recalcula igual que los otros dos.
+
+**Consecuencia sobre la comparación con `D86`:** al usar la regla sin empates, el total del paso C
+no es el 85,1 % que `D86` publicó para la lectura inclusiva, y la brecha a descomponer se mide
+contra el total del paso C, que es el homogéneo con `C12`. El número que `D86` publicó no cambia;
+cambia cuál de sus lecturas es la comparable, y el informe lo dice.
