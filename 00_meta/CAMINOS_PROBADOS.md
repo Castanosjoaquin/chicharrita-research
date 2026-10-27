@@ -1293,3 +1293,29 @@ descartamos **nosotros** al procesarla.
   contra *Homalodisca vitripennis* que la región vigente del mismo gen no tiene `[M]`. El
   issue aceptaba las dos salidas, pasar o quedar frenada con el motivo declarado, y la
   segunda es la que deja el hecho a la vista en vez de absorberlo.
+## Ola 6 (2026-10-27): elegir la región de `V-ATPase B` mirando el conteo, y tamizar con cinco referencias
+
+- **Qué se intentó y se descartó, dos veces.** Primero, elegir la región de `V-ATPase B` por
+  la forma del ranking que da más ventanas eficientes. Después, y peor, **medir todo con el
+  panel incompleto**: el tamizado de `work/offtarget_db/` tiene cinco referencias del panel
+  más el genoma del vector, y **la humana vive aparte**, en `work/W5/ref/humano_rna.fna.gz`,
+  que en esta máquina no estaba. Con cinco referencias la región elegida fue 242-541 y
+  parecía limpia.
+- **Por qué se descartó.** Con el panel de seis que exige el preregistro, **242-541 está
+  vetada**: pisa las ventanas 514, 515 y 516, que tienen coincidencia perfecta de 21 nt
+  `[M]`. Y el tablero entero cambia: de 1.184 regiones de 300 nt, con cinco referencias
+  sobrevivían 400 y con seis sobrevive **una**. La humana aporta sola 21 ventanas vetadas del
+  gen `[M]`. O sea que el error no movió un número al margen: cambió la respuesta.
+- **Lo que el descarte deja medido, y vale más que la región.** En este gen la eficacia y la
+  limpieza están enfrentadas y se puede cuantificar: 71 de las 1.483 ventanas del CDS tienen
+  21/21 en el panel, y dejan un único hueco de 300 ventanas —517-816—, que es exactamente el
+  largo pedido. A 301 nt no hay ninguna región admisible `[M]`. La conservación que vuelve
+  atractivo a un gen esencial de un complejo como la V-ATPasa es la misma que le trae
+  off-targets, mientras `BicC_Dm` en su región vigente tiene cero en todo el panel.
+- **La lección operativa, que no es sobre este gen.** Un tamizado sin su panel completo no
+  es un tamizado conservador: es un tamizado **optimista**, y falla en la dirección que no se
+  nota, porque todo sale más limpio. El único motivo por el que se detectó es que el
+  preregistro pedía un ancla contra números publicados, y dos de los cuatro
+  `buenos_limpios` del nivel 3 de `C7` no cerraban. **Antes de leer un tamizado hay que
+  contar las referencias que entraron**, y el script que elige la región ahora aborta si el
+  panel no tiene seis.

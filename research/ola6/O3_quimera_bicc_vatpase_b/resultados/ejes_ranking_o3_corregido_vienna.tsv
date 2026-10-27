@@ -1,0 +1,9 @@
+objeto	clase	trato_dmaidis	regla	largo_nt	n_ventanas	eficientes	eficacia	limpieza	buenos_limpios	con_off_target	con_21_perfecto	vetada
+BicC_Dm	region	insecto	conservadora	300	280	26	0.09285714285714286	0.9884285714285714	22	19	0	False
+VATPaseB_Dm	region	insecto	conservadora	300	280	14	0.05	0.9432142857142857	10	66	0	False
+Q_BicC_Dm__VATPaseB_Dm	quimera	insecto	conservadora	600	580	40	0.06896551724137931	0.967	32	87	0	False
+Q_VATPaseB_Dm__BicC_Dm	quimera	insecto	conservadora	600	580	41	0.0706896551724138	0.9638965517241379	33	88	0	False
+BicC_Dm	region	insecto	mecanicista	300	280	26	0.09285714285714286	0.9974285714285714	22	19	0	False
+VATPaseB_Dm	region	insecto	mecanicista	300	280	14	0.05	0.9957142857142857	10	66	0	False
+Q_BicC_Dm__VATPaseB_Dm	quimera	insecto	mecanicista	600	580	40	0.06896551724137931	0.9966896551724138	32	87	0	False
+Q_VATPaseB_Dm__BicC_Dm	quimera	insecto	mecanicista	600	580	41	0.0706896551724138	0.9966896551724138	33	88	0	False

@@ -1,0 +1,3 @@
+quimera	izquierda	derecha	largo_nt	corte_nt	ventanas_quimera	ef_region_izq	ef_region_der	suma_de_partes	ef_quimera_total	ef_heredadas_izq	ef_heredadas_der	ventanas_empalme	ef_empalme	delta_total_menos_suma	delta_explicado_por_empalme	ventanas_heredadas_que_cambiaron
+Q_BicC_Dm__VATPaseB_Dm	BicC_Dm	VATPaseB_Dm	600	300	580	26	14	40	40	26	12	20	2	0	2	2
+Q_VATPaseB_Dm__BicC_Dm	VATPaseB_Dm	BicC_Dm	600	300	580	14	26	40	41	14	27	20	0	1	0	3
