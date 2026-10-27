@@ -1,0 +1,15 @@
+{
+ "blastn": " Package: blast 2.17.0, build Aug 22 2026 11:50:41",
+ "tsa_sha256": {
+  "GCWP01": "42d04a872c29a1b9bb3cab297b1bd86d9ef8737f7abbe24d85146e13dcb32bc4",
+  "GHCC01": "d48863de8b2f6963cbc335384734c5b5f25015fc18ac2adc59bfb8672efed0df",
+  "GITV01": "a460f28001c65fc3ca06a0ef2bc32dbd8814612111aa5367eb1b48a432ffc199"
+ },
+ "consultas": {
+  "DM-01": "work/sifi_v2/fasta/BicC_Dm_full.fasta",
+  "DM-02": "research/ola6/O2_vatpase_b/resultados/VATPaseB_Dm_cds.fna",
+  "DM-03": "work/sifi_v2/fasta/ATPaseD_Dm_full.fasta",
+  "DM-05": "work/sifi_v2/fasta/eth_Dm_full.fasta",
+  "DM-06": "work/sifi_v2/fasta/bursA_Dm_full.fasta"
+ }
+}
