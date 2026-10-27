@@ -318,6 +318,24 @@ HECHO = [
      "<code>BicC_Dm</code> + <code>V-ATPase B</code>, decidido por el empalme y no por el conteo. La región viaja "
      "como insumo de la medición, <strong>no como región recomendada</strong>.",
      ["research/ola6/O3_quimera_bicc_vatpase_b/REPORT.md", "00_meta/DECISIONS.md"]),
+    ("Ola 6 · El transcriptoma del investigador, leído (issue #25)",
+     "Llegó <code>GITV01</code> —el TSA público de Ohio State, 56.117 contigs— y se le transfirió la "
+     "anotación por <strong>ortología recíproca a nivel proteína</strong>, nunca por nombre de gen (D84). "
+     "Cada anotación viaja con su identidad, sus dos coberturas y su banda de concordancia, y los contigs "
+     "sin anotación informativa quedan <strong>contados, no filtrados</strong>. Con la regla estricta "
+     "preregistrada, <strong>4.110 contigs (7,3 %)</strong> tienen recíproco con nombre informativo; con la "
+     "lectura inclusiva de empates, declarada post hoc y rotulada como tal porque se escribió después de "
+     "ver fallar el control positivo, <strong>7.832 (14,0 %)</strong>. "
+     "El supuesto del que colgaba la única cifra de calidad —que las bandas medidas entre proteomas "
+     "curados valgan para ORF de un transcriptoma— <strong>dejó de ser supuesto</strong>: se midió leyendo "
+     "el mismo organismo de las dos maneras y <strong>no hay diferencia</strong> (85,0 % contra 85,0 % "
+     "sobre 11.727 genes, 0,3 puntos de brecha máxima por banda; D86). De paso quedó que el "
+     "<strong>81 %</strong> publicado es una <strong>cota conservadora</strong> —lo medido da 87,4 %— y no "
+     "se corrigió hacia arriba, porque el preregistro lo prohibía. Ninguna salida de esta línea entra al "
+     "diseño del ARNdc, y hay una prueba que lo verifica.",
+     ["research/ola6/F1_transferencia_homologia/REPORT.md",
+      "research/ola6/F1_transferencia_homologia/validacion_bandas/REPORT.md",
+      "00_meta/DECISIONS.md"]),
 ]
 
 FALTA = [
