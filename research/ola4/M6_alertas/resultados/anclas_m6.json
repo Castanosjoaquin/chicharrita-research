@@ -47,12 +47,12 @@
    "coincide": true
   }
  ],
- "A4_comparaciones": 74,
- "A4_coinciden": 74,
- "A5_comparaciones": 40,
- "A5_coinciden": 40,
- "filas_validadas": 23,
- "regiones": 18,
+ "A4_comparaciones": 75,
+ "A4_coinciden": 75,
+ "A5_comparaciones": 44,
+ "A5_coinciden": 44,
+ "filas_validadas": 26,
+ "regiones": 19,
  "A4_detalle": [
   {
    "ancla": "A4",
@@ -793,6 +793,16 @@
    "publicado": null,
    "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
    "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "BicC_Dm 2123-2422",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
   }
  ],
  "A5_detalle": [
@@ -1154,6 +1164,42 @@
    "criterio": "perfecto_ge19",
    "mio": 5,
    "publicado": 5,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "BicC_Dm 2123-2422",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "BicC_Dm 2123-2422",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 5,
+   "publicado": 5,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "BicC_Dm 2123-2422",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "BicC_Dm 2123-2422",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
    "coincide": true
   }
  ]

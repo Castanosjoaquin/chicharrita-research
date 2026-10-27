@@ -52,7 +52,10 @@ def main() -> int:
     inventario = {(g, r) for g, r, _v, _q in regiones}
     print("tabla: %d filas, %d regiones\n" % (len(filas), len(regiones)))
 
-    salida = {"tabla": str(TABLA.relative_to(RAIZ)), "filas": len(filas), "umbrales": {}}
+    # `as_posix()` y no `str()`: en Windows `str()` escribe la ruta con barras invertidas y
+    # el JSON publicado cambia de plataforma a plataforma sin que ninguna cifra se mueva.
+    salida = {"tabla": TABLA.relative_to(RAIZ).as_posix(), "filas": len(filas),
+              "umbrales": {}}
     for umbral in ("perfecto_21", "perfecto_ge19"):
         print("== umbral %s ==" % umbral)
         detalle, pasan, frenadas = [], [], []

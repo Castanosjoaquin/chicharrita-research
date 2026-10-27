@@ -213,6 +213,16 @@ def clasificar_evidencia(gen_blanco: str, anotacion: str) -> str:
 # Desde D69 **si esta adoptada**: la llama `ranking.region_recomendada()`, que es el unico
 # lugar del port donde el primer puesto de `alternativas()` se convierte en una region
 # recomendada, con el umbral `perfecto_21` por defecto (D48 literal) y configurable.
+#
+# Y lo que D77 agrega: la compuerta **sabe contra que panel se le pregunta**. Hasta
+# entonces consultaba la tabla entera sin poder saber que referencias tenia la corrida que
+# la llamaba, y eso tiene un caso concreto en el repositorio: la rama `sin_humano` de
+# `ranking_v2.efecto_humano()` evaluaba sus regiones contra filas de *Homo sapiens* que esa
+# misma rama habia sacado del panel. Lo que D77 **no** hace es filtrarlas: una alerta de un
+# organismo fuera del panel frena igual, porque la coincidencia perfecta es una propiedad
+# del ARN que se sintetizaria y no del panel con el que una corrida lo puntua. Lo que hace
+# es que el estado y el mensaje la nombren, para que frenar por una referencia que la
+# corrida no mira sea una decision leida y no una sorpresa.
 
 DECISIONES = ("pendiente", "aceptada", "bloqueante")
 # El texto con el que sale la tabla recien construida. Reescribir una palabra no es decidir.
@@ -430,8 +440,21 @@ def filas_de_region(filas: list[dict], gen: str, region: str) -> list[dict]:
     return [f for f in filas if f.get("gen") == gen and f.get("region") == region]
 
 
+def fuera_del_panel(fila: dict, panel: set | None) -> bool:
+    """Si la fila es de un organismo que el panel de la corrida no tiene (D77).
+
+    Un solo predicado, llamado desde los dos lados —el conteo y el mensaje—, por el mismo
+    motivo que M9 dejo escrito: un filtro que vive en un camino y no en el otro no es un
+    filtro. `panel` en `None` es «no se declaro panel» y entonces ninguna fila esta fuera;
+    un panel vacio declarado deja a todas afuera, y la diferencia es deliberada.
+    """
+    if panel is None:
+        return False
+    return (fila.get("organismo_corto") or "").strip() not in panel
+
+
 def estado_decision(filas: list[dict], gen: str, region: str,
-                    umbral: str = "perfecto_21") -> dict:
+                    umbral: str = "perfecto_21", panel: set | None = None) -> dict:
     """Estado de decision de una region. **No** dice si la region sirve ni si es segura.
 
     `umbral` elige que alertas obligan a justificar. Por defecto `perfecto_21`, que es lo
@@ -439,6 +462,14 @@ def estado_decision(filas: list[dict], gen: str, region: str,
     con `perfecto_ge19` obligan tambien las del umbral laxo de D28, que la tabla informa
     al lado pero sobre las que D48 no se pronuncia. Los dos numeros valen la pena y por
     eso el umbral es un parametro y no una constante.
+
+    `panel` es el conjunto de `organismo_corto` que la corrida que pregunta tiene en su
+    panel de referencias. Es **solo informativo** y por decision escrita (D77): las filas
+    de un organismo que la corrida excluyo cuentan igual para `pendientes` y para el
+    estado, porque la coincidencia es una propiedad del ARN y no del panel con el que se
+    la puntua. Lo que el panel agrega es que el estado pueda **nombrar** esas filas en vez
+    de que la inconsistencia quede muda: `None` —el default— es «no se declaro panel» y
+    deja las dos listas vacias.
     """
     if umbral not in ("perfecto_21", "perfecto_ge19"):
         raise ValueError("umbral %r: los de D28 son perfecto_21 y perfecto_ge19" % umbral)
@@ -448,6 +479,8 @@ def estado_decision(filas: list[dict], gen: str, region: str,
         validar_decision(f)
     pendientes = [f for f in mias if (f.get("decision_usuario") or "").strip() == MARCA_PENDIENTE]
     bloqueantes = [f for f in mias if (f.get("decision_usuario") or "").strip() == "bloqueante"]
+    filas_fuera = [f for f in mias if fuera_del_panel(f, panel)]
+    pend_fuera = [f for f in pendientes if fuera_del_panel(f, panel)]
     if not mias:
         estado = "sin alertas en este umbral"
     elif pendientes:
@@ -460,7 +493,13 @@ def estado_decision(filas: list[dict], gen: str, region: str,
             "pendientes": len(pendientes), "bloqueantes": len(bloqueantes),
             "estado": estado,
             "organismos_pendientes": sorted({f["organismo_corto"] for f in pendientes}),
-            "decide": "el usuario" if pendientes else "ya decidido"}
+            "decide": "el usuario" if pendientes else "ya decidido",
+            # D77: contra que panel se pregunto, y que filas son de un organismo que ese
+            # panel no tiene. `panel` en `None` es «no se declaro», que no es lo mismo que
+            # «el panel esta vacio»: con panel vacio toda fila queda fuera.
+            "panel": None if panel is None else sorted(panel),
+            "organismos_fuera_del_panel": sorted({f["organismo_corto"] for f in filas_fuera}),
+            "pendientes_fuera_del_panel": sorted({f["organismo_corto"] for f in pend_fuera})}
 
 
 def leer_inventario(ruta) -> set:
@@ -488,7 +527,8 @@ def leer_inventario(ruta) -> set:
 
 
 def exigir_decidida(filas: list[dict], gen: str, region: str,
-                    umbral: str = "perfecto_21", *, inventario) -> dict:
+                    umbral: str = "perfecto_21", *, inventario,
+                    panel: set | None = None) -> dict:
     """Puerta: la region tiene que estar tamizada (D72) y sin alertas sin decidir (D48).
 
     Levanta `RegionNoTamizada` si la region no esta en `inventario`, y
@@ -511,6 +551,14 @@ def exigir_decidida(filas: list[dict], gen: str, region: str,
     si alguna es `bloqueante` —quien llama decide que hacer con eso, y el estado se lo
     dice—. Lo unico que esta funcion impide es seguir de largo sin que nadie haya mirado,
     y desde D72 tambien sin que nadie haya medido.
+
+    `panel` —los `organismo_corto` que la corrida que pregunta tiene en su panel— **no
+    cambia que frena** (D77): una alerta de un organismo que esa corrida excluyo frena
+    igual, porque la coincidencia perfecta esta en el ARN que se va a sintetizar y no en
+    el panel con el que esa corrida lo puntua. Lo que cambia es que el mensaje lo diga con
+    todas las letras, que es lo que faltaba: hasta D77 la compuerta no podia saber contra
+    que panel se le preguntaba, asi que una corrida frenada por una alerta de un organismo
+    que no estaba mirando no tenia forma de enterarse de por que.
     """
     if (gen, region) not in set(inventario):
         raise RegionNoTamizada(
@@ -519,14 +567,27 @@ def exigir_decidida(filas: list[dict], gen: str, region: str,
             "tamizo y no hay alertas» (D70, D72). Agregala a REGIONES en "
             "research/ola4/M6_alertas/scripts/tabla_alertas.py y corre el script."
             % (gen, region, len(set(inventario))))
-    est = estado_decision(filas, gen, region, umbral)
+    est = estado_decision(filas, gen, region, umbral, panel)
     if est["pendientes"]:
+        # D77: si alguna de las pendientes es de un organismo que esta corrida no tiene en
+        # el panel, la compuerta frena igual y **lo dice**. Frenar sin decirlo era el modo
+        # de fallar que esto cierra: correcto para el umbral, incompresible para el que
+        # corre.
+        organismos_fuera = est["pendientes_fuera_del_panel"]
+        nota = ""
+        if organismos_fuera:
+            nota = (" De esas, %s %s de un organismo que esta corrida NO tiene en el panel "
+                    "(%s): frena igual porque la coincidencia perfecta esta en el ARN y no "
+                    "en el panel con el que se lo puntua (D77)."
+                    % (", ".join(organismos_fuera),
+                       "es" if len(organismos_fuera) == 1 else "son",
+                       ", ".join(est["panel"] or ["panel vacio"])))
         raise AlertaSinDecidir(
             "%s %s tiene %d alerta(s) de %s sin decidir (%s) y no se puede tratar como "
             "usable: D48 pide que la region se acepte o se descarte con una justificacion "
-            "escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv"
+            "escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv%s"
             % (gen, region, est["pendientes"], umbral,
-               ", ".join(est["organismos_pendientes"])))
+               ", ".join(est["organismos_pendientes"]), nota))
     return est
 
 

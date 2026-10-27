@@ -112,6 +112,34 @@ DMAIDIS_INFO = {"corto": "D_maidis", "especie": "Dalbulus maidis",
 def corto(ref: str) -> str:
     return REFERENCIAS[ref]["corto"] if ref in REFERENCIAS else DMAIDIS_INFO["corto"]
 
+
+def orden_referencias() -> list[str]:
+    """El orden normativo de las referencias en todo objeto que se escriba a disco (D76).
+
+    Es el del panel —`REFERENCIAS` tal como esta al momento de escribir, que es tambien
+    el que el JSON publica en su clave `panel`— con el vector al final. Hasta D76 el
+    orden lo heredaba el de las columnas del TSV de off-targets, que no queda registrado
+    en ninguna parte, asi que el JSON no era reproducible byte a byte.
+
+    Si el panel cambia, el orden cambia con el, y eso esta bien: lo que no puede volver a
+    pasar es que dependa de como se le pasaron las referencias al tamizador.
+    """
+    return [v["corto"] for v in REFERENCIAS.values()] + [DMAIDIS_INFO["corto"]]
+
+
+def por_referencia_ordenado(d: dict) -> dict:
+    """El mismo objeto indexado por nombre corto, reescrito en el orden de D76.
+
+    No agrega ni saca claves: una referencia sin riesgo en la region no se escribe, y
+    esto no la inventa. Una clave que no sea del panel es un error y no un dato que haya
+    que acomodar en algun lado.
+    """
+    rango = {c: i for i, c in enumerate(orden_referencias())}
+    fuera = sorted(c for c in d if c not in rango)
+    if fuera:
+        raise KeyError("referencia fuera del panel: %s" % ", ".join(fuera))
+    return {c: d[c] for c in sorted(d, key=lambda c: rango[c])}
+
 # Los tres criterios de riesgo, del mas fuerte al mas debil. El peso base es
 # nuestro (D4). El orden SI esta sostenido: un bloque perfecto mas largo no puede
 # ser menos riesgoso que uno mas corto. Las magnitudes no lo estan, y por eso el
@@ -713,6 +741,21 @@ def alertas_de(tabla: Path | None = None) -> list[dict]:
     return _ALERTAS_LEIDAS[ruta]
 
 
+def panel_actual() -> frozenset[str]:
+    """Los `organismo_corto` que tiene el panel de **esta** corrida (D77).
+
+    Sale de `REFERENCIAS`, que es global y que `ranking_v2.con_panel()` reescribe para
+    aislar el efecto de una referencia: por eso la compuerta no necesita que nadie le pase
+    el panel a mano para enterarse de que la rama `sin_humano` no tiene humano. Mas
+    `D_maidis`, que siempre se tamiza: su matriz entra por un archivo aparte (`DMAIDIS`) y
+    no por `REFERENCIAS`, y para los genes del insecto se excluye por ser **on-target**,
+    que no es lo mismo que estar fuera del panel.
+
+    Es informativo: lo que la compuerta hace con el no es filtrar, es nombrar (D77).
+    """
+    return frozenset({v["corto"] for v in REFERENCIAS.values()} | {DMAIDIS_INFO["corto"]})
+
+
 def inventario_de(tabla: Path | None = None) -> set:
     """Las regiones tamizadas, leidas de `estado_regiones.tsv` al lado de la tabla (D72).
 
@@ -724,8 +767,50 @@ def inventario_de(tabla: Path | None = None) -> set:
     return AL.leer_inventario(ruta.parent / NOMBRE_INVENTARIO)
 
 
+class Region(tuple):
+    """La region recomendada **y el estado de sus alertas**, que viajan juntos (D75).
+
+    Es una tupla `(ini, fin)` de dos elementos, asi que todo lo que ya desempaquetaba o
+    comparaba el resultado de `region_recomendada()` sigue funcionando igual. Lo que
+    agrega es que el estado va pegado al valor y no en una consulta aparte que hay que
+    acordarse de hacer.
+
+    El motivo es el que `D73` dejo medido: una region **firmada bloqueante** pasa la
+    compuerta —bloquear es decidir, y eso lo decidio `D69`— y `region_recomendada()` la
+    devuelve. Mientras ninguna bloqueante fue recomendada por el ranking eso no tuvo
+    consecuencia; `eth_Dm` 193-392 es la primera que si, y ahi se vio que el deber de
+    descartarla, que `D69` puso en el que llama, no tenia ningun codigo detras: el que
+    llamaba recibia un par de enteros indistinguible del de una region limpia.
+
+    Esto **no frena** nada y no revisa `D69`: la region sale. Lo que deja de ser posible
+    es recibirla sin que el estado venga con ella.
+    """
+
+    # Sin `__slots__`: una subclase de `tuple` no los admite si no estan vacios, y los
+    # dos atributos van en el `__dict__` de la instancia.
+
+    def __new__(cls, ini: int, fin: int, estado: str, decision: str = ""):
+        o = super().__new__(cls, (int(ini), int(fin)))
+        o.estado = estado
+        o.decision = decision
+        return o
+
+    @property
+    def bloqueante(self) -> bool:
+        """True si alguna fila de alerta de esta region esta firmada `bloqueante`.
+
+        Quien recomiende tiene que mirarlo: `D69` puso el descarte en el que llama, y
+        esta es la pregunta que tiene que hacerse para cumplirlo.
+        """
+        return self.estado == "decidida: bloqueante"
+
+    def __repr__(self) -> str:
+        return "Region(%d-%d, %r)" % (self[0], self[1], self.estado)
+
+
 def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
-                       tabla: Path | None = None) -> tuple[int, int]:
+                       tabla: Path | None = None,
+                       panel: set[str] | None = None) -> "Region":
     """El primer puesto de `alternativas()` convertido en recomendacion, con compuerta.
 
     Levanta `alertas.RegionNoTamizada` si la region no esta en el inventario de M6 (D72)
@@ -735,13 +820,22 @@ def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
     region decidida pasa, incluso si la decision es `bloqueante` —bloquear es decidir, y
     el que llama tiene que descartarla: lo dice el estado que devuelve
     `estado_decision()`—.
+
+    `panel` es el conjunto de `organismo_corto` contra el que se pregunta. En `None` —el
+    default— lo resuelve `panel_actual()`, o sea el panel vivo de la corrida: una rama que
+    saco una referencia del panel queda declarada sin que quien llama tenga que acordarse
+    de pasarla. No cambia que frena (D77), cambia que la compuerta pueda decirlo.
     """
     region = alt["mejores"][0]["region"]
-    AL.exigir_decidida(alertas_de(tabla), gen, region,
-                       umbral if umbral is not None else UMBRAL_COMPUERTA,
-                       inventario=inventario_de(tabla))
+    est = AL.exigir_decidida(alertas_de(tabla), gen, region,
+                             umbral if umbral is not None else UMBRAL_COMPUERTA,
+                             inventario=inventario_de(tabla),
+                             panel=panel_actual() if panel is None else panel)
     ini, fin = (int(x) for x in region.split("-"))
-    return ini, fin
+    # El estado viaja con la region (D75). Una region bloqueante sale igual, porque
+    # bloquear es decidir (D69), pero el que la recibe no puede no verlo.
+    return Region(ini, fin, est["estado"],
+                  "bloqueante" if est["bloqueantes"] else "")
 
 
 def cmd_ranking(a) -> int:
@@ -768,7 +862,7 @@ def cmd_ranking(a) -> int:
             ficha[regla]["puntaje_geometrico_w05"] = round(puntaje(e, 0.5, "geometrica"), 4)
             ficha[regla]["puntaje_suma_w05"] = round(puntaje(e, 0.5, "suma"), 4)
             ficha[regla]["puntaje_cascada"] = puntaje(e, 0.5, "cascada")
-        ficha["riesgo_por_referencia"] = {}
+        por_ref = {}
         for ref, crits in g["riesgo"].items():
             if ref in excluir:
                 continue
@@ -779,7 +873,8 @@ def cmd_ranking(a) -> int:
                     d[crit] = {"ventanas": int(v.sum()),
                                "de_esas_eficientes": int((v & g["eficiente"][ini - 1:fin]).sum())}
             if d:
-                ficha["riesgo_por_referencia"][corto(ref)] = d
+                por_ref[corto(ref)] = d
+        ficha["riesgo_por_referencia"] = por_referencia_ordenado(por_ref)
         fichas.append(ficha)
 
     print("=== Los dos ejes por candidato (pesos base, regla %s de D2) ===" % a.regla)
@@ -965,6 +1060,12 @@ def main(argv=None) -> int:
                         "estado_regiones.tsv al lado, que es el inventario de regiones "
                         "tamizadas que la compuerta exige desde D72; por "
                         "defecto %s" % TABLA_ALERTAS)
+    # `cmd_ranking` escribe `salida` en JSON si se le pasa `--json`, y el subparser nunca
+    # declaro la opcion: el comando corria entero, imprimia los tres niveles y los barridos
+    # y recien al final moria con AttributeError sobre `a.json`. Esta desde el commit de
+    # C1 (2026-10-20) y no tiene nada que ver con la compuerta de D72.
+    r.add_argument("--json", default=None,
+                   help="si se pasa, escribe el ranking completo en ese archivo")
     r.add_argument("--umbral-compuerta", dest="umbral_compuerta",
                    choices=("perfecto_21", "perfecto_ge19"), default=UMBRAL_COMPUERTA,
                    help="umbral de D28 con el que la compuerta exige decision; por "

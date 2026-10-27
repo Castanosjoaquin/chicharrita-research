@@ -1798,7 +1798,7 @@ línea de diseño nueva. Este es el saldo.
     recomendación, que es lo que `D69` decidió y que hoy no tiene ningún código detrás.
     Es una decisión del equipo y **no se tocó** al firmar.
 21. **Si la quitinasa impactada tiene ortólogo en los demás no objetivo del panel, no se
-    sabe.** La firma de `D73` no lo afirma ni lo niega. Es trabajo de homología y no de
+    sabe.** Issue **#32**. La firma de `D73` no lo afirma ni lo niega. Es trabajo de homología y no de
     coincidencia exacta, y **esta máquina no tiene ningún alineador**: verificado con
     `command -v`, faltan `blastn`, `tblastn`, `makeblastdb`, `miniprot`, `diamond`,
     `bowtie` y `bowtie2` `[M]`. En la máquina de Luca hay `miniprot` 0.18-r281 (`D71`),
@@ -1816,14 +1816,76 @@ línea de diseño nueva. Este es el saldo.
     y además es la línea `C7` de la ola 3 y no `M6`. Merece su propio issue y su propio
     ADR, sobre todo porque la corrida que se regeneraría ahora incluye una región firmada
     bloqueante (entrada 20).
+
+### Ola 6, cierre de las entradas 20 y 22 (2026-10-27)
+
+23. **Se cierran las entradas 20 y 22.** El estado de alertas viaja con la región
+    recomendada (`ranking.Region`, con `estado` y `bloqueante`) y el JSON de `C7` lo
+    publica como `estado_alertas_recomendadas` y `recomendadas_bloqueantes`; la corrida de
+    22 nt está regenerada, con sus tres insumos construidos en esta máquina (`D75`).
+    Ninguna cifra publicada se movió: el JSON es idéntico valor por valor y sólo agrega
+    esas dos claves por bloque `[M]`. La entrada 21 **sigue abierta** y pasó a ser el
+    issue `R8` (#32), porque necesita un alineador y esta máquina no tiene ninguno.
+24. **Una región publicada más que nadie había tamizado, y la encontró la compuerta.**
+    Lo que queda por hacer está en el issue **#35**, parte 2.
+    `BicC_Dm` 2123-2422 hizo fallar la primera regeneración de `ranking_v2.json` con
+    `RegionNoTamizada` `[M]`. Sale del bloque `efecto_humano` —la corrida con la referencia
+    humana fuera del panel— y está publicada en
+    `efecto_humano.fichas.sin_humano_recomendada` y en `regiones_recomendadas_w7`. Ya entró
+    al inventario, que pasa a **diecinueve** regiones, y sus tres filas no tienen 21/21, así
+    que no frenan nada. **Lo que queda abierto es la lección, no el caso:** `D70` y el issue
+    de `R7` buscaron las regiones sin tamizar mirando `regiones_recomendadas` de las dos
+    corridas, y esta no estaba ahí. `[H]` No sabemos si hay más regiones publicadas que
+    salgan de otros bloques de otros generadores y que nadie haya tamizado; la forma de
+    saberlo no es buscarlas a mano otra vez sino que la compuerta las encuentre, que es lo
+    que acaba de pasar. Mientras cada generador no se corra de punta a punta, no hay garantía.
+25. **~~`ranking_v2.json` no es byte-reproducible~~ — RESUELTA por `D76` (issue #34), con una
+    corrección al planteo.** El orden de las claves dentro de `riesgo_por_referencia` lo
+    heredaba del orden en que se pasaron las referencias a `offtarget_21nt.py`, que no estaba
+    registrado en ninguna parte. Ahora lo fija `ranking.por_referencia_ordenado()` al escribir,
+    con el orden del panel y el vector al final. **Lo que el planteo tenía mal:** la salida (a)
+    no costaba otro diff grande. El `ranking_v2.json` publicado **ya estaba** en el orden del
+    panel —36 de 36 objetos, cero fuera de orden— porque `625f128` ya había pagado el
+    reordenamiento, y reescribirlo con el orden canónico devuelve el archivo **byte a byte
+    idéntico** `[M]`. El que no estaba era `research/ola2/W7_ranking/ranking.json`, 4 de 4
+    fuera de orden, que se alineó en el mismo commit: 30 líneas movidas, ninguna cifra `[M]`.
+    Queda `tools/verificacion/comparar_json.py` para revisar la próxima regeneración por valor
+    y no por texto. **Lo que sigue pendiente es la corrida de punta a punta**, que es el único
+    criterio del issue que no se pudo cumplir: regenerar el archivo desde `work/sifi_v2/` y
+    verificar que una segunda regeneración seguida da el mismo byte a byte. En esta máquina no
+    existe `work/sifi_v2/` ni hay ViennaRNA, así que el generador no arranca. El comando, para
+    donde los insumos estén:
+
+    ```
+    python tools\sifi21_port\ranking_v2.py --trabajo work\sifi_v2 --json research\ola3\C7_ranking_v2\resultados\ranking_v2.json
+    python tools\verificacion\comparar_json.py research\ola3\C7_ranking_v2\resultados\ranking_v2.json <copia_previa.json>
+    ```
+
+    Lo esperado es «idénticos valor por valor, y con el mismo orden de claves» `[H]`.
+26. **La compuerta no sabe qué referencias tiene el panel en cada corrida.** Issue **#35**,
+    parte 1. Consulta la
+    tabla de alertas completa, de modo que en la rama `sin_humano` de `efecto_humano` una
+    región se evalúa contra filas de *Homo sapiens* que esa rama **excluyó** del panel
+    `[?]`. Hoy no cambia ningún resultado —ninguna de las filas en juego en esa rama tiene
+    coincidencia perfecta de 21 nt— pero es una inconsistencia real: una región podría
+    quedar frenada por una alerta de un organismo que la corrida no está considerando. Si
+    alguna vez una fila humana de esas regiones pasa a tener 21/21, esto empieza a importar.
+
 ### Ola 6, cierre de `O3` (2026-10-27)
 
-15. **Dónde caen los aciertos con un desapareo de las ventanas de juntura.**
+> Estas siete entradas se publicaron numeradas **15 a 21**, que ya estaban
+> usadas por las secciones de `R7` y de la firma de `eth_Dm`. Se renumeraron a **27 a
+> 33** para que el archivo tenga una sola numeración. La equivalencia, por si alguien
+> llega desde un commit o un informe que cita los números viejos: 15→27, 16→28, 17→29,
+> 18→30, 19→31, 20→32, 21→33.
+
+
+27. **Dónde caen los aciertos con un desapareo de las ventanas de juntura.**
     `02_juntura_detalle.py` localiza coincidencia exacta de 19 a 21 nt; de los aciertos con
     un desapareo tiene la cuenta del tamizado y no el bloque ni el transcripto `[?]`.
     Ubicarlos pide extender la auditoría al caso de un desapareo, que es la misma lógica
     con un autómata por posición de error.
-16. **El ranking de regiones se sigue armando en el marco 1 y la cifra que se publica es la
+28. **El ranking de regiones se sigue armando en el marco 1 y la cifra que se publica es la
     del marco 3.** Esto **no es un hallazgo de `O3`**: los tres marcos, sus nombres y la
     regla de que la cifra publicable es la de la molécula son `D63` y
     `research/ola5/N3_marcos/`. Lo que `O3` agrega es la séptima fila, con la misma
@@ -1832,29 +1894,30 @@ línea de diseño nueva. Este es el saldo.
     ranking armado en el marco 1 no es el ranking de las moléculas**, y rehacer la elección
     en el marco 3 cambiaría el orden de las 1.184 candidatas y no se midió `[?]`. Vecino
     del issue #20 y no se adelanta acá.
-17. **Si conviene testear las dos mitades por separado antes de la quimera.** Silenciando
+29. **Si conviene testear las dos mitades por separado antes de la quimera.** Silenciando
     dos genes a la vez, un bioensayo negativo no dice cuál mitad falló. Dos datos vuelven la
     pregunta concreta: la mitad de `V-ATPase B` aporta 14 ventanas eficientes contra 26 de
     `BicC_Dm`, y su región es **la única admisible del gen** `[M]`, así que si el efecto de
     movilidad y mortalidad depende de esa mitad, la molécula apuesta a la parte más
     restringida del diseño `[H]`. Es una pregunta para el investigador y la contesta un
     experimento.
-18. **Si la región candidata de `V-ATPase B` entra al inventario de alertas.** Hoy no tiene
+30. **Si la región candidata de `V-ATPase B` entra al inventario de alertas.** Issue **#35**,
+    parte 3. Hoy no tiene
     fila en las de `M6`, y desde `D72` la compuerta la **rechaza** con
     `alertas.RegionNoTamizada` en vez de dejarla pasar. Son siete regiones nuevas a tamizar
     contando las seis de 22 nt, no una.
-19. **Las junturas no tienen lugar en el inventario de `M6`.** El generador tamiza
+31. **Las junturas no tienen lugar en el inventario de `M6`.** Issue **#35**, parte 3. El generador tamiza
     **regiones**, y una juntura no es una región de ningún gen: es secuencia que fabrica el
     ensamblado. La fila de alerta de `O3` está escrita con el esquema de columnas de `M6`
     para que se pueda pegar, pero nadie la pegó, y mientras no se integre una quimera puede
     pasar la compuerta con su empalme sin tamizar `[?]`.
-20. **`ranking.py ranking` no termina desde `D72`.** La compuerta dispara dentro de
+32. **`ranking.py ranking` no termina desde `D72`.** La compuerta dispara dentro de
     `cmd_ranking` y aborta con `RegionNoTamizada` porque la cascada elige para `BicC_Dm` la
     región 2123-2422, que no está entre las 18 del inventario `[M]`. El mensaje de error
     dice cómo arreglarlo —agregarla a `REGIONES` en `tabla_alertas.py` y correr el script—
     pero hasta que alguien lo haga, el comando que regenera el ranking no corre. Es de la
     línea del issue #30 y `O3` no lo tocó porque toca números publicados.
-21. **El panel de `work/sifi_check/` estaba incompleto y nadie lo había notado.** El
+33. **El panel de `work/sifi_check/` estaba incompleto y nadie lo había notado.** El
     tamizado que vivía ahí se había corrido con cinco referencias más el genoma del vector,
     **sin la humana**, y por eso dos de los cuatro `buenos_limpios` del nivel 3 de `C7` no
     se reproducían. Regenerado con las seis, los cuatro dan exacto `[M]`. Queda la pregunta
@@ -1863,71 +1926,228 @@ línea de diseño nueva. Este es el saldo.
     leído `work/sifi_check/offtarget_full/` sin regenerarlo arrastra el faltante `[?]`.
     `work/` no se versiona, así que esto no se puede auditar desde git.
 
-### Ola 6, arranque de `O4` (2026-10-27)
+### Ola 6, `ranking.py ranking` vuelto a correr (2026-10-27)
 
-22. **El eje de riesgo se evalúa en el marco 1, donde veinte ventanas por región no existen
-    en la molécula que se sintetiza.** Esta entrada **reemplaza** la primera versión que
-    esta línea escribió, que afirmaba que la unidad del largo de una región no estaba
-    declarada en ninguna parte. Era falso para el eje de eficacia y conviene dejar escrito
-    el error: la unidad **está** declarada desde `D63`, y `N3` le puso nombre a la
-    diferencia —el **marco 1** cuenta los `L` arranques que caen en la región, con las
-    últimas veinte ventanas completadas por nucleótidos de **afuera**; el **marco 2** cuenta
-    los `L - 20` 21-meros que existen físicamente en la molécula; la resta entre los dos es
-    el «límite físico de la molécula»—. El ancla sale redonda: los conteos de esta línea
-    reproducen `N3` celda por celda en las cuatro regiones vigentes con insumo en esta
-    máquina, 38/31, 21/20, 36/29 y 21/17 `[M]`.
-    **Lo que no está declarado es la unidad del eje de riesgo.** `ranking.ejes()` calcula el
-    veto sobre el mismo tramo del marco 1, así que una región puede quedar vetada por un
-    21-mero que la molécula **no contiene**. Medido, con el caso concreto: en `V-ATPase B`
-    la ubicación 232-531 de 300 nt tiene **cero** ventanas vetadas entre las 280 que existen
-    en la molécula, y en marco 1 la vetan las ventanas **514, 515 y 516**, cuyos 21-meros
-    terminan en los nucleótidos 534-536 —afuera de una molécula que llega hasta el 531— y la
-    referencia que las veta es la **humana** `[M]`. Eso es exactamente por qué `D74`
-    encuentra **una** región admisible de «300 nt» y la lectura en marco 2 encuentra **24**,
-    más 22 de 301 nt `[M]`.
-    **La dirección del error importa y es la tranquilizadora:** evaluar el riesgo en marco 1
-    **descarta de más**, porque veta por ventanas que no van a existir. No se parece al
-    faltante de la referencia humana, que fallaba optimista. Ninguna cifra publicada queda
-    insegura por esto; lo que cambia es **cuántas opciones cree tener el proyecto**.
-    Lo que queda para el equipo son dos cosas distintas. La chica: la oración de `D74` «de
-    las 1.184 regiones de 300 nt … sin un nucleótido de holgura … a 301 nt ninguna» es una
-    afirmación de marco 1 escrita en lenguaje de nucleótidos, y corregir la redacción **no
-    mueve la quimera**, porque el fragmento que `O3` usó —nt 517-816, ventanas 517-796— está
-    limpio en los dos marcos `[M]`. La grande: `[?]` si el eje de riesgo debería leerse en
-    marco 2, que es el marco de los 21-meros que la molécula tiene. Si se adoptara, la
-    elección de región en `V-ATPase B` se reabre con 24 ubicaciones candidatas en vez de
-    una, y eso sí mueve una afirmación publicada hoy —«la única región admisible del gen»—
-    sin mover ningún conteo.
+34. **Se cierra la entrada 32: `ranking.py ranking` termina, y hacían falta las dos cosas.**
+    Los insumos que faltaban no había que conseguirlos de ningún lado, se generaron acá:
+    `work/sifi_check/salida/` con el criterio de `research/ola3/C7_ranking_v2/scripts/perfil_k.py`
+    —corregido, ViennaRNA 2.7.2, 21 nt, los cuatro genes de EPILAB; los conteos de eficientes
+    dan 1243/123, 508/30, 2500/171 y 471/29, idénticos a los de `work/sifi_v2/salida_k21`
+    `[M]`— y `work/sifi_check/offtarget_full/` con `offtarget_21nt.py --size 21 --mm1`. El
+    comando **sale con 0** `[M]`.
+    Hubo **dos** causas y las dos había que arreglarlas. La primera es la que reporta la
+    entrada 32 y la resolvió `D75`: la cascada elige `BicC_Dm` **2123-2422**, que no estaba
+    en el inventario. **La entrada 32 tenía razón** —ver la entrada 35, donde esto se midió
+    con cuidado porque en una primera pasada pareció lo contrario—. La segunda **no tiene
+    nada que ver con `D72`**: el subparser `ranking` nunca declaró `--json`, mientras
+    `cmd_ranking` termina con `if a.json:`, así que el comando corría entero, imprimía los
+    tres niveles y los barridos y recién al final moría con `AttributeError`. Está desde el
+    commit de `C1`, `478f165` del 2026-10-20 `[M]`: ese comando **nunca** había terminado.
+    Se agregó la opción que faltaba.
+35. **Los dos juegos de anclas publicadas piden paneles distintos, y no se pueden satisfacer
+    con el mismo archivo.** Issue **#33**, con las tres salidas posibles escritas. Esto es lo que la entrada 33 dejó planteado, ahora medido por los
+    dos lados. `work/sifi_check/offtarget_full/` se construyó de las dos maneras `[M]`:
 
-### Ola 6, cierre de `O4` (2026-10-27)
+    | | panel de W7 (cinco referencias + genoma del vector) | con la humana (seis + genoma) |
+    | --- | --- | --- |
+    | ancla §4 de `test_ranking.py` | **pasa**: 6 / 0 / 33 / **7** | **falla**: `ATPaseD_Dm` da **11** y no 7 |
+    | `test_ranking.py` entero | **46 de 46, sin ninguna salteada** | 1 falla |
+    | la cascada elige para `BicC_Dm` | **2123-2422** | 2121-2420 |
+    | `buenos_limpios` del nivel 3 contra `C7` k=21 | 37, **21**, **36**, **19** | **37, 20, 34, 17: los cuatro exactos** |
 
-23. **Cuál es el mínimo de largo por gen que tiene sentido en una quimera.** Es el agujero
-    que dejó ver el objetivo declarado, y es biológico, no de código. El mejor conteo de
-    ventanas heredadas **crece con la asimetría**: con largo total 600 el máximo es 64 con
-    un corte de 500 + 100 y cae a 46-48 en las proporciones equilibradas de 250 a 350
-    `[M]`. Así que el objetivo `cobertura_fenotipica`, tal como está escrito, premia darle
-    casi todo el largo al gen de perfil más denso —`BicC_Dm`— y dejar el fenotipo de
-    movilidad en 100 nt, que es lo contrario de para qué `D67` quiere una quimera. `[H]` El
-    parámetro que lo arregla es un mínimo por gen, pero fijarlo pide saber **cuánto ARNdc
-    de un gen hace falta para silenciarlo**, que es dato de bioensayo y no de nuestro
-    cómputo: el catálogo de `C5` registra dosis por insecto, no largo mínimo de disparador.
-    Es pregunta para el investigador y la contesta un experimento.
-24. **La grilla fina no se corrió, y no sabemos si mueve el primer puesto.** La corrida
-    publicada usa `--paso 50` y la grilla anclada a las islas, que da 3.204 combinaciones y
-    3.405 plegados. Con `--paso 1` la misma grilla pide **136.446** plegados `[M]`, que
-    entran en unas horas de esta máquina pero exceden el tope declarado de 5.000, así que
-    la corrida se detuvo y lo dijo en vez de muestrear. `[?]` Lo que no se puede afirmar es
-    que el primer puesto de la grilla gruesa sea el de la fina: el paso engruesa en los tres
-    parámetros libres a la vez, y el propio hallazgo de las islas angostas muestra que el
-    paso puede esconder exactamente lo que importa. Correrla es barato en decisión y caro
-    en tiempo, y conviene hacerlo recién cuando el mínimo por gen de la entrada 23 esté
-    fijado, porque ese mínimo recorta la grilla.
-25. **Los aciertos con un desapareo del empalme no están localizados.** El tamizado de
+    O sea: con la humana reproducen las cifras de `C7` y se rompe el ancla de `§4`; sin la
+    humana pasa todo `test_ranking.py` y no reproducen tres de las cuatro de `C7`. Las dos
+    cifras están publicadas y **se contradicen** `[?]`. En disco quedó el archivo **sin la
+    humana**, porque es el que hace pasar la batería de pruebas del repositorio, y porque
+    cambiar las cifras de `§4` sería mover números publicados sin decisión escrita. La
+    diferencia es de **una sola** de las cuatro regiones y de cuatro ventanas: las de
+    `ATPaseD_Dm` 151-450 que dan en la referencia humana. **Es decisión del equipo cuál de
+    los dos paneles es el correcto para este archivo**, y mientras no se tome, cualquier
+    número que salga de `work/sifi_check/` hay que leerlo diciendo con qué panel se corrió.
+36. **Una lección sobre cómo leer un `RegionNoTamizada`, que casi me lleva a la conclusión
+    equivocada.** En la primera pasada, con el archivo que incluía la humana, la cascada
+    elegía 2121-2420 —que ya estaba en el inventario— y parecía que la entrada 32 se
+    explicaba sola por el panel incompleto y que agregar 2123-2422 había sido innecesario.
+    Es al revés: con el panel que el repositorio verifica, 2123-2422 **es** la región que la
+    cascada pide, y sin ella en el inventario el comando no corre. `[H]` Lo que falla cuando
+    el insumo está mal no es la compuerta: la compuerta señala con precisión una región real
+    que nadie tamizó. Pero **qué región señala depende del insumo**, así que un
+    `RegionNoTamizada` hay que leerlo junto con el panel con el que se corrió.
+
+### Nota de numeración (2026-10-27, arreglada)
+
+Las dos líneas numeraron en paralelo y la sección de `O3` se publicó con los números **15 a
+21**, que ya usaban las secciones de `R7` y de la firma de `eth_Dm`. **Quedó arreglado:** esas
+siete entradas son ahora **27 a 33** y la sección se movió detrás de la de las entradas 20 y
+22, de modo que el archivo tiene una sola numeración y asciende. La equivalencia, por si
+alguien llega desde un commit o un informe que cita los números viejos, está al principio de
+esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
+
+### Ola 6, cierre de la entrada 25 (`D76`, issue #34, 2026-10-27)
+
+37. **Una referencia que no está en el panel entra a la salida como `D_maidis` y choca con
+    el vector, en silencio.** Salió al probar `D76` a través de los escritores de verdad.
+    `ranking.corto()` dobla **toda** referencia que no esté en `REFERENCIAS` al nombre corto
+    del vector, así que una columna del TSV de off-targets de una referencia que el panel no
+    tiene no levanta nada: se escribe bajo la clave `D_maidis` y la última que escribe gana,
+    de modo que **cuál gana depende del orden de las columnas del TSV** `[M]`
+    (`tools/sifi21_port/test_orden_salida.py`, tercera prueba: con una intrusa y el vector en
+    la misma matriz, la salida queda con `maiz` y `D_maidis` y de la intrusa no queda rastro).
+    Es la misma clase de problema que `D76` cerró para el orden de las claves, en un lugar
+    donde sigue abierto. La guarda `KeyError` de `por_referencia_ordenado()` **no lo alcanza**,
+    porque la colisión ocurre antes de que la vea. `[H]` Hoy no mueve ninguna cifra publicada:
+    las corridas publicadas usan el panel de siete referencias y sus matrices tienen
+    exactamente esas columnas, así que no hay intrusa posible. Pero no hay nada que lo impida
+    si alguna vez una matriz se construye con una referencia de más. **No se hizo:** arreglarlo
+    es cambiar `corto()` para que distinga «el vector» de «no la conozco», y eso toca el
+    linaje de `ranking.py` entero, no el formato de salida de `C7`. La pregunta es si `corto()`
+    debe fallar ante una referencia desconocida o devolver un centinela propio.
+
+### Ola 6, cierre de `R11` (issue #35, 2026-10-27)
+
+38. **Se cierra la entrada 26: la compuerta sabe contra que panel se le pregunta, y una
+    alerta de fuera del panel frena igual.** `D77`. `exigir_decidida()` y
+    `estado_decision()` toman el panel de la corrida, lo publican en el estado
+    (`panel`, `organismos_fuera_del_panel`, `pendientes_fuera_del_panel`) y lo nombran en el
+    mensaje de `AlertaSinDecidir`, pero **no filtran**: la coincidencia perfecta esta en el
+    ARN y no en el panel con el que una corrida lo puntua.
+    `ranking.region_recomendada()` lo resuelve solo con `ranking.panel_actual()`, que lee el
+    `REFERENCIAS` vivo, asi que la rama `sin_humano` de `efecto_humano()` queda declarada sin
+    que nadie se acuerde de pasarlo. La prueba que pedia el issue —la misma region, el mismo
+    umbral, con y sin el organismo en el panel— es la seccion 10 de `test_alertas.py` y frena
+    las dos veces en los dos umbrales de `D28` `[M]`. Ninguna cifra publicada se mueve: lo
+    unico que cambia en disco es `research/ola4/M6_alertas/resultados/compuerta.json`, que
+    gana tres claves informativas en sus 38 bloques `[M]`.
+    **Nota, por la entrada 37:** `panel_actual()` arma el panel desde `REFERENCIAS` y agrega
+    `D_maidis` a mano, sin pasar por `corto()`, asi que la colision que esa entrada describe
+    no lo alcanza. Son dos problemas vecinos y distintos, y el de la 37 sigue abierto.
+39. **De la entrada 24 queda abierta la corrida, no la cobertura: esta medida.** La leccion
+    era que buscar a mano no alcanza. Esta pasada no busco a mano: barrio los **409** JSON de
+    `research/` —salteando otro proyecto y su propia salida—, recogio toda cadena con forma de
+    region, la clasifico por gen y cruzo contra `estado_regiones.tsv`
+    (`research/ola6/R11_compuerta_y_panel/scripts/regiones_publicadas.py`). **Trece** archivos
+    traen coordenadas de los genes del panel: 407 coordenadas, **60** pares (gen, region) y
+    **41** fuera del inventario `[M]`. Lo que importa es de que bloque sale cada una, y ahi el
+    resultado es limpio: los 41 salen **todos** de bloques que no producen recomendaciones
+    —orden de alternativas, region de maximo conteo de un nulo, region por defecto de un
+    barrido de sensibilidad en `C9` y `C3`, y la candidata de `V-ATPase B`— y en los bloques
+    que **si** recomiendan no hay **una sola** coordenada fuera del inventario `[M]`. Y el
+    censo estatico de caminos (`censo_generadores.py`) da que de los siete archivos del
+    repositorio con marcas de generador, **uno solo** llama a `alternativas()` sin llamar a la
+    compuerta, y es a proposito (`01_region_vatpase_b.py`, `D74`) `[M]`. `[H]` O sea que el
+    conjunto de lugares donde una region puede nacer es cerrado y conocido, y lo que falta
+    para la garantia fuerte es correr cada generador, no seguir buscando.
+    **Nota de metodo:** la primera version de ese script tenia los archivos escritos a mano
+    —tres— y decia «los tres publicados»; era el mismo error de esta entrada un piso mas
+    abajo, y lo encontro la revision de esta pasada. Por eso barre.
+40. **Lo que falta de la entrada 24 es `work/`, y se puede pedir.** De los ocho generadores
+    declarados corrieron **dos** en la maquina de Luca, y son justamente los dos que no
+    pueden encontrar nada nuevo: `compuerta.py` y `umbral_compuerta.py` iteran sobre el
+    inventario `[M]`. Los otros seis mueren en el primer insumo de `work/`, que en esta
+    maquina **no existe** —verificado con `ls work/` y tambien en WSL, donde hay
+    `~/yhat/tools` y `~/yhat/data` pero no una copia del repositorio— `[M]`. El comando exacto
+    de cada uno esta en `research/ola6/R11_compuerta_y_panel/resultados/censo_corridas.tsv` y
+    la lista de lo que hay que pedir, en `PENDIENTE.md` del mismo bloque. **Al pedir
+    `work/sifi_check/`, decir con que panel se construyo:** el issue #33 tiene abierto que los
+    dos juegos de anclas publicadas piden paneles distintos.
+41. **Se cierran las entradas 30 y 31 en lo que eran —decisiones— y queda el insumo.** `D78`:
+    `V-ATPase B` 517-816 entra al inventario como una region mas, y las junturas entran con
+    clave propia, `(quimera <nombre>, "juntura")`, con granularidad quimera x organismo x gen
+    impactado y con los `j` fuera de la clave. Entran **las dos** quimeras, incluida
+    `Q_BicC_Dm__VATPaseB_Dm`, que fabrica cero bloques: es la distincion que `D72` existe para
+    hacer `[M]`. **No se implemento ninguna de las dos** y el motivo es de insumo, no de
+    criterio: `tabla_alertas.py` necesita `work/m6_alertas/identidad_por_ventana.tsv` y
+    `work/W5/ref/`, y la region de `V-ATPase B` ademas necesita su matriz de off-target contra
+    el panel, que no existe porque el gen no esta entre los seis que el generador tamiza.
+    Agregar las entradas sin poder correr el script dejaria la tabla y el inventario
+    describiendo algo que el generador ya no produce. Mientras tanto sigue siendo cierto que
+    **una quimera puede pasar la compuerta con su empalme sin tamizar** `[?]`.
+42. **Una coordenada publicada que no es una recomendacion se ve igual que una que si, y de
+    las 41 no se sabe si alguna tiene 21/21.** Es nuevo y sale de contar. Los 41 pares sin
+    tamizar son ordenes de alternativas, regiones de maximo conteo de los nulos y regiones por
+    defecto de barridos de sensibilidad, y ninguno pretende ser usable; pero estan publicados
+    con la misma forma `ini-fin` que una recomendacion y lo unico que hoy los distingue es el
+    bloque del JSON en el que aparecen `[M]`. **Su estado de 21/21 es desconocido**, y no se
+    puede afirmar que no lo tengan: medirlo es tamizarlos, que es exactamente lo que no esta
+    hecho `[?]`. `[H]` Si alguna vez alguien copia una alternativa a un documento, no hay nada
+    que lo frene: la compuerta protege el punto donde una region **se vuelve recomendacion**, y
+    una coordenada leida de `alternativas` no pasa por ahi. Es la entrada 10 de esta ola vista
+    desde el otro lado, y la salida posible —marcar en el propio JSON que una coordenada es un
+    orden y no una recomendacion— es formato de salida de `C7`, no de `M6`. **No se hizo.**
+43. **El censo cubre generadores, no documentos.** `censo_generadores.py` busca marcas en el
+    codigo, asi que una region publicada como texto ya calculado en un `REPORT.md` o en un TSV
+    escrito a mano no tiene ninguna marca y el censo no la ve `[?]`. No es una laguna del
+    censo sino el limite de lo que se puede verificar desde el codigo, y es la misma de la
+    entrada 10: entre el cometido del port y el numero que aparece en un documento de
+    `entregables/` hay una persona copiandolo.
+
+### Ola 6, cierre de `O4` (issue #24, 2026-10-27)
+
+44. **El eje de riesgo se evalúa en el marco 1, donde veinte ventanas por región no existen
+    en la molécula.** Es el complemento de la entrada 28, que ya dejó planteado que un
+    ranking armado en marco 1 no es el ranking de las moléculas: eso es sobre el eje de
+    **eficacia** y está declarado desde `D63`. Lo que la entrada 28 no cubre es que
+    `ranking.ejes()` calcula también el **veto** sobre el tramo del marco 1, así que una
+    región puede quedar vetada por un 21-mero que la molécula **no contiene**. Medido, con
+    el caso concreto: en `V-ATPase B` la ubicación 232-531 de 300 nt tiene **cero** ventanas
+    vetadas entre las 280 que existen en la molécula, y en marco 1 la vetan las ventanas
+    **514, 515 y 516**, cuyos 21-meros terminan en los nucleótidos 534-536 —afuera de una
+    molécula que llega hasta el 531— y la referencia que las veta es la **humana** `[M]`. Por
+    eso `D74` encuentra **una** región admisible de «300 nt» y la lectura en marco 2
+    encuentra **24**, más 22 de 301 nt `[M]`; la cláusula de `D74` «ocupa el único hueco
+    libre de 300 ventanas consecutivas» es exacta y las otras tres cifras de esa misma
+    oración son la misma medición leída en la otra unidad.
+    **La dirección del error es la tranquilizadora:** evaluar el riesgo en marco 1 descarta
+    de más, porque veta por ventanas que no van a existir. No se parece al faltante de la
+    referencia humana, que fallaba optimista. Ninguna cifra publicada queda insegura por
+    esto; lo que cambia es **cuántas opciones cree tener el proyecto**. Y **la quimera que
+    `O3` midió no se mueve:** su fragmento son los nt 517-816, ventanas 517-796, limpio en
+    los dos marcos `[M]`.
+    Quedan dos cosas, de tamaños distintos. La chica: la oración de `D74` es una afirmación
+    de marco 1 escrita en lenguaje de nucleótidos, y corregir la redacción no mueve nada
+    medido. La grande: `[?]` si el eje de riesgo debería leerse en marco 2 —el de los
+    21-meros que la molécula tiene—, porque si se adoptara, la elección de región en
+    `V-ATPase B` se reabre con 24 ubicaciones en vez de una y eso mueve una afirmación
+    publicada, «la única región admisible del gen», sin mover ningún conteo. Vecina del
+    issue #20, y acá no se adelanta.
+    **Una nota sobre cómo se encontró, que es la parte reusable:** la primera versión de esta
+    entrada afirmaba que la unidad del largo de región no estaba declarada en ninguna parte,
+    y era falso —`D63` la declara, `N3` le puso nombre a los marcos y hay fila de glosario
+    que se llama «marco de conteo»—. Mis conteos reproducían `N3` celda por celda, o sea que
+    era un ancla pasando y la leí como hallazgo. Busqué «unidad de conteo», que es como lo
+    llamó `M1`, y el proyecto le dice «marco»: antes de declarar que algo no está declarado
+    hay que abrir el REPORT del bloque que mide ese eje.
+45. **Cuál es el mínimo de largo por gen que tiene sentido en una quimera.** Es el agujero
+    que dejó ver el objetivo declarado de `D79`, y es biológico, no de código. El mejor
+    conteo de ventanas heredadas **crece con la asimetría**: con largo total 600 el máximo es
+    64 con un corte de 500 + 100 y cae a 49 en las proporciones equilibradas de 250 a 350
+    `[M]`. Así que `cobertura_fenotipica`, tal como está escrito, premia darle casi todo el
+    largo al gen de perfil más denso —`BicC_Dm`— y dejar el fenotipo de movilidad en 100 nt,
+    que es lo contrario de para qué `D67` quiere una quimera. `[H]` El parámetro que lo
+    arregla es un mínimo por gen, pero fijarlo pide saber **cuánto ARNdc de un gen hace falta
+    para silenciarlo**, que es dato de bioensayo y no de nuestro cómputo: el catálogo de `C5`
+    registra dosis por insecto, no largo mínimo de disparador. Es pregunta para el
+    investigador y la contesta un experimento.
+46. **La grilla fina no se corrió, y no sabemos si mueve el primer puesto.** La corrida
+    publicada usa `--paso 50` con la retícula anclada a las islas, que da 3.204 combinaciones
+    y 3.405 plegados. Con `--paso 1` la misma grilla pide **136.446** plegados `[M]`, que
+    entran en unas horas de esta máquina pero exceden el tope declarado de 5.000, así que la
+    corrida se detuvo y lo dijo en vez de muestrear. `[?]` Lo que no se puede afirmar es que
+    el primer puesto de la grilla gruesa sea el de la fina: el paso engruesa los tres
+    parámetros libres a la vez, y el hallazgo de las islas angostas —la de `V-ATPase B` mide
+    21 nt y la retícula de paso 50 no la tocaba— muestra que el paso puede esconder
+    exactamente lo que importa. Conviene correrla recién cuando el mínimo por gen de la
+    entrada 45 esté fijado, porque ese mínimo recorta la grilla.
+47. **Los aciertos con un desapareo del empalme no están localizados.** El tamizado de
     juntura de `O4` busca bloques **exactos** de 19, 20 y 21 nt que cruzan la unión, que es
-    lo que permite afirmar que un bloque es fabricado y no heredado. `mm1_21` queda fuera
-    de esa cuenta, porque un desapareo no tiene bloque contiguo que localizar — es la misma
-    limitación que declaró el paso 2 de `O3`. `[?]` Entonces no sabemos si alguna de las
-    3.204 combinaciones fabrica una coincidencia con un desapareo que el conteo exacto no
-    ve, ni en qué dirección eso movería el orden bajo `riesgo_minimo`. El criterio pesa 0,30
-    en el proyecto y `D28` declaró que el piso de 19 nt ya no tiene experimento detrás, así
-    que la cuenta exacta es el piso defendible y no el techo.
+    lo que permite afirmar que un bloque es fabricado y no heredado; `mm1_21` queda fuera,
+    porque un desapareo no tiene bloque contiguo que localizar — es la misma limitación que
+    declaró el paso 2 de `O3` y es vecina de la entrada 27. `[?]` Entonces no sabemos si
+    alguna de las 3.204 combinaciones fabrica una coincidencia con un desapareo que el
+    conteo exacto no ve, ni en qué dirección eso movería el orden bajo `riesgo_minimo`.
+    `[H]` Y hay una lectura que sí se puede hacer con lo exacto, y conviene no perderla: de
+    las 515 combinaciones que fabrican algún bloque del panel, en **262 —la mitad— el bloque
+    más repartido toma un solo nucleótido del segundo gen**, y sólo 118 tienen alguno
+    repartido 5/5 o mejor `[M]`. Un bloque de 19 nt con 18 de un gen y 1 del otro existe por
+    azar en una de cada cuatro referencias que contengan al gen padre, así que el conteo de
+    alertas no se lee sin el aporte al lado.

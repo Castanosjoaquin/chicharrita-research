@@ -38,20 +38,14 @@
         "puntaje_cascada": 29.0
       },
       "riesgo_por_referencia": {
-        "D_maidis": {
+        "maiz": {
           "perfecto_ge19": {
             "ventanas": 3,
             "de_esas_eficientes": 0
           },
           "mm1_21": {
-            "ventanas": 2,
-            "de_esas_eficientes": 0
-          }
-        },
-        "F_candida": {
-          "mm1_21": {
             "ventanas": 1,
-            "de_esas_eficientes": 1
+            "de_esas_eficientes": 0
           }
         },
         "A_mellifera": {
@@ -66,13 +60,19 @@
             "de_esas_eficientes": 1
           }
         },
-        "maiz": {
+        "F_candida": {
+          "mm1_21": {
+            "ventanas": 1,
+            "de_esas_eficientes": 1
+          }
+        },
+        "D_maidis": {
           "perfecto_ge19": {
             "ventanas": 3,
             "de_esas_eficientes": 0
           },
           "mm1_21": {
-            "ventanas": 1,
+            "ventanas": 2,
             "de_esas_eficientes": 0
           }
         }
@@ -116,15 +116,15 @@
         "puntaje_cascada": 17.0
       },
       "riesgo_por_referencia": {
-        "D_maidis": {
-          "mm1_21": {
-            "ventanas": 1,
-            "de_esas_eficientes": 0
-          }
-        },
         "maiz": {
           "mm1_21": {
             "ventanas": 4,
+            "de_esas_eficientes": 0
+          }
+        },
+        "D_maidis": {
+          "mm1_21": {
+            "ventanas": 1,
             "de_esas_eficientes": 0
           }
         }
@@ -168,6 +168,16 @@
         "puntaje_cascada": -983.0
       },
       "riesgo_por_referencia": {
+        "maiz": {
+          "perfecto_ge19": {
+            "ventanas": 3,
+            "de_esas_eficientes": 0
+          },
+          "mm1_21": {
+            "ventanas": 2,
+            "de_esas_eficientes": 0
+          }
+        },
         "A_mellifera": {
           "mm1_21": {
             "ventanas": 3,
@@ -186,16 +196,6 @@
           "mm1_21": {
             "ventanas": 17,
             "de_esas_eficientes": 3
-          }
-        },
-        "maiz": {
-          "perfecto_ge19": {
-            "ventanas": 3,
-            "de_esas_eficientes": 0
-          },
-          "mm1_21": {
-            "ventanas": 2,
-            "de_esas_eficientes": 0
           }
         }
       }
@@ -238,6 +238,12 @@
         "puntaje_cascada": -986.0
       },
       "riesgo_por_referencia": {
+        "maiz": {
+          "mm1_21": {
+            "ventanas": 1,
+            "de_esas_eficientes": 0
+          }
+        },
         "H_vitripennis": {
           "perfecto_21": {
             "ventanas": 3,
@@ -250,12 +256,6 @@
           "mm1_21": {
             "ventanas": 17,
             "de_esas_eficientes": 2
-          }
-        },
-        "maiz": {
-          "mm1_21": {
-            "ventanas": 1,
-            "de_esas_eficientes": 0
           }
         }
       }

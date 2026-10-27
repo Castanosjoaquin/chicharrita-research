@@ -1,0 +1,8 @@
+archivo	define	llama_alternativas	llama_region_recomendada	llama_exigir_decidida	arma_region_a_mano	region_sin_compuerta
+research/ola4/M6_alertas/scripts/compuerta.py	-	False	False	True	False	False
+research/ola4/M6_alertas/scripts/umbral_compuerta.py	-	False	False	True	False	False
+research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py	-	True	False	False	False	True
+tools/sifi21_port/alertas.py	exigir_decidida	False	False	True	False	False
+tools/sifi21_port/ranking.py	alternativas,region_recomendada	True	True	True	False	False
+tools/sifi21_port/ranking_v2.py	-	True	True	False	False	False
+tools/sifi21_port/test_alertas.py	-	False	True	True	False	False

@@ -24,7 +24,8 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import ranking as R
-from sifi_core import best_region
+# `sifi_core` arrastra Biopython, que no esta en toda maquina; se importa dentro de la
+# unica prueba que lo usa para que las demas corran igual y la saltea se declare.
 
 FALLAS = []
 SALTEADAS = []
@@ -74,6 +75,12 @@ def test_conteo_coincide_con_best_region():
     `sifi21_reproduccion.md` §3, que salieron de `best_region`.
     """
     print("la convencion coincide con sifi_core.best_region")
+    try:
+        from sifi_core import best_region
+    except ModuleNotFoundError as e:
+        print("  SALTEADA falta %s" % e.name)
+        SALTEADAS.append("convencion contra best_region (falta %s)" % e.name)
+        return
 
     class W:
         def __init__(self, pos, ef):
@@ -198,6 +205,51 @@ def test_dmaidis_sale_como_ontarget():
           "para un gen viral con --dmaidis-viral neutro se excluye")
 
 
+def test_orden_de_referencias_es_el_del_panel():
+    """El orden normativo de D76: el de `REFERENCIAS`, con el vector al final.
+
+    Lo que esta prueba impide es que el orden vuelva a heredarse del orden de las
+    columnas del TSV de off-targets, que no esta registrado en ninguna parte.
+    """
+    print("el orden de las referencias al escribir es el del panel, no el del TSV")
+    check(R.orden_referencias() == ["maiz", "H_axyridis", "A_mellifera", "H_vitripennis",
+                                    "F_candida", "D_maidis"],
+          "el orden del panel base, con D_maidis al final")
+    revuelto = {"D_maidis": 1, "F_candida": 2, "maiz": 3, "H_vitripennis": 4}
+    ordenado = R.por_referencia_ordenado(revuelto)
+    check(list(ordenado) == ["maiz", "H_vitripennis", "F_candida", "D_maidis"],
+          "un objeto revuelto sale en el orden del panel")
+    check(ordenado == revuelto, "y con los mismos pares: no se mueve ningun valor")
+    check(list(R.por_referencia_ordenado(ordenado)) == list(ordenado),
+          "ordenar lo ya ordenado no cambia nada (es idempotente)")
+    check(list(R.por_referencia_ordenado({})) == [], "un objeto vacio sale vacio")
+    try:
+        R.por_referencia_ordenado({"maiz": 1, "M_quadrilineatus": 2})
+        check(False, "una referencia fuera del panel tiene que fallar")
+    except KeyError as e:
+        check("M_quadrilineatus" in str(e),
+              "una referencia fuera del panel falla y se nombra")
+
+
+def test_el_humano_entra_ultimo_antes_del_vector():
+    """`ranking_v2.con_panel()` agrega humano al final de `REFERENCIAS`, y de ahi sale su
+    lugar en el orden. Se verifica aca porque es la unica referencia que no vive en la
+    tabla del modulo."""
+    print("con humano en el panel, va ultimo entre las referencias y antes del vector")
+    base = R.REFERENCIAS
+    try:
+        R.REFERENCIAS = {**base, "humano_rna": {"corto": "humano", "peso": 1.00}}
+        check(R.orden_referencias() == ["maiz", "H_axyridis", "A_mellifera",
+                                        "H_vitripennis", "F_candida", "humano",
+                                        "D_maidis"],
+              "humano entre F_candida y D_maidis")
+        revuelto = {"humano": 1, "D_maidis": 2, "maiz": 3}
+        check(list(R.por_referencia_ordenado(revuelto)) == ["maiz", "humano", "D_maidis"],
+              "y un objeto con los tres sale en ese orden")
+    finally:
+        R.REFERENCIAS = base
+
+
 # ------------------------------------------- anclas contra numeros ya publicados
 
 def _datos():
@@ -309,6 +361,8 @@ def main():
               test_minmax_con_dos_candidatos_es_degenerado,
               test_barrido_ordena_los_pesos_de_criterio,
               test_dmaidis_sale_como_ontarget,
+              test_orden_de_referencias_es_el_del_panel,
+              test_el_humano_entra_ultimo_antes_del_vector,
               test_anclas_publicadas, test_ancla_offtarget_region, test_ancla_veto):
         t()
     print()
