@@ -150,11 +150,21 @@ homología a nivel proteína** antes de que llegue el zip. Si sale, desbloquea `
 nada; si no sale, el resultado útil es saber que ese transcriptoma no la contiene, que es la
 misma respuesta que `C11` necesita para `eth` y `burs-alpha`.
 
-**La restricción de entorno, que hay que decir antes de asignar la tarea.** En esta máquina
+**La restricción de entorno, que hay que decir antes de asignar la tarea.** ~~En esta máquina
 —verificado— **no hay `blastn`, `tblastn`, `makeblastdb`, `miniprot`, `diamond`, `bowtie` ni el
 módulo `RNA` de ViennaRNA**, y el `python3` del PATH es 3.9.6 con numpy 2.0.2. Las bases de
-`work/C11/` se construyeron en otra máquina. Esta tarea necesita un alineador de proteína contra
-nucleótido, así que corre donde haya uno o empieza por instalarlo; **no es trabajo de escritorio**.
+`work/C11/` se construyeron en otra máquina.~~ **Corregido el 2026-10-27:** ese diagnóstico
+no describe la máquina de Joaquín (macOS) y se le había atribuido. Venía de otra máquina o
+sesión sin `work/` ni ViennaRNA; cuál era no consta (los comandos de #30 están escritos para
+`cmd.exe`, lo que sugiere Windows, pero es una inferencia). En la de Joaquín, medido: el módulo `RNA` (ViennaRNA 2.7.2) y `Bio` (1.88) **sí
+están** en el entorno conda `python` (Python 3.11.17, numpy 2.4.6); el `/usr/bin/python3`
+(3.9.6) no los tiene ni tiene numpy; el diagnóstico viejo pudo salir de un intérprete así, pero no
+consta. **Faltan los ejecutables** `blastn`,
+`tblastn`, `makeblastdb`, `miniprot`, `diamond`, `bowtie`, `RNAplfold` y `RNAfold`, y el módulo
+pip `ahocorasick`. Las **bases ya están**: `work/C11/db_*` (30 archivos) y `work/W5/db/`; lo que
+falta es el ejecutable que las consulta. Esta tarea necesita un alineador de proteína contra
+nucleótido y ninguno está instalado, así que corre donde haya uno o empieza por instalarlo; **no
+es trabajo de escritorio**. Eso sigue siendo cierto para `O2` y `F1`; ya no lo es para `O3`.
 
 **Qué hay que hacer.**
 
@@ -187,7 +197,10 @@ perfil de riesgo con un fenotipo que no bloquea transmisión, y `V-ATPase B` apo
 complejo y se separen justo por el eje que él nombró es lo que vuelve armable la combinación y no
 una ocurrencia `[H]`.
 
-**Depende de `O2`.** Y **necesita ViennaRNA**, que no está en esta máquina.
+**Depende de `O2`.** Y **necesita ViennaRNA**, ~~que no está en esta máquina~~ **que sí está en
+el entorno conda `python` de Joaquín (2.7.2, el mismo que usó `C13`)** `[M]`. Corregido el
+2026-10-27, ver §3. Lo que `C13` no tuvo y acá sí cambia es numpy (2.4.6 contra 2.5.4) y Python
+(3.11.17 contra 3.13.15): por eso el ancla de `C4` se corre **antes** de leer ninguna cifra nueva.
 
 **El obstáculo de código que nadie anotó.** `quimeras_v2.py:51` tiene
 `REGIONES = ["MP_MRFV", "CP_MRFV", "BicC_Dm", "ATPaseD_Dm"]` **fija**, y `CONJUNTOS` trae las
@@ -406,21 +419,38 @@ umbrales, y la quimera tiene la contabilidad del empalme `[H]`.
 
 ## 3. El entorno de cómputo, antes de asignar nada
 
-Verificado en esta máquina, y es la restricción que más cambia quién puede hacer qué:
+~~Verificado en esta máquina~~ **Corregido el 2026-10-27.** La tabla original describía una
+máquina o sesión sin `work/` ni ViennaRNA —cuál, no consta; los comandos de #30 están en
+`cmd.exe`, lo que sugiere Windows, pero es inferencia— y se la atribuyó a la de Joaquín
+(macOS), que es otra. Lo que sigue está **medido en la de Joaquín**, y es la
+restricción que más cambia quién puede hacer qué. Hay dos intérpretes y no son lo mismo: el
+`/usr/bin/python3` del sistema (3.9.6, sin `numpy`, `RNA` ni `Bio`) y el entorno conda `python`
+(`~/.claude-science/conda/envs/python`, 3.11.17), que es con el que corren las herramientas.
+Medido desde el sandbox del agente: qué `python3` resuelve el `PATH` del terminal de Joaquín no se
+midió, y hay que correr `python3 -c "import RNA, Bio"` ahí antes de dar esto por válido.
 
-| Herramienta | Estado acá |
+| Herramienta | Estado en la máquina de Joaquín |
 | --- | --- |
 | `blastn`, `tblastn`, `makeblastdb` | **no están** |
 | `miniprot`, `diamond` | **no están** |
 | `bowtie`, `bowtie2` | **no están** |
-| módulo `RNA` de ViennaRNA, `RNAplfold`, `RNAfold` | **no están** |
-| `python3` del PATH | 3.9.6, numpy 2.0.2 |
+| `RNAplfold`, `RNAfold` (ejecutables) | **no están** (el backend `exe` del port los necesita; el backend `vienna`, no) |
+| módulo `RNA` (ViennaRNA) | ~~no está~~ **está**: 2.7.2, en el entorno conda; **no** en el `python3` del sistema |
+| módulo `Bio` (Biopython) | ~~no está~~ **está**: 1.88, en el entorno conda; **no** en el `python3` del sistema |
+| módulo `ahocorasick` | **no está**, en ninguno de los dos: un `pip install pyahocorasick`. Lo importa `offtarget_21nt.py` |
+| `numpy` | 2.4.6 en el entorno conda; **ausente** del `/usr/bin/python3` (el «numpy 2.0.2» del texto viejo no se reproduce) |
+| `work/` | ~~no existe~~ **existe**, 14 GB: `work/W5/ref` (seis referencias del panel y la humana), `work/W5/db`, `work/C11` (30 archivos de bases BLAST), `work/sifi_v2`, `work/m6_alertas/identidad_por_ventana.tsv` (317 filas) |
 
-`C13` corrió con Python 3.13.15, numpy 2.5.4 y ViennaRNA 2.7.2, y las bases de `work/C11/` se
-construyeron en otra máquina. **Conclusión operativa:** `R1` a `R6`, `O1` y `O4` (la parte de
-diseño) son trabajo de escritorio y corren acá. `O2`, `O3` y `F1` necesitan entorno y van a la
-máquina que tenga ViennaRNA y un alineador, o empiezan por instalarlo. Asignar `O3` a esta
-máquina es asignarlo a que se trabe en el primer import.
+`C13` corrió con Python 3.13.15, numpy 2.5.4 y ViennaRNA 2.7.2: ViennaRNA coincide y Python y
+numpy no, así que **el ancla de `C4` es la que autoriza leer cualquier cifra nueva**. Las bases
+de `work/C11/` están, pero sin `blastn` no hay quién las consulte.
+
+**Conclusión operativa:** `R1` a `R6`, `O1` y `O4` (la parte de diseño) son trabajo de escritorio
+y corren acá. **`O3` también corre acá** —necesita ViennaRNA y lo tiene— ~~Asignar `O3` a esta
+máquina es asignarlo a que se trabe en el primer import~~. **`R7` paso 1 también**: usa
+`identidad.py`, que depende de `offtarget_21nt`, `ranking`, `ranking_v2` y `anclas` y no llama a
+Bowtie, BLAST ni RNAplfold; le falta `pyahocorasick`. Lo que **sí** necesita otra máquina, o
+instalar un alineador, es `O2` (ya cerrada por otra vía) y `F1`.
 
 ---
 

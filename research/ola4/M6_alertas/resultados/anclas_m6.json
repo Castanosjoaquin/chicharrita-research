@@ -47,12 +47,12 @@
    "coincide": true
   }
  ],
- "A4_comparaciones": 68,
- "A4_coinciden": 68,
- "A5_comparaciones": 30,
- "A5_coinciden": 30,
- "filas_validadas": 17,
- "regiones": 12,
+ "A4_comparaciones": 74,
+ "A4_coinciden": 74,
+ "A5_comparaciones": 40,
+ "A5_coinciden": 40,
+ "filas_validadas": 23,
+ "regiones": 18,
  "A4_detalle": [
   {
    "ancla": "A4",
@@ -733,6 +733,66 @@
    "publicado": null,
    "nota": "sin ficha publicada (región de D25)",
    "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "MP_MRFV 162-361",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "CP_MRFV 77-276",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "BicC_Dm 2119-2418",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "ATPaseD_Dm 71-370",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "eth_Dm 193-392",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "bursA_Dm 44-243",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
   }
  ],
  "A5_detalle": [
@@ -1004,6 +1064,96 @@
    "criterio": "perfecto_ge19",
    "mio": 6,
    "publicado": 6,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "MP_MRFV 162-361",
+   "referencia": "F_candida",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "MP_MRFV 162-361",
+   "referencia": "F_candida",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "BicC_Dm 2119-2418",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "BicC_Dm 2119-2418",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "BicC_Dm 2119-2418",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "BicC_Dm 2119-2418",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "ATPaseD_Dm 71-370",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "ATPaseD_Dm 71-370",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 7,
+   "publicado": 7,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "eth_Dm 193-392",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "eth_Dm 193-392",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 5,
+   "publicado": 5,
    "coincide": true
   }
  ]

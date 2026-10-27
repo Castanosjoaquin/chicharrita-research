@@ -1,17 +1,18 @@
 {
  "tabla": "research/ola4/M6_alertas/resultados/alertas.tsv",
- "filas": 17,
+ "filas": 23,
  "umbrales": {
   "perfecto_21": {
-   "pasan": 12,
+   "pasan": 18,
    "frenadas": 0,
    "frenadas_vigentes": 0,
-   "bloqueantes": 3,
+   "bloqueantes": 4,
    "bloqueantes_vigentes": 0,
    "bloqueantes_detalle": [
     "BicC_Dm 264-563",
     "ATPaseD_Dm 151-450",
-    "ATPaseD_Dm 137-436"
+    "ATPaseD_Dm 137-436",
+    "eth_Dm 193-392"
    ],
    "detalle": [
     {
@@ -181,19 +182,104 @@
      "vigente": "no",
      "que_es": "la más conservada, alternativa b de D25, vetada",
      "resultado": "pasa"
+    },
+    {
+     "gen": "MP_MRFV",
+     "region": "162-361",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "CP_MRFV",
+     "region": "77-276",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "2119-2418",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "ATPaseD_Dm",
+     "region": "71-370",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "eth_Dm",
+     "region": "193-392",
+     "umbral": "perfecto_21",
+     "alertas": 1,
+     "pendientes": 0,
+     "bloqueantes": 1,
+     "estado": "decidida: bloqueante",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "bursA_Dm",
+     "region": "44-243",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "pasa"
     }
    ]
   },
   "perfecto_ge19": {
-   "pasan": 12,
-   "frenadas": 0,
+   "pasan": 15,
+   "frenadas": 3,
    "frenadas_vigentes": 0,
-   "bloqueantes": 3,
+   "bloqueantes": 4,
    "bloqueantes_vigentes": 0,
    "bloqueantes_detalle": [
     "BicC_Dm 264-563",
     "ATPaseD_Dm 151-450",
-    "ATPaseD_Dm 137-436"
+    "ATPaseD_Dm 137-436",
+    "eth_Dm 193-392"
    ],
    "detalle": [
     {
@@ -362,6 +448,100 @@
      "decide": "ya decidido",
      "vigente": "no",
      "que_es": "la más conservada, alternativa b de D25, vetada",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "MP_MRFV",
+     "region": "162-361",
+     "umbral": "perfecto_ge19",
+     "alertas": 1,
+     "pendientes": 1,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "F_candida"
+     ],
+     "decide": "el usuario",
+     "mensaje": "MP_MRFV 162-361 tiene 1 alerta(s) de perfecto_ge19 sin decidir (F_candida) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "CP_MRFV",
+     "region": "77-276",
+     "umbral": "perfecto_ge19",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "2119-2418",
+     "umbral": "perfecto_ge19",
+     "alertas": 2,
+     "pendientes": 2,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "humano",
+      "maiz"
+     ],
+     "decide": "el usuario",
+     "mensaje": "BicC_Dm 2119-2418 tiene 2 alerta(s) de perfecto_ge19 sin decidir (humano, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "ATPaseD_Dm",
+     "region": "71-370",
+     "umbral": "perfecto_ge19",
+     "alertas": 2,
+     "pendientes": 2,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "humano"
+     ],
+     "decide": "el usuario",
+     "mensaje": "ATPaseD_Dm 71-370 tiene 2 alerta(s) de perfecto_ge19 sin decidir (humano) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "eth_Dm",
+     "region": "193-392",
+     "umbral": "perfecto_ge19",
+     "alertas": 1,
+     "pendientes": 0,
+     "bloqueantes": 1,
+     "estado": "decidida: bloqueante",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "bursA_Dm",
+     "region": "44-243",
+     "umbral": "perfecto_ge19",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
     }
    ]

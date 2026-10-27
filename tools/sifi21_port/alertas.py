@@ -196,9 +196,19 @@ def clasificar_evidencia(gen_blanco: str, anotacion: str) -> str:
 # Lo que esto NO hace, y conviene que quede escrito al lado del codigo que lo hace:
 #   * no decide que alertas se aceptan. Eso es del usuario y es el punto entero de D48;
 #   * no verifica si la justificacion es cierta, pertinente ni suficiente;
-#   * no distingue «se tamizo y no hay alertas» de «no se tamizo»: una region sin filas
-#     pasa como «sin alertas», asi que lo que protege son las regiones del inventario de
-#     M6 y no una propuesta nueva. Esta en `00_meta/PREGUNTAS_ABIERTAS.md`.
+#   * no dice nada sobre el riesgo de una region que **si** esta tamizada y sin aciertos:
+#     «sin alertas en este umbral» es una medicion del tamizado, no un certificado.
+#
+# Lo que hasta D71 tampoco hacia, y D72 cierra: distinguir «se tamizo y no hay alertas» de
+# «no se tamizo». Una region sin filas en la tabla pasaba como «sin alertas», que es cierto
+# para una region tamizada sin aciertos y falso para una que nunca se tamizo, porque las
+# dos se ven igual desde `alertas.tsv`. Desde D72 la compuerta pide **tambien** el
+# inventario de regiones tamizadas —`resultados/estado_regiones.tsv`, que es la otra salida
+# del mismo generador y la unica que puede decir «tamizada, cero aciertos»— y una region
+# ausente de ese inventario levanta `RegionNoTamizada`. El parametro `inventario` es
+# **obligatorio y por nombre** a proposito: la unica forma de equivocarse seria llamar a la
+# compuerta sin declarar contra que inventario se exige presencia, y eso ahora es un
+# `TypeError` ruidoso en vez de un pase silencioso.
 #
 # Desde D69 **si esta adoptada**: la llama `ranking.region_recomendada()`, que es el unico
 # lugar del port donde el primer puesto de `alternativas()` se convierte en una region
@@ -209,12 +219,30 @@ DECISIONES = ("pendiente", "aceptada", "bloqueante")
 MARCA_PENDIENTE = "pendiente"
 
 
-class AlertaSinDecidir(RuntimeError):
+class CompuertaCerrada(RuntimeError):
+    """La compuerta no deja pasar la region. Base de las dos formas de no pasar.
+
+    Existe para que quien llame pueda atajar las dos con una clausula, sin que por eso
+    se confundan: no son el mismo hecho y no se arreglan igual. La subclase dice cual es.
+    """
+
+
+class AlertaSinDecidir(CompuertaCerrada):
     """Se trato como usable una region con alertas que nadie decidio todavia.
 
     No es lo mismo que «la region esta bloqueada»: es que **no se sabe**, y bajo D48 no
     saber tiene que costar algo, porque si no una alerta no leida vale lo mismo que una
     aceptada.
+    """
+
+
+class RegionNoTamizada(CompuertaCerrada):
+    """Se trato como usable una region que nunca se tamizo (D72).
+
+    Tampoco es «la region esta bloqueada», y sobre todo **no es** «la region no tiene
+    alertas»: es que no hay medicion. La diferencia no se puede leer de `alertas.tsv`,
+    porque una region tamizada sin aciertos y una region nunca tamizada tienen las mismas
+    cero filas; de ahi que la compuerta pida el inventario aparte.
     """
 
 
@@ -435,15 +463,62 @@ def estado_decision(filas: list[dict], gen: str, region: str,
             "decide": "el usuario" if pendientes else "ya decidido"}
 
 
-def exigir_decidida(filas: list[dict], gen: str, region: str,
-                    umbral: str = "perfecto_21") -> dict:
-    """Puerta: levanta `AlertaSinDecidir` si queda una alerta sin decidir.
+def leer_inventario(ruta) -> set:
+    """El inventario de regiones tamizadas, leido de `estado_regiones.tsv` (D72).
 
-    Una region **sin alertas** pasa, y eso no es una laguna: no hay nada que justificar.
-    Una region con alertas **todas decididas** pasa tambien, incluso si alguna es
-    `bloqueante` —quien llama decide que hacer con eso, y el estado se lo dice—. Lo unico
-    que esta funcion impide es seguir de largo sin que nadie haya mirado.
+    Devuelve `{(gen, region)}`. Es la otra salida de `tabla_alertas.py` y la unica que
+    distingue «tamizada, cero aciertos» de «nunca tamizada»: `alertas.tsv` no puede,
+    porque los dos casos tienen las mismas cero filas.
+
+    Un archivo que no existe **si** es un error, y ahi esta la asimetria con
+    `leer_decisiones()`: sin firmas el estado inicial legitimo es «todo pendiente», pero
+    sin inventario no hay estado inicial legitimo —un inventario vacio haria pasar a toda
+    region como tamizada, que es el modo de fallar en silencio que D72 cierra—.
     """
+    ruta = Path(ruta)
+    if not ruta.exists():
+        raise FileNotFoundError(
+            "no esta el inventario de regiones tamizadas (%s) y sin el la compuerta no "
+            "puede distinguir «se tamizo y no hay alertas» de «no se tamizo» (D72). Corre "
+            "research/ola4/M6_alertas/scripts/tabla_alertas.py." % ruta)
+    with ruta.open(encoding="utf-8") as fh:
+        return {((f.get("gen") or "").strip(), (f.get("region") or "").strip())
+                for f in csv.DictReader(fh, delimiter="\t")
+                if (f.get("gen") or "").strip()}
+
+
+def exigir_decidida(filas: list[dict], gen: str, region: str,
+                    umbral: str = "perfecto_21", *, inventario) -> dict:
+    """Puerta: la region tiene que estar tamizada (D72) y sin alertas sin decidir (D48).
+
+    Levanta `RegionNoTamizada` si la region no esta en `inventario`, y
+    `AlertaSinDecidir` si esta tamizada pero le queda una alerta en «pendiente». Las dos
+    heredan de `CompuertaCerrada`.
+
+    El orden importa y es el de D70: primero presencia, despues decision. Preguntar por
+    las filas de una region que nunca se tamizo no tiene respuesta —no hay cero alertas,
+    hay cero mediciones— y contestar «sin alertas en este umbral» seria afirmar lo que no
+    se midio.
+
+    `inventario` es el conjunto de `(gen, region)` tamizados, normalmente el que devuelve
+    `leer_inventario()`. Es **obligatorio y por nombre**: una compuerta cuyo parametro de
+    presencia tiene default se puede desactivar olvidandolo, y olvidarlo tiene que ser un
+    `TypeError` y no un pase. Esa es la misma razon por la que D69 hizo que una tabla
+    ausente falle cerrada.
+
+    Una region tamizada **sin alertas** pasa, y eso no es una laguna: se la miro y no hay
+    nada que justificar. Una region con alertas **todas decididas** pasa tambien, incluso
+    si alguna es `bloqueante` —quien llama decide que hacer con eso, y el estado se lo
+    dice—. Lo unico que esta funcion impide es seguir de largo sin que nadie haya mirado,
+    y desde D72 tambien sin que nadie haya medido.
+    """
+    if (gen, region) not in set(inventario):
+        raise RegionNoTamizada(
+            "%s %s no esta en el inventario de regiones tamizadas (%d regiones) y no se "
+            "puede tratar como usable: cero filas de alerta es «no se tamizo», no «se "
+            "tamizo y no hay alertas» (D70, D72). Agregala a REGIONES en "
+            "research/ola4/M6_alertas/scripts/tabla_alertas.py y corre el script."
+            % (gen, region, len(set(inventario))))
     est = estado_decision(filas, gen, region, umbral)
     if est["pendientes"]:
         raise AlertaSinDecidir(

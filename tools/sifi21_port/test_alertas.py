@@ -15,12 +15,15 @@ Cuatro clases de prueba:
 - **La compuerta esta retirada**: `estado_region()` nunca devuelve un veredicto y
   `barrer_exposicion(regla_veto='alerta')` no veta a nadie; pedirle la forma `cascada`
   —que es la compuerta— levanta `CompuertaRetirada`.
-- **El port no recomienda una region con una alerta sin decidir** (§9, D69):
-  `ranking.region_recomendada()` es el unico lugar donde el primer puesto de
-  `alternativas()` se vuelve recomendacion, y llama a `exigir_decidida()`. Se prueba que
-  falla con la fila en «pendiente», que pasa firmada, que el umbral de D28 es un
-  parametro y que una tabla ausente falla cerrada. La ultima de la seccion es
-  estructural: ninguna de las tres rutas del port rearma la region a mano.
+- **El port no recomienda una region con una alerta sin decidir, ni una region que no se
+  tamizo** (§9, D69 y D72): `ranking.region_recomendada()` es el unico lugar donde el
+  primer puesto de `alternativas()` se vuelve recomendacion, y llama a
+  `exigir_decidida()`. Se prueba que falla con la fila en «pendiente», que pasa firmada,
+  que el umbral de D28 es un parametro, que una tabla ausente falla cerrada y que un
+  inventario ausente tambien. El par 6/7 de la seccion es el nucleo de D72: la **misma**
+  region sin ninguna fila de alerta se frena o pasa segun este o no en el inventario, que
+  es la distincion que `alertas.tsv` por si solo no puede hacer. La prueba estructural
+  sigue ahi: ninguna de las tres rutas del port rearma la region a mano.
 
 Y un ancla del desarrollo nuevo: `escanear_con_identidad()` devuelve **lo mismo** que
 `escanear()`, que es la unica forma de saber que conservar la identidad no cambio
@@ -228,17 +231,26 @@ def fila_alerta(**kw):
     f.update(kw)
     return f
 
-# una region sin alertas pasa, y no es una laguna: no hay nada que justificar
+# Desde D72 la compuerta pide el inventario de regiones tamizadas, por nombre y sin
+# default, asi que toda llamada tiene que declarar contra que inventario exige presencia.
+# Este es el de las pruebas sinteticas, y `CP_MRFV` 99-298 esta adentro a proposito: es
+# una region que **si** se tamizo y no tiene ningun acierto, que es el caso que
+# `alertas.tsv` no puede distinguir de «nunca se tamizo» y por el que hace falta el
+# inventario aparte.
+INV = {("CP_MRFV", "99-298"), ("BicC_Dm", "264-563"), ("BicC_Dm", "922-1221"),
+       ("ATPaseD_Dm", "72-371")}
+
+# una region tamizada y sin alertas pasa, y no es una laguna: no hay nada que justificar
 sin = [fila_alerta(gen="CP_MRFV", region="99-298",
                    ventanas_perfecto_21="0", ventanas_perfecto_ge19="0")]
-est = AL.exigir_decidida(sin, "CP_MRFV", "99-298")
+est = AL.exigir_decidida(sin, "CP_MRFV", "99-298", inventario=INV)
 check(est["estado"] == "sin alertas en este umbral" and est["alertas"] == 0,
       "una region sin alertas pasa la compuerta")
 
 # una region con una alerta pendiente NO pasa
 pend = [fila_alerta()]
 try:
-    AL.exigir_decidida(pend, "BicC_Dm", "264-563")
+    AL.exigir_decidida(pend, "BicC_Dm", "264-563", inventario=INV)
     check(False, "una alerta pendiente deberia levantar AlertaSinDecidir")
 except AL.AlertaSinDecidir as e:
     check("264-563" in str(e) and "H_vitripennis" in str(e),
@@ -246,7 +258,8 @@ except AL.AlertaSinDecidir as e:
 
 # decidir reescribiendo una palabra NO alcanza
 try:
-    AL.exigir_decidida([fila_alerta(decision_usuario="aceptada")], "BicC_Dm", "264-563")
+    AL.exigir_decidida([fila_alerta(decision_usuario="aceptada")], "BicC_Dm",
+                       "264-563", inventario=INV)
     check(False, "aceptar sin justificar deberia fallar")
 except AL.FilaIncompleta as e:
     check("relleno" in str(e), "aceptar dejando el texto de relleno falla")
@@ -256,7 +269,7 @@ generica = fila_alerta(decision_usuario="aceptada",
                        justificacion_usuario="Lo discutimos en la reunion y nos parece "
                                              "que el riesgo es aceptable para esta region.")
 try:
-    AL.exigir_decidida([generica], "BicC_Dm", "264-563")
+    AL.exigir_decidida([generica], "BicC_Dm", "264-563", inventario=INV)
     check(False, "una justificacion que no cita la fila deberia fallar")
 except AL.FilaIncompleta as e:
     check("no cita la fila" in str(e), "una justificacion generica que no cita la fila falla")
@@ -266,7 +279,7 @@ buena = fila_alerta(decision_usuario="aceptada",
                     justificacion_usuario="Se acepta: el acierto es contra XM_046816879.1, el "
                                           "ortologo de bicaudal C de un cicadelido ausente en la "
                                           "Argentina, asi que la exposicion es la que decide.")
-est = AL.exigir_decidida([buena], "BicC_Dm", "264-563")
+est = AL.exigir_decidida([buena], "BicC_Dm", "264-563", inventario=INV)
 check(est["estado"] == "decidida: aceptada con justificacion" and est["pendientes"] == 0,
       "con la justificacion que cita la accesion, la region pasa")
 
@@ -274,7 +287,7 @@ check(est["estado"] == "decidida: aceptada con justificacion" and est["pendiente
 bloq = fila_alerta(decision_usuario="bloqueante",
                    justificacion_usuario="Se bloquea: XM_046816879.1 es el ortologo exacto del "
                                          "gen blanco y no aceptamos silenciar al pariente.")
-est = AL.exigir_decidida([bloq], "BicC_Dm", "264-563")
+est = AL.exigir_decidida([bloq], "BicC_Dm", "264-563", inventario=INV)
 check(est["estado"] == "decidida: bloqueante" and est["bloqueantes"] == 1,
       "una fila bloqueante pasa la compuerta y el estado dice que esta bloqueada")
 
@@ -288,13 +301,74 @@ except AL.FilaIncompleta:
 # el umbral es un parametro: una fila con 0 de 21/21 y 3 de >=19 obliga solo en el laxo
 laxa = [fila_alerta(gen="BicC_Dm", region="922-1221", organismo_corto="humano",
                     ventanas_perfecto_21="0", ventanas_perfecto_ge19="3")]
-check(AL.exigir_decidida(laxa, "BicC_Dm", "922-1221", "perfecto_21")["alertas"] == 0,
+check(AL.exigir_decidida(laxa, "BicC_Dm", "922-1221", "perfecto_21",
+                         inventario=INV)["alertas"] == 0,
       "con umbral perfecto_21 una alerta de solo >=19 nt no obliga")
 try:
-    AL.exigir_decidida(laxa, "BicC_Dm", "922-1221", "perfecto_ge19")
+    AL.exigir_decidida(laxa, "BicC_Dm", "922-1221", "perfecto_ge19", inventario=INV)
     check(False, "con umbral perfecto_ge19 esa misma fila deberia obligar")
 except AL.AlertaSinDecidir:
     check(True, "con umbral perfecto_ge19 esa misma fila obliga a justificar")
+
+# ---------------------------------------------------------------- presencia (D72)
+# Lo que sigue es el agujero que D69 dejo declarado y D70 decidio cerrar: la compuerta
+# no podia distinguir «se tamizo y no hay alertas» de «no se tamizo», porque los dos
+# casos se ven igual desde `alertas.tsv` —cero filas—. Las dos primeras pruebas son el
+# par que importa: la misma consulta, con cero filas en los dos casos, y dos resultados
+# distintos segun el inventario.
+
+# 1. region tamizada sin aciertos: pasa, y el estado dice por que
+est = AL.exigir_decidida(sin, "CP_MRFV", "99-298", inventario=INV)
+check(est["estado"] == "sin alertas en este umbral",
+      "una region del inventario sin aciertos pasa: se la miro y no hay nada que justificar")
+
+# 2. region ausente del inventario: NO pasa, con las mismas cero filas
+try:
+    AL.exigir_decidida(sin, "eth_Dm", "193-392", inventario=INV)
+    check(False, "una region que no esta en el inventario deberia levantar RegionNoTamizada")
+except AL.RegionNoTamizada as e:
+    check("193-392" in str(e) and "no se tamizo" in str(e),
+          "una region ausente del inventario levanta RegionNoTamizada y nombra la region")
+
+# 3. y no es un caso de borde del umbral: falla en los dos de D28, porque no hay medicion
+for umbral in ("perfecto_21", "perfecto_ge19"):
+    try:
+        AL.exigir_decidida(sin, "eth_Dm", "193-392", umbral, inventario=INV)
+        check(False, "deberia fallar en %s tambien" % umbral)
+    except AL.RegionNoTamizada:
+        pass
+check(True, "la presencia se exige en los dos umbrales de D28: no hay medicion que umbralar")
+
+# 4. las dos formas de no pasar son distintas y las dos son `CompuertaCerrada`
+check(issubclass(AL.RegionNoTamizada, AL.CompuertaCerrada)
+      and issubclass(AL.AlertaSinDecidir, AL.CompuertaCerrada)
+      and not issubclass(AL.RegionNoTamizada, AL.AlertaSinDecidir),
+      "RegionNoTamizada y AlertaSinDecidir son hermanas bajo CompuertaCerrada, no la misma")
+
+# 5. olvidarse el inventario es un TypeError, no un pase. Es la razon de que el parametro
+#    sea obligatorio y por nombre: una compuerta con default se desactiva olvidandola.
+try:
+    AL.exigir_decidida(sin, "CP_MRFV", "99-298")
+    check(False, "llamar la compuerta sin inventario deberia ser un TypeError")
+except TypeError:
+    check(True, "la compuerta no se puede llamar sin declarar el inventario")
+
+# 6. un inventario que no esta en disco falla cerrado, igual que una tabla ausente en D69
+try:
+    AL.leer_inventario(Path("/no/existe/estado_regiones.tsv"))
+    check(False, "un inventario ausente deberia levantar FileNotFoundError")
+except FileNotFoundError as e:
+    check("no se tamizo" in str(e),
+          "un inventario ausente falla cerrado: no es un inventario vacio")
+
+# 7. el inventario real del proyecto, leido de disco
+ESTADOS = RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv"
+if ESTADOS.exists():
+    real = AL.leer_inventario(ESTADOS)
+    check(("eth_Dm", "193-392") in real and ("CP_MRFV", "77-276") in real,
+          "las regiones de k=22 estan en el inventario real desde R7 (%d regiones)" % len(real))
+else:
+    SALTEADAS.append("§7 el inventario real no esta en disco")
 
 # leer() valida al abrir: una tabla con una decision invalida no se puede leer
 import tempfile as _tf
@@ -404,25 +478,68 @@ with tempfile.TemporaryDirectory() as tmp:
 check(AL.leer_decisiones(Path("/no/existe/decisiones.tsv")) == {},
       "sin archivo de firmas, las filas salen en pendiente y no hay error")
 
-# 9. el archivo real del proyecto: las 17 firmas se aplican sobre la tabla real
+# 9. el archivo real del proyecto: las 17 firmas de D68 se aplican sobre la tabla real.
+#    Desde R7 la tabla tiene seis filas mas —las de las regiones de k=22, que entraron al
+#    inventario con D70— y esas seis estan en «pendiente»: las firmas **no** se
+#    autogeneran, y que las diecisiete sigan aplicando sobre sus filas y ninguna se haya
+#    movido a otra fila es justamente lo que esta seccion verifica. Si agregar regiones
+#    hubiera corrido una fila debajo de una firma, `aplicar_decisiones()` levantaria
+#    `FirmaVencida` o `FirmaHuerfana` antes de llegar a este `check`.
 TABLA = RAIZ / "research/ola4/M6_alertas/resultados/alertas.tsv"
 FIRMAS = RAIZ / "research/ola4/M6_alertas/decisiones.tsv"
+K22 = (("MP_MRFV", "162-361"), ("CP_MRFV", "77-276"), ("BicC_Dm", "2119-2418"),
+       ("ATPaseD_Dm", "71-370"), ("eth_Dm", "193-392"), ("bursA_Dm", "44-243"))
 if TABLA.exists() and FIRMAS.exists():
     import csv as _csv2
     with TABLA.open(encoding="utf-8") as fh:
         reales = list(_csv2.DictReader(fh, delimiter="\t"))
     inf = AL.aplicar_decisiones(reales, AL.leer_decisiones(FIRMAS))
-    check(inf["pendientes"] == 0 and inf["firmadas"] == len(reales),
-          "las %d filas de alertas.tsv tienen firma y ninguna queda pendiente" % len(reales))
+    check(inf["firmadas"] == len(AL.leer_decisiones(FIRMAS)) == 18,
+          "las 18 firmas se aplican, cada una sobre su fila (%d filas en la tabla)"
+          % len(reales))
+    sin_firma = {(g, r) for g, r, _o, _l in inf["sin_firma"]}
+    # Cuatro de las seis regiones de k=22, no seis: `CP_MRFV` 77-276 y `bursA_Dm` 44-243
+    # **no tienen ninguna fila** en la tabla, porque se tamizaron y no dieron ningun
+    # acierto. Que esas dos no aparezcan aca es exactamente el hecho por el que D72 hizo
+    # falta: desde `alertas.tsv` son indistinguibles de una region nunca tamizada, y la
+    # unica forma de saber que si se miraron es que esten en el inventario.
+    check(sin_firma == {("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
+                        ("ATPaseD_Dm", "71-370")},
+          "las unicas filas pendientes son las de tres regiones de k=22, sin alertas de 21/21")
+    inv_k22 = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
+    check(all(not AL.filas_de_region(reales, g, r) and (g, r) in inv_k22
+              for g, r in (("CP_MRFV", "77-276"), ("bursA_Dm", "44-243"))),
+          "las otras dos se tamizaron sin aciertos: cero filas y si en el inventario")
+    inv_real = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
     for g, r in (("MP_MRFV", "72-271"), ("BicC_Dm", "922-1221"), ("ATPaseD_Dm", "72-371"),
                  ("eth_Dm", "114-313")):
-        AL.exigir_decidida(reales, g, r, "perfecto_ge19")
+        AL.exigir_decidida(reales, g, r, "perfecto_ge19", inventario=inv_real)
     check(True, "las regiones vigentes con alerta pasan la compuerta en el umbral laxo de D28")
     tres = [AL.estado_decision(reales, g, r)["estado"]
             for g, r in (("BicC_Dm", "264-563"), ("ATPaseD_Dm", "151-450"),
                          ("ATPaseD_Dm", "137-436"))]
     check(tres == ["decidida: bloqueante"] * 3,
-          "las tres regiones con coincidencia perfecta de 21 nt quedan bloqueantes")
+          "las tres regiones de D68 con coincidencia perfecta de 21 nt quedan bloqueantes")
+    # Y la cuarta, que es el hallazgo de R7: `eth_Dm` 193-392 —una de las seis que el
+    # ranking recomienda a k=22— tiene una coincidencia perfecta de 21 nt contra
+    # *Homalodisca vitripennis*, y el equipo la firmo **bloqueante con condicion**, por
+    # la misma forma que D68 uso para ATPaseD_Dm 137-436 (ver D73). La prueba fija las dos
+    # mitades que importan y que no son lo mismo: la region **pasa** la compuerta, porque
+    # bloquear es decidir, y su estado dice que esta bloqueada, o sea que el que llama
+    # tiene que descartarla. Un `check` de «pasa» a secas se leeria como «se puede usar».
+    inv_real = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
+    est_eth = AL.exigir_decidida(reales, "eth_Dm", "193-392", inventario=inv_real)
+    check(est_eth["estado"] == "decidida: bloqueante" and est_eth["bloqueantes"] == 1
+          and est_eth["pendientes"] == 0,
+          "eth_Dm 193-392 pasa la compuerta y queda bloqueante: pasar no es poder usarse")
+    # las cuatro bloqueantes del proyecto, que son exactamente las cuatro filas con 21/21
+    cuatro = {(f["gen"], f["region"]) for f in reales
+              if int(f["ventanas_perfecto_21"] or 0) > 0}
+    check(cuatro == {("BicC_Dm", "264-563"), ("ATPaseD_Dm", "151-450"),
+                     ("ATPaseD_Dm", "137-436"), ("eth_Dm", "193-392")}
+          and all(AL.estado_decision(reales, g, r)["estado"] == "decidida: bloqueante"
+                  for g, r in cuatro),
+          "las cuatro filas con coincidencia perfecta de 21 nt estan las cuatro bloqueantes")
 else:
     SALTEADAS.append("§8.9 la tabla real o el archivo de firmas no estan en disco")
 
@@ -438,8 +555,19 @@ ALT = {"mejores": [{"region": "264-563", "puntaje": 1.0}]}
 COLS_PRUEBA = list(fila_completa().keys()) + ["ventanas_perfecto_21", "ventanas_perfecto_ge19"]
 
 
-def tabla_con(filas, destino: Path) -> Path:
+def tabla_con(filas, destino: Path, inventario=(("BicC_Dm", "264-563"),)) -> Path:
+    """La tabla de prueba y, al lado, su inventario: desde D72 la compuerta pide los dos.
+
+    El inventario va al lado y no como parametro aparte porque asi esta en el proyecto:
+    `estado_regiones.tsv` es la otra salida del mismo generador, y `ranking.py` lo busca
+    junto a la tabla. Una tabla de prueba sin su inventario al lado es media entrada, y
+    la prueba 5 de abajo verifica que eso falla cerrado.
+    """
     AL.escribir(filas, destino, COLS_PRUEBA)
+    with (destino.parent / R.NOMBRE_INVENTARIO).open("w", encoding="utf-8", newline="") as fh:
+        fh.write("gen\tregion\n")
+        for gen, reg in inventario:
+            fh.write("%s\t%s\n" % (gen, reg))
     R._ALERTAS_LEIDAS.clear()     # el cache es por ruta, y la ruta se reusa
     return destino
 
@@ -484,6 +612,46 @@ with tempfile.TemporaryDirectory() as tmp:
         check("compuerta" in str(e) or "alertas" in str(e),
               "sin tabla de alertas la compuerta falla cerrada, no deja pasar todo")
 
+    # 5. y sin inventario al lado tampoco, por el mismo motivo (D72): un inventario
+    #    ausente no es un inventario vacio, que haria pasar a toda region como tamizada
+    tabla_con([fila_alerta(
+        decision_usuario="aceptada",
+        justificacion_usuario="Se acepta: el acierto es contra XM_046816879.1, el ortologo "
+                              "de bicaudal C de un cicadelido ausente en la Argentina.")], ruta)
+    (ruta.parent / R.NOMBRE_INVENTARIO).unlink()
+    R._ALERTAS_LEIDAS.clear()
+    try:
+        R.region_recomendada(ALT, "BicC_Dm", tabla=ruta)
+        check(False, "sin inventario al lado no deberia salir ninguna region")
+    except FileNotFoundError as e:
+        check("inventario" in str(e),
+              "sin el inventario de regiones tamizadas la compuerta falla cerrada (D72)")
+
+    # 6. la region que no esta en el inventario no se recomienda, aunque la tabla este
+    #    perfecta y la region no tenga ni una fila de alerta. Es R7 entero en una prueba:
+    #    la region del ranking a k=22 contra el inventario que no la tiene.
+    tabla_con([fila_alerta(
+        decision_usuario="aceptada",
+        justificacion_usuario="Se acepta: el acierto es contra XM_046816879.1, el ortologo "
+                              "de bicaudal C de un cicadelido ausente en la Argentina.")], ruta)
+    try:
+        R.region_recomendada({"mejores": [{"region": "193-392"}]}, "eth_Dm", tabla=ruta)
+        check(False, "una region fuera del inventario no deberia recomendarse")
+    except AL.RegionNoTamizada as e:
+        check("193-392" in str(e),
+              "region_recomendada() levanta RegionNoTamizada con una region no tamizada")
+
+    # 7. y la misma region, con el inventario que si la tiene y sin filas de alerta, pasa.
+    #    El par 6/7 es la prueba de que lo que decide es la presencia y no las filas.
+    tabla_con([fila_alerta(
+        decision_usuario="aceptada",
+        justificacion_usuario="Se acepta: el acierto es contra XM_046816879.1, el ortologo "
+                              "de bicaudal C de un cicadelido ausente en la Argentina.")], ruta,
+              inventario=(("BicC_Dm", "264-563"), ("eth_Dm", "193-392")))
+    check(R.region_recomendada({"mejores": [{"region": "193-392"}]}, "eth_Dm",
+                               tabla=ruta) == (193, 392),
+          "con la region en el inventario y sin alertas, la recomendacion sale")
+
 R._ALERTAS_LEIDAS.clear()
 
 # 5. el default del port es D48 literal (D69), y esta como nombre, no en el cuerpo
@@ -520,8 +688,36 @@ if TABLA.exists():
             assert "%d-%d" % (ini, fin) == reg
     check(True, "las seis regiones recomendadas por C7 pasan la compuerta en los dos umbrales")
     R._ALERTAS_LEIDAS.clear()
+
+    # 8. y la corrida a k=22, contra la tabla real: es el estado medido que R7 deja, y la
+    #    prueba esta para que si alguien firma las seis filas esto falle y haya que venir
+    #    a leer por que. `eth_Dm` 193-392 frena por su acierto perfecto de 21 nt; las
+    #    otras cinco pasan el umbral literal de D48 y tres de ellas frenan en el laxo.
+    frenadas = {}
+    for umbral in ("perfecto_21", "perfecto_ge19"):
+        frenadas[umbral] = set()
+        for gen, reg in K22:
+            try:
+                R.region_recomendada({"mejores": [{"region": reg}]}, gen, umbral, TABLA)
+            except AL.CompuertaCerrada:
+                frenadas[umbral].add((gen, reg))
+    check(frenadas["perfecto_21"] == set(),
+          "a k=22 y con D48 literal ya no frena ninguna: las seis pasan la compuerta (D73)")
+    check(frenadas["perfecto_ge19"] == {("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
+                                        ("ATPaseD_Dm", "71-370")},
+          "a k=22 y con el umbral laxo de D28 siguen frenando tres de las seis")
+    # Que las seis pasen no es que las seis sirvan, y la diferencia esta medida: una de
+    # las seis esta firmada bloqueante, asi que una corrida de k=22 que recomiende sin
+    # mirar el estado recomendaria una region que el equipo descarto por escrito.
+    bloq_k22 = {(g, r) for g, r in K22
+                if AL.estado_decision(reales, g, r)["estado"] == "decidida: bloqueante"}
+    check(bloq_k22 == {("eth_Dm", "193-392")},
+          "de las seis de k=22 que pasan, una esta bloqueante y hay que descartarla")
+    check(frenadas["perfecto_21"] <= frenadas["perfecto_ge19"],
+          "lo que frena el umbral literal lo frena tambien el laxo: los dos estan anidados")
+    R._ALERTAS_LEIDAS.clear()
 else:
-    SALTEADAS.append("§9.7 la tabla real de alertas no esta en disco")
+    SALTEADAS.append("§9.7 y §9.8 la tabla real de alertas no esta en disco")
 
 
 print()

@@ -142,3 +142,55 @@ ATPaseD_Dm	137-436	394	H_vitripennis	perfecto_21	XM_046807969.1	Homalodisca vitr
 ATPaseD_Dm	137-436	394	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
 ATPaseD_Dm	137-436	395	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
 ATPaseD_Dm	137-436	396	H_vitripennis	perfecto_ge19	XM_046807969.1	Homalodisca vitripennis V-type proton ATPase subunit D	LOC124356774
+MP_MRFV	162-361	273	F_candida	perfecto_ge19	XM_035857406.1	Folsomia candida uncharacterized protein T19C3.4	LOC110856645
+MP_MRFV	162-361	273	F_candida	perfecto_ge19	XM_035857407.1	Folsomia candida uncharacterized protein T19C3.4	LOC110856645
+MP_MRFV	162-361	274	F_candida	perfecto_ge19	XM_035857406.1	Folsomia candida uncharacterized protein T19C3.4	LOC110856645
+MP_MRFV	162-361	274	F_candida	perfecto_ge19	XM_035857407.1	Folsomia candida uncharacterized protein T19C3.4	LOC110856645
+MP_MRFV	162-361	275	F_candida	perfecto_ge19	XM_035857406.1	Folsomia candida uncharacterized protein T19C3.4	LOC110856645
+MP_MRFV	162-361	275	F_candida	perfecto_ge19	XM_035857407.1	Folsomia candida uncharacterized protein T19C3.4	LOC110856645
+BicC_Dm	2119-2418	2135	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2135	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2135	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2135	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2135	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2135	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2135	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2135	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2136	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2136	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2136	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2136	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2136	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2136	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2136	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2136	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2137	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2137	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2137	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2137	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2137	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2137	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2137	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2137	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2119-2418	2361	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+BicC_Dm	2119-2418	2362	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+BicC_Dm	2119-2418	2363	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+ATPaseD_Dm	71-370	136	humano	perfecto_ge19	XM_047420445.1	Homo sapiens phosphodiesterase 1C	PDE1C
+ATPaseD_Dm	71-370	137	humano	perfecto_ge19	XM_047420445.1	Homo sapiens phosphodiesterase 1C	PDE1C
+ATPaseD_Dm	71-370	138	humano	perfecto_ge19	XM_047420445.1	Homo sapiens phosphodiesterase 1C	PDE1C
+ATPaseD_Dm	71-370	211	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	71-370	212	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	71-370	213	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+ATPaseD_Dm	71-370	214	humano	perfecto_ge19	XR_001748218.1	Homo sapiens uncharacterized LOC107984331	LOC107984331
+eth_Dm	193-392	345	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	345	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	346	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	346	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	347	H_vitripennis	perfecto_21	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	347	H_vitripennis	perfecto_21	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	347	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	347	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	348	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	348	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	349	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	193-392	349	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889

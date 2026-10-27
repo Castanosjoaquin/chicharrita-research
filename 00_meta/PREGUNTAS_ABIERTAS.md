@@ -1736,6 +1736,86 @@ línea de diseño nueva. Este es el saldo.
     dos contigs con la proteina completa de B. Parece redundancia de ensamblado, pero el numero
     de copias no se midio y con una pasada de alineamiento no se decide `[?]`.
 
+### Ola 6, cierre de `R7` (2026-10-27)
+
+15. **Se cierra la entrada 9 de esta sección.** La compuerta ya distingue «se tamizó y no
+    hay» de «no se tamizó»: `exigir_decidida()` exige presencia en el inventario de
+    `research/ola4/M6_alertas/resultados/estado_regiones.tsv` y una región ausente levanta
+    `RegionNoTamizada` (D72). Las seis regiones de k=22 entraron al inventario, así que lo
+    protegido pasa de doce a dieciocho regiones `[M]`. La entrada 10 —el último eslabón
+    entre el cómputo y lo publicado, que sigue siendo una persona copiando un número—
+    **no** se cierra y no la toca nada de esto.
+16. **La fila de `eth_Dm` 193-392 está sin firmar, y es lo que frena la corrida de 22 nt.**
+    Tiene una coincidencia perfecta de 21 nt contra *Homalodisca vitripennis*
+    (`LOC124369889`, quitinasa 2 probable, posición 347 del gen, transcriptos
+    `XM_046828031.1` y `XM_046828033.1`) `[M]`. Hace falta que alguien del equipo la lea y
+    la acepte o la bloquee con su argumento escrito, citando la fila, como `D48` pide y
+    `D68` hizo con las diecisiete anteriores. Las otras tres filas nuevas con alertas sólo
+    en el umbral laxo de `D28` —`MP_MRFV` 162-361, `BicC_Dm` 2119-2418 y `ATPaseD_Dm`
+    71-370— **no** frenan nada en el umbral vigente, pero frenarían si alguna vez se
+    adoptara `perfecto_ge19` `[M]`. Mientras `eth_Dm` 193-392 siga sin firma, una
+    regeneración de `research/ola3/C7_ranking_v2/resultados/ranking_v2.json` no puede
+    completarse: el valor publicado de `jaccard_21_22` está intacto y verificado, pero el
+    generador no lo reproduce. **No se firmó por cuenta propia:** firmar es del equipo.
+17. **Por qué correr la ventana de `eth_Dm` introduce un acierto perfecto, no se sabe.** La
+    región vigente del gen, 114-313, tiene cero aciertos de 21/21; la propuesta a 22 nt,
+    193-392, tiene uno `[M]`. Es un hecho sobre dónde cae la ventana, pero **si el acierto
+    es una coincidencia de 21 nt sin consecuencia biológica o una región del gen que
+    conviene evitar al diseñar, esta pasada no lo decide** `[?]`. Lo que haría falta es
+    mirar si la quitinasa impactada tiene ortólogo en los no objetivo del panel y con qué
+    conservación, que es trabajo de homología y no de coincidencia exacta.
+18. **`work/sifi_v2/salida_k22` no está en esta máquina, y por eso la corrida de 22 nt no
+    se pudo regenerar para verla frenarse.** Están los perfiles de ViennaRNA de k=21 y no
+    los de k=22, así que `ranking_v2.py` se detendría en ese insumo faltante **antes** de
+    llegar a la compuerta `[M]`. Lo que sí está medido es la compuerta en sí, llamada con
+    las seis coordenadas publicadas de k=22 contra la tabla real. Siguiendo la regla que
+    `D71` dejó: esto se verificó en la máquina de Joaquín (macOS, entorno conda
+    `~/.claude-science/conda/envs/python`, Python 3.11.17, con `numpy`, `RNA` 2.7.2, `Bio`
+    y —desde hoy— `ahocorasick` 2.3.1). En `/usr/bin/python3` (3.9.6) de la misma máquina
+    faltan `RNA`, `Bio` y `ahocorasick`, así que la §6 de `test_alertas.py` ahí queda
+    salteada y declarada. **Siguen faltando en las dos: BLAST+.**
+
+### Ola 6, firma de `eth_Dm` 193-392 (2026-10-27)
+
+19. **Se cierra la entrada 16: la fila está firmada.** `eth_Dm` 193-392 / *H. vitripennis* /
+    `LOC124369889` quedó **`bloqueante` con la exposición de *H. vitripennis* como
+    condición escrita** (`D73`). La compuerta pasa a 18 de 18 en el umbral literal de
+    `D48`, con cuatro bloqueantes y ninguna vigente `[M]`. Las otras cinco filas de las
+    regiones de 22 nt siguen en «pendiente» y sólo obligarían si se adoptara
+    `perfecto_ge19`; no son urgentes y están declaradas.
+20. **Una región bloqueante que el ranking recomienda igual, y nadie la descarta.** Es
+    nuevo y es consecuencia de la firma. `ranking.region_recomendada()` **devuelve**
+    `eth_Dm` 193-392 aunque esté firmada bloqueante —verificado, devuelve `(193, 392)`—
+    porque `D69` decidió que bloquear es decidir y que descartar es del que llama `[M]`.
+    Hasta hoy esa decisión no tenía filo: las tres bloqueantes de `D68` no las recomienda
+    ninguna corrida, así que nunca se ejerció sobre una recomendación real. Ahora sí.
+    El modo de fallar se corrió un casillero: de «se recomienda una región cuya alerta
+    nadie leyó» a «se recomienda una región que alguien leyó **y bloqueó**» `[H]`. Las
+    salidas posibles son tres y ninguna es obvia: que `region_recomendada()` se niegue a
+    devolver una región bloqueante —pero eso cambia `D69` y además una bloqueante
+    condicional no es lo mismo que una llana—; que devuelva la región **con su estado**,
+    de modo que ignorarlo sea explícito; o que el descarte viva en quien consume la
+    recomendación, que es lo que `D69` decidió y que hoy no tiene ningún código detrás.
+    Es una decisión del equipo y **no se tocó** al firmar.
+21. **Si la quitinasa impactada tiene ortólogo en los demás no objetivo del panel, no se
+    sabe.** La firma de `D73` no lo afirma ni lo niega. Es trabajo de homología y no de
+    coincidencia exacta, y **esta máquina no tiene ningún alineador**: verificado con
+    `command -v`, faltan `blastn`, `tblastn`, `makeblastdb`, `miniprot`, `diamond`,
+    `bowtie` y `bowtie2` `[M]`. En la máquina de Luca hay `miniprot` 0.18-r281 (`D71`),
+    así que la pasada se puede asignar ahí. Es lo que decidiría si el acierto es una
+    coincidencia de 21 nt sin consecuencia o una zona del gen que conviene evitar `[?]`.
+22. **`work/sifi_v2/salida_k22` y las matrices de off-target de 22 nt se pueden generar en
+    esta máquina, y antes no.** Lo que faltaba era `pyahocorasick`, que se instaló con
+    `R7`. El perfil de eficiencia sale de `run_sifi.py --sirna-size 22 --backend vienna`,
+    que usa el módulo `RNA` de ViennaRNA 2.7.2 —presente en el entorno conda— y las
+    matrices de `offtarget_k22` y `offtarget_dm_k22` salen de `offtarget_21nt.py --size 22`
+    contra las referencias de `work/W5/ref/`, que están en disco `[M]`. La receta exacta
+    está en `research/ola3/C7_ranking_v2/REPORT.md` §9. **No se hizo, y no debería hacerse
+    sin decisión escrita:** regenerar eso habilita regenerar
+    `research/ola3/C7_ranking_v2/resultados/ranking_v2.json`, que es un archivo publicado,
+    y además es la línea `C7` de la ola 3 y no `M6`. Merece su propio issue y su propio
+    ADR, sobre todo porque la corrida que se regeneraría ahora incluye una región firmada
+    bloqueante (entrada 20).
 ### Ola 6, cierre de `O3` (2026-10-27)
 
 15. **Los dos aciertos con un desapareo en maíz que la auditoría de juntura no puede ubicar.**

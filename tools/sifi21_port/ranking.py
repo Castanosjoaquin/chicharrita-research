@@ -37,8 +37,10 @@ Dos subcomandos:
 El paso de «esta region gana el orden» a «esta region es la que recomendamos» pasa por
 `region_recomendada()`, y esa funcion llama a la compuerta de alertas de D48
 (`alertas.exigir_decidida`): una region con una fila de alerta en «pendiente» no sale de
-ahi. El umbral de D28 con el que la compuerta exige decision es `UMBRAL_COMPUERTA` y se
-mueve con `--umbral-compuerta` (D69).
+ahi, y desde D72 tampoco sale una region que **no este en el inventario de regiones
+tamizadas** de M6, porque cero filas de alerta significa «no se tamizo» tanto como «se
+tamizo y no hay». El umbral de D28 con el que la compuerta exige decision es
+`UMBRAL_COMPUERTA` y se mueve con `--umbral-compuerta` (D69).
 
 Uso:
     python ranking.py nulo --dir work/sifi_check --perfil work/sifi_check/salida
@@ -660,17 +662,27 @@ def alternativas(g: dict, largo: int, cand: dict, wr, wc, solo_eficientes: bool,
 # default invertido que D48 dejo abierto y que `alertas.exigir_decidida()` existe para
 # cerrar.
 #
-# Lo que esta funcion SI garantiza: ninguna de las tres rutas del port devuelve una
-# region recomendada sin que sus filas de alerta esten decididas en el umbral vigente.
-# Lo que NO garantiza, y conviene leerlo al lado del codigo que lo hace: una region que
-# nunca se tamizo no tiene filas, y `exigir_decidida()` la deja pasar como «sin alertas»
-# —la funcion no puede distinguir «se miro y no hay» de «no se miro»—. La compuerta
-# protege entonces a las doce regiones del inventario de M6, no a una propuesta nueva.
-# Esta en `00_meta/PREGUNTAS_ABIERTAS.md`.
+# Lo que esta funcion SI garantiza, desde D72: ninguna de las tres rutas del port
+# devuelve una region recomendada sin que la region **este tamizada** y sin que sus filas
+# de alerta esten decididas en el umbral vigente. Hasta D71 garantizaba solo la segunda
+# mitad, y la primera faltaba: una region que nunca se tamizo no tiene filas, asi que
+# `exigir_decidida()` la dejaba pasar como «sin alertas» —no podia distinguir «se miro y
+# no hay» de «no se miro»—. Lo protegido eran las doce regiones del inventario de M6 y no
+# una propuesta nueva. Desde D72 la compuerta recibe tambien el inventario y una region
+# ausente de el levanta `alertas.RegionNoTamizada`.
+#
+# Lo que sigue sin garantizar: entre el cometido de esta funcion y el numero que aparece
+# en un documento de `entregables/` hay una persona copiandolo, y eso ninguna compuerta
+# del port lo cubre. Esta en `00_meta/PREGUNTAS_ABIERTAS.md`.
 
 #: Donde vive la tabla de alertas de M6. Es **entrada** de la recomendacion.
 TABLA_ALERTAS = (Path(__file__).resolve().parents[2]
                  / "research" / "ola4" / "M6_alertas" / "resultados" / "alertas.tsv")
+
+#: Y el inventario de regiones tamizadas, que es la otra salida del mismo generador y
+#: vive al lado de la tabla. Por eso no se configura aparte: `--alertas` mueve las dos, y
+#: una tabla sin su inventario al lado es media entrada, no una entrada valida (D72).
+NOMBRE_INVENTARIO = "estado_regiones.tsv"
 
 #: Umbral de D28 con el que la compuerta decide que alertas obligan a justificar.
 #: `perfecto_21` es D48 literal («cada coincidencia perfecta de 21 nt ... genera una
@@ -701,19 +713,33 @@ def alertas_de(tabla: Path | None = None) -> list[dict]:
     return _ALERTAS_LEIDAS[ruta]
 
 
+def inventario_de(tabla: Path | None = None) -> set:
+    """Las regiones tamizadas, leidas de `estado_regiones.tsv` al lado de la tabla (D72).
+
+    `AL.leer_inventario()` levanta `FileNotFoundError` si el archivo no esta, y eso es lo
+    correcto por el mismo motivo que para la tabla: un inventario vacio haria pasar a
+    toda region como tamizada, que es exactamente el default invertido que se cierra.
+    """
+    ruta = Path(tabla) if tabla is not None else TABLA_ALERTAS
+    return AL.leer_inventario(ruta.parent / NOMBRE_INVENTARIO)
+
+
 def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
                        tabla: Path | None = None) -> tuple[int, int]:
     """El primer puesto de `alternativas()` convertido en recomendacion, con compuerta.
 
-    Levanta `alertas.AlertaSinDecidir` si alguna fila de alerta de esa region sigue en
-    «pendiente» en `umbral`, y en ese caso **no devuelve region**: no hay forma de
-    obtener la recomendacion saltandose la lectura de la alerta. Una region decidida
-    pasa, incluso si la decision es `bloqueante` —bloquear es decidir, y el que llama
-    tiene que descartarla: lo dice el estado que devuelve `estado_decision()`—.
+    Levanta `alertas.RegionNoTamizada` si la region no esta en el inventario de M6 (D72)
+    y `alertas.AlertaSinDecidir` si alguna fila de alerta de esa region sigue en
+    «pendiente» en `umbral`, y en los dos casos **no devuelve region**: no hay forma de
+    obtener la recomendacion saltandose el tamizado ni la lectura de la alerta. Una
+    region decidida pasa, incluso si la decision es `bloqueante` —bloquear es decidir, y
+    el que llama tiene que descartarla: lo dice el estado que devuelve
+    `estado_decision()`—.
     """
     region = alt["mejores"][0]["region"]
     AL.exigir_decidida(alertas_de(tabla), gen, region,
-                       umbral if umbral is not None else UMBRAL_COMPUERTA)
+                       umbral if umbral is not None else UMBRAL_COMPUERTA,
+                       inventario=inventario_de(tabla))
     ini, fin = (int(x) for x in region.split("-"))
     return ini, fin
 
@@ -935,7 +961,9 @@ def main(argv=None) -> int:
     r.add_argument("--muestras", type=int, default=2000)
     r.add_argument("--semilla", type=int, default=7)
     r.add_argument("--alertas", default=None, type=Path,
-                   help="tabla de alertas de M6 que consulta la compuerta de D48; por "
+                   help="tabla de alertas de M6 que consulta la compuerta de D48, con su "
+                        "estado_regiones.tsv al lado, que es el inventario de regiones "
+                        "tamizadas que la compuerta exige desde D72; por "
                         "defecto %s" % TABLA_ALERTAS)
     r.add_argument("--umbral-compuerta", dest="umbral_compuerta",
                    choices=("perfecto_21", "perfecto_ge19"), default=UMBRAL_COMPUERTA,

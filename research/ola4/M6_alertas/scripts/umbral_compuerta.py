@@ -56,9 +56,11 @@ def medir(filas: list[dict], regiones: list[tuple]) -> dict:
     out = {}
     for umbral in UMBRALES:
         pasan, frenadas, bloqueantes = [], [], []
+        inventario = {(g, r) for g, r, _v in regiones}
         for gen, region, vigente in regiones:
             try:
-                est = AL.exigir_decidida(filas, gen, region, umbral)
+                est = AL.exigir_decidida(filas, gen, region, umbral,
+                                         inventario=inventario)
                 pasan.append((gen, region, vigente))
                 if est["estado"] == "decidida: bloqueante":
                     bloqueantes.append((gen, region, vigente))

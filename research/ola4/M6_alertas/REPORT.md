@@ -442,3 +442,237 @@ hizo por cuenta propia.
 - `ranking.py` y `ranking_v2.py` **no se pudieron correr de punta a punta en esta máquina**: les
   falta `work/sifi_v2/`, que no se versiona. Quedan verificados por el `--help` de los dos y por
   la §9, que ejerce la compuerta con la tabla real y con tablas sintéticas.
+
+## Addendum (2026-10-27) — las seis regiones de 22 nt entran al inventario, y la compuerta exige presencia
+
+Este addendum cierra `R7` (issue #30) y ejecuta `D70` en el orden que esa decisión fijó: primero el
+tamizado, después el apriete. El resultado se resume en una frase: las seis regiones que el ranking
+recomienda a 22 nt **ya están tamizadas**, cinco de ellas pasan la compuerta y una no, porque tiene
+una coincidencia perfecta de 21 nt que nadie había visto.
+
+### Por qué el orden no era negociable, ahora con el número
+
+`D69` dejó la compuerta llamada desde `ranking.region_recomendada()` pero con un agujero declarado:
+`exigir_decidida()` no podía distinguir «se tamizó y no hay alertas» de «no se tamizó», porque desde
+`alertas.tsv` los dos casos son las mismas cero filas. El costo de apretar la compuerta antes de
+tamizar quedó medido: con el inventario de doce regiones que había hasta ayer y la compuerta ya
+exigiendo presencia, la corrida a 22 nt no produce **ninguna** recomendación —las seis levantan
+`RegionNoTamizada`— mientras que la de 21 nt sigue dando sus seis `[M]`. Tamizando primero, en
+cambio, frena una sola. Esa es la diferencia entre cerrar un agujero y romper la única ruta que
+produce esas regiones.
+
+### Lo que se tamizó
+
+Las seis coordenadas salen de `research/ola3/C7_ranking_v2/resultados/ranking_v2.json`, clave
+`k.22.regiones_recomendadas`, y entraron a la lista `REGIONES` de `scripts/tabla_alertas.py`, que
+pasa de doce a dieciocho entradas. Van al final de la lista a propósito: el orden de esa lista es el
+orden de las filas de `alertas.tsv`, así que agregarlas no mueve ni una línea de las que ya estaban
+—verificado, las primeras dieciocho líneas del archivo son idénticas byte a byte a las de antes del
+cambio `[M]`—. La columna `vigente` dice «no» en las seis: las vigentes siguen siendo las seis de
+21 nt, y entrar al inventario no es ser recomendada.
+
+No hizo falta volver a tamizar nada: `scripts/identidad.py` escanea los **genes enteros** contra el
+panel de seis referencias y el genoma del vector, no regiones, así que las posiciones de las seis
+ventanas nuevas ya estaban en `work/m6_alertas/identidad_por_ventana.tsv`. Lo que cambia al agregar
+una región es de dónde a dónde se recorta esa matriz. Se corrió igual, para verificar que el insumo
+no estuviera viejo, y reprodujo el archivo anterior byte a byte con su ancla A3 intacta —187 celdas,
+cero faltantes, cero sobrantes `[M]`—.
+
+Las cinco anclas siguen enteras y ninguna se desactivó: A1 162 de 162, A2 51 de 51, A3 3 de 3, A4
+**74** de 74 (eran 68: las seis regiones nuevas agregan seis comparaciones) y A5 **40** de 40 (eran
+30) `[M]`.
+
+### Lo que dio: cuatro regiones con alertas, dos limpias, y un acierto perfecto de 21 nt
+
+La tabla pasa de 17 a 23 filas. Seis filas nuevas, sobre cuatro de las seis regiones:
+
+| región de k=22 | organismo | gen impactado | 21/21 | ≥ 19 nt |
+| --- | --- | --- | ---: | ---: |
+| `MP_MRFV` 162-361 | *Folsomia candida* | `LOC110856645`, sin caracterizar | 0 | 3 |
+| `CP_MRFV` 77-276 | — | — | 0 | 0 |
+| `BicC_Dm` 2119-2418 | humano | `SLC24A4` | 0 | 3 |
+| `BicC_Dm` 2119-2418 | maíz | `lox2`, lipoxigenasa | 0 | 3 |
+| `ATPaseD_Dm` 71-370 | humano | `LOC107984331`, sin caracterizar | 0 | 4 |
+| `ATPaseD_Dm` 71-370 | humano | `PDE1C`, fosfodiesterasa | 0 | 3 |
+| `eth_Dm` 193-392 | *Homalodisca vitripennis* | `LOC124369889`, quitinasa 2 probable | **1** | 5 |
+| `bursA_Dm` 44-243 | — | — | 0 | 0 |
+
+`[M]` Las dos regiones sin fila —`CP_MRFV` 77-276 y `bursA_Dm` 44-243— **se tamizaron y no dieron
+ningún acierto**, y conviene detenerse en ellas porque son la razón de ser de todo este addendum:
+en `alertas.tsv` son indistinguibles de una región que nunca se miró. Lo único que las separa es
+estar en el inventario.
+
+**El hallazgo, dicho con todas las letras: `eth_Dm` 193-392 tiene una coincidencia perfecta de
+21 nt contra *Homalodisca vitripennis*, en la posición 347 del gen, sobre los transcriptos
+`XM_046828031.1` y `XM_046828033.1`** `[M]`. Es la cuarta región del inventario con un acierto de
+21/21 perfecto, y la primera que aparece entre las que el ranking propone en alguna de sus dos
+corridas. Tres cosas al lado, para no leerla ni más ni menos de lo que dice:
+
+- el gen impactado es una **quitinasa probable**, no el ortólogo de `eth`, así que la fila se
+  clasifica como `gen_no_relacionado`. La regla que lo decide es nuestra y mira texto de cabecera
+  `[H]`, no homología por alineamiento;
+- la ventana **no** está entre las predichas eficientes: 1 ventana con 21/21 perfecto y 0 de esas
+  eficientes `[M]`. Por `D17` la predicción de eficiencia no entra al criterio, así que esto no la
+  descarta ni la salva; es contexto;
+- la región vigente del mismo gen, `eth_Dm` 114-313, tiene **cero** aciertos de 21/21 `[M]`. O sea
+  que correr la ventana de 114-313 a 193-392 **introduce** un acierto perfecto que la región
+  vigente no tiene. Eso es información sobre la corrida de 22 nt, no sobre el gen: `[H]` si alguna
+  vez se quisiera adoptar la propuesta de 22 nt para `eth_Dm`, esta fila es exactamente la clase de
+  cosa que `D48` quiere que alguien lea antes y no después.
+
+Y un detalle que no es menor: el organismo de esa fila es *H. vitripennis*, cuyo peso de exposición
+es la decisión abierta del usuario —0,00 por `D47` y 0,60 por `D18`—. La fila lleva los dos valores,
+como todas, así que se puede leer con cualquiera de los dos sin recalcular la tabla.
+
+### Si la corrida a 22 nt pasa o queda frenada, y por qué
+
+**Queda frenada, y el motivo es una sola región.** Con el umbral literal de `D48` —`perfecto_21`,
+que es el que `D69` adoptó— cinco de las seis pasan y `eth_Dm` 193-392 levanta `AlertaSinDecidir`.
+Con el umbral laxo de `D28` frenan cuatro de las seis `[M]`:
+
+| corrida | `perfecto_21` (D48 literal) | `perfecto_ge19` (umbral laxo de D28) |
+| --- | --- | --- |
+| k=21, las seis vigentes | pasan **6 de 6** | pasan **6 de 6** |
+| k=22, las seis recomendadas | pasan **5 de 6**: frena `eth_Dm` 193-392 | pasan **2 de 6**: frenan `MP_MRFV` 162-361, `BicC_Dm` 2119-2418, `ATPaseD_Dm` 71-370 y `eth_Dm` 193-392 |
+
+`[M]` Lo que frena el umbral literal lo frena también el laxo, que es lo esperable porque los dos
+umbrales de `D28` están anidados por construcción.
+
+Que quede frenada es el comportamiento buscado y no un obstáculo que haya que sortear. Las seis
+filas nuevas salen en «pendiente» porque `aplicar_decisiones()` deja en pendiente toda fila sin
+firma, y **las firmas no se autogeneran ni se escribieron acá**: firmar es una decisión del equipo
+—`D48` la pide por escrito y citando la fila, `D68` la ejerció caso por caso— y una firma puesta
+desde la línea que agregó las filas sería exactamente el default invertido que `D48` vino a
+corregir. Lo que hace falta para destrabar la corrida de 22 nt es que alguien lea la fila de
+`eth_Dm` 193-392 y la acepte o la bloquee con su argumento.
+
+### La compuerta, después del tamizado
+
+`exigir_decidida()` pasa a pedir el inventario de regiones tamizadas además de la tabla, y una
+región ausente levanta `RegionNoTamizada`, hermana de `AlertaSinDecidir` bajo una base común
+`CompuertaCerrada`. El inventario es `resultados/estado_regiones.tsv` —la otra salida del mismo
+generador, y la única que puede decir «tamizada, cero aciertos»— y el port lo busca al lado de la
+tabla, de modo que `--alertas` mueve las dos cosas juntas: una tabla sin su inventario al lado es
+media entrada y falla cerrada, igual que una tabla ausente desde `D69`.
+
+El parámetro es **obligatorio y por nombre**. Es la decisión de diseño que importa de este cambio:
+una compuerta cuyo parámetro de presencia tuviera un valor por defecto se desactivaría olvidándolo,
+en silencio, y olvidarlo tiene que ser un `TypeError` ruidoso. Lo que antes era un pase ahora es un
+error de programa.
+
+### Qué cifra publicada se movió, y qué no
+
+**Ninguna se movió.** Los dos pares de números de `D69` se conservan como la restricción a las doce
+regiones de entonces, y lo que cambia son los denominadores, porque el inventario creció `[M]`:
+
+| estado de la tabla | umbral | antes (12 regiones) | ahora (18 regiones) |
+| --- | --- | --- | --- |
+| con las firmas de `D68` | `perfecto_21` | 12 de 12 | **17 de 18** (las mismas 12, más 5 nuevas) |
+| con las firmas de `D68` | `perfecto_ge19` | 12 de 12 | **14 de 18** (las mismas 12, más 2 nuevas) |
+| todas en «pendiente» | `perfecto_21` | 9 de 12 | **14 de 18** (las mismas 9, más 5 nuevas) |
+| todas en «pendiente» | `perfecto_ge19` | 3 de 12 | **5 de 18** (las mismas 3, más 2 nuevas) |
+
+Y la cifra que había que cuidar con nombre propio: **`jaccard_21_22` no se movió** `[M]`. El archivo
+`research/ola3/C7_ranking_v2/resultados/ranking_v2.json` quedó intacto, verificado con `git diff`.
+La razón por la que no podía moverse es estructural y conviene dejarla escrita: `ranking_v2.jaccard()`
+cuenta ventanas eficientes del **gen entero** leyéndolas de los TSV de ViennaRNA en `work/`, sin
+pasar por la tabla de alertas ni por `region_recomendada()`, así que la compuerta no lo toca.
+
+**Lo que sí cambia, y hay que decirlo:** `ranking_v2.py` calcula `jaccard_21_22` recién después de
+las dos pasadas de `correr_k()` y escribe el JSON al final, así que **una regeneración de ese
+archivo con el estado de hoy quedaría frenada en la pasada de k=22** antes de llegar a escribirlo.
+El valor publicado no se mueve porque nada lo sobreescribe, pero el generador no lo puede reproducir
+mientras la fila de `eth_Dm` 193-392 siga sin firma. Es la consecuencia directa y prevista de `D70`,
+y la salida es firmar esa fila, no aflojar la compuerta.
+
+Eso es lo que **se deduce leyendo el código**, y hay que marcar el límite: en esta máquina la
+regeneración no se pudo correr para verlo, porque falta `work/sifi_v2/salida_k22` —están los
+perfiles de ViennaRNA de k=21 y no los de k=22— y la corrida se detendría en ese insumo faltante
+**antes** de llegar a la compuerta `[M]`. Lo que sí está medido es el comportamiento de la compuerta
+en sí: `region_recomendada()`, llamada con las seis coordenadas publicadas de k=22 y contra la tabla
+real, frena `eth_Dm` 193-392 y deja pasar las otras cinco `[M]`. O sea que el número publicado está
+verificado intacto, el freno de la compuerta está medido, y lo único inferido es el orden en que
+fallaría una regeneración completa `[H]`.
+
+### Verificación
+
+- `python tools/sifi21_port/test_alertas.py` pasa: **94 comprobaciones** con el entorno conda y
+  ninguna salteada `[M]`. La §7 gana el par que es el núcleo de esto —la misma consulta, con cero
+  filas en los dos casos, pasa o frena según el inventario— más la región ausente, la exigencia de
+  presencia en los dos umbrales, la jerarquía de excepciones, el `TypeError` por olvidar el
+  inventario y el inventario ausente que falla cerrado. La §9 gana la versión de puerto a puerto:
+  `region_recomendada()` con una región fuera del inventario levanta `RegionNoTamizada`, y la misma
+  región con el inventario que sí la tiene devuelve `(193, 392)`. Las pruebas de persistencia de
+  firmas de la §8 siguen pasando y ahora verifican además que las diecisiete firmas de `D68` se
+  aplican cada una sobre su fila con seis filas nuevas en la tabla: si agregar regiones hubiera
+  corrido una fila debajo de una firma, `aplicar_decisiones()` habría levantado `FirmaVencida` o
+  `FirmaHuerfana` antes del `check`.
+- **La §6 ya corre.** Era la salteada por falta de `pyahocorasick`; instalado el módulo en el
+  entorno conda, el ancla de identidad corre y pasa `[M]`. Con `/usr/bin/python3` sigue salteada y
+  declarada, porque ese intérprete no tiene el módulo: las pruebas pasan en los dos, con 94
+  comprobaciones en uno y la §6 declarada en el otro.
+- `scripts/tabla_alertas.py` corrido **dos veces seguidas** da `resultados/` idéntico byte a byte,
+  y la cadena entera —`tabla_alertas.py`, `compuerta.py`, `umbral_compuerta.py`— también `[M]`. Es
+  la prueba de que regenerar la tabla no borra ninguna firma, que es el modo de fallar que `D68`
+  tuvo que cerrar moviendo las firmas a un archivo de entrada.
+- Antes de producir una sola salida nueva se verificó que el intérprete del entorno conda
+  —Python 3.11.17, el único que tiene `RNA`, `Bio` y ahora `ahocorasick`— **reproduce lo ya
+  commiteado**: las tres corridas de `M6` con ese intérprete dejaron el árbol de git limpio, y
+  `identidad.py` reprodujo su tabla de `work/` byte a byte `[M]`. Las salidas de este addendum no
+  arrastran ninguna diferencia de intérprete.
+- `ranking_v2.py` sigue **sin poder correrse de punta a punta en esta máquina**, y el motivo es más
+  acotado de lo que decía el addendum anterior: `work/sifi_v2/` **sí** existe —de ahí salen la
+  matriz por ventana y los perfiles que usan `identidad.py` y las anclas— pero falta
+  `work/sifi_v2/salida_k22`, los perfiles de ViennaRNA de la corrida de 22 nt, que no se versionan
+  `[M]`. La compuerta queda ejercida por la §9 contra la tabla real y contra tablas sintéticas, que
+  es donde se mide el comportamiento que cambió.
+
+### Addendum del addendum (2026-10-27, más tarde) — la fila de `eth_Dm` 193-392 queda firmada
+
+El equipo firmó la fila que el addendum anterior dejó frenando la corrida de 22 nt. El veredicto es
+**`bloqueante` con la condición como parte de la firma** —bloqueante mientras la exposición de
+*Homalodisca vitripennis* siga siendo una decisión abierta—, que es la forma que `D68` ya había
+usado para `ATPaseD_Dm` 137-436. El ADR es `D73`; `decisiones.tsv` pasa de diecisiete a dieciocho
+entradas y las otras cinco filas de las regiones de 22 nt **siguen en «pendiente»**.
+
+Por qué el precedente no alcanzaba para deducir el veredicto, que es lo que hizo falta decidir
+explícitamente `[M]`:
+
+| | las 14 aceptadas de `D68` | las 3 bloqueantes de `D68` | `eth_Dm` 193-392 |
+| --- | --- | --- | --- |
+| ventanas con 21/21 perfecto | 0 en todas | ≥ 1 en las tres | **1** |
+| organismo | humano, maíz, *D. maidis* | *H. vitripennis* en las tres | ***H. vitripennis*** |
+| gen impactado | no relacionado | **ortólogo del blanco** en las tres | **no relacionado** (quitinasa 2 probable) |
+| en ventana predicha eficiente | — | 2 de 3 en dos de las filas | **no**, 0 de 1 |
+
+Comparte con las bloqueantes el umbral y el organismo, y con las aceptadas el que el gen impactado
+no sea el ortólogo. Ninguna regla derivada de las firmas anteriores la decide.
+
+**El estado de la compuerta después de la firma** `[M]`:
+
+| | `perfecto_21` (D48 literal) | `perfecto_ge19` (umbral laxo de D28) |
+| --- | --- | --- |
+| regiones que pasan | **18 de 18** | **15 de 18** |
+| frenadas | 0 | 3, ninguna vigente: `MP_MRFV` 162-361, `BicC_Dm` 2119-2418, `ATPaseD_Dm` 71-370 |
+| de las que pasan, bloqueantes | **4** (eran 3), ninguna vigente | 4, ninguna vigente |
+
+La corrida de 22 nt ya no levanta `AlertaSinDecidir`: las seis regiones pasan la compuerta. Las
+primeras veintitrés líneas de `alertas.tsv` quedaron idénticas byte a byte y lo único que cambió es
+la línea de esa fila, con su decisión y su justificación `[M]`. `jaccard_21_22` sigue intacto. La
+cadena entera vuelve a ser idempotente y `test_alertas.py` pasa.
+
+#### Lo que la firma destapa, y que antes no se podía ver
+
+Pasar la compuerta y poder usarse no son lo mismo, y hasta hoy esa distinción era teórica. Las tres
+regiones que `D68` firmó bloqueantes **no las recomienda ninguna de las dos corridas** del ranking,
+así que la regla de `D69` —«bloquear es decidir, y el que llama tiene que descartarla»— nunca se
+ejerció sobre una recomendación real. Con esta firma sí: **`eth_Dm` 193-392 es la primera región
+bloqueante que una corrida del ranking efectivamente recomienda**, y `ranking.region_recomendada()`
+**la devuelve igual** —verificado, devuelve `(193, 392)`— porque descartar no es su trabajo `[M]`.
+
+O sea que el modo de fallar se corrió un casillero: ya no es «se recomienda una región cuya alerta
+nadie leyó» —eso lo cerraron `D48`, `D69` y `D72`— sino «se recomienda una región cuya alerta
+alguien leyó **y bloqueó**». La compuerta hace exactamente lo que `D69` decidió que hiciera, y el
+que tendría que descartar es quien consuma la recomendación. Queda anotado en
+`00_meta/PREGUNTAS_ABIERTAS.md` y **no se cambió acá**: tocarlo sería revisar `D69` de paso, en una
+corrida cuyo objeto era firmar una fila.
