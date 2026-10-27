@@ -1,7 +1,7 @@
 {
  "tabla": "research/ola4/M6_alertas/resultados/alertas.tsv",
- "filas": 26,
- "regiones": 19,
+ "filas": 32,
+ "regiones": 23,
  "regiones_vigentes": [
   "MP_MRFV 72-271",
   "CP_MRFV 99-298",
@@ -13,13 +13,15 @@
  "estados": {
   "firmada": {
    "perfecto_21": {
-    "regiones": 19,
-    "pasan": 19,
-    "frenadas": 0,
+    "regiones": 23,
+    "pasan": 22,
+    "frenadas": 1,
     "frenadas_vigentes": 0,
     "bloqueantes": 4,
     "bloqueantes_vigentes": 0,
-    "frenadas_detalle": [],
+    "frenadas_detalle": [
+     "eth_Dm 194-393 (vigente=no)"
+    ],
     "bloqueantes_detalle": [
      "BicC_Dm 264-563",
      "ATPaseD_Dm 151-450",
@@ -28,9 +30,9 @@
     ]
    },
    "perfecto_ge19": {
-    "regiones": 19,
-    "pasan": 15,
-    "frenadas": 4,
+    "regiones": 23,
+    "pasan": 16,
+    "frenadas": 7,
     "frenadas_vigentes": 0,
     "bloqueantes": 4,
     "bloqueantes_vigentes": 0,
@@ -38,7 +40,10 @@
      "MP_MRFV 162-361 (vigente=no)",
      "BicC_Dm 2119-2418 (vigente=no)",
      "ATPaseD_Dm 71-370 (vigente=no)",
-     "BicC_Dm 2123-2422 (vigente=no)"
+     "BicC_Dm 2123-2422 (vigente=no)",
+     "eth_Dm 194-393 (vigente=no)",
+     "VATPaseB_Dm 517-816 (vigente=no)",
+     "quimera Q_VATPaseB_Dm__BicC_Dm juntura (vigente=no)"
     ],
     "bloqueantes_detalle": [
      "BicC_Dm 264-563",
@@ -50,9 +55,9 @@
   },
   "pendiente": {
    "perfecto_21": {
-    "regiones": 19,
-    "pasan": 15,
-    "frenadas": 4,
+    "regiones": 23,
+    "pasan": 18,
+    "frenadas": 5,
     "frenadas_vigentes": 0,
     "bloqueantes": 0,
     "bloqueantes_vigentes": 0,
@@ -60,14 +65,15 @@
      "BicC_Dm 264-563 (vigente=no)",
      "ATPaseD_Dm 151-450 (vigente=no)",
      "ATPaseD_Dm 137-436 (vigente=no)",
-     "eth_Dm 193-392 (vigente=no)"
+     "eth_Dm 193-392 (vigente=no)",
+     "eth_Dm 194-393 (vigente=no)"
     ],
     "bloqueantes_detalle": []
    },
    "perfecto_ge19": {
-    "regiones": 19,
-    "pasan": 5,
-    "frenadas": 14,
+    "regiones": 23,
+    "pasan": 6,
+    "frenadas": 17,
     "frenadas_vigentes": 4,
     "bloqueantes": 0,
     "bloqueantes_vigentes": 0,
@@ -85,7 +91,10 @@
      "BicC_Dm 2119-2418 (vigente=no)",
      "ATPaseD_Dm 71-370 (vigente=no)",
      "eth_Dm 193-392 (vigente=no)",
-     "BicC_Dm 2123-2422 (vigente=no)"
+     "BicC_Dm 2123-2422 (vigente=no)",
+     "eth_Dm 194-393 (vigente=no)",
+     "VATPaseB_Dm 517-816 (vigente=no)",
+     "quimera Q_VATPaseB_Dm__BicC_Dm juntura (vigente=no)"
     ],
     "bloqueantes_detalle": []
    }

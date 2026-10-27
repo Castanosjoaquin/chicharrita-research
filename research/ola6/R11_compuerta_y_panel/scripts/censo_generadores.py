@@ -75,8 +75,16 @@ GENERADORES = [
      "insumo": "work/sifi_check/salida"},
     {"nombre": "ranking_v2.py",
      "ruta": "tools/sifi21_port/ranking_v2.py",
+     # **Sin `--muestras`, a proposito.** Este comando llevaba `--muestras 50` para
+     # abaratar la corrida, y eso rompia el ancla del barrido por construccion: el ancla
+     # compara frecuencias contra `W7` con igualdad exacta, lo que solo tiene sentido con
+     # el mismo numero de sorteos, asi que con 50 muestras daba multiplos de 2,0 contra
+     # las decimas finas de las 2.000 publicadas y el censo reportaba «ANCLA ROTA» —el
+     # peor mensaje posible, porque es el que nadie ignora— por un parametro que el censo
+     # mismo habia cambiado. Con el default corre entero y pasa todas las anclas en unos
+     # 60 s (issue #37, entrada 66 de PREGUNTAS_ABIERTAS.md).
      "comando": [sys.executable, "tools/sifi21_port/ranking_v2.py",
-                 "--trabajo", "work/sifi_v2", "--muestras", "50",
+                 "--trabajo", "work/sifi_v2",
                  "--json", "work/R11_censo/ranking_v2_censo.json"],
      "produce": ("regiones por tres caminos: completar_regiones, recomendadas y las dos "
                  "ramas de efecto_humano"),

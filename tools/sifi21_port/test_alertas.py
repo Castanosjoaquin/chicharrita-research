@@ -503,16 +503,60 @@ if TABLA.exists() and FIRMAS.exists():
     # acierto. Que esas dos no aparezcan aca es exactamente el hecho por el que D72 hizo
     # falta: desde `alertas.tsv` son indistinguibles de una region nunca tamizada, y la
     # unica forma de saber que si se miraron es que esten en el inventario.
-    # Cuatro regiones pendientes: tres de k=22 y `BicC_Dm` 2123-2422, que es la que la
+    # Cinco regiones pendientes: tres de k=22; `BicC_Dm` 2123-2422, que es la que la
     # compuerta de D72 encontro al regenerar C7 —sale del bloque `efecto_humano`, la
-    # corrida con la referencia humana fuera del panel (D75)—. Ninguna de las cuatro
-    # tiene alertas de 21/21, asi que ninguna frena en el umbral vigente.
+    # corrida con la referencia humana fuera del panel (D75)—; y `eth_Dm` 194-393, que
+    # entro con la segunda vuelta de la compuerta del issue #37, al correr los ocho
+    # generadores de punta a punta con `work/` en disco. Sale de `sensibilidad_reparto.py`
+    # y solo en rho = 0,00 (el reparto de D47).
+    #
+    # **La quinta no es como las otras cuatro, y esa es la mitad que importa aca.** Las
+    # cuatro primeras no tienen ninguna alerta de 21/21, asi que no frenan en el umbral
+    # vigente: estan pendientes y pasan. `eth_Dm` 194-393 **si** tiene una, contra
+    # *H. vitripennis* en la posicion 347 —la misma ventana que ya tenia 193-392, vista
+    # desde una region corrida un nucleotido—, asi que es la unica de las cinco que frena
+    # en `perfecto_21`. Por eso las dos afirmaciones van separadas: el conjunto de
+    # pendientes y «ninguna trae 21/21» dejaron de ser la misma cosa.
+    # La sexta es `VATPaseB_Dm` 517-816, que entro con `D78` (issue #37): la region
+    # candidata de `O3`, el unico gen del inventario que **no** tiene ficha de ranking.
+    # Sus cuatro filas —maiz, *H. axyridis*, *H. vitripennis* y humano— quedan en
+    # «pendiente» porque la firma la escribe una persona, y ninguna trae 21/21.
+    # La septima es la juntura de `Q_VATPaseB_Dm__BicC_Dm`, que entro con `D78` por la
+    # clave `(quimera <nombre>, "juntura")`. Sus tres bloques fabricados son de 19 nt, asi
+    # que no trae 21/21 y frena solo en el umbral laxo.
     check(sin_firma == {("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
-                        ("ATPaseD_Dm", "71-370"), ("BicC_Dm", "2123-2422")},
-          "las cuatro regiones con filas pendientes son las esperadas, sin alertas de 21/21")
-    check(all(int(f["ventanas_perfecto_21"] or 0) == 0 for f in reales
-              if (f["gen"], f["region"]) in sin_firma),
-          "y ninguna de esas filas pendientes tiene coincidencia perfecta de 21 nt")
+                        ("ATPaseD_Dm", "71-370"), ("BicC_Dm", "2123-2422"),
+                        ("eth_Dm", "194-393"), ("VATPaseB_Dm", "517-816"),
+                        ("quimera Q_VATPaseB_Dm__BicC_Dm", "juntura")},
+          "las siete regiones con filas pendientes son las esperadas")
+
+    # `D78`, las tres mitades que la decision pide y que no son la misma. La que importa
+    # es la segunda: en `alertas.tsv` una quimera tamizada sin aciertos y una que nadie
+    # tamizo tienen las mismas **cero** filas, y lo unico que las separa es el inventario.
+    inv_j = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
+    for q, umbral, pasa in (("Q_BicC_Dm__VATPaseB_Dm", "perfecto_ge19", True),
+                            ("Q_VATPaseB_Dm__BicC_Dm", "perfecto_21", True),
+                            ("Q_VATPaseB_Dm__BicC_Dm", "perfecto_ge19", False)):
+        try:
+            AL.exigir_decidida(reales, "quimera %s" % q, "juntura", umbral,
+                               inventario=inv_j)
+            ok = True
+        except AL.CompuertaCerrada:
+            ok = False
+        check(ok is pasa, "la juntura de %s en %s: %s"
+              % (q, umbral, "pasa" if pasa else "frena sin firma"))
+    try:
+        AL.exigir_decidida(reales, "quimera Q_que_nadie_tamizo__X", "juntura",
+                           inventario=inv_j)
+        ok = False
+    except AL.RegionNoTamizada:
+        ok = True
+    check(ok, "una quimera cuyo empalme nadie tamizo levanta RegionNoTamizada (D78)")
+    con_21 = {(g, r) for g, r in sin_firma
+              if any(int(f["ventanas_perfecto_21"] or 0) > 0 for f in reales
+                     if (f["gen"], f["region"]) == (g, r))}
+    check(con_21 == {("eth_Dm", "194-393")},
+          "y la unica pendiente con coincidencia perfecta de 21 nt es eth_Dm 194-393")
     inv_k22 = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
     check(all(not AL.filas_de_region(reales, g, r) and (g, r) in inv_k22
               for g, r in (("CP_MRFV", "77-276"), ("bursA_Dm", "44-243"))),
@@ -539,14 +583,23 @@ if TABLA.exists() and FIRMAS.exists():
     check(est_eth["estado"] == "decidida: bloqueante" and est_eth["bloqueantes"] == 1
           and est_eth["pendientes"] == 0,
           "eth_Dm 193-392 pasa la compuerta y queda bloqueante: pasar no es poder usarse")
-    # las cuatro bloqueantes del proyecto, que son exactamente las cuatro filas con 21/21
-    cuatro = {(f["gen"], f["region"]) for f in reales
+    # Las filas con 21/21 son cinco desde el issue #37, y **cuatro de las cinco** estan
+    # bloqueantes. La quinta, `eth_Dm` 194-393, esta en «pendiente» a proposito: la firma
+    # la escribe una persona y el motor no se la pone. Las dos mitades van separadas
+    # porque el ancla vieja las tenia pegadas —«las que tienen 21/21» y «las bloqueantes»
+    # eran el mismo conjunto— y eso ya no se sostiene: el dia que alguien firme 194-393
+    # vuelven a coincidir, y hasta entonces lo que el ancla fija es que la unica con 21/21
+    # sin firmar es esa.
+    con_21 = {(f["gen"], f["region"]) for f in reales
               if int(f["ventanas_perfecto_21"] or 0) > 0}
-    check(cuatro == {("BicC_Dm", "264-563"), ("ATPaseD_Dm", "151-450"),
-                     ("ATPaseD_Dm", "137-436"), ("eth_Dm", "193-392")}
-          and all(AL.estado_decision(reales, g, r)["estado"] == "decidida: bloqueante"
-                  for g, r in cuatro),
-          "las cuatro filas con coincidencia perfecta de 21 nt estan las cuatro bloqueantes")
+    check(con_21 == {("BicC_Dm", "264-563"), ("ATPaseD_Dm", "151-450"),
+                     ("ATPaseD_Dm", "137-436"), ("eth_Dm", "193-392"),
+                     ("eth_Dm", "194-393")},
+          "las cinco filas con coincidencia perfecta de 21 nt son las esperadas")
+    check(all(AL.estado_decision(reales, g, r)["estado"] == "decidida: bloqueante"
+              for g, r in con_21 - {("eth_Dm", "194-393")})
+          and AL.estado_decision(reales, "eth_Dm", "194-393")["pendientes"] == 1,
+          "cuatro de las cinco estan bloqueantes y eth_Dm 194-393 sigue en pendiente")
 else:
     SALTEADAS.append("§8.9 la tabla real o el archivo de firmas no estan en disco")
 

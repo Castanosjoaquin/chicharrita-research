@@ -1,5 +1,14 @@
 # R11 — lo que queda pendiente, con el comando exacto y el insumo que falta
 
+> **ESTADO AL 2026-10-27 (issue #37, bloque `R12`).** Este archivo se escribio desde una
+> maquina sin `work/`, y las corridas que pide **se hicieron** en la maquina de Joaquin, donde
+> los insumos estan. El censo pasa **7 de 8**; la matriz de `V-ATPase B` y las dos junturas
+> **estan en el inventario** (`D87`); `ranking_v2.json` **es byte-reproducible** y reproduce el
+> publicado. Lo que sigue pendiente ya no es insumo: son **cinco filas sin firmar** y una
+> corrida que cuesta 71 dias (`D88`). El resultado completo esta en
+> `research/ola6/R12_corridas_pendientes/REPORT.md`. Lo que sigue se deja como estaba, porque
+> es el pedido tal como se escribio y vale para quien lo tome en otra maquina.
+
 Esto es la contracara de `REPORT.md` §4. Las decisiones del issue **#35** estan tomadas
 (`D77` y `D78`); lo que falta son corridas, y lo que falta para correrlas son insumos que
 `work/` no versiona. Siguiendo la regla de `D71`, cada pendiente dice **en que maquina** se

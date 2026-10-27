@@ -1400,3 +1400,40 @@ proteoma anotado y transcriptos, y leerlo de las dos maneras contra la misma ref
 *M. quadrilineatus* lo cumple. Da miles de pares, no necesita curación manual y la comparación es
 pareada gen a gen. Es el patrón a usar la próxima vez que haya que medir cuánto cuesta un paso del
 pipeline: buscar dónde existe la versión curada del mismo dato.
+
+## Correr la grilla fina de `O4` subiendo el tope como autorizaba el issue — descartado por costo medido (2026-10-27, `D88`)
+
+El issue **#37** autorizaba explícitamente «subir el tope a propósito y declararlo» para la
+corrida de `--paso 1` del enumerador de quimeras, sobre la base de que pedía 136.446 plegados.
+Se intentó con `--tope-plegados 150000`, que es la cifra que esa autorización implicaba, y el
+enumerador **se detuvo y lo dijo**, como está diseñado: la grilla pide **129.761.738**
+plegados `[M]`, tres órdenes de magnitud más que el número publicado. A las 21 plegados por
+segundo que mide esta máquina son del orden de 71 días.
+
+**Por qué el descarte vale la pena contarlo.** La autorización del issue era correcta en su
+forma y se dio sobre una cifra que nadie había podido reproducir: aparece sólo en prosa, sin
+archivo de salida, y la corrida que la habría producido es la que el mismo texto declara no
+hecha. El intento no fue en vano porque el tope hizo exactamente su trabajo —detener y
+declarar el tamaño medido en vez de muestrear— y de paso dejó medido el costo de las cuatro
+retículas, que es lo que faltaba para decidir: `--paso 1` 129.761.738, `--paso 2` 16.816.657,
+`--paso 5` 1.177.056, `--paso 10` 173.289 `[M]`.
+
+**La lección de método**, que es hermana de la de `command -v` (entrada 54): una autorización
+que se apoya en un número conviene verificarla contra el número antes de usarla. Si el tope no
+hubiera existido, la corrida habría arrancado y nadie se habría enterado del error hasta
+mirar el reloj a los dos meses.
+
+## Meter `V-ATPase B` al catálogo del ranking para que entre al inventario — descartado por mover una cifra publicada (2026-10-27, `D87`)
+
+Para que `D78` entrara en efecto hacía falta que `tabla_alertas.py` conociera el gen, y el
+camino corto era agregarlo a `ranking_v2.NUEVOS`, que es el catálogo que ya existía para los
+dos genes que sumó `C5`. Se descartó al leer dónde se usa esa lista: `correr_k()`,
+`nulo_nuevos` y `jaccard_21_22` la recorren, así que el gen habría entrado a `ranking_v2.json`
+y movido una cifra publicada que el criterio de terminado del issue **#30** pide no mover sin
+decisión escrita, nombrando `jaccard_21_22` en particular. Y habría fallado igual: el gen no
+tiene perfil en `work/sifi_v2/salida_k21`, porque su tamizado lo dejó `O3` en `work/O3/`.
+
+**Lo que quedó en su lugar** es un catálogo aparte, `CANDIDATOS_EXTRA`, con su propia función
+de carga. La distinción que el descarte obligó a hacer explícita es la que vale: **tener fila
+de alerta y tener ficha de ranking no son lo mismo**, y hasta ahora el código las trataba como
+una sola porque todos los objetos del inventario eran, además, candidatos del ranking.

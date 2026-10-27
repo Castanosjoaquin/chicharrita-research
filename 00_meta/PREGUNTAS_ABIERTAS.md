@@ -2356,3 +2356,180 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     lado, así que la inversión **no** es un hallazgo, pero tampoco hay evidencia de que el corte en
     30 % de cobertura ordene nada. Si los dos rótulos miden lo mismo, conviene colapsarlos en «no
     alta» y no sugerir una gradación que no se midió. No se revisó el umbral.
+
+### Ola 6, el barrido de corridas pendientes del issue #37 (2026-10-27)
+
+> Todas estas se midieron en **la máquina de Joaquín** (macOS, Darwin 27.0.0), con `work/`
+> en disco (14 GB) y el entorno `w5bio` de `micromamba`, que es el único de los doce que
+> corre la línea entera: Python 3.11.17, ViennaRNA 2.7.2 —la misma versión que usó `C13`—,
+> Biopython 1.88, `ahocorasick`, numpy 2.4.6, BLAST+ 2.17.0 y los ejecutables `RNAfold` y
+> `RNAplfold` `[M]`.
+
+65. **El entorno estaba medido mal otra vez, y en la dirección de siempre.** `PLAN_OLA6.md`
+    dice que en esta máquina «faltan `RNAplfold` y `RNAfold`», con la salvedad de que eso
+    «no se volvió a medir contra los `envs/`» `[?]`. Medido ahora: **están**, los dos, en
+    `envs/w5bio/bin/` junto con los otros veintisiete ejecutables de ViennaRNA `[M]`. Esa
+    era la última celda que quedaba en pie de la tabla de entorno, así que de la lista
+    original de herramientas faltantes de esta máquina **no falta ninguna**. `[H]` La
+    lección es la tercera vuelta de la misma: la entrada 54 la enunció para `command -v`,
+    la 55 para «en qué máquina», y ésta la cierra para los entornos sin activar. Cuando un
+    hecho de entorno viene marcado `[?]` porque no se volvió a medir, lo que corresponde no
+    es arrastrarlo: es medirlo, que cuesta un `ls`.
+
+66. **El censo de generadores pasó de 2 de 8 a 7 de 8, y el que queda no es de insumo.**
+    Corrido de punta a punta con `work/` en disco, y después de las dos correcciones que
+    siguen, terminan con código 0 **siete** de los ocho: `ranking.py ranking`,
+    `ranking.py nulo`, `ranking_v2.py`, `tabla_alertas.py`, `compuerta.py`,
+    `umbral_compuerta.py` y `01_region_vatpase_b.py` `[M]`. En la primera pasada eran cinco
+    y los tres que faltaban fallaban por tres motivos distintos, de los cuales **ninguno
+    era falta de insumo**:
+
+    * `ranking_v2.py` **no fallaba por insumo**: el censo lo invoca con `--muestras 50`
+      para ir rápido, y el ancla del barrido compara frecuencias contra `W7` con igualdad
+      exacta, lo que sólo tiene sentido con el mismo número de sorteos. Las frecuencias
+      obtenidas eran múltiplos de 2,0 —o sea, de 50 muestras— contra las décimas finas de
+      las 2.000 publicadas. Con el default corre entero y pasa todas las anclas `[M]`.
+      `[H]` Es un defecto del censo, no del motor: un comando de censo que cambia un
+      parámetro para abaratar la corrida puede romper un ancla por construcción y
+      reportarlo como «ANCLA ROTA», que es el peor mensaje posible porque es el que nadie
+      ignora. Conviene que el censo corra los generadores con sus defaults, o que declare
+      al lado qué parámetro cambió.
+    * `sensibilidad_reparto.py` llegó hasta el final de la cadena de insumos y se detuvo
+      donde el proyecto quiere que se detenga: en una firma. Es el único que sigue sin
+      terminar, y su error cambió de `RegionNoTamizada` a `AlertaSinDecidir`, que es
+      exactamente un paso de avance: la región ya está tamizada y lo que falta es que una
+      persona la firme. Ver la entrada 67.
+    * `01_region_vatpase_b.py` fallaba con `StopIteration` por un desencuentro de rutas, no
+      por falta de datos. Ver la entrada 68.
+
+67. **La compuerta encontró una región nueva, y es la misma ventana de siempre vista desde
+    un nucleótido más adelante.** `sensibilidad_reparto.py` levantó
+    `RegionNoTamizada: eth_Dm 194-393`. Medida la cosa entera en vez de iterar —los nueve
+    `rho` del barrido de exposición, los seis genes, sin dejar que la compuerta corte en la
+    primera—, de los **54 pares gen × rho** esa es la **única** que no estaba en el
+    inventario de 19, y aparece **sólo en `rho` = 0,00**, el reparto de `D47` con el peso
+    de exposición de *Homalodisca vitripennis* en cero `[M]`. Con cualquier `rho` mayor la
+    recomendada de `eth_Dm` vuelve a ser 114-313.
+
+    Agregada al inventario, **trae una coincidencia perfecta de 21 nt**, y es la misma que
+    ya tenía `eth_Dm` 193-392: mismo organismo (*H. vitripennis*), mismo locus
+    (`LOC124369889`, quitinasa 2 probable), **misma posición 347**, los mismos conteos de
+    `D28` (1 de 21/21 y 5 de ≥ 19 nt, 0 eficientes) `[M]`. La fila queda **sin firmar**, que
+    es lo que corresponde: la firma la escribe una persona. Y mientras siga sin firmar,
+    `sensibilidad_reparto.py` **no termina** —levanta `AlertaSinDecidir`—, lo que convierte
+    ese pendiente de «falta `work/`» en «falta una firma», que es una clase distinta de
+    pendiente y está en manos del equipo, no de una máquina.
+
+    `[H]` La firma de 193-392 es «bloqueante con condición» y su justificación aplica
+    palabra por palabra a 194-393, porque es literalmente el mismo acierto. Pero copiarla
+    sería el motor firmando por una persona, que es justo lo que `D48` prohíbe. Lo que sí
+    se puede decir es que el argumento contra la propuesta de 22 nt para `eth_Dm` —correr
+    la ventana introduce un acierto perfecto que la región vigente 114-313 no tiene— ahora
+    tiene **dos** regiones que lo sostienen en vez de una.
+
+68. **`work/O3/` de esta máquina tiene otro layout que el que el script de `O3` pide, y la
+    diferencia no era de datos.** `01_region_vatpase_b.py` busca
+    `work/O3/sifi/full_corregido/`, `work/O3/offtarget/` y `work/O3/offtarget_humano/`, y lo
+    que hay en disco es `work/O3/salida/` y `work/O3/offtarget/cds_completo/`, de otra
+    corrida. Regenerado el layout que el script declara —`run_sifi.py` sobre el gen entero y
+    los dos tamizados, con ViennaRNA 2.7.2— el script corre entero y reproduce `D74` **celda
+    por celda**: 1.184 regiones posibles, **una** no vetada (517-816), y el veto por
+    referencia en el CDS entero con maíz 12, *H. vitripennis* 38 y humano 21 `[M]`.
+    Comparado por valor contra el `region_vatpase_b.json` publicado, las diferencias son
+    **cuatro y ninguna es una cifra**: el nombre de la consulta, dos separadores de ruta de
+    Windows y la versión de Python `[M]`. El archivo publicado se dejó como estaba, porque
+    es el registro de la corrida que lo generó.
+
+    `[?]` Queda algo sin resolver: el `REPORT.md` de `O3` §12 nombra
+    `work/O3/fasta/consultas_pasoA.fasta` como la consulta del tamizado, y **ningún script
+    versionado lo genera**. La corrida original usó una cabecera
+    `VATPaseB_Dm_OZ319705.1_38943269_38957327` y la reproducción usó `VATPaseB_Dm_full`; que
+    todos los conteos coincidan prueba que la secuencia es la misma, pero el generador de
+    ese FASTA no está en el repositorio.
+
+69. **La grilla fina de `O4` no pide 136.446 plegados: pide 129.761.738.** La entrada 48
+    publica «136.446 plegados `[M]`, que entran en unas horas de esta máquina». Medido hoy,
+    con los insumos en disco y el enumerador versionado: con `--paso 1` la grilla tiene
+    **2.133.868.568 combinaciones antes de podar**, de las cuales **129.430.632** son
+    admisibles en marco 2, y con los 331.106 fragmentos el total es **129.761.738
+    plegados** `[M]`. Son **tres órdenes de magnitud** más que la cifra publicada. Al ritmo
+    medido de esta máquina —la grilla gruesa hizo 3.405 plegados en 162 s, o sea 21 por
+    segundo `[M]`— eso no son «unas horas» sino del orden de **71 días** de una máquina
+    sola. `[?]` De dónde salió 136.446 no consta: la cifra aparece sólo en prosa, en
+    `REPORT.md` §8 y en la entrada 48, sin ningún archivo de salida que la respalde, y la
+    corrida que la habría producido es justamente la que el mismo texto dice que no se hizo.
+    `[H]` Un número que nunca se pudo reproducir no debería llevar `[M]`, que es la marca de
+    lo medido y reproducible desde el repositorio; éste parece una estimación.
+
+    Lo que el enumerador ofrece como pasos intermedios, medido en la misma corrida:
+    `--paso 2` pide 16.816.657, `--paso 5` pide 1.177.056 y `--paso 10` pide **173.289**
+    `[M]`. El último es el único que entra en una tarde: lanzado en esta máquina avanza a
+    8,8 combinaciones por segundo, o sea unas **5,4 horas** `[M]`. Queda corriendo y su
+    resultado —si el primer puesto de la grilla gruesa sobrevive a una retícula diez veces
+    más fina— no entró en esta sesión.
+
+70. **El eje de off-target por gen de `F3` no se desbloquea con `work/`, y la casilla lo
+    decía mal.** El issue #37 lo anota como «Necesita: `work/sifi_v2/`». Medido: las 28
+    filas del catálogo de `C5` que no tienen `ventanas_21nt` son de **15 especies
+    distintas** —*Euscelidius variegatus*, *Nephotettix cincticeps*, *Nilaparvata lugens*,
+    *Rhodnius prolixus* y once más—, y `work/sifi_v2/salida_k21` tiene **seis** genes, los
+    del ranking, de los cuales sólo `eth_Dm` y `bursA_Dm` están entre las 8 filas ya
+    calculadas `[M]`. Las otras 6 de esas 8 usan secuencias que el catálogo nombra por
+    accesión (`Rpn6_Stitanus_GJQL01135962`, `ATPsynBeta_Mquadrilineatus_XM_054410120` y
+    cuatro más) y que no viven en `work/sifi_v2/`. O sea que lo que falta para ese eje no es
+    un directorio de trabajo: son **28 secuencias de transcripto** que hay que recuperar una
+    por una. `[H]` Y hay una segunda diferencia que conviene no pasar por alto antes de
+    mezclar las 8 con cualquier fila nueva: las 8 publicadas se tamizaron contra un panel de
+    **cinco** referencias (*D. maidis*, *M. quadrilineatus*, *H. vitripennis*, *Zea mays*,
+    *Apis mellifera*), que no es el panel de seis de `C7` v2 y `M6`.
+
+    El **otro** eje de `F3`, el de conservación entre poblaciones, sí tiene su insumo: los
+    tres TSA están en `work/W5/ref/` con 25.662, 55.286 y 56.117 secuencias `[M]`. No se
+    corrió a propósito: el issue #27 pide que el criterio y los pesos se escriban **antes**
+    de la primera corrida, y ese preregistro todavía no existe. La casilla queda
+    desbloqueada por insumo y frenada por preregistro, que no es lo mismo.
+
+71. **La vuelta de la reciprocidad de `R8` contra un proteoma anotado confirma lo publicado,
+    y de paso mide la limitación de las variantes de empalme.** El §7 de `R8` declara que
+    ninguna de las seis referencias es un proteoma y que por eso la vuelta usó el ORF más
+    largo del transcripto. En esta máquina **sí hay** un proteoma anotado del organismo de
+    origen: `GCF_021130785.1_UT_GWSS_2.1_protein.faa`, 31.163 proteínas de *H. vitripennis*,
+    en `work/F1v/ref/` `[M]`. Rehecha la vuelta con `blastp` contra él, reusando los mismos
+    ORF que dejó el paso 1 para que la única variable sea contra qué se devuelve:
+
+    * comparando **accesiones de proteína**, cambian **2 de 5** veredictos
+      (*H. axyridis* y *A. mellifera* pasarían de recíprocos a no recíprocos);
+    * pero los dos caen en `XP_046683989.1`, que es la **isoforma X2 del mismo producto**
+      que la consulta `XP_046683987.1` (`probable chitinase 2`), o sea el mismo gen;
+    * colapsando por producto, cambian **0 de 5** `[M]`.
+
+    O sea que la limitación de método estaba bien declarada y **no afectaba el resultado**.
+    Los dos no recíprocos lo siguen siendo, y ahora se sabe por qué con más precisión: la
+    vuelta de maíz cae en `chitinase-3-like protein 1` y la de humano en
+    `probable chitinase 10`, que son otras quitinasas `[M]`. `[H]` La segunda limitación de
+    §7 —un transcripto por acierto, con variantes de empalme— resultó estar del lado del
+    **proteoma** y no del transcripto, y se resuelve comparando productos y no accesiones.
+    Un ortólogo recíproco evaluado por accesión de proteína sobre un proteoma con isoformas
+    declara no recíprocos pares que sí lo son, y el error va en la dirección conservadora.
+
+72. **Cuatro de las diez anclas «salteadas por insumo» no eran de insumo: eran del
+    directorio desde donde se corre el test.** El issue #37 dice que hay que correr los
+    tests a mano con `cd tools\sifi21_port && python test_alertas.py`. Hecho así,
+    `test_ranking.py` saltea cuatro anclas diciendo que falta
+    `work/sifi_check/offtarget_full/offtarget_por_sirna.tsv`. **El archivo está.** Corrido
+    desde la raíz del repositorio, el mismo test pasa las cuatro sin saltear ninguna `[M]`.
+    Y los dos que «no colectan» con `python -m pytest` —`pipeline/test_features.py` y
+    `tools/sifi21_port/test_sifi.py`— son scripts igual que los otros cuatro y corren
+    directo, sin pytest, que además no está en ninguno de los doce entornos `[M]`.
+    `[H]` Las seis suites pasan enteras y **sin una sola ancla salteada**, que es lo que la
+    casilla transversal pedía. La lección es vecina de la de `command -v`: un «salteada
+    porque falta X» que se cumple sólo desde cierto directorio informa mal, y lo que
+    conviene es que el mensaje diga la ruta que se intentó, no la ruta relativa.
+
+73. **El panel de `work/sifi_check/offtarget_full/` es el de las seis sin la humana, y ahora
+    está dicho.** El issue #37 advierte que al pedir ese archivo hay que decir con qué panel
+    se construyó, porque los dos juegos de anclas publicadas piden paneles distintos
+    (`D83`). Medido sobre su propio `offtarget_resumen.json`: las bases son **seis** —
+    *D. maidis*, *F. candida*, *A. mellifera*, *H. vitripennis*, maíz y *H. axyridis*— y
+    **no incluye la referencia humana** `[M]`. Con ese archivo `test_ranking.py` pasa sus
+    cuatro anclas de `sifi21_reproduccion.md` §4.
