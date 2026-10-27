@@ -252,6 +252,29 @@ def test_el_humano_entra_ultimo_antes_del_vector():
 
 # ------------------------------------------- anclas contra numeros ya publicados
 
+# El panel contra el que se midieron las anclas, declarado por su accesion en
+# `sifi21_reproduccion.md` §4 («Metodo» y la tabla de «Donde esta el riesgo»): cinco
+# referencias publicas mas el genoma del vector, y NO el humano, que entra recien en el
+# panel de C6/C7 y vive en otro directorio de trabajo (D83). Lo que esta lista evita es
+# el modo de fallar que costo el issue #33: un `offtarget_full/` reconstruido con otro
+# panel no se nota como «otro panel» sino como un numero de §4 que cambio solo.
+PANEL_W5 = frozenset({
+    "GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna",
+    "GCF_914767665.1_icHarAxyr1.1_rna",
+    "GCF_003254395.2_Amel_HAv3.1_rna",
+    "GCF_021130785.1_UT_GWSS_2.1_rna",
+    "GCF_002217175.1_ASM221717v1_rna",
+    "GCA_975739785.1_ihDalMaid1.1_genomic",
+})
+
+
+def panel_de(off: Path) -> frozenset:
+    """Las referencias del tamizado, leidas de la cabecera `<accesion>|<criterio>`."""
+    with off.open() as fh:
+        cols = fh.readline().rstrip("\n").split("\t")
+    return frozenset(c.split("|")[0] for c in cols if "|" in c)
+
+
 def _datos():
     perfil = Path("work/sifi_check/salida")
     off = Path("work/sifi_check/offtarget_full/offtarget_por_sirna.tsv")
@@ -262,7 +285,35 @@ def _datos():
         p = perfil / ("%s_full_corregido_vienna.tsv" % c["gen"])
         if not p.exists():
             return None, [str(p)]
+    panel = panel_de(off)
+    if panel != PANEL_W5:
+        de_mas = sorted(panel - PANEL_W5)
+        de_menos = sorted(PANEL_W5 - panel)
+        return None, ["%s construido con otro panel (de mas: %s; falta: %s)"
+                      % (off, ", ".join(de_mas) or "nada",
+                         ", ".join(de_menos) or "nada")]
     return (perfil, off), []
+
+
+def test_panel_del_tamizado():
+    """El tamizado que leen las anclas tiene que ser el panel con el que se publicaron.
+
+    Es una prueba aparte y no una guarda silenciosa porque el panel equivocado **no se
+    parece a un error**: produce numeros plausibles y distintos. Si el archivo no esta,
+    se saltea como las demas anclas; si esta y el panel no es el de `§4`, falla y nombra
+    que referencia sobra o falta.
+    """
+    print("el tamizado de work/sifi_check/offtarget_full es el panel de §4")
+    off = Path("work/sifi_check/offtarget_full/offtarget_por_sirna.tsv")
+    if not off.exists():
+        print("  SALTEADA falta %s" % off)
+        SALTEADAS.append("panel del tamizado")
+        return
+    panel = panel_de(off)
+    check(panel == PANEL_W5,
+          "las seis referencias de §4, sin humano (de mas: %s; falta: %s)"
+          % (", ".join(sorted(panel - PANEL_W5)) or "nada",
+             ", ".join(sorted(PANEL_W5 - panel)) or "nada"))
 
 
 def test_anclas_publicadas():
@@ -363,6 +414,7 @@ def main():
               test_dmaidis_sale_como_ontarget,
               test_orden_de_referencias_es_el_del_panel,
               test_el_humano_entra_ultimo_antes_del_vector,
+              test_panel_del_tamizado,
               test_anclas_publicadas, test_ancla_offtarget_region, test_ancla_veto):
         t()
     print()

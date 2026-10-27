@@ -53,6 +53,23 @@ incompleto en `work/` —que no se versiona— puede hacer pasar por buenos unos
 reproducen lo publicado, y el único motivo por el que se detectó es que el preregistro pidió
 el ancla. Los archivos viejos quedaron respaldados en `work/O3/respaldo/`.
 
+**Corrección de diagnóstico (2026-10-27, `D83`, issue #33).** La primera frase sigue siendo
+cierta y es la que vale: los `buenos_limpios` de `C7` llevan la humana. ~~La segunda lectura
+—que el tamizado de `work/sifi_check/` «estaba incompleto»— era equivocada, y el arreglo que
+salió de ella hizo daño.~~ `work/sifi_check/offtarget_full/` **no estaba incompleto**: es el
+directorio de `sifi21_reproduccion.md` §4, cuyo panel esa sección publica por accesión
+—cinco referencias más el genoma del vector, sin humana— y que `work/offtarget_db/` contiene
+exactamente. El nivel 3 de `C7` nunca salió de ahí: sale de `work/sifi_v2/`, con los comandos
+de `C7` §9, y desde ahí reproduce exacto hoy `[M]`. Reconstruir `offtarget_full/` con la
+humana hizo pasar el ancla C **rompiendo** las anclas §2, §3 y §4 de `test_ranking.py` y el
+`md5` publicado en `tools/sifi21_port/README.md`, sin que nadie lo viera. Lo que estaba mal
+era el ancla C, que leía el directorio de otra línea: ahora lee `work/sifi_v2/` y sus cuatro
+números esperados **no cambiaron**. Con `offtarget_full/` devuelto a su panel, las tres
+anclas de `O3` y las 55 verificaciones de `test_ranking.py` pasan **a la vez** `[M]`, cosa
+que hasta ahora no había pasado. Los respaldos que esta sección menciona no existen en la
+máquina donde se corrió esto, así que el archivo no se recuperó: se **reconstruyó** con el
+comando de §4, y reproduce el `md5` publicado `a3229e733e4dc70c308c901583b4e4c3` `[M]`.
+
 ## 2. Por qué esta combinación, y la región que hubo que elegirle
 
 La combinación sale de la reunión del checkpoint 2 y de `D67`: las quimeras se arman por

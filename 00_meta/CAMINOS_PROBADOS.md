@@ -1338,3 +1338,29 @@ descartamos **nosotros** al procesarla.
   investigador (contar la molécula con la accesibilidad evaluada en el transcrito) es el **marco
   2** de `D63`; el «marco 3» de `D63` es la molécula sola. Quien lea el issue #20 con la
   numeración de `D63` en la cabeza entiende lo contrario de lo que el issue dice.
+
+## `R9` — el issue #33, y lo que se descartó para cerrarlo (2026-10-27, `D83`)
+
+- **Corregir los cuatro números esperados de `§4` en `test_ranking.py` para que el archivo
+  con la humana pasara** —la salida (b) del issue—. Se descartó porque el argumento que la
+  sostenía es falso: `§4` no quedó escrita con un insumo incompleto, **lista su panel por
+  accesión en su propio texto** y su tabla de «Dónde está el riesgo» no tiene fila de
+  *Homo sapiens*. Habría movido cuatro cifras publicadas para arreglar un problema
+  inexistente, y de paso habría invalidado las anclas §2 y §3 del mismo informe y el `md5`
+  `a3229e733e4dc70c308c901583b4e4c3` que el README publica desde `478f165`.
+- **Construir los dos archivos declarados, cada uno con su nombre** —la salida (c)—. No se
+  descartó por cara: se descartó porque **ya estaba hecha** y nadie la había escrito. `C6`
+  puso la humana en `offtarget_panel_nuevo/` y `C7` armó `work/sifi_v2/` entero; lo único
+  que faltaba era el registro de cuál es cuál y una guarda que lo comprobara. Lo que (c)
+  dejaba por decidir —qué default usa `ranking.py ranking`— tampoco estaba abierto:
+  `R.REFERENCIAS` no incluye la humana y es coherente con el directorio que lee.
+- **Un `md5` publicado vale más que cualquier prosa, y es barato de dejar.** El modo de
+  fallar de este issue es que equivocarse de panel **no se parece a un error**: da números
+  plausibles, en la dirección optimista, y el síntoma aparece en el informe de otra línea.
+  Lo que cerró el diagnóstico en un comando fue el hash que `C1` había dejado en el README
+  dos semanas antes. Vale la pena dejar uno cada vez que un insumo que no se versiona tenga
+  una versión canónica.
+- **Una lección sobre arreglar un ancla que falla.** El ancla C de `O3` falló porque leía el
+  directorio equivocado, y se la hizo pasar cambiando **el insumo** en vez de la ruta. Eso
+  rompió en silencio tres anclas de otra línea. Cuando un ancla falla, lo primero es
+  comprobar que esté mirando el archivo que su propio informe nombra.

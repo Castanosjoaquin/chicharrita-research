@@ -14,10 +14,18 @@ B. **Contra C13 §5.** `--conjunto vigentes --modo corregido` reproduce la tabla
    (`ATPaseD_Dm`+`MP_MRFV` 47 -> 50, `MP_MRFV`+`ATPaseD_Dm` 47 -> 44, `CP_MRFV`+`MP_MRFV`
    50 -> 46), 4 ventanas de juntura eficientes y 61 heredadas cambiadas.
 C. **Contra el nivel 3 de C7.** `ranking.ejes()` sigue dando los cuatro conteos (38, 21,
-   35, 21) y sus `buenos_limpios` (37, 20, 34, 17) sobre los datos ya versionados de
-   `work/sifi_check/`. Es el ancla de que el motor del criterio no cambio de comportamiento,
-   y vale doble porque `tools/sifi21_port/ranking.py` lo edito la sesion del issue #30: si
-   esta ancla falla, lo primero que se revisa es esa edicion.
+   35, 21) y sus `buenos_limpios` (37, 20, 34, 17) sobre el directorio de trabajo **de C7**,
+   que es `work/sifi_v2/` y cuyo panel incluye la referencia humana. Es el ancla de que el
+   motor del criterio no cambio de comportamiento, y vale doble porque
+   `tools/sifi21_port/ranking.py` lo edito la sesion del issue #30: si esta ancla falla, lo
+   primero que se revisa es esa edicion.
+
+   **Corregido por `D83` (issue #33).** Hasta entonces esta ancla leia `work/sifi_check/`,
+   que es el directorio de `sifi21_reproduccion.md` §4 y tiene **otro panel** —cinco
+   referencias mas el genoma del vector, sin la humana—. Fallaba por eso, y se la hizo pasar
+   reconstruyendo `work/sifi_check/offtarget_full/` con la humana adentro, que rompio las
+   anclas de §4 sin que nadie lo viera. Los cuatro numeros esperados **no cambian**: lo que
+   cambia es de donde se leen.
 
 Las dos primeras corren el evaluador **despues** de generalizarlo, que es lo que §6 pide.
 
@@ -36,6 +44,9 @@ RAIZ = Path(__file__).resolve().parents[4]
 EVALUADOR = RAIZ / "research/ola3/C13_quimeras_region_recomendada/scripts/quimeras_v2.py"
 C13 = RAIZ / "research/ola3/C13_quimeras_region_recomendada/resultados"
 SIFI_CHECK = RAIZ / "work/sifi_check"
+#: El directorio de trabajo de C7, que es de donde sale el nivel 3 del ancla C
+#: (D83). No es el mismo que `SIFI_CHECK` y no tiene el mismo panel.
+SIFI_V2 = RAIZ / "work/sifi_v2"
 
 sys.path.insert(0, str(RAIZ / "tools/sifi21_port"))
 import ranking as R  # noqa: E402
@@ -133,28 +144,45 @@ def ancla_b(fallas: list[str]) -> None:
 
 
 def ancla_c(fallas: list[str]) -> None:
-    print("\nC. contra el nivel 3 de C7, con ranking.ejes() sobre los datos versionados")
-    perfil = SIFI_CHECK / "salida"
-    off = SIFI_CHECK / "offtarget_full" / "offtarget_por_sirna.tsv"
-    mm1 = str(SIFI_CHECK / "offtarget_mm1_{gen}" / "offtarget_por_sirna.tsv")
-    if not off.exists():
-        fallas.append("ancla C: falta %s" % off)
-        print("   FALLA: falta %s; `work/` no se versiona" % off)
+    """El nivel 3 de C7, leido del directorio de C7 y con el panel de C7 (D83).
+
+    `work/sifi_v2/` parte el tamizado en dos —las seis referencias en `offtarget_k21/` y el
+    genoma del vector en `offtarget_dm_k21/`, porque es el mas pesado— y quien los funde es
+    `ranking_v2.cargar()`. Por eso esta ancla pasa por ahi y no por `R.cargar_gen()` a secas,
+    y por eso antes fija el panel con `ranking_v2.con_panel(sin_humano=False)`: los conteos
+    de `ejes()` miran todas las referencias presentes, asi que el panel tiene que ser el
+    mismo con el que se publicaron los numeros.
+    """
+    print("\nC. contra el nivel 3 de C7, con ranking.ejes() sobre work/sifi_v2 (panel con humano)")
+    perfil = SIFI_V2 / "salida_k21"
+    off = SIFI_V2 / "offtarget_k21" / "offtarget_por_sirna.tsv"
+    dm = SIFI_V2 / "offtarget_dm_k21" / "offtarget_por_sirna.tsv"
+    faltan = [str(x) for x in (perfil, off, dm) if not x.exists()]
+    if faltan:
+        fallas.append("ancla C: falta %s" % ", ".join(faltan))
+        print("   FALLA: falta %s; `work/` no se versiona" % ", ".join(faltan))
         return
-    wr, wc = R.pesos_base()
-    print("   %-12s %-12s %6s %6s %8s %8s" % ("gen", "region", "efic", "espera",
-                                              "lim+ef", "espera"))
-    for c in R.CANDIDATOS:
-        gen = c["gen"]
-        (ini, fin), n_esp, bl_esp = ANCLA_C7[gen]
-        g = R.cargar_gen(gen, perfil, off, mm1)
-        e = R.ejes(g, ini, fin, wr, wc, R.excluidas_de(c, "off"), False)
-        ok = (e["eficientes"], e["buenos_limpios"]) == (n_esp, bl_esp)
-        print("   %-12s %-12s %6d %6d %8d %8d  %s"
-              % (gen, "%d-%d" % (ini, fin), e["eficientes"], n_esp,
-                 e["buenos_limpios"], bl_esp, "OK" if ok else "FALLA"))
-        if not ok:
-            fallas.append("ancla C: %s" % gen)
+    import ranking_v2 as RV2
+    panel_previo = R.REFERENCIAS
+    try:
+        RV2.con_panel(sin_humano=False)
+        genes = RV2.cargar(SIFI_V2, 21, [c["gen"] for c in R.CANDIDATOS])
+        wr, wc = R.pesos_base()
+        print("   %-12s %-12s %6s %6s %8s %8s" % ("gen", "region", "efic", "espera",
+                                                  "lim+ef", "espera"))
+        for c in R.CANDIDATOS:
+            gen = c["gen"]
+            (ini, fin), n_esp, bl_esp = ANCLA_C7[gen]
+            g = genes[gen]
+            e = R.ejes(g, ini, fin, wr, wc, R.excluidas_de(c, "off"), False)
+            ok = (e["eficientes"], e["buenos_limpios"]) == (n_esp, bl_esp)
+            print("   %-12s %-12s %6d %6d %8d %8d  %s"
+                  % (gen, "%d-%d" % (ini, fin), e["eficientes"], n_esp,
+                     e["buenos_limpios"], bl_esp, "OK" if ok else "FALLA"))
+            if not ok:
+                fallas.append("ancla C: %s" % gen)
+    finally:
+        R.REFERENCIAS = panel_previo
 
 
 def main() -> int:
