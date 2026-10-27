@@ -2241,9 +2241,61 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     recíproca (`diamond`, `blastp`). Lo que falta para la primera corrida real es el
     transcriptoma del investigador. La etiqueta `necesita-entorno` del issue se deja puesta
     porque sigue siendo cierta para quien lo tome en otra máquina — por `D78`, en la de Luca
-    no hay BLAST+ ni ViennaRNA.
+    no hay BLAST+ ni ViennaRNA. **[Corregido por la entrada 55: la cita es a `D71`, no a
+    `D78`, y ViennaRNA sí está en el `python3` de WSL de esa máquina. BLAST+ sí falta.]**
     `[H]` Y la lección de método, que es hermana de la de `D83`: **`command -v` contesta «no
     está en el `PATH`», no «no está instalado»**, y la diferencia entre las dos cosas
     reasignó trabajo entre máquinas. Antes de declarar que una herramienta falta conviene
     mirar también los entornos de `micromamba`: `micromamba env list` y un `ls` de cada
     `bin/`.
+
+### Ola 6, el entorno de la máquina de Luca, medido por primera vez (issue #29, 2026-10-27)
+
+55. **En la máquina de Luca hay ViennaRNA, y la entrada 54 dice que no.** La entrada 54 cierra
+    con «por `D78`, en la de Luca no hay BLAST+ ni ViennaRNA». Las dos mitades fallan. La cita
+    es a la decisión equivocada: `D78` es la que mete `V-ATPase B` y las junturas al inventario,
+    y la que habla de esta máquina es `D71`, que dice otra cosa —«vale para la máquina que se
+    verificó y **no** para la de Luca, donde hay `miniprot` 0.18-r281 en WSL con el ensamblado
+    indexado»—. `D71` **no menciona ViennaRNA en ningún lado**; de BLAST+ sí habla, pero para
+    decir que faltaba **en la máquina del issue**, que es la otra. Y la mitad de ViennaRNA
+    tampoco se sostiene: aplicando a esta máquina la propia lección de la entrada 54, el módulo
+    `RNA` (ViennaRNA 2.7.2, el mismo que usó `C13`) **está instalado**, en el `python3` de WSL
+    `[M]`. La mitad de BLAST+ sí es correcta: acá no está `[M]`. El intérprete donde estaba
+    ViennaRNA no es el del `PATH` de Windows; de qué intérprete salió el hecho viejo no consta
+    (`PLAN_OLA6.md` §1 dice que la máquina de ese diagnóstico tampoco consta).
+    Medido hoy, aquí, con `command -v` sobre los dos lados y `importlib` sobre los dos
+    intérpretes `[M]`:
+
+    | | Windows (`python` 3.10.11) | WSL (`/usr/bin/python3` 3.12.3) |
+    | --- | --- | --- |
+    | módulo `RNA` (ViennaRNA) | **no está** | **está**: 2.7.2, rueda de `pip` |
+    | módulo `Bio` (Biopython) | **no está** | **no está** |
+    | módulo `ahocorasick` | **no está** | **no está** |
+    | `numpy`, `scipy`, `pandas` | 1.26.3 / 1.11.4 / 2.3.3 | **no están** |
+    | `openpyxl` | **está**: 3.1.5 | no medido |
+    | `RNAfold`, `RNAplfold` (ejecutables) | **no están** | **no están**: la rueda de `pip` trae el módulo y no los binarios |
+    | `blastn`, `tblastn`, `makeblastdb`, `diamond` | **no están** | **no están** |
+    | `bowtie`, `bowtie2` | **no están** | **no están** |
+    | `miniprot` | **no está** | **está**: 0.18-r281, compilado en `~/yhat/tools/miniprot/`, fuera del `PATH` |
+    | `micromamba`, `conda` | **no están** | sin entornos en `~` |
+
+    No hay aquí el reparto de `micromamba` que tiene la máquina de Joaquín: lo que hay está
+    repartido entre los dos intérpretes, y **ninguno de los dos corre el port entero solo**. El
+    de Windows tiene `numpy` y no ViennaRNA; el de WSL tiene ViennaRNA y no `numpy`. `[H]` El
+    backend `exe` del port no debería correr en ninguno de los dos: necesita `RNAfold` y
+    `RNAplfold`, que no están en ninguno `[M]`, pero no se corrió para comprobarlo. `work/` y
+    `YHat-Biotech/` **no existen** en esta máquina `[M]`, así que todo script que los lea queda
+    sin correr aquí. `[H]` Y el gancho de pre-commit debería rechazar aunque `openpyxl` esté,
+    porque su código pide además la planilla de EPILAB (`tools/verificacion/hooks/pre-commit`,
+    líneas 26-30); leído, no corrido.
+    `[H]` La consecuencia para el reparto de trabajo: `F1` (#25) **sigue necesitando otra
+    máquina o una instalación**, porque aquí falta el alineador proteína contra proteína que
+    pide la ortología recíproca —no hay `diamond` ni `blastp`— aunque `miniprot` cubra la otra
+    mitad, que es exactamente lo que `D71` ya había usado para `O2`. Lo que **sí** destraba la
+    corrección es el eje de ViennaRNA: una corrida que solo necesite el módulo `RNA` y no
+    `numpy` corre aquí, y hasta hoy el plan la daba por imposible en esta máquina.
+    `[H]` La lección, que es la de la entrada 54 una vuelta más: **decir en qué máquina no
+    alcanza si la máquina tiene dos intérpretes.** Hay que decir en cuál, y medirlo en los dos.
+    En la de Joaquín el reparto lo hacía `micromamba`; en esta lo hace la frontera
+    Windows/WSL. Y al anotar un hecho de entorno sobre una máquina ajena conviene citar la
+    decisión que de verdad lo registra: la entrada 54 citó `D78` por `D71`.

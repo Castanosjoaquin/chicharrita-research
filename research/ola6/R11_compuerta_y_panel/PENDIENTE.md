@@ -10,6 +10,14 @@ con `numpy`, `scipy` y `pandas`; **sin** `RNA` (ViennaRNA), `Bio` (Biopython),
 `ahocorasick`, BLAST+ ni Bowtie. `work/` **no existe** —`ls work/` falla— y tampoco dentro
 de WSL, donde hay `~/yhat/tools` y `~/yhat/data` pero no una copia del repositorio `[M]`.
 
+**Precision del 2026-10-27 (entrada 55, issue #29):** lo de arriba vale para el Python de
+**Windows**, que es el que se midio, y esta maquina tiene **dos** interpretes. En el
+`python3` de **WSL** (3.12.3) el reparto es al reves: `RNA` (ViennaRNA 2.7.2) **si esta** y
+`numpy` **no** `[M]`, asi que **ninguno de los dos corre el port entero solo**. `Bio`,
+`ahocorasick`, BLAST+ y Bowtie faltan en los dos `[M]`. En WSL tambien hay `miniprot`
+0.18-r281, fuera del `PATH`. El pedido de `work/` que sigue no cambia: sin esos archivos no
+corre nada, en ninguno de los dos interpretes.
+
 ## Lo que hay que conseguir
 
 Una copia de `work/` de la maquina donde se generaron los numeros publicados. En concreto,

@@ -159,12 +159,20 @@ sesión sin `work/` ni ViennaRNA; cuál era no consta (los comandos de #30 está
 `cmd.exe`, lo que sugiere Windows, pero es una inferencia). En la de Joaquín, medido: el módulo `RNA` (ViennaRNA 2.7.2) y `Bio` (1.88) **sí
 están** en el entorno conda `python` (Python 3.11.17, numpy 2.4.6); el `/usr/bin/python3`
 (3.9.6) no los tiene ni tiene numpy; el diagnóstico viejo pudo salir de un intérprete así, pero no
-consta. **Faltan los ejecutables** `blastn`,
-`tblastn`, `makeblastdb`, `miniprot`, `diamond`, `bowtie`, `RNAplfold` y `RNAfold`, y el módulo
-pip `ahocorasick`. Las **bases ya están**: `work/C11/db_*` (30 archivos) y `work/W5/db/`; lo que
-falta es el ejecutable que las consulta. Esta tarea necesita un alineador de proteína contra
-nucleótido y ninguno está instalado, así que corre donde haya uno o empieza por instalarlo; **no
-es trabajo de escritorio**. Eso sigue siendo cierto para `O2` y `F1`; ya no lo es para `O3`.
+consta. Falta el módulo pip `ahocorasick`, y ~~**faltan los ejecutables** `blastn`,
+`tblastn`, `makeblastdb`, `miniprot`, `diamond`, `bowtie`, `RNAplfold` y `RNAfold`~~ —de esa
+lista, los únicos que faltan de verdad son `RNAplfold` y `RNAfold`—. **Corregido otra vez el
+2026-10-27 (entrada 54): los alineadores tampoco
+faltaban.** Están en entornos de `micromamba` sin activar —BLAST+ 2.17.0 y DIAMOND 2.2.8 en
+`envs/alineador/bin/`, `miniprot` 0.18-r281 en `envs/bioinfo/bin/`, `bowtie` en `envs/w2tools/`—
+y `command -v` no los veía porque mira el `PATH` `[M]`. Las **bases ya están**: `work/C11/db_*` (30 archivos) y `work/W5/db/`,
+y ahora también el ejecutable que las consulta. Esta tarea necesita un alineador de proteína
+contra nucleótido. ~~Ninguno está instalado, así que corre donde haya uno o empieza por
+instalarlo; **no es trabajo de escritorio**. Eso sigue siendo cierto para `O2` y `F1`~~ **En la
+máquina de Joaquín hay dos, así que `F1` tampoco está bloqueado por entorno ahí**; lo que la
+frena es el transcriptoma del investigador. En la de Luca hay `miniprot` pero no el de proteína
+contra proteína que pide la ortología recíproca (entrada 55). **Para `O3` el bloqueo por
+entorno tampoco aplica ya.**
 
 **Qué hay que hacer.**
 
@@ -429,11 +437,18 @@ restricción que más cambia quién puede hacer qué. Hay dos intérpretes y no 
 Medido desde el sandbox del agente: qué `python3` resuelve el `PATH` del terminal de Joaquín no se
 midió, y hay que correr `python3 -c "import RNA, Bio"` ahí antes de dar esto por válido.
 
+**Corregido otra vez el 2026-10-27, entrada 54.** Las filas de alineadores que siguen decían
+«no están» y era falso: `command -v` contesta «no está en el `PATH`», no «no está instalado», y
+en esa máquina las herramientas viven en entornos de `micromamba` sin activar. La corrección se
+verificó con una corrida de verdad de `makeblastdb` + `tblastn` que devuelve alineamientos, no
+con `--version` `[M]`. Todas las celdas que siguen marcadas «están» son de esa medición `[M]`;
+que `RNAplfold` y `RNAfold` sigan faltando **no** se volvió a medir contra los `envs/` `[?]`.
+
 | Herramienta | Estado en la máquina de Joaquín |
 | --- | --- |
-| `blastn`, `tblastn`, `makeblastdb` | **no están** |
-| `miniprot`, `diamond` | **no están** |
-| `bowtie`, `bowtie2` | **no están** |
+| `blastn`, `tblastn`, `makeblastdb` | ~~no están~~ **están**: BLAST+ 2.17.0 en `envs/alineador/bin/`, y otro completo en `envs/w5bio/bin/` |
+| `miniprot`, `diamond` | ~~no están~~ **están**: `miniprot` 0.18-r281 en `envs/bioinfo/bin/`, DIAMOND 2.2.8 en `envs/alineador/bin/` |
+| `bowtie`, `bowtie2` | ~~no están~~ **`bowtie` está**, en `envs/w2tools/bin/` y `envs/c2sifi/bin/`; `bowtie2` no se midió |
 | `RNAplfold`, `RNAfold` (ejecutables) | **no están** (el backend `exe` del port los necesita; el backend `vienna`, no) |
 | módulo `RNA` (ViennaRNA) | ~~no está~~ **está**: 2.7.2, en el entorno conda; **no** en el `python3` del sistema |
 | módulo `Bio` (Biopython) | ~~no está~~ **está**: 1.88, en el entorno conda; **no** en el `python3` del sistema |
@@ -443,14 +458,43 @@ midió, y hay que correr `python3 -c "import RNA, Bio"` ahí antes de dar esto p
 
 `C13` corrió con Python 3.13.15, numpy 2.5.4 y ViennaRNA 2.7.2: ViennaRNA coincide y Python y
 numpy no, así que **el ancla de `C4` es la que autoriza leer cualquier cifra nueva**. Las bases
-de `work/C11/` están, pero sin `blastn` no hay quién las consulte.
+de `work/C11/` están, ~~pero sin `blastn` no hay quién las consulte~~ **y `blastn` también, así
+que se pueden consultar**.
 
-**Conclusión operativa:** `R1` a `R6`, `O1` y `O4` (la parte de diseño) son trabajo de escritorio
-y corren acá. **`O3` también corre acá** —necesita ViennaRNA y lo tiene— ~~Asignar `O3` a esta
+### La otra máquina, medida el 2026-10-27 (entrada 55)
+
+La de Luca **no tiene el reparto de `micromamba`**: lo que hay está repartido entre dos
+intérpretes a los dos lados de la frontera Windows/WSL, y **ninguno de los dos corre el port
+entero solo**. `work/` y `YHat-Biotech/` no existen acá `[M]`.
+
+| Herramienta | Windows (`python` 3.10.11) | WSL (`/usr/bin/python3` 3.12.3) |
+| --- | --- | --- |
+| módulo `RNA` (ViennaRNA) | **no está** | **está**: 2.7.2, rueda de `pip` |
+| módulo `Bio` (Biopython) | **no está** | **no está** |
+| `numpy`, `scipy`, `pandas` | 1.26.3 / 1.11.4 / 2.3.3 | **no están** |
+| `RNAplfold`, `RNAfold` (ejecutables) | **no están** | **no están**: la rueda trae el módulo, no los binarios |
+| `blastn`, `tblastn`, `makeblastdb`, `diamond` | **no están** | **no están** |
+| `bowtie`, `bowtie2` | **no están** | **no están** |
+| `miniprot` | **no está** | **está**: 0.18-r281, en `~/yhat/tools/miniprot/`, fuera del `PATH` |
+| `work/`, `YHat-Biotech/` | **no existen** | — |
+
+Acá `O3` **no** corre, y no por ViennaRNA: `work/` no existe, y `O3` lee `work/sifi_v2/` por su
+ancla `C` (`D83`) `[M]`. Lo que falta en esta máquina son los insumos, no el motor.
+
+---
+
+**Conclusión operativa, para la máquina de Joaquín**, que es la que tiene `work/`: `R1` a `R6`,
+`O1` y `O4` (la parte de diseño) son trabajo de escritorio
+y corren ahí. **`O3` también corre ahí** —necesita ViennaRNA y lo tiene— ~~Asignar `O3` a esta
 máquina es asignarlo a que se trabe en el primer import~~. **`R7` paso 1 también**: usa
 `identidad.py`, que depende de `offtarget_21nt`, `ranking`, `ranking_v2` y `anclas` y no llama a
-Bowtie, BLAST ni RNAplfold; le falta `pyahocorasick`. Lo que **sí** necesita otra máquina, o
-instalar un alineador, es `O2` (ya cerrada por otra vía) y `F1`.
+Bowtie, BLAST ni RNAplfold; le falta `pyahocorasick`. ~~Lo que **sí** necesita otra máquina, o
+instalar un alineador, es `O2` (ya cerrada por otra vía) y `F1`.~~ **Corregido con la entrada
+54: `F1` tampoco necesita otra máquina.** La de Joaquín tiene las dos piezas que el issue pide
+—`tblastn` y `miniprot` para proteína contra nucleótido, `diamond` y `blastp` para la ortología
+recíproca—, así que lo que falta para la primera corrida real de `F1` **no es el entorno: es el
+transcriptoma del investigador**. En la de Luca sigue faltando el alineador proteína contra
+proteína, así que ahí `F1` sí necesita instalar algo (entrada 55).
 
 ---
 
