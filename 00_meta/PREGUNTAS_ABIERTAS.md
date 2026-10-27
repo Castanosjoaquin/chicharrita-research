@@ -2250,26 +2250,26 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
 
 ### Ola 6, cierre de `F1` (`D84`, issue #25, 2026-10-27)
 
-54. **¿Por qué 25.812 de los 56.117 contigs de `GITV01` (46,0 %) no tienen ningún ORF de ≥ 100 aa?**
+55. **¿Por qué 25.812 de los 56.117 contigs de `GITV01` (46,0 %) no tienen ningún ORF de ≥ 100 aa?**
     Sólo 1.071 miden menos de 300 nt, así que el tamaño no lo explica. Puede ser ruido no
     codificante, UTR, fragmentos o marcos rotos por errores de ensamblado. No se midió `[?]`.
-55. **¿Aplican las bandas de concordancia de `C12` a ORF de un TSA?** Se midieron entre dos
+56. **¿Aplican las bandas de concordancia de `C12` a ORF de un TSA?** Se midieron entre dos
     proteomas RefSeq completos y anotados; un ORF de un transcriptoma puede ser parcial, quimérico
     o con el marco corrido. `F1` las aplica por supuesto `[H]`, y el 81 % esperado de la lectura
     inclusiva vale sólo si el supuesto vale. Una validación posible: tomar un subconjunto de
     contigs cuyos genes tengan anotación independiente (los de la curación de `C5`).
-56. **¿Cuál es la regla de empate correcta para un transcriptoma redundante?** La mitad de los ORF
+57. **¿Cuál es la regla de empate correcta para un transcriptoma redundante?** La mitad de los ORF
     con hit queda en empate bajo la regla estricta, y el 46,3 % de los empates inversos no son copias
     idénticas. Falta saber si esos ORF son isoformas, parálogos o fragmentos del mismo gen. Una
     medida es agrupar los contigs por gen (`cd-hit` o equivalente) y repetir la reciprocidad entre
     grupos; no se hizo.
-57. **Taxonomía de los dos proteomas de referencia, sin fuente abierta.** El preregistro dice que
+58. **Taxonomía de los dos proteomas de referencia, sin fuente abierta.** El preregistro dice que
     *Macrosteles* y *Dalbulus* son Deltocephalinae y *Homalodisca* un Cicadellinae. Para *Dalbulus* el
     catálogo de `C5` lo registra; para los otros dos no abrí ninguna fuente taxonómica. Queda
     pendiente antes de repetirlo en un entregable.
-58. **¿Confirmación del investigador de que `GITV01` es lo que quería mandar?** El archivo es el TSA
+59. **¿Confirmación del investigador de que `GITV01` es lo que quería mandar?** El archivo es el TSA
     público de Ohio State, que el repositorio ya conocía; no se sabe si él lo eligió por eso o si el
     otro transcriptoma que mencionó es distinto. Pregunta para la próxima comunicación.
-59. **`F2` necesita lo que `F1` no entrega.** Los términos GO, los dominios conservados y los papers
+60. **`F2` necesita lo que `F1` no entrega.** Los términos GO, los dominios conservados y los papers
     no están en la salida de `F1` (sólo nombre de producto, identidad, cobertura y banda), y no hay
     ninguno versionado. Sin una fuente de esos tres, `F2` sólo puede resumir el nombre de producto.
