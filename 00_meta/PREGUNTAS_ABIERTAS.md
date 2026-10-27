@@ -1862,3 +1862,32 @@ línea de diseño nueva. Este es el saldo.
     `C7` tienen la humana en sus propias salidas, pero cualquier corrida posterior que haya
     leído `work/sifi_check/offtarget_full/` sin regenerarlo arrastra el faltante `[?]`.
     `work/` no se versiona, así que esto no se puede auditar desde git.
+
+### Ola 6, arranque de `O4` (2026-10-27)
+
+22. **La unidad del largo de una región no está declarada, y las dos que circulan difieren
+    en 20 nt.** `ranking.ejes()` recibe `(ini, fin)` y corta los vectores indexados por
+    ventana con `slice(ini - 1, fin)`, así que una región «517-816» son **300 ventanas** y
+    consume **320 nt** de secuencia; `quimeras_v2.recortar()` y `tres_marcos.py` cortan
+    `full[ini - 1:fin]`, que son **300 nt** y contienen **280 ventanas**. Las dos
+    convenciones se escriben igual y ninguna está declarada: no está en la fila «región
+    candidata» del `GLOSARIO.md`, que distingue candidata de recomendada y no la unidad, ni
+    en `M1` §8, que resolvió la unidad de otros dos campos. Se detectó midiendo el ancla 3
+    del preregistro de `O4` contra `D74`, con el tamizado del panel de seis corrido sobre el
+    **gen entero** —insumo nuevo de esta línea, porque el de `O3` cubría `V-ATPase B`
+    completo pero de `BicC_Dm` sólo su región—: las 71 ventanas vetadas y su desglose por
+    referencia (maíz 12, *H. vitripennis* 38, humano 21) reproducen `D74` exacto `[M]`, y el
+    conteo de regiones cierra **sólo** en unidades de ventana —1.184 candidatas, **una**
+    admisible, 517-816, y cero a 301 ventanas—; en nucleótidos caben 1.204, sobreviven
+    **24** de 300 nt y **22** de 301 nt `[M]`. O sea que la cláusula de `D74` «ocupa el
+    único hueco libre de 300 ventanas consecutivas» es exacta y las otras tres cifras de esa
+    misma oración son la misma medición leída en la otra unidad.
+    **La quimera que `O3` midió no se mueve:** el fragmento que usó son los nt 517-816, 300
+    nt, ventanas 517-796, y está entero dentro de la racha limpia `[M]`.
+    Lo que hay que decidir, y es del equipo porque toca una cifra publicada hoy, es en qué
+    unidad enumera la grilla de `O4`: el `--largo-total` es nucleótidos, porque es lo que se
+    sintetiza, mientras que la máscara de admisibilidad que hereda se validó en ventanas.
+    `[?]` Y el alcance es mayor que esta línea: las seis regiones vigentes se **eligieron**
+    como tramos de 300 ventanas y se **cortan** como 300 nt, así que el objeto que el
+    ranking ordenó y la molécula que el proyecto publica no son el mismo en sus últimos
+    20 nt. Esta entrada no corrige ninguna cifra: la deja planteada.
