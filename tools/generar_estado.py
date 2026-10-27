@@ -329,7 +329,7 @@ HECHO = [
      "El supuesto del que colgaba la única cifra de calidad —que las bandas medidas entre proteomas "
      "curados valgan para ORF de un transcriptoma— <strong>dejó de ser supuesto</strong>: se midió leyendo "
      "el mismo organismo de las dos maneras y <strong>no hay diferencia</strong> (85,0 % contra 85,0 % "
-     "sobre 11.727 genes, 0,3 puntos de brecha máxima por banda; D86). De paso quedó que el "
+     "sobre 11.727 genes; 0,3 puntos de brecha máxima entre las cuatro bandas que deciden y 0,6 en la quinta, que por preregistro no decide; D86). De paso quedó que el "
      "<strong>81 %</strong> publicado es una <strong>cota conservadora</strong> —lo medido da 87,4 %— y no "
      "se corrigió hacia arriba, porque el preregistro lo prohibía. Ninguna salida de esta línea entra al "
      "diseño del ARNdc, y hay una prueba que lo verifica.",

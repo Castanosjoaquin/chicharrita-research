@@ -1504,9 +1504,11 @@ al lado, como medición, no en reemplazo.
 transcriptos, así que el mismo organismo se leyó de las dos maneras contra la misma referencia
 (*H. vitripennis*), con el código de `F1` importado tal cual: brazo P con las 34.269 proteínas
 curadas, brazo O con los 117.393 ORF de ≥ 100 aa de sus 34.256 transcriptos con CDS. Sobre los
-11.727 genes en común, la concordancia de nombre es 85,0 % contra 85,0 %, y en las cinco bandas de
-identidad la diferencia máxima entre brazos es de **0,3 puntos**, sin que ningún IC95 se separe
-(con n ≈ 4.900 en la banda central, dos puntos habrían caído fuera) `[M]`. Lo que sí depende de la
+11.727 genes en común, la concordancia de nombre es 85,0 % contra 85,0 %, sin que ningún IC95 se separe en ninguna
+de las cinco bandas de identidad. La diferencia máxima entre brazos es de **0,6 puntos** y está en
+la banda < 40 %, que por preregistro no decide porque no llega a n = 100; **entre las cuatro que sí
+deciden, la máxima es de 0,3 puntos** (con n ≈ 4.900 en la banda central, dos puntos habrían caído
+fuera del intervalo) `[M]`. Lo que sí depende de la
 cobertura: el par de cobertura alta concuerda 86,7 % y el parcial 68,6 %, unos 16 puntos menos.
 **Alternativas consideradas:** (a) la ruta que sugería la entrada 56, validar contra la curación de
 `C5`, descartada por potencia —del orden de una docena de genes, y `C12` necesitó 1.152 pares para

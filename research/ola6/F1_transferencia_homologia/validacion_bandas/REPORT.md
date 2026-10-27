@@ -2,7 +2,7 @@
 
 **Veredicto: el supuesto se sostiene. Traducir un transcripto en seis marcos y quedarse con sus
 ORF no degrada la concordancia de nombre respecto de usar la proteína curada —las dos lecturas
-son indistinguibles en las cinco bandas, con 11.727 genes en común—. El reparo aparece en otro
+son indistinguibles en las cinco bandas, con 11.727 genes en común y ningún intervalo separado—. El reparo aparece en otro
 lado: las bandas que `F1` usa, las de `C12`, quedan por debajo de lo que mide el par completo, de
 modo que el 81 % que `F1` publica es conservador y no optimista.** Pregunta abierta **56** del
 issue #25. Método y criterio de decisión: `PREREGISTRO.md` (commit `7762144`, anterior a la
@@ -48,7 +48,10 @@ Análisis pareado (los 11.727 genes presentes en los dos brazos), lectura inclus
 | ≥ 90 % | 92,9 % (IC 91,7–93,9), n = 2.146 | 92,9 % (IC 91,7–93,9), n = 2.141 | se sostiene |
 | total | **85,0 %** | **85,0 %** | |
 
-La mayor diferencia entre brazos es de **0,3 puntos** y ningún intervalo se separa. Con la regla
+Ningún intervalo se separa. La mayor diferencia entre brazos es de **0,6 puntos**, y está en la
+banda < 40 %, que por preregistro no decide porque no llega a n = 100; **entre las cuatro bandas
+que sí deciden la mayor es de 0,3 puntos** (0,31 en 40–60 %, 0,12 en 60–80 %, 0,15 en 80–90 % y
+0,02 en ≥ 90 %). Con la regla
 estricta el resultado es el mismo sobre 5.087 genes en común (83,6 % contra 83,6 %), y la banda
 < 40 % no alcanza n = 100 y por preregistro no decide. El no pareado da lo mismo y está en
 `resultados/bandas_por_brazo.tsv`.
