@@ -2548,6 +2548,24 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     distingue las dos cosas que importan —«no es un hallazgo: es que la verificación no
     corrió»— y nombra el remedio exacto, incluido el `PATH=<env con openpyxl>/bin:$PATH`.
     Un verificador que falla cerrado y explica cómo abrirlo es la razón por la que este
-    commit no se hizo con `--no-verify`. Hasta ahora todas las pasadas de
-    `sin_secuencias.py` del proyecto se habían corrido **sin** el corpus de EPILAB, o sea en
-    el modo que su propio aviso declara que no mira nada: ésta es la primera que lo miró.
+    commit no se hizo con `--no-verify`.
+
+    **Y lo que la pasada encontró no es nuevo, que es la parte importante.** Corrido
+    `--solo-epilab` sobre el árbol entero da **6 hallazgos no exceptuados**, y son
+    **exactamente los que `D61` ya había medido y decidido** el 2026-10-25: las dos regiones
+    virales en `MRFV_NC_002786.2.fa` y `db_demo_zmays40_amel40_mrfv.fa` —subcadenas del
+    genoma público `NC_002786.2`, confidencialidad nominal— y las dos de
+    `q2_aciertos_localizados.tsv`, con los mismos números que esa ADR publica: 46 de 200 nt
+    de `MP_MRFV` (23,0 %) y 48 de 300 de `BicC_Dm` (16,0 %), tramos contiguos máximos de 23
+    y 25 nt `[M]`. O sea que la línea base de seis está **caracterizada y decidida**, no sólo
+    contada, y esta corrida la reproduce.
+
+    Que la pasada contra EPILAB los siga reportando como «no exceptuados» es el diseño y no
+    un problema: `D61` metió esos dos archivos en la lista blanca **y** dejó escrito que eso
+    «no los exime de la pasada 3», porque la lista blanca no tapa los hallazgos contra la
+    planilla. El gancho da cero sobre el índice porque este barrido no toca esos archivos.
+    `[H]` Lo único que conviene corregir es la redacción de la consecuencia de `D61` —«el
+    árbol y el historial dan cero hallazgos no exceptuados»— que vale para las otras pasadas
+    y no para la tercera: hoy el número de la tercera es seis y debería estar dicho al lado,
+    porque si no, un lector que corre el verificador completo ve seis donde la ADR le
+    prometió cero y no tiene forma de saber si eso es lo esperado.
