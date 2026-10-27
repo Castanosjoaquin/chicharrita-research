@@ -63,11 +63,25 @@ def main() -> int:
             print("  %-7s %-11s %-10s vigente=%-3s %s"
                   % (marca, gen, region, vigente, est["estado"]))
         nv = sum(1 for g, r, v, _ in frenadas if v == "sí")
-        print("  -> pasan %d de %d; frenadas %d, de las cuales %d son regiones vigentes\n"
+        # «Pasa» y «se puede usar» NO son lo mismo, y desde que hay firmas la diferencia
+        # se ve: una región `bloqueante` pasa la compuerta —bloquear es decidir, y la
+        # compuerta sólo impide seguir de largo sin que nadie haya mirado— pero el que
+        # llama tiene que descartarla. Un resumen de «pasan 12 de 12, frenadas 0» sin
+        # esta cifra se lee como «las doce sirven», que es exactamente al revés.
+        bloq = [(g, r, v) for g, r, v, e in pasan if e == "decidida: bloqueante"]
+        bv = sum(1 for _g, _r, v in bloq if v == "sí")
+        print("  -> pasan %d de %d; frenadas %d, de las cuales %d son regiones vigentes"
               % (len(pasan), len(regiones), len(frenadas), nv))
+        print("     de las que pasan, %d están **bloqueantes** (%d vigentes): pasan la "
+              "compuerta porque alguien las decidió, y el que llama tiene que descartarlas%s\n"
+              % (len(bloq), bv,
+                 (": " + ", ".join("%s %s" % (g, r) for g, r, _v in bloq)) if bloq else ""))
         salida["umbrales"][umbral] = {
             "pasan": len(pasan), "frenadas": len(frenadas),
-            "frenadas_vigentes": nv, "detalle": detalle}
+            "frenadas_vigentes": nv,
+            "bloqueantes": len(bloq), "bloqueantes_vigentes": bv,
+            "bloqueantes_detalle": ["%s %s" % (g, r) for g, r, _v in bloq],
+            "detalle": detalle}
 
     SALIDA.write_text(json.dumps(salida, indent=1, ensure_ascii=False), encoding="utf-8")
     print("escrito en %s" % SALIDA.relative_to(RAIZ))

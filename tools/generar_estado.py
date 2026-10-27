@@ -163,10 +163,13 @@ HECHO = [
     ("Del veto binario a la alerta justificada, y su compuerta (M6)",
      "La tabla de alertas con los cuatro campos de D48, validada, y el estado de las doce regiones bajo la regla "
      "nueva. Más <code>alertas.exigir_decidida()</code>, que se niega a tratar como usable una región con alguna "
-     "fila en «pendiente» — <strong>implementada sin adoptar</strong>: ningún entregable la llama todavía. Y el "
-     "umbral decide casi todo: con D48 literal pasan <strong>9 de 12</strong> y ninguna región vigente se mueve; con "
-     "el umbral laxo de D28 pasan <strong>3 de 12</strong> y se frenan cuatro de las seis vigentes. Va como pregunta "
-     "abierta, no decidida.",
+     "fila en «pendiente» — <strong>implementada sin adoptar</strong>: ningún entregable la llama todavía. "
+     "Cuando M6 la corrió, en octubre 25 y con las 17 filas sin firmar, el umbral decidía casi todo: con D48 literal "
+     "pasaban <strong>9 de 12</strong> y ninguna región vigente se movía; con el umbral laxo de D28 pasaban "
+     "<strong>3 de 12</strong> y se frenaban cuatro de las seis vigentes. <strong>Con las firmas puestas (D68) pasan "
+     "las 12 en los dos umbrales</strong>, tres de ellas como «bloqueante» —que pasa la compuerta porque alguien las "
+     "decidió, y el que llama tiene que descartarlas—. O sea que hoy los dos umbrales dan el mismo resultado "
+     "operativo, y elegir uno dejó de mover nada. Qué umbral se adopta sigue siendo pregunta abierta.",
      ["research/ola4/M6_alertas/REPORT.md",
       "research/ola4/M6_alertas/resultados/alertas.tsv",
       "tools/sifi21_port/alertas.py"]),
