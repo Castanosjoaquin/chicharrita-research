@@ -196,3 +196,36 @@ EPILAB y una columna de ventanas solapadas reconstruye el gen —es el incidente
 CDS de `V-ATPase B` no se versiona, igual que en `O2` y `O3`: se versiona el generador.
 `tools/verificacion/sin_secuencias.py` tiene que seguir en **6 hallazgos no exceptuados**,
 que es la línea base.
+
+## 10. Enmienda del 2026-10-27, 11:45 (−03): la unidad del largo, con el nombre que ya tenía
+
+El §3 de arriba declaró la grilla en «nucleótidos» sin nombrar el marco, y el §7 escribió el
+ancla 3 contra `D74` como si las cifras de esa ADR fueran de nucleótidos. **El ancla falló y
+la causa fue la unidad.** Lo que corresponde no es inventar vocabulario: el proyecto ya lo
+tiene desde `D63`, y `N3` definió los dos marcos que importan acá —el **marco 1** cuenta los
+`L` arranques que caen en la región, con las últimas veinte ventanas completadas por
+nucleótidos de afuera, y el **marco 2** cuenta los `L − 20` 21-meros que existen físicamente
+en la molécula—. Queda declarado así:
+
+1. **La grilla enumera en marco 2.** El `--largo-total` son nucleótidos, porque es lo que se
+   sintetiza, y un fragmento de `l` nt aporta `l − 20` ventanas propias.
+2. **Cada candidato reporta las dos lecturas**, con los nombres de `D63`, y la salida nunca
+   publica una sola de las dos sin decir cuál es.
+3. **El ancla 3 corre en marco 1**, que es donde `D74` es reproducible: ahí da 71 ventanas
+   vetadas, 1.184 regiones que caben, una sola admisible —517-816— y ninguna una unidad más
+   grande, y **pasa** `[M]`. Imprime al lado la lectura de marco 2, que da 24 ubicaciones
+   admisibles de 300 nt y 22 de 301 `[M]`.
+4. **El eje de riesgo también se lee en marco 2**, y ésta es la desviación que hay que leer
+   con cuidado: `ranking.ejes()` calcula el veto sobre el tramo del marco 1, de modo que una
+   región puede quedar vetada por un 21-mero que la molécula no contiene. El caso medido está
+   en `PREGUNTAS_ABIERTAS.md` 22. Enumerar el riesgo en marco 2 **no afloja** el criterio:
+   descarta por los 21-meros que existen, que son los únicos que pueden pegar en algo. Cada
+   candidato lleva igual la columna de si sería admisible también en marco 1, así que la
+   lectura conservadora no se pierde.
+5. **Lo que esta enmienda no hace:** no corrige `D74`, no mueve ninguna cifra publicada y no
+   decide en qué marco debería leer el riesgo el resto del proyecto. Eso quedó planteado para
+   el equipo. Y el alcance en las regiones vigentes quedó medido antes de seguir: los cuatro
+   genes con insumo en esta máquina reproducen los dos marcos de `N3` celda por celda —38/31,
+   21/20, 36/29 y 21/17— y **ninguna de las cuatro gana un acierto perfecto de 21 nt** al
+   leerse en marco 1, así que el inventario de alertas de `M6` no se mueve `[M]`. `eth_Dm`
+   114-313 y `bursA_Dm` 13-212 quedan sin medir por falta de `work/C11/` en esta máquina.

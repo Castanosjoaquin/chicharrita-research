@@ -1865,29 +1865,36 @@ línea de diseño nueva. Este es el saldo.
 
 ### Ola 6, arranque de `O4` (2026-10-27)
 
-22. **La unidad del largo de una región no está declarada, y las dos que circulan difieren
-    en 20 nt.** `ranking.ejes()` recibe `(ini, fin)` y corta los vectores indexados por
-    ventana con `slice(ini - 1, fin)`, así que una región «517-816» son **300 ventanas** y
-    consume **320 nt** de secuencia; `quimeras_v2.recortar()` y `tres_marcos.py` cortan
-    `full[ini - 1:fin]`, que son **300 nt** y contienen **280 ventanas**. Las dos
-    convenciones se escriben igual y ninguna está declarada: no está en la fila «región
-    candidata» del `GLOSARIO.md`, que distingue candidata de recomendada y no la unidad, ni
-    en `M1` §8, que resolvió la unidad de otros dos campos. Se detectó midiendo el ancla 3
-    del preregistro de `O4` contra `D74`, con el tamizado del panel de seis corrido sobre el
-    **gen entero** —insumo nuevo de esta línea, porque el de `O3` cubría `V-ATPase B`
-    completo pero de `BicC_Dm` sólo su región—: las 71 ventanas vetadas y su desglose por
-    referencia (maíz 12, *H. vitripennis* 38, humano 21) reproducen `D74` exacto `[M]`, y el
-    conteo de regiones cierra **sólo** en unidades de ventana —1.184 candidatas, **una**
-    admisible, 517-816, y cero a 301 ventanas—; en nucleótidos caben 1.204, sobreviven
-    **24** de 300 nt y **22** de 301 nt `[M]`. O sea que la cláusula de `D74` «ocupa el
-    único hueco libre de 300 ventanas consecutivas» es exacta y las otras tres cifras de esa
-    misma oración son la misma medición leída en la otra unidad.
-    **La quimera que `O3` midió no se mueve:** el fragmento que usó son los nt 517-816, 300
-    nt, ventanas 517-796, y está entero dentro de la racha limpia `[M]`.
-    Lo que hay que decidir, y es del equipo porque toca una cifra publicada hoy, es en qué
-    unidad enumera la grilla de `O4`: el `--largo-total` es nucleótidos, porque es lo que se
-    sintetiza, mientras que la máscara de admisibilidad que hereda se validó en ventanas.
-    `[?]` Y el alcance es mayor que esta línea: las seis regiones vigentes se **eligieron**
-    como tramos de 300 ventanas y se **cortan** como 300 nt, así que el objeto que el
-    ranking ordenó y la molécula que el proyecto publica no son el mismo en sus últimos
-    20 nt. Esta entrada no corrige ninguna cifra: la deja planteada.
+22. **El eje de riesgo se evalúa en el marco 1, donde veinte ventanas por región no existen
+    en la molécula que se sintetiza.** Esta entrada **reemplaza** la primera versión que
+    esta línea escribió, que afirmaba que la unidad del largo de una región no estaba
+    declarada en ninguna parte. Era falso para el eje de eficacia y conviene dejar escrito
+    el error: la unidad **está** declarada desde `D63`, y `N3` le puso nombre a la
+    diferencia —el **marco 1** cuenta los `L` arranques que caen en la región, con las
+    últimas veinte ventanas completadas por nucleótidos de **afuera**; el **marco 2** cuenta
+    los `L - 20` 21-meros que existen físicamente en la molécula; la resta entre los dos es
+    el «límite físico de la molécula»—. El ancla sale redonda: los conteos de esta línea
+    reproducen `N3` celda por celda en las cuatro regiones vigentes con insumo en esta
+    máquina, 38/31, 21/20, 36/29 y 21/17 `[M]`.
+    **Lo que no está declarado es la unidad del eje de riesgo.** `ranking.ejes()` calcula el
+    veto sobre el mismo tramo del marco 1, así que una región puede quedar vetada por un
+    21-mero que la molécula **no contiene**. Medido, con el caso concreto: en `V-ATPase B`
+    la ubicación 232-531 de 300 nt tiene **cero** ventanas vetadas entre las 280 que existen
+    en la molécula, y en marco 1 la vetan las ventanas **514, 515 y 516**, cuyos 21-meros
+    terminan en los nucleótidos 534-536 —afuera de una molécula que llega hasta el 531— y la
+    referencia que las veta es la **humana** `[M]`. Eso es exactamente por qué `D74`
+    encuentra **una** región admisible de «300 nt» y la lectura en marco 2 encuentra **24**,
+    más 22 de 301 nt `[M]`.
+    **La dirección del error importa y es la tranquilizadora:** evaluar el riesgo en marco 1
+    **descarta de más**, porque veta por ventanas que no van a existir. No se parece al
+    faltante de la referencia humana, que fallaba optimista. Ninguna cifra publicada queda
+    insegura por esto; lo que cambia es **cuántas opciones cree tener el proyecto**.
+    Lo que queda para el equipo son dos cosas distintas. La chica: la oración de `D74` «de
+    las 1.184 regiones de 300 nt … sin un nucleótido de holgura … a 301 nt ninguna» es una
+    afirmación de marco 1 escrita en lenguaje de nucleótidos, y corregir la redacción **no
+    mueve la quimera**, porque el fragmento que `O3` usó —nt 517-816, ventanas 517-796— está
+    limpio en los dos marcos `[M]`. La grande: `[?]` si el eje de riesgo debería leerse en
+    marco 2, que es el marco de los 21-meros que la molécula tiene. Si se adoptara, la
+    elección de región en `V-ATPase B` se reabre con 24 ubicaciones candidatas en vez de
+    una, y eso sí mueve una afirmación publicada hoy —«la única región admisible del gen»—
+    sin mover ningún conteo.
