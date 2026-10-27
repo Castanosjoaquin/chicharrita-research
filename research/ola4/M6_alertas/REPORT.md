@@ -736,11 +736,21 @@ semántico que agrega son las dos claves nuevas por bloque. Las anclas del propi
 `generar_informes.py` regeneró el `REPORT.md` y el `index.html` de `C7` **idénticos**, sin una línea
 de diferencia `[M]`.
 
-**Una cosa que hay que decir y que no introdujo este cambio:** el JSON **no es byte-reproducible**.
-El orden de las claves dentro de `riesgo_por_referencia` depende del orden en que se pasaron las
-referencias al tamizador, que no está registrado en ninguna parte, así que el archivo regenerado
+**Una cosa que hay que decir y que no introdujo este cambio:** el JSON **no era byte-reproducible**.
+El orden de las claves dentro de `riesgo_por_referencia` dependía del orden en que se pasaron las
+referencias al tamizador, que no estaba registrado en ninguna parte, así que el archivo regenerado
 reordena esas claves sin mover un solo valor —el diff textual es de unas 300 líneas y el semántico
-es de cuatro claves— `[M]`. Ya era así antes de tocarlo; queda como pregunta abierta.
+es de cuatro claves— `[M]`. Ya era así antes de tocarlo.
+
+**Cerrado por `D76` (issue #34), y con una corrección a lo que este addendum dejó dicho.** El orden
+lo fija ahora `ranking.por_referencia_ordenado()`, que es el del panel con el vector al final. Lo que
+acá se leyó como un costo pendiente —fijar el orden obligaría a reordenar el archivo una vez más— no
+existe: **la regeneración de este addendum ya lo dejó en el orden del panel**, 36 de 36 objetos, cero
+fuera de orden, y reescribir el archivo publicado con el orden canónico lo devuelve **byte a byte
+idéntico** `[M]`. La comparación estructural que acá hubo que escribir a mano queda hecha en
+`tools/verificacion/comparar_json.py`, que sobre este mismo par —la versión de `38ad686` contra la
+publicada— reporta en segundos **4 diferencias de valor, que son las cuatro claves que `D75` agrega a
+propósito, y 21 objetos con otro orden de claves**, sobre 302 líneas de diff textual `[M]`.
 
 #### El estado de la compuerta
 

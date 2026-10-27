@@ -1839,15 +1839,29 @@ línea de diseño nueva. Este es el saldo.
     salgan de otros bloques de otros generadores y que nadie haya tamizado; la forma de
     saberlo no es buscarlas a mano otra vez sino que la compuerta las encuentre, que es lo
     que acaba de pasar. Mientras cada generador no se corra de punta a punta, no hay garantía.
-25. **`ranking_v2.json` no es byte-reproducible, y no lo introdujo `D75`.** Issue **#34**. El orden de las
-    claves dentro de `riesgo_por_referencia` depende del orden en que se pasaron las
-    referencias a `offtarget_21nt.py`, y ese orden **no está registrado en ninguna parte**
-    —ni en el JSON ni en el resumen de la matriz—. Regenerar el archivo reordena esas claves
-    sin mover un solo valor: el diff textual es de unas 300 líneas y el semántico de cuatro
-    claves `[M]`. Dos salidas posibles: fijar un orden canónico al escribir las fichas, que
-    hace el archivo reproducible de acá en adelante pero vuelve a reordenarlo una vez más; o
-    registrar el orden de referencias en el JSON y dejarlo como es. **No se hizo:** es
-    formato de salida de la línea `C7` y no de `M6` `[?]`.
+25. **~~`ranking_v2.json` no es byte-reproducible~~ — RESUELTA por `D76` (issue #34), con una
+    corrección al planteo.** El orden de las claves dentro de `riesgo_por_referencia` lo
+    heredaba del orden en que se pasaron las referencias a `offtarget_21nt.py`, que no estaba
+    registrado en ninguna parte. Ahora lo fija `ranking.por_referencia_ordenado()` al escribir,
+    con el orden del panel y el vector al final. **Lo que el planteo tenía mal:** la salida (a)
+    no costaba otro diff grande. El `ranking_v2.json` publicado **ya estaba** en el orden del
+    panel —36 de 36 objetos, cero fuera de orden— porque `625f128` ya había pagado el
+    reordenamiento, y reescribirlo con el orden canónico devuelve el archivo **byte a byte
+    idéntico** `[M]`. El que no estaba era `research/ola2/W7_ranking/ranking.json`, 4 de 4
+    fuera de orden, que se alineó en el mismo commit: 30 líneas movidas, ninguna cifra `[M]`.
+    Queda `tools/verificacion/comparar_json.py` para revisar la próxima regeneración por valor
+    y no por texto. **Lo que sigue pendiente es la corrida de punta a punta**, que es el único
+    criterio del issue que no se pudo cumplir: regenerar el archivo desde `work/sifi_v2/` y
+    verificar que una segunda regeneración seguida da el mismo byte a byte. En esta máquina no
+    existe `work/sifi_v2/` ni hay ViennaRNA, así que el generador no arranca. El comando, para
+    donde los insumos estén:
+
+    ```
+    python tools\sifi21_port\ranking_v2.py --trabajo work\sifi_v2 --json research\ola3\C7_ranking_v2\resultados\ranking_v2.json
+    python tools\verificacion\comparar_json.py research\ola3\C7_ranking_v2\resultados\ranking_v2.json <copia_previa.json>
+    ```
+
+    Lo esperado es «idénticos valor por valor, y con el mismo orden de claves» `[H]`.
 26. **La compuerta no sabe qué referencias tiene el panel en cada corrida.** Issue **#35**,
     parte 1. Consulta la
     tabla de alertas completa, de modo que en la rama `sin_humano` de `efecto_humano` una
@@ -1968,3 +1982,23 @@ siete entradas son ahora **27 a 33** y la sección se movió detrás de la de la
 22, de modo que el archivo tiene una sola numeración y asciende. La equivalencia, por si
 alguien llega desde un commit o un informe que cita los números viejos, está al principio de
 esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
+
+### Ola 6, cierre de la entrada 25 (`D76`, issue #34, 2026-10-27)
+
+37. **Una referencia que no está en el panel entra a la salida como `D_maidis` y choca con
+    el vector, en silencio.** Salió al probar `D76` a través de los escritores de verdad.
+    `ranking.corto()` dobla **toda** referencia que no esté en `REFERENCIAS` al nombre corto
+    del vector, así que una columna del TSV de off-targets de una referencia que el panel no
+    tiene no levanta nada: se escribe bajo la clave `D_maidis` y la última que escribe gana,
+    de modo que **cuál gana depende del orden de las columnas del TSV** `[M]`
+    (`tools/sifi21_port/test_orden_salida.py`, tercera prueba: con una intrusa y el vector en
+    la misma matriz, la salida queda con `maiz` y `D_maidis` y de la intrusa no queda rastro).
+    Es la misma clase de problema que `D76` cerró para el orden de las claves, en un lugar
+    donde sigue abierto. La guarda `KeyError` de `por_referencia_ordenado()` **no lo alcanza**,
+    porque la colisión ocurre antes de que la vea. `[H]` Hoy no mueve ninguna cifra publicada:
+    las corridas publicadas usan el panel de siete referencias y sus matrices tienen
+    exactamente esas columnas, así que no hay intrusa posible. Pero no hay nada que lo impida
+    si alguna vez una matriz se construye con una referencia de más. **No se hizo:** arreglarlo
+    es cambiar `corto()` para que distinga «el vector» de «no la conozco», y eso toca el
+    linaje de `ranking.py` entero, no el formato de salida de `C7`. La pregunta es si `corto()`
+    debe fallar ante una referencia desconocida o devolver un centinela propio.

@@ -123,7 +123,7 @@ def ficha(g: dict, cand: dict, wr, wc) -> dict:
                            "de_esas_eficientes": int((v & g["eficiente"][ini - 1:fin]).sum())}
         if d:
             por_ref[R.corto(ref)] = d
-    out["riesgo_por_referencia"] = por_ref
+    out["riesgo_por_referencia"] = R.por_referencia_ordenado(por_ref)
     return out
 
 
@@ -141,6 +141,7 @@ def gen_entero(g: dict, excl: set) -> dict:
             d["perfecto_21_posiciones"] = [int(i + 1) for i in np.flatnonzero(crits["perfecto_21"])]
             d["perfecto_21_eficientes"] = int((crits["perfecto_21"] & g["eficiente"]).sum())
             out["por_referencia"][R.corto(ref)] = d
+    out["por_referencia"] = R.por_referencia_ordenado(out["por_referencia"])
     return out
 
 

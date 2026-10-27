@@ -112,6 +112,34 @@ DMAIDIS_INFO = {"corto": "D_maidis", "especie": "Dalbulus maidis",
 def corto(ref: str) -> str:
     return REFERENCIAS[ref]["corto"] if ref in REFERENCIAS else DMAIDIS_INFO["corto"]
 
+
+def orden_referencias() -> list[str]:
+    """El orden normativo de las referencias en todo objeto que se escriba a disco (D76).
+
+    Es el del panel —`REFERENCIAS` tal como esta al momento de escribir, que es tambien
+    el que el JSON publica en su clave `panel`— con el vector al final. Hasta D76 el
+    orden lo heredaba el de las columnas del TSV de off-targets, que no queda registrado
+    en ninguna parte, asi que el JSON no era reproducible byte a byte.
+
+    Si el panel cambia, el orden cambia con el, y eso esta bien: lo que no puede volver a
+    pasar es que dependa de como se le pasaron las referencias al tamizador.
+    """
+    return [v["corto"] for v in REFERENCIAS.values()] + [DMAIDIS_INFO["corto"]]
+
+
+def por_referencia_ordenado(d: dict) -> dict:
+    """El mismo objeto indexado por nombre corto, reescrito en el orden de D76.
+
+    No agrega ni saca claves: una referencia sin riesgo en la region no se escribe, y
+    esto no la inventa. Una clave que no sea del panel es un error y no un dato que haya
+    que acomodar en algun lado.
+    """
+    rango = {c: i for i, c in enumerate(orden_referencias())}
+    fuera = sorted(c for c in d if c not in rango)
+    if fuera:
+        raise KeyError("referencia fuera del panel: %s" % ", ".join(fuera))
+    return {c: d[c] for c in sorted(d, key=lambda c: rango[c])}
+
 # Los tres criterios de riesgo, del mas fuerte al mas debil. El peso base es
 # nuestro (D4). El orden SI esta sostenido: un bloque perfecto mas largo no puede
 # ser menos riesgoso que uno mas corto. Las magnitudes no lo estan, y por eso el
@@ -812,7 +840,7 @@ def cmd_ranking(a) -> int:
             ficha[regla]["puntaje_geometrico_w05"] = round(puntaje(e, 0.5, "geometrica"), 4)
             ficha[regla]["puntaje_suma_w05"] = round(puntaje(e, 0.5, "suma"), 4)
             ficha[regla]["puntaje_cascada"] = puntaje(e, 0.5, "cascada")
-        ficha["riesgo_por_referencia"] = {}
+        por_ref = {}
         for ref, crits in g["riesgo"].items():
             if ref in excluir:
                 continue
@@ -823,7 +851,8 @@ def cmd_ranking(a) -> int:
                     d[crit] = {"ventanas": int(v.sum()),
                                "de_esas_eficientes": int((v & g["eficiente"][ini - 1:fin]).sum())}
             if d:
-                ficha["riesgo_por_referencia"][corto(ref)] = d
+                por_ref[corto(ref)] = d
+        ficha["riesgo_por_referencia"] = por_referencia_ordenado(por_ref)
         fichas.append(ficha)
 
     print("=== Los dos ejes por candidato (pesos base, regla %s de D2) ===" % a.regla)
