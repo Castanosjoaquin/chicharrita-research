@@ -33,7 +33,13 @@ De la ola 6, entradas **54 a 63**:
   cada una, más las tres vías sin búsqueda propia.
 - **62** — dos tamizajes de la misma especie se contradicen sobre la actina; se resolvió
   bajando el nivel y declarando el `[?]`, no promediando.
-- **63** — «matar o esterilizar» quedó contestada **en parte**, y la entrada dice cuánto.
+- **63** — «matar o esterilizar» quedó contestada **en parte** por el orden de §2, y la entrada
+  dice exactamente qué faltaba: un segundo orden con el eje de fenotipo filtrado por mecanismo.
+- **64** — **cierra la 63, y la respuesta es que sí**: el orden cambia según el objetivo, y los
+  dos grupos del primer puesto no comparten un solo candidato. Con las tres lecturas que valen
+  más que el sí —la vía de esterilizar está peor sostenida, esterilizar saca a *Dalbulus
+  maidis* del podio, y la quimera de `O3` resulta ser un miembro del grupo líder de cada
+  objetivo—. Lo que sigue abierto es **elegir** el objetivo, que no es de esta línea.
 
 ## A `CAMINOS_PROBADOS.md`
 

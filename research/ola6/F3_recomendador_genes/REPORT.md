@@ -150,13 +150,61 @@ letalidad pura (`DM-02` con movilidad además, `DM-03`, `DM-05`) mientras que el
 de reproducción, `DM-01` (`BicC`), queda en el grupo del puesto 5 —por `E1`, porque su vía
 esteriliza y no mata—.
 
-Lo que **no** se puede afirmar: que el orden cambie según el objetivo. Para eso habría que
-ordenar dos veces con dos objetivos distintos, y el criterio de `D84` no tiene un parámetro de
-objetivo: tiene un eje de fenotipo que no distingue entre «quiero matar» y «quiero
-esterilizar». La diferencia entre `DM-05` (puesto 1, letalidad) y `DM-01` (puesto 5,
-reproducción) **no sale de un objetivo**, sale del nivel de esencialidad de sus vías. `[H]` Lo
-que haría falta es un segundo orden con el eje de fenotipo filtrado por mecanismo en vez de
-promediado, y es una línea nueva, no un parámetro de ésta.
+El orden de §2 **no** contesta si el orden cambia según el objetivo, y conviene entender por
+qué: el eje de fenotipo puntúa la *fuerza de la evidencia*, no el mecanismo, y los mecanismos
+viajan como columna sin entrar al puntaje. Así que ese orden sale igual quiera uno matar o
+esterilizar. La diferencia de puesto entre `DM-05` y `DM-01` no sale de haber elegido un
+objetivo: sale del nivel de esencialidad de sus vías.
+
+Para contestarla hay un **segundo orden**, en §7, que corre el mismo criterio dos veces
+filtrando por mecanismo en vez de promediarlo. **Y la respuesta es que sí: el orden cambia.**
+
+## 7. El segundo orden — sí, el objetivo reordena los candidatos
+
+`scripts/04_segundo_orden.py` corre el criterio de `D84` dos veces, con todo idéntico —pesos,
+escalas, cohortes, umbral de empate de 0,05— y lo único que cambia es quién es elegible:
+«matar» exige el mecanismo `letalidad`, «esterilizar» exige `reproduccion`. Los puntajes **no
+se recalculan**, porque no dependen del mecanismo, así que cada orden es una subsecuencia del
+de §2. La regla de lectura se declaró en el script antes de mirar el resultado: el orden cambia
+si y sólo si el grupo del primer puesto de la cohorte A no es el mismo conjunto en los dos
+objetivos.
+
+| Objetivo | Elegibles en A | Primer puesto de la cohorte A | Puntaje |
+| --- | ---: | --- | ---: |
+| **matar** (`letalidad`) | 11 | `DM-02`, `DM-03`, `DM-05` — `V-ATPase B`, `V-ATPase D`, `eth` | **1,0000** |
+| **esterilizar** (`reproduccion`) | 8 | `CI-01`, `CI-02`, `CI-03`, `DE-01`, `DM-01` — `Rpn6` ×2, `ATP synthase β`, V-ATPasa de *Peregrinus maidis*, `BicC` | **0,7908** |
+
+**Los dos grupos no comparten un solo candidato** `[M]`. La pregunta que venía abierta desde el
+checkpoint 2 —si el orden de los candidatos del insecto cambia según el objetivo— queda
+contestada, y la respuesta es **sí**.
+
+Hay tres lecturas que salen de esa tabla y que valen más que el sí.
+
+**La vía de esterilizar está peor sostenida.** Ningún candidato de «esterilizar» llega a
+1,0000; el mejor queda en 0,7908. El motivo es que los tres que están en el máximo de los dos
+ejes son todos de letalidad, así que **no tenemos ningún candidato que esterilice y que a la vez
+tenga evidencia de primer nivel en nuestra especie y vía de esencialidad demostrada**. Si el
+objetivo fuera esterilizar, el proyecto estaría apoyándose en evidencia más débil `[M]`.
+
+**Esterilizar saca a *Dalbulus maidis* del podio.** Los tres primeros de «matar» son los tres
+genes medidos en nuestra propia especie. En «esterilizar», de los cinco del grupo líder sólo
+`DM-01` (`BicC`) es de *D. maidis*, y entra empatado con dos cicadélidos y un delfácido. O sea
+que el objetivo no sólo reordena: cambia **de qué especie viene la evidencia** en la que uno se
+apoya.
+
+**Y esto le da a la quimera un argumento que `O3` no tenía.** La quimera de `O3` es
+`BicC_Dm` + `V-ATPase B`: exactamente un miembro del grupo líder de «esterilizar» pegado a un
+miembro del grupo líder de «matar». No es una coincidencia buscada —`O3` eligió esos dos genes
+por `D67` y por qué secuencia había disponible, meses antes de que existiera este eje— pero es
+una confirmación independiente de que la combinación cubre los dos objetivos con los mejores
+candidatos de cada uno `[H]`. Lo que **no** cambia es nada de lo que `O3` §6 ya advertía:
+silenciando dos genes a la vez un bioensayo negativo no dice cuál mitad falló, y que los dos
+efectos se sumen sigue siendo el objetivo del diseño y no un resultado medido.
+
+Lo que este segundo orden **no** hace: no elige objetivo. Elegir entre matar y esterilizar es
+una decisión del equipo y del investigador, y ahora tiene la tabla que antes no tenía.
+
+## 8. Cómo reproducirlo
 
 ## 7. Cómo reproducirlo
 
@@ -164,9 +212,10 @@ promediado, y es una línea nueva, no un parámetro de ésta.
 python research/ola6/F3_recomendador_genes/scripts/01_eje_fenotipo.py
 python research/ola6/F3_recomendador_genes/scripts/02_eje_esencialidad.py
 python research/ola6/F3_recomendador_genes/scripts/03_orden.py
+python research/ola6/F3_recomendador_genes/scripts/04_segundo_orden.py
 ```
 
-Los tres son deterministas y no leen nada de `work/`: los dos ejes calculados salen de
+Los cuatro son deterministas y no leen nada de `work/`: los dos ejes calculados salen de
 material versionado. El primero **falla** si alguna asignación de mecanismo cita una frase que
 no está textual en el catálogo, y el segundo **falla** si alguna vía con puntaje no trae cita,
 especie y número, o si alguna se puntuara con evidencia del propio catálogo (regla 3 de la

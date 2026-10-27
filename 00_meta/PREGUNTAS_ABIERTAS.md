@@ -2359,3 +2359,28 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     calculados y versionados. Mientras eso no se haga, la respuesta honesta a si el orden de los
     candidatos del insecto cambia según el objetivo sigue siendo que **no se sabe**, con la
     diferencia de que ahora se sabe exactamente qué falta para saberlo.
+
+64. **Se cierra la entrada 63, y la respuesta es que sí: el orden de los candidatos del insecto
+    cambia según el objetivo.** El segundo orden de `F3`
+    (`research/ola6/F3_recomendador_genes/scripts/04_segundo_orden.py`) corre el criterio de
+    `D84` dos veces con todo idéntico —pesos, escalas, cohortes, umbral de empate— y lo único
+    que cambia es quién es elegible: «matar» exige el mecanismo `letalidad`, «esterilizar»
+    exige `reproduccion`. La regla de lectura se declaró en el script antes de mirar el
+    resultado. El primer puesto de la cohorte A es `DM-02`, `DM-03` y `DM-05` para matar, con
+    puntaje 1,0000, y `CI-01`, `CI-02`, `CI-03`, `DE-01` y `DM-01` para esterilizar, con
+    0,7908: **los dos grupos no comparten un solo candidato** `[M]`. Con eso queda contestada
+    la pregunta que venía abierta desde el checkpoint 2, y que el investigador había dicho que
+    no sabía si cambiaba la decisión `[?]`.
+    **Las tres lecturas que valen más que el sí.** *(a)* La vía de esterilizar está **peor
+    sostenida**: ningún candidato de ese objetivo llega a 1,0000, porque los tres que están en
+    el máximo de los dos ejes son todos de letalidad; no tenemos ningún candidato que esterilice
+    y a la vez tenga evidencia de primer nivel en nuestra especie y vía de esencialidad
+    demostrada `[M]`. *(b)* Esterilizar **saca a *Dalbulus maidis* del podio**: de los cinco del
+    grupo líder sólo `DM-01` es de nuestra especie, y entra empatado con dos cicadélidos y un
+    delfácido, así que el objetivo cambia también de qué especie viene la evidencia en la que
+    uno se apoya. *(c)* La quimera de `O3` resulta ser **un miembro del grupo líder de cada
+    objetivo** —`BicC_Dm` de esterilizar, `V-ATPase B` de matar—, lo que es una confirmación
+    independiente de su armado, porque `O3` eligió esos dos genes por `D67` y por disponibilidad
+    de secuencia, antes de que este eje existiera `[H]`.
+    **Lo que sigue abierto, y no es poco:** elegir el objetivo. `F3` no lo elige y no debe; es
+    decisión del equipo y del investigador, y ahora tiene la tabla que antes no tenía.
