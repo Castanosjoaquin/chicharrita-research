@@ -2217,3 +2217,53 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     `D83` sólo dice cuál panel corresponde a cuál archivo. Y sigue abierto que la compuerta
     no sabe si el panel con el que se la llama es el adecuado para esa corrida, que es el
     límite que `D77` se puso a sí mismo.
+
+54. **`D67` define tres mecanismos y el catálogo tiene cuatro.** Las quimeras se arman por
+    combinación de fenotipos que no se solapan —reproducción, movilidad, letalidad— y al
+    asignarle su mecanismo a cada una de las 36 filas de `C5` aparecen cuatro que no entran
+    en ninguno de los tres: `CI-07` (clatrina, baja la colonización del fitoplasma), `CI-09`
+    (natterina y lectina, reduce la multiplicación), `HE-07` (`NcSP75`, proteína salival de
+    la transmisión) y `HE-11` (*Graminella nigrifrons*, interacción con *Maize fine streak
+    virus*). Describen **menos transmisión con el insecto vivo** `[R]`, que es el mecanismo
+    más alineado con el objetivo sanitario del proyecto y el que menos se parece a los otros
+    tres: no reduce la población ni mata, corta la cadena. `F3` lo agrega como categoría
+    declarada `transmision` en su propia salida (`D84`), pero **ampliar `D67` no es de esta
+    línea**: hay que decidir si el cuarto mecanismo entra al armado de quimeras, y si entra,
+    si una quimera «letalidad + transmisión» tiene sentido biológico o si son el mismo eje
+    visto a dos tiempos `[H]`. Pregunta para el investigador.
+
+55. **Los dos candidatos cuyo silenciamiento empeora las cosas, y la pregunta que abren.**
+    `CI-08` (`uk1_LRR`, receptor putativo de adhesión) dice que silenciarlo **aumentó** la
+    colonización del vector por el fitoplasma, y `CI-13` (`NcHig`, factor neural antiviral)
+    que silenciarlo **aumenta** la infección del sistema nervioso por el virus `[R]`. `F3`
+    los deja fuera del orden y los publica como `fenotipo_invertido` (`D84`), que es lo
+    correcto para un recomendador. Pero la lectura interesante es la inversa y no es nuestra:
+    si silenciar esos genes aumenta la colonización, son parte de la **defensa del vector**
+    contra el patógeno, y entonces la pregunta de diseño es si hay algo que hacer con eso en
+    la dirección opuesta —no silenciarlos— que esté fuera de lo que este proyecto hace con
+    ARNi `[H]`. Preguntar, no suponer.
+
+56. **Faltan `work/sifi_v2/` y los tres TSA de *Dalbulus maidis* en la máquina de Santino, y
+    son los insumos de dos de los cinco ejes de `F3`.** Verificado con `test -d` y con un
+    `find` sobre todo el disco del proyecto: `work/sifi_v2/` **no existe** —ni `salida_k21`,
+    ni `offtarget_k21`, ni `offtarget_dm_k21`— y `work/W5/ref/` tiene **sólo**
+    `humano_rna.fna.gz` y su `.sha256`, no los `TSA_GCWP01/GHCC01/GITV01.fasta` `[M]`. Sin
+    el primero no hay eje de off-target por gen; sin los segundos no hay eje de conservación
+    entre poblaciones. Se piden al grupo —los tiene la máquina de Joaquín, según `D83`— y con
+    el pedido va la advertencia que `PENDIENTE.md` de `R11` ya dejó escrita: **no se
+    regeneran acá con otra versión del motor**, porque el conteo de ventanas eficientes se
+    mueve con la versión de ViennaRNA y con la tabla de vecinos, y un `work/` reconstruido en
+    otro entorno convierte un pendiente de insumo declarado en una discrepancia nueva.
+
+57. **«Esta máquina», dos veces el mismo día, sin nombrar la máquina.** `D71` pide que cada
+    verificación de entorno diga **en qué máquina** se hizo, y es la regla que vuelve
+    utilizables los pendientes de `R11`. Dos artefactos del 27 de octubre no la siguen:
+    `prompts/F3.md` dice «**esta máquina** tiene `work/` completo» y `D83` dice que
+    `work/sifi_v2/` «**existe y está completo en esta máquina**». Las dos afirmaciones son
+    ciertas en la máquina de Joaquín, que es donde se escribieron, y **falsas en la de
+    Santino**, que es donde se leyeron `[M]`. No es un reproche: es que el costo de la
+    omisión no lo paga quien escribe. Leída en la máquina equivocada, la primera hace creer
+    que un eje es calculable y la segunda invita a «arreglar» el hueco regenerando el
+    insumo, que es justo lo que la entrada 56 dice que no hay que hacer. La forma barata de
+    cerrarlo: cuando una afirmación de entorno entra a un archivo versionado, el nombre de la
+    máquina va en la misma oración, como lo hace `PENDIENTE.md` de `R11`.

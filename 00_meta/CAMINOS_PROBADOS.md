@@ -1364,3 +1364,14 @@ descartamos **nosotros** al procesarla.
   directorio equivocado, y se la hizo pasar cambiando **el insumo** en vez de la ruta. Eso
   rompió en silencio tres anclas de otra línea. Cuando un ancla falla, lo primero es
   comprobar que esté mirando el archivo que su propio informe nombra.
+- **La suma ponderada sobre los 36 candidatos del recomendador de genes, descartada antes de
+  escribirla** (`F3`, ola 6, `D84`). Es la forma obvia: normalizar los cinco ejes a [0, 1],
+  ponderarlos y sumar, con un orden único de 36 filas al final. No se hace porque **28 de las
+  36 filas no tienen el eje de off-target calculado** y ninguna tiene el de expresión en
+  tejido expuesto `[M]`, así que la suma obliga a imputar el hueco, y toda imputación —cero,
+  la media, el peor caso— fabrica un número que la fuente no da y lo publica con la misma
+  tipografía que los medidos. Se reemplaza por **cohortes**: los candidatos se agrupan por
+  qué ejes tienen calculados y se ordenan dentro de su cohorte, sin comparar entre cohortes.
+  El precio es que no hay un único primer puesto, y es un precio que conviene pagar: el
+  repositorio ya midió que rellenar un hueco con lo que parece razonable —elegir el gen por
+  nombre en vez de por ortología recíproca— movió el conteo de ventanas eficientes un 65 %.
