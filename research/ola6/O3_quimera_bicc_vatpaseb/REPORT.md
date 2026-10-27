@@ -3,10 +3,11 @@
 **Veredicto: la quimera se puede armar, su empalme no fabrica ningún riesgo nuevo y el
 orden importa.** Pegando la región vigente de `BicC_Dm` (922-1221) con una región de 300
 nt de la subunidad B de la V-ATPasa de *Dalbulus maidis* recuperada en `O2`, las dos
-moléculas posibles quedan **sin veto**: ninguno de los 240 bloques de 19 a 21 nt que
-cruzan las dos junturas coincide en maíz, en *Harmonia axyridis*, en *Apis mellifera*, en
-*Folsomia candida* ni en *Homalodisca vitripennis*; los 19 bloques con acierto caen todos
-en el genoma del propio vector, que para dos genes del insecto es blanco y no riesgo `[M]`.
+moléculas posibles quedan **sin veto**: de los 240 bloques de 19 a 21 nt que salen de las
+40 ventanas de juntura, **ninguno** coincide en maíz, en *Harmonia axyridis*, en *Apis
+mellifera*, en *Folsomia candida* ni en *Homalodisca vitripennis*, y los 19 que tienen
+algún acierto lo tienen sólo en el genoma del propio vector, que para dos genes del
+insecto es blanco y no riesgo `[M]`.
 El orden `V-ATPase B` + `BicC_Dm` rinde **34 ventanas eficientes** contra 31 de la suma de
 sus partes (Δ+3) y el orden inverso rinde 32 (Δ+1), los dos con **una sola** de sus 20
 ventanas de juntura eficiente y **ninguna** ventana eficiente de juntura con blanco
