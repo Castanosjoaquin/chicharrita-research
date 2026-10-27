@@ -1,0 +1,8 @@
+# Los archivos de nucleotido no se versionan: `tools/verificacion/sin_secuencias.py`
+# rechaza toda racha de 21 nt o mas, que es la regla de confidencialidad del proyecto
+# (D28 para el umbral, el incidente de C9 para el motivo). Se versiona el generador y
+# no el dato. Este bloque, ademas, no escribe ni una base en sus salidas: cada quimera
+# se identifica por gen, coordenadas, largo, offset y hash corto de doce caracteres.
+*.fna
+*.fasta
+*.aln

@@ -1,0 +1,27 @@
+{
+  "nota": "O4 no abrio literatura nueva: es una feature de computo sobre datos que el repositorio ya tenia. Las dos fuentes externas que sostienen los ejes de fenotipo de los dos genes estan registradas como leidas en texto completo por olas anteriores y se citan desde ahi, con su marcador y su condicion. Todo lo demas es interno o medido por nosotros.",
+  "externas_citadas_desde_el_registro": [
+    {
+      "id_en_FUENTES": "S18",
+      "titulo": "Assessing the Functionality of RNA Interference (RNAi) in the Phloem-feeding Maize pest Dalbulus maidis",
+      "doi": "10.1101/2021.09.29.462424",
+      "tipo": "preprint sin revision por pares",
+      "uso_en_O4": "sostiene el eje de fenotipo declarado para V-ATPase B (DM-02, movilidad: alas deformes, supervivencia 16 % al dia 4 contra 37 % del control) que el objetivo cobertura_fenotipica exige como entrada. No sostiene ninguna afirmacion sobre eficacia de las quimeras enumeradas.",
+      "marcador": "R"
+    },
+    {
+      "id_en_FUENTES": "catalogo C5",
+      "titulo": "Catalogo de genes blanco con fenotipo reportado por RNAi, fila DM-01",
+      "uso_en_O4": "sostiene el eje de fenotipo declarado para BicC (DM-01, reproduccion: oogenesis, oviposicion casi nula). El catalogo tiene 36 filas y NO tiene columna de eje: el eje es entrada declarada por quien corre la feature, con la fila como fuente.",
+      "marcador": "R"
+    }
+  ],
+  "internas": [
+    {"bloque": "research/ola3/C13_quimeras_region_recomendada", "aporta": "la tabla de las doce quimeras vigentes contra la que corre el ancla 1, la banda de contexto asimetrica de 72/59 nt y la economia del tamizado de juntura"},
+    {"bloque": "research/ola5/N3_marcos", "aporta": "los marcos 1 y 2 de D63, que son la unidad en la que esta feature enumera y la que reporta al lado"},
+    {"bloque": "research/ola5/N4_quimeras", "aporta": "el metodo de blanco continuo de un 21-mero de juntura, en las dos hebras"},
+    {"bloque": "research/ola6/O2_vatpase_b", "aporta": "el CDS de V-ATPase B, que no se versiona y se regenera con su generador"},
+    {"bloque": "research/ola6/O3_quimera_bicc_vatpase_b", "aporta": "la definicion de bloque fabricado por el empalme, el ancla 2 y la region 517-816"},
+    {"bloque": "research/ola4/M6_alertas", "aporta": "el esquema de columnas de la fila de alerta y el inventario al que una juntura todavia no puede entrar"}
+  ]
+}
