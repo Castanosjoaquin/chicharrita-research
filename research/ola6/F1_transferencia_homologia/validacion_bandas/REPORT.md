@@ -37,7 +37,10 @@ bandas.
 
 ![Concordancia por banda en los dos brazos](resultados/validacion_bandas.png)
 
-Análisis pareado (los 11.727 genes presentes en los dos brazos), lectura inclusiva:
+Análisis pareado (los **11.727 genes** presentes en los dos brazos), lectura inclusiva. La unidad
+de la tabla es el **par**, no el gen, y por eso el brazo O suma 11.731 pares sobre esos mismos
+11.727 genes: un gen puede aportar más de un ORF recíproco, mientras que en el brazo P hay
+exactamente una proteína curada por gen.
 
 | identidad | brazo P · proteína curada | brazo O · ORF de seis marcos | veredicto |
 | --- | --- | --- | --- |

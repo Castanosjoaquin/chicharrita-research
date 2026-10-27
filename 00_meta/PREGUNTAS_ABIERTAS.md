@@ -2332,8 +2332,10 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
 ### Ola 6, validación del supuesto de las bandas y cierre de `F1` (`D86`, issue #25, 2026-10-27)
 
 **Se cierra la 56.** El supuesto se midió y se sostiene: el paso por ORF de seis marcos no degrada
-la concordancia (85,0 % contra 85,0 % sobre 11.727 genes en común, diferencia máxima por banda de
-0,3 puntos). Detalle en `research/ola6/F1_transferencia_homologia/validacion_bandas/REPORT.md`.
+la concordancia (85,0 % contra 85,0 % sobre los 11.727 genes presentes en los dos brazos, sin que
+ningún IC95 se separe en ninguna de las cinco bandas). La diferencia máxima entre brazos es de
+**0,6 puntos** y cae en la banda < 40 %, que por preregistro no decide porque no llega a n = 100;
+entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `research/ola6/F1_transferencia_homologia/validacion_bandas/REPORT.md`.
 
 62. **¿Por qué el par completo no reproduce lo que publicó `C12`?** El brazo P es el diseño de
     `C12` —MQ contra HV, proteínas curadas, recíproco— corrido entero, y da 85,1 % contra el 78,2 %
