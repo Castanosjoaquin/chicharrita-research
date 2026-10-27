@@ -2267,3 +2267,21 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     insumo, que es justo lo que la entrada 56 dice que no hay que hacer. La forma barata de
     cerrarlo: cuando una afirmación de entorno entra a un archivo versionado, el nombre de la
     máquina va en la misma oración, como lo hace `PENDIENTE.md` de `R11`.
+
+58. **Se contesta la sub-pregunta del issue #27 sobre el zip, y la respuesta es no.** El
+    issue dejaba planteado, sobre el eje de expresión en el tejido expuesto, «habría que ver
+    si el zip lo trae». No lo trae: `work/zip_diego/` tiene **un solo archivo**, el
+    transcriptoma `Dalbulus_maidis_transcriptome_GITV01.fas`, sin tabla de expresión ni
+    metadatos de muestra, y sus cuatro estadísticas reproducen exactamente las del TSA
+    público que `W3` bajó del FTP del NCBI en la ola 2 —56.117 secuencias, 94.702.486 pb, la
+    más larga 205.383, la más corta 200 `[M]`—. No es una omisión del envío: un TSA es un
+    ensamblado y no contiene abundancia por muestra, y las 56.117 cabeceras son uniformes,
+    con **cero** menciones de tejido, cobertura, TPM o librería `[M]`. El eje 5 queda
+    declarado faltante, como el `PREREGISTRO.md` lo escribió **antes** de abrir el zip
+    (`research/ola6/F3_recomendador_genes/resultados/verificacion_zip_expresion.md`).
+    **Lo que queda abierto es otra cosa, y conviene no confundirlas:** el único proyecto de
+    lecturas fichado, `PRJNA631706` (16 corridas, 42.305 MB), contrasta *naive* contra
+    expuesto a MRFV a 4 h y 7 días, y **ninguna muestra nombra un tejido**: es insecto
+    entero. Daría un eje de **respuesta de expresión a la exposición al virus**, que no
+    tenemos y que es interesante por sí mismo, pero no contesta si el gen se expresa donde
+    el ARNdc ingerido llega `[H]`. Costaría 42 GB y un mapeador que esta máquina no tiene.
