@@ -25,7 +25,7 @@ proteínas, `GCF_028750875.1`) y cada proteína contra el conjunto de ORF, y se 
 fuera el mejor hit en las dos direcciones. Se repitió contra *Homalodisca vitripennis*
 (`GCF_021130785.1`, 31.163 proteínas) como contraste. Los dos proteomas son públicos y se
 verificaron contra el `md5checksums.txt` del NCBI. A cada par se le agregó la identidad, las dos
-coberturas y la banda de concordancia que `C12` midió para ese tramo de identidad.
+coberturas y la banda de concordancia que `C12` midió para ese tramo de identidad. **Nota agregada el 2026-10-27 (`D91`):** esas bandas se midieron con un criterio de nombre distinto del que usa `F1` —el de `C12` cuenta *isoform X1* y *isoform X8* como anotaciones distintas, el de `F1` no—, así que **subdeclaran en unos 7 puntos** la concordancia que mediría el propio criterio de `F1`. Es la causa, medida, de los 7,3 puntos que separan el 81 % de abajo del 88,5 % remedido (`research/ola6/R13_brecha_c12/`).
 
 ## Dónde cae cada contig
 

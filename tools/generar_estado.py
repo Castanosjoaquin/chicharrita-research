@@ -349,6 +349,20 @@ HECHO = [
      "constante. El trabajo es de la sesión <code>R4</code> y quedó fuera de <code>main</code> hasta hoy; se "
      "integró renumerando su decisión a D90 y reverificando sus cuatro mediciones antes de aplicarla.",
      ["pipeline/region_scoring.py", "00_meta/DECISIONS.md", "00_meta/CAMINOS_PROBADOS.md"]),
+    ("Ola 6 · De dónde salía la brecha con <code>C12</code> (pregunta 62)",
+     "Al validar las bandas de <code>F1</code>, el mismo par de proteomas corrido completo dio "
+     "<strong>84,7 %</strong> donde <code>C12</code> había publicado <strong>78,2 %</strong>, y eso dejaba en "
+     "duda la tabla que <code>F1</code> usa para rotular cada anotación. Separado en tres pasos que cambian una "
+     "sola cosa por vez, <strong>la brecha es enteramente el normalizador de nombres</strong>: aporta "
+     "+7,0 puntos, el alineador +0,2 y la submuestra −0,7. <code>C12</code> no midió mal — midió con una regla "
+     "que cuenta <em>isoform X1</em> e <em>isoform X8</em> como anotaciones distintas: de los 515 desacuerdos "
+     "que el criterio de <code>F1</code> convierte en acuerdos, el <strong>77,9 % se separaba sólo por el "
+     "sufijo de isoforma</strong> y el 21,6 % por <code>-like</code>, y no rompe ninguno. "
+     "<strong>La tabla de <code>C12</code> no se tocó</strong>: es correcta para su propio criterio y es una "
+     "cota inferior de la concordancia de nombre de gen; lo que se corrigió es el acople, anotado donde se usa. "
+     "No se corrió ningún alineamiento nuevo: salió de archivos que ya estaban en disco.",
+     ["research/ola6/R13_brecha_c12/REPORT.md", "research/ola3/C12_validacion_homologia/REPORT_A.md",
+      "00_meta/DECISIONS.md"]),
 ]
 
 FALTA = [

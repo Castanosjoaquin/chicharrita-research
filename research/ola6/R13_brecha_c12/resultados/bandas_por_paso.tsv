@@ -1,0 +1,19 @@
+paso	banda	n	aciertos	concordancia	ic95_lo	ic95_hi	c12_publicado
+A_blastp_protoC12	<40	14	6	0.4286	0.2138	0.6741	0.25
+A_blastp_protoC12	40-60	131	103	0.7863	0.7084	0.8478	0.761
+A_blastp_protoC12	60-80	428	358	0.8364	0.7984	0.8685	0.768
+A_blastp_protoC12	80-90	311	271	0.8714	0.8296	0.9041	0.786
+A_blastp_protoC12	>=90	197	183	0.9289	0.8843	0.9572	0.862
+A_blastp_protoC12	total	1081	921	0.852			0.782
+B_diamond_protoC12	<40	19	14	0.7368	0.5121	0.8819	0.25
+B_diamond_protoC12	40-60	135	106	0.7852	0.7085	0.8461	0.761
+B_diamond_protoC12	60-80	456	377	0.8268	0.7893	0.8587	0.768
+B_diamond_protoC12	80-90	309	271	0.877	0.8357	0.9091	0.786
+B_diamond_protoC12	>=90	203	190	0.936	0.8935	0.9622	0.862
+B_diamond_protoC12	total	1122	958	0.8538			0.782
+C_diamond_completo	<40	115	67	0.5826	0.4912	0.6686	0.25
+C_diamond_completo	40-60	1050	767	0.7305	0.7028	0.7564	0.761
+C_diamond_completo	60-80	3573	2962	0.829	0.8163	0.841	0.768
+C_diamond_completo	80-90	2329	2057	0.8832	0.8695	0.8956	0.786
+C_diamond_completo	>=90	1467	1371	0.9346	0.9207	0.9461	0.862
+C_diamond_completo	total	8534	7224	0.8465			0.782

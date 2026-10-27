@@ -2552,7 +2552,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     Corrido de punta a punta con `work/` en disco, terminan con código 0 **los ocho** `[M]`.
     Llegó ahí en tres pasos: cinco en la primera pasada, siete tras las dos correcciones que
     siguen, y el octavo —`sensibilidad_reparto.py`— cuando el equipo firmó la fila que lo
-    frenaba (`D91`). Los tres que fallaban en la primera pasada lo hacían por tres motivos
+    frenaba (`D92`). Los tres que fallaban en la primera pasada lo hacían por tres motivos
     distintos y **ninguno era falta de insumo**:
 
     * `ranking_v2.py` **no fallaba por insumo**: el censo lo invoca con `--muestras 50`
@@ -2569,7 +2569,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
       donde el proyecto quiere que se detenga: en una firma. Su error pasó de
       `RegionNoTamizada` a `AlertaSinDecidir` —un paso de avance: la región ya estaba
       tamizada y lo que faltaba era que una persona la firmara— y **terminó el mismo día**,
-      cuando esa firma se escribió (`D91`). Ver la entrada 78.
+      cuando esa firma se escribió (`D92`). Ver la entrada 78.
     * `01_region_vatpase_b.py` fallaba con `StopIteration` por un desencuentro de rutas, no
       por falta de datos. Ver la entrada 79.
 
@@ -2591,7 +2591,7 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     convirtió ese pendiente de «falta `work/`» en «falta una firma»: una clase distinta de
     pendiente, en manos del equipo y no de una máquina.
 
-    **Firmada el mismo día, bloqueante, por `D91`.** Con la firma puesta el generador
+    **Firmada el mismo día, bloqueante, por `D92`.** Con la firma puesta el generador
     termina y el censo llega a 8 de 8 `[M]`. Lo que la firma agrega y no estaba en la de
     193-392 es que **acá la región y el peso están acoplados**: ésta aparece sólo con
     `rho` = 0,00, así que si la exposición de *H. vitripennis* se cerrara en 0,60 la fila no
@@ -2769,7 +2769,25 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
    `R3`, que se cerro en otra sesion: hay que actualizar esa fila o confirmar que la pagina se
    regenera sola `[?]`.
 
-88. **El censo de generadores escribía su salida de prueba encima de las cifras publicadas,
+### Ola 6, la brecha con `C12` descompuesta (`D91`, pregunta 62, 2026-10-27)
+
+**Se cierra la 62.** La brecha es el normalizador de nombres (+7,0 de 6,45 puntos); el alineador
+aporta +0,18 y el protocolo −0,73. La tabla de `C12` queda como está, válida para su propio
+criterio. Detalle en `research/ola6/R13_brecha_c12/REPORT.md`.
+
+88. **¿Cuál de los dos criterios de nombre es el que hay que usar?** No se decidió y no se midió.
+    El de `F1` colapsa `isoform Xn`, `-like` y `homolog`; el de `C12` no colapsaba al menos los dos
+    primeros. Que *ankyrin-3-like isoform X2* y *ankyrin-3-like isoform X8* sean el mismo gen es
+    evidente, pero `-like` es otra cosa: *proteína X* y *proteína X-like* pueden ser parálogos
+    distintos, y el normalizador de `F1` los cuenta como acuerdo. **El 21,6 % de los pares que
+    recupera son por `-like`**, así que la elección mueve cerca de 1,5 puntos. Separar los dos
+    sufijos y medirlos aparte es barato y no se hizo `[?]`.
+89. **El normalizador de `C12` no existe como código y no se puede reconstruir.** Sólo sabemos, por
+    diferencia, que dejaba pasar los sufijos de isoforma. Cualquier intento de reproducir
+    exactamente su 78,2 % va a fallar por esto, y conviene saberlo antes de intentarlo. La lección
+    general ya está en `CAMINOS_PROBADOS.md`: una regla de comparación descrita en prosa y no
+    versionada no es reproducible aunque los datos sí lo sean.
+90. **El censo de generadores escribía su salida de prueba encima de las cifras publicadas,
     y el defecto estuvo invisible mientras el generador fallaba.** `sensibilidad_reparto.py`
     escribe en `research/ola4/M5_dos_ejes/resultados/`, que es un directorio versionado, y
     no tenía forma de mandar la salida a otro lado. El censo de `R11` lo corre con

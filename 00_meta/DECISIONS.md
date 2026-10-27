@@ -1595,9 +1595,54 @@ Para las junturas, el agujero que `D78` nombra queda **cerrado y verificado** co
 **Criterio:** sobre (a), hacia falta un criterio honesto que justifique alertar por debajo del piso de D28 y no aparecio ninguno. Al contrario: la medicion de D28 dice que a 19 nt el azar explica el total de coincidencias y que a 16 nt estan a la par del azar, o sea que la banda de 17 a 18 restaba de `buenos_limpios` **1.902 ventanas por ruido**, el 81,4 % de las alertas, y lo hacia sobre una metrica que es el criterio de orden por defecto del modulo. Y el sucesor de este modulo, `tools/sifi21_port/ranking.py`, ya trabaja con los criterios de D28 (`perfecto_21`, `perfecto_ge19`), asi que 19 ademas pone al motor viejo y al nuevo a contar lo mismo `[M]`. Sobre (b), un umbral configurable sin valor defendible por defecto traslada la contradiccion a quien corra el comando. Sobre (c), los insumos no estan en esta maquina y sustituirlos seria inventar la linea de base. Sobre (d): el costo real es que dos columnas de un CSV que ninguna pagina cita dejan de reproducirse, y se paga con esta entrada, que dice cuales son.
 **Consecuencia:** el modulo ya no reporta como riesgo un rango que el propio repositorio declaro indistinguible del azar, y la contradiccion que `M6` dejo abierta se cierra en el codigo y no solo en el registro. Dos cosas que esta decision **no** hace: no cambia ninguna region recomendada —la recomendacion publicada sale de `ranking.py`, que no usa esta constante `[M]`— y no toca el veto, asi que ninguna region pasa a ser apta o inapta por este cambio `[M]`. Lo que queda pendiente es ajeno a esta linea: si alguna vez se vuelve a correr la comparacion contra dsRIP, sus columnas de alerta van a dar los numeros del umbral 19 y no los que estan commiteados `[H]`.
 
+## D91 — La brecha entre `C12` y el par completo es el normalizador de nombres, no la medición; la tabla de `C12` no se toca y lo que se corrige es el acople con `F1`
+**Fecha:** 2026-10-27
+**Quién:** la sesión que cerró `F1` (issue #25), ejecutando
+`research/ola6/R13_brecha_c12/PREREGISTRO.md`, commiteado antes de calcular. Cierra la pregunta
+abierta 62, que esa misma sesión había abierto con `D86`. *Los números `D88` y `D89` quedan
+reservados para los dos commits de `R12` (issue #37) que al escribir esto estaban sin pushear.*
+**Decisión:** la diferencia entre el **78,2 %** que publicó `C12` (Validación A) y el **84,7 %**
+que da el mismo par de proteomas corrido completo **se atribuye al normalizador de nombres**, y en
+consecuencia: (a) **la tabla de bandas de `C12` no se recalcula ni se reemplaza** —es correcta para
+su propio normalizador—; (b) se anota en el informe de `C12` y en el de `F1` que las bandas
+**subdeclaran** en unos 7 puntos la concordancia medida con el criterio de `F1`, con puntero a
+`R13`; y (c) el **81 %** de `F1` sigue publicado sin corregirse hacia arriba, por `D86`.
+**Hecho que motivó la decisión:** tres pasos sobre los mismos dos proteomas, cada uno cambiando una
+sola cosa y todos con la misma regla de reciprocidad y el mismo normalizador: **A** con los
+alineamientos y el protocolo de `C12` da 85,2 % sobre 1.081 pares; **B** con `diamond` y el mismo
+protocolo, 85,4 % sobre 1.122; **C** con `diamond` y el par completo, 84,7 % sobre 8.534. O sea
+`brecha +6,45 pp = normalizador +7,00 + alineador +0,18 + protocolo −0,73` `[M]`. El paso A
+reconstruye 1.081 de los 1.152 pares de `C12`, dentro del ±10 % que el preregistro fijó como
+control de réplica. Sobre esos pares, comparar el producto de RefSeq tal cual da 406 acuerdos
+(37,6 %) y con el normalizador de `F1` da 921 (85,2 %): convierte 515 desacuerdos en acuerdos y
+**no rompe ninguno**, y el 77,9 % de esos 515 se separaba sólo por el sufijo de isoforma y el
+21,6 % por `-like` `[M]` —*kelch-like protein diablo isoform X1* contra *kelch-like protein
+diablo*—. **No se corrió ningún alineamiento nuevo.**
+**Alternativas consideradas:** (a) recalcular la tabla de `C12` con el normalizador de `F1` y
+publicar ésa; (b) cambiar el normalizador de `F1` por uno que imite al de `C12`; (c) la elegida.
+**Criterio:** sobre (a), la corrida de `C12` es lo que es y reescribir su tabla borraría el
+registro de lo que se publicó y de lo que otros documentos citaron; el preregistro ya fijaba, antes
+de ver el número, que en la rama «la causa es el normalizador» la tabla no se toca. Sobre (b), el
+de `C12` **no se puede imitar**: su código nunca quedó versionado, y lo único que sabemos es que
+dejaba pasar los sufijos de isoforma como desacuerdos. Sobre (c), el problema real no es ninguna de
+las dos mediciones sino el **acople**: adjuntar bandas medidas con un criterio a pares evaluados
+con otro, y eso se arregla diciéndolo donde se usa.
+**Consecuencia:** cierra la duda que `D86` dejó sobre las bandas publicadas de `C12`, y con ella la
+duda sobre todo documento que cite el 78,2 %: esa cifra es válida y hay que leerla como «con el
+criterio de nombre de `C12`», que cuenta las variantes de isoforma como anotaciones distintas. El
+78,2 % es una **cota inferior** de la concordancia de nombre de gen. Y explica de dónde salían los
+7,3 puntos que `D86` había medido entre el esperado con bandas de `C12` (81,2 %) y con bandas
+remedidas (88,5 %): son la misma causa, llegada por dos caminos independientes.
+**Lo que esta decisión no hace:** no dice cuál de los dos normalizadores es el correcto —que
+*isoform X1* contra *isoform X8* no sea un desacuerdo de función es un juicio defendible y no
+medido—; no reconstruye el de `C12`; no separa el efecto del alineador de cualquier otra diferencia
+entre las dos corridas que no esté en los TSV; no valida ninguna anotación contra verdad
+experimental; y no toca el diseño ni el ranking, que siguen bajo `D37`.
 ---
 
-## D91 — `eth_Dm` 194-393 se firma bloqueante, y la condición de revisión no es la misma que la de 193-392
+## D92 — `eth_Dm` 194-393 se firma bloqueante, y la condición de revisión no es la misma que la de 193-392
+> Se publicó como `D91` y se renumeró a `D92` al mergear: `R13` (pregunta 62) había tomado
+> ese número en la misma jornada.
 **Fecha:** 2026-10-27
 **Quién:** el usuario, sobre la región que la compuerta encontró al correr los ocho generadores (issue **#37**, entrada 78). Aplica `D48` y usa la forma de `D68` y `D73`; no las reabre.
 **Decisión:** la fila `eth_Dm` 194-393 / *H. vitripennis* / `LOC124369889` queda **bloqueante**, con la condición como parte de la firma. La justificación está en `research/ola4/M6_alertas/decisiones.tsv` y cita la accesión, como `D48` exige.

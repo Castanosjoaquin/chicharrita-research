@@ -8,7 +8,7 @@ con `work/` en disco— y correrlo entero.
 El resultado corto: **de las catorce casillas, diez se cerraron con la corrida hecha, dos
 cambiaron de naturaleza al medirlas y dos siguen abiertas con el motivo corregido.** La décima
 —el censo de los ocho generadores— se cerró cuando el equipo firmó la fila que frenaba al
-octavo (`D91`), ya empezado este informe. Y el
+octavo (`D92`), ya empezado este informe. Y el
 hallazgo que atraviesa todo el barrido no es ninguna de las mediciones nuevas: es que **de los
 cinco bloqueos que el inventario atribuía a falta de insumo, tres no eran de insumo**. Uno era
 un parámetro que el propio censo cambiaba, otro era el directorio desde donde se corre un
@@ -33,7 +33,7 @@ de herramientas faltantes de esta máquina no falta ninguna** `[M]`.
 La casilla principal del #35 pedía correr los ocho generadores de punta a punta y dejar que
 la compuerta señalara las regiones sin tamizar. Iban 2 de 8. Van **8 de 8** `[M]`, en tres
 pasos: cinco en la primera pasada, siete tras las dos correcciones de §3 y §5, y el octavo
-cuando se firmó la fila que lo frenaba (`D91`, §4). De los tres que fallaban en la primera
+cuando se firmó la fila que lo frenaba (`D92`, §4). De los tres que fallaban en la primera
 pasada, **ninguno fallaba por falta de insumo**:
 
 | Generador | Antes | Ahora | Por qué |
@@ -84,7 +84,7 @@ terminaba**, y su error pasó de `RegionNoTamizada` a `AlertaSinDecidir`. O sea 
 dejó de ser «falta `work/`» y pasó a ser «falta una firma», que es **otra clase de pendiente**
 y está en manos del equipo, no de una máquina.
 
-**Firmada bloqueante el mismo día (`D91`), y con eso el censo llegó a 8 de 8.** La firma no es
+**Firmada bloqueante el mismo día (`D92`), y con eso el censo llegó a 8 de 8.** La firma no es
 una copia de la de 193-392, aunque los dos motivos de ésa apliquen palabra por palabra. Tiene
 un tercero que es propio: **acá la región y el peso están acoplados.** 194-393 aparece sólo con
 `rho` = 0,00, así que el contrafáctico de la firma vieja —«con el 0,60 de `D18` sería el acierto
