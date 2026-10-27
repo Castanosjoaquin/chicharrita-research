@@ -2285,3 +2285,29 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     entero. Daría un eje de **respuesta de expresión a la exposición al virus**, que no
     tenemos y que es interesante por sí mismo, pero no contesta si el gen se expresa donde
     el ARNdc ingerido llega `[H]`. Costaría 42 GB y un mapeador que esta máquina no tiene.
+
+59. **El mecanismo `movilidad` de `D67` tiene un solo candidato en las 36 filas de `C5`, y
+    su réplica más cercana es negativa.** Al asignar el mecanismo de fenotipo de las 36 filas
+    desde el campo `resultado`, el reparto queda: letalidad 16, reproducción 13,
+    **transmisión 4** y **movilidad 1** `[M]`. El único de movilidad es `DM-02`
+    (`V-ATPase B` de *Dalbulus maidis*), y su apoyo es la frase «alas deformes», sin magnitud
+    ni estadístico. `DM-03` es la otra subunidad de la misma bomba, en la misma especie y con
+    la misma vía de entrega, y ahí el efecto sobre alas **se midió y no dio significativo**
+    `[M]`. `[H]` Si las quimeras se arman combinando mecanismos que no se solapan (`D67`),
+    una de las tres patas del esquema se apoya en una fila cuya replicación más cercana
+    falló, y el mecanismo que `D67` no reconoce —transmisión, entrada 54— tiene cuatro veces
+    más candidatos. No es de esta línea decidirlo: `F3` publica el reparto y la quimera de
+    `O3` no se toca. Lo que hay que preguntar es si «movilidad» sigue siendo una pata del
+    esquema con este respaldo, o si el tercer eje del armado debería ser transmisión.
+
+60. **Dos filas del catálogo traen mortalidad que su propia fuente desatribuye del blanco, y
+    una de las dos trae un número grande.** `HE-08` lo dice directamente («mortalidad alta
+    por la dosis, no por el blanco») y ya estaba visto. `HE-04` es el mismo caso y es más
+    peligroso: trae 64 % de mortalidad a 120 h creciente con la dosis, **y** la fuente aclara
+    que el knockdown no correlaciona con la dosis y que el control de dsGFP a 500 y
+    1000 ng/µL ya mata más que el de sacarosa `[R]`. Las dos quedaron etiquetadas
+    `sin_fenotipo_atribuible_al_blanco` y fuera del orden. `[H]` La pregunta que abren no es
+    de `F3`: si a esas dosis el dsRNA mata por sí mismo, cualquier bioensayo de ingesta del
+    proyecto que use dosis de ese orden necesita su propio control de dsRNA no relacionado, y
+    conviene saber si los trabajos que sostienen nuestras cifras de letalidad lo tienen. Es
+    una pregunta para el investigador.
