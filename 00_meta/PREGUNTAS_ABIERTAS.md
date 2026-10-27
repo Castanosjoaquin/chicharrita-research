@@ -2748,3 +2748,19 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     y no para la tercera: hoy el número de la tercera es seis y debería estar dicho al lado,
     porque si no, un lector que corre el verificador completo ve seis donde la ADR le
     prometió cero y no tiene forma de saber si eso es lo esperado.
+
+## 2026-10-27 — Lo que deja abierto el alineamiento del nivel de alerta (`D90`, issue #18)
+
+86. **Las columnas de alerta de `baseline_dsrip/region_multigen_resultados.csv` quedaron viejas y
+   nadie las puede regenerar hoy.** `frac_regiones_con_alerta` y `alerta_en_mejor_media`
+   reproducen exactamente el umbral 17 en los 20 de 20 loci, y con el 19 ya no `[M]`; igual
+   `alerta_en_mejor_limpios`, `desc_en_mejor_limpios`, `solape_limpios_dsrip` y
+   `solape_buenos_vs_limpios`. Los insumos (`investigathon/dsrip_baseline/multigen/`) no estan
+   en esta maquina. **Que hay que decidir:** si cuando vuelva el corpus se regenera el archivo
+   —y entonces cambian numeros que ningun documento cita pero que estan commiteados— o si se le
+   agrega al propio CSV una nota de procedencia que diga con que umbral se produjo. No se toco
+   porque no es archivo de esta linea `[H]`.
+87. **`tools/generar_estado.py:306` todavia lista el issue #18 en `FALTA`.** La fila describe la
+   contradiccion como pendiente y ya no lo esta. No se edito porque ese archivo es de la linea
+   `R3`, que se cerro en otra sesion: hay que actualizar esa fila o confirmar que la pagina se
+   regenera sola `[?]`.

@@ -336,11 +336,22 @@ HECHO = [
      ["research/ola6/F1_transferencia_homologia/REPORT.md",
       "research/ola6/F1_transferencia_homologia/validacion_bandas/REPORT.md",
       "00_meta/DECISIONS.md"]),
+    ("Ola 6 · El nivel de alerta alineado con el piso de D28 (issue #18)",
+     "La contradicción que <code>M6</code> midió y dejó declarada se cierra en el código: "
+     "<code>UMBRAL_OFF_ALERTA</code> pasa de <strong>17 a 19</strong> en <code>pipeline/region_scoring.py</code>, "
+     "con el motivo escrito arriba de la constante, y el nivel de descarte queda en 21. Así el módulo implementa "
+     "los dos niveles de D28 y <strong>deja de contar como riesgo la banda de 16 a 18 nt</strong> que D28 decidió "
+     "no reportar: sobre las 23.612 ventanas de <code>baseline_dsrip/ventanas_multigen.csv</code> el umbral 17 "
+     "marcaba 2.338 ventanas en alerta y el 19 marca 436, o sea que <strong>1.902 alertas, el 81,4 %</strong>, "
+     "eran ruido por debajo del piso. Lo que se mueve está medido y es acotado: de las 18.032 regiones cambian "
+     "sólo dos columnas, <code>n_off_alerta</code> y <code>buenos_limpios</code>; <strong>ninguna región pasa a "
+     "ser apta o inapta</strong> y ninguna recomendación publicada cambia, porque el veto no depende de esta "
+     "constante. El trabajo es de la sesión <code>R4</code> y quedó fuera de <code>main</code> hasta hoy; se "
+     "integró renumerando su decisión a D90 y reverificando sus cuatro mediciones antes de aplicarla.",
+     ["pipeline/region_scoring.py", "00_meta/DECISIONS.md", "00_meta/CAMINOS_PROBADOS.md"]),
 ]
 
 FALTA = [
-    ("<code>UMBRAL_OFF_ALERTA = 17</code> contra el piso de D28 (issue #18): <strong>hecho, sin mergear</strong>", "trabajo", True,
-     "<strong>El trabajo está hecho y el issue cerrado, pero el cambio nunca llegó a <code>main</code>.</strong> Verificado el 2026-10-27: la constante vale <strong>19</strong> en la rama <code>claude/r4-umbral-off-alerta-fd31b6</code> (commit <code>1915087</code>) y sigue valiendo <strong>17</strong> en <code>main</code>, y ese commit no es ancestro de <code>origin/main</code>. El contenido está: el umbral sube a 19 con el motivo citando D28 en el código, y está medido que <strong>no mueve ninguna cifra publicada</strong> porque la constante sólo entra en <code>pipeline/region_scoring.py</code> —el <code>buenos_limpios</code> del port se calcula aparte—. Lo que falta no es investigación: es <strong>mergear la rama</strong>. Mientras no se mergee, el pipeline publicado sigue reportando coincidencias de 17 y 18 nt que D28 decidió no reportar."),
     ("Fecha y texto del correo enviado (issue #28)", "decision", True,
      "El correo se envió, como confirmó el usuario, pero el repo no registra la fecha ni el texto enviado. El "
      "borrador tiene siete preguntas y <code>PLAN_DESARROLLO.md</code> §8 decía cinco: sin el texto efectivamente "
