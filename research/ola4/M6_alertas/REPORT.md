@@ -322,3 +322,67 @@ qué valor de exposición toma *H. vitripennis*, que es el que decide si las tre
 21/21 se leen como señal de conservación o como riesgo ecológico; si `ATPaseD_Dm` 137-436
 vuelve a ser candidata; y si el umbral de alerta de `region_scoring.py` se alinea con D28.
 Las dos columnas de decisión de `alertas.tsv` están en «pendiente» y así se entregan.
+
+---
+
+## Addendum (2026-10-26) — las diecisiete firmadas, y dónde vive la firma
+
+Esta línea entregó la tabla **en «pendiente» a propósito**: construir el mecanismo y decidir
+con él son dos cosas distintas, y M6 hizo la primera. La segunda la cierra `D68`, después de que
+la reunión del checkpoint 2 diera el argumento que faltaba para las tres filas de
+*Homalodisca vitripennis*.
+
+### El problema de persistencia, que había que resolver primero
+
+`scripts/tabla_alertas.py` reconstruye `alertas.tsv` entero en cada corrida y escribía
+`decision_usuario = "pendiente"` **fijo**. Una firma escrita a mano sobre esa tabla **se perdía la
+próxima vez que alguien corría el script**, sin aviso y sin diff que lo explicara, porque el
+archivo volvía a su estado de fábrica `[M]`. O sea que el mecanismo que D48 monta para que no
+saber cueste algo se desarmaba solo.
+
+La firma vive ahora en [`decisiones.tsv`](../decisiones.tsv), que es **entrada** del generador y
+no salida suya, y por eso está fuera de `resultados/`, que se reescribe entera. El volcado está en
+`tools/sifi21_port/alertas.py` (`leer_decisiones`, `aplicar_decisiones`) y tiene las dos formas de
+fallar cerradas:
+
+| Qué pasa | Qué hace | Por qué |
+| --- | --- | --- |
+| una firma no corresponde a ninguna fila | `FirmaHuerfana` | la tabla cambió debajo de la firma: la región se retiró, el organismo salió del panel o el gen impactado es otro |
+| los conteos de la fila cambiaron desde que se firmó | `FirmaVencida` | una fila que pasa de 0 a 5 coincidencias perfectas **no es la fila que alguien aceptó**, y heredar el «aceptada» sería el default invertido otra vez |
+
+`[M]` **La clave de una firma es región × organismo × gen impactado, y el cuarto campo no es
+decorativo:** en `ATPaseD_Dm` 72-371 hay **dos** filas de *Homo sapiens* —`LOC107984331` y
+`PDE1C`— y lo mismo en 137-436. Con la clave de región × organismo que parecía natural, firmar una
+habría firmado la otra sin que nadie la leyera. Está cubierto por una prueba.
+
+### El resultado
+
+`[M]` **Catorce aceptadas y tres bloqueantes**, cero pendientes. Las tres bloqueantes son las
+únicas con coincidencia perfecta de 21 nt, las tres contra el ortólogo del gen que se silencia en
+*H. vitripennis*, y las tres sobre regiones que el proyecto no recomienda.
+
+`[M]` Con las diecisiete firmadas, `exigir_decidida()` pasa sobre **las seis regiones vigentes en
+los dos umbrales de D28**. Eso mueve la pregunta abierta que esta línea dejó en su addendum
+anterior: con el umbral literal nada se movía, pero con el laxo **cuatro de las seis vigentes
+quedaban frenadas por no tener firma**, y ahora pasan por tenerla. Qué umbral adopta la compuerta
+sigue sin decidirse; lo que ya no pasa es que frene por omisión.
+
+`estado_regiones.tsv` gana dos columnas, `estado_firmado_21` y `estado_firmado_ge19`. La vieja
+`estado_D48` se deja como estaba: es lo que el motor puede decir solo y por diseño **nunca** dice
+«aceptada» (ver el docstring de `ejes_separados.estado_region`).
+
+### Verificación
+
+- `tabla_alertas.py` corrido dos veces seguidas: las cinco anclas pasan (A1 162/162, A2 51/51,
+  A3 3/3, A4 68/68, A5 30/30), las diecisiete quedan firmadas y **`alertas.tsv` sale idéntico byte
+  a byte** `[M]`. Es la prueba de que regenerar ya no borra la firma.
+- `test_alertas.py` pasa, con nueve verificaciones nuevas en §8. La §6 queda **salteada y
+  declarada** en esta máquina: el ancla de identidad necesita `pyahocorasick`, que no está. El
+  import se movió detrás de un `try` para que la falta de esa dependencia no impida correr las
+  pruebas que no la usan, que son todas las demás.
+
+### Lo que esta firma no dice
+
+No dice que ninguna región sea segura. Dice que fueron leídas, por quién y con qué argumento. El
+límite viaja en cada justificación: se midió **coincidencia exacta** de 21 nt, no apareamiento
+parcial ni efecto de tipo miARN `[?]`.

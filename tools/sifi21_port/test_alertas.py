@@ -34,9 +34,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import alertas as AL              # noqa: E402
 import ejes_separados as E        # noqa: E402
-import offtarget_21nt as O        # noqa: E402
 import ranking as R               # noqa: E402
 import ranking_v2 as V            # noqa: E402
+
+# `offtarget_21nt` es la unica pieza de este archivo que necesita `pyahocorasick`, y lo
+# necesita solo el ancla de identidad de §6. Importarlo arriba y sin red hacia que una
+# maquina sin esa dependencia no pudiera correr **ninguna** de las pruebas, incluidas
+# las de la compuerta y las firmas, que no dependen de ningun binario ni de ningun dato.
+# Se importa aparte y su ausencia saltea §6 con el mismo mecanismo que los insumos que
+# no estan en disco: una prueba salteada se declara, no se esconde.
+try:
+    import offtarget_21nt as O    # noqa: E402
+except ImportError as _e:
+    O, _FALTA_O = None, str(_e)
 
 FALLAS, SALTEADAS = [], []
 TRABAJO = RAIZ / "work" / "sifi_v2"
@@ -189,7 +199,11 @@ else:
 print("6. ancla: escanear_con_identidad() devuelve lo mismo que escanear()")
 consulta = TRABAJO / "fasta" / "ATPaseD_Dm_full.fasta"
 db = REF / "GCF_021130785.1_UT_GWSS_2.1_rna.fna.gz"
-if not (consulta.exists() and db.exists()):
+if O is None:
+    SALTEADAS.append("ancla de identidad: %s (la necesita offtarget_21nt, no estas pruebas)"
+                     % _FALTA_O)
+    print("  SALTEADA  %s" % _FALTA_O)
+elif not (consulta.exists() and db.exists()):
     SALTEADAS.append("ancla de identidad: faltan insumos locales")
     print("  SALTEADA  faltan insumos locales")
 else:
@@ -289,6 +303,122 @@ with _tf.TemporaryDirectory() as tmp:
         check(False, "leer() deberia rechazar una tabla aceptada sin justificar")
     except AL.FilaIncompleta:
         check(True, "leer() rechaza una tabla donde se acepto sin justificar")
+
+
+
+# ------------------------------------------------------------------------------- §8
+# La persistencia de las firmas. Lo que se prueba acá no es que el volcado funcione
+# —eso es trivial— sino las tres formas de perder una firma sin que nadie se entere,
+# que es el modo de fallar que hacía que el mecanismo de D48 se desarmara solo.
+
+def firma(fila, decision="aceptada", just=None, **kw):
+    """La fila de firma que le corresponde a una fila de alerta."""
+    h21, h19 = AL.huella_de(fila)
+    f = {"gen": fila["gen"], "region": fila["region"],
+         "organismo_corto": fila["organismo_corto"], "gen_locus": fila["gen_locus"],
+         "huella_21": h21, "huella_ge19": h19, "firmado_por": "prueba",
+         "fecha": "2026-10-26", "decision_usuario": decision,
+         "justificacion_usuario": just or ("Se acepta: el acierto es contra XM_046816879.1 y "
+                                           "el argumento va escrito acá.")}
+    f.update(kw)
+    return f
+
+base = fila_alerta()
+
+# 1. el caso normal: la firma se vuelca y la fila queda decidida
+filas = [fila_alerta()]
+inf = AL.aplicar_decisiones(filas, {AL.clave_de(base): firma(base)})
+check(inf["firmadas"] == 1 and inf["pendientes"] == 0
+      and filas[0]["decision_usuario"] == "aceptada",
+      "una firma se vuelca sobre su fila y la deja decidida")
+
+# 2. una fila sin firma vuelve a «pendiente», que es el estado de fábrica y es legítimo
+filas = [fila_alerta(decision_usuario="aceptada", justificacion_usuario="texto viejo")]
+inf = AL.aplicar_decisiones(filas, {})
+check(filas[0]["decision_usuario"] == AL.MARCA_PENDIENTE and inf["pendientes"] == 1,
+      "una fila sin firma queda en pendiente aunque la tabla trajera otra cosa")
+
+# 3. la huella vencida: la fila pasó de 22 a 5 coincidencias perfectas desde que se firmó
+movida = fila_alerta(ventanas_perfecto_21="5")
+try:
+    AL.aplicar_decisiones([movida], {AL.clave_de(base): firma(base)})
+    check(False, "una firma sobre conteos que cambiaron debería levantar FirmaVencida")
+except AL.FirmaVencida as e:
+    check("volver a firmarla" in str(e),
+          "una fila cuyos conteos cambiaron no hereda la firma: levanta FirmaVencida")
+
+# 4. la firma huérfana: la tabla ya no produce esa fila
+try:
+    AL.aplicar_decisiones([], {AL.clave_de(base): firma(base)})
+    check(False, "una firma sin fila debería levantar FirmaHuerfana")
+except AL.FirmaHuerfana as e:
+    check("264-563" in str(e), "una firma que no corresponde a ninguna fila levanta FirmaHuerfana")
+
+# 5. la clave incluye el gen impactado. Es el caso real de `ATPaseD_Dm` 72-371, donde hay
+#    DOS filas humanas: con una clave de región x organismo, firmar una firmaría las dos.
+a = fila_alerta(gen="ATPaseD_Dm", region="72-371", organismo_corto="humano",
+                gen_locus="LOC107984331", ventanas_perfecto_21="0",
+                ventanas_perfecto_ge19="4")
+b = fila_alerta(gen="ATPaseD_Dm", region="72-371", organismo_corto="humano",
+                gen_locus="PDE1C", ventanas_perfecto_21="0", ventanas_perfecto_ge19="3")
+check(AL.clave_de(a) != AL.clave_de(b),
+      "dos genes impactados distintos en la misma región y organismo son dos claves")
+filas = [dict(a), dict(b)]
+inf = AL.aplicar_decisiones(filas, {AL.clave_de(a): firma(a)})
+check(inf["firmadas"] == 1 and filas[1]["decision_usuario"] == AL.MARCA_PENDIENTE,
+      "firmar una de las dos filas humanas no firma la otra")
+
+# 6. una firma mal escrita aborta en vez de llegar al disco
+try:
+    AL.aplicar_decisiones([fila_alerta()],
+                          {AL.clave_de(base): firma(base, just=(
+                              "Se acepta porque el riesgo nos parece bajo y la region es buena. "
+                              "Es prosa suficiente en largo y no nombra ni el LOC ni la "
+                              "accesion, que es justo lo que D48 pide."))})
+    check(False, "una firma que no cita la fila debería fallar al aplicarse")
+except AL.FilaIncompleta as e:
+    check("no cita la fila" in str(e), "una firma que no cita la fila aborta al aplicarse")
+
+# 7. dos firmas para la misma fila es un error del archivo, no la última gana
+with tempfile.TemporaryDirectory() as tmp:
+    ruta = Path(tmp) / "decisiones.tsv"
+    import csv as _csv
+    with ruta.open("w", encoding="utf-8", newline="") as fh:
+        w = _csv.DictWriter(fh, fieldnames=list(AL.COLUMNAS_DECISION), delimiter="\t")
+        w.writeheader()
+        w.writerow(firma(base))
+        w.writerow(firma(base, decision="bloqueante"))
+    try:
+        AL.leer_decisiones(ruta)
+        check(False, "dos firmas para la misma fila deberían fallar")
+    except AL.FilaIncompleta as e:
+        check("dos firmas" in str(e), "dos firmas para la misma fila es un error del archivo")
+
+# 8. un archivo que no existe es el estado inicial, no un error
+check(AL.leer_decisiones(Path("/no/existe/decisiones.tsv")) == {},
+      "sin archivo de firmas, las filas salen en pendiente y no hay error")
+
+# 9. el archivo real del proyecto: las 17 firmas se aplican sobre la tabla real
+TABLA = RAIZ / "research/ola4/M6_alertas/resultados/alertas.tsv"
+FIRMAS = RAIZ / "research/ola4/M6_alertas/decisiones.tsv"
+if TABLA.exists() and FIRMAS.exists():
+    import csv as _csv2
+    with TABLA.open(encoding="utf-8") as fh:
+        reales = list(_csv2.DictReader(fh, delimiter="\t"))
+    inf = AL.aplicar_decisiones(reales, AL.leer_decisiones(FIRMAS))
+    check(inf["pendientes"] == 0 and inf["firmadas"] == len(reales),
+          "las %d filas de alertas.tsv tienen firma y ninguna queda pendiente" % len(reales))
+    for g, r in (("MP_MRFV", "72-271"), ("BicC_Dm", "922-1221"), ("ATPaseD_Dm", "72-371"),
+                 ("eth_Dm", "114-313")):
+        AL.exigir_decidida(reales, g, r, "perfecto_ge19")
+    check(True, "las regiones vigentes con alerta pasan la compuerta en el umbral laxo de D28")
+    tres = [AL.estado_decision(reales, g, r)["estado"]
+            for g, r in (("BicC_Dm", "264-563"), ("ATPaseD_Dm", "151-450"),
+                         ("ATPaseD_Dm", "137-436"))]
+    check(tres == ["decidida: bloqueante"] * 3,
+          "las tres regiones con coincidencia perfecta de 21 nt quedan bloqueantes")
+else:
+    SALTEADAS.append("§8.9 la tabla real o el archivo de firmas no estan en disco")
 
 
 print()

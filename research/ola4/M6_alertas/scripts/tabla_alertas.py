@@ -41,6 +41,9 @@ IDENTIDAD = RAIZ / "work" / "m6_alertas" / "identidad_por_ventana.tsv"
 PUBLICADO = RAIZ / "research/ola3/C7_ranking_v2/resultados/ranking_v2.json"
 COMPLEJIDAD = RAIZ / "research/ola4/M5_dos_ejes/resultados/complejidad_seis_genes.json"
 SALIDA = RAIZ / "research/ola4/M6_alertas/resultados"
+# Las firmas de D48. Es **entrada**, no salida: vive fuera de `resultados/` porque esta
+# carpeta se reescribe entera en cada corrida y antes se llevaba puesta cualquier firma.
+DECISIONES = RAIZ / "research/ola4/M6_alertas/decisiones.tsv"
 REF_DIR = "work/W5/ref"
 
 # Las doce regiones. «qué es» sale de los ADR citados; la columna `vigente` dice si hoy
@@ -324,6 +327,12 @@ def estados(genes: dict, filas: list[dict]) -> list[dict]:
             "veto_regla_hoy_ciega_al_peso": "sí" if est["vetada_regla_anterior"] else "no",
             "veto_regla_por_exposicion_M5": "sí" if est_exp["vetada_regla_anterior"] else "no",
             "estado_D48": est["estado"],
+            # `estado_D48` es lo que el motor puede decir solo, y por diseño nunca dice
+            # «aceptada» (ver el docstring de `ejes_separados.estado_region`). Las dos
+            # columnas que siguen son lo que agregan las firmas, en los dos umbrales de
+            # D28, que es donde se ve la diferencia que M6 dejó como pregunta abierta.
+            "estado_firmado_21": AL.estado_decision(filas, gen, reg, "perfecto_21")["estado"],
+            "estado_firmado_ge19": AL.estado_decision(filas, gen, reg, "perfecto_ge19")["estado"],
             "decide": est["decide"],
         })
     return out
@@ -349,6 +358,15 @@ def main() -> int:
     filas = construir(genes, identidad, complejidad)
     n = AL.validar(filas)
     print("validación de los cuatro campos: %d de %d filas completas" % (n, len(filas)))
+
+    # Las firmas, volcadas sobre las filas recién construidas. Aborta si una firma no
+    # corresponde a ninguna fila o si los conteos de su fila cambiaron desde que se
+    # firmó: las dos cosas significan que nadie leyó la fila que hoy está en la tabla.
+    inf = AL.aplicar_decisiones(filas, AL.leer_decisiones(DECISIONES))
+    print("firmas de D48 (%s): %d de %d filas decididas, %d en pendiente"
+          % (DECISIONES.relative_to(RAIZ), inf["firmadas"], inf["filas"], inf["pendientes"]))
+    for k in inf["sin_firma"]:
+        print("  sin firmar  %s %s / %s" % k)
 
     f5 = a5_identidad(filas, genes)
     rotas = [f for f in f5 if not f["coincide"]]

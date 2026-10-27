@@ -258,6 +258,141 @@ def validar_decision(fila: dict) -> None:
             % (donde, fila.get("gen_transcriptos", "")))
 
 
+# --------------------------------------------------------------------- persistencia
+#
+# El problema que resuelve esta seccion es banal y por eso peligroso: `tabla_alertas.py`
+# reconstruye `alertas.tsv` desde cero en cada corrida y escribia `decision_usuario =
+# "pendiente"` fijo. Una firma escrita a mano sobre esa tabla se pierde la proxima vez
+# que alguien corre el script, sin aviso y sin diff que lo explique, porque el archivo
+# vuelve a su estado de fabrica. O sea: el mecanismo que D48 monta para que no saber
+# cueste algo se desarmaba solo.
+#
+# La firma vive entonces en un archivo aparte —la tabla es salida, la firma es entrada—
+# y se vuelca sobre las filas generadas. Las dos formas de fallar estan cerradas:
+#
+#   * una firma que no corresponde a ninguna fila (`FirmaHuerfana`) significa que la
+#     tabla cambio debajo de la firma: la region se retiro, el organismo salio del panel
+#     o el gen impactado es otro. Pasarla por alto dejaria una firma apuntando a nada;
+#   * una firma cuya huella no coincide con la fila (`FirmaVencida`) significa que los
+#     conteos de esa fila cambiaron desde que se firmo. Una fila que pasa de 0 a 5
+#     coincidencias perfectas **no es la fila que alguien acepto**, y heredar el
+#     «aceptada» seria exactamente el default invertido que D48 vino a corregir.
+#
+# Las dos levantan en vez de avisar. Es fail-closed a proposito: el costo de equivocarse
+# es volver a firmar una fila, y el de no hacerlo es publicar una region con una alerta
+# que nadie leyo.
+
+COLUMNAS_DECISION = ("gen", "region", "organismo_corto", "gen_locus",
+                     "huella_21", "huella_ge19", "firmado_por", "fecha",
+                     "decision_usuario", "justificacion_usuario")
+
+
+class FirmaHuerfana(ValueError):
+    """Hay una firma para una fila que la tabla ya no produce."""
+
+
+class FirmaVencida(ValueError):
+    """La fila que se firmo y la que la tabla produce hoy no tienen los mismos conteos."""
+
+
+def clave_de(fila: dict) -> tuple:
+    """La identidad de una fila de alerta: region x organismo x **gen impactado**.
+
+    Los cuatro campos hacen falta, y el cuarto no es decorativo: en `ATPaseD_Dm` 72-371
+    hay **dos** filas de *Homo sapiens* —`LOC107984331` y `PDE1C`— y lo mismo en 137-436.
+    Una clave de region x organismo las fusiona, y fusionarlas significa firmar una y
+    que la otra herede la firma sin que nadie la haya leido, que es justo el modo de
+    fallar que D48 quiere cerrar. Es ademas la granularidad que el modulo declara arriba.
+
+    Que una reanotacion de la referencia mueva el acierto a otro LOC deja la firma
+    huerfana, y eso **tambien** es lo correcto: el gen impactado es la mitad del
+    argumento, asi que si cambia hay que volver a escribirlo.
+    """
+    return (fila.get("gen"), fila.get("region"), fila.get("organismo_corto"),
+            (fila.get("gen_locus") or "").strip())
+
+
+def huella_de(fila: dict) -> tuple:
+    """Lo que tiene que seguir siendo cierto para que una firma siga valiendo.
+
+    Los dos conteos de D28. No la prosa de evidencia, que se puede reescribir sin que
+    cambie el hecho, ni las posiciones, que se mueven si la region se corre un nucleotido
+    sin que cambie el riesgo. El gen impactado no esta aca porque ya esta en la clave.
+    """
+    return (str(fila.get("ventanas_perfecto_21", "")).strip(),
+            str(fila.get("ventanas_perfecto_ge19", "")).strip())
+
+
+def huella_firmada(firma: dict) -> tuple:
+    """La misma huella, leida de la fila de firma, donde las columnas se llaman distinto.
+
+    Son dos funciones y no una con heuristica a proposito: una fila de alerta y una de
+    firma son dos formatos distintos, y adivinar cual es cual por las columnas presentes
+    es la clase de atajo que falla en silencio el dia que un formato gana una columna.
+    """
+    return (str(firma.get("huella_21", "")).strip(),
+            str(firma.get("huella_ge19", "")).strip())
+
+
+def leer_decisiones(ruta) -> dict:
+    """Lee el archivo de firmas. Devuelve {clave: fila de firma}. No valida contra nada.
+
+    Un archivo que no existe no es un error: es el estado inicial, en el que las
+    diecisiete filas salen en «pendiente», que es como la tabla se entrego.
+    """
+    ruta = Path(ruta)
+    if not ruta.exists():
+        return {}
+    with ruta.open(encoding="utf-8") as fh:
+        crudas = [f for f in csv.DictReader(fh, delimiter="\t")
+                  if (f.get("gen") or "").strip() and not (f.get("gen") or "").startswith("#")]
+    out = {}
+    for f in crudas:
+        k = clave_de(f)
+        if k in out:
+            raise FilaIncompleta("hay dos firmas para la misma fila %s en %s" % (k, ruta))
+        out[k] = f
+    return out
+
+
+def aplicar_decisiones(filas: list[dict], decisiones: dict) -> dict:
+    """Vuelca las firmas sobre las filas generadas y valida el resultado.
+
+    Una fila sin firma queda en «pendiente» con su texto de relleno, que es el estado de
+    fabrica y es legitimo. Una fila con firma queda decidida y pasa por
+    `validar_decision`, de modo que una firma mal escrita —sin prosa, o sin citar la
+    fila— aborta la corrida en vez de llegar al disco.
+    """
+    usadas, aplicadas = set(), 0
+    for fila in filas:
+        k = clave_de(fila)
+        firma = decisiones.get(k)
+        if firma is None:
+            fila["decision_usuario"] = MARCA_PENDIENTE
+            fila["justificacion_usuario"] = "pendiente: la escribe el usuario, no el motor"
+            continue
+        usadas.add(k)
+        esperada, actual = huella_firmada(firma), huella_de(fila)
+        if esperada != actual:
+            raise FirmaVencida(
+                "la firma de %s %s / %s / %s se escribio sobre una fila con 21/21=%s y "
+                ">=19=%s, y hoy la fila tiene 21/21=%s y >=19=%s. No es la misma fila: hay "
+                "que volver a leerla y volver a firmarla." % (k + esperada + actual))
+        fila["decision_usuario"] = (firma.get("decision_usuario") or "").strip()
+        fila["justificacion_usuario"] = (firma.get("justificacion_usuario") or "").strip()
+        validar_decision(fila)
+        aplicadas += 1
+    huerfanas = sorted(set(decisiones) - usadas)
+    if huerfanas:
+        raise FirmaHuerfana(
+            "hay %d firma(s) que no corresponden a ninguna fila de la tabla: %s. La tabla "
+            "cambio debajo de la firma; hay que revisarlas antes de seguir."
+            % (len(huerfanas), ", ".join("%s %s / %s / %s" % h for h in huerfanas)))
+    pendientes = [f for f in filas if (f.get("decision_usuario") or "") == MARCA_PENDIENTE]
+    return {"filas": len(filas), "firmadas": aplicadas, "pendientes": len(pendientes),
+            "sin_firma": sorted(clave_de(f) for f in pendientes)}
+
+
 def filas_de_region(filas: list[dict], gen: str, region: str) -> list[dict]:
     return [f for f in filas if f.get("gen") == gen and f.get("region") == region]
 
