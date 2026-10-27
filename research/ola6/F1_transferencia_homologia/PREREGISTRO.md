@@ -147,3 +147,39 @@ categoría; sólo permite leer cuánto de d es isoformas.
 **Controles de la v2:** el positivo es el mismo (V-ATPasa B, contig `GITV01003502.1`, identidad
 ≥ 99 %, ahora sobre el ORF de 517 aa); el negativo (señuelo, 1.000 ORF barajados, semilla 0) se
 toma de los ORF de la v2. Si el positivo falla otra vez, se declara y no se lee.
+
+---
+
+## Enmienda 2 — 2026-10-27, escrita después de la corrida v2 y antes de reclasificar
+
+**El hecho.** La v2 corrió (105.871 ORF en 56.117 contigs) y el control positivo **sigue fallando
+si se lo lee literalmente**: el ORF de 517 aa de `GITV01003502.1` encuentra como mejor hit a la
+V-ATPasa B de *M. quadrilineatus* (`XP_054288745.1`) con 100 % de identidad y 100 % de la
+proteína de referencia cubierta, pero la categoría de la regla preregistrada es **`d_empate`**:
+del lado inverso la proteína de referencia empata en bitscore con otros ORF del transcriptoma. El
+16 % de los ORF con hit caen en esa categoría en la v2, y el 13 % si se miran los contigs, así que
+no es un caso aislado `[M]`.
+
+**Lo medido sobre los empates, antes de proponer nada** (`resultados/diagnostico_empates.json`):
+de los empates del lado inverso, sólo el **53,7 %** son copias de secuencia idéntica; el resto son
+ORF distintos que alinean con el mismo bitscore. No es cierto, entonces, que los empates sean
+simple redundancia del transcriptoma, y no se declara como tal `[M]`.
+
+**Qué se hace.** La categoría `d_empate` **estricta, la preregistrada, no se toca y es la que se
+publica como primaria.** Se agrega una segunda columna, `categoria_ampliada`, definida así y
+rotulada `[H]` y *post hoc* (la escribo habiendo visto la v1 y la v2):
+
+1. **Lado directo.** Si el ORF empata entre varias proteínas de referencia, el empate se resuelve
+   sólo cuando **todas** tienen el mismo nombre normalizado y ese nombre es informativo
+   (isoformas de RefSeq). Si los nombres difieren, o no son informativos, queda en `d_empate`.
+2. **Lado inverso.** Es recíproco si el ORF está **entre** los de mejor bitscore de la proteína
+   de referencia (RBH con empates admitidos). El tamaño del empate viaja en la columna
+   `ampliada_n_empatados_inverso`, para que quien lea vea cuántos ORF comparten el primer puesto.
+3. Sin ninguna otra condición. En particular **no** se exige secuencia idéntica entre los ORF
+   empatados, porque lo medido arriba dice que no se cumple en casi la mitad.
+
+**Cómo se lee el control.** El positivo se evalúa en las dos columnas y se publican las dos. La
+tabla ampliada sólo se lee como resultado si su control positivo pasa; la estricta, que lo
+falla, se publica igual con su cifra y la causa. Que la ampliada pase **no prueba** que la regla
+sea correcta: la escribí después de ver el fallo. El control del señuelo es el que acota los
+falsos positivos de ambas.
