@@ -366,7 +366,8 @@ def main() -> int:
     print("firmas de D48 (%s): %d de %d filas decididas, %d en pendiente"
           % (DECISIONES.relative_to(RAIZ), inf["firmadas"], inf["filas"], inf["pendientes"]))
     for k in inf["sin_firma"]:
-        print("  sin firmar  %s %s / %s" % k)
+        # cuatro campos, no tres: la clave lleva el gen impactado (ver `alertas.clave_de`)
+        print("  sin firmar  %s %s / %s / %s" % k)
 
     f5 = a5_identidad(filas, genes)
     rotas = [f for f in f5 if not f["coincide"]]

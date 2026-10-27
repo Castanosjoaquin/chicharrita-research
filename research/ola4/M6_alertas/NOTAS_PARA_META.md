@@ -118,3 +118,11 @@ contradicción, se reportó con las dos cifras y se dejó la constante donde est
 
 **No se corrió el tamizaje con `--mm1`.** El tercer criterio no entra en D28 y la tabla de
 alertas no lo usa.
+
+> **Actualización del 2026-10-26.** El punto 5 —quién escribe y quién firma— lo contesta `D68`
+> en su mitad operativa: firma el equipo, la firma queda en `decisiones.tsv` con su autor y su
+> fecha, y las diecisiete están decididas (catorce aceptadas, tres bloqueantes). **Lo que sigue
+> abierto es la otra mitad y no la arregla ningún archivo:** dos personas pueden justificar la
+> misma fila en direcciones opuestas y las dos pasar la validación mecánica. El piso de
+> `cita_la_fila` distingue una justificación escrita sobre esa fila de un párrafo genérico
+> copiado a las diecisiete, y no pretende más que eso.

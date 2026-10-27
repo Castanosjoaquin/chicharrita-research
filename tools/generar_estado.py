@@ -234,6 +234,19 @@ HECHO = [
      "empate, 33 a 33</strong>. Contra la región del laboratorio la ventaja no se mueve en ningún marco.",
      ["research/ola5/N10_conteo_historico_por_region/REPORT.md"]),
 
+    ("Las 17 alertas de off-target, firmadas (D68)",
+     "D48 había invertido el default: el veto descartaba por omisión y la tabla que lo reemplazó no descartaba "
+     "nada, así que <strong>una alerta no leída quedaba operativamente igual que una aceptada</strong>. Las 17 "
+     "filas quedan decididas: <strong>14 aceptadas y 3 bloqueantes</strong>. Las tres bloqueantes son las únicas "
+     "con coincidencia perfecta de 21 nt, las tres contra el ortólogo del gen que se silencia en "
+     "<i>H. vitripennis</i>, y las tres sobre regiones que no recomendamos. La de <code>ATPaseD_Dm</code> 137-436 "
+     "lleva su condición escrita, porque aceptarla adoptaría exposición cero por la ventana y eso es justo lo que "
+     "D66 decidió no hacer. <strong>Y la firma dejó de vivir en la tabla:</strong> "
+     "<code>tabla_alertas.py</code> la reescribía entera en cada corrida, así que una firma a mano se perdía sin "
+     "aviso; ahora es un archivo de entrada y regenerar la tabla da un resultado idéntico byte a byte.",
+     ["00_meta/DECISIONS.md", "research/ola4/M6_alertas/decisiones.tsv",
+      "research/ola4/M6_alertas/REPORT.md"]),
+
     # -------------------------------------------------------------- checkpoint 2
     ("Checkpoint 2 · La reunión, transcripta y mapeada",
      "El acta de la reunión del 26 de octubre, con las transcripciones crudas auditables al lado —cinco audios "
@@ -267,19 +280,13 @@ FALTA = [
      "decisión abierta y <strong>no se le pide un número</strong> —dijo que el organismo no está en la Argentina y "
      "«puede no importar», y también que «puede venir eventualmente»—. Lo que pidió es que la decisión esté "
      "explicitada, con los dos extremos a la vista."),
-    ("Firmar las 17 alertas de off-target (issue #15)", "decision", True,
-     "Es la que la reunión destrabó, y arregla un problema real: hoy <strong>una alerta no leída queda "
-     "operativamente igual que una aceptada</strong>. Las 17 filas siguen en «pendiente». El argumento que faltaba "
-     "para las tres de <i>H. vitripennis</i> —las únicas con coincidencia perfecta de 21 nt— lo dio él en la reunión, "
-     "y conviene citarlo a él en vez de inventar un criterio nuestro. <strong>Ojo con el orden:</strong> "
-     "<code>tabla_alertas.py</code> escribe «pendiente» fijo, así que regenerar la tabla borra cualquier firma "
-     "escrita a mano. La persistencia va primero o el trabajo se pierde."),
     ("Que un entregable llame de verdad a la compuerta (issue #16)", "trabajo", False,
      "<code>alertas.exigir_decidida()</code> está implementada y probada, pero <strong>ningún entregable la "
      "llama</strong>: las únicas referencias fuera de la prueba están en un script de la ola 4 y en los REPORT. Una "
-     "compuerta que nadie llama no es una compuerta, y hoy nada en el código impide usar una región cuya fila sigue "
-     "en «pendiente». Depende de que las alertas estén firmadas: si se corre antes falla sobre las seis regiones "
-     "vigentes, y eso es correcto."),
+     "compuerta que nadie llama no es una compuerta, y hoy nada en el código impide usar una región sin mirar su "
+     "fila. <strong>Dejó de estar bloqueada el 2026-10-26:</strong> esperaba a que las 17 alertas estuvieran "
+     "firmadas, y lo están (D68), así que la compuerta ya pasa sobre las seis regiones vigentes en los dos umbrales "
+     "de D28 y se puede llamar sin congelar nada. Lo que sigue sin decidirse es <em>qué umbral</em> adopta."),
     ("La secuencia de <code>V-ATPase B</code> (issue #22)", "trabajo", False,
      "Es el único insumo que bloquea lo único realmente nuevo que dejó el checkpoint 2. <code>DM-02</code> está en "
      "el catálogo de C5 con fenotipo publicado en la especie —<strong>alas deformes</strong>, supervivencia 16 % al "
@@ -448,13 +455,13 @@ que dejó el checkpoint 2, cinco ya estaban cerrados. Lo que sigue son
 <strong>{contar(n_dec, "una decisión", "decisiones")} y
 {contar(n_tra, "un trabajo chico", "trabajos chicos")}</strong>, no producir el
 entregable.</p>
-<p>Lo que bloquea de verdad son dos cosas, y ninguna es una medición. <strong>La primera</strong>
-es que cuatro entregables no dicen la misma cifra para la misma región: D63 a D65 ya decidieron que
-se publica 26 y dos documentos viejos siguen diciendo 36. <strong>La segunda</strong> es que las 17
-alertas de off-target siguen sin firmar, y mientras eso pase una alerta no leída vale
-operativamente lo mismo que una aceptada. Lo único realmente nuevo que dejó la reunión es la
-quimera por combinación de fenotipos, y su único insumo faltante es la secuencia de
-<code>V-ATPase B</code>. El tablero completo, features de plataforma incluidas, está en el
+<p><strong>Lo que bloquea de verdad es una sola cosa, y no es una medición:</strong> cuatro
+entregables no dicen la misma cifra para la misma región. D63 a D65 ya decidieron que se publica
+26 y dos documentos viejos siguen diciendo 36, así que alguien que abra el repositorio ve números
+que se contradicen entre sí. Las 17 alertas de off-target, que eran el otro bloqueo, quedaron
+firmadas el 26 de octubre (D68). Lo único realmente nuevo que dejó la reunión es la quimera por
+combinación de fenotipos, y su único insumo faltante es la secuencia de <code>V-ATPase B</code>.
+El tablero completo, features de plataforma incluidas, está en el
 <a href="https://github.com/Castanosjoaquin/chicharrita-research/issues/29">índice de la ola 6</a>.</p>
 </div>
 
