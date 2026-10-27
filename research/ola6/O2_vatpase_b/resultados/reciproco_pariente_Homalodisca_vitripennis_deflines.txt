@@ -1,0 +1,4 @@
+>XM_046807892.1 PREDICTED: Homalodisca vitripennis V-type proton ATPase catalytic subunit A (LOC124356721), transcript variant X1, mRNA
+>XM_046807894.1 PREDICTED: Homalodisca vitripennis V-type proton ATPase catalytic subunit A (LOC124356721), transcript variant X2, mRNA
+>XM_046807969.1 PREDICTED: Homalodisca vitripennis V-type proton ATPase subunit D (LOC124356774), mRNA
+>XM_046812795.1 PREDICTED: Homalodisca vitripennis V-type proton ATPase subunit B (LOC124359774), mRNA

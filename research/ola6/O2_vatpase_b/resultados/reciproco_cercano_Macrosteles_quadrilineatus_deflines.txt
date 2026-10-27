@@ -1,0 +1,5 @@
+>XM_054404748.1 PREDICTED: Macrosteles quadrilineatus V-type proton ATPase catalytic subunit A (LOC128985332), mRNA
+>XM_054404756.1 PREDICTED: Macrosteles quadrilineatus V-type proton ATPase catalytic subunit A (LOC128985340), mRNA
+>XM_054407659.1 PREDICTED: Macrosteles quadrilineatus V-type proton ATPase subunit D (LOC128987016), mRNA
+>XM_054408552.1 PREDICTED: Macrosteles quadrilineatus V-type proton ATPase subunit D (LOC128987608), mRNA
+>XM_054432770.1 PREDICTED: Macrosteles quadrilineatus V-type proton ATPase subunit B (LOC129004260), mRNA

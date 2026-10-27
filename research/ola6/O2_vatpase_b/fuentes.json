@@ -1,0 +1,115 @@
+{
+  "bloque": "O2",
+  "que": "secuencia de V-ATPase B de Dalbulus maidis por homologia local",
+  "fecha_de_consulta": "2026-10-27",
+  "nota_de_confidencialidad": "Ninguna secuencia del proyecto ni del corpus de EPILAB se envio a ningun servicio. Lo que se bajo son accesiones publicas y los tres TSA publicos; todo el alineamiento corrio en local con miniprot.",
+  "consultas_publicas": [
+    {
+      "accesion": "AGJ51963.1",
+      "base": "NCBI Protein",
+      "titulo_del_registro": "V-ATPase B subunit [Peregrinus maidis]",
+      "largo_aa": 500,
+      "fecha_del_registro": "2013-04-20",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=AGJ51963.1&rettype=fasta&retmode=text",
+      "abierta": true,
+      "por_que": "subunidad B del DE-01 del catalogo de C5; el bioensayo que la acompana se cita por el catalogo, no por el paper, que esta pasada no abrio",
+      "marcador": "E para la secuencia publicada"
+    },
+    {
+      "accesion": "XP_054288745.1",
+      "base": "NCBI Protein (RefSeq)",
+      "titulo_del_registro": "V-type proton ATPase subunit B [Macrosteles quadrilineatus]",
+      "largo_aa": 500,
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=XP_054288745.1&rettype=fasta&retmode=text",
+      "abierta": true,
+      "por_que": "ortologo reciproco estricto que C11 ya habia resuelto por blastp bidireccional contra Swiss-Prot de artropodos"
+    },
+    {
+      "accesion": "XP_054260731.1",
+      "base": "NCBI Protein (RefSeq)",
+      "titulo_del_registro": "V-type proton ATPase catalytic subunit A [Macrosteles quadrilineatus]",
+      "largo_aa": 614,
+      "abierta": true,
+      "por_que": "control de paralogo del mismo complejo"
+    },
+    {
+      "accesion": "XP_054264527.1",
+      "base": "NCBI Protein (RefSeq)",
+      "titulo_del_registro": "V-type proton ATPase subunit D [Macrosteles quadrilineatus]",
+      "largo_aa": 245,
+      "abierta": true,
+      "por_que": "control de paralogo y ancla contra ATPaseD_Dm, que el proyecto ya localizo en el cromosoma 8"
+    },
+    {
+      "accesion": "P31409",
+      "base": "UniProtKB (Swiss-Prot, revisada)",
+      "titulo_del_registro": "VATB_DROME V-type proton ATPase subunit B, Drosophila melanogaster, GN=Vha55",
+      "largo_aa": 490,
+      "url": "https://rest.uniprot.org/uniprotkb/P31409.fasta",
+      "abierta": true,
+      "por_que": "es la Vha55 que pipeline/resultados.json usa como una de sus siete proteinas de control; sirve de ancla de identidad (0,978 ya versionado contra 0,9776 medido aca)"
+    }
+  ],
+  "cds_de_referencia_de_los_parientes": [
+    {
+      "accesion": "XM_054432770.1",
+      "base": "NCBI Nucleotide (RefSeq)",
+      "producto": "Macrosteles quadrilineatus V-type proton ATPase subunit B, mRNA",
+      "cds": "40..1542, 1503 nt, protein_id XP_054288745.1",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=XM_054432770.1&rettype=fasta_cds_na&retmode=text",
+      "abierta": true,
+      "por_que": "es el ARNm en el que cae la vuelta del reciproco, y el mismo que C11 identifico para esa familia"
+    },
+    {
+      "accesion": "XM_046812795.1",
+      "base": "NCBI Nucleotide (RefSeq)",
+      "producto": "Homalodisca vitripennis V-type proton ATPase subunit B, mRNA",
+      "cds": "61..1563, 1503 nt, protein_id XP_046668751.1",
+      "abierta": true,
+      "por_que": "segundo punto de la banda de concordancia, y el no objetivo que D66 y D68 tratan"
+    }
+  ],
+  "transcriptomas_publicos": {
+    "fuente": "FTP del GenBank, directorio de TSA",
+    "url_del_directorio": "https://ftp.ncbi.nlm.nih.gov/genbank/tsa/G/",
+    "archivos": [
+      {"prefijo": "GCWP01", "archivo": "tsa.GCWP.1.fsa_nt.gz", "contigs": 25662, "origen_declarado": "Dalbulus maidis breed wildtype", "tamano": "6,9 MB"},
+      {"prefijo": "GHCC01", "archivo": "tsa.GHCC.1.fsa_nt.gz", "contigs": 55286, "origen_declarado": "Dalbulus maidis DmaiE", "tamano": "10 MB"},
+      {"prefijo": "GITV01", "archivo": "tsa.GITV.1.fsa_nt.gz", "contigs": 56117, "origen_declarado": "Dalbulus maidis Contig", "tamano": "30 MB"}
+    ],
+    "verificacion": "25662 + 55286 + 56117 = 137065 contigs, que es el total que C11 declara para los tres. Sumas SHA-256 en resultados/tsa_sha256.txt.",
+    "no_se_versionan": true
+  },
+  "genoma": {
+    "ensamblado": "ihDalMaid1.1",
+    "contigs_usados": ["OZ319705.1 (cromosoma 2)", "OZ319711.1 (cromosoma 8)"],
+    "en_disco": "~/yhat/data/genome.fna.gz con indice ~/yhat/data/genome.mpi, en WSL",
+    "nota": "es el mismo ensamblado sobre el que pipeline/REPORT.md declara identificados los cuatro candidatos preliminares del laboratorio, asi que las coordenadas son comparables sin traducir"
+  },
+  "herramienta": {
+    "nombre": "miniprot",
+    "version": "0.18-r281",
+    "donde": "~/yhat/tools/miniprot/miniprot, compilado localmente, WSL Ubuntu 24.04",
+    "parametros": "-t 8 --gff --outn=5 --outs=0.5 (y --aln, --trans en la ida); --outc por defecto, 0.1",
+    "no_hay": "BLAST+ (blastn, tblastn, makeblastdb), diamond, ViennaRNA"
+  },
+  "fuentes_internas_citadas": [
+    "research/ola3/C5_estructura_genes_ingenieria_inversa/catalogo_genes_blanco.md (filas DM-02, DM-03, DE-01)",
+    "research/ola3/C11_diseno_nuevo/REPORT.md y resultados/ (ortologo Mq de V-ATPase B, banda de nucleotido, 137.065 contigs)",
+    "research/ola3/C11_conservacion_eth_bursa/REPORT.md (los tres TSA como bases de busqueda local)",
+    "pipeline/REPORT.md y pipeline/resultados.json (ensamblado ihDalMaid1.1, control de Vha55 en 0,978, ATPaseD_Dm en el cromosoma 8)",
+    "00_meta/DECISIONS.md D64 (cuanto cubre GCWP01 del gen BicC), D67 (las quimeras por fenotipo, y V-ATPase B como el insumo que falta)"
+  ],
+  "no_abiertas": [
+    {
+      "cita": "Jones, Bernal y Medina 2021",
+      "por_que": "el fenotipo de DM-02 se cita por el catalogo de C5, que la registra como leida completa en la ola 2; esta pasada no la abrio",
+      "consecuencia": "toda afirmacion de fenotipo en este REPORT va [R] y nombra al catalogo como intermediario"
+    },
+    {
+      "cita": "Yao, Rotenberg, Afsharifar, Barandoc-Alviar y Whitfield 2013, PLoS ONE 8(8):e70243",
+      "por_que": "se abrio el registro de la accesion AGJ51963.1 en el NCBI, no el paper",
+      "consecuencia": "la secuencia se usa por su accesion; el bioensayo de DE-01 se cita por el catalogo de C5"
+    }
+  ]
+}

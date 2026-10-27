@@ -1,0 +1,23 @@
+{
+  "cds_dmaidis_nt": 1503,
+  "comparaciones": {
+    "Macrosteles_quadrilineatus_XM_054432770.1": {
+      "largo_nt": 1503,
+      "identidad_nt_pct": 90.35,
+      "nt_iguales": 1358,
+      "tramo_exacto_max_nt": 62,
+      "ventanas21_identicas": 136,
+      "ventanas21_totales": 1483,
+      "pct_ventanas21": 9.17
+    },
+    "Homalodisca_vitripennis_XM_046812795.1": {
+      "largo_nt": 1503,
+      "identidad_nt_pct": 85.7,
+      "nt_iguales": 1288,
+      "tramo_exacto_max_nt": 36,
+      "ventanas21_identicas": 38,
+      "ventanas21_totales": 1483,
+      "pct_ventanas21": 2.56
+    }
+  }
+}
