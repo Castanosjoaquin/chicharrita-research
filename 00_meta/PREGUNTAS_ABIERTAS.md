@@ -2002,3 +2002,81 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     es cambiar `corto()` para que distinga «el vector» de «no la conozco», y eso toca el
     linaje de `ranking.py` entero, no el formato de salida de `C7`. La pregunta es si `corto()`
     debe fallar ante una referencia desconocida o devolver un centinela propio.
+
+### Ola 6, cierre de `R11` (issue #35, 2026-10-27)
+
+38. **Se cierra la entrada 26: la compuerta sabe contra que panel se le pregunta, y una
+    alerta de fuera del panel frena igual.** `D77`. `exigir_decidida()` y
+    `estado_decision()` toman el panel de la corrida, lo publican en el estado
+    (`panel`, `organismos_fuera_del_panel`, `pendientes_fuera_del_panel`) y lo nombran en el
+    mensaje de `AlertaSinDecidir`, pero **no filtran**: la coincidencia perfecta esta en el
+    ARN y no en el panel con el que una corrida lo puntua.
+    `ranking.region_recomendada()` lo resuelve solo con `ranking.panel_actual()`, que lee el
+    `REFERENCIAS` vivo, asi que la rama `sin_humano` de `efecto_humano()` queda declarada sin
+    que nadie se acuerde de pasarlo. La prueba que pedia el issue —la misma region, el mismo
+    umbral, con y sin el organismo en el panel— es la seccion 10 de `test_alertas.py` y frena
+    las dos veces en los dos umbrales de `D28` `[M]`. Ninguna cifra publicada se mueve: lo
+    unico que cambia en disco es `research/ola4/M6_alertas/resultados/compuerta.json`, que
+    gana tres claves informativas en sus 38 bloques `[M]`.
+    **Nota, por la entrada 37:** `panel_actual()` arma el panel desde `REFERENCIAS` y agrega
+    `D_maidis` a mano, sin pasar por `corto()`, asi que la colision que esa entrada describe
+    no lo alcanza. Son dos problemas vecinos y distintos, y el de la 37 sigue abierto.
+39. **De la entrada 24 queda abierta la corrida, no la cobertura: esta medida.** La leccion
+    era que buscar a mano no alcanza. Esta pasada no busco a mano: barrio los **409** JSON de
+    `research/` —salteando otro proyecto y su propia salida—, recogio toda cadena con forma de
+    region, la clasifico por gen y cruzo contra `estado_regiones.tsv`
+    (`research/ola6/R11_compuerta_y_panel/scripts/regiones_publicadas.py`). **Trece** archivos
+    traen coordenadas de los genes del panel: 407 coordenadas, **60** pares (gen, region) y
+    **41** fuera del inventario `[M]`. Lo que importa es de que bloque sale cada una, y ahi el
+    resultado es limpio: los 41 salen **todos** de bloques que no producen recomendaciones
+    —orden de alternativas, region de maximo conteo de un nulo, region por defecto de un
+    barrido de sensibilidad en `C9` y `C3`, y la candidata de `V-ATPase B`— y en los bloques
+    que **si** recomiendan no hay **una sola** coordenada fuera del inventario `[M]`. Y el
+    censo estatico de caminos (`censo_generadores.py`) da que de los siete archivos del
+    repositorio con marcas de generador, **uno solo** llama a `alternativas()` sin llamar a la
+    compuerta, y es a proposito (`01_region_vatpase_b.py`, `D74`) `[M]`. `[H]` O sea que el
+    conjunto de lugares donde una region puede nacer es cerrado y conocido, y lo que falta
+    para la garantia fuerte es correr cada generador, no seguir buscando.
+    **Nota de metodo:** la primera version de ese script tenia los archivos escritos a mano
+    —tres— y decia «los tres publicados»; era el mismo error de esta entrada un piso mas
+    abajo, y lo encontro la revision de esta pasada. Por eso barre.
+40. **Lo que falta de la entrada 24 es `work/`, y se puede pedir.** De los ocho generadores
+    declarados corrieron **dos** en la maquina de Luca, y son justamente los dos que no
+    pueden encontrar nada nuevo: `compuerta.py` y `umbral_compuerta.py` iteran sobre el
+    inventario `[M]`. Los otros seis mueren en el primer insumo de `work/`, que en esta
+    maquina **no existe** —verificado con `ls work/` y tambien en WSL, donde hay
+    `~/yhat/tools` y `~/yhat/data` pero no una copia del repositorio— `[M]`. El comando exacto
+    de cada uno esta en `research/ola6/R11_compuerta_y_panel/resultados/censo_corridas.tsv` y
+    la lista de lo que hay que pedir, en `PENDIENTE.md` del mismo bloque. **Al pedir
+    `work/sifi_check/`, decir con que panel se construyo:** el issue #33 tiene abierto que los
+    dos juegos de anclas publicadas piden paneles distintos.
+41. **Se cierran las entradas 30 y 31 en lo que eran —decisiones— y queda el insumo.** `D78`:
+    `V-ATPase B` 517-816 entra al inventario como una region mas, y las junturas entran con
+    clave propia, `(quimera <nombre>, "juntura")`, con granularidad quimera x organismo x gen
+    impactado y con los `j` fuera de la clave. Entran **las dos** quimeras, incluida
+    `Q_BicC_Dm__VATPaseB_Dm`, que fabrica cero bloques: es la distincion que `D72` existe para
+    hacer `[M]`. **No se implemento ninguna de las dos** y el motivo es de insumo, no de
+    criterio: `tabla_alertas.py` necesita `work/m6_alertas/identidad_por_ventana.tsv` y
+    `work/W5/ref/`, y la region de `V-ATPase B` ademas necesita su matriz de off-target contra
+    el panel, que no existe porque el gen no esta entre los seis que el generador tamiza.
+    Agregar las entradas sin poder correr el script dejaria la tabla y el inventario
+    describiendo algo que el generador ya no produce. Mientras tanto sigue siendo cierto que
+    **una quimera puede pasar la compuerta con su empalme sin tamizar** `[?]`.
+42. **Una coordenada publicada que no es una recomendacion se ve igual que una que si, y de
+    las 41 no se sabe si alguna tiene 21/21.** Es nuevo y sale de contar. Los 41 pares sin
+    tamizar son ordenes de alternativas, regiones de maximo conteo de los nulos y regiones por
+    defecto de barridos de sensibilidad, y ninguno pretende ser usable; pero estan publicados
+    con la misma forma `ini-fin` que una recomendacion y lo unico que hoy los distingue es el
+    bloque del JSON en el que aparecen `[M]`. **Su estado de 21/21 es desconocido**, y no se
+    puede afirmar que no lo tengan: medirlo es tamizarlos, que es exactamente lo que no esta
+    hecho `[?]`. `[H]` Si alguna vez alguien copia una alternativa a un documento, no hay nada
+    que lo frene: la compuerta protege el punto donde una region **se vuelve recomendacion**, y
+    una coordenada leida de `alternativas` no pasa por ahi. Es la entrada 10 de esta ola vista
+    desde el otro lado, y la salida posible —marcar en el propio JSON que una coordenada es un
+    orden y no una recomendacion— es formato de salida de `C7`, no de `M6`. **No se hizo.**
+43. **El censo cubre generadores, no documentos.** `censo_generadores.py` busca marcas en el
+    codigo, asi que una region publicada como texto ya calculado en un `REPORT.md` o en un TSV
+    escrito a mano no tiene ninguna marca y el censo no la ve `[?]`. No es una laguna del
+    censo sino el limite de lo que se puede verificar desde el codigo, y es la misma de la
+    entrada 10: entre el cometido del port y el numero que aparece en un documento de
+    `entregables/` hay una persona copiandolo.

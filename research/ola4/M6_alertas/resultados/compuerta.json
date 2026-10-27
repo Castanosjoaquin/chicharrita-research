@@ -25,6 +25,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "recomendada por C7 v2",
      "resultado": "pasa"
@@ -39,6 +42,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "recomendada por C7 v2",
      "resultado": "pasa"
@@ -53,6 +59,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "recomendada por D25, por conservación",
      "resultado": "pasa"
@@ -67,6 +76,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "recomendada por C7 v2 y mantenida por D25",
      "resultado": "pasa"
@@ -81,6 +93,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "propuesta por C7 v2 (gen nuevo)",
      "resultado": "pasa"
@@ -95,6 +110,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "propuesta por C7 v2 (gen nuevo)",
      "resultado": "pasa"
@@ -109,6 +127,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "planilla de EPILAB",
      "resultado": "pasa"
@@ -123,6 +144,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "planilla de EPILAB",
      "resultado": "pasa"
@@ -137,6 +161,9 @@
      "estado": "decidida: bloqueante",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "planilla de EPILAB",
      "resultado": "pasa"
@@ -151,6 +178,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2, desplazada por D25",
      "resultado": "pasa"
@@ -165,6 +195,9 @@
      "estado": "decidida: bloqueante",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "planilla de EPILAB",
      "resultado": "pasa"
@@ -179,6 +212,9 @@
      "estado": "decidida: bloqueante",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "la más conservada, alternativa b de D25, vetada",
      "resultado": "pasa"
@@ -193,6 +229,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -207,6 +246,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -221,6 +263,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -235,6 +280,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -249,6 +297,9 @@
      "estado": "decidida: bloqueante",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -263,6 +314,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -277,6 +331,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 con el panel sin humano",
      "resultado": "pasa"
@@ -306,6 +363,9 @@
      "estado": "decidida: aceptada con justificacion",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "recomendada por C7 v2",
      "resultado": "pasa"
@@ -320,6 +380,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "recomendada por C7 v2",
      "resultado": "pasa"
@@ -334,6 +397,9 @@
      "estado": "decidida: aceptada con justificacion",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "recomendada por D25, por conservación",
      "resultado": "pasa"
@@ -348,6 +414,9 @@
      "estado": "decidida: aceptada con justificacion",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "recomendada por C7 v2 y mantenida por D25",
      "resultado": "pasa"
@@ -362,6 +431,9 @@
      "estado": "decidida: aceptada con justificacion",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "propuesta por C7 v2 (gen nuevo)",
      "resultado": "pasa"
@@ -376,6 +448,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "sí",
      "que_es": "propuesta por C7 v2 (gen nuevo)",
      "resultado": "pasa"
@@ -390,6 +465,9 @@
      "estado": "decidida: aceptada con justificacion",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "planilla de EPILAB",
      "resultado": "pasa"
@@ -404,6 +482,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "planilla de EPILAB",
      "resultado": "pasa"
@@ -418,6 +499,9 @@
      "estado": "decidida: bloqueante",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "planilla de EPILAB",
      "resultado": "pasa"
@@ -432,6 +516,9 @@
      "estado": "decidida: aceptada con justificacion",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2, desplazada por D25",
      "resultado": "pasa"
@@ -446,6 +533,9 @@
      "estado": "decidida: bloqueante",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "planilla de EPILAB",
      "resultado": "pasa"
@@ -460,6 +550,9 @@
      "estado": "decidida: bloqueante",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "la más conservada, alternativa b de D25, vetada",
      "resultado": "pasa"
@@ -476,6 +569,9 @@
       "F_candida"
      ],
      "decide": "el usuario",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "mensaje": "MP_MRFV 162-361 tiene 1 alerta(s) de perfecto_ge19 sin decidir (F_candida) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
@@ -491,6 +587,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -508,6 +607,9 @@
       "maiz"
      ],
      "decide": "el usuario",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "mensaje": "BicC_Dm 2119-2418 tiene 2 alerta(s) de perfecto_ge19 sin decidir (humano, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
@@ -525,6 +627,9 @@
       "humano"
      ],
      "decide": "el usuario",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "mensaje": "ATPaseD_Dm 71-370 tiene 2 alerta(s) de perfecto_ge19 sin decidir (humano) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
@@ -540,6 +645,9 @@
      "estado": "decidida: bloqueante",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -554,6 +662,9 @@
      "estado": "sin alertas en este umbral",
      "organismos_pendientes": [],
      "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
@@ -571,6 +682,9 @@
       "maiz"
      ],
      "decide": "el usuario",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
      "mensaje": "BicC_Dm 2123-2422 tiene 3 alerta(s) de perfecto_ge19 sin decidir (humano, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
      "vigente": "no",
      "que_es": "recomendada por C7 v2 con el panel sin humano",

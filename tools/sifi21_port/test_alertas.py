@@ -761,6 +761,111 @@ else:
     SALTEADAS.append("§9.7 y §9.8 la tabla real de alertas no esta en disco")
 
 
+# ------------------------------------------------------------------------------ §10
+print()
+print("10. la compuerta sabe contra que panel se le pregunta, y frena igual (D77)")
+
+# El caso exacto que pide el issue #35: **la misma region, el mismo umbral**, con y sin el
+# organismo de la alerta en el panel. Es el de la rama `sin_humano` de
+# `ranking_v2.efecto_humano()`, que evaluaba sus regiones contra filas de *Homo sapiens*
+# que esa misma rama habia sacado del panel.
+HUM = fila_alerta(gen="BicC_Dm", region="922-1221", organismo_corto="humano",
+                  organismo_especie="Homo sapiens",
+                  organismo_rol="no objetivo de maxima consecuencia")
+INV_PANEL = {("BicC_Dm", "922-1221")}
+PANEL_CON = {"maiz", "H_vitripennis", "humano", "D_maidis"}
+PANEL_SIN = {"maiz", "H_vitripennis", "D_maidis"}
+
+for umbral in ("perfecto_21", "perfecto_ge19"):
+    mensajes = {}
+    for nombre, panel in (("con", PANEL_CON), ("sin", PANEL_SIN)):
+        try:
+            AL.exigir_decidida([HUM], "BicC_Dm", "922-1221", umbral,
+                               inventario=INV_PANEL, panel=panel)
+            check(False, "la fila humana pendiente deberia frenar con el panel %s humano"
+                         % nombre)
+        except AL.AlertaSinDecidir as e:
+            mensajes[nombre] = str(e)
+    check(len(mensajes) == 2,
+          "en %s frena las dos veces: sacar al humano del panel no abre la compuerta"
+          % umbral)
+    check("NO tiene en el panel" not in mensajes.get("con", ""),
+          "con humano en el panel el mensaje no habla de organismos fuera (%s)" % umbral)
+    check("NO tiene en el panel" in mensajes.get("sin", "")
+          and "humano" in mensajes.get("sin", ""),
+          "sin humano en el panel el mensaje lo nombra y dice por que frena igual (%s)"
+          % umbral)
+
+# Y el estado lo dice en datos, no solo en la prosa del error.
+est_con = AL.estado_decision([HUM], "BicC_Dm", "922-1221", panel=PANEL_CON)
+est_sin = AL.estado_decision([HUM], "BicC_Dm", "922-1221", panel=PANEL_SIN)
+check(est_con["pendientes"] == est_sin["pendientes"] == 1
+      and est_con["estado"] == est_sin["estado"] == "sin decidir",
+      "el panel no mueve ni el conteo de pendientes ni el estado: D77 no filtra")
+check(est_con["organismos_fuera_del_panel"] == []
+      and est_sin["organismos_fuera_del_panel"] == ["humano"]
+      and est_sin["pendientes_fuera_del_panel"] == ["humano"],
+      "y el estado nombra la fila que es de un organismo fuera del panel")
+check(est_con["panel"] == sorted(PANEL_CON) and est_sin["panel"] == sorted(PANEL_SIN),
+      "el estado deja escrito contra que panel se pregunto")
+
+# `None` es «no se declaro panel», que no es «el panel esta vacio»: con panel vacio toda
+# fila queda fuera, y la diferencia tiene que notarse.
+est_nada = AL.estado_decision([HUM], "BicC_Dm", "922-1221")
+est_vacio = AL.estado_decision([HUM], "BicC_Dm", "922-1221", panel=set())
+check(est_nada["panel"] is None and est_nada["organismos_fuera_del_panel"] == [],
+      "sin declarar panel la compuerta no afirma nada sobre el panel")
+check(est_vacio["panel"] == [] and est_vacio["organismos_fuera_del_panel"] == ["humano"],
+      "y un panel vacio declarado no es lo mismo: ahi la fila si esta fuera")
+
+# Una fila decidida pasa igual aunque sea de un organismo fuera del panel —el panel no
+# decide nada— y el estado que devuelve la compuerta lo sigue informando.
+FIRMADA = fila_alerta(gen="BicC_Dm", region="922-1221", organismo_corto="humano",
+                      organismo_especie="Homo sapiens",
+                      organismo_rol="no objetivo de maxima consecuencia",
+                      decision_usuario="aceptada",
+                      justificacion_usuario=(
+                          "XM_046816879.1 es la accesion de esta fila; la justificacion "
+                          "es de prueba y solo existe para que la fila este decidida."))
+est_ok = AL.exigir_decidida([FIRMADA], "BicC_Dm", "922-1221",
+                            inventario=INV_PANEL, panel=PANEL_SIN)
+check(est_ok["estado"] == "decidida: aceptada con justificacion"
+      and est_ok["organismos_fuera_del_panel"] == ["humano"],
+      "una fila decidida de un organismo fuera del panel pasa, y el estado lo informa")
+
+# El panel que la compuerta usa por defecto es el **vivo** de la corrida: eso es lo que
+# hace que la rama `sin_humano` quede declarada sin que nadie se acuerde de pasarlo.
+try:
+    V.con_panel(sin_humano=False)
+    con_h = R.panel_actual()
+    V.con_panel(sin_humano=True)
+    sin_h = R.panel_actual()
+finally:
+    V.con_panel(sin_humano=False)
+check("humano" in con_h and "humano" not in sin_h,
+      "panel_actual() refleja el panel que la corrida tiene puesto en ese momento")
+check("D_maidis" in con_h and "D_maidis" in sin_h,
+      "y D_maidis esta siempre: se excluye por ser on-target, no por estar fuera del panel")
+check(con_h - sin_h == {"humano"},
+      "la unica diferencia entre las dos ramas de efecto_humano es la referencia humana")
+
+# Y contra la tabla real: la fila humana de BicC_Dm 922-1221 esta firmada (D68), asi que
+# con el panel de W7 —sin humano— la region pasa y la compuerta igual deja escrito que esa
+# fila es de un organismo que esa corrida no mira.
+if TABLA.exists():
+    R._ALERTAS_LEIDAS.clear()
+    reales = R.alertas_de(TABLA)
+    inv_panel = R.inventario_de(TABLA)
+    e_real = AL.exigir_decidida(reales, "BicC_Dm", "922-1221", "perfecto_ge19",
+                                inventario=inv_panel, panel=sin_h)
+    check(e_real["estado"] == "decidida: aceptada con justificacion"
+          and e_real["organismos_fuera_del_panel"] == ["humano"],
+          "en la tabla real, 922-1221 pasa con el panel de W7 y la fila humana queda nombrada")
+    R._ALERTAS_LEIDAS.clear()
+else:
+    SALTEADAS.append("§10 la tabla real de alertas no esta en disco")
+
+
 print()
 if SALTEADAS:
     print("SALTEADAS: %s" % "; ".join(SALTEADAS))
