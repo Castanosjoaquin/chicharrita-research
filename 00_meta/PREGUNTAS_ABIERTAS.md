@@ -2002,3 +2002,20 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     es cambiar `corto()` para que distinga «el vector» de «no la conozco», y eso toca el
     linaje de `ranking.py` entero, no el formato de salida de `C7`. La pregunta es si `corto()`
     debe fallar ante una referencia desconocida o devolver un centinela propio.
+
+### Ola 6, cierre de `R6` (2026-10-27)
+
+38. **Qué forma de agregación se publica como la lista ordenada.** Issue **#20** cerró cómo se
+    reporta el tercer puesto (`D78`: empate declarado, con los dos órdenes y la decisión que los
+    separa), pero **no** cuál de las formas —geométrica, suma o cascada, en escala absoluta o
+    min-max— es la lista que se publica con orden. Es la decisión abierta de la parte B.2 de
+    `entregables/para-el-investigador.md`, anterior a `M5`, y pesa: en la cascada con exposición
+    cero el orden de los seis cambia entero, y en la forma geométrica el mismo par no se mueve
+    `[M]` (`research/ola4/M5_dos_ejes/`). Hasta decidirla, cada orden que se cite lleva su forma
+    de agregación al lado `[?]`.
+39. **Si la pregunta que manda para elegir región es la molécula sintetizada o la accesibilidad en
+    el blanco.** `D77` conserva 26 (molécula, marco 3) como la cifra publicada y declara 29 (marco
+    2) al lado. Lo que lo haría reabrir es una respuesta del laboratorio sobre en qué marco
+    cuenta su planilla (pregunta 4 de `entregables/recomendacion-defendida.md` §7) o una decisión
+    del equipo de privilegiar la accesibilidad en el transcrito `[?]`. Si el laboratorio cuenta en
+    contexto, la comparación contra sus cifras se hace en **su** marco y la publicada no cambia.

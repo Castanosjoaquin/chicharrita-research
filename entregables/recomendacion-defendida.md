@@ -93,7 +93,7 @@ el eje en el que gana —el de riesgo— es el único de los tres que no es una 
 
 | | `BicC_Dm` 922-1221 |
 |---|---|
-| ventanas eficientes, molécula de 300 nt | **26** (36 contando los arranques en el gen; 29 en el marco intermedio) |
+| ventanas eficientes, con su marco (`D63`) | **26** en el marco 3, la molécula de 300 nt recortada y plegada sola: es la cifra que se publica (`D77`). Al lado, **36** en el marco 1 (contexto, todos los arranques) y **29** en el marco 2 (contexto, los comparables), que es el que contesta cuán accesible es el sitio en el transcrito blanco. Los tres valen y no se mezclan `[M]` |
 | coincidencias perfectas de 21 nt contra el panel de seis no objetivo | **0** |
 | alertas por bloque de ≥ 19 nt | 3 (contra 6 de 2121-2420 y 33 de 264-563) |
 | ventanas de baja complejidad | 0 de las 2.500 del gen: el homopolímero más largo mide 7 nt |
@@ -125,14 +125,46 @@ depende de nada: 99,1 % y 99,6 %, con margen mediano de 10 a 12 ventanas `[M]`. 
 recomendación que sostenemos con firmeza es «no 264-563»; la de «922-1221 antes que 2121-2420» es
 más débil y la presentamos como tal.
 
-**Tercera: la exposición de los organismos no objetivo es una ponderación sin decidir, y tiene
-palanca.** Con la exposición de *Homalodisca vitripennis* en cero, **tres de las seis regiones
-recomendadas se mudan**, y una de ellas vuelve a ser `ATPaseD_Dm` 137-436, la región más conservada
-del gen, que D25 había descartado justamente por estar vetada `[M]`. El veto es binario: en la
-cascada, `CP_MRFV` va antes que `ATPaseD_Dm` en el 100 % de los sorteos mientras esa referencia
-conserve cualquier exposición, y en el 0 % cuando es exactamente cero `[M]`. No hay transición. La
-decisión de cuánta exposición tiene un cicadélido norteamericano en un lote argentino es del
-laboratorio, y mueve el resultado más que cualquier umbral termodinámico.
+**Tercera: la exposición de los organismos no objetivo es una decisión nuestra, declarada abierta, y tiene
+palanca.** *Actualizado el 2026-10-27 (issue #20, `D66`, `D78`).* No le pedimos al investigador un número
+y no lo fijamos nosotros. Preguntado dos veces qué exposición asignarle a un cicadélido norteamericano
+en un lote argentino, contestó que el organismo *«no está en Argentina, o sea que puede no importar»* y
+también que *«puede venir eventualmente y tal vez si la querés matar»*, y que lo útil es mostrar que
+esas decisiones están presentes `[R]`. Lo que mostramos es el resultado en los dos extremos, uno al lado
+del otro:
+
+| | exposición de *H. vitripennis* **distinta de cero** (cualquier valor de 0,05 a 1,00) | exposición **exactamente cero** |
+|---|---|---|
+| `BicC_Dm` 264-563 (la de EPILAB) | con veto: 22 ventanas idénticas de 21 nt | sin veto: pasan a ser señal de conservación |
+| `ATPaseD_Dm` 151-450 (la de EPILAB) | con veto: 3 ventanas | sin veto |
+| región que elige la cascada para `BicC_Dm` | 2121-2420 | **922-1221** |
+| región que elige la cascada para `ATPaseD_Dm` | 72-371 | **137-436** (24 ventanas eficientes contra 18) |
+| región que elige la cascada para `eth_Dm` | 114-313 | **194-393** |
+| `CP_MRFV` antes que `ATPaseD_Dm`, en la cascada (2.000 sorteos) | **100 %** | **0 %** |
+| orden de los seis en la cascada | `MP_MRFV` > `eth` > `CP_MRFV` > `burs-α` > `BicC_Dm` > `ATPaseD_Dm` | `MP_MRFV` > `BicC_Dm` > `ATPaseD_Dm` > `eth` > `CP_MRFV` > `burs-α` |
+
+`[M]` Fuente: `research/ola4/M5_dos_ejes/resultados/` (`regiones_recomendadas_por_reparto.tsv`,
+`vetos_por_reparto.tsv`, `tabla_afirmaciones.tsv`), cifras leídas de los archivos versionados. **Tres de
+las seis regiones recomendadas se mudan**, y una de ellas es `ATPaseD_Dm` 137-436, la región más
+conservada del gen, que `D25` había descartado justamente por estar vetada. El efecto **no es gradual**:
+entre 0,05 y 1,00 de peso relativo al maíz no cambia nada, porque el veto es binario, y todo el cambio
+está en el cero exacto. `[H]` Por eso la respuesta a si los pesos importan es «casi nunca, salvo el
+cero», y por eso el tercer puesto se reporta como **empate declarado** (`D78`): lo que separa los dos
+órdenes no es un candidato mejor que otro sino una decisión que no es nuestra tomar por la ventana. En
+las formas ponderadas el mismo par casi no se mueve (99,9 % de los sorteos con exposición cero), y cuál de
+las dos formas se publica como la lista ordenada sigue siendo una decisión abierta anterior a esto.
+
+Lo que **no** cambia con la exposición es la recomendación de este documento: para `BicC_Dm`
+recomendamos 922-1221 por conservación entre fuentes y por su perfil de off-target (`D25`, `D64`), y con
+exposición cero la cascada llega sola al mismo lugar, así que dos criterios independientes coinciden. Lo
+que sí cambia son tres afirmaciones que publicamos y que **dejarían de sostenerse** con exposición cero, y
+que por eso llevan su condición al lado: que las dos regiones de EPILAB quedan vetadas
+(`checkpoint2-una-pagina.md`, casilla 4), que la región vigente de `ATPaseD_Dm` se mantiene
+(`para-el-investigador.md`, parte A, pedido 4) y el desempate del tercer puesto entre `ATPaseD_Dm` y
+`CP_MRFV`. `[H]` La apuesta es que *H. vitripennis*, plaga cuarentenaria ausente de la Argentina, siga
+ausente: si cambia su estatus, la revisión es leer esta tabla y no recalcular. Y queda declarado lo que
+no pudimos medir: la sensibilidad del reparto a 22 nt **no está corrida**, y el eje de exposición no tiene
+ningún cicadélido nativo argentino contra el cual medirse `[?]`.
 
 **Y una cuarta, que es nueva de esta semana.** Las cifras históricas de la planilla pasaron por una
 función de conteo que esconde entre el 5,7 % y el 17,4 % de las ventanas eficientes según el gen
@@ -157,13 +189,15 @@ que no la aplica.
 
 ## 7. Lo que pedimos para cerrarla
 
-Cuatro cosas, y ninguna es un archivo con secuencias:
+Tres cosas, y ninguna es un archivo con secuencias (la tercera dejó de ser un pedido):
 
 1. **Qué objetivo manda**: cortar transmisión en la temporada o reducir la población entre
    generaciones. Decide el eje y, con él, el blanco.
 2. **El dato de latencia del MRFV**, que hoy tenemos sólo para *Spiroplasma kunkelii* y de una
    fuente que no es la del patógeno que nos importa `[?]`.
-3. **La exposición que le asignan a *Homalodisca vitripennis***, que es el único peso con palanca
-   en todo el ranking.
+3. ~~**La exposición que le asignan a *Homalodisca vitripennis***, que es el único peso con palanca
+   en todo el ranking.~~ **Ya no se pide** (`D66`, `D78`): es una decisión nuestra, declarada abierta, y
+   el resultado en los dos extremos está en §5. Si el laboratorio tiene una práctica propia con
+   cicadélidos no objetivo, nos sirve, pero no la esperamos.
 4. **El marco y la función de conteo de la planilla**, para saber si nuestras cifras y las suyas
    son el mismo número.
