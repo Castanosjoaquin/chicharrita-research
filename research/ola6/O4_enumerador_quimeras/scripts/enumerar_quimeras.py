@@ -39,7 +39,7 @@ eso se tamiza por candidato en una sola pasada sobre el panel.
 Las unidades (§10). La grilla enumera en **marco 2** —el `--largo-total` son nucleotidos,
 porque es lo que se sintetiza— y cada candidato reporta tambien su lectura de **marco 1**,
 con los nombres de `D63`. El eje de riesgo tambien se lee en marco 2, que es una desviacion
-declarada respecto de `ranking.ejes()`: ver `PREGUNTAS_ABIERTAS.md` 44.
+declarada respecto de `ranking.ejes()`: ver `PREGUNTAS_ABIERTAS.md` 46.
 
 Lo que este script **no** hace: no recomienda ninguna quimera, no afirma eficacia y no emite
 la fila completa del inventario de `M6` para una juntura —esa la produce

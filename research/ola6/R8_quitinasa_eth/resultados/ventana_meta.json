@@ -1,0 +1,24 @@
+{
+  "gen": "eth_Dm",
+  "posicion_1based": 347,
+  "k": 21,
+  "transcripto_origen": "XM_046828031.1",
+  "orf_inicio_nt": 133,
+  "ventana_en_transcripto_nt": [
+    434,
+    454
+  ],
+  "codones_del_orf": [
+    101,
+    108
+  ],
+  "metodo_proteina": "PairwiseAligner global, BLOSUM62, gap -11/-1",
+  "metodo_nucleotido": "barrido exacto de desajustes, dos hebras, sin indels",
+  "control_positivo_desajustes": 0,
+  "nulo_ortologo": "XM_045615311.1",
+  "nulo_n": 40,
+  "nulo_min": 6,
+  "nulo_mediana": 8,
+  "nulo_max": 10,
+  "python": "3.11.17"
+}

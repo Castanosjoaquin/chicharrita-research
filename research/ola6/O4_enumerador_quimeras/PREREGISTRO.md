@@ -236,5 +236,5 @@ manana, y ese mismo dia `main` unifico la numeracion del archivo. Las equivalenc
 —la juntura sin lugar en el inventario— es hoy la **41**, y ademas `D78` le dio clave propia
 a la juntura, asi que el §8 de arriba quedo viejo en su afirmacion y el `REPORT.md` lo dice;
 la 21 —la leccion de `O3` sobre medir con un criterio propio— es hoy la **33**; y la 22, que
-esta enmienda cita, es hoy la **44**. Este documento no se reescribe: lo que cambio despues
-de firmarlo va en el `REPORT.md` y en los ADR `D79` y `D80`.
+esta enmienda cita, es hoy la **46**. Este documento no se reescribe: lo que cambio despues
+de firmarlo va en el `REPORT.md` y en los ADR `D81` y `D82`.

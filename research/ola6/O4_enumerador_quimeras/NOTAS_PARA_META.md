@@ -1,9 +1,9 @@
 # Notas de la línea O4 (ola 6)
 
 Esta línea la corrió la sesión principal, así que `00_meta/` **sí** se actualizó
-directamente: `D79` y `D80` en `DECISIONS.md`, tres filas en `GLOSARIO.md` —«isla
+directamente: `D81` y `D82` en `DECISIONS.md`, tres filas en `GLOSARIO.md` —«isla
 admisible», «objetivo declarado antes de rankear» y «aporte de un bloque fabricado»—, las
-entradas 44 a 47 de `PREGUNTAS_ABIERTAS.md`, una de las cuales reescribe lo que esta misma
+entradas 46 a 49 de `PREGUNTAS_ABIERTAS.md`, una de las cuales reescribe lo que esta misma
 línea había escrito mal unas horas antes. Este archivo queda con lo que es propio del
 bloque.
 
@@ -21,7 +21,7 @@ en la mano era **un ancla pasando** y lo reporté como hallazgo.
 
 Lo que sí era nuevo resultó más chico y más filoso: la unidad del eje de **riesgo**, que
 nadie declaró, y que hace que una región pueda quedar vetada por un 21-mero que la molécula
-no contiene. Eso es `D80` y la entrada 44.
+no contiene. Eso es `D82` y la entrada 46.
 
 La lección operativa, que vale más que el hallazgo: **buscar el concepto por el eje que lo
 mide, no por la palabra que uno usaría.** Busqué «unidad de conteo» —que es como lo llamó

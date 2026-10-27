@@ -20,7 +20,7 @@ que entra porque está medido que cambia el resultado (`C13`: +3 y −3 con las 
 regiones; `O3`: 41 contra 40, y sólo uno de los dos órdenes fabrica riesgo nuevo) `[M]`.
 
 Las dos partes difíciles son otras. La primera es **qué quiere decir «la mejor»**, que es de
-lo que trata este reporte entero y terminó en `D79`. La segunda es **que la grilla sea
+lo que trata este reporte entero y terminó en `D81`. La segunda es **que la grilla sea
 finita**: con largo total 600 sobre `BicC_Dm` (2.520 nt) y `V-ATPase B` (1.503 nt) la grilla
 tiene **47.833.512** combinaciones con paso 50, y cada una pide plegar una molécula de 600
 nt `[M]`. Lo que la vuelve enumerable no es un optimizador: es podar por riesgo primero.
@@ -146,7 +146,7 @@ riesgo y desempata por eficiencia, y nada en él pide que las dos mitades sirvan
 `[H]` No se arregla cambiando de objetivo sino poniéndole un **mínimo por gen** a las
 proporciones, y fijar ese mínimo pide saber cuánto ARNdc de un gen hace falta para
 silenciarlo, que es dato de bioensayo: el catálogo de `C5` registra dosis por insecto, no
-largo mínimo de disparador. Queda en `PREGUNTAS_ABIERTAS.md` 45 como pregunta para el
+largo mínimo de disparador. Queda en `PREGUNTAS_ABIERTAS.md` 47 como pregunta para el
 investigador.
 
 Vale la pena leer al lado dónde quedó la quimera de `O3`: las 64 combinaciones que usan la
@@ -160,7 +160,7 @@ con el mismo defecto de asimetría del párrafo anterior.
 ## 7. Las unidades, y el ancla que no cerró
 
 El ancla 3 contra `D74` no cerró, y la causa no fue una medición sino la unidad. Está contado
-entero en `D80` y en la entrada 44 de `PREGUNTAS_ABIERTAS.md`; el resumen es que `D63` ya
+entero en `D82` y en la entrada 46 de `PREGUNTAS_ABIERTAS.md`; el resumen es que `D63` ya
 declara tres marcos de conteo, que el enumerador trabaja en **marco 2** —el largo total son
 nucleótidos, porque es lo que se sintetiza— y reporta la lectura de **marco 1** al lado, y
 que las cifras de `D74` son de marco 1 aunque su redacción diga «nt». El eje de riesgo
@@ -219,7 +219,7 @@ máscara parcial.
 Con `--paso 1` la misma grilla pide **136.446** plegados, que exceden el tope declarado de
 5.000: la corrida **se detiene y lo dice**, con el tamaño medido y el paso más fino que
 entraría, en vez de muestrear o cambiar de algoritmo. Esa corrida fina no se hizo y queda en
-`PREGUNTAS_ABIERTAS.md` 46.
+`PREGUNTAS_ABIERTAS.md` 48.
 
 ## 9. Las cuatro anclas
 
@@ -251,8 +251,8 @@ Corren juntas en `scripts/00_anclas.py`, que devuelve 1 si alguna falla, y las c
 - **Los aciertos con un desapareo del empalme no están localizados.** El tamizado de juntura
   busca coincidencia exacta, porque un desapareo no tiene bloque contiguo que localizar; es
   la misma limitación del paso 2 de `O3`. `mm1_21` queda fuera de la cuenta
-  (`PREGUNTAS_ABIERTAS.md` 47).
-- **La grilla fina no se corrió** (entrada 46) y **el mínimo por gen no está fijado**
-  (entrada 45).
+  (`PREGUNTAS_ABIERTAS.md` 49).
+- **La grilla fina no se corrió** (entrada 48) y **el mínimo por gen no está fijado**
+  (entrada 47).
 - **Esta línea no recomienda nada.** Produce un orden bajo un objetivo declarado; adoptar un
   candidato es del equipo.
