@@ -1,0 +1,95 @@
+{
+ "commit_al_correr": "aeabb4f",
+ "conteos": {
+  "cohorte_A_ejes_1_y_2": 17,
+  "cohorte_B_solo_eje_1": 8,
+  "con_eje2_desde_fuente_primaria_no_abierta": 1,
+  "en_el_orden": 25,
+  "filas_del_catalogo": 36,
+  "fuera_del_orden": 11
+ },
+ "criterio": {
+  "adr_pesos": "D84, confirmado por el usuario el 2026-10-27",
+  "escala_eje1": "resultados/escala_fenotipo.md",
+  "escala_eje2": "resultados/escala_esencialidad.md",
+  "pesos_declarados": {
+   "conservacion": 0.1,
+   "esencialidad": 0.25,
+   "expresion_tejido": 0.0,
+   "fenotipo": 0.4,
+   "off_target": 0.25
+  },
+  "preregistro": "research/ola6/F3_recomendador_genes/PREREGISTRO.md",
+  "umbral_de_empate": 0.05
+ },
+ "ejes_no_calculables": {
+  "conservacion": "no calculable: faltan los tres TSA de D. maidis en work/W5/ref/",
+  "expresion_tejido": "FALTANTE para todos los candidatos: los transcriptomas publicos son de cuerpo entero y huevos. El zip del investigador no lo trae (verificacion_zip_expresion.md)",
+  "off_target": "no calculable: falta work/sifi_v2/ Y los conteos del catalogo son contra otro panel (5 referencias, con M. quadrilineatus y sin H. axyridis ni F. candida). Ver escala_fenotipo.md"
+ },
+ "entorno": {
+  "nota": "esta linea no usa ViennaRNA, Biopython, ahocorasick ni alineador: los dos ejes calculados salen de material versionado",
+  "plataforma": "win32",
+  "python": "3.13.15"
+ },
+ "fecha": "2026-10-27",
+ "issue": 27,
+ "linea": "F3 — recomendador de genes",
+ "panel_de_las_columnas_de_off_target": {
+  "advertencia": "NO es el panel de seis. Estas columnas se publican fuera del puntaje; ningun candidato se ordena por ellas.",
+  "referencias": [
+   "genoma_D_maidis",
+   "M_quadrilineatus",
+   "H_vitripennis",
+   "Zea_mays",
+   "Apis_mellifera"
+  ]
+ },
+ "sensibilidad_cohorte_A": {
+  "cambios_de_primer_puesto_al_mover_el_peso_de_fenotipo_de_0_a_1": [
+   {
+    "a": [
+     "DM-02",
+     "DM-03",
+     "DM-05"
+    ],
+    "de": [
+     "CI-01",
+     "CI-02",
+     "CI-03",
+     "CI-04",
+     "CI-06",
+     "CI-07",
+     "DE-01",
+     "DE-04",
+     "DM-02",
+     "DM-03",
+     "DM-05",
+     "HE-02"
+    ],
+    "peso_fenotipo_aprox": 0.0005
+   },
+   {
+    "a": [
+     "DM-01",
+     "DM-02",
+     "DM-03",
+     "DM-05",
+     "DM-06"
+    ],
+    "de": [
+     "DM-02",
+     "DM-03",
+     "DM-05"
+    ],
+    "peso_fenotipo_aprox": 1.0
+   }
+  ],
+  "lider_con_los_pesos_de_D84": [
+   "DM-02",
+   "DM-03",
+   "DM-05"
+  ],
+  "peso_de_fenotipo_en_D84_renormalizado": 0.6154
+ }
+}
