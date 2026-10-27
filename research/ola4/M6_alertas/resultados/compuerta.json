@@ -1,18 +1,19 @@
 {
  "tabla": "research/ola4/M6_alertas/resultados/alertas.tsv",
- "filas": 26,
+ "filas": 32,
  "umbrales": {
   "perfecto_21": {
-   "pasan": 19,
+   "pasan": 23,
    "frenadas": 0,
    "frenadas_vigentes": 0,
-   "bloqueantes": 4,
+   "bloqueantes": 5,
    "bloqueantes_vigentes": 0,
    "bloqueantes_detalle": [
     "BicC_Dm 264-563",
     "ATPaseD_Dm 151-450",
     "ATPaseD_Dm 137-436",
-    "eth_Dm 193-392"
+    "eth_Dm 193-392",
+    "eth_Dm 194-393"
    ],
    "detalle": [
     {
@@ -337,20 +338,89 @@
      "vigente": "no",
      "que_es": "recomendada por C7 v2 con el panel sin humano",
      "resultado": "pasa"
+    },
+    {
+     "gen": "eth_Dm",
+     "region": "194-393",
+     "umbral": "perfecto_21",
+     "alertas": 1,
+     "pendientes": 0,
+     "bloqueantes": 1,
+     "estado": "decidida: bloqueante",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
+     "vigente": "no",
+     "que_es": "recomendada con el reparto de exposicion de D47 (rho=0,00)",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "VATPaseB_Dm",
+     "region": "517-816",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
+     "vigente": "no",
+     "que_es": "region candidata de O3 (D74), la unica admisible del gen",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "quimera Q_BicC_Dm__VATPaseB_Dm",
+     "region": "juntura",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
+     "vigente": "no",
+     "que_es": "empalme de quimera: cero bloques fabricados (D78)",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "quimera Q_VATPaseB_Dm__BicC_Dm",
+     "region": "juntura",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
+     "vigente": "no",
+     "que_es": "empalme de quimera: tres bloques fabricados de 19 nt contra maiz (D78)",
+     "resultado": "pasa"
     }
    ]
   },
   "perfecto_ge19": {
-   "pasan": 15,
-   "frenadas": 4,
+   "pasan": 17,
+   "frenadas": 6,
    "frenadas_vigentes": 0,
-   "bloqueantes": 4,
+   "bloqueantes": 5,
    "bloqueantes_vigentes": 0,
    "bloqueantes_detalle": [
     "BicC_Dm 264-563",
     "ATPaseD_Dm 151-450",
     "ATPaseD_Dm 137-436",
-    "eth_Dm 193-392"
+    "eth_Dm 193-392",
+    "eth_Dm 194-393"
    ],
    "detalle": [
     {
@@ -688,6 +758,83 @@
      "mensaje": "BicC_Dm 2123-2422 tiene 3 alerta(s) de perfecto_ge19 sin decidir (humano, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
      "vigente": "no",
      "que_es": "recomendada por C7 v2 con el panel sin humano",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "eth_Dm",
+     "region": "194-393",
+     "umbral": "perfecto_ge19",
+     "alertas": 1,
+     "pendientes": 0,
+     "bloqueantes": 1,
+     "estado": "decidida: bloqueante",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
+     "vigente": "no",
+     "que_es": "recomendada con el reparto de exposicion de D47 (rho=0,00)",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "VATPaseB_Dm",
+     "region": "517-816",
+     "umbral": "perfecto_ge19",
+     "alertas": 4,
+     "pendientes": 4,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "H_axyridis",
+      "H_vitripennis",
+      "humano",
+      "maiz"
+     ],
+     "decide": "el usuario",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
+     "mensaje": "VATPaseB_Dm 517-816 tiene 4 alerta(s) de perfecto_ge19 sin decidir (H_axyridis, H_vitripennis, humano, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "region candidata de O3 (D74), la unica admisible del gen",
+     "resultado": "FRENADA"
+    },
+    {
+     "gen": "quimera Q_BicC_Dm__VATPaseB_Dm",
+     "region": "juntura",
+     "umbral": "perfecto_ge19",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
+     "vigente": "no",
+     "que_es": "empalme de quimera: cero bloques fabricados (D78)",
+     "resultado": "pasa"
+    },
+    {
+     "gen": "quimera Q_VATPaseB_Dm__BicC_Dm",
+     "region": "juntura",
+     "umbral": "perfecto_ge19",
+     "alertas": 1,
+     "pendientes": 1,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "maiz"
+     ],
+     "decide": "el usuario",
+     "panel": null,
+     "organismos_fuera_del_panel": [],
+     "pendientes_fuera_del_panel": [],
+     "mensaje": "quimera Q_VATPaseB_Dm__BicC_Dm juntura tiene 1 alerta(s) de perfecto_ge19 sin decidir (maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "empalme de quimera: tres bloques fabricados de 19 nt contra maiz (D78)",
      "resultado": "FRENADA"
     }
    ]

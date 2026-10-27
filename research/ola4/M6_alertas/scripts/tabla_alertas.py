@@ -33,6 +33,8 @@ import json
 import sys
 from pathlib import Path
 
+import numpy as np
+
 RAIZ = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(RAIZ / "tools" / "sifi21_port"))
 sys.path.insert(0, str(RAIZ / "research/ola4/M5_dos_ejes/scripts"))
@@ -87,6 +89,57 @@ REGIONES = [
     # sin_humano_recomendada` y en `regiones_recomendadas_w7`. Con humano en el panel la
     # recomendacion es 2121-2420, que ya estaba; sacarlo la corre dos nucleotidos.
     ("BicC_Dm", (2123, 2422), "recomendada por C7 v2 con el panel sin humano", False),
+    # R11, segunda vuelta de la compuerta (issue #37): la unica region nueva que levanta
+    # `RegionNoTamizada` al correr los ocho generadores de punta a punta con `work/` en
+    # disco. Sale de `M5 sensibilidad_reparto.py`, que reelige la recomendada con el
+    # vector de exposicion de cada rho, y aparece **solo en rho = 0,00** —la propuesta de
+    # D47, con el peso de exposicion de *H. vitripennis* en cero— `[M]`. Con cualquier rho
+    # mayor la recomendada de `eth_Dm` vuelve a ser 114-313, que ya estaba. Medido en los
+    # nueve rho de una sola pasada, sin que la compuerta corte el barrido: de los 54 pares
+    # gen x rho esta es la unica que no estaba en el inventario de 19.
+    ("eth_Dm", (194, 393), "recomendada con el reparto de exposicion de D47 (rho=0,00)", False),
+    # `D78`, implementada por el issue #37: la region candidata de `V-ATPase B`. Es la
+    # unica admisible del gen (`D74`) y entra con la misma granularidad que las demas.
+    # `vigente` es «no» porque el gen no tiene region recomendada: 517-816 es **insumo de
+    # una medicion** —la quimera de `O3`— y no una recomendacion del ranking.
+    ("VATPaseB_Dm", (517, 816), "region candidata de O3 (D74), la unica admisible del gen", False),
+]
+
+#: Genes que entran al inventario sin estar en el catalogo del ranking, con el directorio
+#: de trabajo donde vive su tamizado. Hermano de `identidad.GENES_EXTRA`, y existe por la
+#: misma razon: `D78` mete la region de `V-ATPase B` al inventario de alertas, y meter el
+#: gen en `ranking_v2.NUEVOS` moveria `ranking_v2.json` —`nulo_nuevos`, `jaccard_21_22`—,
+#: que es cifra publicada. Un gen de aca tiene fila de alerta y **no** tiene ficha de
+#: ranking: las anclas A1 a A4, que comparan contra lo publicado, no lo ven.
+CANDIDATOS_EXTRA = [
+    {"gen": "VATPaseB_Dm", "region": (517, 816), "largo": 300, "estrategia": "insecto",
+     "organismo": "Dalbulus maidis", "funcion": "subunidad B de V-ATPasa",
+     "trabajo": "work/O3", "consulta": "VATPaseB_Dm_full"},
+]
+
+#: Las junturas de quimera que entran al inventario, por `D78`. La clave es
+#: `(quimera <nombre>, "juntura")` **sin los `j`**: los bloques fabricados concretos viven
+#: en las columnas de contexto y en la tabla por ventana, no en la clave, porque un
+#: ensamblado que fabrique bloques en otras posiciones es el **mismo** empalme medido otra
+#: vez y no un objeto nuevo que nadie tamizo (el razonamiento esta en `D78`).
+#:
+#: Las **dos** entran, no solo la que tiene aciertos: `Q_BicC_Dm__VATPaseB_Dm` fabrica cero
+#: bloques y `Q_VATPaseB_Dm__BicC_Dm` fabrica tres, todos contra maiz y ninguno de 21/21.
+#: Dejar afuera a la que no tiene aciertos reabriria justo el agujero que `D72` existe para
+#: tapar: en `alertas.tsv` «se tamizo y no hay nada» y «nunca se tamizo» son las mismas cero
+#: filas, y lo unico que las separa es estar en el inventario.
+#:
+#: La medicion **no se recalcula aca**: la hizo `O3`, que tiene el evaluador de quimeras, y
+#: M6 la integra desde el TSV que ese bloque publica. `filas` es ese archivo y queda vacio
+#: para la quimera sin aciertos.
+JUNTURAS = [
+    {"quimera": "Q_BicC_Dm__VATPaseB_Dm", "largo_juntura": 20,
+     "que_es": "empalme de quimera: cero bloques fabricados (D78)",
+     "filas": None},
+    {"quimera": "Q_VATPaseB_Dm__BicC_Dm", "largo_juntura": 20,
+     "que_es": "empalme de quimera: tres bloques fabricados de 19 nt contra maiz (D78)",
+     "filas": "research/ola6/O3_quimera_bicc_vatpase_b/resultados/"
+              "alertas_juntura_d48_o3_corregido_vienna.tsv"},
 ]
 # El archivo de referencia de cada organismo, que es la fuente del cuarto campo.
 ARCHIVO = {
@@ -120,7 +173,8 @@ COLUMNAS = [
     # lo que escribe una persona
     "decision_usuario", "justificacion_usuario",
 ]
-FUNCION = {c["gen"]: c["funcion"] for c in list(R.CANDIDATOS) + V.NUEVOS}
+FUNCION = {c["gen"]: c["funcion"]
+           for c in list(R.CANDIDATOS) + V.NUEVOS + CANDIDATOS_EXTRA}
 
 
 def leer_identidad() -> list[dict]:
@@ -129,6 +183,99 @@ def leer_identidad() -> list[dict]:
                  % IDENTIDAD.relative_to(RAIZ))
     with IDENTIDAD.open(encoding="utf-8") as fh:
         return [dict(f, pos=int(f["pos"])) for f in csv.DictReader(fh, delimiter="\t")]
+
+
+def cargar_extra(cand: dict) -> dict:
+    """Perfil y matriz de riesgo de un gen de `CANDIDATOS_EXTRA`, con la forma de `V.cargar`.
+
+    Lee los mismos TSV que `O3/scripts/01_region_vatpase_b.py`: el perfil de eficiencia de
+    `<trabajo>/sifi/full_corregido/` y los dos tamizados —el panel de seis y la humana, que
+    viven en dos corridas porque la referencia humana esta en otro directorio—. El contrato
+    que tiene que cumplir es el que consumen `E.estado_region` y `conteos_de_region`:
+    `eficiente`, `presente`, `riesgo` y `n`.
+
+    No pasa por `V.cargar()` a proposito: ese lee `work/sifi_v2/salida_k*`, donde este gen
+    no esta, y agregarlo ahi lo metria al ranking (ver `CANDIDATOS_EXTRA`).
+    """
+    trabajo = RAIZ / cand["trabajo"]
+    perfiles = sorted((trabajo / "sifi" / "full_corregido").glob("*_corregido_vienna.tsv"))
+    if not perfiles:
+        raise SystemExit(
+            "falta el perfil de %s en %s/sifi/full_corregido/. Lo regenera "
+            "`tools/sifi21_port/run_sifi.py` sobre el gen entero; los comandos estan en "
+            "research/ola6/O3_quimera_bicc_vatpase_b/REPORT.md seccion 8."
+            % (cand["gen"], cand["trabajo"]))
+    pos, efi = [], []
+    with perfiles[0].open(encoding="utf-8") as fh:
+        for f in csv.DictReader(fh, delimiter="\t"):
+            pos.append(int(f["pos"]))
+            efi.append(str(f["is_efficient"]).strip().lower() in ("true", "1", "yes"))
+    n = max(pos)
+    if len(pos) != n:
+        raise SystemExit("el perfil de %s no es contiguo: %d filas, maximo %d"
+                         % (cand["gen"], len(pos), n))
+    eficiente = np.zeros(n, dtype=bool)
+    eficiente[np.array(pos) - 1] = np.array(efi, dtype=bool)
+
+    riesgo: dict[str, dict[str, np.ndarray]] = {}
+    for sub in ("offtarget", "offtarget_humano"):
+        ruta = trabajo / sub / "offtarget_por_sirna.tsv"
+        if not ruta.exists():
+            raise SystemExit("falta el tamizado %s (ver el REPORT.md de O3, seccion 8)" % ruta)
+        with ruta.open(encoding="utf-8") as fh:
+            r = csv.DictReader(fh, delimiter="\t")
+            cols = [c for c in (r.fieldnames or []) if "|" in c]
+            for c in cols:
+                ref, crit = c.split("|", 1)
+                riesgo.setdefault(ref, {})[crit] = np.zeros(n, dtype=bool)
+            vistas = 0
+            for fila in r:
+                if fila["consulta"] != cand["consulta"]:
+                    continue
+                pp = int(fila["pos"])
+                if not 1 <= pp <= n:
+                    continue
+                vistas += 1
+                for c in cols:
+                    if int(fila[c] or 0) > 0:
+                        ref, crit = c.split("|", 1)
+                        riesgo[ref][crit][pp - 1] = True
+            if vistas != n:
+                raise SystemExit("%s trae %d ventanas de %s y el perfil %d"
+                                 % (ruta, vistas, cand["consulta"], n))
+    for ref in riesgo:
+        for crit in R.CRITERIOS:
+            riesgo[ref].setdefault(crit, np.zeros(n, dtype=bool))
+    return {"gen": cand["gen"], "n": n, "eficiente": eficiente,
+            "presente": np.ones(n, dtype=bool), "riesgo": riesgo}
+
+
+def complejidad_extra(cand: dict) -> dict:
+    """El control de `D59` para un gen de `CANDIDATOS_EXTRA`, con el criterio de M5.
+
+    `complejidad_seis_genes.json` cubre los seis genes del ranking y este no esta ahi. En
+    vez de duplicar el criterio se importa el mismo que usa M5 —`sifi_plus.complejidad`,
+    que es su fuente— y se aplica sobre la columna `sirna` del tamizado de este gen. El
+    archivo de M5 no se toca: es de otra linea y sus seis cifras no se mueven.
+    """
+    sys.path.insert(0, str(RAIZ))
+    from sifi_plus.complejidad import (BASES_MIN, HOMOPOLIMERO_MAX, bases_distintas,
+                                       es_baja, homopolimero)
+    ruta = RAIZ / cand["trabajo"] / "offtarget" / "offtarget_por_sirna.tsv"
+    seqs = {}
+    with ruta.open(encoding="utf-8") as fh:
+        for f in csv.DictReader(fh, delimiter="\t"):
+            if f["consulta"] == cand["consulta"]:
+                seqs[int(f["pos"])] = f["sirna"]
+    if not seqs:
+        raise SystemExit("no hay ventanas de %s en %s" % (cand["consulta"], ruta))
+    bajas = {p for p, q in seqs.items() if es_baja(q)}
+    return {"ventanas": len(seqs), "baja_complejidad": len(bajas),
+            "homopolimero_max": max(homopolimero(q) for q in seqs.values()),
+            "bases_distintas_min": min(bases_distintas(q) for q in seqs.values()),
+            "umbral_homopolimero": HOMOPOLIMERO_MAX, "umbral_bases": BASES_MIN,
+            "fuente": "M6, con el criterio de sifi_plus/complejidad.py aplicado a %s"
+                      % ruta.relative_to(RAIZ).as_posix()}
 
 
 def conteos_de_region(g: dict, ini: int, fin: int, excl: set) -> dict:
@@ -166,7 +313,8 @@ def a4_fichas(genes: dict) -> list[dict]:
     """Conteos por región y referencia contra las fichas publicadas en ranking_v2.json."""
     pub = json.loads(PUBLICADO.read_text(encoding="utf-8"))["k"]["21"]
     fichas = {(f["gen"], f["region"]): f for f in pub["fichas"] + pub["fichas_recomendadas"]}
-    por_gen = {c["gen"]: c for c in list(R.CANDIDATOS) + V.NUEVOS}
+    por_gen = {c["gen"]: c
+               for c in list(R.CANDIDATOS) + V.NUEVOS + CANDIDATOS_EXTRA}
     filas = []
     for gen, (ini, fin), _que, _vig in REGIONES:
         clave = (gen, "%d-%d" % (ini, fin))
@@ -200,9 +348,18 @@ def a4_fichas(genes: dict) -> list[dict]:
 
 def a5_identidad(filas_alerta: list[dict], genes: dict) -> list[dict]:
     """La tabla agrupada reproduce el conteo por región y referencia de la matriz."""
-    por_gen = {c["gen"]: c for c in list(R.CANDIDATOS) + V.NUEVOS}
+    por_gen = {c["gen"]: c
+               for c in list(R.CANDIDATOS) + V.NUEVOS + CANDIDATOS_EXTRA}
     desde_tabla: dict[tuple, list[int]] = {}
     for f in filas_alerta:
+        # Las junturas quedan fuera del ancla, y no por comodidad: A5 compara contra la
+        # matriz por ventana del gen, y un bloque fabricado por el empalme **no existe en
+        # esa matriz** —es la definicion de fabricado—. No hay contra que compararlo aca.
+        # Lo que lo verifica es el ancla 2 de `O3` y la 2 de `O4`, que lo cuentan contra la
+        # suma de las partes. Sus posiciones tampoco vienen en JSON: el TSV de `O3` las
+        # escribe como lista separada por comas.
+        if f["region"] == "juntura":
+            continue
         k = (f["gen"], f["region"], f["organismo_corto"])
         d = desde_tabla.setdefault(k, [set(), set()])
         d[0].update(json.loads(f["posiciones_perfecto_21"]))
@@ -261,7 +418,8 @@ def prosa_evidencia(clave: str, gen: str, especie: str, d: dict, n21: int, n19: 
 
 
 def construir(genes: dict, identidad: list[dict], complejidad: dict) -> list[dict]:
-    por_gen = {c["gen"]: c for c in list(R.CANDIDATOS) + V.NUEVOS}
+    por_gen = {c["gen"]: c
+               for c in list(R.CANDIDATOS) + V.NUEVOS + CANDIDATOS_EXTRA}
     pesos_d18 = {k: v["peso"] for k, v in R.REFERENCIAS.items()}
     pesos_d18[R.DMAIDIS] = R.DMAIDIS_INFO["peso"]
     filas = []
@@ -269,6 +427,7 @@ def construir(genes: dict, identidad: list[dict], complejidad: dict) -> list[dic
         excl = R.excluidas_de(por_gen[gen], "off")
         est = E.estado_region(genes[gen], ini, fin, None, excl)
         conteos = conteos_de_region(genes[gen], ini, fin, excl)
+        cmplj = complejidad["por_gen"][gen]
         # agrupación región x organismo x gen
         grupos: dict[tuple, dict] = {}
         for f in identidad:
@@ -317,9 +476,12 @@ def construir(genes: dict, identidad: list[dict], complejidad: dict) -> list[dic
                 "umbrales_anidados": "sí: toda ventana con 21/21 tiene bloque de >= 19 nt",
                 "baja_complejidad_perfecto_21": 0,
                 "baja_complejidad_perfecto_ge19": 0,
-                "complejidad_fuente": "M5, complejidad_seis_genes.json: 0 de %d ventanas "
-                                      "del gen %s son de baja complejidad"
-                                      % (complejidad["por_gen"][gen]["ventanas"], gen),
+                "complejidad_fuente": "%s: %d de %d ventanas del gen %s son de baja "
+                                      "complejidad"
+                                      % (cmplj.get("fuente",
+                                                   "M5, complejidad_seis_genes.json"),
+                                         cmplj["baja_complejidad"], cmplj["ventanas"],
+                                         gen),
                 "ventanas_21_eficientes": efi21, "ventanas_ge19_eficientes": efi19,
                 "posiciones_perfecto_21": json.dumps(pos21),
                 "posiciones_perfecto_ge19": json.dumps(pos19),
@@ -337,6 +499,82 @@ def construir(genes: dict, identidad: list[dict], complejidad: dict) -> list[dic
     return filas
 
 
+def filas_de_juntura() -> list[dict]:
+    """Las filas de alerta de las junturas, con la clave que `D78` fija.
+
+    Lo unico que se corrige del archivo de `O3` es la clave: su columna `region` dice
+    «juntura, j=1,2,3» y pasa a decir «juntura», con los `j` movidos a `que_es`. El resto
+    de las columnas viaja tal cual, porque son la medicion de ese bloque y esta linea no
+    la recalcula. Las columnas de complejidad, que `O3` dejo vacias, se completan con el
+    criterio de `D59` aplicado al bloque: un bloque fabricado no es una ventana del gen y
+    no esta en ningun tamizado por ventana, asi que se informa como no medida en vez de
+    como cero.
+    """
+    out = []
+    for j in JUNTURAS:
+        if not j["filas"]:
+            continue
+        ruta = RAIZ / j["filas"]
+        if not ruta.exists():
+            raise SystemExit("falta la medicion de juntura %s (%s). La produce "
+                             "research/ola6/O3_quimera_bicc_vatpase_b/scripts/"
+                             "02_juntura_detalle.py" % (j["quimera"], ruta))
+        with ruta.open(encoding="utf-8") as fh:
+            for f in csv.DictReader(fh, delimiter="\t"):
+                esperado = "quimera %s" % j["quimera"]
+                if f["gen"] != esperado:
+                    raise SystemExit("la fila de %s dice gen=%r y se esperaba %r"
+                                     % (ruta, f["gen"], esperado))
+                js = f["region"].replace("juntura", "").strip(" ,")
+                f["region"] = "juntura"
+                f["que_es"] = "%s%s" % (f["que_es"], (" (%s)" % js) if js else "")
+                f["baja_complejidad_perfecto_21"] = "no medida: el bloque no es ventana del gen"
+                f["baja_complejidad_perfecto_ge19"] = "no medida: el bloque no es ventana del gen"
+                f["complejidad_fuente"] = (
+                    "no aplica el conteo por ventana de D59: un bloque fabricado por el "
+                    "empalme no existe en ningun tamizado por ventana de los dos genes")
+                f["decision_usuario"] = f["decision_usuario"] or "pendiente"
+                f["justificacion_usuario"] = (f["justificacion_usuario"]
+                                              or "pendiente: la escribe el usuario, no el motor")
+                out.append(f)
+    return out
+
+
+def estados_de_juntura(filas: list[dict]) -> list[dict]:
+    """Una fila de inventario por juntura, con las columnas que una juntura puede llenar.
+
+    Las columnas de region de un gen —`n_ventanas`, `eficientes`, los dos vetos— no tienen
+    sentido para un empalme: el veto se calcula sobre las ventanas de una region del gen y
+    la juntura son las ventanas que **cruzan** la union. Se escriben como «no aplica» en vez
+    de como cero, que se leeria como «medido y da cero».
+    """
+    out = []
+    for j in JUNTURAS:
+        gen = "quimera %s" % j["quimera"]
+        mias = [f for f in filas if f["gen"] == gen and f["region"] == "juntura"]
+        n21 = sum(int(f["ventanas_perfecto_21"] or 0) for f in mias)
+        n19 = sum(int(f["ventanas_perfecto_ge19"] or 0) for f in mias)
+        out.append({
+            "gen": gen, "region": "juntura", "que_es": j["que_es"], "vigente": "no",
+            "n_ventanas": j["largo_juntura"], "eficientes": "no aplica",
+            "alertas_21_21": n21, "alertas_ge19": n19,
+            "baja_complejidad": "no aplica",
+            "filas_de_alerta": len(mias),
+            "organismos_con_alerta": ",".join(sorted({f["organismo_corto"] for f in mias})) or "-",
+            "genes_con_alerta": ",".join(sorted({f["gen_simbolo"] for f in mias})) or "-",
+            "veto_regla_hoy_ciega_al_peso": "no aplica",
+            "veto_regla_por_exposicion_M5": "no aplica",
+            "estado_D48": ("sin alertas" if not mias
+                           else "con alertas, pendiente de justificacion"),
+            "estado_firmado_21": AL.estado_decision(filas, gen, "juntura",
+                                                    "perfecto_21")["estado"],
+            "estado_firmado_ge19": AL.estado_decision(filas, gen, "juntura",
+                                                      "perfecto_ge19")["estado"],
+            "decide": "el codigo" if not mias else "el usuario",
+        })
+    return out
+
+
 def estados(genes: dict, filas: list[dict]) -> list[dict]:
     """El estado de las diecinueve regiones bajo la regla nueva, y bajo las dos anteriores.
 
@@ -344,7 +582,8 @@ def estados(genes: dict, filas: list[dict]) -> list[dict]:
     exige a la región estar acá, y es el único archivo que puede decir «tamizada, cero
     aciertos», porque en `alertas.tsv` eso y «nunca tamizada» son las mismas cero filas.
     """
-    por_gen = {c["gen"]: c for c in list(R.CANDIDATOS) + V.NUEVOS}
+    por_gen = {c["gen"]: c
+               for c in list(R.CANDIDATOS) + V.NUEVOS + CANDIDATOS_EXTRA}
     w = E.vector_exposicion()
     out = []
     for gen, (ini, fin), que, vigente in REGIONES:
@@ -393,8 +632,21 @@ def main() -> int:
         if rotas:
             sys.exit("ANCLAS ROTAS en %s" % nombre)
 
+    # Los genes extra se funden **despues** de A1 a A4: esas anclas comparan contra
+    # `ranking_v2.json` y este gen no esta ahi, asi que entra cuando ya pasaron.
+    for cand in CANDIDATOS_EXTRA:
+        genes[cand["gen"]] = cargar_extra(cand)
+        complejidad["por_gen"][cand["gen"]] = complejidad_extra(cand)
+        print("gen de inventario sin ficha de ranking: %s (%d nt, desde %s)"
+              % (cand["gen"], genes[cand["gen"]]["n"], cand["trabajo"]), flush=True)
+
     identidad = leer_identidad()
     filas = construir(genes, identidad, complejidad)
+    # Las junturas de `D78`: la medicion viene de `O3` y aca se integra al inventario.
+    juntura = filas_de_juntura()
+    filas += juntura
+    print("junturas integradas (D78): %d quimeras, %d filas de alerta"
+          % (len(JUNTURAS), len(juntura)), flush=True)
     n = AL.validar(filas)
     print("validación de los cuatro campos: %d de %d filas completas" % (n, len(filas)))
 
@@ -429,7 +681,7 @@ def main() -> int:
             destino.parent.mkdir(parents=True, exist_ok=True)
             destino.write_text("\t".join(COLUMNAS) + "\n", encoding="utf-8")
 
-    est = estados(genes, filas)
+    est = estados(genes, filas) + estados_de_juntura(filas)
     with (SALIDA / "estado_regiones.tsv").open("w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(est[0]), delimiter="\t")
         w.writeheader()

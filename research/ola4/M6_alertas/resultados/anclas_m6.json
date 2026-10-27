@@ -47,12 +47,12 @@
    "coincide": true
   }
  ],
- "A4_comparaciones": 75,
- "A4_coinciden": 75,
- "A5_comparaciones": 44,
- "A5_coinciden": 44,
- "filas_validadas": 26,
- "regiones": 19,
+ "A4_comparaciones": 77,
+ "A4_coinciden": 77,
+ "A5_comparaciones": 54,
+ "A5_coinciden": 54,
+ "filas_validadas": 32,
+ "regiones": 21,
  "A4_detalle": [
   {
    "ancla": "A4",
@@ -803,6 +803,26 @@
    "publicado": null,
    "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
    "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "eth_Dm 194-393",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
+  },
+  {
+   "ancla": "A4",
+   "region": "VATPaseB_Dm 517-816",
+   "referencia": "-",
+   "criterio": "-",
+   "mio": null,
+   "publicado": null,
+   "nota": "sin ficha publicada en k=21 (región recomendada a k=22)",
+   "coincide": true
   }
  ],
  "A5_detalle": [
@@ -1196,6 +1216,96 @@
   {
    "ancla": "A5",
    "region": "BicC_Dm 2123-2422",
+   "referencia": "maiz",
+   "criterio": "perfecto_ge19",
+   "mio": 3,
+   "publicado": 3,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "eth_Dm 194-393",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 1,
+   "publicado": 1,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "eth_Dm 194-393",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 5,
+   "publicado": 5,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "VATPaseB_Dm 517-816",
+   "referencia": "H_axyridis",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "VATPaseB_Dm 517-816",
+   "referencia": "H_axyridis",
+   "criterio": "perfecto_ge19",
+   "mio": 4,
+   "publicado": 4,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "VATPaseB_Dm 517-816",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "VATPaseB_Dm 517-816",
+   "referencia": "H_vitripennis",
+   "criterio": "perfecto_ge19",
+   "mio": 8,
+   "publicado": 8,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "VATPaseB_Dm 517-816",
+   "referencia": "humano",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "VATPaseB_Dm 517-816",
+   "referencia": "humano",
+   "criterio": "perfecto_ge19",
+   "mio": 4,
+   "publicado": 4,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "VATPaseB_Dm 517-816",
+   "referencia": "maiz",
+   "criterio": "perfecto_21",
+   "mio": 0,
+   "publicado": 0,
+   "coincide": true
+  },
+  {
+   "ancla": "A5",
+   "region": "VATPaseB_Dm 517-816",
    "referencia": "maiz",
    "criterio": "perfecto_ge19",
    "mio": 3,

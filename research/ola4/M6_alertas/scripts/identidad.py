@@ -53,6 +53,18 @@ PANEL = ["GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna.fna.gz",
 GENOMA_VECTOR = "GCA_975739785.1_ihDalMaid1.1_genomic.fna.gz"
 GENES = V.GENES_EPILAB + V.GENES_NUEVOS
 VIRALES = ["MP_MRFV", "CP_MRFV"]
+#: Genes que entran al **inventario de M6** sin estar en el catalogo del ranking, con el
+#: FASTA de su gen entero. Existe por `D78`: la region candidata de `V-ATPase B` 517-816
+#: tiene que tener fila, y el gen no es uno de los seis que el ranking tamiza —su tamizado
+#: lo dejo `O3` en `work/O3/`, no en `work/sifi_v2/`—.
+#:
+#: **Por que un catalogo aparte y no `ranking_v2.NUEVOS`.** Agregarlo ahi lo mete en
+#: `correr_k()`, en `nulo_nuevos` y en `jaccard_21_22`, o sea **mueve `ranking_v2.json`**,
+#: que es cifra publicada y que el issue #30 pide no mover sin decision escrita. `D78`
+#: decide que la region entre al inventario de alertas; no que el gen entre al ranking.
+#: Las dos cosas se mantienen separadas aca: este gen tiene fila de alerta y no tiene
+#: ficha de ranking.
+GENES_EXTRA = {"VATPaseB_Dm": RAIZ / "work/O3/fasta/VATPaseB_Dm_full.fasta"}
 CRITERIOS = ("perfecto_21", "perfecto_ge19")
 
 
@@ -62,7 +74,10 @@ def base_de(ruta: str) -> str:
 
 def tamizar(genes: list[str], bases: list[Path]) -> tuple[list[dict], dict]:
     """Filas (gen, pos, referencia, criterio, transcripto) y la anotación por accesión."""
-    consultas = [FASTA / ("%s_full.fasta" % g) for g in genes]
+    consultas = [GENES_EXTRA.get(g) or FASTA / ("%s_full.fasta" % g) for g in genes]
+    faltan = [str(c) for c in consultas if not c.exists()]
+    if faltan:
+        raise SystemExit("faltan los FASTA de consulta: %s" % ", ".join(faltan))
     aut, sirnas = O.construir(consultas, con_mm1=False)
     print("  %d ventanas, %d patrones" % (len(sirnas), len(aut)), flush=True)
     filas, anotaciones = [], {}
@@ -89,8 +104,14 @@ def tamizar(genes: list[str], bases: list[Path]) -> tuple[list[dict], dict]:
 
 def a3_contra_la_matriz(filas: list[dict]) -> list[dict]:
     """Colapsar la identidad a booleanos reproduce la matriz de `work/sifi_v2/`."""
+    # Los genes de `GENES_EXTRA` quedan fuera del ancla: su tamizado no esta en
+    # `work/sifi_v2/`, asi que no hay matriz contra la que compararlos y contarlos aca
+    # haria que A3 reporte «sobran» por una ausencia esperada. Lo que los verifica es el
+    # ancla propia de su bloque (`O3/scripts/00_anclas.py` y las cifras de `D74`).
     mio: set[tuple] = set()
     for f in filas:
+        if f["gen"] in GENES_EXTRA:
+            continue
         mio.add((f["gen"], f["pos"], f["referencia"], f["criterio"]))
     suyo: set[tuple] = set()
     for sub in ("offtarget_k21", "offtarget_dm_k21"):
@@ -115,7 +136,7 @@ def main() -> int:
     print("anclas de M5 (abortan si fallan)...", flush=True)
     A.correr()
     print("tamizaje contra el panel de seis referencias...", flush=True)
-    filas, anot = tamizar(GENES, [REF / p for p in PANEL])
+    filas, anot = tamizar(GENES + list(GENES_EXTRA), [REF / p for p in PANEL])
     print("tamizaje de los dos genes virales contra el genoma del vector...", flush=True)
     f2, anot2 = tamizar(VIRALES, [REF / GENOMA_VECTOR])
     filas += f2

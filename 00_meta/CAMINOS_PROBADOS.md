@@ -1412,6 +1412,42 @@ pipeline: buscar dónde existe la versión curada del mismo dato.
   repositorio ya midió que rellenar un hueco con lo que parece razonable —elegir el gen por
   nombre en vez de por ortología recíproca— movió el conteo de ventanas eficientes un 65 %.
 
+## Correr la grilla fina de `O4` subiendo el tope como autorizaba el issue — descartado por costo medido (2026-10-27, `D89`)
+
+El issue **#37** autorizaba explícitamente «subir el tope a propósito y declararlo» para la
+corrida de `--paso 1` del enumerador de quimeras, sobre la base de que pedía 136.446 plegados.
+Se intentó con `--tope-plegados 150000`, que es la cifra que esa autorización implicaba, y el
+enumerador **se detuvo y lo dijo**, como está diseñado: la grilla pide **129.761.738**
+plegados `[M]`, tres órdenes de magnitud más que el número publicado. A las 21 plegados por
+segundo que mide esta máquina son del orden de 71 días.
+
+**Por qué el descarte vale la pena contarlo.** La autorización del issue era correcta en su
+forma y se dio sobre una cifra que nadie había podido reproducir: aparece sólo en prosa, sin
+archivo de salida, y la corrida que la habría producido es la que el mismo texto declara no
+hecha. El intento no fue en vano porque el tope hizo exactamente su trabajo —detener y
+declarar el tamaño medido en vez de muestrear— y de paso dejó medido el costo de las cuatro
+retículas, que es lo que faltaba para decidir: `--paso 1` 129.761.738, `--paso 2` 16.816.657,
+`--paso 5` 1.177.056, `--paso 10` 173.289 `[M]`.
+
+**La lección de método**, que es hermana de la de `command -v` (entrada 54): una autorización
+que se apoya en un número conviene verificarla contra el número antes de usarla. Si el tope no
+hubiera existido, la corrida habría arrancado y nadie se habría enterado del error hasta
+mirar el reloj a los dos meses.
+
+## Meter `V-ATPase B` al catálogo del ranking para que entre al inventario — descartado por mover una cifra publicada (2026-10-27, `D88`)
+
+Para que `D78` entrara en efecto hacía falta que `tabla_alertas.py` conociera el gen, y el
+camino corto era agregarlo a `ranking_v2.NUEVOS`, que es el catálogo que ya existía para los
+dos genes que sumó `C5`. Se descartó al leer dónde se usa esa lista: `correr_k()`,
+`nulo_nuevos` y `jaccard_21_22` la recorren, así que el gen habría entrado a `ranking_v2.json`
+y movido una cifra publicada que el criterio de terminado del issue **#30** pide no mover sin
+decisión escrita, nombrando `jaccard_21_22` en particular. Y habría fallado igual: el gen no
+tiene perfil en `work/sifi_v2/salida_k21`, porque su tamizado lo dejó `O3` en `work/O3/`.
+
+**Lo que quedó en su lugar** es un catálogo aparte, `CANDIDATOS_EXTRA`, con su propia función
+de carga. La distinción que el descarte obligó a hacer explícita es la que vale: **tener fila
+de alerta y tener ficha de ranking no son lo mismo**, y hasta ahora el código las trataba como
+una sola porque todos los objetos del inventario eran, además, candidatos del ranking.
 ## Ola 6 (2026-10-27): dejar `UMBRAL_OFF_ALERTA` en 17 con un criterio escrito
 
 - **Probado y descartado: justificar el 17 en vez de alinearlo.** El issue #18 permitia las dos
@@ -1439,3 +1475,30 @@ pipeline: buscar dónde existe la versión curada del mismo dato.
   `buenos_limpios` y nada mas `[M]`. Ese archivo es el unico versionado con la columna
   `off_target_max`, asi que para cualquier otra entrada `hay_off` es falso y la constante no
   tiene efecto alguno `[M]`.
+
+## Darles bandera de salida a los 42 generadores con el defecto latente — descartado por relación riesgo/beneficio (2026-10-27, entrada 91)
+
+El barrido del issue **#37** midió que **43** módulos del repositorio escriben en el árbol
+versionado sin poder redirigir la salida `[M]`. Se arreglaron los **cuatro** que el censo de
+`R11` corre y se descartó tocar los otros **42** —9 de la ola 3, 10 de la 4, 9 de la 5 y 14 de
+la 6—.
+
+**Por qué el descarte.** Ninguno de los 42 tiene el defecto **completo**: la tercera parte
+—que alguien los corra con parámetros distintos de los publicados— no se da, porque nadie los
+censa. Lo que el defecto cuesta cuando se completa está medido (entrada 90: dos archivos de
+`M5` reemplazados por una corrida de cincuenta sorteos), y lo que cuesta prevenirlo en 42
+scripts de líneas ya cerradas es editar 42 archivos que hoy producen cifras publicadas, por
+una bandera que nadie va a usar. Un `git diff` de 42 scripts de resultados publicados es
+exactamente el tipo de cambio que este repositorio evita cuando no mueve nada.
+
+**Lo que quedó en su lugar.** La lista completa, con las tres partes del defecto por separado,
+en `research/ola6/R12_corridas_pendientes/resultados/auditoria_escrituras.tsv`, y el auditor
+que la regenera. La regla queda para lo que venga: **un generador que alguien pueda querer
+correr sin publicar necesita saber dónde escribir**, y antes de meter uno de esos 42 a un
+censo hay que darle la bandera primero.
+
+`[H]` La lección de método es sobre cómo se cuenta un defecto. Contar «43 módulos con el
+defecto» habría pedido 43 arreglos; contar sus tres partes por separado mostró que los
+accionables eran **cuatro** y que de esos cuatro **uno solo** había perdido datos. Un
+verificador que no separa «tiene la forma del problema» de «está causando el problema»
+convierte un arreglo de cuatro archivos en una migración de cuarenta y tres.

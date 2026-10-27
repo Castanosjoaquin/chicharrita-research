@@ -59,6 +59,13 @@ SALTAR = (".git", "__pycache__", ".venv", "node_modules")
 SALTAR_RUTA = (".claude/worktrees",)
 
 # Los generadores declarados, con el comando exacto con el que se los intenta correr.
+#
+# **Todo comando que escriba manda su salida a `work/R11_censo/`.** El censo verifica si un
+# generador termina, no publica, y un censo que deja su salida de prueba donde vive la
+# salida publicada es el defecto que `sensibilidad_reparto.py` pago con dos archivos de M5
+# reemplazados por una corrida de cincuenta sorteos (issue #37, entrada 90 de
+# `PREGUNTAS_ABIERTAS.md`). `tabla_alertas.py` es la excepcion que queda y esta declarada
+# abajo, en su propia entrada.
 # `produce` dice que region puede nacer ahi; `insumo` es lo que ese comando necesita y que
 # `work/` no versiona.
 GENERADORES = [
@@ -75,8 +82,16 @@ GENERADORES = [
      "insumo": "work/sifi_check/salida"},
     {"nombre": "ranking_v2.py",
      "ruta": "tools/sifi21_port/ranking_v2.py",
+     # **Sin `--muestras`, a proposito.** Este comando llevaba `--muestras 50` para
+     # abaratar la corrida, y eso rompia el ancla del barrido por construccion: el ancla
+     # compara frecuencias contra `W7` con igualdad exacta, lo que solo tiene sentido con
+     # el mismo numero de sorteos, asi que con 50 muestras daba multiplos de 2,0 contra
+     # las decimas finas de las 2.000 publicadas y el censo reportaba «ANCLA ROTA» —el
+     # peor mensaje posible, porque es el que nadie ignora— por un parametro que el censo
+     # mismo habia cambiado. Con el default corre entero y pasa todas las anclas en unos
+     # 60 s (issue #37, entrada 66 de PREGUNTAS_ABIERTAS.md).
      "comando": [sys.executable, "tools/sifi21_port/ranking_v2.py",
-                 "--trabajo", "work/sifi_v2", "--muestras", "50",
+                 "--trabajo", "work/sifi_v2",
                  "--json", "work/R11_censo/ranking_v2_censo.json"],
      "produce": ("regiones por tres caminos: completar_regiones, recomendadas y las dos "
                  "ramas de efecto_humano"),
@@ -84,30 +99,44 @@ GENERADORES = [
     {"nombre": "M6 tabla_alertas.py",
      "ruta": "research/ola4/M6_alertas/scripts/tabla_alertas.py",
      "comando": [sys.executable, "research/ola4/M6_alertas/scripts/tabla_alertas.py"],
+     # El unico que sigue escribiendo en el arbol versionado, y se deja asi a proposito:
+     # **es el generador del inventario**, no hay segundo lugar donde el inventario tenga
+     # sentido, y corre con sus defaults, asi que reproduce lo publicado. Verificado: tras
+     # correrlo, `git status` de `research/ola4/M6_alertas/resultados/` queda limpio `[M]`.
      "produce": ("el inventario mismo; pasa por la compuerta via las anclas de M5, que "
                  "llaman a ranking_v2.recomendadas()"),
      "insumo": "work/m6_alertas/identidad_por_ventana.tsv y work/W5/ref"},
     {"nombre": "M6 compuerta.py",
      "ruta": "research/ola4/M6_alertas/scripts/compuerta.py",
-     "comando": [sys.executable, "research/ola4/M6_alertas/scripts/compuerta.py"],
+     "comando": [sys.executable, "research/ola4/M6_alertas/scripts/compuerta.py",
+                 "--salida", "work/R11_censo/m6_compuerta.json"],
      "produce": "nada: itera sobre las regiones que YA estan en el inventario",
      "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)"},
     {"nombre": "M6 umbral_compuerta.py",
      "ruta": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
-     "comando": [sys.executable, "research/ola4/M6_alertas/scripts/umbral_compuerta.py"],
+     "comando": [sys.executable, "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
+                 "--salida", "work/R11_censo/m6_umbral_compuerta.json"],
      "produce": "nada: el mismo recorrido, con los dos umbrales de D28",
      "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)"},
     {"nombre": "M5 sensibilidad_reparto.py",
      "ruta": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py",
+     # `--resultados` a `work/`, y **esto no es cosmetico**: mientras este generador
+     # fallaba por insumo no escribia nada, y al destrabarse (issue #37) empezo a escribir
+     # en `research/ola4/M5_dos_ejes/resultados/`, que es lo que se versiona. Con los
+     # `--muestras 50` del censo eso sobreescribe las cifras publicadas de M5 con una
+     # corrida de cincuenta sorteos. Un censo que verifica si un generador corre no puede
+     # dejar su salida de prueba donde vive la salida publicada.
      "comando": [sys.executable, "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py",
-                 "--muestras", "50"],
+                 "--muestras", "50",
+                 "--resultados", "work/R11_censo/m5_sensibilidad"],
      "produce": ("la columna region_recomendada de regiones_recomendadas_por_reparto.tsv, "
                  "que sale de ranking_v2.recomendadas() via anclas.py"),
      "insumo": "work/sifi_v2 (lo pide anclas.correr())"},
     {"nombre": "O3 01_region_vatpase_b.py",
      "ruta": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
      "comando": [sys.executable,
-                 "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py"],
+                 "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
+                 "--resultados", "work/R11_censo/o3"],
      "produce": ("la region candidata de V-ATPase B; arma la region a mano a proposito "
                  "(D74) porque es insumo de una medicion y no una recomendacion"),
      "insumo": "work/o3 y work/W5/ref"},

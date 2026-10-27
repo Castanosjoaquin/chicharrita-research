@@ -2523,6 +2523,253 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     de secuencia, antes de que este eje existiera `[H]`.
     **Lo que sigue abierto, y no es poco:** elegir el objetivo. `F3` no lo elige y no debe; es
     decisión del equipo y del investigador, y ahora tiene la tabla que antes no tenía.
+### Ola 6, el barrido de corridas pendientes del issue #37 (2026-10-27)
+
+> Se publicaron como **65 a 74** y se renumeraron a **76 a 85** al mergear: `F3` (issue #27)
+> había usado 65 a 75 en la misma jornada. La equivalencia, por si alguien llega desde un
+> commit que cita los números viejos: 65→76, 66→77, 67→78, 68→79, 69→80, 70→81, 71→82,
+> 72→83, 73→84, 74→85.
+
+> Todas estas se midieron en **la máquina de Joaquín** (macOS, Darwin 27.0.0), con `work/`
+> en disco (14 GB) y el entorno `w5bio` de `micromamba`, que es el único de los doce que
+> corre la línea entera: Python 3.11.17, ViennaRNA 2.7.2 —la misma versión que usó `C13`—,
+> Biopython 1.88, `ahocorasick`, numpy 2.4.6, BLAST+ 2.17.0 y los ejecutables `RNAfold` y
+> `RNAplfold` `[M]`.
+
+76. **El entorno estaba medido mal otra vez, y en la dirección de siempre.** `PLAN_OLA6.md`
+    dice que en esta máquina «faltan `RNAplfold` y `RNAfold`», con la salvedad de que eso
+    «no se volvió a medir contra los `envs/`» `[?]`. Medido ahora: **están**, los dos, en
+    `envs/w5bio/bin/` junto con los otros veintisiete ejecutables de ViennaRNA `[M]`. Esa
+    era la última celda que quedaba en pie de la tabla de entorno, así que de la lista
+    original de herramientas faltantes de esta máquina **no falta ninguna**. `[H]` La
+    lección es la tercera vuelta de la misma: la entrada 54 la enunció para `command -v`,
+    la 55 para «en qué máquina», y ésta la cierra para los entornos sin activar. Cuando un
+    hecho de entorno viene marcado `[?]` porque no se volvió a medir, lo que corresponde no
+    es arrastrarlo: es medirlo, que cuesta un `ls`.
+
+77. **El censo de generadores pasó de 2 de 8 a 8 de 8, y ninguno de los seis que se
+    destrabaron lo estaba por el motivo que el inventario le atribuía.**
+    Corrido de punta a punta con `work/` en disco, terminan con código 0 **los ocho** `[M]`.
+    Llegó ahí en tres pasos: cinco en la primera pasada, siete tras las dos correcciones que
+    siguen, y el octavo —`sensibilidad_reparto.py`— cuando el equipo firmó la fila que lo
+    frenaba (`D92`). Los tres que fallaban en la primera pasada lo hacían por tres motivos
+    distintos y **ninguno era falta de insumo**:
+
+    * `ranking_v2.py` **no fallaba por insumo**: el censo lo invoca con `--muestras 50`
+      para ir rápido, y el ancla del barrido compara frecuencias contra `W7` con igualdad
+      exacta, lo que sólo tiene sentido con el mismo número de sorteos. Las frecuencias
+      obtenidas eran múltiplos de 2,0 —o sea, de 50 muestras— contra las décimas finas de
+      las 2.000 publicadas. Con el default corre entero y pasa todas las anclas `[M]`.
+      `[H]` Es un defecto del censo, no del motor: un comando de censo que cambia un
+      parámetro para abaratar la corrida puede romper un ancla por construcción y
+      reportarlo como «ANCLA ROTA», que es el peor mensaje posible porque es el que nadie
+      ignora. Conviene que el censo corra los generadores con sus defaults, o que declare
+      al lado qué parámetro cambió.
+    * `sensibilidad_reparto.py` llegó hasta el final de la cadena de insumos y se detuvo
+      donde el proyecto quiere que se detenga: en una firma. Su error pasó de
+      `RegionNoTamizada` a `AlertaSinDecidir` —un paso de avance: la región ya estaba
+      tamizada y lo que faltaba era que una persona la firmara— y **terminó el mismo día**,
+      cuando esa firma se escribió (`D92`). Ver la entrada 78.
+    * `01_region_vatpase_b.py` fallaba con `StopIteration` por un desencuentro de rutas, no
+      por falta de datos. Ver la entrada 79.
+
+78. **La compuerta encontró una región nueva, y es la misma ventana de siempre vista desde
+    un nucleótido más adelante.** `sensibilidad_reparto.py` levantó
+    `RegionNoTamizada: eth_Dm 194-393`. Medida la cosa entera en vez de iterar —los nueve
+    `rho` del barrido de exposición, los seis genes, sin dejar que la compuerta corte en la
+    primera—, de los **54 pares gen × rho** esa es la **única** que no estaba en el
+    inventario de 19, y aparece **sólo en `rho` = 0,00**, el reparto de `D47` con el peso
+    de exposición de *Homalodisca vitripennis* en cero `[M]`. Con cualquier `rho` mayor la
+    recomendada de `eth_Dm` vuelve a ser 114-313.
+
+    Agregada al inventario, **trae una coincidencia perfecta de 21 nt**, y es la misma que
+    ya tenía `eth_Dm` 193-392: mismo organismo (*H. vitripennis*), mismo locus
+    (`LOC124369889`, quitinasa 2 probable), **misma posición 347**, los mismos conteos de
+    `D28` (1 de 21/21 y 5 de ≥ 19 nt, 0 eficientes) `[M]`. La fila salió **sin firmar**, que
+    es lo que corresponde: la firma la escribe una persona. Y mientras estuvo sin firmar,
+    `sensibilidad_reparto.py` **no terminaba** —levantaba `AlertaSinDecidir`—, lo que
+    convirtió ese pendiente de «falta `work/`» en «falta una firma»: una clase distinta de
+    pendiente, en manos del equipo y no de una máquina.
+
+    **Firmada el mismo día, bloqueante, por `D92`.** Con la firma puesta el generador
+    termina y el censo llega a 8 de 8 `[M]`. Lo que la firma agrega y no estaba en la de
+    193-392 es que **acá la región y el peso están acoplados**: ésta aparece sólo con
+    `rho` = 0,00, así que si la exposición de *H. vitripennis* se cerrara en 0,60 la fila no
+    se vuelve más fuerte —como pasaría con 193-392— sino que **la región desaparece**. Al
+    revisarla hay que mirar primero si sigue siendo recomendada con el peso que se decida.
+
+    `[H]` Y el argumento contra la propuesta de 22 nt para `eth_Dm` —correr la ventana
+    introduce un acierto perfecto que la región vigente 114-313 no tiene— ahora tiene
+    **dos** regiones que lo sostienen en vez de una.
+
+79. **`work/O3/` de esta máquina tiene otro layout que el que el script de `O3` pide, y la
+    diferencia no era de datos.** `01_region_vatpase_b.py` busca
+    `work/O3/sifi/full_corregido/`, `work/O3/offtarget/` y `work/O3/offtarget_humano/`, y lo
+    que hay en disco es `work/O3/salida/` y `work/O3/offtarget/cds_completo/`, de otra
+    corrida. Regenerado el layout que el script declara —`run_sifi.py` sobre el gen entero y
+    los dos tamizados, con ViennaRNA 2.7.2— el script corre entero y reproduce `D74` **celda
+    por celda**: 1.184 regiones posibles, **una** no vetada (517-816), y el veto por
+    referencia en el CDS entero con maíz 12, *H. vitripennis* 38 y humano 21 `[M]`.
+    Comparado por valor contra el `region_vatpase_b.json` publicado, las diferencias son
+    **cuatro y ninguna es una cifra**: el nombre de la consulta, dos separadores de ruta de
+    Windows y la versión de Python `[M]`. El archivo publicado se dejó como estaba, porque
+    es el registro de la corrida que lo generó.
+
+    `[?]` Queda algo sin resolver: el `REPORT.md` de `O3` §12 nombra
+    `work/O3/fasta/consultas_pasoA.fasta` como la consulta del tamizado, y **ningún script
+    versionado lo genera**. La corrida original usó una cabecera
+    `VATPaseB_Dm_OZ319705.1_38943269_38957327` y la reproducción usó `VATPaseB_Dm_full`; que
+    todos los conteos coincidan prueba que la secuencia es la misma, pero el generador de
+    ese FASTA no está en el repositorio.
+
+80. **La grilla fina de `O4` no pide 136.446 plegados: pide 129.761.738.** La entrada 48
+    publica «136.446 plegados `[M]`, que entran en unas horas de esta máquina». Medido hoy,
+    con los insumos en disco y el enumerador versionado: con `--paso 1` la grilla tiene
+    **2.133.868.568 combinaciones antes de podar**, de las cuales **129.430.632** son
+    admisibles en marco 2, y con los 331.106 fragmentos el total es **129.761.738
+    plegados** `[M]`. Son **tres órdenes de magnitud** más que la cifra publicada. Al ritmo
+    medido de esta máquina —la grilla gruesa hizo 3.405 plegados en 162 s, o sea 21 por
+    segundo `[M]`— eso no son «unas horas» sino del orden de **71 días** de una máquina
+    sola. `[?]` De dónde salió 136.446 no consta: la cifra aparece sólo en prosa, en
+    `REPORT.md` §8 y en la entrada 48, sin ningún archivo de salida que la respalde, y la
+    corrida que la habría producido es justamente la que el mismo texto dice que no se hizo.
+    `[H]` Un número que nunca se pudo reproducir no debería llevar `[M]`, que es la marca de
+    lo medido y reproducible desde el repositorio; éste parece una estimación.
+
+    Lo que el enumerador ofrece como pasos intermedios, medido en la misma corrida:
+    `--paso 2` pide 16.816.657, `--paso 5` pide 1.177.056 y `--paso 10` pide **173.289**
+    `[M]`. El último es el único que entra en una tarde, y **se corrió**: 169.648
+    combinaciones más 3.641 fragmentos, en unas cinco horas de esta máquina `[M]`.
+
+    **Y contesta la pregunta: el paso mueve el primer puesto.** La grilla gruesa daba
+    `Q_BicC_Dm_1951-2450__VATPaseB_Dm_1001-1100` con 64 ventanas heredadas eficientes. Con
+    `--paso 10` el primero es `Q_BicC_Dm_1961-2460__VATPaseB_Dm_1001-1100` con **65**, y el
+    de la gruesa cae al **puesto 2** `[M]`. El ganador nuevo arranca diez nucleótidos más
+    adelante, en una ubicación que la retícula de paso 50 **no tocaba**, que es exactamente
+    el mecanismo que la entrada 48 temía cuando lo planteó para las islas angostas. Las
+    combinaciones con alerta de juntura nueva pasan de 515 de 3.204 (16,1 %) a 15.763 de
+    169.648 (9,3 %) `[M]`.
+
+    `[H]` Pero el margen es **una ventana** sobre 65, así que conviene no leerlo como «la
+    grilla gruesa eligió mal». Lo que queda medido es más modesto y más útil: el orden de
+    esta grilla **no es estable al paso**, de modo que el primer puesto de cualquiera de las
+    dos es un artefacto de la retícula tanto como del criterio. Eso refuerza lo que `D65` ya
+    había decidido por otra vía —que el conteo no es lo que decide entre candidatos— y se
+    suma al aviso que viaja con este objetivo: el criterio de eficiencia de si-Fi21 no está
+    validado en hemípteros, ρ = +0,142, IC95 [−0,247, +0,492], n = 29. Un reordenamiento por
+    una ventana, bajo un criterio con ese intervalo, no mueve ninguna recomendación.
+    `[?]` Y lo que sigue sin saberse es si `--paso 1` movería **otra vez** el primer puesto:
+    la sucesión 50 → 10 lo movió una vez, y de ahí no se sigue que haya convergido.
+
+81. **El eje de off-target por gen de `F3` no se desbloquea con `work/`, y la casilla lo
+    decía mal.** Esta entrada completa la **67** y el §4 del `REPORT.md` de `F3`, que
+    declararon el eje faltante «por falta de `work/sifi_v2/`» desde una máquina donde ese
+    directorio no existe. Medido desde la máquina donde **sí** está: no alcanza, y el
+    segundo motivo que `F3` ya había identificado —que los conteos de las 8 filas están
+    contra otro panel, el de cinco referencias— no es el único que queda en pie. El issue
+    #37 lo anota como «Necesita: `work/sifi_v2/`». Medido: las 28
+    filas del catálogo de `C5` que no tienen `ventanas_21nt` son de **15 especies
+    distintas** —*Euscelidius variegatus*, *Nephotettix cincticeps*, *Nilaparvata lugens*,
+    *Rhodnius prolixus* y once más—, y `work/sifi_v2/salida_k21` tiene **seis** genes, los
+    del ranking, de los cuales sólo `eth_Dm` y `bursA_Dm` están entre las 8 filas ya
+    calculadas `[M]`. Las otras 6 de esas 8 usan secuencias que el catálogo nombra por
+    accesión (`Rpn6_Stitanus_GJQL01135962`, `ATPsynBeta_Mquadrilineatus_XM_054410120` y
+    cuatro más) y que no viven en `work/sifi_v2/`. O sea que lo que falta para ese eje no es
+    un directorio de trabajo: son **28 secuencias de transcripto** que hay que recuperar una
+    por una. `[H]` La consecuencia para el pedido de la entrada 67: mandar `work/sifi_v2/` a
+    la máquina de Santino destraba el eje de **conservación** —que sólo necesita los tres
+    TSA— y **no** el de off-target por gen, que seguirá faltando con el directorio en disco.
+    Vale pedirlo igual, pero conviene que el pedido diga cuál de los dos ejes destraba. `[H]` Y hay una segunda diferencia que conviene no pasar por alto antes de
+    mezclar las 8 con cualquier fila nueva: las 8 publicadas se tamizaron contra un panel de
+    **cinco** referencias (*D. maidis*, *M. quadrilineatus*, *H. vitripennis*, *Zea mays*,
+    *Apis mellifera*), que no es el panel de seis de `C7` v2 y `M6`.
+
+    El **otro** eje de `F3`, el de conservación entre poblaciones, sí tiene su insumo: los
+    tres TSA están en `work/W5/ref/` con 25.662, 55.286 y 56.117 secuencias `[M]`. No se
+    corrió a propósito: el issue #27 pide que el criterio y los pesos se escriban **antes**
+    de la primera corrida, y ese preregistro todavía no existe. La casilla queda
+    desbloqueada por insumo y frenada por preregistro, que no es lo mismo.
+
+82. **La vuelta de la reciprocidad de `R8` contra un proteoma anotado confirma lo publicado,
+    y de paso mide la limitación de las variantes de empalme.** El §7 de `R8` declara que
+    ninguna de las seis referencias es un proteoma y que por eso la vuelta usó el ORF más
+    largo del transcripto. En esta máquina **sí hay** un proteoma anotado del organismo de
+    origen: `GCF_021130785.1_UT_GWSS_2.1_protein.faa`, 31.163 proteínas de *H. vitripennis*,
+    en `work/F1v/ref/` `[M]`. Rehecha la vuelta con `blastp` contra él, reusando los mismos
+    ORF que dejó el paso 1 para que la única variable sea contra qué se devuelve:
+
+    * comparando **accesiones de proteína**, cambian **2 de 5** veredictos
+      (*H. axyridis* y *A. mellifera* pasarían de recíprocos a no recíprocos);
+    * pero los dos caen en `XP_046683989.1`, que es la **isoforma X2 del mismo producto**
+      que la consulta `XP_046683987.1` (`probable chitinase 2`), o sea el mismo gen;
+    * colapsando por producto, cambian **0 de 5** `[M]`.
+
+    O sea que la limitación de método estaba bien declarada y **no afectaba el resultado**.
+    Los dos no recíprocos lo siguen siendo, y ahora se sabe por qué con más precisión: la
+    vuelta de maíz cae en `chitinase-3-like protein 1` y la de humano en
+    `probable chitinase 10`, que son otras quitinasas `[M]`. `[H]` La segunda limitación de
+    §7 —un transcripto por acierto, con variantes de empalme— resultó estar del lado del
+    **proteoma** y no del transcripto, y se resuelve comparando productos y no accesiones.
+    Un ortólogo recíproco evaluado por accesión de proteína sobre un proteoma con isoformas
+    declara no recíprocos pares que sí lo son, y el error va en la dirección conservadora.
+
+83. **Cuatro de las diez anclas «salteadas por insumo» no eran de insumo: eran del
+    directorio desde donde se corre el test.** El issue #37 dice que hay que correr los
+    tests a mano con `cd tools\sifi21_port && python test_alertas.py`. Hecho así,
+    `test_ranking.py` saltea cuatro anclas diciendo que falta
+    `work/sifi_check/offtarget_full/offtarget_por_sirna.tsv`. **El archivo está.** Corrido
+    desde la raíz del repositorio, el mismo test pasa las cuatro sin saltear ninguna `[M]`.
+    Y los dos que «no colectan» con `python -m pytest` —`pipeline/test_features.py` y
+    `tools/sifi21_port/test_sifi.py`— son scripts igual que los otros cuatro y corren
+    directo, sin pytest, que además no está en ninguno de los doce entornos `[M]`.
+    `[H]` Las seis suites pasan enteras y **sin una sola ancla salteada**, que es lo que la
+    casilla transversal pedía. La lección es vecina de la de `command -v`: un «salteada
+    porque falta X» que se cumple sólo desde cierto directorio informa mal, y lo que
+    conviene es que el mensaje diga la ruta que se intentó, no la ruta relativa.
+
+84. **El panel de `work/sifi_check/offtarget_full/` es el de las seis sin la humana, y ahora
+    está dicho.** El issue #37 advierte que al pedir ese archivo hay que decir con qué panel
+    se construyó, porque los dos juegos de anclas publicadas piden paneles distintos
+    (`D83`). Medido sobre su propio `offtarget_resumen.json`: las bases son **seis** —
+    *D. maidis*, *F. candida*, *A. mellifera*, *H. vitripennis*, maíz y *H. axyridis*— y
+    **no incluye la referencia humana** `[M]`. Con ese archivo `test_ranking.py` pasa sus
+    cuatro anclas de `sifi21_reproduccion.md` §4.
+
+85. **El gancho de pre-commit corrió completo por primera vez, y la predicción de que
+    rechazaría igual era falsa.** La entrada 55 anotaba, leído y no corrido: «el gancho de
+    pre-commit debería rechazar aunque `openpyxl` esté, porque su código pide además la
+    planilla de EPILAB» `[H]`. Medido al commitear este barrido: con `w5bio` en el `PATH`
+    —el único de los doce entornos que tiene `openpyxl`, 3.1.5— y la planilla en
+    `YHat-Biotech/Sequences_EPILAB.xlsx`, que **está** en esta máquina, el gancho corre la
+    pasada contra EPILAB —4 regiones, 18.737 21-meros— y devuelve **0 hallazgos** `[M]`.
+    No rechaza.
+
+    `[H]` Lo que sí se confirmó es el otro lado del gancho, y conviene dejarlo escrito
+    porque es la parte bien diseñada: con el `python3` del sistema **rechaza**, y su mensaje
+    distingue las dos cosas que importan —«no es un hallazgo: es que la verificación no
+    corrió»— y nombra el remedio exacto, incluido el `PATH=<env con openpyxl>/bin:$PATH`.
+    Un verificador que falla cerrado y explica cómo abrirlo es la razón por la que este
+    commit no se hizo con `--no-verify`.
+
+    **Y lo que la pasada encontró no es nuevo, que es la parte importante.** Corrido
+    `--solo-epilab` sobre el árbol entero da **6 hallazgos no exceptuados**, y son
+    **exactamente los que `D61` ya había medido y decidido** el 2026-10-25: las dos regiones
+    virales en `MRFV_NC_002786.2.fa` y `db_demo_zmays40_amel40_mrfv.fa` —subcadenas del
+    genoma público `NC_002786.2`, confidencialidad nominal— y las dos de
+    `q2_aciertos_localizados.tsv`, con los mismos números que esa ADR publica: 46 de 200 nt
+    de `MP_MRFV` (23,0 %) y 48 de 300 de `BicC_Dm` (16,0 %), tramos contiguos máximos de 23
+    y 25 nt `[M]`. O sea que la línea base de seis está **caracterizada y decidida**, no sólo
+    contada, y esta corrida la reproduce.
+
+    Que la pasada contra EPILAB los siga reportando como «no exceptuados» es el diseño y no
+    un problema: `D61` metió esos dos archivos en la lista blanca **y** dejó escrito que eso
+    «no los exime de la pasada 3», porque la lista blanca no tapa los hallazgos contra la
+    planilla. El gancho da cero sobre el índice porque este barrido no toca esos archivos.
+    `[H]` Lo único que conviene corregir es la redacción de la consecuencia de `D61` —«el
+    árbol y el historial dan cero hallazgos no exceptuados»— que vale para las otras pasadas
+    y no para la tercera: hoy el número de la tercera es seis y debería estar dicho al lado,
+    porque si no, un lector que corre el verificador completo ve seis donde la ADR le
+    prometió cero y no tiene forma de saber si eso es lo esperado.
 
 ## 2026-10-27 — Lo que deja abierto el alineamiento del nivel de alerta (`D90`, issue #18)
 
@@ -2540,13 +2787,106 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
    `R3`, que se cerro en otra sesion: hay que actualizar esa fila o confirmar que la pagina se
    regenera sola `[?]`.
 
-### Ola 6, cierre de `F4` (`D91`, issue #39, 2026-10-27)
+### Ola 6, la brecha con `C12` descompuesta (`D91`, pregunta 62, 2026-10-27)
 
-*Nota de numeración: este archivo tiene un hueco entre la entrada 75 y la 86. No se perdió
-nada; la sesión `R4` numeró sus dos entradas a partir de 86 para no chocar con lo que hubiera
-en vuelo. Esta línea sigue después del máximo existente y no renumera nada.*
+**Se cierra la 62.** La brecha es el normalizador de nombres (+7,0 de 6,45 puntos); el alineador
+aporta +0,18 y el protocolo −0,73. La tabla de `C12` queda como está, válida para su propio
+criterio. Detalle en `research/ola6/R13_brecha_c12/REPORT.md`.
 
-88. **El cuarto mecanismo no tiene ni un candidato en nuestra especie, y eso le pone precio a la
+88. **¿Cuál de los dos criterios de nombre es el que hay que usar?** No se decidió y no se midió.
+    El de `F1` colapsa `isoform Xn`, `-like` y `homolog`; el de `C12` no colapsaba al menos los dos
+    primeros. Que *ankyrin-3-like isoform X2* y *ankyrin-3-like isoform X8* sean el mismo gen es
+    evidente, pero `-like` es otra cosa: *proteína X* y *proteína X-like* pueden ser parálogos
+    distintos, y el normalizador de `F1` los cuenta como acuerdo. **El 21,6 % de los pares que
+    recupera son por `-like`**, así que la elección mueve cerca de 1,5 puntos. Separar los dos
+    sufijos y medirlos aparte es barato y no se hizo `[?]`.
+89. **El normalizador de `C12` no existe como código y no se puede reconstruir.** Sólo sabemos, por
+    diferencia, que dejaba pasar los sufijos de isoforma. Cualquier intento de reproducir
+    exactamente su 78,2 % va a fallar por esto, y conviene saberlo antes de intentarlo. La lección
+    general ya está en `CAMINOS_PROBADOS.md`: una regla de comparación descrita en prosa y no
+    versionada no es reproducible aunque los datos sí lo sean.
+90. **El censo de generadores escribía su salida de prueba encima de las cifras publicadas,
+    y el defecto estuvo invisible mientras el generador fallaba.** `sensibilidad_reparto.py`
+    escribe en `research/ola4/M5_dos_ejes/resultados/`, que es un directorio versionado, y
+    no tenía forma de mandar la salida a otro lado. El censo de `R11` lo corre con
+    `--muestras 50` para ir rápido. Mientras el generador moría por insumo eso no tenía
+    consecuencia, porque no llegaba a escribir nada; **al destrabarse y terminar, la primera
+    corrida reemplazó los dos archivos publicados de esa línea con una corrida de cincuenta
+    sorteos en vez de los dos mil del default** `[M]`: 39.675 líneas insertadas y 101.943
+    borradas entre `sensibilidad_reparto.json` y `.tsv`. Se revirtió antes de commitear y se
+    le agregó `--resultados` al script, con el patrón que `quimeras_v2.py` y `ranking_v2.py`
+    ya usaban; el censo ahora escribe en `work/R11_censo/m5_sensibilidad`.
+
+    `[H]` Es el hermano del defecto de la entrada 77 y el más caro de los dos, porque no
+    avisa: aquél rompía un ancla y gritaba «ANCLA ROTA», éste deja los archivos **con
+    aspecto normal** y sólo se nota en el `git diff`. Y tiene una forma general que conviene
+    mirar en el resto del repositorio: **un verificador que corre generadores hereda el
+    poder de escritura de todo lo que corre**, así que un script que no sabe separar «dónde
+    publico» de «dónde escribo cuando me están probando» no se puede censar sin riesgo. Lo
+    que lo hizo invisible durante tres corridas del censo es justamente lo que el censo
+    estaba midiendo: que el generador fallara.
+
+91. **Barrido del defecto de la entrada 90 en el resto del repositorio: ninguno más estaba
+    perdiendo datos, y la razón no es la que parecía.** La entrada 90 dejó el patrón y esto
+    lo busca en todo el árbol, con un auditor que lo mide en vez de una lista a mano
+    (`research/ola6/R12_corridas_pendientes/scripts/auditar_escrituras.py`). De **64 módulos
+    que escriben y declaran su destino**, **43 escriben en el árbol versionado sin poder
+    redirigir la salida** `[M]`. Pero el conteo que importa es otro:
+
+    | | módulos |
+    | --- | --- |
+    | con riesgo de pérdida (el censo les cambia parámetros) | **0** |
+    | regeneración benigna (el censo los corre con sus defaults) | 1 |
+    | latentes (nadie los censa todavía) | 42 |
+
+    **La tercera parte del defecto no es «lo corre el censo», y ahí estaba el error de
+    planteo.** Los cuatro generadores censados que escribían en versionado sin bandera —los
+    tres de `M6` y el de `O3`— el censo los corre **con sus defaults**, así que lo que
+    escribían era exactamente lo que publicarían: regeneraban el mismo archivo. El único que
+    tenía el defecto completo era `sensibilidad_reparto.py`, porque el censo le pasaba
+    `--muestras 50`, que **sí** mueve el resultado. O sea que el riesgo no lo crea escribir
+    en versionado sin bandera: lo crea escribir en versionado sin bandera **y** que alguien
+    te corra con un parámetro distinto del publicado. Verificado corriendo los cuatro: los
+    tres de `M6` dejan `git status` limpio, y el de `O3` **no** —reescribe
+    `region_vatpase_b.json` en cada corrida, sin mover ninguna cifra, pero dejando el árbol
+    sucio y un `git status` posterior al censo que parece un cambio de resultados `[M]`—.
+
+    Arreglados los cuatro del censo: `compuerta.py` y `umbral_compuerta.py` tienen `--salida`
+    (no tenían `argparse`), `01_region_vatpase_b.py` tiene `--resultados`, y el censo manda
+    las tres a `work/R11_censo/`. Tras una corrida completa del censo, **ningún
+    `resultados/` del árbol queda tocado** `[M]`. El quinto, `tabla_alertas.py`, se deja
+    escribiendo donde escribe y queda declarado en la propia lista del censo: **es el
+    generador del inventario**, no hay un segundo lugar donde un inventario tenga sentido, y
+    corre con sus defaults.
+
+    Los **42 latentes** —9 de la ola 3, 10 de la 4, 9 de la 5 y 14 de la 6— **no se
+    tocaron**. No tienen el defecto completo: nadie los corre con parámetros de prueba.
+    `[H]` Y tocar 42 scripts de líneas ya cerradas para agregarles una bandera que nadie usa
+    es más riesgo que beneficio; lo que sí conviene es la regla para lo que venga: **un
+    generador que alguien pueda querer correr sin publicar necesita saber dónde escribir**, y
+    la lista está en `resultados/auditoria_escrituras.tsv` para cuando a uno de esos 42 le
+    toque entrar a un censo.
+
+    `[H]` Y dos lecciones del auditor mismo, que son del tipo que este archivo viene
+    juntando. Primera: `git check-ignore` sobre `pipeline/salida` contesta **«no ignorado»**
+    aunque el `.gitignore` lo ignore en su línea 16, porque el patrón termina en `/` y el
+    directorio **no existe en disco**; con la barra final contesta «ignorado». Preguntar una
+    sola vez daba cinco falsos positivos, los cinco del `pipeline/`, que es justo el
+    directorio que `D61` declara ignorado. Segunda: `Path(__file__).parent / "salida"`
+    resuelto contra la raíz del repositorio en vez de contra el directorio del script
+    convertía esos mismos cinco en «escribe en versionado». Las dos son del mismo tipo que
+    la de `command -v` (entrada 54): **la herramienta contestó con precisión una pregunta
+    que no era la que había que hacerle.**
+
+### Ola 6, cierre de `F4` (`D93`, issue #39, 2026-10-27)
+
+*Nota de numeración: estas cinco entradas se escribieron como 88 a 92 contra el `main` de la
+mañana, que llegaba hasta la 87 y tenía un hueco entre la 75 y la 86. Al integrar, el hueco
+estaba lleno y las cuatro que faltaban ya existían, así que las cinco se corrieron a **92-96**
+y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se los quedaron
+`R13` y `R12`. Ninguna entrada ajena se tocó y ninguna cifra cambió al renumerar.*
+
+92. **El cuarto mecanismo no tiene ni un candidato en nuestra especie, y eso le pone precio a la
     pregunta de la entrada 70.** Esa entrada dejó planteado si «movilidad» sigue siendo una pata
     del esquema de `D67` con el respaldo que tiene —una fila, `DM-02`, con la réplica más cercana
     negativa— o si el tercer eje debería ser transmisión, que tiene cuatro veces más candidatos y
@@ -2561,7 +2901,7 @@ en vuelo. Esta línea sigue después del máximo existente y no renumera nada.*
     argumento en contra de transmisión: es lo que hay que poner al lado del argumento a favor.
     Pregunta para el investigador, y si entra al armado pide su propio ADR (entrada 65).
 
-89. **La entrada 65 nombra cuatro filas de transmisión y la tabla que se publicó tiene otras
+93. **La entrada 65 nombra cuatro filas de transmisión y la tabla que se publicó tiene otras
     cuatro.** La 65 dice que al asignar mecanismo aparecen «cuatro que no entran en ninguno de
     los tres: `CI-07`, `CI-09`, `HE-07` y `HE-11`». Las cuatro filas que `eje_fenotipo.tsv`
     publica con `transmision` son `CI-06`, `CI-07`, `CI-09` y `DE-05` `[M]`. Las dos listas
@@ -2577,7 +2917,7 @@ en vuelo. Esta línea sigue después del máximo existente y no renumera nada.*
     de la entrada 65 o agregarle una línea que diga cuáles son hoy. No se editó acá porque es
     entrada de otra línea y conviene que el cambio lo vea quien la escribió `[?]`.
 
-90. **«Fenotipos que no se solapan» tiene dos lecturas, y toda combinación de letalidad con
+94. **«Fenotipos que no se solapan» tiene dos lecturas, y toda combinación de letalidad con
     movilidad falla la segunda.** `D67` arma las quimeras «por combinación de fenotipos que no se
     solapan» y `O4` lo implementa sobre los dos ejes **declarados**: exige que el eje de cada gen
     sea distinto. Con la tabla de `F3` en la mano se puede medir la otra lectura —que los
@@ -2593,7 +2933,7 @@ en vuelo. Esta línea sigue después del máximo existente y no renumera nada.*
     criterio, porque mover la lectura vigente de `D67` movería lo que `O4` ya verifica y lo que
     `O3` ya midió. Pregunta para el equipo y para el investigador.
 
-91. **Cuatro filas del catálogo son más de un gen, y hasta que no se diga cuál, los pares que las
+95. **Cuatro filas del catálogo son más de un gen, y hasta que no se diga cuál, los pares que las
     usan no son insumo del enumerador.** Una quimera se arma con un gen; una fila, no siempre lo
     es. `DE-01` es `V-ATPase B` **y** `V-ATPase D`; `DE-04` agrupa tres transportadores ABC con
     desenlaces **distintos** —la letalidad es de `ABCE` y `ABCF`, la reproducción de `ABCB`—;
@@ -2606,7 +2946,7 @@ en vuelo. Esta línea sigue después del máximo existente y no renumera nada.*
     fuente** `[H]`, y es la misma clase de pendiente que la entrada 72 declara para el eje de
     esencialidad.
 
-92. **Cuatro citas de `PREGUNTAS_ABIERTAS.md` apuntaban al ADR equivocado, y se corrigieron
+96. **Cuatro citas de `PREGUNTAS_ABIERTAS.md` apuntaban al ADR equivocado, y se corrigieron
     acá.** Las entradas 65, 66, 74 y 75 citaban el criterio del recomendador de genes de `F3`
     como **`D84`**, y `D84` es el ADR de `F1` —transferencia de anotación por ortología
     recíproca—. El criterio de `F3` es **`D87`**, «los pesos del recomendador de genes: cohortes

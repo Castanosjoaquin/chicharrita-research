@@ -1,0 +1,54 @@
+{
+ "que_mide": "la vuelta de la reciprocidad contra el proteoma anotado de H. vitripennis, en vez del ORF mas largo del transcripto (issue #32)",
+ "proteoma": "work/F1v/ref/GCF_021130785.1_UT_GWSS_2.1_protein.faa",
+ "proteinas_en_el_proteoma": 31163,
+ "ancla_consulta_se_encuentra": {
+  "sseqid": "XP_046683987.1",
+  "pident": "100.000"
+ },
+ "referencias_medidas": 5,
+ "veredictos_que_cambian_por_accesion": 2,
+ "veredictos_que_cambian_por_producto": 0,
+ "cambian_solo_por_isoforma": 2,
+ "detalle_de_los_que_cambian": [
+  {
+   "referencia": "H_axyridis",
+   "mejor_acierto": "XM_045615311.1",
+   "orf_vuelta_aa": 462,
+   "vuelta_contra": "proteoma anotado (blastp)",
+   "origen_del_orf": "work/R8/vuelta_H_axyridis.faa (el del paso 1)",
+   "mejor_de_la_vuelta": "XP_046683989.1",
+   "identidad_vuelta_pct": "55.385",
+   "evalue_vuelta": "9.31e-162",
+   "reciproco_proteoma": "no",
+   "producto_de_la_vuelta": "probable chitinase 2 isoform X2 [Homalodisca vitripennis]",
+   "reciproco_por_producto": "si",
+   "reciproco_orf_publicado": "si",
+   "coincide_con_lo_publicado": "NO",
+   "nota": "la vuelta llega a XP_046683989.1, OTRA ISOFORMA del mismo producto (probable chitinase 2): reciproco por gen, no por accesion"
+  },
+  {
+   "referencia": "A_mellifera",
+   "mejor_acierto": "XM_026445083.1",
+   "orf_vuelta_aa": 451,
+   "vuelta_contra": "proteoma anotado (blastp)",
+   "origen_del_orf": "work/R8/vuelta_A_mellifera.faa (el del paso 1)",
+   "mejor_de_la_vuelta": "XP_046683989.1",
+   "identidad_vuelta_pct": "51.042",
+   "evalue_vuelta": "2.37e-137",
+   "reciproco_proteoma": "no",
+   "producto_de_la_vuelta": "probable chitinase 2 isoform X2 [Homalodisca vitripennis]",
+   "reciproco_por_producto": "si",
+   "reciproco_orf_publicado": "si",
+   "coincide_con_lo_publicado": "NO",
+   "nota": "la vuelta llega a XP_046683989.1, OTRA ISOFORMA del mismo producto (probable chitinase 2): reciproco por gen, no por accesion"
+  }
+ ],
+ "lectura": "comparar accesiones mueve 2 de 5 veredictos, y 2 de esos 2 son la vuelta cayendo en OTRA ISOFORMA del mismo producto, o sea el mismo gen. Colapsando por producto cambian 0. La limitacion que el issue #32 nombra —un transcripto por acierto, con variantes de empalme— aparece aca del lado del proteoma, no del transcripto.",
+ "limite": "blastp contra un proteoma encuentra proteinas anotadas: una ausencia es ausencia en el proteoma publicado. La reciprocidad sigue siendo mejor-acierto-mutuo y no una prueba de ortologia filogenetica.",
+ "entorno": {
+  "python": "3.11.17",
+  "sistema": "Darwin",
+  "blastp": "blastp: 2.17.0+"
+ }
+}

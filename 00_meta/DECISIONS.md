@@ -1542,6 +1542,47 @@ lecturas; no explica por qué el brazo P, que es el diseño de `C12` corrido com
 **Alternativas consideradas:** (a) fenotipo 0,50 y off-target 0,20, que premia la evidencia experimental y castiga poco el riesgo; (b) la propuesta de arriba; (c) off-target 0,40 y fenotipo 0,30, que ordena por el eje más sólido aunque sea el que menos candidatos tienen calculado; (d) suma ponderada sobre los 36 con imputación del hueco, descartada por lo de arriba y anotada en `CAMINOS_PROBADOS.md`.
 **Criterio:** la propuesta es la que mantiene el orden legible cuando un eje falta, que es el caso **mayoritario** y no la excepción. Sobre (a), el eje de fenotipo es el único con evidencia experimental pero es también el que hereda la extrapolación entre especies, y 23 de sus 36 filas son `[R]` y no `[E]` `[M]`: concentrar 0,50 ahí apoya el orden en el eje con más supuestos. Sobre (c), es defendible y es la que elegiría si el off-target estuviera calculado para los 36; con 8 de 36 produce un orden cuyo criterio efectivo cambia según la cohorte sin decirlo.
 **Consecuencia si se confirma:** se puede calcular el eje de fenotipo y el orden de las cohortes que no necesitan `work/sifi_v2/`. **Ninguna cifra publicada se mueve**: esta línea no toca `ranking.py`, `ranking_v2.py` ni `research/ola4/M6_alertas/`, y su salida es un archivo nuevo.
+---
+
+## D88 — `D78` se implementa con un catálogo de inventario aparte del catálogo del ranking
+> Se publicó como `D87` y se renumeró a `D88` al mergear: `F3` (issue #27) había tomado
+> ese número en la misma jornada. La grilla fina, que se publicó como `D88`, es `D89`.
+**Fecha:** 2026-10-27
+**Quién:** el equipo, sobre el issue **#37** (barrido de corridas pendientes), implementando `D78`, que decidió el qué y dejó el cómo abierto.
+**Decisión:** la región candidata de `V-ATPase B` y las dos junturas de quimera entran al inventario de `M6` por un **catálogo propio** —`CANDIDATOS_EXTRA` y `JUNTURAS` en `tabla_alertas.py`, con su hermano `GENES_EXTRA` en `identidad.py`— y **no** agregando el gen a `ranking_v2.NUEVOS`.
+
+**Hecho que motivó la decisión.** `D78` dice que lo que falta es «la corrida, no el criterio». Medido al intentar correrla con `work/` en disco, lo que faltaba era además **soporte en el generador**: agregar la región a `REGIONES` falla con `KeyError: 'VATPaseB_Dm'`, porque `construir()` y `estados()` resuelven cada gen contra `ranking.CANDIDATOS + ranking_v2.NUEVOS` y el gen no está en ninguno de los dos `[M]`. Y el camino obvio —meterlo en `NUEVOS`— lo mete también en `correr_k()`, en `nulo_nuevos` y en `jaccard_21_22`, o sea **mueve `ranking_v2.json`**, que es cifra publicada y que el criterio de terminado del issue #30 pide no mover sin decisión escrita, nombrando `jaccard_21_22` en particular. Además el gen **no tiene** perfil en `work/sifi_v2/salida_k21`: su tamizado lo dejó `O3` en `work/O3/`, con otro layout.
+
+**Alternativas consideradas:** (a) agregar el gen a `ranking_v2.NUEVOS`, que es el catálogo que ya existe; (b) un catálogo aparte para los genes que entran al inventario sin estar en el ranking, la elegida; (c) un inventario separado para los objetos que no son regiones de los seis genes; (d) dejar `D78` sin implementar y declarar que además de la corrida falta el soporte.
+
+**Criterio.** Sobre (a), paga el inventario con una cifra publicada, y el gen no tiene ficha de ranking que publicar: 517-816 es **insumo de una medición** —la quimera de `O3`, por `D74`— y no una recomendación, así que una ficha suya sería una ficha de algo que nadie recomienda. Sobre (c), es lo que `D78` ya descartó para las junturas con su propio argumento: una segunda compuerta es una compuerta que hay que acordarse de llamar, y el modo de fallar que `D69` midió es justamente ése. Sobre (d), los insumos están y el soporte son dos catálogos y una función de carga. Sobre (b), mantiene separadas dos cosas que el proyecto venía confundiendo en una: **tener fila de alerta** y **tener ficha de ranking**. Un gen de `CANDIDATOS_EXTRA` tiene la primera y no la segunda, y las anclas A1 a A4 —que comparan contra lo publicado— no lo ven, porque se funde después de que pasaron.
+
+**Consecuencia, medida.** El inventario pasa de 19 a **21 regiones más 2 junturas**, y las filas de alerta de 26 a **32** `[M]`. Las cinco anclas de `M6` siguen pasando —A1 162/162, A2 51/51, A3 3/3, A4 77/77, A5 54/54— y el A3 de `identidad.py` sigue cerrando exacto contra la matriz de `work/sifi_v2/` (187 celdas, 0 faltan, 0 sobran) `[M]`. **Ninguna fila que ya estaba se movió**: el diff de `alertas.tsv` contra el commit anterior no tiene una sola línea borrada `[M]`.
+
+Las cuatro filas de `V-ATPase B` 517-816 tienen **cero coincidencias perfectas de 21 nt**, y tres de las cuatro son el **ortólogo del blanco** en un no objetivo: `LOC123679872` en *Harmonia axyridis* (4 ventanas de ≥ 19 nt, 0 eficientes), `LOC124359774` en *Homalodisca vitripennis* (8 de ≥ 19 nt, **2 eficientes**) y `ATP6V1B1` en *Homo sapiens* (4 de ≥ 19 nt, 0 eficientes); la cuarta, contra maíz, es un gen no relacionado (`LOC103630847`, subunidad 3 del signalosoma COP9, 3 de ≥ 19 nt) `[M]`. Las cuatro quedan en «pendiente», que es lo que `D78` pide: la firma la escribe una persona. `[H]` Que el gen más conservado del panel dé su ≥ 19 nt contra sus propios ortólogos y no contra genes al azar es lo esperado para una V-ATPasa, y es el argumento que la firma va a tener que atender: el eje de exposición de *H. vitripennis* —que `D47` dejó abierto— es otra vez el que decide, porque es la única de las tres que además aporta ventanas eficientes.
+
+Para las junturas, el agujero que `D78` nombra queda **cerrado y verificado** con las tres propiedades que no son la misma `[M]`: la quimera tamizada sin aciertos (`Q_BicC_Dm__VATPaseB_Dm`) **pasa** la compuerta en los dos umbrales —se la miró y no hay nada—; la que fabrica tres bloques de 19 nt (`Q_VATPaseB_Dm__BicC_Dm`) **pasa** en `perfecto_21` y **frena** en `perfecto_ge19` sin firma; y una quimera cuyo empalme nadie tamizó levanta `RegionNoTamizada`. Las tres quedan como anclas en `test_alertas.py`.
+
+**Lo que esta decisión no hace.** No agrega `V-ATPase B` al ranking: sigue sin ficha, sin `jaccard_21_22` y sin región recomendada, y `ranking_v2.json` no se movió un byte. No firma ninguna de las cinco filas nuevas. No recalcula la medición de las junturas: la hizo `O3`, que tiene el evaluador de quimeras, y `M6` la **integra** desde el TSV que ese bloque publica, corrigiéndole sólo la clave —`region` pasa de «juntura, j=1,2,3» a «juntura», con los `j` movidos a la columna de contexto, que es lo que `D78` decidió—. Y no mete las junturas al ancla A5: ésa compara contra la matriz por ventana del gen, y un bloque fabricado por el empalme **no existe en esa matriz** —es la definición de fabricado—, así que no hay contra qué compararlo ahí; lo que lo verifica es el ancla 2 de `O3` y la 2 de `O4`, que lo cuentan contra la suma de las partes.
+
+---
+
+## D89 — La grilla fina de `O4` no se corre, y el motivo es que el número que decía que entraba estaba mal
+**Fecha:** 2026-10-27
+**Quién:** el equipo, sobre el issue **#37** y la entrada 48 de `PREGUNTAS_ABIERTAS.md`.
+**Decisión:** la corrida de `--paso 1` del enumerador de quimeras **no se hace**, y el tope declarado de 5.000 plegados **no se sube** para ella. En su lugar se corre la retícula de `--paso 10`, con el tope subido a propósito y declarado, y se publica el costo medido de las cuatro retículas.
+
+**Hecho que motivó la decisión.** La entrada 48 dice que `--paso 1` pide «**136.446** plegados `[M]`, que entran en unas horas de esta máquina». Medido con los insumos en disco y el enumerador versionado, pide **129.761.738**: 129.430.632 combinaciones admisibles en marco 2 —de 2.133.868.568 antes de podar— más 331.106 fragmentos `[M]`. Son tres órdenes de magnitud. Al ritmo de esta máquina, 21 plegados por segundo medidos sobre la grilla gruesa (3.405 plegados en 162 s), eso es del orden de **71 días** de una máquina sola, no unas horas. `[?]` De dónde salió 136.446 no consta: la cifra vive sólo en prosa —`REPORT.md` §8 y la entrada 48— sin archivo de salida que la respalde, y la corrida que la habría producido es la que el mismo texto declara no hecha.
+
+**Alternativas consideradas:** (a) subir el tope a 150.000 y correr `--paso 1`, que es lo que el issue #37 autoriza explícitamente; (b) correr `--paso 1` repartido en varias máquinas o varios días; (c) la elegida, `--paso 10` con el tope declarado y el costo de las cuatro retículas publicado; (d) no correr nada y sólo corregir la cifra.
+
+**Criterio.** Sobre (a), la autorización del issue se dio sobre la cifra equivocada: subir el tope a 150.000 no habilita una corrida de 129,8 millones, la deja fallando igual, y subirlo a 130.000.000 sería quitarle al tope la función que `O4` le dio —que la corrida **se detenga y lo diga** en vez de muestrear—. Sobre (b), es defendible el día que la pregunta de la entrada 48 importe para una decisión, y hoy no: `D65` ya le retiró al conteo el papel de argumento entre regiones. Sobre (d), deja sin contestar la mitad de la pregunta que sí es contestable por un costo razonable. Sobre (c), `--paso 10` pide **173.289** plegados `[M]` —unas 5,4 horas a 8,8 combinaciones por segundo, medido— y es una retícula **diez veces** más fina que la publicada, que es donde la entrada 48 temía que el paso escondiera las islas angostas.
+
+**Consecuencia.** La entrada 48 queda corregida en su cifra y en su lectura: la corrida fina no es «unas horas de esta máquina», y el `[M]` que llevaba su número no corresponde, porque nunca se pudo reproducir desde el repositorio. El costo de las cuatro retículas queda publicado para que nadie lo vuelva a estimar: `--paso 1` 129.761.738, `--paso 2` 16.816.657, `--paso 5` 1.177.056 y `--paso 10` 173.289 `[M]`.
+
+**Y la retícula de `--paso 10` se corrió, con un resultado que contesta la mitad contestable de la entrada 48: el paso mueve el primer puesto.** El de la grilla gruesa, `Q_BicC_Dm_1951-2450__VATPaseB_Dm_1001-1100` con 64 ventanas heredadas, cae al **puesto 2**; el primero pasa a ser `Q_BicC_Dm_1961-2460__VATPaseB_Dm_1001-1100` con **65**, que arranca diez nucleótidos más adelante, en una ubicación que la retícula de paso 50 no tocaba `[M]`. `[H]` El margen es de **una ventana** sobre 65 y el criterio no está validado (ρ = +0,142, IC95 [−0,247, +0,492], n = 29), así que lo que queda medido no es que la grilla gruesa eligiera mal: es que **el orden de esta grilla no es estable al paso**, de modo que el primer puesto de cualquiera de las dos es un artefacto de la retícula tanto como del criterio. `[?]` Si `--paso 1` lo movería otra vez sigue sin saberse: la sucesión 50 → 10 lo movió una vez y de ahí no se sigue que haya convergido.
+
+**Lo que esta decisión no hace.** No cambia el default de `--tope-plegados`, que sigue en 5.000. No toca ninguna cifra de la grilla gruesa publicada, que se reprodujo exacta en esta máquina —3.204 combinaciones y 515 con alerta de juntura nueva `[M]`—. Y no afirma que la grilla fina sea inútil: afirma que cuesta 71 días de una máquina y que nadie lo había medido.
 
 ## D90 — El nivel de alerta de `region_scoring.py` se alinea con el piso de D28, y lo que se mueve no es ninguna cifra publicada
 **Fecha:** 2026-10-27 (medida y escrita ese dia por la sesion `R4` en la rama `claude/r4-umbral-off-alerta-fd31b6`; integrada a `main` el 2026-10-27 por la sesion que cerro `F1`)
@@ -1556,8 +1597,76 @@ lecturas; no explica por qué el brazo P, que es el diseño de `C12` corrido com
 **Criterio:** sobre (a), hacia falta un criterio honesto que justifique alertar por debajo del piso de D28 y no aparecio ninguno. Al contrario: la medicion de D28 dice que a 19 nt el azar explica el total de coincidencias y que a 16 nt estan a la par del azar, o sea que la banda de 17 a 18 restaba de `buenos_limpios` **1.902 ventanas por ruido**, el 81,4 % de las alertas, y lo hacia sobre una metrica que es el criterio de orden por defecto del modulo. Y el sucesor de este modulo, `tools/sifi21_port/ranking.py`, ya trabaja con los criterios de D28 (`perfecto_21`, `perfecto_ge19`), asi que 19 ademas pone al motor viejo y al nuevo a contar lo mismo `[M]`. Sobre (b), un umbral configurable sin valor defendible por defecto traslada la contradiccion a quien corra el comando. Sobre (c), los insumos no estan en esta maquina y sustituirlos seria inventar la linea de base. Sobre (d): el costo real es que dos columnas de un CSV que ninguna pagina cita dejan de reproducirse, y se paga con esta entrada, que dice cuales son.
 **Consecuencia:** el modulo ya no reporta como riesgo un rango que el propio repositorio declaro indistinguible del azar, y la contradiccion que `M6` dejo abierta se cierra en el codigo y no solo en el registro. Dos cosas que esta decision **no** hace: no cambia ninguna region recomendada —la recomendacion publicada sale de `ranking.py`, que no usa esta constante `[M]`— y no toca el veto, asi que ninguna region pasa a ser apta o inapta por este cambio `[M]`. Lo que queda pendiente es ajeno a esta linea: si alguna vez se vuelve a correr la comparacion contra dsRIP, sus columnas de alerta van a dar los numeros del umbral 19 y no los que estan commiteados `[H]`.
 
-## D91 — El eje de fenotipo de una quimera se resuelve desde la tabla de `F3`, y la exclusión es por etiqueta y no por identificador
-**Fecha:** 2026-10-27 (medida y escrita ese día por la sesión `F4` en la rama `claude/f4-pares-por-mecanismo`)
+## D91 — La brecha entre `C12` y el par completo es el normalizador de nombres, no la medición; la tabla de `C12` no se toca y lo que se corrige es el acople con `F1`
+**Fecha:** 2026-10-27
+**Quién:** la sesión que cerró `F1` (issue #25), ejecutando
+`research/ola6/R13_brecha_c12/PREREGISTRO.md`, commiteado antes de calcular. Cierra la pregunta
+abierta 62, que esa misma sesión había abierto con `D86`. *Los números `D88` y `D89` quedan
+reservados para los dos commits de `R12` (issue #37) que al escribir esto estaban sin pushear.*
+**Decisión:** la diferencia entre el **78,2 %** que publicó `C12` (Validación A) y el **84,7 %**
+que da el mismo par de proteomas corrido completo **se atribuye al normalizador de nombres**, y en
+consecuencia: (a) **la tabla de bandas de `C12` no se recalcula ni se reemplaza** —es correcta para
+su propio normalizador—; (b) se anota en el informe de `C12` y en el de `F1` que las bandas
+**subdeclaran** en unos 7 puntos la concordancia medida con el criterio de `F1`, con puntero a
+`R13`; y (c) el **81 %** de `F1` sigue publicado sin corregirse hacia arriba, por `D86`.
+**Hecho que motivó la decisión:** tres pasos sobre los mismos dos proteomas, cada uno cambiando una
+sola cosa y todos con la misma regla de reciprocidad y el mismo normalizador: **A** con los
+alineamientos y el protocolo de `C12` da 85,2 % sobre 1.081 pares; **B** con `diamond` y el mismo
+protocolo, 85,4 % sobre 1.122; **C** con `diamond` y el par completo, 84,7 % sobre 8.534. O sea
+`brecha +6,45 pp = normalizador +7,00 + alineador +0,18 + protocolo −0,73` `[M]`. El paso A
+reconstruye 1.081 de los 1.152 pares de `C12`, dentro del ±10 % que el preregistro fijó como
+control de réplica. Sobre esos pares, comparar el producto de RefSeq tal cual da 406 acuerdos
+(37,6 %) y con el normalizador de `F1` da 921 (85,2 %): convierte 515 desacuerdos en acuerdos y
+**no rompe ninguno**, y el 77,9 % de esos 515 se separaba sólo por el sufijo de isoforma y el
+21,6 % por `-like` `[M]` —*kelch-like protein diablo isoform X1* contra *kelch-like protein
+diablo*—. **No se corrió ningún alineamiento nuevo.**
+**Alternativas consideradas:** (a) recalcular la tabla de `C12` con el normalizador de `F1` y
+publicar ésa; (b) cambiar el normalizador de `F1` por uno que imite al de `C12`; (c) la elegida.
+**Criterio:** sobre (a), la corrida de `C12` es lo que es y reescribir su tabla borraría el
+registro de lo que se publicó y de lo que otros documentos citaron; el preregistro ya fijaba, antes
+de ver el número, que en la rama «la causa es el normalizador» la tabla no se toca. Sobre (b), el
+de `C12` **no se puede imitar**: su código nunca quedó versionado, y lo único que sabemos es que
+dejaba pasar los sufijos de isoforma como desacuerdos. Sobre (c), el problema real no es ninguna de
+las dos mediciones sino el **acople**: adjuntar bandas medidas con un criterio a pares evaluados
+con otro, y eso se arregla diciéndolo donde se usa.
+**Consecuencia:** cierra la duda que `D86` dejó sobre las bandas publicadas de `C12`, y con ella la
+duda sobre todo documento que cite el 78,2 %: esa cifra es válida y hay que leerla como «con el
+criterio de nombre de `C12`», que cuenta las variantes de isoforma como anotaciones distintas. El
+78,2 % es una **cota inferior** de la concordancia de nombre de gen. Y explica de dónde salían los
+7,3 puntos que `D86` había medido entre el esperado con bandas de `C12` (81,2 %) y con bandas
+remedidas (88,5 %): son la misma causa, llegada por dos caminos independientes.
+**Lo que esta decisión no hace:** no dice cuál de los dos normalizadores es el correcto —que
+*isoform X1* contra *isoform X8* no sea un desacuerdo de función es un juicio defendible y no
+medido—; no reconstruye el de `C12`; no separa el efecto del alineador de cualquier otra diferencia
+entre las dos corridas que no esté en los TSV; no valida ninguna anotación contra verdad
+experimental; y no toca el diseño ni el ranking, que siguen bajo `D37`.
+---
+
+## D92 — `eth_Dm` 194-393 se firma bloqueante, y la condición de revisión no es la misma que la de 193-392
+> Se publicó como `D91` y se renumeró a `D92` al mergear: `R13` (pregunta 62) había tomado
+> ese número en la misma jornada.
+**Fecha:** 2026-10-27
+**Quién:** el usuario, sobre la región que la compuerta encontró al correr los ocho generadores (issue **#37**, entrada 78). Aplica `D48` y usa la forma de `D68` y `D73`; no las reabre.
+**Decisión:** la fila `eth_Dm` 194-393 / *H. vitripennis* / `LOC124369889` queda **bloqueante**, con la condición como parte de la firma. La justificación está en `research/ola4/M6_alertas/decisiones.tsv` y cita la accesión, como `D48` exige.
+
+**Hecho que motivó la decisión.** Es **la misma ventana** que ya tenía `eth_Dm` 193-392: mismo organismo, mismo locus, misma posición 347, los mismos conteos de `D28` —1 de 21/21 y 5 de ≥ 19 nt, 0 eficientes— y **30 de los 34 campos de la fila idénticos** `[M]`. Los cuatro que difieren son la región, de dónde sale, y los dos de la firma. No es un acierto nuevo: es el de 193-392 visto desde una región corrida un nucleótido.
+
+**Por qué no es una copia de la firma de 193-392, que es la parte que importa.** Los dos motivos de esa firma aplican sin cambios —la exposición de *H. vitripennis* sigue sin decidirse, y la región no es la vigente, así que bloquearla no cuesta nada—. Pero hay un tercero que es propio de esta región y que una copia habría tapado: **acá la región y el peso están acoplados.** 194-393 aparece **sólo con `rho` = 0,00**, el reparto de `D47` con la exposición de ese organismo en cero, y con cualquier `rho` mayor la recomendada de `eth_Dm` vuelve a ser 114-313 `[M]`. De modo que el contrafáctico de la firma de 193-392 —«con el 0,60 de `D18` sería el acierto más fuerte de la región»— **acá no existe**: con 0,60 la región no se recomienda.
+
+Eso cambia qué significa la condición de revisión, y es la razón de ser de esta ADR:
+
+* si la exposición se cierra en **0,00**, la región existe y su alerta pesa poco;
+* si se cierra en **0,60**, la fila es irrelevante porque **la región desaparece**, no porque el acierto pese poco.
+
+**Alternativas consideradas:** (a) copiar la firma de 193-392, que aplica palabra por palabra; (b) la elegida, firmar bloqueante con el tercer motivo escrito; (c) dejarla en «pendiente» hasta que se cierre la exposición de *H. vitripennis*; (d) aceptarla, dado que el gen impactado no es el ortólogo del blanco y la ventana no es eficiente.
+**Criterio.** Sobre (a), la firma heredada prometería una revisión que no es la que corresponde, y el proyecto ya midió lo que cuesta arrastrar una afirmación sin volver a mirarla (entradas 54, 55 y 76). Sobre (c), era defendible, pero tiene un costo medido: con la fila en pendiente `sensibilidad_reparto.py` **no termina**, y el inventario se queda sin su octavo generador por una firma que los dos primeros motivos ya resolvían. Sobre (d), aceptarla hoy sería resolver de hecho la decisión abierta de `D47` por la vía de una firma, que es exactamente lo que la firma de 193-392 evitó.
+
+**Consecuencia, medida.** Las firmas pasan de 18 a **19**, las filas pendientes de 7 a **6** y las regiones con 21/21 bloqueantes de 4 a **5** `[M]`. En el umbral `perfecto_21` la compuerta pasa ahora **23 de 23**: 194-393 era la única que frenaba ahí. Y `sensibilidad_reparto.py` **termina**, lo que lleva el censo de generadores de 7 de 8 a **8 de 8** y cierra la casilla principal del issue #35. Cuatro anclas de `test_alertas.py` se actualizaron, y una de ellas —«ninguna pendiente trae 21/21»— volvió al conjunto vacío del que había salido; se dejó **separada** de la que lista las pendientes, porque coincidieron, dejaron de coincidir y volvieron a coincidir, así que no son la misma propiedad aunque hoy den lo mismo.
+
+**Lo que esta decisión no hace.** No afirma que la coincidencia tenga consecuencia biológica: no se consultó ninguna fuente experimental ni se midió la conservación de la quitinasa impactada en el resto del panel. No dice nada sobre el reparto de `D47` en general —la firma de 193-392 cierra diciendo que su acierto es un argumento contra la propuesta de 22 nt, y el argumento equivalente acá sería contra `D47`, que es una propuesta de pesos y cuyo mérito no se decide con una región de un gen—. Y no toca la región vigente de `eth_Dm`, que sigue siendo 114-313 con cero coincidencias perfectas contra todo el panel. `[H]` Al revisarla hay que mirar **primero** si con el peso que se decida esta región sigue siendo recomendada; si no lo es, la fila se cae por sí sola.
+## D93 — El eje de fenotipo de una quimera se resuelve desde la tabla de `F3`, y la exclusión es por etiqueta y no por identificador
+**Fecha:** 2026-10-27 (medida y escrita ese día por la sesión `F4` en la rama `claude/f4-pares-por-mecanismo`; integrada a `main` el 2026-10-27)
+> Se escribió como `D91` y se renumeró a `D93` al mergear: cuando esta línea empezó, `main` llegaba a `D90`, y para cuando integró `R13` se había quedado con `D91` y `R12` con `D92` —que a su vez venía de renumerar el suyo—. Las cinco entradas de `PREGUNTAS_ABIERTAS.md` de esta línea se corrieron de 88-92 a **92-96** por lo mismo. Ninguna cifra se movió al renumerar, y las ocho entradas ajenas que esta línea cita se verificaron una por una contra el `main` nuevo antes de tocar nada.
 **Quién:** la sesión `F4` (issue #39), sobre la conexión que quedó obvia al cerrar `F3` y que su issue pedía no mezclar con ese cierre.
 **Decisión:** el enumerador de quimeras de `O4` deja de depender exclusivamente de que alguien escriba el eje de fenotipo de cada gen en la línea de comandos. Se agrega una segunda vía, `--mecanismos X,Y` con un `--candidato ID=NOMBRE` por gen, que lo **resuelve** desde `research/ola6/F3_recomendador_genes/resultados/eje_fenotipo.tsv`; las dos vías son **excluyentes** y pasar las dos aborta. Quién es elegible lo decide una regla derivada de tres columnas de esa tabla —`etiqueta_de_ausencia` vacía, `entra_al_orden_por_fenotipo` en `si`, `mecanismos` no vacío, las tres coincidiendo o la corrida para— y **ningún identificador de candidato se escribe en el código que decide**, lo que se verifica recorriendo el AST del selector. La enumeración de pares vive en su propio bloque, `research/ola6/F4_pares_por_mecanismo/`, y el cuarto mecanismo del catálogo queda detrás de `--ampliar-d67`, que estampa la condición en cada fila de la salida.
 **Hecho que motivó la decisión:** `D67` exige, para armar una quimera, saber a qué mecanismo pertenece cada candidato, y hasta `F3` eso no existía en forma legible por máquina: las combinaciones de `O3` se eligieron a mano, por `D67` y por qué secuencia había disponible. El riesgo de dejarlo escrito a mano no es abstracto y tiene nombre: **dos de las 36 filas del catálogo tienen el signo invertido** —silenciar `CI-08` aumentó la colonización del vector por el fitoplasma y silenciar `CI-13` aumenta la infección del sistema nervioso por el virus `[R]`— y `C5` ya los había marcado como «genes a excluir explícitamente». Una lista de identificadores escrita a mano es correcta el día que se escribe y queda muerta después: cuando el catálogo cambie sigue publicando la asignación vieja **sin romperse**. Es la misma forma del agujero que `D48` dejó y que `D69` cerró —lo no leído queda operativamente igual que lo aceptado—, salvo que acá el modo de falla no es un número flojo sino una quimera peor que no hacer nada.

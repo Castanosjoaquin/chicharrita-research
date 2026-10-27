@@ -182,6 +182,16 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--muestras", type=int, default=2000)
     ap.add_argument("--semilla", type=int, default=7)
+    # `--resultados` existe por el issue #37: el censo de generadores de `R11` corre este
+    # script para ver si termina, y mientras fallaba por insumo no escribia nada. Al
+    # destrabarse empezo a escribir, y con los parametros del censo —`--muestras 50`— eso
+    # **sobreescribe las cifras publicadas** de esta linea con una corrida de cincuenta
+    # sorteos. El patron es el que ya usan `quimeras_v2.py` y `ranking_v2.py`: quien corre
+    # el script para otra cosa que publicar manda la salida a `work/`.
+    ap.add_argument("--resultados", type=Path, default=None,
+                    help="directorio de salida; el default es el de la linea, que es el "
+                         "que se versiona. Una corrida que no sea para publicar deberia "
+                         "mandar la salida a work/.")
     a = ap.parse_args()
 
     t0 = time.time()
@@ -193,7 +203,10 @@ def main() -> int:
     print("anclas pasadas (%d + %d comparaciones), %.0fs"
           % (len(anc["a1"]), len(anc["a2"]), time.time() - t0), flush=True)
 
-    SALIDA.mkdir(parents=True, exist_ok=True)
+    # Una ruta relativa se resuelve contra la raiz del repositorio, no contra el
+    # directorio de trabajo de quien llama: el censo de `R11` la pasa relativa.
+    salida = (RAIZ / a.resultados) if a.resultados else SALIDA
+    salida.mkdir(parents=True, exist_ok=True)
     res = {"rho": {}, "muestras": a.muestras, "semilla": a.semilla,
            "definicion_rho": "w_exposicion(H. vitripennis) / w_exposicion(maiz); "
                              "D18 = 0,60, propuesta de D47 = 0,00",
@@ -219,7 +232,7 @@ def main() -> int:
     conj0 = conjuntos_de(cands, genes, E.vector_exposicion(tau_hv=0.0), ciego=True)
     res["rho_0_veto_ciego"] = barrer(conj0, genes, 0.0, a.muestras, a.semilla, "ciego")
 
-    (SALIDA / "sensibilidad_reparto.json").write_text(
+    (salida / "sensibilidad_reparto.json").write_text(
         json.dumps(res, indent=1, ensure_ascii=False), encoding="utf-8")
 
     filas = []
@@ -241,30 +254,30 @@ def main() -> int:
                                           "combinacion": clave, "tipo": "posicion",
                                           "afirmacion": "%s en el puesto %d" % (gen, i + 1),
                                           "pct": p, "muestras": r["muestras"]})
-    with (SALIDA / "sensibilidad_reparto.tsv").open("w", newline="", encoding="utf-8") as fh:
+    with (salida / "sensibilidad_reparto.tsv").open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(filas[0]), delimiter="\t")
         w.writeheader()
         w.writerows(filas)
 
-    with (SALIDA / "vetos_por_reparto.tsv").open("w", newline="", encoding="utf-8") as fh:
+    with (salida / "vetos_por_reparto.tsv").open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(vetos[0]), delimiter="\t")
         w.writeheader()
         w.writerows(vetos)
 
-    with (SALIDA / "regiones_recomendadas_por_reparto.tsv").open(
+    with (salida / "regiones_recomendadas_por_reparto.tsv").open(
             "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(recomendadas[0]), delimiter="\t")
         w.writeheader()
         w.writerows(recomendadas)
 
     dos = tabla_dos_ejes(genes, cands)
-    with (SALIDA / "dos_ejes_por_region.tsv").open("w", newline="", encoding="utf-8") as fh:
+    with (salida / "dos_ejes_por_region.tsv").open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(dos[0]), delimiter="\t")
         w.writeheader()
         w.writerows(dos)
 
     print("escritas %d filas de sensibilidad en %s  (%.0fs en total)"
-          % (len(filas), SALIDA.relative_to(RAIZ), time.time() - t0))
+          % (len(filas), salida.relative_to(RAIZ), time.time() - t0))
     return 0
 
 

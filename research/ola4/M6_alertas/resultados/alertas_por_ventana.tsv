@@ -243,3 +243,38 @@ BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353324.2	Homo sapiens immunogl
 BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353325.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
 BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353326.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
 BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_152538.4	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+eth_Dm	194-393	345	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	345	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	346	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	346	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	347	H_vitripennis	perfecto_21	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	347	H_vitripennis	perfecto_21	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	347	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	347	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	348	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	348	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	349	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+eth_Dm	194-393	349	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+VATPaseB_Dm	517-816	517	humano	perfecto_ge19	NM_001692.4	Homo sapiens ATPase H+ transporting V1 subunit B1	ATP6V1B1
+VATPaseB_Dm	517-816	517	humano	perfecto_ge19	XM_011532907.3	Homo sapiens ATPase H+ transporting V1 subunit B1	ATP6V1B1
+VATPaseB_Dm	517-816	518	humano	perfecto_ge19	NM_001692.4	Homo sapiens ATPase H+ transporting V1 subunit B1	ATP6V1B1
+VATPaseB_Dm	517-816	518	humano	perfecto_ge19	XM_011532907.3	Homo sapiens ATPase H+ transporting V1 subunit B1	ATP6V1B1
+VATPaseB_Dm	517-816	548	H_vitripennis	perfecto_ge19	XM_046812795.1	Homalodisca vitripennis V-type proton ATPase subunit B	LOC124359774
+VATPaseB_Dm	517-816	549	H_vitripennis	perfecto_ge19	XM_046812795.1	Homalodisca vitripennis V-type proton ATPase subunit B	LOC124359774
+VATPaseB_Dm	517-816	550	H_vitripennis	perfecto_ge19	XM_046812795.1	Homalodisca vitripennis V-type proton ATPase subunit B	LOC124359774
+VATPaseB_Dm	517-816	551	H_vitripennis	perfecto_ge19	XM_046812795.1	Homalodisca vitripennis V-type proton ATPase subunit B	LOC124359774
+VATPaseB_Dm	517-816	623	H_axyridis	perfecto_ge19	XM_045617407.1	Harmonia axyridis V-type proton ATPase subunit B	LOC123679872
+VATPaseB_Dm	517-816	624	H_axyridis	perfecto_ge19	XM_045617407.1	Harmonia axyridis V-type proton ATPase subunit B	LOC123679872
+VATPaseB_Dm	517-816	625	H_axyridis	perfecto_ge19	XM_045617407.1	Harmonia axyridis V-type proton ATPase subunit B	LOC123679872
+VATPaseB_Dm	517-816	626	H_axyridis	perfecto_ge19	XM_045617407.1	Harmonia axyridis V-type proton ATPase subunit B	LOC123679872
+VATPaseB_Dm	517-816	682	maiz	perfecto_ge19	XM_020539730.3	Zea mays COP9 signalosome complex subunit 3	LOC103630847
+VATPaseB_Dm	517-816	683	maiz	perfecto_ge19	XM_020539730.3	Zea mays COP9 signalosome complex subunit 3	LOC103630847
+VATPaseB_Dm	517-816	684	maiz	perfecto_ge19	XM_020539730.3	Zea mays COP9 signalosome complex subunit 3	LOC103630847
+VATPaseB_Dm	517-816	758	H_vitripennis	perfecto_ge19	XM_046812795.1	Homalodisca vitripennis V-type proton ATPase subunit B	LOC124359774
+VATPaseB_Dm	517-816	759	H_vitripennis	perfecto_ge19	XM_046812795.1	Homalodisca vitripennis V-type proton ATPase subunit B	LOC124359774
+VATPaseB_Dm	517-816	760	H_vitripennis	perfecto_ge19	XM_046812795.1	Homalodisca vitripennis V-type proton ATPase subunit B	LOC124359774
+VATPaseB_Dm	517-816	761	H_vitripennis	perfecto_ge19	XM_046812795.1	Homalodisca vitripennis V-type proton ATPase subunit B	LOC124359774
+VATPaseB_Dm	517-816	815	humano	perfecto_ge19	NM_001692.4	Homo sapiens ATPase H+ transporting V1 subunit B1	ATP6V1B1
+VATPaseB_Dm	517-816	815	humano	perfecto_ge19	XM_011532907.3	Homo sapiens ATPase H+ transporting V1 subunit B1	ATP6V1B1
+VATPaseB_Dm	517-816	816	humano	perfecto_ge19	NM_001692.4	Homo sapiens ATPase H+ transporting V1 subunit B1	ATP6V1B1
+VATPaseB_Dm	517-816	816	humano	perfecto_ge19	XM_011532907.3	Homo sapiens ATPase H+ transporting V1 subunit B1	ATP6V1B1

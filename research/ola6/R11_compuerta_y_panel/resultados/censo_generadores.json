@@ -1,9 +1,9 @@
 {
  "maquina": {
-  "sistema": "Windows",
-  "version": "10.0.26300",
-  "python": "3.10.11",
-  "work_existe": false
+  "sistema": "Darwin",
+  "version": "Darwin Kernel Version 27.0.0: Tue Aug 11 21:02:59 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T8142",
+  "python": "3.11.17",
+  "work_existe": true
  },
  "estatico": [
   {
@@ -77,11 +77,11 @@
    "produce": "la region recomendada por la cascada para los cuatro de EPILAB (nivel 3)",
    "insumo": "work/sifi_check/salida y work/sifi_check/offtarget_full",
    "comando": "tools/sifi21_port/ranking.py ranking --muestras 50",
-   "corrio": false,
-   "codigo": 1,
-   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'work\\\\sifi_check\\\\salida\\\\MP_MRFV_full_corregido_vienna.tsv'",
-   "falta": "work\\\\sifi_check\\\\salida\\\\MP_MRFV_full_corregido_vienna.tsv",
-   "segundos": 1.6
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
+   "falta": "",
+   "segundos": 0.6
   },
   {
    "nombre": "ranking.py nulo",
@@ -89,23 +89,23 @@
    "produce": "la region maxima de cada gen por conteo (no pasa por la compuerta)",
    "insumo": "work/sifi_check/salida",
    "comando": "tools/sifi21_port/ranking.py nulo --reps 50",
-   "corrio": false,
-   "codigo": 1,
-   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'work\\\\sifi_check\\\\salida\\\\MP_MRFV_full_corregido_vienna.tsv'",
-   "falta": "work\\\\sifi_check\\\\salida\\\\MP_MRFV_full_corregido_vienna.tsv",
-   "segundos": 1.9
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
+   "falta": "",
+   "segundos": 0.1
   },
   {
    "nombre": "ranking_v2.py",
    "ruta": "tools/sifi21_port/ranking_v2.py",
    "produce": "regiones por tres caminos: completar_regiones, recomendadas y las dos ramas de efecto_humano",
    "insumo": "work/sifi_v2 (salida_k21, salida_k22, offtarget_k*, offtarget_dm_k*)",
-   "comando": "tools/sifi21_port/ranking_v2.py --trabajo work/sifi_v2 --muestras 50 --json work/R11_censo/ranking_v2_censo.json",
-   "corrio": false,
-   "codigo": 1,
-   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv'",
-   "falta": "work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv",
-   "segundos": 1.6
+   "comando": "tools/sifi21_port/ranking_v2.py --trabajo work/sifi_v2 --json work/R11_censo/ranking_v2_censo.json",
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
+   "falta": "",
+   "segundos": 31.2
   },
   {
    "nombre": "M6 tabla_alertas.py",
@@ -113,59 +113,59 @@
    "produce": "el inventario mismo; pasa por la compuerta via las anclas de M5, que llaman a ranking_v2.recomendadas()",
    "insumo": "work/m6_alertas/identidad_por_ventana.tsv y work/W5/ref",
    "comando": "research/ola4/M6_alertas/scripts/tabla_alertas.py",
-   "corrio": false,
-   "codigo": 1,
-   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Proyectos\\\\yHat\\\\work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv'",
-   "falta": "C:\\\\Proyectos\\\\yHat\\\\work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv",
-   "segundos": 1.5
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
+   "falta": "",
+   "segundos": 14.3
   },
   {
    "nombre": "M6 compuerta.py",
    "ruta": "research/ola4/M6_alertas/scripts/compuerta.py",
    "produce": "nada: itera sobre las regiones que YA estan en el inventario",
    "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)",
-   "comando": "research/ola4/M6_alertas/scripts/compuerta.py",
+   "comando": "research/ola4/M6_alertas/scripts/compuerta.py --salida work/R11_censo/m6_compuerta.json",
    "corrio": true,
    "codigo": 0,
    "motivo": "",
    "falta": "",
-   "segundos": 0.4
+   "segundos": 0.0
   },
   {
    "nombre": "M6 umbral_compuerta.py",
    "ruta": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
    "produce": "nada: el mismo recorrido, con los dos umbrales de D28",
    "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)",
-   "comando": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
+   "comando": "research/ola4/M6_alertas/scripts/umbral_compuerta.py --salida work/R11_censo/m6_umbral_compuerta.json",
    "corrio": true,
    "codigo": 0,
    "motivo": "",
    "falta": "",
-   "segundos": 0.4
+   "segundos": 0.0
   },
   {
    "nombre": "M5 sensibilidad_reparto.py",
    "ruta": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py",
    "produce": "la columna region_recomendada de regiones_recomendadas_por_reparto.tsv, que sale de ranking_v2.recomendadas() via anclas.py",
    "insumo": "work/sifi_v2 (lo pide anclas.correr())",
-   "comando": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py --muestras 50",
-   "corrio": false,
-   "codigo": 1,
-   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Proyectos\\\\yHat\\\\work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv'",
-   "falta": "C:\\\\Proyectos\\\\yHat\\\\work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv",
-   "segundos": 1.5
+   "comando": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py --muestras 50 --resultados work/R11_censo/m5_sensibilidad",
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
+   "falta": "",
+   "segundos": 19.5
   },
   {
    "nombre": "O3 01_region_vatpase_b.py",
    "ruta": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
    "produce": "la region candidata de V-ATPase B; arma la region a mano a proposito (D74) porque es insumo de una medicion y no una recomendacion",
    "insumo": "work/o3 y work/W5/ref",
-   "comando": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
-   "corrio": false,
-   "codigo": 1,
-   "motivo": "StopIteration",
+   "comando": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py --resultados work/R11_censo/o3",
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
    "falta": "",
-   "segundos": 1.3
+   "segundos": 0.2
   }
  ]
 }

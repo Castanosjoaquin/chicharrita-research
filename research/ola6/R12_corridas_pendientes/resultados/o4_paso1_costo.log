@@ -1,0 +1,9 @@
+objetivo declarado: cobertura_fenotipica
+  BicC_Dm         2520 nt  tramo 1-2520  eje reproduccion
+  VATPaseB_Dm     1503 nt  tramo 1-1503  eje movilidad
+  mascara BicC_Dm        2500 ventanas, 43 vetadas, {'H_axyridis': 3, 'H_vitripennis': 40}
+  mascara VATPaseB_Dm    1483 ventanas, 71 vetadas, {'maiz': 12, 'H_vitripennis': 38, 'humano': 21}
+
+grilla: 2133868568 combinaciones antes de podar, 129430632 admisibles en marco 2
+plegados que hacen falta: 129430632 combinaciones + 331106 fragmentos = 129761738
+la grilla pide 129761738 plegados y el tope declarado es 150000. La corrida se detiene y no muestrea ni cambia de algoritmo (§3). Medido para esta grilla: --paso 2 pide 16816657; --paso 5 pide 1177056; --paso 10 pide 173289. Ninguno de esos pasos entra en el tope: subi --tope-plegados a conciencia.

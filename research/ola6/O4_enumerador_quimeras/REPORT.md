@@ -216,10 +216,23 @@ la máscara del gen completo. Su salida **no se versiona** —son las dos secuen
 tamizado no cubre el gen entero, para que ese faltante no produzca una grilla podada con una
 máscara parcial.
 
-Con `--paso 1` la misma grilla pide **136.446** plegados, que exceden el tope declarado de
-5.000: la corrida **se detiene y lo dice**, con el tamaño medido y el paso más fino que
-entraría, en vez de muestrear o cambiar de algoritmo. Esa corrida fina no se hizo y queda en
-`PREGUNTAS_ABIERTAS.md` 48.
+~~Con `--paso 1` la misma grilla pide **136.446** plegados~~ **Corregido el 2026-10-27
+(issue #37, `D89`): pide 129.761.738**, tres órdenes de magnitud más, unos 71 días de una
+máquina sola a los 21 plegados por segundo que se midieron acá `[M]`. De dónde salía el
+136.446 no consta: vivía sólo en prosa, sin archivo de salida que lo respaldara, y la corrida
+que lo habría producido es la que este mismo párrafo declaraba no hecha `[?]`. En los dos
+casos la corrida **se detiene y lo dice**, con el tamaño medido y el paso más fino que
+entraría, en vez de muestrear o cambiar de algoritmo.
+
+**Lo que sí se corrió es la retícula de `--paso 10`** (173.289 plegados, unas cinco horas), y
+contesta la mitad contestable de `PREGUNTAS_ABIERTAS.md` 48: **el paso mueve el primer
+puesto**. El de la grilla de paso 50 cae al puesto 2 y gana
+`Q_BicC_Dm_1961-2460__VATPaseB_Dm_1001-1100` con 65 ventanas heredadas contra 64, arrancando
+diez nucleótidos más adelante —una ubicación que la retícula gruesa no tocaba— `[M]`. El
+margen es de una ventana y el criterio no está validado, así que lo que queda medido es que
+**el orden de esta grilla no es estable al paso**, no que la gruesa eligiera mal. El costo de
+las cuatro retículas, para que nadie lo vuelva a estimar: paso 1 → 129.761.738, paso 2 →
+16.816.657, paso 5 → 1.177.056, paso 10 → 173.289 `[M]`.
 
 ## 9. Las cuatro anclas
 

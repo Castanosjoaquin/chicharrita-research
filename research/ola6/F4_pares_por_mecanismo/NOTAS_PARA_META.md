@@ -6,7 +6,7 @@ es propio del bloque.
 
 ## A `DECISIONS.md`
 
-**`D91` — el eje de fenotipo de una quimera se resuelve desde la tabla de `F3`, y la exclusión
+**`D93` — el eje de fenotipo de una quimera se resuelve desde la tabla de `F3`, y la exclusión
 es por etiqueta y no por identificador.** Aplicada. Las cuatro alternativas quedaron escritas
 con su motivo, y la que importa descartar es la primera: escribir en el enumerador la lista de
 elegibles y de excluidos. No se descartó por estilo sino porque no es verificable —no hay forma
@@ -16,22 +16,21 @@ invertido.
 
 ## A `PREGUNTAS_ABIERTAS.md`
 
-Entradas **88 a 92**. La numeración arranca en 88 porque es el siguiente libre después del
-máximo existente; el archivo tiene un **hueco entre la 75 y la 86** que esta línea no tocó y
-que quedó anotado como nota de numeración en el propio archivo, para que el próximo que lo lea
-no crea que se perdieron once entradas.
+Entradas **92 a 96**. Se escribieron como 88 a 92 contra el `main` de la mañana y se corrieron
+al integrar; el por qué está abajo, en «la numeración se movió entre escribir y mergear», que
+es lo que hay que leer antes de sacar conclusiones de un número de entrada.
 
-- **88** — el cuarto mecanismo no tiene **ni un** candidato en *Dalbulus maidis*, y eso le pone
+- **92** — el cuarto mecanismo no tiene **ni un** candidato en *Dalbulus maidis*, y eso le pone
   precio a la pregunta de la entrada 70: la elección es entre una pata que descansa en una fila
   de nuestra especie y una que descansa en cuatro de otras.
-- **89** — la entrada 65 nombra cuatro filas de transmisión y la tabla publicada tiene otras
+- **93** — la entrada 65 nombra cuatro filas de transmisión y la tabla publicada tiene otras
   cuatro; comparten dos y las dos listas tienen cuatro elementos, lo que vuelve la discrepancia
   fácil de no ver. No se editó la 65 porque es entrada de otra línea.
-- **90** — «fenotipos que no se solapan» tiene dos lecturas y **las 15 de 15** combinaciones de
+- **94** — «fenotipos que no se solapan» tiene dos lecturas y **las 15 de 15** combinaciones de
   letalidad con movilidad fallan la segunda. `F4` informa el solape y **no** cambió el criterio.
-- **91** — cuatro filas del catálogo son más de un gen; hasta que no se diga cuál, los pares que
+- **95** — cuatro filas del catálogo son más de un gen; hasta que no se diga cuál, los pares que
   las usan no son insumo del enumerador. Es falta de trabajo, no falta de fuente.
-- **92** — **se corrigieron cuatro citas que apuntaban al ADR equivocado.** Las entradas 65, 66,
+- **96** — **se corrigieron cuatro citas que apuntaban al ADR equivocado.** Las entradas 65, 66,
   74 y 75 citaban el criterio del recomendador de `F3` como `D84`, que es el ADR de `F1`; el de
   `F3` es `D87`. Apareció al querer citar la categoría `transmision` desde el `sources.json` de
   esta línea: la cita se verificó antes de escribirla y no cerró. La causa es el merge que
@@ -49,7 +48,7 @@ Ninguno de los tres términos estaba.
 
 ## A `CAMINOS_PROBADOS.md`
 
-Nada. Esta línea no descartó ningún camino después de medirlo: las cuatro alternativas de `D91`
+Nada. Esta línea no descartó ningún camino después de medirlo: las cuatro alternativas de `D93`
 se descartaron **antes**, con el argumento escrito en el ADR, y ninguna llegó a implementarse.
 
 ---
@@ -105,13 +104,26 @@ Las tres salidas commiteadas de `O4` **no se regeneraron**. La corrida de verifi
 del `REPORT.md` escribió en un directorio temporal, y el `--resultados <temporal>` de su comando
 no es decorativo: sin él habría dejado una salida nueva dentro del bloque de otra línea.
 
-## Un detalle de la numeración de entradas que conviene saber
+## La numeración se movió entre escribir y mergear, y la regla barata aguantó
 
-Las dos entradas de `R4` arrancan en **86** y la anterior es la **75**, así que hay un hueco de
-diez números que no corresponde a entradas perdidas. Esta línea no lo rellenó: usar 76 a 79
-habría sido razonable y también habría sido una apuesta a que ninguna otra sesión los tomó. La
-regla barata es la que se siguió: **el siguiente libre después del máximo**, y una nota en el
-archivo diciendo por qué hay un agujero.
+Cuando esta línea empezó, `main` estaba en `d4272df`: los ADR llegaban hasta `D90`, las entradas
+hasta la **87**, y había un hueco de diez números entre la 75 y la 86. Se eligió la regla
+barata —**el siguiente libre después del máximo**, sin rellenar el hueco— porque usar 76 a 79
+habría sido una apuesta a que ninguna otra sesión los hubiera tomado en vuelo. Al mergear quedó
+claro que la apuesta habría salido mal: el hueco estaba **lleno**, las entradas llegaban a la
+91 y `D91` y `D92` se los habían quedado `R13` y `R12`.
+
+Así que la línea se corrió completa: el ADR de `D91` a **`D93`** y las cinco entradas de 88-92 a
+**92-96**. Es el mismo trabajo que `F3` y `R12` ya habían hecho en sus propios merges, y el
+costo de renumerar es bajo **si las referencias internas están en pocos lugares**: acá fueron
+el encabezado de la sección, las cinco entradas, el `NOTAS_PARA_META.md` y la descripción del
+PR. Las referencias a entradas **ajenas** —41, 65, 66, 70, 71, 72, 74 y 75— se verificaron una
+por una contra el `main` nuevo antes de renumerar nada, y las ocho siguen diciendo lo mismo.
+
+La lección operativa, que es la que la entrada 96 cuenta desde el otro lado: **lo que sobrevive
+a una renumeración son los títulos, y lo que queda viejo son las citas en el cuerpo.** Por eso
+los scripts de esta línea citan las entradas ajenas sólo en docstrings y mensajes de error, y
+ninguna cifra de ninguna salida depende de un número de entrada.
 
 ## Confidencialidad
 
