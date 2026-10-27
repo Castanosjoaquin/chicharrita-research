@@ -30,6 +30,16 @@ Lo que ese mecanismo **no** hace es impedir que una hembra ya infectiva transmit
 aplica sobre adultos que ya adquirieron el patógeno, el efecto sobre la transmisión de esos
 individuos es nulo por construcción del mecanismo `[H]`.
 
+**Agregado el 2026-10-26, después del checkpoint 2.** Esa limitación tiene ahora una vía declarada,
+y no es cambiar de gen: el investigador propuso armar **quimeras que combinen fenotipos que no se
+solapan** —reproducción, movilidad, letalidad— y los tres ejes ya tienen candidato en *D. maidis*
+en nuestro propio catálogo `[M]`, así que la combinación que cubre lo que a `BicC` le falta es
+armable con lo que hay (`D67`). La contabilidad de cómo se evalúa una quimera —qué se hereda de las
+partes y qué hay que recalcular, con la advertencia de la juntura que él señaló como el diferencial
+posible— está en [`quimeras-juntura-y-contexto.md`](quimeras-juntura-y-contexto.md). **Nada de esto
+cambia la recomendación de este documento**, que es sobre una región de un gen; abre la línea que
+la complementa.
+
 ## 3. El argumento que decide, y no es el conteo
 
 La comparación que manda para nuestro objetivo no está en el diseño: está entre **el tiempo hasta
