@@ -2097,3 +2097,74 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     cuenta su planilla (pregunta 4 de `entregables/recomendacion-defendida.md` §7) o una decisión
     del equipo de privilegiar la accesibilidad en el transcrito `[?]`. Si el laboratorio cuenta en
     contexto, la comparación contra sus cifras se hace en **su** marco y la publicada no cambia.
+
+### Ola 6, cierre de `O4` (issue #24, 2026-10-27)
+
+46. **El eje de riesgo se evalúa en el marco 1, donde veinte ventanas por región no existen
+    en la molécula.** Es el complemento de las entradas 28 y 45, que ya dejaron planteado que un
+    ranking armado en marco 1 no es el ranking de las moléculas: eso es sobre el eje de
+    **eficacia** y está declarado desde `D63`. Lo que ninguna de las dos cubre es que
+    `ranking.ejes()` calcula también el **veto** sobre el tramo del marco 1, así que una
+    región puede quedar vetada por un 21-mero que la molécula **no contiene**. Medido, con
+    el caso concreto: en `V-ATPase B` la ubicación 232-531 de 300 nt tiene **cero** ventanas
+    vetadas entre las 280 que existen en la molécula, y en marco 1 la vetan las ventanas
+    **514, 515 y 516**, cuyos 21-meros terminan en los nucleótidos 534-536 —afuera de una
+    molécula que llega hasta el 531— y la referencia que las veta es la **humana** `[M]`. Por
+    eso `D74` encuentra **una** región admisible de «300 nt» y la lectura en marco 2
+    encuentra **24**, más 22 de 301 nt `[M]`; la cláusula de `D74` «ocupa el único hueco
+    libre de 300 ventanas consecutivas» es exacta y las otras tres cifras de esa misma
+    oración son la misma medición leída en la otra unidad.
+    **La dirección del error es la tranquilizadora:** evaluar el riesgo en marco 1 descarta
+    de más, porque veta por ventanas que no van a existir. No se parece al faltante de la
+    referencia humana, que fallaba optimista. Ninguna cifra publicada queda insegura por
+    esto; lo que cambia es **cuántas opciones cree tener el proyecto**. Y **la quimera que
+    `O3` midió no se mueve:** su fragmento son los nt 517-816, ventanas 517-796, limpio en
+    los dos marcos `[M]`.
+    Quedan dos cosas, de tamaños distintos. La chica: la oración de `D74` es una afirmación
+    de marco 1 escrita en lenguaje de nucleótidos, y corregir la redacción no mueve nada
+    medido. La grande: `[?]` si el eje de riesgo debería leerse en marco 2 —el de los
+    21-meros que la molécula tiene—, porque si se adoptara, la elección de región en
+    `V-ATPase B` se reabre con 24 ubicaciones en vez de una y eso mueve una afirmación
+    publicada, «la única región admisible del gen», sin mover ningún conteo. Vecina del
+    issue #20, y acá no se adelanta.
+    **Una nota sobre cómo se encontró, que es la parte reusable:** la primera versión de esta
+    entrada afirmaba que la unidad del largo de región no estaba declarada en ninguna parte,
+    y era falso —`D63` la declara, `N3` le puso nombre a los marcos y hay fila de glosario
+    que se llama «marco de conteo»—. Mis conteos reproducían `N3` celda por celda, o sea que
+    era un ancla pasando y la leí como hallazgo. Busqué «unidad de conteo», que es como lo
+    llamó `M1`, y el proyecto le dice «marco»: antes de declarar que algo no está declarado
+    hay que abrir el REPORT del bloque que mide ese eje.
+47. **Cuál es el mínimo de largo por gen que tiene sentido en una quimera.** Es el agujero
+    que dejó ver el objetivo declarado de `D81`, y es biológico, no de código. El mejor
+    conteo de ventanas heredadas **crece con la asimetría**: con largo total 600 el máximo es
+    64 con un corte de 500 + 100 y cae a 49 en las proporciones equilibradas de 250 a 350
+    `[M]`. Así que `cobertura_fenotipica`, tal como está escrito, premia darle casi todo el
+    largo al gen de perfil más denso —`BicC_Dm`— y dejar el fenotipo de movilidad en 100 nt,
+    que es lo contrario de para qué `D67` quiere una quimera. `[H]` El parámetro que lo
+    arregla es un mínimo por gen, pero fijarlo pide saber **cuánto ARNdc de un gen hace falta
+    para silenciarlo**, que es dato de bioensayo y no de nuestro cómputo: el catálogo de `C5`
+    registra dosis por insecto, no largo mínimo de disparador. Es pregunta para el
+    investigador y la contesta un experimento.
+48. **La grilla fina no se corrió, y no sabemos si mueve el primer puesto.** La corrida
+    publicada usa `--paso 50` con la retícula anclada a las islas, que da 3.204 combinaciones
+    y 3.405 plegados. Con `--paso 1` la misma grilla pide **136.446** plegados `[M]`, que
+    entran en unas horas de esta máquina pero exceden el tope declarado de 5.000, así que la
+    corrida se detuvo y lo dijo en vez de muestrear. `[?]` Lo que no se puede afirmar es que
+    el primer puesto de la grilla gruesa sea el de la fina: el paso engruesa los tres
+    parámetros libres a la vez, y el hallazgo de las islas angostas —la de `V-ATPase B` mide
+    21 nt y la retícula de paso 50 no la tocaba— muestra que el paso puede esconder
+    exactamente lo que importa. Conviene correrla recién cuando el mínimo por gen de la
+    entrada 47 esté fijado, porque ese mínimo recorta la grilla.
+49. **Los aciertos con un desapareo del empalme no están localizados.** El tamizado de
+    juntura de `O4` busca bloques **exactos** de 19, 20 y 21 nt que cruzan la unión, que es
+    lo que permite afirmar que un bloque es fabricado y no heredado; `mm1_21` queda fuera,
+    porque un desapareo no tiene bloque contiguo que localizar — es la misma limitación que
+    declaró el paso 2 de `O3` y es vecina de la entrada 27. `[?]` Entonces no sabemos si
+    alguna de las 3.204 combinaciones fabrica una coincidencia con un desapareo que el
+    conteo exacto no ve, ni en qué dirección eso movería el orden bajo `riesgo_minimo`.
+    `[H]` Y hay una lectura que sí se puede hacer con lo exacto, y conviene no perderla: de
+    las 515 combinaciones que fabrican algún bloque del panel, en **262 —la mitad— el bloque
+    más repartido toma un solo nucleótido del segundo gen**, y sólo 118 tienen alguno
+    repartido 5/5 o mejor `[M]`. Un bloque de 19 nt con 18 de un gen y 1 del otro existe por
+    azar en una de cada cuatro referencias que contengan al gen padre, así que el conteo de
+    alertas no se lee sin el aporte al lado.

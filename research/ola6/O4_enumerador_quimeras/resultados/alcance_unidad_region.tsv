@@ -1,0 +1,5 @@
+gen	region	largo_declarado	estrategia	nt_que_consume_en_marco2	nt_que_consume_en_marco1	ventanas_marco2	ventanas_marco1	eficientes_marco2	eficientes_marco1	delta_eficientes	n3_marco1	n3_marco2	con_21_perfecto_marco2	con_21_perfecto_marco1	aciertos_solo_en_la_cola
+MP_MRFV	72-271	200	viral	200	220	180	200	31	38	7	38	31	0	0	{}
+CP_MRFV	99-298	200	viral	200	220	180	200	20	21	1	21	20	0	0	{}
+BicC_Dm	922-1221	300	insecto	300	320	280	300	29	36	7	36	29	0	0	{}
+ATPaseD_Dm	72-371	300	insecto	300	320	280	300	17	21	4	21	17	0	0	{}

@@ -1,0 +1,61 @@
+{
+  "que_mide": "cuanto cambia cada conteo de las regiones vigentes segun la unidad del largo de region; no corrige ninguna cifra publicada",
+  "convenciones": {
+    "ventanas": "ranking.ejes(): la region a-b son b-a+1 ventanas y consume b-a+21 nt",
+    "nucleotidos": "quimeras_v2 y tres_marcos: la region a-b son b-a+1 nt y contiene b-a-19 ventanas"
+  },
+  "modo": "corregido",
+  "backend": "vienna",
+  "panel": "seis con la humana a 1,00",
+  "regiones": {
+    "MP_MRFV": {
+      "region": "72-271",
+      "eficientes": [
+        31,
+        38
+      ],
+      "con_21_perfecto": [
+        0,
+        0
+      ]
+    },
+    "CP_MRFV": {
+      "region": "99-298",
+      "eficientes": [
+        20,
+        21
+      ],
+      "con_21_perfecto": [
+        0,
+        0
+      ]
+    },
+    "BicC_Dm": {
+      "region": "922-1221",
+      "eficientes": [
+        29,
+        36
+      ],
+      "con_21_perfecto": [
+        0,
+        0
+      ]
+    },
+    "ATPaseD_Dm": {
+      "region": "72-371",
+      "eficientes": [
+        17,
+        21
+      ],
+      "con_21_perfecto": [
+        0,
+        0
+      ]
+    }
+  },
+  "sin_insumo_en_esta_maquina": {
+    "eth_Dm": "114-313",
+    "bursA_Dm": "13-212"
+  },
+  "python": "3.13.15"
+}
