@@ -43,6 +43,8 @@ BANDAS_C12 = [  # (techo exclusivo de identidad %, etiqueta, concordancia, lo, h
     (101.0, ">=90", 0.862, 0.809, 0.902, 210),
 ]
 
+JERARQUIA = ["f_reciproco_con_nombre", "e_reciproco_sin_nombre", "d_empate",
+             "c_hit_no_reciproco", "b_sin_hit", "a_sin_orf"]  # la mejor categoria gana por contig
 CATEGORIAS = [
     "a_sin_orf", "b_sin_hit", "c_hit_no_reciproco", "d_empate",
     "e_reciproco_sin_nombre", "f_reciproco_con_nombre",
@@ -108,6 +110,28 @@ def orf_mas_largo(seq: str) -> tuple[str, str, int, int] | None:
                 a, b = largo - fin + 1, largo - ini
             mejor = (int(tramos[k]), aa[i0:i1].tobytes().decode("ascii"), hebra, a, b)
     return None if mejor is None else (mejor[1], mejor[2], mejor[3], mejor[4])
+
+
+def todos_los_orfs(seq: str) -> list[tuple[str, str, int, int]]:
+    """Todos los ORF de parada a parada de >= MIN_AA aminoacidos en los seis marcos
+    (Enmienda 1 del preregistro: el ORF mas largo por contig perdia genes en la hebra opuesta).
+    Cada uno es (proteina, hebra, inicio_nt, fin_nt), coordenadas 1-based sobre el contig."""
+    cod = _BASE[np.frombuffer(seq.encode("ascii"), dtype=np.uint8)]
+    largo = len(cod)
+    salida = []
+    for hebra, c in (("+", cod), ("-", np.where(cod < 4, 3 - cod, 4)[::-1])):
+        for marco in range(3):
+            aa = traducir_marco(c, marco)
+            if len(aa) < MIN_AA:
+                continue
+            lim = np.concatenate(([-1], np.flatnonzero(aa == ord("*")), [len(aa)]))
+            tramos = np.diff(lim) - 1
+            for k in np.flatnonzero(tramos >= MIN_AA):
+                i0, i1 = int(lim[k]) + 1, int(lim[k + 1])
+                ini, fin = marco + 3 * i0, marco + 3 * i1
+                a, b = (ini + 1, fin) if hebra == "+" else (largo - fin + 1, largo - ini)
+                salida.append((aa[i0:i1].tobytes().decode("ascii"), hebra, a, b))
+    return salida
 
 
 def leer_fasta(ruta: Path):
@@ -188,10 +212,11 @@ def mejores(tsv: Path) -> dict[str, dict]:
     for q, hits in por_q.items():
         hits.sort(key=lambda h: -h[0])
         # un empate es mismo bitscore con OTRO sujeto en el primer puesto
-        empate = len(hits) > 1 and hits[1][0] == hits[0][0] and hits[1][1] != hits[0][1]
+        empatados = [h[1] for h in hits if h[0] == hits[0][0]]
         b = hits[0]
         out[q] = dict(sujeto=b[1], bitscore=b[0], pident=b[2], evalue=b[3],
-                      qcov=b[4], scov=b[5], longitud=b[6], empate=empate)
+                      qcov=b[4], scov=b[5], longitud=b[6], empate=len(empatados) > 1,
+                      empatados=empatados)
     return out
 
 
@@ -204,7 +229,16 @@ def clasificar(orf_id: str | None, directo: dict, inverso: dict, productos: dict
         return dict(categoria="b_sin_hit")
     inv = inverso.get(h["sujeto"])
     if h["empate"] or (inv is not None and inv["empate"]):
-        return dict(categoria="d_empate", **_campos(h, productos))
+        lado = "ambos" if h["empate"] and inv is not None and inv["empate"] else (
+            "directo" if h["empate"] else "inverso")
+        homonimo = ""
+        if h["empate"]:  # lectura secundaria [H], post hoc: no mueve la categoria
+            nombres = {normalizar_nombre(productos[x]) for x in h["empatados"]
+                       if es_informativo(productos[x])}
+            todos = all(es_informativo(productos[x]) for x in h["empatados"])
+            homonimo = bool(todos and len(nombres) == 1)
+        return dict(categoria="d_empate", empate_lado=lado, empate_homonimo=homonimo,
+                    **_campos(h, productos))
     if inv is None or inv["sujeto"] != orf_id:
         return dict(categoria="c_hit_no_reciproco", **_campos(h, productos))
     nombre = productos[h["sujeto"]]
@@ -223,7 +257,8 @@ def _campos(h: dict, productos: dict) -> dict:
                 banda_concordancia=c, banda_ic_lo=lo, banda_ic_hi=hi, banda_pares_c12=n)
 
 
-COLUMNAS = ["contig", "orf_aa", "orf_hebra", "orf_ini", "orf_fin", "categoria", "ref_id",
+COLUMNAS = ["contig", "orf_aa", "orf_hebra", "orf_ini", "orf_fin", "categoria", "empate_lado",
+            "empate_homonimo", "ref_id",
             "ref_producto", "nombre_normalizado", "pident", "cob_orf", "cob_ref",
             "rotulo_cobertura", "evalue", "bitscore", "banda_identidad",
             "banda_concordancia", "banda_ic_lo", "banda_ic_hi", "banda_pares_c12"]
@@ -246,24 +281,29 @@ def main(argv: list[str]) -> None:
     trabajo = Path("work/F1/corrida")
     trabajo.mkdir(parents=True, exist_ok=True)
 
-    orfs, n_contigs = {}, 0
+    orfs: list[dict] = []  # una entrada por ORF; los contigs sin ORF entran con id None
     orf_faa = trabajo / "orfs.faa"
+    n_contigs = 0
     with open(orf_faa, "w") as fo:
         for cab, seq in leer_fasta(consulta):
             n_contigs += 1
             contig = cab.split()[0]
-            r = orf_mas_largo(seq)
-            orfs[contig] = None if r is None else dict(
-                proteina=r[0], hebra=r[1], ini=r[2], fin=r[3], id=f"{contig}|{r[1]}|{r[2]}-{r[3]}")
-            if r is not None:
-                fo.write(f">{orfs[contig]['id']}\n{r[0]}\n")
-    print(f"{n_contigs} contigs, {sum(v is not None for v in orfs.values())} con ORF >= {MIN_AA} aa")
-    run(diamond, trabajo / "orfs.faa", "ORFS", trabajo)
+            lista = todos_los_orfs(seq)
+            if not lista:
+                orfs.append(dict(contig=contig, id=None))
+            for prot, hebra, ini, fin in lista:
+                oid = f"{contig}|{hebra}|{ini}-{fin}"
+                orfs.append(dict(contig=contig, id=oid, aa=len(prot), hebra=hebra, ini=ini, fin=fin))
+                fo.write(f">{oid}\n{prot}\n")
+    n_orf = sum(o["id"] is not None for o in orfs)
+    print(f"{n_contigs} contigs, {n_orf} ORF >= {MIN_AA} aa")
+    run(diamond, orf_faa, "ORFS", trabajo)
 
     resumen = dict(consulta=str(consulta), consulta_sha256=sha256(consulta), contigs=n_contigs,
-                   diamond=correr([diamond, "version"]).strip(),
+                   orfs=n_orf, diamond=correr([diamond, "version"]).strip(),
                    parametros=dict(min_aa=MIN_AA, evalue=EVALUE, hits=HITS_POR_CONSULTA,
-                                   sensibilidad="--more-sensitive", max_hsps=1), referencias={})
+                                   sensibilidad="--more-sensitive", max_hsps=1,
+                                   unidad="ORF (enmienda 1)"), referencias={})
     for et, ruta in refs:
         ruta = Path(ruta)
         productos = {c.split()[0]: producto_refseq(c) for c, _ in leer_fasta(ruta)}
@@ -273,29 +313,40 @@ def main(argv: list[str]) -> None:
         diamond_blastp(diamond, orf_faa, db, fwd)
         diamond_blastp(diamond, ruta, trabajo / "db_ORFS", rev)
         directo, inverso = mejores(fwd), mejores(rev)
-        filas, cuenta = [], collections.Counter()
-        for contig, o in orfs.items():
-            c = clasificar(None if o is None else o["id"], directo, inverso, productos)
-            cuenta[c["categoria"]] += 1
-            fila = dict(contig=contig, orf_aa=0 if o is None else len(o["proteina"]),
-                        orf_hebra="" if o is None else o["hebra"],
-                        orf_ini="" if o is None else o["ini"],
-                        orf_fin="" if o is None else o["fin"], **c)
-            filas.append(fila)
-        if sum(cuenta.values()) != n_contigs:
-            sys.exit("ABORTA: las categorias no suman el total de contigs")
+        filas, por_orf = [], collections.Counter()
+        mejor_contig: dict[str, str] = {}
+        refs_f = collections.defaultdict(set)
+        for o in orfs:
+            c = clasificar(o["id"], directo, inverso, productos)
+            if o["id"] is not None:
+                por_orf[c["categoria"]] += 1
+            actual = mejor_contig.get(o["contig"])
+            if actual is None or JERARQUIA.index(c["categoria"]) < JERARQUIA.index(actual):
+                mejor_contig[o["contig"]] = c["categoria"]
+            if c["categoria"].startswith(("e_", "f_")):
+                refs_f[o["contig"]].add(c["ref_id"])
+            filas.append(dict(contig=o["contig"], orf_aa=o.get("aa", 0), orf_hebra=o.get("hebra", ""),
+                              orf_ini=o.get("ini", ""), orf_fin=o.get("fin", ""), **c))
+        por_contig = collections.Counter(mejor_contig.values())
+        if sum(por_contig.values()) != n_contigs or sum(por_orf.values()) != n_orf:
+            sys.exit("ABORTA: las categorias no suman el total (contigs u ORF)")
         with open(salida / f"transferencia_{et}.tsv", "w") as fo:
             fo.write("\t".join(COLUMNAS) + "\n")
             for f in filas:
                 fo.write("\t".join(_fmt(f.get(k, "")) for k in COLUMNAS) + "\n")
         recip = [f for f in filas if f["categoria"].startswith(("e_", "f_"))]
+        d = [f for f in filas if f["categoria"] == "d_empate"]
         resumen["referencias"][et] = dict(
             proteoma=str(ruta), proteoma_sha256=sha256(ruta), proteinas=len(productos),
-            categorias={k: cuenta.get(k, 0) for k in CATEGORIAS},
-            proteinas_de_referencia_distintas_con_recip=len({f["ref_id"] for f in recip}))
-    (trabajo / "resumen_parcial.json").write_text(json.dumps(resumen, indent=1))
+            categorias_por_orf={k: por_orf.get(k, 0) for k in CATEGORIAS if k != "a_sin_orf"},
+            categorias_por_contig={k: por_contig.get(k, 0) for k in CATEGORIAS},
+            proteinas_de_referencia_distintas_con_recip=len({f["ref_id"] for f in recip}),
+            contigs_con_2_o_mas_recip_a_refs_distintas=sum(len(v) >= 2 for v in refs_f.values()),
+            empates_por_lado=dict(collections.Counter(f["empate_lado"] for f in d)),
+            empates_directos_homonimos_H=sum(f["empate_homonimo"] is True for f in d))
     (salida / "resumen.json").write_text(json.dumps(resumen, indent=1, ensure_ascii=False))
-    print(json.dumps({k: v["categorias"] for k, v in resumen["referencias"].items()}, indent=1))
+    print(json.dumps({k: [v["categorias_por_orf"], v["categorias_por_contig"]]
+                      for k, v in resumen["referencias"].items()}, indent=1))
 
 
 def run(diamond: str, faa: Path, etiqueta: str, trabajo: Path) -> None:

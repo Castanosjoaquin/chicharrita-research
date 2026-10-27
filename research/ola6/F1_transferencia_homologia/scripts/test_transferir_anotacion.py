@@ -123,13 +123,14 @@ class Bandas(unittest.TestCase):
         self.assertEqual(T.rotulo_cobertura(95, 10), "fragmento")
 
 
-def hit(sujeto, bit=100.0, pident=95.0, empate=False):
+def hit(sujeto, bit=100.0, pident=95.0, empate=False, empatados=None):
     return dict(sujeto=sujeto, bitscore=bit, pident=pident, evalue=1e-50, qcov=99.0,
-                scov=98.0, longitud=300, empate=empate)
+                scov=98.0, longitud=300, empate=empate,
+                empatados=empatados or ([sujeto, "otro"] if empate else [sujeto]))
 
 
 class Clasificacion(unittest.TestCase):
-    PROD = {"P1": "tubulin alpha chain", "P2": "uncharacterized protein LOC2"}
+    PROD = {"P1": "tubulin alpha chain", "P2": "uncharacterized protein LOC2", "otro": "otra proteina"}
 
     def cat(self, orf, d, i):
         return T.clasificar(orf, d, i, self.PROD)["categoria"]
@@ -153,6 +154,57 @@ class Clasificacion(unittest.TestCase):
         r = T.clasificar("o", {"o": hit("P1", pident=94.0)}, {"P1": hit("o")}, self.PROD)
         self.assertEqual((r["banda_identidad"], r["banda_concordancia"], r["banda_ic_lo"], r["banda_ic_hi"]),
                          (">=90", 0.862, 0.809, 0.902))
+
+
+class TodosLosOrf(unittest.TestCase):
+    """Enmienda 1: el contig con dos genes en hebras opuestas devuelve los dos."""
+
+    def test_dos_genes_en_hebras_opuestas(self):
+        g1, g2 = proteina_al_azar(200, 21), proteina_al_azar(260, 22)
+        seq = "TAA" + cds(g1) + "TAA" + "GA" + rc("TAA" + cds(g2) + "TAA")
+        prots = {p: h for p, h, _, _ in T.todos_los_orfs(seq)}
+        self.assertEqual(prots[g1], "+")
+        self.assertEqual(prots[g2], "-")
+
+    def test_el_mas_largo_no_es_el_unico(self):
+        # lo que fallaba en v1: orf_mas_largo se queda con g2, todos_los_orfs conserva g1 tambien
+        g1, g2 = proteina_al_azar(200, 21), proteina_al_azar(260, 22)
+        seq = "TAA" + cds(g1) + "TAA" + "GA" + rc("TAA" + cds(g2) + "TAA")
+        self.assertEqual(T.orf_mas_largo(seq)[0], g2)
+        self.assertIn(g1, [p for p, *_ in T.todos_los_orfs(seq)])
+
+    def test_coordenadas_de_cada_orf(self):
+        g1, g2 = proteina_al_azar(200, 21), proteina_al_azar(260, 22)
+        seq = "TAA" + cds(g1) + "TAA" + "GA" + rc("TAA" + cds(g2) + "TAA")
+        for prot, hebra, a, b in T.todos_los_orfs(seq):
+            region = seq[a - 1:b]
+            self.assertEqual(traducir(region if hebra == "+" else rc(region)), prot)
+
+
+class EmpateHomonimo(unittest.TestCase):
+    PROD = {"P1": "tubulin alpha chain isoform X1", "P2": "tubulin alpha chain isoform X2",
+            "P3": "actin", "P4": "uncharacterized protein LOC4"}
+
+    def test_isoformas_son_homonimas_y_siguen_siendo_empate(self):
+        d = {"o": hit("P1", empate=True, empatados=["P1", "P2"])}
+        r = T.clasificar("o", d, {"P1": hit("o")}, self.PROD)
+        self.assertEqual((r["categoria"], r["empate_homonimo"], r["empate_lado"]),
+                         ("d_empate", True, "directo"))
+
+    def test_nombres_distintos_no_son_homonimos(self):
+        d = {"o": hit("P1", empate=True, empatados=["P1", "P3"])}
+        r = T.clasificar("o", d, {"P1": hit("o")}, self.PROD)
+        self.assertIs(r["empate_homonimo"], False)
+
+    def test_sin_nombre_informativo_no_es_homonimo(self):
+        d = {"o": hit("P4", empate=True, empatados=["P4", "P2"])}
+        r = T.clasificar("o", d, {"P4": hit("o")}, self.PROD)
+        self.assertIs(r["empate_homonimo"], False)
+
+    def test_empate_del_lado_inverso(self):
+        r = T.clasificar("o", {"o": hit("P3")}, {"P3": hit("o", empate=True)}, self.PROD)
+        self.assertEqual((r["categoria"], r["empate_lado"], r["empate_homonimo"]),
+                         ("d_empate", "inverso", ""))
 
 
 class Cortafuego(unittest.TestCase):
