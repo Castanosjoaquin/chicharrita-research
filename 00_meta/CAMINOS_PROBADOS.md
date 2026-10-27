@@ -1327,13 +1327,13 @@ descartamos **nosotros** al procesarla.
   seis** regiones medidas por `N3`, y en direcciones distintas (`CP_MRFV` 20→23, `BicC_Dm`
   2121-2420 27→22), para comprar una decisión que el conteo ya no toma: en ese marco la
   comparación 922-1221 contra 2121-2420 tiene margen mediano cero (`D65`, `N3` §6). Se conserva
-  26 y se declara 29 al lado con su nombre (`D77`).
+  26 y se declara 29 al lado con su nombre (`D79`).
 - **Cerrar el tercer puesto publicando el orden de la forma ponderada, que es estable.** Se
   descartó porque es estable justo porque en escala absoluta el eje de exposición no tiene palanca
   (la limpieza ocupa el 6 % del rango de la eficacia): publicarlo solo esconde que la cascada, que
   es la regla con la que se eligieron las regiones, se invierte en el cero exacto (0 % contra
   100 % de 2.000 sorteos). Tampoco se adoptó exposición cero para cerrarlo, que es lo que `D66`
-  decidió no hacer. Se publican los dos extremos (`D78`).
+  decidió no hacer. Se publican los dos extremos (`D80`).
 - **Una confusión de nombres que conviene no repetir.** El «tercer marco» de la carta del
   investigador (contar la molécula con la accesibilidad evaluada en el transcrito) es el **marco
   2** de `D63`; el «marco 3» de `D63` es la molécula sola. Quien lea el issue #20 con la

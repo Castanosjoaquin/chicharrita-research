@@ -1,0 +1,171 @@
+{
+ "maquina": {
+  "sistema": "Windows",
+  "version": "10.0.26300",
+  "python": "3.10.11",
+  "work_existe": false
+ },
+ "estatico": [
+  {
+   "archivo": "research/ola4/M6_alertas/scripts/compuerta.py",
+   "define": "-",
+   "llama_alternativas": false,
+   "llama_region_recomendada": false,
+   "llama_exigir_decidida": true,
+   "arma_region_a_mano": false,
+   "region_sin_compuerta": false
+  },
+  {
+   "archivo": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
+   "define": "-",
+   "llama_alternativas": false,
+   "llama_region_recomendada": false,
+   "llama_exigir_decidida": true,
+   "arma_region_a_mano": false,
+   "region_sin_compuerta": false
+  },
+  {
+   "archivo": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
+   "define": "-",
+   "llama_alternativas": true,
+   "llama_region_recomendada": false,
+   "llama_exigir_decidida": false,
+   "arma_region_a_mano": false,
+   "region_sin_compuerta": true
+  },
+  {
+   "archivo": "tools/sifi21_port/alertas.py",
+   "define": "exigir_decidida",
+   "llama_alternativas": false,
+   "llama_region_recomendada": false,
+   "llama_exigir_decidida": true,
+   "arma_region_a_mano": false,
+   "region_sin_compuerta": false
+  },
+  {
+   "archivo": "tools/sifi21_port/ranking.py",
+   "define": "alternativas,region_recomendada",
+   "llama_alternativas": true,
+   "llama_region_recomendada": true,
+   "llama_exigir_decidida": true,
+   "arma_region_a_mano": false,
+   "region_sin_compuerta": false
+  },
+  {
+   "archivo": "tools/sifi21_port/ranking_v2.py",
+   "define": "-",
+   "llama_alternativas": true,
+   "llama_region_recomendada": true,
+   "llama_exigir_decidida": false,
+   "arma_region_a_mano": false,
+   "region_sin_compuerta": false
+  },
+  {
+   "archivo": "tools/sifi21_port/test_alertas.py",
+   "define": "-",
+   "llama_alternativas": false,
+   "llama_region_recomendada": true,
+   "llama_exigir_decidida": true,
+   "arma_region_a_mano": false,
+   "region_sin_compuerta": false
+  }
+ ],
+ "corridas": [
+  {
+   "nombre": "ranking.py ranking",
+   "ruta": "tools/sifi21_port/ranking.py",
+   "produce": "la region recomendada por la cascada para los cuatro de EPILAB (nivel 3)",
+   "insumo": "work/sifi_check/salida y work/sifi_check/offtarget_full",
+   "comando": "tools/sifi21_port/ranking.py ranking --muestras 50",
+   "corrio": false,
+   "codigo": 1,
+   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'work\\\\sifi_check\\\\salida\\\\MP_MRFV_full_corregido_vienna.tsv'",
+   "falta": "work\\\\sifi_check\\\\salida\\\\MP_MRFV_full_corregido_vienna.tsv",
+   "segundos": 1.6
+  },
+  {
+   "nombre": "ranking.py nulo",
+   "ruta": "tools/sifi21_port/ranking.py",
+   "produce": "la region maxima de cada gen por conteo (no pasa por la compuerta)",
+   "insumo": "work/sifi_check/salida",
+   "comando": "tools/sifi21_port/ranking.py nulo --reps 50",
+   "corrio": false,
+   "codigo": 1,
+   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'work\\\\sifi_check\\\\salida\\\\MP_MRFV_full_corregido_vienna.tsv'",
+   "falta": "work\\\\sifi_check\\\\salida\\\\MP_MRFV_full_corregido_vienna.tsv",
+   "segundos": 1.9
+  },
+  {
+   "nombre": "ranking_v2.py",
+   "ruta": "tools/sifi21_port/ranking_v2.py",
+   "produce": "regiones por tres caminos: completar_regiones, recomendadas y las dos ramas de efecto_humano",
+   "insumo": "work/sifi_v2 (salida_k21, salida_k22, offtarget_k*, offtarget_dm_k*)",
+   "comando": "tools/sifi21_port/ranking_v2.py --trabajo work/sifi_v2 --muestras 50 --json work/R11_censo/ranking_v2_censo.json",
+   "corrio": false,
+   "codigo": 1,
+   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv'",
+   "falta": "work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv",
+   "segundos": 1.6
+  },
+  {
+   "nombre": "M6 tabla_alertas.py",
+   "ruta": "research/ola4/M6_alertas/scripts/tabla_alertas.py",
+   "produce": "el inventario mismo; pasa por la compuerta via las anclas de M5, que llaman a ranking_v2.recomendadas()",
+   "insumo": "work/m6_alertas/identidad_por_ventana.tsv y work/W5/ref",
+   "comando": "research/ola4/M6_alertas/scripts/tabla_alertas.py",
+   "corrio": false,
+   "codigo": 1,
+   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Proyectos\\\\yHat\\\\work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv'",
+   "falta": "C:\\\\Proyectos\\\\yHat\\\\work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv",
+   "segundos": 1.5
+  },
+  {
+   "nombre": "M6 compuerta.py",
+   "ruta": "research/ola4/M6_alertas/scripts/compuerta.py",
+   "produce": "nada: itera sobre las regiones que YA estan en el inventario",
+   "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)",
+   "comando": "research/ola4/M6_alertas/scripts/compuerta.py",
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
+   "falta": "",
+   "segundos": 0.4
+  },
+  {
+   "nombre": "M6 umbral_compuerta.py",
+   "ruta": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
+   "produce": "nada: el mismo recorrido, con los dos umbrales de D28",
+   "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)",
+   "comando": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
+   "corrio": true,
+   "codigo": 0,
+   "motivo": "",
+   "falta": "",
+   "segundos": 0.4
+  },
+  {
+   "nombre": "M5 sensibilidad_reparto.py",
+   "ruta": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py",
+   "produce": "la columna region_recomendada de regiones_recomendadas_por_reparto.tsv, que sale de ranking_v2.recomendadas() via anclas.py",
+   "insumo": "work/sifi_v2 (lo pide anclas.correr())",
+   "comando": "research/ola4/M5_dos_ejes/scripts/sensibilidad_reparto.py --muestras 50",
+   "corrio": false,
+   "codigo": 1,
+   "motivo": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Proyectos\\\\yHat\\\\work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv'",
+   "falta": "C:\\\\Proyectos\\\\yHat\\\\work\\\\sifi_v2\\\\salida_k21\\\\MP_MRFV_full_corregido_vienna.tsv",
+   "segundos": 1.5
+  },
+  {
+   "nombre": "O3 01_region_vatpase_b.py",
+   "ruta": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
+   "produce": "la region candidata de V-ATPase B; arma la region a mano a proposito (D74) porque es insumo de una medicion y no una recomendacion",
+   "insumo": "work/o3 y work/W5/ref",
+   "comando": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
+   "corrio": false,
+   "codigo": 1,
+   "motivo": "StopIteration",
+   "falta": "",
+   "segundos": 1.3
+  }
+ ]
+}

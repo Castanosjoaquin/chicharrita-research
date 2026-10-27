@@ -741,6 +741,21 @@ def alertas_de(tabla: Path | None = None) -> list[dict]:
     return _ALERTAS_LEIDAS[ruta]
 
 
+def panel_actual() -> frozenset[str]:
+    """Los `organismo_corto` que tiene el panel de **esta** corrida (D77).
+
+    Sale de `REFERENCIAS`, que es global y que `ranking_v2.con_panel()` reescribe para
+    aislar el efecto de una referencia: por eso la compuerta no necesita que nadie le pase
+    el panel a mano para enterarse de que la rama `sin_humano` no tiene humano. Mas
+    `D_maidis`, que siempre se tamiza: su matriz entra por un archivo aparte (`DMAIDIS`) y
+    no por `REFERENCIAS`, y para los genes del insecto se excluye por ser **on-target**,
+    que no es lo mismo que estar fuera del panel.
+
+    Es informativo: lo que la compuerta hace con el no es filtrar, es nombrar (D77).
+    """
+    return frozenset({v["corto"] for v in REFERENCIAS.values()} | {DMAIDIS_INFO["corto"]})
+
+
 def inventario_de(tabla: Path | None = None) -> set:
     """Las regiones tamizadas, leidas de `estado_regiones.tsv` al lado de la tabla (D72).
 
@@ -794,7 +809,8 @@ class Region(tuple):
 
 
 def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
-                       tabla: Path | None = None) -> "Region":
+                       tabla: Path | None = None,
+                       panel: set[str] | None = None) -> "Region":
     """El primer puesto de `alternativas()` convertido en recomendacion, con compuerta.
 
     Levanta `alertas.RegionNoTamizada` si la region no esta en el inventario de M6 (D72)
@@ -804,11 +820,17 @@ def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
     region decidida pasa, incluso si la decision es `bloqueante` —bloquear es decidir, y
     el que llama tiene que descartarla: lo dice el estado que devuelve
     `estado_decision()`—.
+
+    `panel` es el conjunto de `organismo_corto` contra el que se pregunta. En `None` —el
+    default— lo resuelve `panel_actual()`, o sea el panel vivo de la corrida: una rama que
+    saco una referencia del panel queda declarada sin que quien llama tenga que acordarse
+    de pasarla. No cambia que frena (D77), cambia que la compuerta pueda decirlo.
     """
     region = alt["mejores"][0]["region"]
     est = AL.exigir_decidida(alertas_de(tabla), gen, region,
                              umbral if umbral is not None else UMBRAL_COMPUERTA,
-                             inventario=inventario_de(tabla))
+                             inventario=inventario_de(tabla),
+                             panel=panel_actual() if panel is None else panel)
     ini, fin = (int(x) for x in region.split("-"))
     # El estado viaja con la region (D75). Una region bloqueante sale igual, porque
     # bloquear es decidir (D69), pero el que la recibe no puede no verlo.

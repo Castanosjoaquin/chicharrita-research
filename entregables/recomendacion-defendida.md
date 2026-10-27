@@ -93,7 +93,7 @@ el eje en el que gana —el de riesgo— es el único de los tres que no es una 
 
 | | `BicC_Dm` 922-1221 |
 |---|---|
-| ventanas eficientes, con su marco (`D63`) | **26** en el marco 3, la molécula de 300 nt recortada y plegada sola: es la cifra que se publica (`D77`). Al lado, **36** en el marco 1 (contexto, todos los arranques) y **29** en el marco 2 (contexto, los comparables), que es el que contesta cuán accesible es el sitio en el transcrito blanco. Los tres valen y no se mezclan `[M]` |
+| ventanas eficientes, con su marco (`D63`) | **26** en el marco 3, la molécula de 300 nt recortada y plegada sola: es la cifra que se publica (`D79`). Al lado, **36** en el marco 1 (contexto, todos los arranques) y **29** en el marco 2 (contexto, los comparables), que es el que contesta cuán accesible es el sitio en el transcrito blanco. Los tres valen y no se mezclan `[M]` |
 | coincidencias perfectas de 21 nt contra el panel de seis no objetivo | **0** |
 | alertas por bloque de ≥ 19 nt | 3 (contra 6 de 2121-2420 y 33 de 264-563) |
 | ventanas de baja complejidad | 0 de las 2.500 del gen: el homopolímero más largo mide 7 nt |
@@ -126,7 +126,7 @@ recomendación que sostenemos con firmeza es «no 264-563»; la de «922-1221 an
 más débil y la presentamos como tal.
 
 **Tercera: la exposición de los organismos no objetivo es una decisión nuestra, declarada abierta, y tiene
-palanca.** *Actualizado el 2026-10-27 (issue #20, `D66`, `D78`).* No le pedimos al investigador un número
+palanca.** *Actualizado el 2026-10-27 (issue #20, `D66`, `D80`).* No le pedimos al investigador un número
 y no lo fijamos nosotros. Preguntado dos veces qué exposición asignarle a un cicadélido norteamericano
 en un lote argentino, contestó que el organismo *«no está en Argentina, o sea que puede no importar»* y
 también que *«puede venir eventualmente y tal vez si la querés matar»*, y que lo útil es mostrar que
@@ -149,7 +149,7 @@ las seis regiones recomendadas se mudan**, y una de ellas es `ATPaseD_Dm` 137-43
 conservada del gen, que `D25` había descartado justamente por estar vetada. El efecto **no es gradual**:
 entre 0,05 y 1,00 de peso relativo al maíz no cambia nada, porque el veto es binario, y todo el cambio
 está en el cero exacto. `[H]` Por eso la respuesta a si los pesos importan es «casi nunca, salvo el
-cero», y por eso el tercer puesto se reporta como **empate declarado** (`D78`): lo que separa los dos
+cero», y por eso el tercer puesto se reporta como **empate declarado** (`D80`): lo que separa los dos
 órdenes no es un candidato mejor que otro sino una decisión que no es nuestra tomar por la ventana. En
 las formas ponderadas el mismo par casi no se mueve (99,9 % de los sorteos con exposición cero), y cuál de
 las dos formas se publica como la lista ordenada sigue siendo una decisión abierta anterior a esto.
@@ -196,7 +196,7 @@ Tres cosas, y ninguna es un archivo con secuencias (la tercera dejó de ser un p
 2. **El dato de latencia del MRFV**, que hoy tenemos sólo para *Spiroplasma kunkelii* y de una
    fuente que no es la del patógeno que nos importa `[?]`.
 3. ~~**La exposición que le asignan a *Homalodisca vitripennis***, que es el único peso con palanca
-   en todo el ranking.~~ **Ya no se pide** (`D66`, `D78`): es una decisión nuestra, declarada abierta, y
+   en todo el ranking.~~ **Ya no se pide** (`D66`, `D80`): es una decisión nuestra, declarada abierta, y
    el resultado en los dos extremos está en §5. Si el laboratorio tiene una práctica propia con
    cicadélidos no objetivo, nos sirve, pero no la esperamos.
 4. **El marco y la función de conteo de la planilla**, para saber si nuestras cifras y las suyas
