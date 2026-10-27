@@ -92,7 +92,7 @@ HECHO = [
      "fracaso, y la decisión de reportar el intervalo y no el valor p. La validación no se corrió.",
      ["research/ola3/C9_sensibilidad_umbral/PREREGISTRO_validacion_retrospectiva.md"]),
     ("Checkpoint 2 · Página de siete casillas",
-     "La página que se lee en diez minutos, con las siete casillas de la guía y las cifras verificadas contra sus archivos. El protagonista (D42) es el veto y el movimiento de región: las dos regiones que EPILAB eligió para los genes del insecto contienen ventanas de 21 nt idénticas a <i>H. vitripennis</i>, y moviendo la región dentro del mismo gen <code>BicC_Dm</code> pasa de 20 a 36 ventanas que pasan el filtro y de 22 a 0 coincidencias (región 922-1221, vigente por D25), con lo que queda primero de la lista del insecto en las diez combinaciones de agregación a 21 nt. Se presenta en dos listas por mecanismo (D38).",
+     "La página que se lee en diez minutos, con las siete casillas de la guía y las cifras verificadas contra sus archivos. El protagonista (D42) es el veto y el movimiento de región: las dos regiones que EPILAB eligió para los genes del insecto contienen ventanas de 21 nt idénticas a <i>H. vitripennis</i>, y moviendo la región dentro del mismo gen <code>BicC_Dm</code> pasa de 17 a <strong>26</strong> ventanas que pasan el filtro en la molécula de 300 nt (D63; 20 a 36 contando los arranques en el gen) y de 22 a 0 coincidencias (región 922-1221, vigente por D25), con lo que queda primero de la lista del insecto en las diez combinaciones de agregación a 21 nt. Se presenta en dos listas por mecanismo (D38).",
      ["entregables/checkpoint2-una-pagina.md", "docs/plan_checkpoint2/salidas/F4_checklist_guia.md"]),
     ("Checkpoint 2 · Entrega y mecanismo (Fase 2)",
      "Qué dicen las fuentes abiertas sobre la entrega oral y el mecanismo de RNAi en insectos, con el estado de apertura de cada fuente. Las que no se pudieron abrir se declaran y no se citan.",
@@ -276,45 +276,53 @@ HECHO = [
      "primera parte de la reunión no tiene registro.",
      ["research/checkpoints/checkpoint2.md", "docs/plan_cierre/PLAN_CIERRE.md",
       "docs/plan_ola6/PLAN_OLA6.md"]),
+
+    # ------------------------------------------------------- ola 6, lo que se cerro
+    ("Ola 6 · Las dos cifras viejas de los entregables (issue #19)",
+     "Los cuatro entregables dicen ahora la misma cifra para la misma región y el mismo marco, con "
+     "<strong>la frase vieja tachada y la nueva al lado</strong>, que es la convención del repositorio. La cifra "
+     "de <code>BicC_Dm</code> 922-1221 es <strong>26</strong>, del marco de la molécula (D63), y 36 queda "
+     "declarada como el conteo de arranques en el gen; el «32 de 36 contra 22» se reemplazó por la cobertura "
+     "declarada por fuente (D64): 36 de 36 en el transcriptoma argentino, 32 de 36 en el de Ohio y "
+     "<strong>sin datos</strong> en el de Illinois, que no cubre esa región. Queda dicho que el conteo ya no "
+     "arbitra entre 922-1221 y 2121-2420 (D65). <code>recomendacion-defendida.md</code> y "
+     "<code>reunion-lunes.html</code> no necesitaron cambio: el «36 contra 35» de la segunda está dentro del "
+     "párrafo que <em>retira</em> ese argumento, no es una cifra vieja sin corregir.",
+     ["entregables/checkpoint2-una-pagina.md", "entregables/para-el-investigador.md"]),
+    ("Ola 6 · El tercer marco y el empate declarado (issue #20)",
+     "Las dos decisiones, escritas sin correr ningún cálculo: las cifras se leyeron de los resultados "
+     "versionados de N3 y M5. <strong>D79 — el tercer marco:</strong> no se adopta; se sigue publicando "
+     "<strong>26</strong> (la molécula sola) y se declaran 29 y 36 al lado, cada uno con su nombre, porque "
+     "adoptar 29 cambiaría la cifra de las seis regiones medidas y en direcciones distintas, y compraría una "
+     "decisión que el conteo ya no toma. <strong>D80 — el tercer puesto:</strong> se reporta como empate "
+     "declarado, con los dos extremos y la decisión que los separa. Y contesta lo que el investigador preguntó: "
+     "<strong>los pesos casi no importan, salvo el cero</strong> —el orden de los dos primeros aguanta entre "
+     "96,0 y 97,4 % en todo el rango, y en la cascada nada cambia entre 0,05 y 1,00 porque el veto es binario—.",
+     ["00_meta/DECISIONS.md", "research/ola4/M5_dos_ejes/REPORT.md",
+      "research/ola5/N3_marcos/resultados/tres_marcos.tsv"]),
+    ("Ola 6 · La secuencia de <code>V-ATPase B</code> (issue #22)",
+     "El insumo que bloqueaba lo único realmente nuevo del checkpoint 2 <strong>dejó de estar bloqueado</strong>, "
+     "y sin esperar el zip: se recuperó por homología local a nivel proteína (D71). Locus "
+     "<code>OZ319705.1</code>, diez exones, CDS de <strong>1.503 nt</strong> y <strong>500 aa</strong>, con la "
+     "traducción verificada letra por letra contra la proteína predicha; el extractor <strong>aborta</strong> si "
+     "no coincide. El CDS no se versiona —la regla de confidencialidad rechaza toda racha de 21 nt— y se "
+     "regenera con un comando desde los archivos que sí están versionados.",
+     ["research/ola6/O2_vatpase_b/REPORT.md", "00_meta/DECISIONS.md"]),
+    ("Ola 6 · La quimera <code>BicC_Dm</code> + <code>V-ATPase B</code> (issue #23)",
+     "La única línea de cómputo nueva que dejó el checkpoint 2, medida bajo un preregistro escrito "
+     "<strong>antes</strong> de ver ningún conteo (D74). La región de <code>V-ATPase B</code> "
+     "<strong>no se eligió entre varias</strong>: de las 1.184 regiones de 300 nt que caben en su CDS "
+     "<strong>sobrevive exactamente una</strong> al veto, 517-816, y lo hace sin un nucleótido de holgura —a 301 nt "
+     "el gen no tiene ninguna región admisible—, porque el gen acumula 71 ventanas con coincidencia perfecta de "
+     "21 nt contra el panel, mientras <code>BicC_Dm</code> en su región vigente tiene cero. El orden es "
+     "<code>BicC_Dm</code> + <code>V-ATPase B</code>, decidido por el empalme y no por el conteo. La región viaja "
+     "como insumo de la medición, <strong>no como región recomendada</strong>.",
+     ["research/ola6/O3_quimera_bicc_vatpase_b/REPORT.md", "00_meta/DECISIONS.md"]),
 ]
 
 FALTA = [
-    ("Las dos cifras viejas de los entregables (issue #19)", "decision", True,
-     "<strong>La decisión ya está tomada; falta aplicarla.</strong> D63 fijó que la cifra que se publica para una "
-     "región candidata es la del marco de la molécula, que es <strong>26</strong>; D64 retiró el «32 idénticas contra "
-     "22» y lo reemplazó por la cobertura declarada por fuente, porque <code>GCWP01</code> no cubre un solo "
-     "nucleótido de 922-1221; y D65 le retiró al conteo el papel de argumento entre 922-1221 y 2121-2420. Pero "
-     "<code>entregables/checkpoint2-una-pagina.md</code> y <code>entregables/para-el-investigador.md</code> siguen "
-     "diciendo «pasa de 20 a 36» y «32 de sus 36», mientras <code>recomendacion-defendida.md</code> y "
-     "<code>reunion-lunes.html</code> publican 26. No se corrige por cuenta propia: <strong>cambia cifras "
-     "publicadas</strong>, y la convención del repositorio es dejar la frase vieja tachada con la nueva al lado."),
-    ("El tercer marco y el empate declarado (issue #20)", "decision", True,
-     "Dos decisiones chicas, las dos con la medición hecha. <strong>El tercer marco:</strong> él lo propuso en la "
-     "carta del 25 y N3 lo midió —da <strong>29</strong>, contra 36 en contexto y 26 en la molécula—; se sigue "
-     "publicando 26 y la adopción quedó sin decidir. En la reunión del 26 no lo volvió a mencionar, así que la "
-     "decisión es nuestra. <strong>El tercer puesto:</strong> si se reporta como empate declarado o se sigue "
-     "ordenando. D66 cerró lo que bloqueaba a las dos: la exposición de <i>H. vitripennis</i> se declara como "
-     "decisión abierta y <strong>no se le pide un número</strong> —dijo que el organismo no está en la Argentina y "
-     "«puede no importar», y también que «puede venir eventualmente»—. Lo que pidió es que la decisión esté "
-     "explicitada, con los dos extremos a la vista."),
-    ("La secuencia de <code>V-ATPase B</code> (issue #22)", "trabajo", False,
-     "Es el único insumo que bloquea lo único realmente nuevo que dejó el checkpoint 2. <code>DM-02</code> está en "
-     "el catálogo de C5 con fenotipo publicado en la especie —<strong>alas deformes</strong>, supervivencia 16 % al "
-     "día 4 contra 37 % del control— pero <strong>sin secuencia en el panel de trabajo</strong>. Dos vías: el zip "
-     "que él ofreció mandar, o <strong>recuperarla por homología a nivel proteína</strong> contra los tres "
-     "transcriptomas públicos, que ya están en disco como bases de búsqueda. La segunda no espera a nadie, y si no "
-     "sale, el resultado útil es saber que esos transcriptomas no la contienen."),
-    ("La quimera <code>BicC_Dm</code> + <code>V-ATPase B</code> (issue #23)", "trabajo", False,
-     "D67 decidió que las quimeras se arman por <strong>combinación de fenotipos que no se solapan</strong> y no por "
-     "densidad de ventanas eficientes. La combinación cubre los dos ejes que a <code>BicC_Dm</code> le faltan, y los "
-     "candidatos ya estaban en el catálogo: no hay que salir a buscarlos. Es la única línea de cómputo nueva. Dos "
-     "obstáculos declarados: el evaluador de quimeras tiene los cuatro genes de EPILAB <strong>fijos</strong> y hay "
-     "que generalizarlo, y la corrida <strong>necesita ViennaRNA</strong>, que no está en esta máquina."),
-    ("<code>UMBRAL_OFF_ALERTA = 17</code> contra el piso de D28 (issue #18)", "trabajo", False,
-     "<code>pipeline/region_scoring.py</code> tiene el umbral en 17 y D28 decidió no reportar coincidencias de 16 a "
-     "18 nt. M6 lo dejó <em>medido y declarado, no corregido</em>. El alcance está verificado y es chico: <strong>no "
-     "mueve ninguna cifra publicada</strong> y el cambio queda contenido en ese módulo. Si al correr alguna cifra se "
-     "mueve, hay que parar: entonces el alcance no era el verificado."),
+    ("<code>UMBRAL_OFF_ALERTA = 17</code> contra el piso de D28 (issue #18): <strong>hecho, sin mergear</strong>", "trabajo", True,
+     "<strong>El trabajo está hecho y el issue cerrado, pero el cambio nunca llegó a <code>main</code>.</strong> Verificado el 2026-10-27: la constante vale <strong>19</strong> en la rama <code>claude/r4-umbral-off-alerta-fd31b6</code> (commit <code>1915087</code>) y sigue valiendo <strong>17</strong> en <code>main</code>, y ese commit no es ancestro de <code>origin/main</code>. El contenido está: el umbral sube a 19 con el motivo citando D28 en el código, y está medido que <strong>no mueve ninguna cifra publicada</strong> porque la constante sólo entra en <code>pipeline/region_scoring.py</code> —el <code>buenos_limpios</code> del port se calcula aparte—. Lo que falta no es investigación: es <strong>mergear la rama</strong>. Mientras no se mergee, el pipeline publicado sigue reportando coincidencias de 17 y 18 nt que D28 decidió no reportar."),
     ("Fecha y texto del correo enviado (issue #28)", "decision", True,
      "El correo se envió, como confirmó el usuario, pero el repo no registra la fecha ni el texto enviado. El "
      "borrador tiene siete preguntas y <code>PLAN_DESARROLLO.md</code> §8 decía cinco: sin el texto efectivamente "
