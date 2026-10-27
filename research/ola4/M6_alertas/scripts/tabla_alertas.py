@@ -1,4 +1,4 @@
-"""M6: la tabla de alertas de D48 y el estado de las dieciocho regiones de la regla nueva.
+"""M6: la tabla de alertas de D48 y el estado de las diecinueve regiones de la regla nueva.
 
 Qué hace, en orden, y **aborta si un ancla falla**:
 
@@ -16,7 +16,7 @@ Qué hace, en orden, y **aborta si un ancla falla**:
 
 Después construye `alertas.tsv` con los cuatro campos obligatorios de D48, lo valida con
 `alertas.validar()` —una fila sin los cuatro campos aborta— y escribe el estado de las
-dieciocho regiones. **No decide nada**: ninguna región se acepta ni se descarta acá.
+diecinueve regiones. **No decide nada**: ninguna región se acepta ni se descarta acá.
 
 Las seis últimas entraron con `R7` (D70, D72): son las que el ranking recomienda a k=22 y
 hasta entonces **no estaban tamizadas**, así que atravesaban la compuerta sin que nadie
@@ -52,7 +52,7 @@ SALIDA = RAIZ / "research/ola4/M6_alertas/resultados"
 DECISIONES = RAIZ / "research/ola4/M6_alertas/decisiones.tsv"
 REF_DIR = "work/W5/ref"
 
-# Las dieciocho regiones. «qué es» sale de los ADR citados; la columna `vigente` dice si
+# Las diecinueve regiones. «qué es» sale de los ADR citados; la columna `vigente` dice si
 # hoy es la región que el proyecto recomienda para ese gen, y ninguna de las seis de k=22
 # lo es: las vigentes son las seis de k=21 de arriba.
 #
@@ -81,6 +81,12 @@ REGIONES = [
     ("ATPaseD_Dm", (71, 370), "recomendada por C7 v2 a k=22", False),
     ("eth_Dm", (193, 392), "recomendada por C7 v2 a k=22", False),
     ("bursA_Dm", (44, 243), "recomendada por C7 v2 a k=22", False),
+    # R7, segunda vuelta: la compuerta de D72 encontro una mas al regenerar C7. Sale del
+    # bloque `efecto_humano` de ranking_v2.py —la corrida contrafactica con la referencia
+    # humana fuera del panel— y esta publicada en `efecto_humano.fichas.
+    # sin_humano_recomendada` y en `regiones_recomendadas_w7`. Con humano en el panel la
+    # recomendacion es 2121-2420, que ya estaba; sacarlo la corre dos nucleotidos.
+    ("BicC_Dm", (2123, 2422), "recomendada por C7 v2 con el panel sin humano", False),
 ]
 # El archivo de referencia de cada organismo, que es la fuente del cuarto campo.
 ARCHIVO = {
@@ -332,7 +338,7 @@ def construir(genes: dict, identidad: list[dict], complejidad: dict) -> list[dic
 
 
 def estados(genes: dict, filas: list[dict]) -> list[dict]:
-    """El estado de las dieciocho regiones bajo la regla nueva, y bajo las dos anteriores.
+    """El estado de las diecinueve regiones bajo la regla nueva, y bajo las dos anteriores.
 
     Esta es la salida que desde D72 hace de **inventario**: `alertas.exigir_decidida()` le
     exige a la región estar acá, y es el único archivo que puede decir «tamizada, cero

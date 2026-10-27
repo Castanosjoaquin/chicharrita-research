@@ -676,3 +676,80 @@ alguien leyó **y bloqueó**». La compuerta hace exactamente lo que `D69` decid
 que tendría que descartar es quien consuma la recomendación. Queda anotado en
 `00_meta/PREGUNTAS_ABIERTAS.md` y **no se cambió acá**: tocarlo sería revisar `D69` de paso, en una
 corrida cuyo objeto era firmar una fila.
+
+### Addendum (2026-10-27, cierre) — la compuerta encuentra una región más, y la corrida de 22 nt queda regenerada
+
+Con la fila de `eth_Dm` 193-392 firmada, se hicieron las dos cosas que quedaban: que el estado de
+alertas viaje con la región recomendada, y regenerar la corrida de 22 nt. El ADR es `D74`.
+
+#### Lo que la compuerta encontró en su primer uso real
+
+La primera regeneración de `research/ola3/C7_ranking_v2/resultados/ranking_v2.json` **falló**, con
+`RegionNoTamizada` sobre **`BicC_Dm` 2123-2422** `[M]`. No sale del ranking a 21 ni a 22 nt: sale
+del bloque `efecto_humano`, que es la corrida contrafáctica con la referencia humana **fuera** del
+panel, y **está publicada** —en `efecto_humano.fichas.sin_humano_recomendada` y en
+`regiones_recomendadas_w7`—. Con humano en el panel la recomendación para ese gen es 2121-2420, que
+ya estaba en el inventario; sacarlo corre la ventana dos nucleótidos, y esa ventana corrida nadie la
+había tamizado.
+
+Vale decirlo sin adornos: `D72` no cerró un agujero hipotético. En su primer uso real encontró una
+**séptima** región publicada sin tamizar que ni `D70` ni el issue de `R7` habían identificado,
+porque las dos miraban las regiones recomendadas del ranking y esta sale de otro bloque del mismo
+generador. El inventario pasa de dieciocho a **diecinueve** regiones. Sus tres filas de alerta
+—`IGSF11` y `SLC24A4` de humano, `lox2` de maíz— **no tienen ninguna coincidencia perfecta de
+21 nt**, así que quedan en «pendiente» y no frenan nada en el umbral vigente `[M]`.
+
+#### El estado viaja con la región
+
+`ranking.region_recomendada()` devuelve ahora `ranking.Region`: una subclase de `tuple` de dos
+elementos que lleva pegados `estado`, `decision` y la propiedad `bloqueante`. Todo lo que
+desempaquetaba `ini, fin = …` o comparaba contra `(264, 563)` sigue andando igual; lo que deja de
+ser posible es recibir la región sin el estado. `ranking_v2.correr_k()` lo escribe en el JSON como
+`estado_alertas_recomendadas` y `recomendadas_bloqueantes`.
+
+**No frena nada y no revisa `D69`:** la región bloqueante sale igual, porque bloquear es decidir.
+Lo que se corrigió es que el deber de descartarla, que `D69` puso en el que llama, no tenía ningún
+código detrás — el que llamaba recibía un par de enteros indistinguible del de una región limpia.
+Ahora el JSON publicado dice, en sus propios datos, `recomendadas_bloqueantes: ["eth_Dm"]` a k=22 y
+la lista vacía a k=21 `[M]`.
+
+#### Las dos anclas de entorno, corridas antes de reemplazar nada
+
+`perfil_k.py` regenera `salida_k21` además de `salida_k22`, así que había un riesgo concreto de
+mover los perfiles que alimentan todo lo publicado. Se respaldó antes y salió **byte a byte
+idéntica** `[M]`. Y `offtarget_21nt.py --size 21 --mm1` reproduce **byte a byte** la matriz
+`offtarget_k21` que hay en disco `[M]`. O sea que ViennaRNA 2.7.2 y el tamizador de esta máquina son
+los que producen los insumos de lo publicado.
+
+Hay además un ancla que no se eligió después de ver el resultado: los conteos de ventanas eficientes
+a 22 nt que salieron del perfil nuevo —32, 174, 29, 123, 29 y 42 para `ATPaseD_Dm`, `BicC_Dm`,
+`CP_MRFV`, `MP_MRFV`, `bursA_Dm` y `eth_Dm`— coinciden **exactamente** con los valores `k22` que
+`jaccard_21_22` ya publicaba `[M]`.
+
+#### Ninguna cifra publicada se movió
+
+El JSON regenerado es **idéntico valor por valor** al publicado en todos sus bloques: `jaccard_21_22`,
+`efecto_humano`, `anclas_w7`, y para los dos `k` las `regiones`, `regiones_recomendadas`, `fichas`,
+`fichas_recomendadas`, `barridos`, `gen_entero`, `alternativas` y los dos nulos `[M]`. Lo único
+semántico que agrega son las dos claves nuevas por bloque. Las anclas del propio generador pasaron
+—«los cuatro conteos, las cuatro fichas y el barrido de W7 reproducidos exacto»— y
+`generar_informes.py` regeneró el `REPORT.md` y el `index.html` de `C7` **idénticos**, sin una línea
+de diferencia `[M]`.
+
+**Una cosa que hay que decir y que no introdujo este cambio:** el JSON **no es byte-reproducible**.
+El orden de las claves dentro de `riesgo_por_referencia` depende del orden en que se pasaron las
+referencias al tamizador, que no está registrado en ninguna parte, así que el archivo regenerado
+reordena esas claves sin mover un solo valor —el diff textual es de unas 300 líneas y el semántico
+es de cuatro claves— `[M]`. Ya era así antes de tocarlo; queda como pregunta abierta.
+
+#### El estado de la compuerta
+
+| | `perfecto_21` (D48 literal) | `perfecto_ge19` (umbral laxo de D28) |
+| --- | --- | --- |
+| regiones que pasan | **19 de 19** | **15 de 19** |
+| frenadas | 0 | 4, ninguna vigente |
+| de las que pasan, bloqueantes | 4, ninguna vigente | 4, ninguna vigente |
+
+`test_alertas.py` pasa con **103 comprobaciones** y ninguna salteada en el entorno conda, y pasa
+también con `/usr/bin/python3` con la §6 salteada y declarada. `test_ranking.py` pasa, con sus tres
+secciones salteadas de siempre. La cadena de `M6` sigue siendo idempotente byte a byte.

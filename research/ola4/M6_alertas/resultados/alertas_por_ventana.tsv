@@ -194,3 +194,52 @@ eth_Dm	193-392	348	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitrip
 eth_Dm	193-392	348	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
 eth_Dm	193-392	349	H_vitripennis	perfecto_ge19	XM_046828031.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
 eth_Dm	193-392	349	H_vitripennis	perfecto_ge19	XM_046828033.1	Homalodisca vitripennis probable chitinase 2	LOC124369889
+BicC_Dm	2123-2422	2135	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2135	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2135	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2135	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2135	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2135	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2135	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2135	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2136	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2136	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2136	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2136	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2136	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2136	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2136	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2136	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2137	humano	perfecto_ge19	NM_001378620.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2137	humano	perfecto_ge19	NM_001425254.1	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2137	humano	perfecto_ge19	NM_153646.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2137	humano	perfecto_ge19	NM_153647.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2137	humano	perfecto_ge19	NM_153648.4	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2137	humano	perfecto_ge19	XM_011536436.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2137	humano	perfecto_ge19	XM_011536437.3	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2137	humano	perfecto_ge19	XM_011536440.2	Homo sapiens solute carrier family 24 member 4	SLC24A4
+BicC_Dm	2123-2422	2361	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+BicC_Dm	2123-2422	2362	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+BicC_Dm	2123-2422	2363	maiz	perfecto_ge19	NM_001112503.2	Zea mays linoleate 9S-lipoxygenase2	lox2
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001015887.3	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353318.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353319.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353320.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353321.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353322.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353323.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353324.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353325.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_001353326.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2421	humano	perfecto_ge19	NM_152538.4	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001015887.3	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353318.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353319.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353320.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353321.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353322.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353323.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353324.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353325.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_001353326.2	Homo sapiens immunoglobulin superfamily member 11	IGSF11
+BicC_Dm	2123-2422	2422	humano	perfecto_ge19	NM_152538.4	Homo sapiens immunoglobulin superfamily member 11	IGSF11

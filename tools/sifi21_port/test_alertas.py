@@ -503,9 +503,16 @@ if TABLA.exists() and FIRMAS.exists():
     # acierto. Que esas dos no aparezcan aca es exactamente el hecho por el que D72 hizo
     # falta: desde `alertas.tsv` son indistinguibles de una region nunca tamizada, y la
     # unica forma de saber que si se miraron es que esten en el inventario.
+    # Cuatro regiones pendientes: tres de k=22 y `BicC_Dm` 2123-2422, que es la que la
+    # compuerta de D72 encontro al regenerar C7 —sale del bloque `efecto_humano`, la
+    # corrida con la referencia humana fuera del panel (D74)—. Ninguna de las cuatro
+    # tiene alertas de 21/21, asi que ninguna frena en el umbral vigente.
     check(sin_firma == {("MP_MRFV", "162-361"), ("BicC_Dm", "2119-2418"),
-                        ("ATPaseD_Dm", "71-370")},
-          "las unicas filas pendientes son las de tres regiones de k=22, sin alertas de 21/21")
+                        ("ATPaseD_Dm", "71-370"), ("BicC_Dm", "2123-2422")},
+          "las cuatro regiones con filas pendientes son las esperadas, sin alertas de 21/21")
+    check(all(int(f["ventanas_perfecto_21"] or 0) == 0 for f in reales
+              if (f["gen"], f["region"]) in sin_firma),
+          "y ninguna de esas filas pendientes tiene coincidencia perfecta de 21 nt")
     inv_k22 = AL.leer_inventario(RAIZ / "research/ola4/M6_alertas/resultados/estado_regiones.tsv")
     check(all(not AL.filas_de_region(reales, g, r) and (g, r) in inv_k22
               for g, r in (("CP_MRFV", "77-276"), ("bursA_Dm", "44-243"))),
@@ -675,6 +682,13 @@ for funcion in ("def completar_regiones(", "def recomendadas("):
     check("R.region_recomendada(" in cuerpo,
           "ranking_v2.%s pasa por la compuerta" % funcion[4:-1])
 
+# y el JSON que escribe ranking_v2 lleva el estado de cada region recomendada (D74), que
+# es donde el estado le sirve a quien lee el resultado y no solo a quien llama la funcion
+cuerpo_k = FUENTES["ranking_v2.py"].split("def correr_k(")[1].split("\ndef ")[0]
+check('"estado_alertas_recomendadas"' in cuerpo_k
+      and '"recomendadas_bloqueantes"' in cuerpo_k,
+      "correr_k escribe el estado de alertas al lado de regiones_recomendadas")
+
 # 7. contra la tabla real: las regiones que el port recomienda hoy pasan en los dos
 #    umbrales de D28, que es lo que D68 dejo medido
 if TABLA.exists():
@@ -713,6 +727,33 @@ if TABLA.exists():
                 if AL.estado_decision(reales, g, r)["estado"] == "decidida: bloqueante"}
     check(bloq_k22 == {("eth_Dm", "193-392")},
           "de las seis de k=22 que pasan, una esta bloqueante y hay que descartarla")
+
+    # 9. el estado viaja con la region (D74). Lo que se prueba acá no es que el atributo
+    #    exista —eso es trivial— sino las dos mitades que lo hacen util: que la region
+    #    bloqueante **sale** (no se frena, D69 intacto) y que **no se la puede recibir sin
+    #    el estado**, que era el agujero que D73 destapó. Antes de D74 el que llamaba
+    #    recibia un par de enteros indistinguible del de una region limpia.
+    R._ALERTAS_LEIDAS.clear()
+    reg = R.region_recomendada({"mejores": [{"region": "193-392"}]}, "eth_Dm", tabla=TABLA)
+    check(reg == (193, 392) and tuple(reg) == (193, 392) and len(reg) == 2,
+          "la region sigue siendo una tupla (ini, fin): nada de lo que ya desempaquetaba cambia")
+    ini, fin = reg
+    check((ini, fin) == (193, 392), "y sigue desempaquetando en dos enteros")
+    check(reg.estado == "decidida: bloqueante" and reg.bloqueante is True
+          and reg.decision == "bloqueante",
+          "pero ahora trae pegado que esta bloqueante, que es lo que D69 pide mirar")
+
+    # y una region limpia trae su estado tambien: el atributo esta siempre, no solo cuando
+    # hay mala noticia, porque un atributo que aparece a veces no se puede consultar nunca
+    limpia = R.region_recomendada({"mejores": [{"region": "114-313"}]}, "eth_Dm", tabla=TABLA)
+    check(limpia.bloqueante is False and limpia.estado == "sin alertas en este umbral",
+          "una region limpia trae el estado igual: el atributo esta siempre")
+    limpia_ge19 = R.region_recomendada({"mejores": [{"region": "114-313"}]}, "eth_Dm",
+                                       "perfecto_ge19", TABLA)
+    check(limpia_ge19.estado == "decidida: aceptada con justificacion"
+          and limpia_ge19.bloqueante is False,
+          "y el estado es el del umbral con el que se pidio, no uno fijo")
+    R._ALERTAS_LEIDAS.clear()
     check(frenadas["perfecto_21"] <= frenadas["perfecto_ge19"],
           "lo que frena el umbral literal lo frena tambien el laxo: los dos estan anidados")
     R._ALERTAS_LEIDAS.clear()

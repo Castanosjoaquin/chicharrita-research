@@ -323,6 +323,15 @@ def correr_k(trabajo: Path, k: int, muestras: int, semilla: int, completo: bool,
            "pesos_base_criterio": wc,
            "regiones": {c["gen"]: "%d-%d" % c["region"] for c in cands},
            "regiones_recomendadas": {c["gen"]: "%d-%d" % c["region"] for c in cands_rec},
+           # D74: el estado de alertas de cada region recomendada, al lado de la region.
+           # Una region firmada `bloqueante` pasa la compuerta (D69) y aparece aca igual;
+           # lo que no puede pasar es que aparezca sin decir que esta bloqueada. El caso
+           # medido es `eth_Dm` 193-392 a k=22 (D73).
+           "estado_alertas_recomendadas": {
+               c["gen"]: getattr(c["region"], "estado", "(sin estado: region armada a mano)")
+               for c in cands_rec},
+           "recomendadas_bloqueantes": sorted(
+               c["gen"] for c in cands_rec if getattr(c["region"], "bloqueante", False)),
            "fichas": [ficha(genes[c["gen"]], c, wr, wc) for c in cands],
            "fichas_recomendadas": [ficha(genes[c["gen"]], c, wr, wc) for c in cands_rec],
            "gen_entero": {g: gen_entero(genes[g], R.excluidas_de(por_gen[g], "off"))

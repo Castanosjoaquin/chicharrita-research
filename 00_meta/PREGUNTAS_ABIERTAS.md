@@ -1816,3 +1816,41 @@ línea de diseño nueva. Este es el saldo.
     y además es la línea `C7` de la ola 3 y no `M6`. Merece su propio issue y su propio
     ADR, sobre todo porque la corrida que se regeneraría ahora incluye una región firmada
     bloqueante (entrada 20).
+
+### Ola 6, cierre de las entradas 20 y 22 (2026-10-27)
+
+23. **Se cierran las entradas 20 y 22.** El estado de alertas viaja con la región
+    recomendada (`ranking.Region`, con `estado` y `bloqueante`) y el JSON de `C7` lo
+    publica como `estado_alertas_recomendadas` y `recomendadas_bloqueantes`; la corrida de
+    22 nt está regenerada, con sus tres insumos construidos en esta máquina (`D74`).
+    Ninguna cifra publicada se movió: el JSON es idéntico valor por valor y sólo agrega
+    esas dos claves por bloque `[M]`. La entrada 21 **sigue abierta** y pasó a ser el
+    issue `R8` (#32), porque necesita un alineador y esta máquina no tiene ninguno.
+24. **Una región publicada más que nadie había tamizado, y la encontró la compuerta.**
+    `BicC_Dm` 2123-2422 hizo fallar la primera regeneración de `ranking_v2.json` con
+    `RegionNoTamizada` `[M]`. Sale del bloque `efecto_humano` —la corrida con la referencia
+    humana fuera del panel— y está publicada en
+    `efecto_humano.fichas.sin_humano_recomendada` y en `regiones_recomendadas_w7`. Ya entró
+    al inventario, que pasa a **diecinueve** regiones, y sus tres filas no tienen 21/21, así
+    que no frenan nada. **Lo que queda abierto es la lección, no el caso:** `D70` y el issue
+    de `R7` buscaron las regiones sin tamizar mirando `regiones_recomendadas` de las dos
+    corridas, y esta no estaba ahí. `[H]` No sabemos si hay más regiones publicadas que
+    salgan de otros bloques de otros generadores y que nadie haya tamizado; la forma de
+    saberlo no es buscarlas a mano otra vez sino que la compuerta las encuentre, que es lo
+    que acaba de pasar. Mientras cada generador no se corra de punta a punta, no hay garantía.
+25. **`ranking_v2.json` no es byte-reproducible, y no lo introdujo `D74`.** El orden de las
+    claves dentro de `riesgo_por_referencia` depende del orden en que se pasaron las
+    referencias a `offtarget_21nt.py`, y ese orden **no está registrado en ninguna parte**
+    —ni en el JSON ni en el resumen de la matriz—. Regenerar el archivo reordena esas claves
+    sin mover un solo valor: el diff textual es de unas 300 líneas y el semántico de cuatro
+    claves `[M]`. Dos salidas posibles: fijar un orden canónico al escribir las fichas, que
+    hace el archivo reproducible de acá en adelante pero vuelve a reordenarlo una vez más; o
+    registrar el orden de referencias en el JSON y dejarlo como es. **No se hizo:** es
+    formato de salida de la línea `C7` y no de `M6` `[?]`.
+26. **La compuerta no sabe qué referencias tiene el panel en cada corrida.** Consulta la
+    tabla de alertas completa, de modo que en la rama `sin_humano` de `efecto_humano` una
+    región se evalúa contra filas de *Homo sapiens* que esa rama **excluyó** del panel
+    `[?]`. Hoy no cambia ningún resultado —ninguna de las filas en juego en esa rama tiene
+    coincidencia perfecta de 21 nt— pero es una inconsistencia real: una región podría
+    quedar frenada por una alerta de un organismo que la corrida no está considerando. Si
+    alguna vez una fila humana de esas regiones pasa a tener 21/21, esto empieza a importar.

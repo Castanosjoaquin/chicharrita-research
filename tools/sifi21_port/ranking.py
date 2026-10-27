@@ -724,8 +724,49 @@ def inventario_de(tabla: Path | None = None) -> set:
     return AL.leer_inventario(ruta.parent / NOMBRE_INVENTARIO)
 
 
+class Region(tuple):
+    """La region recomendada **y el estado de sus alertas**, que viajan juntos (D74).
+
+    Es una tupla `(ini, fin)` de dos elementos, asi que todo lo que ya desempaquetaba o
+    comparaba el resultado de `region_recomendada()` sigue funcionando igual. Lo que
+    agrega es que el estado va pegado al valor y no en una consulta aparte que hay que
+    acordarse de hacer.
+
+    El motivo es el que `D73` dejo medido: una region **firmada bloqueante** pasa la
+    compuerta —bloquear es decidir, y eso lo decidio `D69`— y `region_recomendada()` la
+    devuelve. Mientras ninguna bloqueante fue recomendada por el ranking eso no tuvo
+    consecuencia; `eth_Dm` 193-392 es la primera que si, y ahi se vio que el deber de
+    descartarla, que `D69` puso en el que llama, no tenia ningun codigo detras: el que
+    llamaba recibia un par de enteros indistinguible del de una region limpia.
+
+    Esto **no frena** nada y no revisa `D69`: la region sale. Lo que deja de ser posible
+    es recibirla sin que el estado venga con ella.
+    """
+
+    # Sin `__slots__`: una subclase de `tuple` no los admite si no estan vacios, y los
+    # dos atributos van en el `__dict__` de la instancia.
+
+    def __new__(cls, ini: int, fin: int, estado: str, decision: str = ""):
+        o = super().__new__(cls, (int(ini), int(fin)))
+        o.estado = estado
+        o.decision = decision
+        return o
+
+    @property
+    def bloqueante(self) -> bool:
+        """True si alguna fila de alerta de esta region esta firmada `bloqueante`.
+
+        Quien recomiende tiene que mirarlo: `D69` puso el descarte en el que llama, y
+        esta es la pregunta que tiene que hacerse para cumplirlo.
+        """
+        return self.estado == "decidida: bloqueante"
+
+    def __repr__(self) -> str:
+        return "Region(%d-%d, %r)" % (self[0], self[1], self.estado)
+
+
 def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
-                       tabla: Path | None = None) -> tuple[int, int]:
+                       tabla: Path | None = None) -> "Region":
     """El primer puesto de `alternativas()` convertido en recomendacion, con compuerta.
 
     Levanta `alertas.RegionNoTamizada` si la region no esta en el inventario de M6 (D72)
@@ -737,11 +778,14 @@ def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
     `estado_decision()`—.
     """
     region = alt["mejores"][0]["region"]
-    AL.exigir_decidida(alertas_de(tabla), gen, region,
-                       umbral if umbral is not None else UMBRAL_COMPUERTA,
-                       inventario=inventario_de(tabla))
+    est = AL.exigir_decidida(alertas_de(tabla), gen, region,
+                             umbral if umbral is not None else UMBRAL_COMPUERTA,
+                             inventario=inventario_de(tabla))
     ini, fin = (int(x) for x in region.split("-"))
-    return ini, fin
+    # El estado viaja con la region (D74). Una region bloqueante sale igual, porque
+    # bloquear es decidir (D69), pero el que la recibe no puede no verlo.
+    return Region(ini, fin, est["estado"],
+                  "bloqueante" if est["bloqueantes"] else "")
 
 
 def cmd_ranking(a) -> int:

@@ -1,9 +1,9 @@
 {
  "tabla": "research/ola4/M6_alertas/resultados/alertas.tsv",
- "filas": 23,
+ "filas": 26,
  "umbrales": {
   "perfecto_21": {
-   "pasan": 18,
+   "pasan": 19,
    "frenadas": 0,
    "frenadas_vigentes": 0,
    "bloqueantes": 4,
@@ -266,12 +266,26 @@
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "2123-2422",
+     "umbral": "perfecto_21",
+     "alertas": 0,
+     "pendientes": 0,
+     "bloqueantes": 0,
+     "estado": "sin alertas en este umbral",
+     "organismos_pendientes": [],
+     "decide": "ya decidido",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 con el panel sin humano",
+     "resultado": "pasa"
     }
    ]
   },
   "perfecto_ge19": {
    "pasan": 15,
-   "frenadas": 3,
+   "frenadas": 4,
    "frenadas_vigentes": 0,
    "bloqueantes": 4,
    "bloqueantes_vigentes": 0,
@@ -543,6 +557,24 @@
      "vigente": "no",
      "que_es": "recomendada por C7 v2 a k=22",
      "resultado": "pasa"
+    },
+    {
+     "gen": "BicC_Dm",
+     "region": "2123-2422",
+     "umbral": "perfecto_ge19",
+     "alertas": 3,
+     "pendientes": 3,
+     "bloqueantes": 0,
+     "estado": "sin decidir",
+     "organismos_pendientes": [
+      "humano",
+      "maiz"
+     ],
+     "decide": "el usuario",
+     "mensaje": "BicC_Dm 2123-2422 tiene 3 alerta(s) de perfecto_ge19 sin decidir (humano, maiz) y no se puede tratar como usable: D48 pide que la region se acepte o se descarte con una justificacion escrita que cite la fila. Ver research/ola4/M6_alertas/resultados/alertas.tsv",
+     "vigente": "no",
+     "que_es": "recomendada por C7 v2 con el panel sin humano",
+     "resultado": "FRENADA"
     }
    ]
   }
