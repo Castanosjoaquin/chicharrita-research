@@ -2340,3 +2340,22 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     esencialidad de un candidato cuyo gen **es** actina muscular la diferencia importa. Se
     resolvió bajando la vía a `E2` y declarando el `[?]`, no promediando. `[H]` Si alguien
     consigue el dato por gen del segundo trabajo, esto se cierra en una dirección o en la otra.
+
+63. **«Matar o esterilizar» queda contestada en parte, y conviene ser preciso sobre cuánto.**
+    El issue #27 decía que `F3` es lo que volvería decidible esta pregunta, que venía abierta
+    desde el checkpoint 2. **Lo que ahora sí se puede afirmar:** el ranking tiene eje de
+    fenotipo, que antes no tenía, y con él se ve que de los 25 candidatos ordenados hay 16 con
+    letalidad, 13 con reproducción, 4 con transmisión y 1 con movilidad `[M]`; que los tres
+    primeros de la cohorte A son de letalidad (`DM-02`, `DM-03`, `DM-05`); y que el mejor
+    candidato de reproducción, `DM-01` (`BicC`), queda en el grupo del puesto 5 porque su vía
+    **esteriliza y no mata**, lo que el eje 2 puntúa `E1` por ser función condicional.
+    **Lo que sigue sin poder afirmarse, y es el centro de la pregunta:** que el orden *cambie*
+    según el objetivo. El criterio de `D84` **no tiene un parámetro de objetivo**: tiene un eje
+    de fenotipo que promedia mecanismos en vez de filtrar por ellos, así que la diferencia de
+    puesto entre `DM-05` y `DM-01` no sale de haber elegido matar en vez de esterilizar —sale
+    del nivel de esencialidad de sus vías—. `[H]` Lo que haría falta es un **segundo orden** con
+    el eje de fenotipo filtrado por mecanismo y no promediado, corrido dos veces, y comparar los
+    dos. Es una línea nueva y no un parámetro de ésta, y es barata: los dos ejes ya están
+    calculados y versionados. Mientras eso no se haga, la respuesta honesta a si el orden de los
+    candidatos del insecto cambia según el objetivo sigue siendo que **no se sabe**, con la
+    diferencia de que ahora se sabe exactamente qué falta para saberlo.
