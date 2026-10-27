@@ -229,3 +229,12 @@ en la molécula—. Queda declarado así:
    21/20, 36/29 y 21/17— y **ninguna de las cuatro gana un acierto perfecto de 21 nt** al
    leerse en marco 1, así que el inventario de alertas de `M6` no se mueve `[M]`. `eth_Dm`
    114-313 y `bursA_Dm` 13-212 quedan sin medir por falta de `work/C11/` en esta máquina.
+
+**Nota de numeracion, agregada al cerrar la linea.** El cuerpo de este preregistro cita
+entradas de `PREGUNTAS_ABIERTAS.md` con la numeracion que habia el 27 de octubre a la
+manana, y ese mismo dia `main` unifico la numeracion del archivo. Las equivalencias: la 19
+—la juntura sin lugar en el inventario— es hoy la **41**, y ademas `D78` le dio clave propia
+a la juntura, asi que el §8 de arriba quedo viejo en su afirmacion y el `REPORT.md` lo dice;
+la 21 —la leccion de `O3` sobre medir con un criterio propio— es hoy la **33**; y la 22, que
+esta enmienda cita, es hoy la **44**. Este documento no se reescribe: lo que cambio despues
+de firmarlo va en el `REPORT.md` y en los ADR `D79` y `D80`.

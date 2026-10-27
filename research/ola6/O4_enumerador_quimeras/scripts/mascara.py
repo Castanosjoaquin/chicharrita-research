@@ -144,7 +144,7 @@ def fragmentos_admisibles(vetada: np.ndarray, largo: int, paso: int = 1,
 
     La diferencia no es cosmetica en el eje de riesgo: en marco 1 una region puede quedar
     vetada por un 21-mero que la molecula no contiene, porque sus ultimas veinte ventanas
-    se completan con nucleotidos de afuera (`PREGUNTAS_ABIERTAS.md` 22). Por eso el marco
+    se completan con nucleotidos de afuera (`PREGUNTAS_ABIERTAS.md` 44). Por eso el marco
     viaja en la salida y no se elige por default silencioso.
     """
     if marco not in (1, 2):
@@ -189,7 +189,7 @@ def _ancla_vatpase_b() -> int:
     21 nt, **una** region admisible —517-816— de las **1.184** que caben, y **ninguna** una
     unidad mas grande. Esas cuatro cifras son de **marco 1**, porque salen del tramo que
     corta `ranking.ejes()`; su redaccion dice «300 nt», que es marco 2, y la diferencia esta
-    anotada en `PREGUNTAS_ABIERTAS.md` 22. El ancla corre en marco 1, que es donde la ADR es
+    anotada en `PREGUNTAS_ABIERTAS.md` 44. El ancla corre en marco 1, que es donde la ADR es
     reproducible, e **imprime al lado la lectura de marco 2**, que es la unidad en la que el
     enumerador trabaja porque es la molecula que se sintetiza.
     """

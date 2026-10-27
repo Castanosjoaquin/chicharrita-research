@@ -5,8 +5,9 @@
 combinaciones de la grilla y las ordena bajo un objetivo que quien corre tiene que declarar
 antes, con las tres cuentas de `D67` separadas y la alerta de juntura al lado.
 **Qué no entrega:** ninguna recomendación. Un candidato se adopta por decisión del equipo,
-con su ADR, y antes tiene que pasar por un inventario de alertas en el que hoy una juntura
-**no tiene dónde entrar**.
+con su ADR, y antes tiene que pasar por el inventario de alertas de `M6`, donde `D78` ya le
+dio a la juntura una clave propia —`(quimera <nombre>, "juntura")`— que **todavía no está
+implementada**.
 
 ## 1. La pregunta, y por qué la parte difícil no es enumerar
 
@@ -19,7 +20,7 @@ que entra porque está medido que cambia el resultado (`C13`: +3 y −3 con las 
 regiones; `O3`: 41 contra 40, y sólo uno de los dos órdenes fabrica riesgo nuevo) `[M]`.
 
 Las dos partes difíciles son otras. La primera es **qué quiere decir «la mejor»**, que es de
-lo que trata este reporte entero y terminó en `D75`. La segunda es **que la grilla sea
+lo que trata este reporte entero y terminó en `D79`. La segunda es **que la grilla sea
 finita**: con largo total 600 sobre `BicC_Dm` (2.520 nt) y `V-ATPase B` (1.503 nt) la grilla
 tiene **47.833.512** combinaciones con paso 50, y cada una pide plegar una molécula de 600
 nt `[M]`. Lo que la vuelve enumerable no es un optimizador: es podar por riesgo primero.
@@ -145,7 +146,7 @@ riesgo y desempata por eficiencia, y nada en él pide que las dos mitades sirvan
 `[H]` No se arregla cambiando de objetivo sino poniéndole un **mínimo por gen** a las
 proporciones, y fijar ese mínimo pide saber cuánto ARNdc de un gen hace falta para
 silenciarlo, que es dato de bioensayo: el catálogo de `C5` registra dosis por insecto, no
-largo mínimo de disparador. Queda en `PREGUNTAS_ABIERTAS.md` 23 como pregunta para el
+largo mínimo de disparador. Queda en `PREGUNTAS_ABIERTAS.md` 45 como pregunta para el
 investigador.
 
 Vale la pena leer al lado dónde quedó la quimera de `O3`: las 64 combinaciones que usan la
@@ -159,7 +160,7 @@ con el mismo defecto de asimetría del párrafo anterior.
 ## 7. Las unidades, y el ancla que no cerró
 
 El ancla 3 contra `D74` no cerró, y la causa no fue una medición sino la unidad. Está contado
-entero en `D76` y en la entrada 22 de `PREGUNTAS_ABIERTAS.md`; el resumen es que `D63` ya
+entero en `D80` y en la entrada 44 de `PREGUNTAS_ABIERTAS.md`; el resumen es que `D63` ya
 declara tres marcos de conteo, que el enumerador trabaja en **marco 2** —el largo total son
 nucleótidos, porque es lo que se sintetiza— y reporta la lectura de **marco 1** al lado, y
 que las cifras de `D74` son de marco 1 aunque su redacción diga «nt». El eje de riesgo
@@ -218,7 +219,7 @@ máscara parcial.
 Con `--paso 1` la misma grilla pide **136.446** plegados, que exceden el tope declarado de
 5.000: la corrida **se detiene y lo dice**, con el tamaño medido y el paso más fino que
 entraría, en vez de muestrear o cambiar de algoritmo. Esa corrida fina no se hizo y queda en
-`PREGUNTAS_ABIERTAS.md` 24.
+`PREGUNTAS_ABIERTAS.md` 46.
 
 ## 9. Las cuatro anclas
 
@@ -240,15 +241,18 @@ Corren juntas en `scripts/00_anclas.py`, que devuelve 1 si alguna falla, y las c
 - **El criterio de eficiencia no está validado en hemípteros:** ρ = +0,142, IC95
   [−0,247, +0,492], n = 29 `[M]`. Todo conteo de ventanas eficientes de este bloque hereda
   ese límite, y un resultado in silico es una hipótesis sobre eficacia, no una prueba.
-- **Una juntura no entra al inventario de alertas de `M6`**, porque no es región de ningún
-  gen (`PREGUNTAS_ABIERTAS.md` 19). La salida lo declara en el JSON en vez de taparlo, y la
-  fila completa con el esquema de `M6` la produce `03_alerta_d48.py` de `O3`, que resuelve
-  las anotaciones de cada acierto.
+- **La juntura ya tiene clave en el inventario de alertas de `M6`, pero nadie la escribió
+  todavía.** `D78` decidió que entra como `(quimera <nombre>, "juntura")`, con granularidad
+  quimera × organismo × gen impactado y los `j` fuera de la clave, y la entrada 41 declara
+  que **no se implementó** por falta de insumo. O sea que una quimera todavía puede pasar la
+  compuerta con su empalme sin tamizar: la salida de esta feature declara la clave que le
+  corresponde en vez de dar el hueco por cerrado, y la fila completa con el esquema de `M6`
+  la produce `03_alerta_d48.py` de `O3`, que resuelve las anotaciones de cada acierto.
 - **Los aciertos con un desapareo del empalme no están localizados.** El tamizado de juntura
   busca coincidencia exacta, porque un desapareo no tiene bloque contiguo que localizar; es
   la misma limitación del paso 2 de `O3`. `mm1_21` queda fuera de la cuenta
-  (`PREGUNTAS_ABIERTAS.md` 25).
-- **La grilla fina no se corrió** (entrada 24) y **el mínimo por gen no está fijado**
-  (entrada 23).
+  (`PREGUNTAS_ABIERTAS.md` 47).
+- **La grilla fina no se corrió** (entrada 46) y **el mínimo por gen no está fijado**
+  (entrada 45).
 - **Esta línea no recomienda nada.** Produce un orden bajo un objetivo declarado; adoptar un
   candidato es del equipo.

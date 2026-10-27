@@ -39,14 +39,16 @@ eso se tamiza por candidato en una sola pasada sobre el panel.
 Las unidades (§10). La grilla enumera en **marco 2** —el `--largo-total` son nucleotidos,
 porque es lo que se sintetiza— y cada candidato reporta tambien su lectura de **marco 1**,
 con los nombres de `D63`. El eje de riesgo tambien se lee en marco 2, que es una desviacion
-declarada respecto de `ranking.ejes()`: ver `PREGUNTAS_ABIERTAS.md` 22.
+declarada respecto de `ranking.ejes()`: ver `PREGUNTAS_ABIERTAS.md` 44.
 
 Lo que este script **no** hace: no recomienda ninguna quimera, no afirma eficacia y no emite
 la fila completa del inventario de `M6` para una juntura —esa la produce
 `research/ola6/O3_quimera_bicc_vatpase_b/scripts/03_alerta_d48.py`, que ya resuelve las
-anotaciones de cada acierto, y duplicarla aca seria reimplementarla—. Y una juntura no es
-region de ningun gen, asi que hoy no tiene donde entrar al inventario
-(`PREGUNTAS_ABIERTAS.md` 19): la salida lo declara en vez de taparlo.
+anotaciones de cada acierto, y duplicarla aca seria reimplementarla—. Sobre el inventario:
+`D78` ya le dio a la juntura una clave propia, `(quimera <nombre>, "juntura")`, pero esa
+decision **no esta implementada** por falta de insumo, asi que una quimera todavia puede
+pasar la compuerta con su empalme sin tamizar (`PREGUNTAS_ABIERTAS.md` 41). La salida
+declara la clave que le corresponde en vez de dar el hueco por cerrado.
 
 Uso:
     python research/ola6/O4_enumerador_quimeras/scripts/enumerar_quimeras.py \\
@@ -505,9 +507,15 @@ def main(argv=None) -> int:
         "marcos": {"grilla": 2, "riesgo": 2,
                    "nota": "el largo total es nucleotidos (marco 2 de D63); la lectura de "
                            "marco 1 de cada fragmento viaja en sus dos columnas"},
-        "la_juntura_no_entra_al_inventario_de_M6": "una juntura no es region de ningun gen "
-                                                   "(PREGUNTAS_ABIERTAS 19); la fila "
-                                                   "completa la produce 03_alerta_d48.py",
+        "clave_de_la_juntura_en_el_inventario_de_M6": {
+            "clave": "(quimera <nombre>, \"juntura\")",
+            "quien_la_decidio": "D78, con granularidad quimera x organismo x gen impactado "
+                                "y los j fuera de la clave",
+            "estado": "decidida y NO implementada por falta de insumo "
+                      "(PREGUNTAS_ABIERTAS 41), asi que una quimera todavia puede pasar la "
+                      "compuerta con su empalme sin tamizar",
+            "la_fila_completa": "la produce research/ola6/O3_quimera_bicc_vatpase_b/"
+                                "scripts/03_alerta_d48.py, que resuelve las anotaciones"},
         "python": sys.version.split()[0],
     }, indent=2, ensure_ascii=False), encoding="utf-8")
 

@@ -49,6 +49,11 @@
     "riesgo": 2,
     "nota": "el largo total es nucleotidos (marco 2 de D63); la lectura de marco 1 de cada fragmento viaja en sus dos columnas"
   },
-  "la_juntura_no_entra_al_inventario_de_M6": "una juntura no es region de ningun gen (PREGUNTAS_ABIERTAS 19); la fila completa la produce 03_alerta_d48.py",
+  "clave_de_la_juntura_en_el_inventario_de_M6": {
+    "clave": "(quimera <nombre>, \"juntura\")",
+    "quien_la_decidio": "D78, con granularidad quimera x organismo x gen impactado y los j fuera de la clave",
+    "estado": "decidida y NO implementada por falta de insumo (PREGUNTAS_ABIERTAS 41), asi que una quimera todavia puede pasar la compuerta con su empalme sin tamizar",
+    "la_fila_completa": "la produce research/ola6/O3_quimera_bicc_vatpase_b/scripts/03_alerta_d48.py, que resuelve las anotaciones"
+  },
   "python": "3.13.15"
 }

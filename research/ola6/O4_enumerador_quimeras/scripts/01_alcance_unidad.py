@@ -5,7 +5,7 @@ medicion sino una unidad: `ranking.ejes()` corta los vectores indexados por vent
 `slice(ini - 1, fin)`, asi que una region «a-b» son `b - a + 1` **ventanas** y consume
 `b - a + 21` nt de secuencia, mientras que `quimeras_v2.recortar()` y `tres_marcos.py`
 cortan `full[a - 1:b]`, que son `b - a + 1` **nucleotidos** y contienen `b - a - 19`
-ventanas (`PREGUNTAS_ABIERTAS.md` 22). Las dos convenciones se escriben igual.
+ventanas (`PREGUNTAS_ABIERTAS.md` 44). Las dos convenciones se escriben igual.
 
 **Las dos unidades ya tienen nombre, y es el aporte de esta correccion.** Son el marco 1 y
 el marco 2 de `D63`, tal como los definio `N3`: el marco 1 cuenta los `L` arranques que
@@ -15,7 +15,7 @@ el eje de **eficacia** esto no es un hallazgo: es un ancla, y la corrida la veri
 las cifras que `N3` publico. Donde la unidad **no** esta declarada es en el eje de
 **riesgo**, porque `ranking.ejes()` calcula el veto sobre el tramo del marco 1 y entonces
 una region puede quedar vetada por un 21-mero que la molecula no contiene
-(`PREGUNTAS_ABIERTAS.md` 22).
+(`PREGUNTAS_ABIERTAS.md` 44).
 
 Que contesta, y que no. Contesta **cuanto** se mueve cada conteo de las regiones vigentes
 al cambiar de marco, y si alguna region gana o pierde una coincidencia perfecta de 21 nt
