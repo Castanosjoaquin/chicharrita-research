@@ -2311,3 +2311,32 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     proyecto que use dosis de ese orden necesita su propio control de dsRNA no relacionado, y
     conviene saber si los trabajos que sostienen nuestras cifras de letalidad lo tienen. Es
     una pregunta para el investigador.
+
+61. **Cinco fuentes que el eje de esencialidad de `F3` necesita y no se pudieron abrir, con el
+    motivo de cada una.** `CLAUDE.md` pide anotarlas en vez de citarlas, así que acá están.
+    *(a)* **Park y colaboradores 2002**, *Development*, el nulo de `eth`: HTTP 403. Es la
+    primaria del único número del eje que hoy se cita desde una ficha secundaria —el 98 % de
+    mortalidad en la transición del primer al segundo estadio larval, tomado de la ficha de
+    InteractiveFly—, así que es la más importante de recuperar. *(b)* El trabajo de `Laccase2`
+    en *Bemisia tabaci*: HTTP 403 desde DOAJ. Sería la fuente más pertinente de esa vía por ser
+    un hemíptero, y cubre dos candidatos (`CI-11`, `CI-12`), hoy en `E0`. *(c)* La revisión de
+    *Frontiers in Physiology* doi 10.3389/fphys.2020.591569, que según la búsqueda describe a
+    `Lac2` como esencial para pigmentación y endurecimiento: el PDF llegó como binario
+    ilegible. *(d)* La ficha de FlyBase de `pontin` (`FBgn0040078`): se descargó vacía; dejaría
+    `DE-02` en `E2` en vez de `E0`. *(e)* **Collier y colaboradores 2000**, *Genetics*, que
+    según la búsqueda describe alelos letales recesivos de `emb` —el ortólogo de XPO1— que
+    mueren sin pasar al tercer estadio: no se abrió, y dejaría `DE-05` en `E3`. Además quedan
+    **tres vías sin búsqueda propia** en esta pasada, y conviene decirlo como lo que es —falta
+    de trabajo, no falta de fuente—: troponina C (`CI-10`), transformer-2 (`DE-03`), y
+    natterina y legumaína (`CI-09`), más la proteína salival `NcSP75` (`HE-07`).
+
+62. **Una contradicción entre dos tamizajes de la misma especie sobre la actina, que afecta a
+    `CI-05`.** `Ulrich` y colaboradores 2015 ponen al grupo de organización del citoesqueleto
+    como el tercero más predictivo de letalidad en *Tribolium castaneum*, con 37 de 66 genes
+    nuevos letales `[R]`. `Buer` y colaboradores 2024, el tamizaje genómico de **la misma
+    especie** y nueve años posterior, dice explícitamente que la β-actina **no** quedó en
+    ninguno de sus conjuntos de blancos efectivos `[R]`. Las dos cosas pueden ser ciertas a la
+    vez —la vía como grupo es letal y ese gen puntual no es un buen blanco— pero para el eje de
+    esencialidad de un candidato cuyo gen **es** actina muscular la diferencia importa. Se
+    resolvió bajando la vía a `E2` y declarando el `[?]`, no promediando. `[H]` Si alguien
+    consigue el dato por gen del segundo trabajo, esto se cierra en una dirección o en la otra.
