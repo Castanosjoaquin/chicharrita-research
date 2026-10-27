@@ -1,0 +1,7 @@
+referencia	archivo	tiene_ortologo	mejor_acierto	identidad_pct	cobertura_consulta_pct	evalue	reciproco	orf_vuelta_aa	nota
+maiz	GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_rna.fna.gz	no (acierto no reciproco)	XM_008682752.4	23.8	69	2.4e-23	no	443	la vuelta da XM_046832719.1
+H_axyridis	GCF_914767665.1_icHarAxyr1.1_rna.fna.gz	si	XM_045615311.1	55.4	81	4.6e-160	si	462	la vuelta da XM_046828031.1
+A_mellifera	GCF_003254395.2_Amel_HAv3.1_rna.fna.gz	si	XM_026445083.1	51.0	80	2.0e-134	si	451	la vuelta da XM_046828033.1
+H_vitripennis	GCF_021130785.1_UT_GWSS_2.1_rna.fna.gz	si (es la fuente)	XM_046828031.1	100.0	100	0.0e+00	n/a		la consulta sale de esta referencia
+F_candida	GCF_002217175.1_ASM221717v1_rna.fna.gz	si	XM_022095532.2	47.9	81	5.5e-122	si	496	la vuelta da XM_046828031.1
+humano	humano_rna.fna.gz	no (acierto no reciproco)	NM_201653.4	36.4	79	3.5e-83	no	476	la vuelta da XM_046804867.1

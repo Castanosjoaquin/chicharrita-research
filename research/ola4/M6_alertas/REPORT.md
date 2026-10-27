@@ -763,3 +763,46 @@ propósito, y 21 objetos con otro orden de claves**, sobre 302 líneas de diff t
 `test_alertas.py` pasa con **103 comprobaciones** y ninguna salteada en el entorno conda, y pasa
 también con `/usr/bin/python3` con la §6 salteada y declarada. `test_ranking.py` pasa, con sus tres
 secciones salteadas de siempre. La cadena de `M6` sigue siendo idempotente byte a byte.
+
+### Addendum (2026-10-27, R8) — la quitinasa que impacta `eth_Dm` 193-392 tiene ortólogo en tres del panel, y la firma queda confirmada
+
+`D73` firmó la fila de `eth_Dm` 193-392 como **bloqueante con la exposición de
+*Homalodisca vitripennis* como condición**, y dejó explícito lo que la firma **no** afirmaba:
+que la coincidencia tuviera consecuencia biológica. `R8` (issue #32,
+[`research/ola6/R8_quitinasa_eth/`](../../ola6/R8_quitinasa_eth/REPORT.md)) fue a buscar ese
+dato. **El resultado no cambia el veredicto, y eso es el resultado.**
+
+Lo medido, con `tblastn` de BLAST+ 2.17.0+ sobre la máquina de Joaquín —donde el issue
+declaraba que BLAST+ faltaba, y donde ya no falta—, a nivel proteína y con ortología
+recíproca contra el transcriptoma de origen, nunca por nombre `[M]`:
+
+| Referencia | Mejor acierto | Anotación | Identidad | ¿Recíproco? |
+|---|---|---|---:|---|
+| *H. axyridis* | `XM_045615311.1` | probable chitinase 2 | 55,4 % | **sí** |
+| *A. mellifera* | `XM_026445083.1` | probable chitinase 2 | 51,0 % | **sí** |
+| *F. candida* | `XM_022095532.2` | probable chitinase 2 | 47,9 % | **sí** |
+| humano | `NM_201653.4` | chitinase acidic (CHIA) | 36,4 % | no |
+| maíz | `XM_008682752.4` | uncharacterized protein | 23,8 % | no |
+
+O sea que el gen impactado **sí** pertenece a una familia con ortólogo recíproco en tres de
+las cinco referencias restantes. Lo que no se traslada es el riesgo, y eso se midió aparte:
+la ventana se aparea con `XM_046828031.1` en los nt 434-454 de la hebra
+reverso-complementaria, dentro del CDS, **codones 101-108**, que es un tramo **variable** —en
+cuatro de cinco referencias la identidad de proteína ahí está por debajo de la de la proteína
+entera— y la mejor casi-coincidencia del 21-mero contra cada transcripto ortólogo es de
+**8 desajustes sobre 21** `[M]`. Con control positivo (0 desajustes contra su propio
+transcripto) y nulo (40 ventanas al azar contra el mismo ortólogo: mínimo 6, **mediana 8**,
+máximo 10), de modo que **8 es la mediana del azar** y no una casi-coincidencia.
+
+`[H]` **La lectura.** El acierto es una coincidencia de 21 nt específica de `LOC124369889` de
+*H. vitripennis*, en un tramo variable de un gen sin relación funcional con el blanco, y no
+una zona que convenga evitar por pertenecer a un dominio conservado. El riesgo medible sigue
+confinado a esa referencia, que es exactamente lo que la fila ya decía: **la firma se confirma
+y no se reescribe**, así que no hay ADR nuevo. La condición sigue abierta y es la de siempre,
+la exposición de *H. vitripennis* (pedido 4, `D47` contra `D18`), que `R8` no resuelve.
+
+**Sobre la corrida de 22 nt, dicho aparte como pide el issue.** `[H]` Esto **baja** la
+consecuencia biológica atribuible al único acierto perfecto de `eth_Dm` 193-392, pero **no**
+despeja la región: sigue teniendo una coincidencia perfecta de 21 nt contra un cicadélido no
+objetivo, mientras que la región vigente del mismo gen, `eth_Dm` 114-313, sigue teniendo cero
+contra todo el panel. Por este eje la vigente sigue ganando y nada de lo medido acá lo cambia.

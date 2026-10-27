@@ -1,0 +1,6 @@
+# Los archivos de nucleotido no se versionan: `tools/verificacion/sin_secuencias.py`
+# rechaza toda racha de 21 nt o mas, que es la regla de confidencialidad del proyecto
+# (D28 para el umbral, el incidente de C9 para el motivo). Se versiona el generador y
+# no el dato, como hace `pipeline/`. Cada uno se regenera con un comando: ver REPORT.md §8.
+*.fna
+*.aln

@@ -1,0 +1,6 @@
+referencia	ortologo_reciproco	transcripto	identidad_proteina_pct	identidad_ventana_pct	residuos_ventana_alineados	min_desajustes_21nt	pos_min_desajustes	hebra
+maiz	no	XM_008682752.4	21.7	0.0	8	8	96	directa
+H_axyridis	si	XM_045615311.1	49.6	25.0	8	8	706	directa
+A_mellifera	si	XM_026445083.1	45.1	50.0	8	8	919	directa
+F_candida	si	XM_022095532.2	45.1	25.0	8	8	465	directa
+humano	no	NM_201653.4	32.1	25.0	8	8	223	directa
