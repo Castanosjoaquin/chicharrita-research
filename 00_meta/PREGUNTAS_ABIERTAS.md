@@ -1685,3 +1685,26 @@ línea de diseño nueva. Este es el saldo.
    regenerarlo borraría esa cabecera, que puede ser deliberada. Hay que decidir cuál de los dos
    manda antes de tocarlo `[?]`. Los otros tres pares `.md`/`.html` de `entregables/` sí
    reproducen desde el conversor, verificado.
+
+9. **La compuerta de alertas no distingue «se tamizó y no hay» de «no se tamizó».** `R2` dejó
+   `alertas.exigir_decidida()` llamada desde `ranking.region_recomendada()`, que es el único punto
+   del port donde una región se vuelve recomendación (D69). Lo que esa compuerta **no** puede
+   hacer cumplir es que la región haya sido evaluada: una región que no tiene ninguna fila en
+   `research/ola4/M6_alertas/resultados/alertas.tsv` pasa como «sin alertas en este umbral», y eso
+   es correcto para una región tamizada sin aciertos y falso para una que nunca se tamizó. Lo que
+   queda protegido, entonces, son las **doce** regiones del inventario de `M6` y no una propuesta
+   nueva; el caso concreto es el ranking a 22 nt, cuyas seis regiones recomendadas
+   —`MP_MRFV` 162-361, `CP_MRFV` 77-276, `BicC_Dm` 2119-2418, `ATPaseD_Dm` 71-370, `eth_Dm`
+   193-392 y `bursA_Dm` 44-243, en `research/ola3/C7_ranking_v2/resultados/ranking_v2.json`— no
+   están en el inventario y hoy pasan la compuerta sin que nadie haya tamizado sus alertas `[M]`.
+   Cerrarlo pide exigir que la región esté en el inventario antes de recomendarla, y eso haría
+   fallar una corrida cuyo resultado está publicado (el `jaccard_21_22` de C7), así que **no se
+   hizo por cuenta propia**: es una decisión del equipo, y el costo de no tomarla es que la
+   compuerta protege lo evaluado y no lo nuevo `[?]`.
+10. **El último eslabón entre el cómputo y lo publicado sigue siendo una persona.** Los documentos
+   de `entregables/` son Markdown escrito a mano: no hay código que los genere, así que no hay
+   punto de generación donde poner una compuerta. `R2` se cumplió en el port —que es donde se
+   produce la recomendación— pero una cifra copiada a mano a un entregable no pasa por ninguna
+   verificación automática, y eso es exactamente el modo de fallar que los commits del 26 y 27 de
+   octubre vinieron corrigiendo tres veces `[H]`. Si se quiere cerrar, lo que hace falta es que la
+   recomendación publicada salga de un generador, no de una copia.

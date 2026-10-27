@@ -163,13 +163,13 @@ HECHO = [
     ("Del veto binario a la alerta justificada, y su compuerta (M6)",
      "La tabla de alertas con los cuatro campos de D48, validada, y el estado de las doce regiones bajo la regla "
      "nueva. Más <code>alertas.exigir_decidida()</code>, que se niega a tratar como usable una región con alguna "
-     "fila en «pendiente» — <strong>implementada sin adoptar</strong>: ningún entregable la llama todavía. "
+     "fila en «pendiente» — implementada sin adoptar entonces, y <strong>adoptada el 27 de octubre</strong> por D69. "
      "Cuando M6 la corrió, en octubre 25 y con las 17 filas sin firmar, el umbral decidía casi todo: con D48 literal "
      "pasaban <strong>9 de 12</strong> y ninguna región vigente se movía; con el umbral laxo de D28 pasaban "
      "<strong>3 de 12</strong> y se frenaban cuatro de las seis vigentes. <strong>Con las firmas puestas (D68) pasan "
      "las 12 en los dos umbrales</strong>, tres de ellas como «bloqueante» —que pasa la compuerta porque alguien las "
      "decidió, y el que llama tiene que descartarlas—. O sea que hoy los dos umbrales dan el mismo resultado "
-     "operativo, y elegir uno dejó de mover nada. Qué umbral se adopta sigue siendo pregunta abierta.",
+     "operativo, y elegir uno dejó de mover nada. <strong>D69 eligió el literal</strong> y dejó el otro medido.",
      ["research/ola4/M6_alertas/REPORT.md",
       "research/ola4/M6_alertas/resultados/alertas.tsv",
       "tools/sifi21_port/alertas.py"]),
@@ -250,6 +250,20 @@ HECHO = [
      ["00_meta/DECISIONS.md", "research/ola4/M6_alertas/decisiones.tsv",
       "research/ola4/M6_alertas/REPORT.md"]),
 
+    ("La compuerta de alertas deja de ser una función que nadie llama (D69)",
+     "<code>alertas.exigir_decidida()</code> tenía prueba desde M6 y <strong>ninguna ruta la llamaba</strong>: fuera "
+     "de la prueba, la única llamada estaba en un script de inventario de la ola 4. Ahora la llama "
+     "<code>ranking.region_recomendada()</code>, que es <strong>el único lugar del port donde el primer puesto del "
+     "orden se convierte en una región recomendada</strong>: antes esa conversión estaba escrita tres veces, idéntica "
+     "y sin consultar la tabla. Una región con una fila en «pendiente» no sale de ahí. <strong>El umbral quedó "
+     "decidido:</strong> <code>perfecto_21</code>, que es D48 literal, como nombre configurable y no escrito en el "
+     "cuerpo de la llamada; con las 17 firmas los dos umbrales de D28 dan el mismo resultado, y sin firmas el literal "
+     "frenaba 3 de 12 regiones y el laxo 9 de 12, cuatro de ellas vigentes. <strong>Lo que la compuerta no puede "
+     "hacer cumplir</strong> quedó escrito: no distingue «se tamizó y no hay alertas» de «no se tamizó», así que "
+     "protege las doce regiones evaluadas y no una propuesta nueva.",
+     ["00_meta/DECISIONS.md", "tools/sifi21_port/ranking.py",
+      "research/ola4/M6_alertas/resultados/umbral_compuerta.json"]),
+
     # -------------------------------------------------------------- checkpoint 2
     ("Checkpoint 2 · La reunión, transcripta y mapeada",
      "El acta de la reunión del 26 de octubre, con las transcripciones crudas auditables al lado —cinco audios "
@@ -283,13 +297,6 @@ FALTA = [
      "decisión abierta y <strong>no se le pide un número</strong> —dijo que el organismo no está en la Argentina y "
      "«puede no importar», y también que «puede venir eventualmente»—. Lo que pidió es que la decisión esté "
      "explicitada, con los dos extremos a la vista."),
-    ("Que un entregable llame de verdad a la compuerta (issue #16)", "trabajo", False,
-     "<code>alertas.exigir_decidida()</code> está implementada y probada, pero <strong>ningún entregable la "
-     "llama</strong>: las únicas referencias fuera de la prueba están en un script de la ola 4 y en los REPORT. Una "
-     "compuerta que nadie llama no es una compuerta, y hoy nada en el código impide usar una región sin mirar su "
-     "fila. <strong>Dejó de estar bloqueada el 2026-10-26:</strong> esperaba a que las 17 alertas estuvieran "
-     "firmadas, y lo están (D68), así que la compuerta ya pasa sobre las seis regiones vigentes en los dos umbrales "
-     "de D28 y se puede llamar sin congelar nada. Lo que sigue sin decidirse es <em>qué umbral</em> adopta."),
     ("La secuencia de <code>V-ATPase B</code> (issue #22)", "trabajo", False,
      "Es el único insumo que bloquea lo único realmente nuevo que dejó el checkpoint 2. <code>DM-02</code> está en "
      "el catálogo de C5 con fenotipo publicado en la especie —<strong>alas deformes</strong>, supervivencia 16 % al "

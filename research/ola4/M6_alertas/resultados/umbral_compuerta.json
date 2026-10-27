@@ -1,0 +1,81 @@
+{
+ "tabla": "research/ola4/M6_alertas/resultados/alertas.tsv",
+ "filas": 17,
+ "regiones": 12,
+ "regiones_vigentes": [
+  "MP_MRFV 72-271",
+  "CP_MRFV 99-298",
+  "BicC_Dm 922-1221",
+  "ATPaseD_Dm 72-371",
+  "eth_Dm 114-313",
+  "bursA_Dm 13-212"
+ ],
+ "estados": {
+  "firmada": {
+   "perfecto_21": {
+    "regiones": 12,
+    "pasan": 12,
+    "frenadas": 0,
+    "frenadas_vigentes": 0,
+    "bloqueantes": 3,
+    "bloqueantes_vigentes": 0,
+    "frenadas_detalle": [],
+    "bloqueantes_detalle": [
+     "BicC_Dm 264-563",
+     "ATPaseD_Dm 151-450",
+     "ATPaseD_Dm 137-436"
+    ]
+   },
+   "perfecto_ge19": {
+    "regiones": 12,
+    "pasan": 12,
+    "frenadas": 0,
+    "frenadas_vigentes": 0,
+    "bloqueantes": 3,
+    "bloqueantes_vigentes": 0,
+    "frenadas_detalle": [],
+    "bloqueantes_detalle": [
+     "BicC_Dm 264-563",
+     "ATPaseD_Dm 151-450",
+     "ATPaseD_Dm 137-436"
+    ]
+   }
+  },
+  "pendiente": {
+   "perfecto_21": {
+    "regiones": 12,
+    "pasan": 9,
+    "frenadas": 3,
+    "frenadas_vigentes": 0,
+    "bloqueantes": 0,
+    "bloqueantes_vigentes": 0,
+    "frenadas_detalle": [
+     "BicC_Dm 264-563 (vigente=no)",
+     "ATPaseD_Dm 151-450 (vigente=no)",
+     "ATPaseD_Dm 137-436 (vigente=no)"
+    ],
+    "bloqueantes_detalle": []
+   },
+   "perfecto_ge19": {
+    "regiones": 12,
+    "pasan": 3,
+    "frenadas": 9,
+    "frenadas_vigentes": 4,
+    "bloqueantes": 0,
+    "bloqueantes_vigentes": 0,
+    "frenadas_detalle": [
+     "MP_MRFV 72-271 (vigente=sí)",
+     "BicC_Dm 922-1221 (vigente=sí)",
+     "ATPaseD_Dm 72-371 (vigente=sí)",
+     "eth_Dm 114-313 (vigente=sí)",
+     "MP_MRFV 1-200 (vigente=no)",
+     "BicC_Dm 264-563 (vigente=no)",
+     "BicC_Dm 2121-2420 (vigente=no)",
+     "ATPaseD_Dm 151-450 (vigente=no)",
+     "ATPaseD_Dm 137-436 (vigente=no)"
+    ],
+    "bloqueantes_detalle": []
+   }
+  }
+ }
+}

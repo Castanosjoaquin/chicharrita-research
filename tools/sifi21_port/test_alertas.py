@@ -15,6 +15,12 @@ Cuatro clases de prueba:
 - **La compuerta esta retirada**: `estado_region()` nunca devuelve un veredicto y
   `barrer_exposicion(regla_veto='alerta')` no veta a nadie; pedirle la forma `cascada`
   —que es la compuerta— levanta `CompuertaRetirada`.
+- **El port no recomienda una region con una alerta sin decidir** (§9, D69):
+  `ranking.region_recomendada()` es el unico lugar donde el primer puesto de
+  `alternativas()` se vuelve recomendacion, y llama a `exigir_decidida()`. Se prueba que
+  falla con la fila en «pendiente», que pasa firmada, que el umbral de D28 es un
+  parametro y que una tabla ausente falla cerrada. La ultima de la seccion es
+  estructural: ninguna de las tres rutas del port rearma la region a mano.
 
 Y un ancla del desarrollo nuevo: `escanear_con_identidad()` devuelve **lo mismo** que
 `escanear()`, que es la unica forma de saber que conservar la identidad no cambio
@@ -419,6 +425,103 @@ if TABLA.exists() and FIRMAS.exists():
           "las tres regiones con coincidencia perfecta de 21 nt quedan bloqueantes")
 else:
     SALTEADAS.append("§8.9 la tabla real o el archivo de firmas no estan en disco")
+
+
+# ------------------------------------------------------------------------------- §9
+print()
+print("9. el port no recomienda una region con una alerta en «pendiente» (D69)")
+
+# El `alternativas()` de verdad necesita `work/`, que no se versiona. Lo que la
+# compuerta recibe de el es una sola cosa —el primer puesto de `mejores`— y eso se
+# construye a mano, que es lo que hace la prueba independiente del dato.
+ALT = {"mejores": [{"region": "264-563", "puntaje": 1.0}]}
+COLS_PRUEBA = list(fila_completa().keys()) + ["ventanas_perfecto_21", "ventanas_perfecto_ge19"]
+
+
+def tabla_con(filas, destino: Path) -> Path:
+    AL.escribir(filas, destino, COLS_PRUEBA)
+    R._ALERTAS_LEIDAS.clear()     # el cache es por ruta, y la ruta se reusa
+    return destino
+
+
+with tempfile.TemporaryDirectory() as tmp:
+    ruta = Path(tmp) / "alertas.tsv"
+
+    # 1. una fila pendiente frena la recomendacion, y no devuelve region
+    tabla_con([fila_alerta()], ruta)
+    try:
+        R.region_recomendada(ALT, "BicC_Dm", tabla=ruta)
+        check(False, "con una alerta pendiente no deberia salir ninguna region")
+    except AL.AlertaSinDecidir as e:
+        check("264-563" in str(e),
+              "region_recomendada() levanta AlertaSinDecidir con la fila en pendiente")
+
+    # 2. la misma fila firmada devuelve la region, como par de enteros
+    tabla_con([fila_alerta(
+        decision_usuario="aceptada",
+        justificacion_usuario="Se acepta: el acierto es contra XM_046816879.1, el ortologo "
+                              "de bicaudal C de un cicadelido ausente en la Argentina.")], ruta)
+    check(R.region_recomendada(ALT, "BicC_Dm", tabla=ruta) == (264, 563),
+          "con la fila firmada, region_recomendada() devuelve la region")
+
+    # 3. el umbral es un parametro, y los dos de D28 no dan lo mismo: una fila que solo
+    #    tiene bloques de >=19 nt no obliga con D48 literal y si obliga con el laxo
+    tabla_con([fila_alerta(ventanas_perfecto_21="0", ventanas_perfecto_ge19="4")], ruta)
+    check(R.region_recomendada(ALT, "BicC_Dm", "perfecto_21", ruta) == (264, 563),
+          "con umbral perfecto_21 una alerta de solo >=19 nt no frena la recomendacion")
+    try:
+        R.region_recomendada(ALT, "BicC_Dm", "perfecto_ge19", ruta)
+        check(False, "con umbral perfecto_ge19 esa misma fila deberia frenar")
+    except AL.AlertaSinDecidir:
+        check(True, "con umbral perfecto_ge19 esa misma fila frena la recomendacion")
+
+    # 4. sin tabla no hay recomendacion: una tabla ausente no es «cero alertas»
+    R._ALERTAS_LEIDAS.clear()
+    try:
+        R.region_recomendada(ALT, "BicC_Dm", tabla=Path(tmp) / "no_existe.tsv")
+        check(False, "sin tabla de alertas no deberia salir ninguna region")
+    except FileNotFoundError as e:
+        check("compuerta" in str(e) or "alertas" in str(e),
+              "sin tabla de alertas la compuerta falla cerrada, no deja pasar todo")
+
+R._ALERTAS_LEIDAS.clear()
+
+# 5. el default del port es D48 literal (D69), y esta como nombre, no en el cuerpo
+check(R.UMBRAL_COMPUERTA == "perfecto_21",
+      "el umbral por defecto de la compuerta del port es perfecto_21, D48 literal")
+
+# 6. las tres rutas del port pasan por la compuerta: ninguna rearma la region a mano.
+#    Es una prueba estructural y hace falta, porque la forma de desactivar la compuerta
+#    sin tocarla es volver a escribir al lado la expresion que ella reemplazo.
+A_MANO = '["mejores"][0]["region"].split('
+FUENTES = {n: (Path(__file__).resolve().parent / n).read_text(encoding="utf-8")
+           for n in ("ranking.py", "ranking_v2.py")}
+for nombre, fuente in FUENTES.items():
+    # en `ranking.py` la unica aparicion legitima de la expresion es la de adentro de la
+    # compuerta misma, asi que se mira lo que viene antes de su definicion
+    cuerpo = fuente.split("def region_recomendada(")[0]
+    check(A_MANO not in cuerpo,
+          "%s no convierte el primer puesto en region sin pasar por la compuerta" % nombre)
+for funcion in ("def completar_regiones(", "def recomendadas("):
+    cuerpo = FUENTES["ranking_v2.py"].split(funcion)[1].split("\ndef ")[0]
+    check("R.region_recomendada(" in cuerpo,
+          "ranking_v2.%s pasa por la compuerta" % funcion[4:-1])
+
+# 7. contra la tabla real: las regiones que el port recomienda hoy pasan en los dos
+#    umbrales de D28, que es lo que D68 dejo medido
+if TABLA.exists():
+    R._ALERTAS_LEIDAS.clear()
+    RECOMENDADAS_C7 = (("MP_MRFV", "72-271"), ("CP_MRFV", "99-298"),
+                       ("BicC_Dm", "2121-2420"), ("ATPaseD_Dm", "72-371"),
+                       ("eth_Dm", "114-313"), ("bursA_Dm", "13-212"))
+    for umbral in ("perfecto_21", "perfecto_ge19"):
+        for gen, reg in RECOMENDADAS_C7:
+            ini, fin = R.region_recomendada({"mejores": [{"region": reg}]}, gen, umbral, TABLA)
+            assert "%d-%d" % (ini, fin) == reg
+    check(True, "las seis regiones recomendadas por C7 pasan la compuerta en los dos umbrales")
+    R._ALERTAS_LEIDAS.clear()
+else:
+    SALTEADAS.append("§9.7 la tabla real de alertas no esta en disco")
 
 
 print()

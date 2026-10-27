@@ -34,6 +34,12 @@ Dos subcomandos:
             simplex se informa la frecuencia de cada candidato en cada posicion, no
             un orden puntual bajo pesos elegidos a dedo.
 
+El paso de «esta region gana el orden» a «esta region es la que recomendamos» pasa por
+`region_recomendada()`, y esa funcion llama a la compuerta de alertas de D48
+(`alertas.exigir_decidida`): una region con una fila de alerta en «pendiente» no sale de
+ahi. El umbral de D28 con el que la compuerta exige decision es `UMBRAL_COMPUERTA` y se
+mueve con `--umbral-compuerta` (D69).
+
 Uso:
     python ranking.py nulo --dir work/sifi_check --perfil work/sifi_check/salida
     python ranking.py ranking --dir work/sifi_check --perfil work/sifi_check/salida \
@@ -51,6 +57,9 @@ import sys
 from pathlib import Path
 
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import alertas as AL  # noqa: E402
 
 # Los cuatro candidatos de la planilla de EPILAB. La region es la que declara la
 # planilla; `CP_MRFV` dice «200-400», que son 201 posiciones para una secuencia de
@@ -640,6 +649,75 @@ def alternativas(g: dict, largo: int, cand: dict, wr, wc, solo_eficientes: bool,
     }
 
 
+# ------------------------------------------- la compuerta de alertas de D48 (ver D69)
+#
+# `alternativas()` devuelve un orden de regiones; convertir su primer puesto en «la
+# region que recomendamos» es un paso aparte, y es **el** paso que esta funcion
+# centraliza. Hasta D69 estaba escrito tres veces —una en el nivel 3 de `cmd_ranking` y
+# dos en `ranking_v2` (`completar_regiones` y `recomendadas`)— como la misma expresion
+# copiada, y ninguna de las tres consultaba la tabla de alertas. O sea que el port podia
+# recomendar una region cuya fila de alerta nadie habia leido, que es exactamente el
+# default invertido que D48 dejo abierto y que `alertas.exigir_decidida()` existe para
+# cerrar.
+#
+# Lo que esta funcion SI garantiza: ninguna de las tres rutas del port devuelve una
+# region recomendada sin que sus filas de alerta esten decididas en el umbral vigente.
+# Lo que NO garantiza, y conviene leerlo al lado del codigo que lo hace: una region que
+# nunca se tamizo no tiene filas, y `exigir_decidida()` la deja pasar como «sin alertas»
+# —la funcion no puede distinguir «se miro y no hay» de «no se miro»—. La compuerta
+# protege entonces a las doce regiones del inventario de M6, no a una propuesta nueva.
+# Esta en `00_meta/PREGUNTAS_ABIERTAS.md`.
+
+#: Donde vive la tabla de alertas de M6. Es **entrada** de la recomendacion.
+TABLA_ALERTAS = (Path(__file__).resolve().parents[2]
+                 / "research" / "ola4" / "M6_alertas" / "resultados" / "alertas.tsv")
+
+#: Umbral de D28 con el que la compuerta decide que alertas obligan a justificar.
+#: `perfecto_21` es D48 literal («cada coincidencia perfecta de 21 nt ... genera una
+#: fila»); `perfecto_ge19` es el umbral laxo de D28, sobre el que D48 no se pronuncia.
+#: D69 adopta el literal y deja este nombre configurable: lo mueven `--umbral-compuerta`
+#: y el parametro `umbral` de `region_recomendada()`, no una edicion del cuerpo.
+UMBRAL_COMPUERTA = "perfecto_21"
+
+_ALERTAS_LEIDAS: dict[Path, list[dict]] = {}
+
+
+def alertas_de(tabla: Path | None = None) -> list[dict]:
+    """Las filas de alerta de M6, leidas y validadas una sola vez por ruta.
+
+    Si la tabla no esta en disco **no** se devuelve una lista vacia: una lista vacia
+    haria pasar la compuerta a todo, que es el modo de fallar en silencio que D48
+    corrige. Falta la tabla, falta la entrada, no hay recomendacion.
+    """
+    ruta = Path(tabla) if tabla is not None else TABLA_ALERTAS
+    if ruta not in _ALERTAS_LEIDAS:
+        if not ruta.exists():
+            raise FileNotFoundError(
+                "no esta la tabla de alertas de M6 (%s) y sin ella no se puede recomendar "
+                "ninguna region: D48 pide que cada alerta este decidida antes de usar la "
+                "region. Corre research/ola4/M6_alertas/scripts/tabla_alertas.py o pasa "
+                "--alertas con la ruta." % ruta)
+        _ALERTAS_LEIDAS[ruta] = AL.leer(ruta)
+    return _ALERTAS_LEIDAS[ruta]
+
+
+def region_recomendada(alt: dict, gen: str, umbral: str | None = None,
+                       tabla: Path | None = None) -> tuple[int, int]:
+    """El primer puesto de `alternativas()` convertido en recomendacion, con compuerta.
+
+    Levanta `alertas.AlertaSinDecidir` si alguna fila de alerta de esa region sigue en
+    «pendiente» en `umbral`, y en ese caso **no devuelve region**: no hay forma de
+    obtener la recomendacion saltandose la lectura de la alerta. Una region decidida
+    pasa, incluso si la decision es `bloqueante` —bloquear es decidir, y el que llama
+    tiene que descartarla: lo dice el estado que devuelve `estado_decision()`—.
+    """
+    region = alt["mejores"][0]["region"]
+    AL.exigir_decidida(alertas_de(tabla), gen, region,
+                       umbral if umbral is not None else UMBRAL_COMPUERTA)
+    ini, fin = (int(x) for x in region.split("-"))
+    return ini, fin
+
+
 def cmd_ranking(a) -> int:
     perfil, off = Path(a.perfil), Path(a.offtarget)
     genes = {c["gen"]: cargar_gen(c["gen"], perfil, off, a.mm1) for c in CANDIDATOS}
@@ -771,12 +849,13 @@ def cmd_ranking(a) -> int:
     # obvio: mover una region cambia los dos ejes a la vez y no por igual en todos
     # los genes. El nivel 1 sigue siendo el que el investigador pidio —los cuatro
     # candidatos tal como estan—; esto es lo que pasaria si acepta moverlos.
+    # La compuerta de D48 esta en `region_recomendada()`: si una fila de alerta de la
+    # region que gana sigue en «pendiente», esto levanta y el nivel 3 no se produce.
     recomendados = []
     for c in CANDIDATOS:
-        mejor = salida["alternativas"][c["gen"]]["cascada"]["mejores"][0]
-        ini, fin = (int(x) for x in mejor["region"].split("-"))
         d = dict(c)
-        d["region"] = (ini, fin)
+        d["region"] = region_recomendada(salida["alternativas"][c["gen"]]["cascada"],
+                                         c["gen"], a.umbral_compuerta, a.alertas)
         recomendados.append(d)
     salida["regiones_recomendadas"] = {
         c["gen"]: {"elegida": "%d-%d" % dict(o)["region"],
@@ -855,7 +934,13 @@ def main(argv=None) -> int:
                         "genes virales (D5)")
     r.add_argument("--muestras", type=int, default=2000)
     r.add_argument("--semilla", type=int, default=7)
-    r.add_argument("--json", default=None)
+    r.add_argument("--alertas", default=None, type=Path,
+                   help="tabla de alertas de M6 que consulta la compuerta de D48; por "
+                        "defecto %s" % TABLA_ALERTAS)
+    r.add_argument("--umbral-compuerta", dest="umbral_compuerta",
+                   choices=("perfecto_21", "perfecto_ge19"), default=UMBRAL_COMPUERTA,
+                   help="umbral de D28 con el que la compuerta exige decision; por "
+                        "defecto %s, que es D48 literal (D69)" % UMBRAL_COMPUERTA)
     r.set_defaults(func=cmd_ranking)
 
     a = ap.parse_args(argv)

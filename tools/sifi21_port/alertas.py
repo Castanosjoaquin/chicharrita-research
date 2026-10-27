@@ -196,8 +196,13 @@ def clasificar_evidencia(gen_blanco: str, anotacion: str) -> str:
 # Lo que esto NO hace, y conviene que quede escrito al lado del codigo que lo hace:
 #   * no decide que alertas se aceptan. Eso es del usuario y es el punto entero de D48;
 #   * no verifica si la justificacion es cierta, pertinente ni suficiente;
-#   * no se aplica a ningun entregable por su cuenta. Es una funcion disponible, con su
-#     prueba, igual que `regla_veto='alerta'`: se implementa sin adoptar.
+#   * no distingue «se tamizo y no hay alertas» de «no se tamizo»: una region sin filas
+#     pasa como «sin alertas», asi que lo que protege son las regiones del inventario de
+#     M6 y no una propuesta nueva. Esta en `00_meta/PREGUNTAS_ABIERTAS.md`.
+#
+# Desde D69 **si esta adoptada**: la llama `ranking.region_recomendada()`, que es el unico
+# lugar del port donde el primer puesto de `alternativas()` se convierte en una region
+# recomendada, con el umbral `perfecto_21` por defecto (D48 literal) y configurable.
 
 DECISIONES = ("pendiente", "aceptada", "bloqueante")
 # El texto con el que sale la tabla recien construida. Reescribir una palabra no es decidir.

@@ -386,3 +386,59 @@ sigue sin decidirse; lo que ya no pasa es que frene por omisión.
 No dice que ninguna región sea segura. Dice que fueron leídas, por quién y con qué argumento. El
 límite viaja en cada justificación: se midió **coincidencia exacta** de 21 nt, no apareamiento
 parcial ni efecto de tipo miARN `[?]`.
+
+## Addendum (2026-10-27) — la compuerta pasa a llamarse desde el port, y el umbral queda elegido
+
+§5 bis dejó dos cosas abiertas y las dos se cierran acá. Era D69, y es la línea `R2` del plan de
+cierre.
+
+**La compuerta se llama desde donde se produce una recomendación.** Hasta hoy la única llamada a
+`exigir_decidida()` fuera de la prueba estaba en `scripts/compuerta.py`, que es el inventario de
+esta línea y no produce ninguna recomendación `[M]`. Ahora la llama
+`ranking.region_recomendada()`, en `tools/sifi21_port/ranking.py`: el único punto del port donde
+el primer puesto de `alternativas()` se convierte en una región recomendada. Antes esa conversión
+estaba escrita **tres veces, idéntica** —el nivel 3 de `ranking.cmd_ranking` y las dos rutas de
+`ranking_v2`— y ninguna consultaba esta tabla. Una región con una fila en «pendiente» ya no sale
+de ahí.
+
+**El umbral elegido es `perfecto_21`, y la elección costó lo que §5 bis decía que costaba.** La
+medición de §5 bis se rehizo con el estado de firma como segunda variable, con
+`scripts/umbral_compuerta.py`, y su salida queda en `resultados/umbral_compuerta.json`:
+
+| Estado de la tabla | `perfecto_21` (D48 literal) | `perfecto_ge19` (laxo de D28) |
+| --- | --- | --- |
+| con las diecisiete firmas | pasan **12 de 12**, tres bloqueantes, ninguna vigente | pasan **12 de 12**, las mismas tres |
+| con las diecisiete en «pendiente» | pasan **9 de 12**, ninguna vigente frenada | pasan **3 de 12**, y frena **cuatro de las seis vigentes** |
+
+`[M]` El renglón de abajo reproduce exacto la tabla de §5 bis, que es de antes de las firmas, así
+que las dos lecturas que circulaban por separado —«9 de 12 contra 3 de 12» y «cuatro de las seis
+vigentes»— son dos columnas de la misma medición y no dos mediciones distintas.
+
+`[H]` Se adopta el literal porque es el único de los dos sobre el que hay decisión escrita: D48
+habla textualmente de la coincidencia perfecta de 21 nt, y D28 fijó el piso de 19 declarando que
+a ese largo la convención del campo no tiene experimento detrás. Y se adopta **ahora** porque con
+las firmas puestas los dos umbrales dan el mismo resultado operativo, o sea que elegir uno no
+mueve ninguna región ni ninguna cifra publicada. El otro umbral queda a un parámetro de
+distancia, no a una edición de código.
+
+**Lo que la compuerta sigue sin poder hacer cumplir.** No distingue «se tamizó y no hay alertas»
+de «no se tamizó»: una región que no tiene ninguna fila en `alertas.tsv` pasa como «sin alertas en
+este umbral». Lo que queda protegido son las **doce** regiones de esta tabla y no una propuesta
+nueva —el caso concreto es el ranking a 22 nt, cuyas seis recomendadas no están en el
+inventario— `[M]`. Cerrarlo pide exigir presencia en el inventario, y eso haría fallar una corrida
+cuyo resultado está publicado, así que quedó anotado en `00_meta/PREGUNTAS_ABIERTAS.md` y no se
+hizo por cuenta propia.
+
+### Verificación
+
+- `python tools/sifi21_port/test_alertas.py` pasa, con la §9 nueva: la recomendación falla con la
+  fila en «pendiente», pasa firmada, los dos umbrales de D28 no dan lo mismo sobre la misma fila,
+  una tabla ausente falla cerrada, y **ninguna de las tres rutas del port rearma la región a
+  mano** —esta última es estructural, y hace falta porque la forma de desactivar la compuerta sin
+  tocarla es volver a escribir al lado la expresión que reemplazó—. Siguen salteadas y declaradas
+  la §5 (falta `work/sifi_v2/`) y la §6 (falta `pyahocorasick`).
+- `python research/ola4/M6_alertas/scripts/compuerta.py` sigue dando 12 de 12 en los dos umbrales,
+  con las tres bloqueantes, sin cambios.
+- `ranking.py` y `ranking_v2.py` **no se pudieron correr de punta a punta en esta máquina**: les
+  falta `work/sifi_v2/`, que no se versiona. Quedan verificados por el `--help` de los dos y por
+  la §9, que ejerce la compuerta con la tabla real y con tablas sintéticas.

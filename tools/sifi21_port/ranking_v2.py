@@ -144,8 +144,12 @@ def gen_entero(g: dict, excl: set) -> dict:
     return out
 
 
-def completar_regiones(genes: dict, wr, wc) -> list[dict]:
-    """Region propuesta para los nuevos: la mejor por cascada, igual que W7 recomienda."""
+def completar_regiones(genes: dict, wr, wc, umbral=None, tabla=None) -> list[dict]:
+    """Region propuesta para los nuevos: la mejor por cascada, igual que W7 recomienda.
+
+    Pasa por `R.region_recomendada()`, o sea por la compuerta de alertas de D48: una
+    region con una fila de alerta en «pendiente» no sale de aca (D69).
+    """
     cands = []
     for c in R.CANDIDATOS:
         cands.append(dict(c))
@@ -154,20 +158,19 @@ def completar_regiones(genes: dict, wr, wc) -> list[dict]:
         d["region"] = (1, d["largo"])
         alt = R.alternativas(genes[d["gen"]], d["largo"], d, wr, wc, False, "off", 0.5,
                              "cascada")
-        ini, fin = (int(x) for x in alt["mejores"][0]["region"].split("-"))
-        d["region"] = (ini, fin)
+        d["region"] = R.region_recomendada(alt, d["gen"], umbral, tabla)
         cands.append(d)
     return cands
 
 
-def recomendadas(cands, genes, wr, wc) -> list[dict]:
+def recomendadas(cands, genes, wr, wc, umbral=None, tabla=None) -> list[dict]:
+    """Las regiones que el ranking recomienda, cada una pasada por la compuerta de D48."""
     out = []
     for c in cands:
         largo = c["region"][1] - c["region"][0] + 1
         alt = R.alternativas(genes[c["gen"]], largo, c, wr, wc, False, "off", 0.5, "cascada")
-        ini, fin = (int(x) for x in alt["mejores"][0]["region"].split("-"))
         d = dict(c)
-        d["region"] = (ini, fin)
+        d["region"] = R.region_recomendada(alt, c["gen"], umbral, tabla)
         out.append(d)
     return out
 
@@ -267,7 +270,8 @@ def verificar_anclas(trabajo: Path, w7_json: Path, muestras: int, semilla: int) 
     return res
 
 
-def efecto_humano(trabajo: Path, semilla: int, muestras: int, w7_json: Path) -> dict:
+def efecto_humano(trabajo: Path, semilla: int, muestras: int, w7_json: Path,
+                  umbral=None, tabla=None) -> dict:
     """Que cambia, sobre los cuatro de EPILAB, por agregar humano al panel de W7."""
     w7 = json.loads(w7_json.read_text(encoding="utf-8"))
     out = {"regiones_recomendadas_w7": w7["regiones_recomendadas"], "fichas": {}, "barrido": {}}
@@ -277,7 +281,7 @@ def efecto_humano(trabajo: Path, semilla: int, muestras: int, w7_json: Path) -> 
         con_panel(sin_humano=sin)
         wr, wc = R.pesos_base()
         cands = [dict(c) for c in R.CANDIDATOS]
-        rec = recomendadas(cands, genes, wr, wc)
+        rec = recomendadas(cands, genes, wr, wc, umbral, tabla)
         out["fichas"][etiqueta] = {
             c["gen"]: {k: ficha(genes[c["gen"]], c, wr, wc)["conservadora"][k]
                        for k in ("eficacia", "limpieza", "buenos_limpios", "con_off_target")}
@@ -292,13 +296,14 @@ def efecto_humano(trabajo: Path, semilla: int, muestras: int, w7_json: Path) -> 
     return out
 
 
-def correr_k(trabajo: Path, k: int, muestras: int, semilla: int, completo: bool) -> dict:
+def correr_k(trabajo: Path, k: int, muestras: int, semilla: int, completo: bool,
+             umbral=None, tabla=None) -> dict:
     t0 = time.time()
     con_panel(sin_humano=False)
     genes = cargar(trabajo, k, GENES_EPILAB + GENES_NUEVOS)
     wr, wc = R.pesos_base()
-    cands = completar_regiones(genes, wr, wc)
-    cands_rec = recomendadas(cands, genes, wr, wc)
+    cands = completar_regiones(genes, wr, wc, umbral, tabla)
+    cands_rec = recomendadas(cands, genes, wr, wc, umbral, tabla)
     por_gen = {c["gen"]: c for c in cands}
     est = lambda e: [c for c in cands if c["estrategia"] == e]  # noqa: E731
     est_rec = lambda e: [c for c in cands_rec if c["estrategia"] == e]  # noqa: E731
@@ -340,6 +345,13 @@ def main(argv=None) -> int:
     ap.add_argument("--muestras", type=int, default=2000)
     ap.add_argument("--semilla", type=int, default=7)
     ap.add_argument("--json", required=True)
+    ap.add_argument("--alertas", default=None, type=Path,
+                    help="tabla de alertas de M6 que consulta la compuerta de D48; por "
+                         "defecto %s" % R.TABLA_ALERTAS)
+    ap.add_argument("--umbral-compuerta", dest="umbral_compuerta",
+                    choices=("perfecto_21", "perfecto_ge19"), default=R.UMBRAL_COMPUERTA,
+                    help="umbral de D28 con el que la compuerta exige decision; por "
+                         "defecto %s, que es D48 literal (D69)" % R.UMBRAL_COMPUERTA)
     a = ap.parse_args(argv)
     trabajo = Path(a.trabajo)
 
@@ -349,8 +361,10 @@ def main(argv=None) -> int:
 
     res = {"anclas_w7": anclas, "nuevos": NUEVOS, "k": {}}
     for k, completo in ((21, True), (22, True)):
-        res["k"][str(k)] = correr_k(trabajo, k, a.muestras, a.semilla, completo)
-    res["efecto_humano"] = efecto_humano(trabajo, a.semilla, a.muestras, Path(a.w7))
+        res["k"][str(k)] = correr_k(trabajo, k, a.muestras, a.semilla, completo,
+                                    a.umbral_compuerta, a.alertas)
+    res["efecto_humano"] = efecto_humano(trabajo, a.semilla, a.muestras, Path(a.w7),
+                                         a.umbral_compuerta, a.alertas)
     res["jaccard_21_22"] = {g: jaccard(trabajo, g) for g in GENES_EPILAB + GENES_NUEVOS}
 
     Path(a.json).parent.mkdir(parents=True, exist_ok=True)

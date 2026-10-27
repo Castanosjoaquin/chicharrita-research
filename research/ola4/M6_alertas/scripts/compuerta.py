@@ -6,9 +6,12 @@ operativamente igual que una aceptada. El informe de M6 lo dejó declarado como 
 software no puede hacer cumplir. Esto es lo mínimo que sí puede: negarse a tratar una
 región como usable mientras alguna de sus filas siga sin decidir.
 
-**No decide nada.** No dice qué alertas se aceptan, no verifica si una justificación es
-cierta ni suficiente, y no se aplica a ningún entregable por su cuenta: es una función
-disponible con su prueba, igual que `regla_veto='alerta'`. Se implementa sin adoptar.
+**No decide nada.** No dice qué alertas se aceptan y no verifica si una justificación es
+cierta ni suficiente. Este script es el **inventario** de la compuerta: la corre sobre las
+doce regiones para mirar el estado de una sola vez, y no produce ninguna recomendación.
+Quien la aplica de verdad, desde D69, es `ranking.region_recomendada()` en el port: ahí
+está el único punto donde una región se vuelve recomendación, y por eso llamarla desde
+acá nunca alcanzó para dar la tarea por hecha.
 
 Se corre en los dos umbrales de D28 a propósito. Con `perfecto_21` obligan las alertas de
 las que habla D48 textualmente; con `perfecto_ge19` obligan también las del umbral laxo,

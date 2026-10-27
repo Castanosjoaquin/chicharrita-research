@@ -97,7 +97,7 @@ Con `python -I` también funciona: los scripts agregan su propio directorio al p
 | `barrido.py` | Barre configuraciones y busca cuáles reproducen conteos declarados. Vectorizado. |
 | `offtarget_21nt.py` | Tamizaje de off-targets por siRNA, por coincidencia exacta con Aho-Corasick. No necesita BLAST. El tamaño va por `--size`, 21 por defecto. |
 | `cruce.py` | Cruza el perfil de eficiencia con el de off-targets y compara regiones. |
-| `ranking.py` | El ranking de candidatos y el barrido de pesos (`ranking`), y el percentil de la región elegida con sus dos nulos (`nulo`). Consume los mismos TSV que `cruce.py`. |
+| `ranking.py` | El ranking de candidatos y el barrido de pesos (`ranking`), y el percentil de la región elegida con sus dos nulos (`nulo`). Consume los mismos TSV que `cruce.py`. Trae además `region_recomendada()`, el único punto donde el primer puesto del orden se vuelve una región recomendada: llama a la compuerta de alertas de D48 y frena una región con una fila en «pendiente» (D69). El umbral es `UMBRAL_COMPUERTA`, `perfecto_21` por defecto, movible con `--umbral-compuerta`. |
 | `azar_kmer.py` | Observado contra esperado por k, bajo tres nulos: uniforme, por composición y por barajado de la referencia. |
 | `test_sifi.py` | Verificaciones, incluida la equivalencia de tablas y la coherencia entre el motor y el barrido. |
 | `test_ranking.py` | Verificaciones del ranking: propiedades del criterio, más anclas contra los conteos ya publicados en `sifi21_reproduccion.md` §2, §3 y §4. |
