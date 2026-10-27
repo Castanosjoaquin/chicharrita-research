@@ -39,7 +39,25 @@
     "inverso": 4741,
     "ambos": 2406
    },
-   "empates_directos_homonimos_H": 8458
+   "empates_directos_homonimos_H": 8458,
+   "ampliada_H_post_hoc": {
+    "categorias_por_orf": {
+     "b_sin_hit": 73499,
+     "c_hit_no_reciproco": 17069,
+     "d_empate": 3034,
+     "e_reciproco_sin_nombre": 1989,
+     "f_reciproco_con_nombre": 10280
+    },
+    "categorias_por_contig": {
+     "a_sin_orf": 25812,
+     "b_sin_hit": 8261,
+     "c_hit_no_reciproco": 10383,
+     "d_empate": 2266,
+     "e_reciproco_sin_nombre": 1563,
+     "f_reciproco_con_nombre": 7832
+    },
+    "proteinas_de_referencia_distintas_con_recip": 9567
+   }
   },
   "HV": {
    "proteoma": "work/F1/ref/GCF_021130785.1_UT_GWSS_2.1_protein.faa",
@@ -67,7 +85,25 @@
     "inverso": 5289,
     "ambos": 1759
    },
-   "empates_directos_homonimos_H": 6006
+   "empates_directos_homonimos_H": 6006,
+   "ampliada_H_post_hoc": {
+    "categorias_por_orf": {
+     "b_sin_hit": 76476,
+     "c_hit_no_reciproco": 16009,
+     "d_empate": 2328,
+     "e_reciproco_sin_nombre": 2228,
+     "f_reciproco_con_nombre": 8830
+    },
+    "categorias_por_contig": {
+     "a_sin_orf": 25812,
+     "b_sin_hit": 10328,
+     "c_hit_no_reciproco": 9854,
+     "d_empate": 1760,
+     "e_reciproco_sin_nombre": 1533,
+     "f_reciproco_con_nombre": 6830
+    },
+    "proteinas_de_referencia_distintas_con_recip": 8500
+   }
   }
  }
 }

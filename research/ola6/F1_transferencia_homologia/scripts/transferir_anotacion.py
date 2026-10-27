@@ -17,6 +17,7 @@ Todo corre local: nada se sube a ningun servicio.
 from __future__ import annotations
 
 import collections
+import gzip
 import hashlib
 import json
 import random
@@ -216,7 +217,9 @@ def mejores(tsv: Path) -> dict[str, dict]:
         b = hits[0]
         out[q] = dict(sujeto=b[1], bitscore=b[0], pident=b[2], evalue=b[3],
                       qcov=b[4], scov=b[5], longitud=b[6], empate=len(empatados) > 1,
-                      empatados=empatados)
+                      empatados=empatados,
+                      tops={h[1]: dict(sujeto=h[1], bitscore=h[0], pident=h[2], evalue=h[3],
+                                       qcov=h[4], scov=h[5]) for h in hits})
     return out
 
 
@@ -246,6 +249,38 @@ def clasificar(orf_id: str | None, directo: dict, inverso: dict, productos: dict
     return dict(categoria=cat, **_campos(h, productos))
 
 
+def clasificar_ampliada(orf_id: str | None, directo: dict, inverso: dict, productos: dict) -> dict:
+    """Lectura inclusiva de empates (Enmienda 2, [H] y post hoc). No reemplaza a `clasificar`.
+
+    Directo: un empate entre proteinas de referencia se resuelve solo si todas tienen el mismo
+    nombre normalizado informativo. Inverso: es reciproco si el ORF esta entre los de mejor
+    bitscore de la proteina de referencia; el tamano de ese empate viaja en la salida."""
+    if orf_id is None:
+        return dict(categoria_ampliada="a_sin_orf")
+    h = directo.get(orf_id)
+    if h is None:
+        return dict(categoria_ampliada="b_sin_hit")
+    cands = sorted(h["empatados"])
+    if len(cands) > 1:
+        nombres = {normalizar_nombre(productos[x]) for x in cands}
+        if not (all(es_informativo(productos[x]) for x in cands) and len(nombres) == 1):
+            return dict(categoria_ampliada="d_empate", ampliada_n_empatados_directo=len(cands))
+    recip = [x for x in cands if x in inverso and orf_id in inverso[x]["empatados"]]
+    if not recip:
+        return dict(categoria_ampliada="c_hit_no_reciproco", ampliada_n_empatados_directo=len(cands))
+    p = recip[0]
+    t = h["tops"][p]
+    nombre = productos[p]
+    et, c, _, _, _ = banda(t["pident"])
+    cat = "f_reciproco_con_nombre" if es_informativo(nombre) else "e_reciproco_sin_nombre"
+    return dict(categoria_ampliada=cat, ampliada_ref_id=p, ampliada_ref_producto=nombre,
+                ampliada_nombre_normalizado=normalizar_nombre(nombre) if es_informativo(nombre) else "",
+                ampliada_pident=t["pident"], ampliada_cob_orf=t["qcov"], ampliada_cob_ref=t["scov"],
+                ampliada_banda_identidad=et, ampliada_banda_concordancia=c,
+                ampliada_n_empatados_directo=len(cands),
+                ampliada_n_empatados_inverso=len(inverso[p]["empatados"]))
+
+
 def _campos(h: dict, productos: dict) -> dict:
     nombre = productos[h["sujeto"]]
     et, c, lo, hi, n = banda(h["pident"])
@@ -261,7 +296,11 @@ COLUMNAS = ["contig", "orf_aa", "orf_hebra", "orf_ini", "orf_fin", "categoria", 
             "empate_homonimo", "ref_id",
             "ref_producto", "nombre_normalizado", "pident", "cob_orf", "cob_ref",
             "rotulo_cobertura", "evalue", "bitscore", "banda_identidad",
-            "banda_concordancia", "banda_ic_lo", "banda_ic_hi", "banda_pares_c12"]
+            "banda_concordancia", "banda_ic_lo", "banda_ic_hi", "banda_pares_c12",
+            "categoria_ampliada", "ampliada_ref_id", "ampliada_ref_producto",
+            "ampliada_nombre_normalizado", "ampliada_pident", "ampliada_cob_orf",
+            "ampliada_cob_ref", "ampliada_banda_identidad", "ampliada_banda_concordancia",
+            "ampliada_n_empatados_directo", "ampliada_n_empatados_inverso"]
 
 
 def sha256(p: Path) -> str:
@@ -281,6 +320,7 @@ def main(argv: list[str]) -> None:
     trabajo = Path("work/F1/corrida")
     trabajo.mkdir(parents=True, exist_ok=True)
 
+    seq_orf: dict[str, str] = {}
     orfs: list[dict] = []  # una entrada por ORF; los contigs sin ORF entran con id None
     orf_faa = trabajo / "orfs.faa"
     n_contigs = 0
@@ -293,6 +333,7 @@ def main(argv: list[str]) -> None:
                 orfs.append(dict(contig=contig, id=None))
             for prot, hebra, ini, fin in lista:
                 oid = f"{contig}|{hebra}|{ini}-{fin}"
+                seq_orf[oid] = prot
                 orfs.append(dict(contig=contig, id=oid, aa=len(prot), hebra=hebra, ini=ini, fin=fin))
                 fo.write(f">{oid}\n{prot}\n")
     n_orf = sum(o["id"] is not None for o in orfs)
@@ -304,6 +345,7 @@ def main(argv: list[str]) -> None:
                    parametros=dict(min_aa=MIN_AA, evalue=EVALUE, hits=HITS_POR_CONSULTA,
                                    sensibilidad="--more-sensitive", max_hsps=1,
                                    unidad="ORF (enmienda 1)"), referencias={})
+    diagnostico: dict = {}
     for et, ruta in refs:
         ruta = Path(ruta)
         productos = {c.split()[0]: producto_refseq(c) for c, _ in leer_fasta(ruta)}
@@ -313,13 +355,20 @@ def main(argv: list[str]) -> None:
         diamond_blastp(diamond, orf_faa, db, fwd)
         diamond_blastp(diamond, ruta, trabajo / "db_ORFS", rev)
         directo, inverso = mejores(fwd), mejores(rev)
-        filas, por_orf = [], collections.Counter()
+        filas, por_orf, por_orf_a = [], collections.Counter(), collections.Counter()
         mejor_contig: dict[str, str] = {}
+        mejor_contig_a: dict[str, str] = {}
         refs_f = collections.defaultdict(set)
         for o in orfs:
             c = clasificar(o["id"], directo, inverso, productos)
+            ca = clasificar_ampliada(o["id"], directo, inverso, productos)
+            c.update(ca)
             if o["id"] is not None:
                 por_orf[c["categoria"]] += 1
+                por_orf_a[ca["categoria_ampliada"]] += 1
+            act = mejor_contig_a.get(o["contig"])
+            if act is None or JERARQUIA.index(ca["categoria_ampliada"]) < JERARQUIA.index(act):
+                mejor_contig_a[o["contig"]] = ca["categoria_ampliada"]
             actual = mejor_contig.get(o["contig"])
             if actual is None or JERARQUIA.index(c["categoria"]) < JERARQUIA.index(actual):
                 mejor_contig[o["contig"]] = c["categoria"]
@@ -328,9 +377,11 @@ def main(argv: list[str]) -> None:
             filas.append(dict(contig=o["contig"], orf_aa=o.get("aa", 0), orf_hebra=o.get("hebra", ""),
                               orf_ini=o.get("ini", ""), orf_fin=o.get("fin", ""), **c))
         por_contig = collections.Counter(mejor_contig.values())
-        if sum(por_contig.values()) != n_contigs or sum(por_orf.values()) != n_orf:
+        por_contig_a = collections.Counter(mejor_contig_a.values())
+        if (sum(por_contig.values()) != n_contigs or sum(por_orf.values()) != n_orf
+                or sum(por_contig_a.values()) != n_contigs or sum(por_orf_a.values()) != n_orf):
             sys.exit("ABORTA: las categorias no suman el total (contigs u ORF)")
-        with open(salida / f"transferencia_{et}.tsv", "w") as fo:
+        with gzip.open(salida / f"transferencia_{et}.tsv.gz", "wt") as fo:
             fo.write("\t".join(COLUMNAS) + "\n")
             for f in filas:
                 fo.write("\t".join(_fmt(f.get(k, "")) for k in COLUMNAS) + "\n")
@@ -343,8 +394,21 @@ def main(argv: list[str]) -> None:
             proteinas_de_referencia_distintas_con_recip=len({f["ref_id"] for f in recip}),
             contigs_con_2_o_mas_recip_a_refs_distintas=sum(len(v) >= 2 for v in refs_f.values()),
             empates_por_lado=dict(collections.Counter(f["empate_lado"] for f in d)),
-            empates_directos_homonimos_H=sum(f["empate_homonimo"] is True for f in d))
+            empates_directos_homonimos_H=sum(f["empate_homonimo"] is True for f in d),
+            ampliada_H_post_hoc=dict(
+                categorias_por_orf={k: por_orf_a.get(k, 0) for k in CATEGORIAS if k != "a_sin_orf"},
+                categorias_por_contig={k: por_contig_a.get(k, 0) for k in CATEGORIAS},
+                proteinas_de_referencia_distintas_con_recip=len(
+                    {f["ampliada_ref_id"] for f in filas
+                     if f["categoria_ampliada"].startswith(("e_", "f_"))})))
+        # diagnostico de los empates inversos: son copias identicas del mismo ORF?
+        ties = [v["empatados"] for v in inverso.values() if v["empate"]]
+        ident = sum(len({seq_orf[o] for o in t}) == 1 for t in ties)
+        diagnostico[et] = dict(empates_inversos=len(ties), con_secuencia_identica=ident,
+                               pct_identicas=round(100 * ident / len(ties), 1) if ties else None,
+                               empates_directos=sum(v["empate"] for v in directo.values()))
     (salida / "resumen.json").write_text(json.dumps(resumen, indent=1, ensure_ascii=False))
+    (salida / "diagnostico_empates.json").write_text(json.dumps(diagnostico, indent=1))
     print(json.dumps({k: [v["categorias_por_orf"], v["categorias_por_contig"]]
                       for k, v in resumen["referencias"].items()}, indent=1))
 

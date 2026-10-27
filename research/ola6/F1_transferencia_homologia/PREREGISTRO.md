@@ -183,3 +183,11 @@ tabla ampliada sólo se lee como resultado si su control positivo pasa; la estri
 falla, se publica igual con su cifra y la causa. Que la ampliada pase **no prueba** que la regla
 sea correcta: la escribí después de ver el fallo. El control del señuelo es el que acota los
 falsos positivos de ambas.
+
+**Corrección a la Enmienda 2, del mismo día, escrita al contar de nuevo contra la tabla.** Donde
+dice que el 16 % de los ORF con hit y el 13 % de los contigs caen en `d_empate`, los números
+medidos son otros `[M]`: **16.233 de los 32.372 ORF con hit con e ≤ 1e-10 (50,1 %)**, que son el 15,3 %
+de los 105.871 ORF; y **10.586 contigs de 56.117 (18,9 %)**, que son el 48,0 % de los 22.044 contigs
+con algún ORF recíproco o en empate (categorías c–f). El 16 % que escribí era el empate sobre el
+total de ORF, no sobre los que tienen hit. El argumento no cambia, y cambia a favor de enmendar:
+la mitad de los ORF con hit quedan fuera de la lectura estricta.

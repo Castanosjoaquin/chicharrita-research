@@ -124,9 +124,11 @@ class Bandas(unittest.TestCase):
 
 
 def hit(sujeto, bit=100.0, pident=95.0, empate=False, empatados=None):
-    return dict(sujeto=sujeto, bitscore=bit, pident=pident, evalue=1e-50, qcov=99.0,
+    base = dict(sujeto=sujeto, bitscore=bit, pident=pident, evalue=1e-50, qcov=99.0,
                 scov=98.0, longitud=300, empate=empate,
                 empatados=empatados or ([sujeto, "otro"] if empate else [sujeto]))
+    base["tops"] = {sujeto: dict(base)}
+    return base
 
 
 class Clasificacion(unittest.TestCase):
@@ -207,6 +209,40 @@ class EmpateHomonimo(unittest.TestCase):
                          ("d_empate", "inverso", ""))
 
 
+class Ampliada(unittest.TestCase):
+    PROD = {"P1": "tubulin alpha chain isoform X1", "P2": "tubulin alpha chain isoform X2",
+            "P3": "actin", "P4": "uncharacterized protein LOC4"}
+
+    def amp(self, d, i):
+        return T.clasificar_ampliada("o", d, i, self.PROD)
+
+    def test_el_orf_entre_los_empatados_del_inverso_es_reciproco(self):
+        i = {"P3": hit("o2", empate=True, empatados=["o2", "o"])}
+        r = self.amp({"o": hit("P3")}, i)
+        self.assertEqual((r["categoria_ampliada"], r["ampliada_n_empatados_inverso"]), ("f_reciproco_con_nombre", 2))
+        # y la estricta lo sigue declarando empate: la ampliada no la reemplaza
+        self.assertEqual(T.clasificar("o", {"o": hit("P3")}, i, self.PROD)["categoria"], "d_empate")
+
+    def test_el_orf_fuera_de_los_empatados_no_es_reciproco(self):
+        i = {"P3": hit("o2", empate=True, empatados=["o2", "o3"])}
+        self.assertEqual(self.amp({"o": hit("P3")}, i)["categoria_ampliada"], "c_hit_no_reciproco")
+
+    def test_isoformas_homonimas_se_resuelven(self):
+        d = {"o": dict(hit("P1", empate=True, empatados=["P1", "P2"]),
+                       tops={"P1": hit("P1"), "P2": hit("P2")})}
+        r = self.amp(d, {"P2": hit("o")})
+        self.assertEqual((r["categoria_ampliada"], r["ampliada_ref_id"]), ("f_reciproco_con_nombre", "P2"))
+
+    def test_nombres_distintos_siguen_siendo_empate(self):
+        d = {"o": hit("P1", empate=True, empatados=["P1", "P3"])}
+        self.assertEqual(self.amp(d, {"P1": hit("o")})["categoria_ampliada"], "d_empate")
+
+    def test_ampliada_trae_tops_para_la_identidad(self):
+        d = {"o": dict(hit("P3", pident=62.0), tops={"P3": hit("P3", pident=62.0)})}
+        r = self.amp(d, {"P3": hit("o")})
+        self.assertEqual((r["ampliada_pident"], r["ampliada_banda_identidad"]), (62.0, "60-80"))
+
+
 class Cortafuego(unittest.TestCase):
     """D37: la anotacion transferida nunca entra al diseno de ARNdc."""
 
@@ -233,6 +269,7 @@ class Cortafuego(unittest.TestCase):
 
     def test_la_salida_no_lleva_secuencia(self):
         prohibidas = {"seq", "sequence", "secuencia", "nt", "orf_seq", "proteina", "cds", "fasta"}
+        self.assertEqual(len(T.COLUMNAS), len(set(T.COLUMNAS)))
         self.assertFalse(prohibidas & set(T.COLUMNAS))
         for c in T.COLUMNAS:
             self.assertNotIn("seq", c)
@@ -240,8 +277,9 @@ class Cortafuego(unittest.TestCase):
     def test_tablas_versionadas_sin_nucleotidos(self):
         import re
         base = Path(__file__).resolve().parent.parent / "resultados"
-        for t in base.glob("transferencia_*.tsv"):
-            for linea in t.read_text().splitlines()[1:]:
+        import gzip
+        for t in base.glob("transferencia_*.tsv.gz"):
+            for linea in gzip.open(t, "rt").read().splitlines()[1:]:
                 for campo in linea.split("\t"):
                     self.assertIsNone(re.fullmatch(r"[ACGTNacgtn]{30,}", campo), t.name)
 
