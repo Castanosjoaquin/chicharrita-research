@@ -68,11 +68,13 @@ ANOT = {
     "accesion": "XM_046974266.1",
     "organismo": "Homalodisca vitripennis",
     "identidad": 94.0,
-    "cobertura": 88.0,
+    "cobertura_orf": 88.0,
+    "cobertura_referencia": 91.0,
     "reciproco": True,
-    "fuente_alineamiento": "F1 miniprot 0.18-r281",
-    "banda": {"tramo": "mayor o igual a 90", "concordancia": 86.2,
-              "ic": [80.9, 90.2], "n": 1152, "fuente": "C12 A"},
+    "empate": False,
+    "fuente_alineamiento": "F1 diamond blastp, transferencia_HV.tsv.gz",
+    "banda": {"tramo": "mayor o igual a 90", "concordancia": 86.2, "ic": [80.9, 90.2],
+              "n": 1152, "concluyente": True, "fuente": "C12 A"},
 }
 
 FICHA_ANOTADA = {
@@ -103,8 +105,21 @@ FICHA_NO_INFORMATIVA = {
 
 FICHA_NO_RECIPROCA = {"locus": "DMAI_0004444", "anotacion": dict(ANOT, reciproco=False)}
 
+# `F1` no resuelve un empate en el primer puesto y por eso no lo cuenta como reciproco;
+# decirle «sin ortologo reciproco» perderia que el alineamiento existe.
+FICHA_EMPATE = {"locus": "DMAI_0002222",
+                "anotacion": dict(ANOT, reciproco=False, empate=True)}
+
 FICHA_SIN_BANDA = {"locus": "DMAI_0003333",
                    "anotacion": {k: v for k, v in ANOT.items() if k != "banda"}}
+
+# El tramo de identidad bajo que la medicion de origen rotula no concluyente: 16 pares.
+FICHA_NO_CONCLUYENTE = {
+    "locus": "DMAI_0001111",
+    "anotacion": dict(ANOT, identidad=38.0, banda=dict(ANOT["banda"], tramo="menor a 40",
+                                                       concordancia=25.0, ic=[10.2, 49.5],
+                                                       n=16, concluyente=False)),
+}
 
 
 # ------------------------------------------- 1. el parrafo, y la fuente de cada frase
@@ -131,7 +146,7 @@ check("oogenesis" not in legitimas and "Homalodisca" not in legitimas,
 
 # La identidad y la cobertura son medicion nuestra; la accesion dice QUIEN es el ortologo,
 # no cuanto alinea. Dos afirmaciones, dos fuentes.
-frase_alin = [f for f in salida["frases"] if "identidad y" in f["texto"]]
+frase_alin = [f for f in salida["frases"] if "cobertura del ORF" in f["texto"]]
 check(len(frase_alin) == 1 and frase_alin[0]["fuente"] == ANOT["fuente_alineamiento"],
       "la identidad y la cobertura se citan con la corrida que las midio, no con la accesion")
 frase_quien = [f for f in salida["frases"] if f["texto"].startswith("El locus")]
@@ -164,6 +179,25 @@ check(len(frases_go) == 2, "dos terminos GO de bases distintas dan dos frases (%
 check({f["fuente"] for f in frases_go} == {"UniProt GOA", "InterPro2GO"},
       "cada frase de GO lleva la procedencia de sus propios terminos")
 
+# Un tramo que la medicion de origen rotula no concluyente se dice. Publicar su
+# concordancia sin esa linea es citar un numero que su propio autor no sostiene.
+flojo = P.redactar(FICHA_NO_CONCLUYENTE)
+check("no concluyente" in flojo["texto"],
+      "el parrafo dice que el tramo esta rotulado no concluyente")
+check(P.verificar_procedencia(flojo, FICHA_NO_CONCLUYENTE)["ok"],
+      "y ese parrafo pasa la verificacion de procedencia")
+check("no concluyente" not in salida["texto"],
+      "y no lo dice cuando el tramo si es concluyente")
+
+# La unidad la pone la ficha. `F1` habla de contigs y no de loci —varios contigs pueden ser
+# isoformas del mismo gen— y el parrafo tiene que decir lo que la corrida midio.
+como_contig = P.redactar(dict(FICHA_ANOTADA, unidad="contig"))
+check(como_contig["texto"].startswith("El contig DMAI_0001234 alinea"),
+      "el parrafo nombra la unidad que declara la ficha (%s)"
+      % como_contig["texto"][:30])
+check(salida["texto"].startswith("El locus DMAI_0001234 alinea"),
+      "y usa «locus» cuando la ficha no declara otra")
+
 
 # ----------------------------------- 2. sin anotacion no hay parrafo, y queda contado
 
@@ -177,6 +211,7 @@ casos = [
      "el nombre recuperado es «uncharacterized»"),
     (FICHA_NO_RECIPROCA, P.ORTOLOGIA_NO_RECIPROCA,
      "el alineamiento no es un par reciproco"),
+    (FICHA_EMPATE, P.EMPATE_DE_ORTOLOGIA, "el primer puesto empato y F1 no lo resuelve"),
 ]
 for ficha, esperado, motivo in casos:
     r = P.redactar(ficha)
@@ -195,12 +230,12 @@ check(P.redactar(FICHA_SIN_BLOQUE)["texto"] == "sin anotacion de gen",
 # abajo el recuento de 12.540 loci: eso seria filtrar por accidente justo lo que hay que
 # contar.
 censo = P.censo([FICHA_ANOTADA, FICHA_SIN_BLOQUE, FICHA_CROMOSOMA, FICHA_NO_INFORMATIVA,
-                 FICHA_NO_RECIPROCA, FICHA_SIN_BANDA])
-check(censo["total"] == 6, "el censo cuenta los seis loci (%d)" % censo["total"])
+                 FICHA_NO_RECIPROCA, FICHA_EMPATE, FICHA_SIN_BANDA])
+check(censo["total"] == 7, "el censo cuenta los siete loci (%d)" % censo["total"])
 check(censo[P.ANOTADA] == 1 and censo[P.SIN_ANOTACION_DE_GEN] == 2
       and censo[P.ANOTACION_NO_INFORMATIVA] == 1 and censo[P.ORTOLOGIA_NO_RECIPROCA] == 1
-      and censo[P.FICHA_INCOMPLETA] == 1,
-      "el censo reparte 1/2/1/1/1 entre los cinco estados")
+      and censo[P.EMPATE_DE_ORTOLOGIA] == 1 and censo[P.FICHA_INCOMPLETA] == 1,
+      "el censo reparte 1/2/1/1/1/1 entre los seis estados")
 check(censo["con_parrafo"] + censo["sin_parrafo"] == censo["total"],
       "todo locus esta en una de las dos columnas: ninguno se pierde")
 
@@ -211,7 +246,8 @@ print("\n3. una evidencia sin el campo que la vuelve citable es ficha incompleta
 
 falla_con(P.FichaIncompleta, lambda: P.redactar(FICHA_SIN_BANDA),
           "redactar() con anotacion sin banda levanta FichaIncompleta")
-for campo in ("identidad", "cobertura", "fuente_alineamiento", "accesion"):
+for campo in ("identidad", "cobertura_orf", "cobertura_referencia",
+              "fuente_alineamiento", "accesion", "empate"):
     rota = {"locus": "X", "anotacion": {k: v for k, v in ANOT.items() if k != campo}}
     falla_con(P.FichaIncompleta, lambda f=rota: P.redactar(f),
               "redactar() sin %s levanta FichaIncompleta" % campo)
@@ -312,7 +348,11 @@ print("\n5. ninguna salida de esta feature entra al diseno ni al ranking")
 # consumirla —`F3`, el recomendador— se esta armando en `research/`, que es justo donde
 # un barrido de `pipeline/` y `tools/` no mira. Si manana un modulo la importa, esta
 # prueba falla y hay que discutirlo, que es lo que el cortafuego pide.
-propios = {Path(__file__).name, "evidencia_en_prosa.py"}
+# Los archivos de la feature misma: el modulo, su adaptador de entrada y los dos tests. El
+# adaptador la importa y esta bien que lo haga —es la entrada de F2, no un consumidor de su
+# salida—; lo que el cortafuego prohibe es que la lea algo que disena o rankea.
+DE_LA_FEATURE = ("evidencia_en_prosa.py", "fichas_desde_f1.py", "test_fichas_desde_f1.py")
+propios = {Path(__file__).name} | set(DE_LA_FEATURE)
 escaneados, importadores = 0, []
 for py in RAIZ.rglob("*.py"):
     partes = py.relative_to(RAIZ).parts

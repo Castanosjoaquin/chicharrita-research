@@ -93,16 +93,24 @@ import alertas as AL              # noqa: E402
 # «es una subunidad de la V-ATPasa», es «con 94 % de identidad a su ortologo reciproco,
 # tramo en el que la concordancia medida es 86 %».
 FICHA = {
-    "locus": "id del locus en el ensamblado o transcriptoma del vector",
+    "locus": "id de la unidad descripta en el transcriptoma o ensamblado del vector",
+    "unidad": "como se llama esa unidad: «contig» en F1, «locus» por omision",
     "anotacion": {
+        # El nombre del ortologo llega de una de dos formas, nunca de ninguna: la cabecera
+        # FASTA cruda —y ahi manda la regla del parentesis de `alertas.partir_anotacion`—
+        # o el simbolo y la accesion ya partidos, que es como los entrega `F1`.
         "cabecera": "la cabecera FASTA del ortologo, tal como esta en disco",
+        "simbolo": "el nombre de producto del ortologo, si ya viene partido",
         "accesion": "accesion del ortologo: respalda QUIEN es, no cuanto alinea",
         "organismo": "especie del ortologo",
         "identidad": "porcentaje de identidad del alineamiento de proteina",
-        "cobertura": "porcentaje de la proteina consulta cubierto",
+        "cobertura_orf": "porcentaje del ORF consulta cubierto por el alineamiento",
+        "cobertura_referencia": "porcentaje de la proteina de referencia cubierto",
         "reciproco": "True o False, medido; si no se midio, la ficha esta incompleta",
+        "empate": "True si el primer puesto empato y la reciprocidad no se resolvio",
         "fuente_alineamiento": "la corrida que midio identidad, cobertura y reciprocidad",
         "banda": {"tramo": "", "concordancia": 0.0, "ic": [0.0, 0.0], "n": 0,
+                  "concluyente": True,
                   "fuente": "la medicion de concordancia que respalda el tramo"},
     },
     "go": [{"id": "", "termino": "", "fuente": ""}],
@@ -110,9 +118,10 @@ FICHA = {
     "papers": [{"doc_id": "", "cita": "cita literal, ya verificada aguas arriba"}],
 }
 
-CAMPOS_ANOTACION = ("cabecera", "accesion", "organismo", "identidad", "cobertura",
-                    "reciproco", "fuente_alineamiento", "banda")
-CAMPOS_BANDA = ("tramo", "concordancia", "ic", "n", "fuente")
+CAMPOS_ANOTACION = ("accesion", "organismo", "identidad", "cobertura_orf",
+                    "cobertura_referencia", "reciproco", "empate",
+                    "fuente_alineamiento", "banda")
+CAMPOS_BANDA = ("tramo", "concordancia", "ic", "n", "concluyente", "fuente")
 
 # Las listas de evidencia y que campo las vuelve citables. Una entrada sin su fuente no se
 # puede publicar ni se puede esconder: vuelve incompleta a la ficha entera, que es como
@@ -130,10 +139,11 @@ ANOTADA = "anotada"
 SIN_ANOTACION_DE_GEN = "sin_anotacion_de_gen"      # misma clave que alertas.py
 ANOTACION_NO_INFORMATIVA = "anotacion_no_informativa"
 ORTOLOGIA_NO_RECIPROCA = "ortologia_no_reciproca"
+EMPATE_DE_ORTOLOGIA = "empate_de_ortologia"
 FICHA_INCOMPLETA = "ficha_incompleta"
 
 ESTADOS = (ANOTADA, SIN_ANOTACION_DE_GEN, ANOTACION_NO_INFORMATIVA,
-           ORTOLOGIA_NO_RECIPROCA, FICHA_INCOMPLETA)
+           ORTOLOGIA_NO_RECIPROCA, EMPATE_DE_ORTOLOGIA, FICHA_INCOMPLETA)
 
 # El texto que sale en vez del parrafo. Es el punto entero del issue: devolver esto, y no
 # una conjetura plausible. Los tres son distintos a proposito: decirle «sin anotacion de
@@ -143,6 +153,7 @@ TEXTO_DE = {
     SIN_ANOTACION_DE_GEN: "sin anotacion de gen",
     ANOTACION_NO_INFORMATIVA: "sin anotacion de gen informativa",
     ORTOLOGIA_NO_RECIPROCA: "sin ortologo reciproco",
+    EMPATE_DE_ORTOLOGIA: "empate en el primer puesto, reciprocidad sin resolver",
 }
 
 # Viaja con cada salida y **no** es una frase del parrafo: es una decision nuestra, no
@@ -162,18 +173,25 @@ class FichaIncompleta(ValueError):
 
 # ------------------------------------------------------------------- 1. el estado
 
-def _simbolo_de(anot: dict) -> tuple[str, str]:
-    """Simbolo y LOC del ortologo, con el nombre de la especie sacado del simbolo.
+def _simbolo_de(anot: dict) -> tuple:
+    """Simbolo y accesion del ortologo, venga la anotacion partida o en una cabecera.
+
+    Dos caminos, porque hay dos productores. `F1` entrega el nombre de producto ya partido
+    en su propia columna, y ahi no hay nada que parsear. El otro camino es una cabecera
+    FASTA cruda, y ahi manda `alertas.partir_anotacion`: una cabecera sin parentesis no es
+    un transcripto anotado. Esa regla no se reescribe aca, se llama.
 
     `partir_anotacion` devuelve el cuerpo entero de la cabecera como simbolo —«Homalodisca
     vitripennis protein bicaudal C homolog 1-A»— porque para el cuarto campo de D48 eso
     alcanza. El recorte del organismo se hace **aca y no alla** porque es cosmetica de
     este parrafo —el organismo va en su propia frase y repetirlo se lee mal—, y
     `alertas.partir_anotacion` es codigo verificado del que cuelgan conteos publicados.
-    La regla que si es regla, la del parentesis, sigue viviendo de aquel lado.
     """
+    organismo = (anot.get("organismo") or "").strip()
+    if anot.get("simbolo"):
+        return anot["simbolo"].strip(), (anot.get("accesion") or "").strip()
     d = AL.partir_anotacion(anot.get("cabecera", ""))
-    simbolo, organismo = d["simbolo"], (anot.get("organismo") or "").strip()
+    simbolo = d["simbolo"]
     if organismo and simbolo.lower().startswith(organismo.lower()):
         simbolo = simbolo[len(organismo):].strip()
     return simbolo, d["locus"]
@@ -192,6 +210,10 @@ def validar(ficha: dict) -> None:
     """
     anot = ficha.get("anotacion")
     if anot:
+        if not anot.get("cabecera") and not anot.get("simbolo"):
+            raise FichaIncompleta(
+                "la anotacion de %r no trae ni cabecera ni simbolo: no hay por donde "
+                "saber de que gen habla" % ficha.get("locus", "?"))
         faltan = _falta(anot, CAMPOS_ANOTACION)
         if faltan:
             raise FichaIncompleta(
@@ -218,15 +240,20 @@ def estado_de(ficha: dict) -> str:
     anot = ficha.get("anotacion")
     if not anot:
         return SIN_ANOTACION_DE_GEN
-    simbolo, locus_ref = _simbolo_de(anot)
+    simbolo, ref = _simbolo_de(anot)
     # La regla de la cabecera sin parentesis, que vive en alertas.py: sin simbolo y sin
     # LOC no hay gen, hay un cromosoma.
-    if not simbolo and not locus_ref:
+    if not simbolo and not ref:
         return SIN_ANOTACION_DE_GEN
+    # El empate va antes que la reciprocidad porque dice mas: `F1` no lo resuelve y por eso
+    # no cuenta como reciproco, pero llamarlo «sin ortologo reciproco» perderia que el
+    # alineamiento existe y que lo que falta es el desempate.
+    if anot["empate"]:
+        return EMPATE_DE_ORTOLOGIA
     if not anot["reciproco"]:
         return ORTOLOGIA_NO_RECIPROCA
     bajo = simbolo.lower()
-    if not bajo or bajo == locus_ref.lower() or any(p in bajo for p in NO_INFORMATIVOS):
+    if not bajo or bajo == ref.lower() or any(p in bajo for p in NO_INFORMATIVOS):
         return ANOTACION_NO_INFORMATIVA
     return ANOTADA
 
@@ -310,15 +337,20 @@ def redactar(ficha: dict) -> dict:
         return dict(base, texto=TEXTO_DE[estado], frases=[])
 
     anot = ficha["anotacion"]
-    simbolo, locus_ref = _simbolo_de(anot)
+    simbolo, ref = _simbolo_de(anot)
     banda = anot["banda"]
+    # El parentesis con el identificador del ortologo se omite cuando es la misma accesion
+    # que ya va de fuente: repetirla no agrega nada y se lee como si fueran dos cosas.
+    quien = "%s (%s)" % (simbolo, ref) if ref and ref != anot["accesion"] else simbolo
     frases = [
-        {"texto": "El locus %s alinea con %s (%s) de %s."
-                  % (ficha["locus"], simbolo, locus_ref, anot["organismo"]),
+        {"texto": "El %s %s alinea con %s de %s."
+                  % (ficha.get("unidad") or "locus", ficha["locus"], quien,
+                     anot["organismo"]),
          "fuente": anot["accesion"]},
-        {"texto": "El alineamiento tiene %s %% de identidad y %s %% de cobertura de la "
-                  "proteina consulta, y es un par reciproco."
-                  % (_num(anot["identidad"]), _num(anot["cobertura"])),
+        {"texto": "El alineamiento tiene %s %% de identidad, con %s %% de cobertura del "
+                  "ORF y %s %% de la proteina de referencia, y es un par reciproco."
+                  % (_num(anot["identidad"]), _num(anot["cobertura_orf"]),
+                     _num(anot["cobertura_referencia"])),
          "fuente": anot["fuente_alineamiento"]},
         {"texto": "En el tramo de identidad %s la concordancia de anotacion medida entre "
                   "dos cicadelidos es %s %%, con intervalo de confianza de %s a %s sobre "
@@ -327,6 +359,11 @@ def redactar(ficha: dict) -> dict:
                      _num(banda["ic"][1]), _num(banda["n"])),
          "fuente": banda["fuente"]},
     ]
+    # Un tramo que la medicion de origen rotula no concluyente se dice. Publicar su
+    # concordancia sin esa linea es citar un numero que su propio autor no sostiene.
+    if not banda["concluyente"]:
+        frases.append({"texto": "Ese tramo esta rotulado como no concluyente.",
+                       "fuente": banda["fuente"]})
 
     for fuente, piezas in _por_fuente(ficha.get("go") or [], "termino"):
         frases.append({
@@ -358,9 +395,10 @@ def redactar(ficha: dict) -> dict:
 # fallar `test_evidencia_en_prosa.py` §4, que es el punto. El acoplamiento es a proposito:
 # es el precio de que ninguna palabra entre al parrafo sin que alguien la haya declarado.
 VOCABULARIO_DE_PLANTILLA = frozenset("""
-el la los un una de en con y a es ese par
-locus alinea alineamiento tiene identidad cobertura proteina consulta reciproco
+el la los un una de del en con y a es esta ese par no
+locus alinea alineamiento tiene identidad cobertura orf proteina referencia reciproco
 tramo concordancia anotacion medida entre dos cicadelidos intervalo confianza sobre pares
+rotulado como concluyente
 terminos ontologia genica recuperados para ortologo son
 dominios conservados anotados
 funcion gen literatura recuperada dice
