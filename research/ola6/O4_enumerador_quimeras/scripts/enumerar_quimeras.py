@@ -258,10 +258,17 @@ def tamizar_junturas(candidatos: list[dict], genes: dict) -> dict:
         # 10/9 es otra cosa. `D74` reporto justamente el aporte: 18 y 1.
         izq_nt = VENTANA - 1 - s
         aporte = min(izq_nt, largo - izq_nt)
+        # El aporte se registra **solo** para los bloques que coinciden en alguna
+        # referencia del panel. Un bloque que coincide unicamente en el genoma del vector
+        # no es riesgo: es el blanco, porque los dos genes son del insecto. Mezclarlo
+        # dejaba filas con `alerta_juntura_nueva = no` y un aporte alto al lado, que es
+        # pedirle al lector que distinga on-target de off-target comparando columnas.
+        del_panel = bool(refs - {R.DMAIDIS})
         for i in por_40mero[claves[j]]:
             d = salida.setdefault(i, {"por_largo": {}, "ventanas": set(), "aportes": []})
             d["por_largo"].setdefault(largo, set()).update(refs)
-            d["aportes"].append(aporte)
+            if del_panel:
+                d["aportes"].append(aporte)
             # Ventanas de juntura (1 a 20) que contienen enteramente a este bloque.
             for j_vent in range(1, VENTANA):
                 if j_vent - 1 <= s and s + largo <= j_vent - 1 + VENTANA:
@@ -331,7 +338,7 @@ def cuentas_de(c: dict, genes: dict, perf_q: dict, perf_izq: dict, perf_der: dic
         # cuantos bloques estan repartidos de verdad. Un bloque con aporte 1 es el gen
         # solo mas un nucleotido: existe por azar en una de cada cuatro referencias que
         # contengan al padre, asi que no se lee igual que uno repartido.
-        "aporte_del_bloque_mas_repartido": max(jj["aportes"]) if jj["aportes"] else 0,
+        "aporte_del_bloque_mas_repartido": max(jj['aportes']) if jj['aportes'] else 0,
         "bloques_fabricados_con_aporte_ge5": sum(1 for x in jj["aportes"] if x >= 5),
         # La ventana de juntura que arranca en `p` es la numero `p - (corte - 20)` del
         # 40-mero, porque su primer nucleotido es el `corte - 19` de la quimera.

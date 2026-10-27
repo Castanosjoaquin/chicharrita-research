@@ -1898,3 +1898,36 @@ línea de diseño nueva. Este es el saldo.
     elección de región en `V-ATPase B` se reabre con 24 ubicaciones candidatas en vez de
     una, y eso sí mueve una afirmación publicada hoy —«la única región admisible del gen»—
     sin mover ningún conteo.
+
+### Ola 6, cierre de `O4` (2026-10-27)
+
+23. **Cuál es el mínimo de largo por gen que tiene sentido en una quimera.** Es el agujero
+    que dejó ver el objetivo declarado, y es biológico, no de código. El mejor conteo de
+    ventanas heredadas **crece con la asimetría**: con largo total 600 el máximo es 64 con
+    un corte de 500 + 100 y cae a 46-48 en las proporciones equilibradas de 250 a 350
+    `[M]`. Así que el objetivo `cobertura_fenotipica`, tal como está escrito, premia darle
+    casi todo el largo al gen de perfil más denso —`BicC_Dm`— y dejar el fenotipo de
+    movilidad en 100 nt, que es lo contrario de para qué `D67` quiere una quimera. `[H]` El
+    parámetro que lo arregla es un mínimo por gen, pero fijarlo pide saber **cuánto ARNdc
+    de un gen hace falta para silenciarlo**, que es dato de bioensayo y no de nuestro
+    cómputo: el catálogo de `C5` registra dosis por insecto, no largo mínimo de disparador.
+    Es pregunta para el investigador y la contesta un experimento.
+24. **La grilla fina no se corrió, y no sabemos si mueve el primer puesto.** La corrida
+    publicada usa `--paso 50` y la grilla anclada a las islas, que da 3.204 combinaciones y
+    3.405 plegados. Con `--paso 1` la misma grilla pide **136.446** plegados `[M]`, que
+    entran en unas horas de esta máquina pero exceden el tope declarado de 5.000, así que
+    la corrida se detuvo y lo dijo en vez de muestrear. `[?]` Lo que no se puede afirmar es
+    que el primer puesto de la grilla gruesa sea el de la fina: el paso engruesa en los tres
+    parámetros libres a la vez, y el propio hallazgo de las islas angostas muestra que el
+    paso puede esconder exactamente lo que importa. Correrla es barato en decisión y caro
+    en tiempo, y conviene hacerlo recién cuando el mínimo por gen de la entrada 23 esté
+    fijado, porque ese mínimo recorta la grilla.
+25. **Los aciertos con un desapareo del empalme no están localizados.** El tamizado de
+    juntura de `O4` busca bloques **exactos** de 19, 20 y 21 nt que cruzan la unión, que es
+    lo que permite afirmar que un bloque es fabricado y no heredado. `mm1_21` queda fuera
+    de esa cuenta, porque un desapareo no tiene bloque contiguo que localizar — es la misma
+    limitación que declaró el paso 2 de `O3`. `[?]` Entonces no sabemos si alguna de las
+    3.204 combinaciones fabrica una coincidencia con un desapareo que el conteo exacto no
+    ve, ni en qué dirección eso movería el orden bajo `riesgo_minimo`. El criterio pesa 0,30
+    en el proyecto y `D28` declaró que el piso de 19 nt ya no tiene experimento detrás, así
+    que la cuenta exacta es el piso defendible y no el techo.
