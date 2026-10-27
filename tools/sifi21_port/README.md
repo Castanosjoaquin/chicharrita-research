@@ -156,6 +156,18 @@ python tools/sifi21_port/offtarget_21nt.py \
     --db work/offtarget_db/*.fna.gz --salida work/sifi_check/offtarget_full
 ```
 
+Los cuatro `work/sifi_check/offtarget_mm1_<gen>/`, que son el **mismo panel** con el
+criterio de un desajuste y van uno por gen —los necesita `ranking.py ranking --mm1`, y por
+él `research/ola2/W7_ranking/ranking.json`—, se construyen así:
+
+```bash
+for g in MP_MRFV CP_MRFV BicC_Dm ATPaseD_Dm; do
+  python tools/sifi21_port/offtarget_21nt.py --mm1 \
+      --consulta work/sifi_check/${g}_full.fasta \
+      --db work/offtarget_db/*.fna.gz --salida work/sifi_check/offtarget_mm1_${g}
+done
+```
+
 Y el de `sifi_v2`, con los comandos de `C7` §9. `test_ranking.py` comprueba el panel del
 primero contra la lista de accesiones de `§4` **antes** de leer ninguna ancla, y si no
 coincide dice qué referencia sobra o falta en vez de dejar que el número cambie solo.
