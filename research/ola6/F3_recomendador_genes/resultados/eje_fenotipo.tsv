@@ -1,0 +1,37 @@
+id	especie	gen	familia_id	mecanismos	etiqueta_de_ausencia	entra_al_orden_por_fenotipo	marcador_evidencia	frases_de_apoyo	evidencia_negativa_medida	tiene_ventanas_21nt	nota
+CI-01	Scaphoideus titanus	Rpn6 (segun los autores)	CI	letalidad|reproduccion		si	E	supervivencia menor que dsGFP // ovarios sin huevos		si	
+CI-02	Euscelidius variegatus	Rpn6 (segun los autores)	CI	letalidad|reproduccion		si	E	supervivencia menor que dsGFP // progenie 0,03 ninfas		si	el efecto es de la hembra segun los cruzamientos de la propia fuente
+CI-03	Scaphoideus titanus	ATP synthase beta	CI	reproduccion		si	E	morfologia de huevos alterada	SIN efecto sobre la supervivencia	si	mismo gen que CI-04 en otra especie, con el desenlace de supervivencia opuesto: contradiccion declarada, no promediada
+CI-04	Euscelidius variegatus	ATP synthase beta	CI	letalidad		si	R	caida significativa de la supervivencia		no	mismo gen que CI-03 en otra especie, con el desenlace opuesto
+CI-05	Euscelidius variegatus	muscle actin	CI	letalidad		si	R	caida significativa de la supervivencia		no	el gen es actina muscular, pero `resultado` mide supervivencia y no movilidad: no se asigna movilidad por el nombre del gen
+CI-06	Euscelidius variegatus	ATP synthase beta (efecto sobre el patogeno)	CI	transmision		si	R	menos adquisicion de fitoplasma		no	la fuente mide el efecto sobre el patogeno, no sobre el insecto
+CI-07	Euscelidius variegatus	chc (clathrin heavy chain)	CI	transmision		si	R	reduce la colonizacion de intestino y glandulas salivales // menos transmision a haba		no	la unica fila del catalogo con transmision a planta medida
+CI-08	Euscelidius variegatus	uk1_LRR	CI		fenotipo_invertido	no	R	silenciarlo AUMENTO la colonizacion del vector por el fitoplasma		no	silenciarlo empeora el problema: fuera del orden, sin puntaje negativo
+CI-09	Euscelidius variegatus y Scaphoideus titanus	natterin y legumain	CI	transmision		si	R	reduccion significativa de la multiplicacion del fitoplasma	ninguno de los tres genes afecto la supervivencia	no	fila que agrupa tres genes; la ausencia de efecto en supervivencia es medida
+CI-10	Nephotettix cincticeps	Nc-TnC (troponina C)	CI	letalidad|reproduccion		si	R	baja la supervivencia // la fecundidad		si	`resultado` tambien reporta caida de la capacidad de alimentacion y del peso, que no entran en ninguno de los cuatro mecanismos
+CI-11	Nephotettix cincticeps	NcLac2 y NcLac5	CI	letalidad		si	R	alta mortalidad		no	fila que agrupa NcLac2 y NcLac5; el desenlace descrito es del primero
+CI-12	Nephotettix cincticeps	NcLac2 (RNAi parental)	CI	letalidad		si	R	alta mortalidad y despigmentacion		no	RNAi parental: el desenlace se mide en la progenie, no en el inyectado
+CI-13	Nephotettix cincticeps	NcHig	CI		fenotipo_invertido	no	R	silenciarlo AUMENTA la infeccion del sistema nervioso		no	silenciarlo empeora el problema: fuera del orden, sin puntaje negativo
+DE-01	Peregrinus maidis	V-ATPase B y V-ATPase D	DE	letalidad|reproduccion		si	E	mayor mortalidad y menor fecundidad		no	fila que agrupa V-ATPase B y V-ATPase D
+DE-02	Peregrinus maidis	Ruvbl1	DE	reproduccion		si	E	sin ovocitos maduros a 8 y 12 dias		si	
+DE-03	Peregrinus maidis	tra-2 (transformer-2)	DE	reproduccion		si	R	las hembras se transforman en pseudomachos // los machos quedan esteriles		no	esterilidad de los dos sexos por vias distintas
+DE-04	Peregrinus maidis	PmABCB_160306_3, PmABCE_118332_5, PmABCF_24241_1	DE	letalidad|reproduccion		si	R	alta mortalidad en menos de 5 dias // desarrollo ovarico impedido		no	fila que agrupa tres transportadores ABC con desenlaces DISTINTOS: la letalidad es de ABCE y ABCF, la reproduccion es de ABCB
+DE-05	Peregrinus maidis	XPO1 (exportina 1)	DE	letalidad|reproduccion|transmision		si	R	menor supervivencia y reproduccion de las hembras // menor acumulacion del rabdovirus MMV		si	la unica fila con los tres mecanismos medidos a la vez
+DE-06	Delphacodes kuscheli	eth y burs-alpha	DE		sin_fenotipo_publicado	no	E	ver fuente para la magnitud por especie		no	el catalogo dice que el diseno es el mismo que en D. maidis pero no trae la magnitud: asignarle la letalidad de DM-05 y DM-06 seria inferirla de otra fila
+DM-01	Dalbulus maidis	BicC	DM	reproduccion		si	E	oviposicion casi nula		no	
+DM-02	Dalbulus maidis	V-ATPase B	DM	letalidad|movilidad		si	E	supervivencia 16 % a dia 4 // alas deformes		no	la deformacion de alas es el unico apoyo de movilidad en todo el catalogo
+DM-03	Dalbulus maidis	V-ATPase D	DM	letalidad		si	E	supervivencia 18 % a dia 4	efecto en alas no significativo	no	mismo gen que DM-02 en otra subunidad: aca el efecto en alas se midio y NO dio
+DM-04	Dalbulus maidis	Dmai-dsRNase-2	DM		potenciador_de_entrega	no	E	mejora la respuesta al ARNdc		no	no es un blanco por su fenotipo: es un co-blanco que mejora la entrega. Sin fenotipo propio, no compite en el orden
+DM-05	Dalbulus maidis	eth	DM	letalidad		si	E	supervivencia 10 % a dia 4		si	
+DM-06	Dalbulus maidis	burs-alpha	DM	letalidad		si	E	supervivencia 10 % a dia 4		si	
+HE-01	Nilaparvata lugens	Bicaudal-C	HE	reproduccion		si	R	papel vital en oogenesis		no	cualitativo: la fuente no trae una medicion
+HE-02	Nezara viridula	V-ATPase A	HE	letalidad		si	R	45 % de mortalidad		no	
+HE-03	Halyomorpha halys	JHAMT y vitelogenina	HE		sin_fenotipo_publicado	no	R	silenciamiento por varias vias de entrega		no	reporta que el silenciamiento ocurre, no que produzca un desenlace
+HE-04	Diaphorina citri	catepsina D, quitina sintasa, IAP	HE		sin_fenotipo_atribuible_al_blanco	no	E	el knockdown NO correlaciona con la dosis		no	la propia fuente dice que el control de dsGFP a 500 y 1000 ng/uL ya mata mas que el de sacarosa: hay 64 % de mortalidad y no es atribuible al blanco
+HE-05	Rhodnius prolixus	BicC	HE	reproduccion		si	R	necesario para el epitelio folicular		no	cualitativo: la fuente no trae una medicion
+HE-06	Homalodisca vitripennis	actina	HE		sin_fenotipo_publicado	no	R	efecto sobre el ARNm de actina		no	el desenlace reportado es molecular, no fenotipico
+HE-07	Nephotettix cincticeps	NcSP75	HE	letalidad|reproduccion		si	R	longevidad a la mitad // menos huevos		no	la FUNCION es una proteina salival de la ingestion de floema, lo que invita a leerlo como transmision; `resultado` mide longevidad, desarrollo y huevos. Se asigna por el resultado
+HE-08	Nephotettix cincticeps	dosis alta de dsRNA (control)	HE		sin_fenotipo_atribuible_al_blanco	no	R	mortalidad alta por la dosis, no por el blanco		no	control negativo que el propio catalogo trae
+HE-09	Circulifer haematoceps	hexamerina	HE		fenotipo_fuera_de_los_cuatro	no	R	necesaria para la respuesta inmune		no	silenciarla bajaria la inmunidad del vector frente a Spiroplasma; el signo para nuestro objetivo no es determinable con lo que la fuente dice
+HE-10	Amrasca biguttula	varios	HE		sin_fenotipo_publicado	no	R	demostracion de RNAi en un cicadelido del algodon		no	la fila documenta que el RNAi funciona en la especie, sin blanco ni desenlace
+HE-11	Graminella nigrifrons	respuesta inmune	HE		sin_fenotipo_publicado	no	R	RNAi funcional en la interaccion con el virus		no	no reporta un desenlace medido; la interaccion con el virus no es, por si sola, una reduccion de transmision medida

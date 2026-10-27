@@ -1400,3 +1400,14 @@ proteoma anotado y transcriptos, y leerlo de las dos maneras contra la misma ref
 *M. quadrilineatus* lo cumple. Da miles de pares, no necesita curación manual y la comparación es
 pareada gen a gen. Es el patrón a usar la próxima vez que haya que medir cuánto cuesta un paso del
 pipeline: buscar dónde existe la versión curada del mismo dato.
+- **La suma ponderada sobre los 36 candidatos del recomendador de genes, descartada antes de
+  escribirla** (`F3`, ola 6, `D87`). Es la forma obvia: normalizar los cinco ejes a [0, 1],
+  ponderarlos y sumar, con un orden único de 36 filas al final. No se hace porque **28 de las
+  36 filas no tienen el eje de off-target calculado** y ninguna tiene el de expresión en
+  tejido expuesto `[M]`, así que la suma obliga a imputar el hueco, y toda imputación —cero,
+  la media, el peor caso— fabrica un número que la fuente no da y lo publica con la misma
+  tipografía que los medidos. Se reemplaza por **cohortes**: los candidatos se agrupan por
+  qué ejes tienen calculados y se ordenan dentro de su cohorte, sin comparar entre cohortes.
+  El precio es que no hay un único primer puesto, y es un precio que conviene pagar: el
+  repositorio ya midió que rellenar un hueco con lo que parece razonable —elegir el gen por
+  nombre en vez de por ortología recíproca— movió el conteo de ventanas eficientes un 65 %.

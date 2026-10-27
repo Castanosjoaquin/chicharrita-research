@@ -1,0 +1,39 @@
+{
+ "candidatos_en_los_dos_objetivos": [
+  "CI-01",
+  "CI-02",
+  "CI-10",
+  "DE-01",
+  "DE-04",
+  "DE-05",
+  "HE-07"
+ ],
+ "criterio": "el mismo de D87 y de 03_orden.py; los puntajes NO se recalculan, solo cambia quien es elegible",
+ "objetivos": {
+  "esterilizar": {
+   "elegibles": 13,
+   "glosa": "reducir la poblacion entre generaciones, sin cortar la transmision de la temporada en curso (es la lectura del fenotipo de BicC que el investigador confirmo)",
+   "mecanismo_exigido": "reproduccion",
+   "primer_puesto_cohorte_A": [
+    "CI-01",
+    "CI-02",
+    "CI-03",
+    "DE-01",
+    "DM-01"
+   ]
+  },
+  "matar": {
+   "elegibles": 16,
+   "glosa": "reducir la poblacion matando al vector dentro de la temporada",
+   "mecanismo_exigido": "letalidad",
+   "primer_puesto_cohorte_A": [
+    "DM-02",
+    "DM-03",
+    "DM-05"
+   ]
+  }
+ },
+ "pregunta": "¿cambia el orden de los candidatos del insecto segun el objetivo?",
+ "regla_de_lectura_declarada_antes": "cambia si y solo si el grupo del primer puesto de la cohorte A no es el mismo conjunto en los dos objetivos",
+ "respuesta": "SI, el orden cambia segun el objetivo"
+}

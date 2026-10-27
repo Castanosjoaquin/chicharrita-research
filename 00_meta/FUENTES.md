@@ -536,3 +536,32 @@ cada carpeta de `research/ola3/`. Acá van las que cambian lo que el proyecto pu
   leida completa en la ola 2 y la segunda como leida completa en `C5`; de la segunda, lo que `O2`
   abrio es el registro de la accesion `AGJ51963.1`, no el articulo. Todo fenotipo que `O2` cite
   va `[R]` y nombra al catalogo como intermediario.
+- **Eje de esencialidad del recomendador de genes** (`F3`, ola 6, 2026-10-27). Cinco fuentes
+  abiertas fuera del corpus, fichadas como `P13` a `P17` en
+  `research/ola2/W1_papers/papers.json`, más una ficha de base de datos. Sostienen 17 de los 25
+  candidatos del catálogo de `C5`; las otras 8 quedaron declaradas sin fuente abierta.
+  **Wang, Zhao, Wang, Liu, Lu y Guo 2024**, *Insects* 15(7):515
+  (doi 10.3390/insects15070515) — V-ATPasa, cuatro candidatos. **Ulrich, Dao, Majumdar y
+  colaboradores 2015**, *BMC Genomics* 16:674 (doi 10.1186/s12864-015-1880-y) — proteasoma 26S
+  y citoesqueleto. **Buer, Dönitz, Milner y colaboradores 2024**, *Pest Management Science*
+  81(2):1026-1036 (doi 10.1002/ps.8505) — fosforilación oxidativa, clatrina y ABCE1, más apoyo
+  para V-ATPasa y proteasoma. **Pascual, Vilardo, Taibo, Sabio y García y Rivera Pomar 2020**,
+  preprint de *bioRxiv* (doi 10.1101/2020.02.14.949222) — Bicaudal-C en *Rhodnius prolixus*, la
+  única del eje en un hemíptero; **se abrió el preprint y es el que se cita**, no la versión
+  publicada en *Development Genes and Evolution* 2021 (doi 10.1007/s00427-021-00673-0).
+  **Loveall y Deitcher 2010**, *BMC Developmental Biology* 10:92
+  (doi 10.1186/1471-213X-10-92) — bursicón, lectura parcial.
+  **Ficha de base de datos, no artículo:** InteractiveFly / Society for Developmental Biology,
+  entrada del gen *Ecdysis triggering hormone*
+  (`sdbonline.org/sites/fly/dbzhnsky/ecdhor1.htm`, leída el 2026-10-27). De ahí sale el 98 % de
+  mortalidad del nulo de `eth` en *Drosophila melanogaster* y el nombre del fenotipo
+  («buttoned-up»). **La fuente primaria que esa ficha cita, Park y colaboradores 2002 en
+  *Development*, NO se abrió: devolvió HTTP 403.** El dato se cita de la ficha secundaria, que
+  es lo que se leyó, y el pendiente queda anotado en `PREGUNTAS_ABIERTAS.md`.
+- **Fuentes que esta línea intentó abrir y no pudo**, y que por eso no se citan en ningún
+  número: Park y colaboradores 2002 (*Development*, HTTP 403); el trabajo de `Laccase2` en
+  *Bemisia tabaci* vía DOAJ (HTTP 403); la revisión de *Frontiers in Physiology*
+  doi 10.3389/fphys.2020.591569 (el PDF llegó como binario ilegible); la ficha de FlyBase de
+  `pontin` (`FBgn0040078`, descargada vacía); y Collier y colaboradores 2000 (*Genetics*), que
+  según la búsqueda describe alelos letales recesivos de `emb`/XPO1. Están en
+  `PREGUNTAS_ABIERTAS.md` como pendientes de apertura.
