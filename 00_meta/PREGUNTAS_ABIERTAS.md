@@ -1650,3 +1650,29 @@ línea de diseño nueva. Este es el saldo.
    que *«los IDs están hechos por el que hizo el transcriptoma, no coinciden los nombres, no
    vas a poder encontrar, pero sí por identidad o homología»* `[R]`. O sea que la entrada es
    alineamiento y hay que presupuestar esa pasada, no leer una anotación.
+
+### Ola 6 (2026-10-26)
+
+5. **La secuencia de `V-ATPase B` tiene una segunda vía que no espera el zip.** La entrada 1 de
+   esta sección la dejó como «puede salir del transcriptoma que va a mandar», y
+   `docs/plan_cierre/PLAN_CIERRE.md` §8 la clasifica como insumo bloqueado. Hay otra ruta con lo
+   que ya está en disco: los **tres transcriptomas públicos de *Dalbulus maidis*** están como
+   bases de búsqueda en `work/C11/` (`db_GHCC01`, `db_GCWP01`, `db_GITV01`), y la V-ATPasa es un
+   complejo conservado con proteína disponible en parientes —incluido *Peregrinus maidis*
+   (`DE-01`), que tiene las dos subunidades con bioensayo publicado—. O sea que la subunidad B se
+   puede **intentar recuperar por homología a nivel proteína** antes de que llegue el archivo. Si
+   sale, desbloquea la quimera; si no sale, el resultado útil es saber que esos transcriptomas no
+   la contienen, que es la misma respuesta que `C11` necesita para `eth` y `burs-alpha` `[H]`.
+6. **Esta máquina no puede correr nada de lo que necesita alineador o plegado.** Verificado con
+   `command -v`: no hay `blastn`, `tblastn`, `makeblastdb`, `miniprot`, `diamond`, `bowtie` ni
+   `bowtie2`, no está el módulo `RNA` de ViennaRNA ni `RNAplfold`/`RNAfold`, y el `python3` del
+   PATH es 3.9.6 con numpy 2.0.2 `[M]`. `C13` corrió con Python 3.13.15, numpy 2.5.4 y ViennaRNA
+   2.7.2, y las bases de `work/C11/` se construyeron en otra máquina. No es una pregunta de
+   método sino de asignación: hay tareas que sólo corren en la máquina del equipo que tiene el
+   entorno, y conviene saber cuál es antes de repartir trabajo.
+7. **Hasta dónde llega la banda de contexto de una quimera con otras regiones.** Los 61 cambios
+   de veredicto en heredadas y el máximo de 66 nt son de las doce quimeras de las cuatro regiones
+   vigentes. El techo derivado del código es 72 nt corriente abajo y 59 corriente arriba, y no se
+   violó en 204 ventanas cambiadas de cuatro tablas distintas, pero **con un gen nuevo —`V-ATPase
+   B`— no sabemos cuántas heredadas se van a mover ni en qué dirección** `[?]`. Se mide al correr,
+   no se estima.

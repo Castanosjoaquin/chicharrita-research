@@ -1238,3 +1238,29 @@ descartamos **nosotros** al procesarla.
   inventario y ya nos pasó una vez con el `RNAplfold` del instalador de si-Fi2015: **antes de
   declarar que algo falta, abrir el archivo donde estaría**. Un hueco declarado sin verificar
   cuesta una línea de trabajo que no hacía falta.
+
+## Ola 6 (2026-10-26): el atajo de heredar la validación de las partes en una quimera
+
+- **Dar por válido que una quimera hereda la validación de sus dos partes salvo en la unión.
+  Descartado, y el número que lo descarta ya estaba en el repositorio.** La intuición es
+  razonable y la veníamos usando al hablar de la feature: si las dos regiones ya se validaron,
+  el único lugar donde la molécula puede dar distinto es el empalme, donde la ventana toma una
+  porción de cada gen. **Para el eje de riesgo es cierto y es un resultado útil**: el estado de
+  off-target de una ventana depende sólo de su secuencia, así que toda heredada es base por
+  base una ventana de su región de origen y lo único nuevo son los 40 nt que cruzan cada unión
+  — `C13` §6 lo usa para tamizar **1.160 ventanas en vez de 5.760** con resultado idéntico
+  `[M]`. **Para el eje de eficacia es falso.** La eficiencia depende de la accesibilidad, que
+  el original calcula sobre un tramo terminal de 8 nt dentro de una ventana de plegado de 80, y
+  esa ventana cruza la unión: el techo es asimétrico —hasta 72 nt corriente abajo y 59
+  corriente arriba `[M]` el número, `[H]` la derivación, `C13` §4—. En las doce quimeras de las
+  regiones vigentes la cuenta queda así: **4** ventanas de juntura eficientes contra **61**
+  ventanas heredadas que cambiaron de veredicto —31 pierden eficiencia, 30 la ganan, máximo 66
+  nt de distancia a la unión— y en diez de las doce *todo* el Δ viene de la banda de contexto y
+  nada del empalme `[M]`
+  (`research/ola3/C13_quimeras_region_recomendada/resultados/quimeras_ventanas_cambiadas_vigentes_corregido_vienna.tsv`).
+  Que los 61 casi se cancelen, y por eso el Δ total quede entre −4 y +3, es un resultado de
+  estas cuatro regiones y no una propiedad de las quimeras: no autoriza a saltear el recálculo.
+  **La versión que queda en pie, y que es la que va al entregable: el riesgo se hereda y la
+  eficacia se recalcula, con las dos cuentas por separado.** La lección es la misma que `C13`
+  ya había dejado y que el atajo repetía: sumar los dos conteos y agregarle las del medio erra
+  por hasta 4 ventanas y con el signo equivocado.
