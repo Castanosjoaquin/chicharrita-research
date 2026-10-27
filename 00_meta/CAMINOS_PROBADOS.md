@@ -1475,3 +1475,30 @@ una sola porque todos los objetos del inventario eran, además, candidatos del r
   `buenos_limpios` y nada mas `[M]`. Ese archivo es el unico versionado con la columna
   `off_target_max`, asi que para cualquier otra entrada `hay_off` es falso y la constante no
   tiene efecto alguno `[M]`.
+
+## Darles bandera de salida a los 42 generadores con el defecto latente — descartado por relación riesgo/beneficio (2026-10-27, entrada 91)
+
+El barrido del issue **#37** midió que **43** módulos del repositorio escriben en el árbol
+versionado sin poder redirigir la salida `[M]`. Se arreglaron los **cuatro** que el censo de
+`R11` corre y se descartó tocar los otros **42** —9 de la ola 3, 10 de la 4, 9 de la 5 y 14 de
+la 6—.
+
+**Por qué el descarte.** Ninguno de los 42 tiene el defecto **completo**: la tercera parte
+—que alguien los corra con parámetros distintos de los publicados— no se da, porque nadie los
+censa. Lo que el defecto cuesta cuando se completa está medido (entrada 90: dos archivos de
+`M5` reemplazados por una corrida de cincuenta sorteos), y lo que cuesta prevenirlo en 42
+scripts de líneas ya cerradas es editar 42 archivos que hoy producen cifras publicadas, por
+una bandera que nadie va a usar. Un `git diff` de 42 scripts de resultados publicados es
+exactamente el tipo de cambio que este repositorio evita cuando no mueve nada.
+
+**Lo que quedó en su lugar.** La lista completa, con las tres partes del defecto por separado,
+en `research/ola6/R12_corridas_pendientes/resultados/auditoria_escrituras.tsv`, y el auditor
+que la regenera. La regla queda para lo que venga: **un generador que alguien pueda querer
+correr sin publicar necesita saber dónde escribir**, y antes de meter uno de esos 42 a un
+censo hay que darle la bandera primero.
+
+`[H]` La lección de método es sobre cómo se cuenta un defecto. Contar «43 módulos con el
+defecto» habría pedido 43 arreglos; contar sus tres partes por separado mostró que los
+accionables eran **cuatro** y que de esos cuatro **uno solo** había perdido datos. Un
+verificador que no separa «tiene la forma del problema» de «está causando el problema»
+convierte un arreglo de cuatro archivos en una migración de cuarenta y tres.

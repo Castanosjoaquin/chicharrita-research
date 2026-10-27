@@ -59,6 +59,13 @@ SALTAR = (".git", "__pycache__", ".venv", "node_modules")
 SALTAR_RUTA = (".claude/worktrees",)
 
 # Los generadores declarados, con el comando exacto con el que se los intenta correr.
+#
+# **Todo comando que escriba manda su salida a `work/R11_censo/`.** El censo verifica si un
+# generador termina, no publica, y un censo que deja su salida de prueba donde vive la
+# salida publicada es el defecto que `sensibilidad_reparto.py` pago con dos archivos de M5
+# reemplazados por una corrida de cincuenta sorteos (issue #37, entrada 90 de
+# `PREGUNTAS_ABIERTAS.md`). `tabla_alertas.py` es la excepcion que queda y esta declarada
+# abajo, en su propia entrada.
 # `produce` dice que region puede nacer ahi; `insumo` es lo que ese comando necesita y que
 # `work/` no versiona.
 GENERADORES = [
@@ -92,17 +99,23 @@ GENERADORES = [
     {"nombre": "M6 tabla_alertas.py",
      "ruta": "research/ola4/M6_alertas/scripts/tabla_alertas.py",
      "comando": [sys.executable, "research/ola4/M6_alertas/scripts/tabla_alertas.py"],
+     # El unico que sigue escribiendo en el arbol versionado, y se deja asi a proposito:
+     # **es el generador del inventario**, no hay segundo lugar donde el inventario tenga
+     # sentido, y corre con sus defaults, asi que reproduce lo publicado. Verificado: tras
+     # correrlo, `git status` de `research/ola4/M6_alertas/resultados/` queda limpio `[M]`.
      "produce": ("el inventario mismo; pasa por la compuerta via las anclas de M5, que "
                  "llaman a ranking_v2.recomendadas()"),
      "insumo": "work/m6_alertas/identidad_por_ventana.tsv y work/W5/ref"},
     {"nombre": "M6 compuerta.py",
      "ruta": "research/ola4/M6_alertas/scripts/compuerta.py",
-     "comando": [sys.executable, "research/ola4/M6_alertas/scripts/compuerta.py"],
+     "comando": [sys.executable, "research/ola4/M6_alertas/scripts/compuerta.py",
+                 "--salida", "work/R11_censo/m6_compuerta.json"],
      "produce": "nada: itera sobre las regiones que YA estan en el inventario",
      "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)"},
     {"nombre": "M6 umbral_compuerta.py",
      "ruta": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
-     "comando": [sys.executable, "research/ola4/M6_alertas/scripts/umbral_compuerta.py"],
+     "comando": [sys.executable, "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
+                 "--salida", "work/R11_censo/m6_umbral_compuerta.json"],
      "produce": "nada: el mismo recorrido, con los dos umbrales de D28",
      "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)"},
     {"nombre": "M5 sensibilidad_reparto.py",
@@ -122,7 +135,8 @@ GENERADORES = [
     {"nombre": "O3 01_region_vatpase_b.py",
      "ruta": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
      "comando": [sys.executable,
-                 "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py"],
+                 "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
+                 "--resultados", "work/R11_censo/o3"],
      "produce": ("la region candidata de V-ATPase B; arma la region a mano a proposito "
                  "(D74) porque es insumo de una medicion y no una recomendacion"),
      "insumo": "work/o3 y work/W5/ref"},

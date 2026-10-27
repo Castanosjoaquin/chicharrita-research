@@ -2807,3 +2807,55 @@ criterio. Detalle en `research/ola6/R13_brecha_c12/REPORT.md`.
     publico» de «dónde escribo cuando me están probando» no se puede censar sin riesgo. Lo
     que lo hizo invisible durante tres corridas del censo es justamente lo que el censo
     estaba midiendo: que el generador fallara.
+
+91. **Barrido del defecto de la entrada 90 en el resto del repositorio: ninguno más estaba
+    perdiendo datos, y la razón no es la que parecía.** La entrada 90 dejó el patrón y esto
+    lo busca en todo el árbol, con un auditor que lo mide en vez de una lista a mano
+    (`research/ola6/R12_corridas_pendientes/scripts/auditar_escrituras.py`). De **64 módulos
+    que escriben y declaran su destino**, **43 escriben en el árbol versionado sin poder
+    redirigir la salida** `[M]`. Pero el conteo que importa es otro:
+
+    | | módulos |
+    | --- | --- |
+    | con riesgo de pérdida (el censo les cambia parámetros) | **0** |
+    | regeneración benigna (el censo los corre con sus defaults) | 1 |
+    | latentes (nadie los censa todavía) | 42 |
+
+    **La tercera parte del defecto no es «lo corre el censo», y ahí estaba el error de
+    planteo.** Los cuatro generadores censados que escribían en versionado sin bandera —los
+    tres de `M6` y el de `O3`— el censo los corre **con sus defaults**, así que lo que
+    escribían era exactamente lo que publicarían: regeneraban el mismo archivo. El único que
+    tenía el defecto completo era `sensibilidad_reparto.py`, porque el censo le pasaba
+    `--muestras 50`, que **sí** mueve el resultado. O sea que el riesgo no lo crea escribir
+    en versionado sin bandera: lo crea escribir en versionado sin bandera **y** que alguien
+    te corra con un parámetro distinto del publicado. Verificado corriendo los cuatro: los
+    tres de `M6` dejan `git status` limpio, y el de `O3` **no** —reescribe
+    `region_vatpase_b.json` en cada corrida, sin mover ninguna cifra, pero dejando el árbol
+    sucio y un `git status` posterior al censo que parece un cambio de resultados `[M]`—.
+
+    Arreglados los cuatro del censo: `compuerta.py` y `umbral_compuerta.py` tienen `--salida`
+    (no tenían `argparse`), `01_region_vatpase_b.py` tiene `--resultados`, y el censo manda
+    las tres a `work/R11_censo/`. Tras una corrida completa del censo, **ningún
+    `resultados/` del árbol queda tocado** `[M]`. El quinto, `tabla_alertas.py`, se deja
+    escribiendo donde escribe y queda declarado en la propia lista del censo: **es el
+    generador del inventario**, no hay un segundo lugar donde un inventario tenga sentido, y
+    corre con sus defaults.
+
+    Los **42 latentes** —9 de la ola 3, 10 de la 4, 9 de la 5 y 14 de la 6— **no se
+    tocaron**. No tienen el defecto completo: nadie los corre con parámetros de prueba.
+    `[H]` Y tocar 42 scripts de líneas ya cerradas para agregarles una bandera que nadie usa
+    es más riesgo que beneficio; lo que sí conviene es la regla para lo que venga: **un
+    generador que alguien pueda querer correr sin publicar necesita saber dónde escribir**, y
+    la lista está en `resultados/auditoria_escrituras.tsv` para cuando a uno de esos 42 le
+    toque entrar a un censo.
+
+    `[H]` Y dos lecciones del auditor mismo, que son del tipo que este archivo viene
+    juntando. Primera: `git check-ignore` sobre `pipeline/salida` contesta **«no ignorado»**
+    aunque el `.gitignore` lo ignore en su línea 16, porque el patrón termina en `/` y el
+    directorio **no existe en disco**; con la barra final contesta «ignorado». Preguntar una
+    sola vez daba cinco falsos positivos, los cinco del `pipeline/`, que es justo el
+    directorio que `D61` declara ignorado. Segunda: `Path(__file__).parent / "salida"`
+    resuelto contra la raíz del repositorio en vez de contra el directorio del script
+    convertía esos mismos cinco en «escribe en versionado». Las dos son del mismo tipo que
+    la de `command -v` (entrada 54): **la herramienta contestó con precisión una pregunta
+    que no era la que había que hacerle.**

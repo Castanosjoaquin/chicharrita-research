@@ -168,6 +168,17 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--largo", type=int, default=LARGO)
+    # `--resultados` existe por el issue #37. El censo de generadores de `R11` corre este
+    # script para ver si termina, y **cada corrida reescribe `region_vatpase_b.json`**: no
+    # mueve ninguna cifra —verificado, las cuatro diferencias son el nombre de la consulta,
+    # dos separadores de ruta de Windows y la version de Python— pero deja el arbol sucio y
+    # hace que un `git status` despues del censo parezca un cambio de resultados. Es el
+    # defecto que `sensibilidad_reparto.py` pago mas caro, con dos archivos de M5
+    # reemplazados (entrada 90 de PREGUNTAS_ABIERTAS.md).
+    ap.add_argument("--resultados", type=Path, default=None,
+                    help="directorio de salida; el default es el del bloque, que es el que "
+                         "se versiona. Una corrida que no sea para publicar deberia "
+                         "escribir en work/.")
     a = ap.parse_args(argv)
 
     # §2.4: el panel de seis, con la humana a 1,00. Se fija ANTES de pedir los pesos.
@@ -262,8 +273,11 @@ def main(argv=None) -> int:
               % (corto, d["peso"], d["ventanas_perfecto_21"],
                  d["ventanas_perfecto_ge19"], d["ventanas_mm1_21"]))
 
-    RESULTADOS.mkdir(parents=True, exist_ok=True)
-    (RESULTADOS / "region_vatpase_b.json").write_text(json.dumps({
+    # Una ruta relativa se resuelve contra la raiz del repositorio y no contra el
+    # directorio de trabajo de quien llama: el censo de `R11` la pasa relativa.
+    destino = (RAIZ / a.resultados) if a.resultados else RESULTADOS
+    destino.mkdir(parents=True, exist_ok=True)
+    (destino / "region_vatpase_b.json").write_text(json.dumps({
         "paso": "O3 paso 1 — region de V-ATPase B segun PREREGISTRO.md §2",
         "consulta": consulta, "cds_nt": cds_nt, "ventanas": n,
         "eficientes_cds": int(efi.sum()),
@@ -302,7 +316,7 @@ def main(argv=None) -> int:
         "tamizados": [str(p.relative_to(RAIZ)) for p in tamizados],
         "python": sys.version.split()[0],
     }, indent=2, ensure_ascii=False), encoding="utf-8")
-    print("\nescrito en %s" % (RESULTADOS / "region_vatpase_b.json"))
+    print("\nescrito en %s" % (destino / "region_vatpase_b.json"))
     return 0
 
 

@@ -250,7 +250,56 @@ papers por locus, y crearla es una corrida de `F1` ampliada o una fuente nueva.
 **Las cinco filas nuevas del inventario, sin firmar.** Cuatro de `V-ATPase B`, una de
 `eth_Dm` 194-393 y una de juntura. Ninguna la firma el motor.
 
-## 12. Cómo se reproduce
+## 12. El barrido del defecto de escritura en el resto del repositorio
+
+La corrección del §4 dejó a la vista un defecto que, mientras el generador fallaba, estaba
+invisible: `sensibilidad_reparto.py` escribe en un directorio versionado y no tenía cómo
+mandar la salida a otro lado, así que la primera corrida del censo que no falló reemplazó las
+dos cifras publicadas de `M5` con una corrida de cincuenta sorteos. `scripts/auditar_escrituras.py`
+busca el mismo patrón en todo el árbol, con tres partes que tienen que darse juntas: escribir
+en un directorio **versionado** —lo decide `git check-ignore`, no una lista nuestra—, **no**
+aceptar una bandera de salida, y que alguien lo corra **con parámetros que cambian el
+resultado**.
+
+De **64 módulos que escriben y declaran su destino**, **43 cumplen las dos primeras** `[M]`.
+Pero el conteo que decide es el de la tercera:
+
+| | módulos |
+| --- | --- |
+| con riesgo de pérdida (el censo les cambia parámetros) | **0** |
+| regeneración benigna (el censo los corre con sus defaults) | 1 |
+| latentes (nadie los censa todavía) | 42 |
+
+**La tercera parte no es «lo corre el censo», y ahí estaba el error de planteo.** Los cuatro
+generadores censados que escribían en versionado sin bandera —los tres de `M6` y el de `O3`—
+el censo los corre con sus **defaults**, así que escribían exactamente lo que publicarían. El
+único con el defecto completo era `sensibilidad_reparto.py`, por el `--muestras 50`. El riesgo
+no lo crea escribir sin bandera: lo crea eso **más** que alguien te corra con un parámetro
+distinto del publicado.
+
+Verificado corriendo los cuatro: los tres de `M6` dejan `git status` limpio; el de `O3` **no**
+—reescribe `region_vatpase_b.json` en cada corrida sin mover ninguna cifra, pero dejando el
+árbol sucio—. Los cuatro quedaron con bandera (`--salida` en los dos de `M6` que no tenían
+`argparse`, `--resultados` en el de `O3`) y el censo las manda a `work/R11_censo/`: tras una
+corrida completa, **ningún `resultados/` del árbol queda tocado** `[M]`. El quinto,
+`tabla_alertas.py`, se deja como está y queda declarado en la lista del censo: es el generador
+del inventario, no hay un segundo lugar donde un inventario tenga sentido.
+
+Los **42 latentes** no se tocaron, y es deliberado: no tienen el defecto completo, y
+modificar 42 scripts de líneas cerradas para agregarles una bandera que nadie usa es más
+riesgo que beneficio. La lista queda en `resultados/auditoria_escrituras.tsv` para cuando a
+uno de ellos le toque entrar a un censo. La regla para lo que venga: **un generador que
+alguien pueda querer correr sin publicar necesita saber dónde escribir.**
+
+Y dos cosas del auditor que vale dejar escritas, porque son del tipo que este informe viene
+juntando. `git check-ignore` sobre `pipeline/salida` contesta **«no ignorado»** aunque el
+`.gitignore` lo ignore, porque el patrón termina en `/` y el directorio no existe en disco;
+con la barra final contesta «ignorado». Y `Path(__file__).parent / "salida"` resuelto contra
+la raíz en vez de contra el directorio del script convertía esos mismos cinco `pipeline/*.py`
+en falsos positivos. Las dos son de la familia de `command -v`: **la herramienta contestó con
+precisión una pregunta que no era la que había que hacerle.**
+
+## 13. Cómo se reproduce
 
 Desde la raíz, con el entorno `w5bio` (es el único con todo: §1).
 
@@ -267,6 +316,8 @@ $E/python research/ola4/M6_alertas/scripts/umbral_compuerta.py
 $E/python tools/sifi21_port/ranking_v2.py --trabajo work/sifi_v2 --json /tmp/a.json
 $E/python tools/sifi21_port/ranking_v2.py --trabajo work/sifi_v2 --json /tmp/b.json
 cmp /tmp/a.json /tmp/b.json && cmp /tmp/a.json research/ola3/C7_ranking_v2/resultados/ranking_v2.json
+# el barrido del defecto de escritura (seccion 12)
+$E/python research/ola6/R12_corridas_pendientes/scripts/auditar_escrituras.py
 # las seis suites, DESDE LA RAIZ (ver seccion 8)
 for t in test_alertas test_ranking test_ejes_separados test_orden_salida; do
   $E/python tools/sifi21_port/$t.py; done
@@ -294,6 +345,8 @@ $E/python tools/sifi21_port/offtarget_21nt.py --consulta work/O3/fasta/VATPaseB_
 | Archivo | Qué es |
 | --- | --- |
 | `resultados/o4_paso1_costo.log` | la salida del enumerador midiendo el costo de `--paso 1`: la fuente de los 129.761.738 de §11 |
+| `resultados/auditoria_escrituras.tsv` | los 64 módulos que escriben, con las tres partes del defecto por separado (§12) |
+| `resultados/auditoria_escrituras.json` | lo mismo, más las banderas con que el censo corre cada generador |
 
 Las mediciones de este barrido viven en los bloques que les corresponden y no se copiaron acá:
 el censo en `research/ola6/R11_compuerta_y_panel/resultados/`, el inventario en

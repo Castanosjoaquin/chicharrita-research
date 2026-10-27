@@ -23,6 +23,7 @@ van los dos.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -44,7 +45,21 @@ SALIDA = RAIZ / "research/ola4/M6_alertas/resultados/compuerta.json"
 import csv  # noqa: E402
 
 
-def main() -> int:
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    # `--salida` existe por el issue #37: el censo de generadores de `R11` corre este script
+    # para ver si termina, y sin una forma de redirigir la salida esa corrida de prueba
+    # escribe donde vive el archivo publicado. Es el defecto que
+    # `sensibilidad_reparto.py` pago con dos archivos de M5 reemplazados por una corrida de
+    # cincuenta sorteos (entrada 90 de PREGUNTAS_ABIERTAS.md). Aca no habia perdida, porque
+    # el censo lo corre con sus defaults y el archivo sale igual, pero la bandera saca al
+    # script de esa lista.
+    ap.add_argument("--salida", type=Path, default=None,
+                    help="archivo de salida; el default es el que se "
+                         "versiona. Una corrida que no sea para publicar "
+                         "deberia escribir en work/.")
+    a = ap.parse_args(argv)
+    destino = (RAIZ / a.salida) if a.salida else SALIDA
     filas = AL.leer(TABLA)
     with ESTADOS.open(encoding="utf-8") as fh:
         regiones = [(r["gen"], r["region"], r["vigente"], r["que_es"])
@@ -95,8 +110,8 @@ def main() -> int:
             "bloqueantes_detalle": ["%s %s" % (g, r) for g, r, _v in bloq],
             "detalle": detalle}
 
-    SALIDA.write_text(json.dumps(salida, indent=1, ensure_ascii=False), encoding="utf-8")
-    print("escrito en %s" % SALIDA.relative_to(RAIZ))
+    destino.write_text(json.dumps(salida, indent=1, ensure_ascii=False), encoding="utf-8")
+    print("escrito en %s" % destino.relative_to(RAIZ))
     return 0
 
 

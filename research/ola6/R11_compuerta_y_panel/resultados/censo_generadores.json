@@ -105,7 +105,7 @@
    "codigo": 0,
    "motivo": "",
    "falta": "",
-   "segundos": 31.6
+   "segundos": 31.2
   },
   {
    "nombre": "M6 tabla_alertas.py",
@@ -124,7 +124,7 @@
    "ruta": "research/ola4/M6_alertas/scripts/compuerta.py",
    "produce": "nada: itera sobre las regiones que YA estan en el inventario",
    "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)",
-   "comando": "research/ola4/M6_alertas/scripts/compuerta.py",
+   "comando": "research/ola4/M6_alertas/scripts/compuerta.py --salida work/R11_censo/m6_compuerta.json",
    "corrio": true,
    "codigo": 0,
    "motivo": "",
@@ -136,7 +136,7 @@
    "ruta": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
    "produce": "nada: el mismo recorrido, con los dos umbrales de D28",
    "insumo": "research/ola4/M6_alertas/resultados/alertas.tsv (versionado)",
-   "comando": "research/ola4/M6_alertas/scripts/umbral_compuerta.py",
+   "comando": "research/ola4/M6_alertas/scripts/umbral_compuerta.py --salida work/R11_censo/m6_umbral_compuerta.json",
    "corrio": true,
    "codigo": 0,
    "motivo": "",
@@ -153,14 +153,14 @@
    "codigo": 0,
    "motivo": "",
    "falta": "",
-   "segundos": 19.0
+   "segundos": 19.5
   },
   {
    "nombre": "O3 01_region_vatpase_b.py",
    "ruta": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
    "produce": "la region candidata de V-ATPase B; arma la region a mano a proposito (D74) porque es insumo de una medicion y no una recomendacion",
    "insumo": "work/o3 y work/W5/ref",
-   "comando": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py",
+   "comando": "research/ola6/O3_quimera_bicc_vatpase_b/scripts/01_region_vatpase_b.py --resultados work/R11_censo/o3",
    "corrio": true,
    "codigo": 0,
    "motivo": "",
