@@ -1798,7 +1798,7 @@ línea de diseño nueva. Este es el saldo.
     recomendación, que es lo que `D69` decidió y que hoy no tiene ningún código detrás.
     Es una decisión del equipo y **no se tocó** al firmar.
 21. **Si la quitinasa impactada tiene ortólogo en los demás no objetivo del panel, no se
-    sabe.** La firma de `D73` no lo afirma ni lo niega. Es trabajo de homología y no de
+    sabe.** Issue **#32**. La firma de `D73` no lo afirma ni lo niega. Es trabajo de homología y no de
     coincidencia exacta, y **esta máquina no tiene ningún alineador**: verificado con
     `command -v`, faltan `blastn`, `tblastn`, `makeblastdb`, `miniprot`, `diamond`,
     `bowtie` y `bowtie2` `[M]`. En la máquina de Luca hay `miniprot` 0.18-r281 (`D71`),
@@ -1827,6 +1827,7 @@ línea de diseño nueva. Este es el saldo.
     esas dos claves por bloque `[M]`. La entrada 21 **sigue abierta** y pasó a ser el
     issue `R8` (#32), porque necesita un alineador y esta máquina no tiene ninguno.
 24. **Una región publicada más que nadie había tamizado, y la encontró la compuerta.**
+    Lo que queda por hacer está en el issue **#35**, parte 2.
     `BicC_Dm` 2123-2422 hizo fallar la primera regeneración de `ranking_v2.json` con
     `RegionNoTamizada` `[M]`. Sale del bloque `efecto_humano` —la corrida con la referencia
     humana fuera del panel— y está publicada en
@@ -1838,7 +1839,7 @@ línea de diseño nueva. Este es el saldo.
     salgan de otros bloques de otros generadores y que nadie haya tamizado; la forma de
     saberlo no es buscarlas a mano otra vez sino que la compuerta las encuentre, que es lo
     que acaba de pasar. Mientras cada generador no se corra de punta a punta, no hay garantía.
-25. **`ranking_v2.json` no es byte-reproducible, y no lo introdujo `D75`.** El orden de las
+25. **`ranking_v2.json` no es byte-reproducible, y no lo introdujo `D75`.** Issue **#34**. El orden de las
     claves dentro de `riesgo_por_referencia` depende del orden en que se pasaron las
     referencias a `offtarget_21nt.py`, y ese orden **no está registrado en ninguna parte**
     —ni en el JSON ni en el resumen de la matriz—. Regenerar el archivo reordena esas claves
@@ -1847,7 +1848,8 @@ línea de diseño nueva. Este es el saldo.
     hace el archivo reproducible de acá en adelante pero vuelve a reordenarlo una vez más; o
     registrar el orden de referencias en el JSON y dejarlo como es. **No se hizo:** es
     formato de salida de la línea `C7` y no de `M6` `[?]`.
-26. **La compuerta no sabe qué referencias tiene el panel en cada corrida.** Consulta la
+26. **La compuerta no sabe qué referencias tiene el panel en cada corrida.** Issue **#35**,
+    parte 1. Consulta la
     tabla de alertas completa, de modo que en la rama `sin_humano` de `efecto_humano` una
     región se evalúa contra filas de *Homo sapiens* que esa rama **excluyó** del panel
     `[?]`. Hoy no cambia ningún resultado —ninguna de las filas en juego en esa rama tiene
@@ -1885,11 +1887,12 @@ línea de diseño nueva. Este es el saldo.
     movilidad y mortalidad depende de esa mitad, la molécula apuesta a la parte más
     restringida del diseño `[H]`. Es una pregunta para el investigador y la contesta un
     experimento.
-30. **Si la región candidata de `V-ATPase B` entra al inventario de alertas.** Hoy no tiene
+30. **Si la región candidata de `V-ATPase B` entra al inventario de alertas.** Issue **#35**,
+    parte 3. Hoy no tiene
     fila en las de `M6`, y desde `D72` la compuerta la **rechaza** con
     `alertas.RegionNoTamizada` en vez de dejarla pasar. Son siete regiones nuevas a tamizar
     contando las seis de 22 nt, no una.
-31. **Las junturas no tienen lugar en el inventario de `M6`.** El generador tamiza
+31. **Las junturas no tienen lugar en el inventario de `M6`.** Issue **#35**, parte 3. El generador tamiza
     **regiones**, y una juntura no es una región de ningún gen: es secuencia que fabrica el
     ensamblado. La fila de alerta de `O3` está escrita con el esquema de columnas de `M6`
     para que se pueda pegar, pero nadie la pegó, y mientras no se integre una quimera puede
@@ -1928,7 +1931,7 @@ línea de diseño nueva. Este es el saldo.
     commit de `C1`, `478f165` del 2026-10-20 `[M]`: ese comando **nunca** había terminado.
     Se agregó la opción que faltaba.
 35. **Los dos juegos de anclas publicadas piden paneles distintos, y no se pueden satisfacer
-    con el mismo archivo.** Esto es lo que la entrada 33 dejó planteado, ahora medido por los
+    con el mismo archivo.** Issue **#33**, con las tres salidas posibles escritas. Esto es lo que la entrada 33 dejó planteado, ahora medido por los
     dos lados. `work/sifi_check/offtarget_full/` se construyó de las dos maneras `[M]`:
 
     | | panel de W7 (cinco referencias + genoma del vector) | con la humana (seis + genoma) |
