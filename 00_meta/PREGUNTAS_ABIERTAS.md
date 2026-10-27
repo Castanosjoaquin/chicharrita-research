@@ -2217,3 +2217,33 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     `D83` sólo dice cuál panel corresponde a cuál archivo. Y sigue abierto que la compuerta
     no sabe si el panel con el que se la llama es el adecuado para esa corrida, que es el
     límite que `D77` se puso a sí mismo.
+
+### Ola 6, el entorno de la máquina de Joaquín, vuelto a medir (2026-10-27)
+
+54. **Sí hay alineadores en esta máquina, y el hecho anotado que decía lo contrario estaba
+    midiendo mal.** El índice de la ola 6 (issue #29) y el issue #25 (`F1`) registran, con
+    `command -v`, que no hay `blastn`, `tblastn`, `makeblastdb`, `miniprot`, `diamond`,
+    `bowtie` ni `bowtie2`, y sobre eso se decidió mandar `F1` y `R8` a otra máquina. **La
+    medición era correcta y la conclusión no:** `command -v` mira el `PATH`, y las
+    herramientas están instaladas en entornos de `micromamba` que no están activados. Hay
+    **BLAST+ 2.17.0** (`blastn`, `blastp`, `blastx`, `tblastn`, `makeblastdb`) y **DIAMOND
+    2.2.8** en `~/.claude-science/conda/envs/alineador/bin/`, **miniprot 0.18-r281** en
+    `envs/bioinfo/bin/`, otro BLAST+ 2.17.0 completo en `envs/w5bio/bin/` y `bowtie` en
+    `envs/w2tools/bin/` y `envs/c2sifi/bin/` `[M]`. No es que respondan `--version`: se
+    corrió una prueba de verdad, `makeblastdb` sobre `work/sifi_check/BicC_Dm_full.fasta` y
+    `tblastn` con `work/W5/ref/prot_BicC.faa` contra esa base, que devuelve alineamientos
+    reales —`XP_001944274.2` a 46,8 % de identidad sobre 743 aminoácidos con *e*-valor 0,0, y
+    `NP_723949.1` a 55,3 % sobre 360 con 2,6e-124— y `miniprot` sobre el mismo par devuelve
+    seis líneas de salida `[M]`.
+    `[H]` La consecuencia práctica es que **`F1` (#25) no está bloqueado por entorno en esta
+    máquina**: tiene las dos piezas que el issue pide, un alineador de proteína contra
+    nucleótido (`tblastn` y `miniprot`) y uno de proteína contra proteína para la ortología
+    recíproca (`diamond`, `blastp`). Lo que falta para la primera corrida real es el
+    transcriptoma del investigador. La etiqueta `necesita-entorno` del issue se deja puesta
+    porque sigue siendo cierta para quien lo tome en otra máquina — por `D78`, en la de Luca
+    no hay BLAST+ ni ViennaRNA.
+    `[H]` Y la lección de método, que es hermana de la de `D83`: **`command -v` contesta «no
+    está en el `PATH`», no «no está instalado»**, y la diferencia entre las dos cosas
+    reasignó trabajo entre máquinas. Antes de declarar que una herramienta falta conviene
+    mirar también los entornos de `micromamba`: `micromamba env list` y un `ls` de cada
+    `bin/`.
