@@ -1,0 +1,14 @@
+{
+ "MQ": {
+  "empates_inversos": 5212,
+  "con_secuencia_identica": 2799,
+  "pct_identicas": 53.7,
+  "empates_directos": 11492
+ },
+ "HV": {
+  "empates_inversos": 5263,
+  "con_secuencia_identica": 2342,
+  "pct_identicas": 44.5,
+  "empates_directos": 8334
+ }
+}

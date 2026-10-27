@@ -2241,7 +2241,7 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     recíproca (`diamond`, `blastp`). Lo que falta para la primera corrida real es el
     transcriptoma del investigador. La etiqueta `necesita-entorno` del issue se deja puesta
     porque sigue siendo cierta para quien lo tome en otra máquina — por `D78`, en la de Luca
-    no hay BLAST+ ni ViennaRNA. **[Corregido por la entrada 55: la cita es a `D71`, no a
+    no hay BLAST+ ni ViennaRNA. **[Corregido por la entrada 61: la cita es a `D71`, no a
     `D78`, y ViennaRNA sí está en el `python3` de WSL de esa máquina. BLAST+ sí falta.]**
     `[H]` Y la lección de método, que es hermana de la de `D83`: **`command -v` contesta «no
     está en el `PATH`», no «no está instalado»**, y la diferencia entre las dos cosas
@@ -2249,9 +2249,38 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     mirar también los entornos de `micromamba`: `micromamba env list` y un `ls` de cada
     `bin/`.
 
+### Ola 6, cierre de `F1` (`D84`, issue #25, 2026-10-27)
+
+55. **¿Por qué 25.812 de los 56.117 contigs de `GITV01` (46,0 %) no tienen ningún ORF de ≥ 100 aa?**
+    Sólo 1.071 miden menos de 300 nt, así que el tamaño no lo explica. Puede ser ruido no
+    codificante, UTR, fragmentos o marcos rotos por errores de ensamblado. No se midió `[?]`.
+56. **¿Aplican las bandas de concordancia de `C12` a ORF de un TSA?** Se midieron entre dos
+    proteomas RefSeq completos y anotados; un ORF de un transcriptoma puede ser parcial, quimérico
+    o con el marco corrido. `F1` las aplica por supuesto `[H]`, y el 81 % esperado de la lectura
+    inclusiva vale sólo si el supuesto vale. Una validación posible: tomar un subconjunto de
+    contigs cuyos genes tengan anotación independiente (los de la curación de `C5`).
+57. **¿Cuál es la regla de empate correcta para un transcriptoma redundante?** La mitad de los ORF
+    con hit queda en empate bajo la regla estricta, y el 46,3 % de los empates inversos no son copias
+    idénticas. Falta saber si esos ORF son isoformas, parálogos o fragmentos del mismo gen. Una
+    medida es agrupar los contigs por gen (`cd-hit` o equivalente) y repetir la reciprocidad entre
+    grupos; no se hizo.
+58. **Taxonomía de los dos proteomas de referencia, sin fuente abierta.** El preregistro dice que
+    *Macrosteles* y *Dalbulus* son Deltocephalinae y *Homalodisca* un Cicadellinae. Para *Dalbulus* el
+    catálogo de `C5` lo registra; para los otros dos no abrí ninguna fuente taxonómica. Queda
+    pendiente antes de repetirlo en un entregable.
+59. **¿Confirmación del investigador de que `GITV01` es lo que quería mandar?** El archivo es el TSA
+    público de Ohio State, que el repositorio ya conocía; no se sabe si él lo eligió por eso o si el
+    otro transcriptoma que mencionó es distinto. Pregunta para la próxima comunicación.
+60. **`F2` necesita lo que `F1` no entrega.** Los términos GO, los dominios conservados y los papers
+    no están en la salida de `F1` (sólo nombre de producto, identidad, cobertura y banda), y no hay
+    ninguno versionado. Sin una fuente de esos tres, `F2` sólo puede resumir el nombre de producto.
+
 ### Ola 6, el entorno de la máquina de Luca, medido por primera vez (issue #29, 2026-10-27)
 
-55. **En la máquina de Luca hay ViennaRNA, y la entrada 54 dice que no.** La entrada 54 cierra
+*Esta entrada se escribió como 55 y se renumeró a 61 al mergear: la sesión de `F1` escribió
+55-60 el mismo día y ya estaban en `origin`. Mismo caso que `D85`.*
+
+61. **En la máquina de Luca hay ViennaRNA, y la entrada 54 dice que no.** La entrada 54 cierra
     con «por `D78`, en la de Luca no hay BLAST+ ni ViennaRNA». Las dos mitades fallan. La cita
     es a la decisión equivocada: `D78` es la que mete `V-ATPase B` y las junturas al inventario,
     y la que habla de esta máquina es `D71`, que dice otra cosa —«vale para la máquina que se

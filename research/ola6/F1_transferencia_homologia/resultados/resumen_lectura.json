@@ -1,0 +1,88 @@
+{
+ "estricta_preregistrada": {
+  "MQ": {
+   "orfs_reciprocos": 5936,
+   "con_nombre_informativo": 4560,
+   "sin_nombre_informativo": 1376,
+   "por_banda_de_identidad": {
+    ">=90": 1690,
+    "60-80": 1151,
+    "80-90": 1481,
+    "40-60": 211,
+    "<40": 27
+   },
+   "por_cobertura": {
+    "cobertura_alta": 3625,
+    "parcial": 775,
+    "fragmento": 160
+   },
+   "orfs_con_nombre_en_banda_ge90_y_cobertura_alta": 1372
+  },
+  "HV": {
+   "orfs_reciprocos": 5654,
+   "con_nombre_informativo": 4182,
+   "sin_nombre_informativo": 1472,
+   "por_banda_de_identidad": {
+    ">=90": 578,
+    "80-90": 1119,
+    "60-80": 1753,
+    "40-60": 632,
+    "<40": 100
+   },
+   "por_cobertura": {
+    "cobertura_alta": 3177,
+    "parcial": 837,
+    "fragmento": 168
+   },
+   "orfs_con_nombre_en_banda_ge90_y_cobertura_alta": 435
+  },
+  "contraste_MQ_vs_HV": {
+   "orfs_con_nombre_informativo_en_las_dos": 2599,
+   "coinciden": 2190,
+   "pct": 84.3
+  }
+ },
+ "ampliada_H_post_hoc": {
+  "MQ": {
+   "orfs_reciprocos": 12269,
+   "con_nombre_informativo": 10280,
+   "sin_nombre_informativo": 1989,
+   "por_banda_de_identidad": {
+    ">=90": 4467,
+    "80-90": 3233,
+    "60-80": 2132,
+    "40-60": 401,
+    "<40": 47
+   },
+   "por_cobertura": {
+    "cobertura_alta": 8574,
+    "parcial": 1400,
+    "fragmento": 306
+   },
+   "orfs_con_nombre_en_banda_ge90_y_cobertura_alta": 3819
+  },
+  "HV": {
+   "orfs_reciprocos": 11058,
+   "con_nombre_informativo": 8830,
+   "sin_nombre_informativo": 2228,
+   "por_banda_de_identidad": {
+    ">=90": 1429,
+    "80-90": 2292,
+    "60-80": 3766,
+    "40-60": 1172,
+    "<40": 171
+   },
+   "por_cobertura": {
+    "cobertura_alta": 6971,
+    "parcial": 1543,
+    "fragmento": 316
+   },
+   "orfs_con_nombre_en_banda_ge90_y_cobertura_alta": 1131
+  },
+  "contraste_MQ_vs_HV": {
+   "orfs_con_nombre_informativo_en_las_dos": 7478,
+   "coinciden": 6455,
+   "pct": 86.3
+  }
+ }
+}

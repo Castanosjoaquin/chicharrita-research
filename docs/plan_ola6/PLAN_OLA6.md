@@ -171,7 +171,7 @@ contra nucleótido. ~~Ninguno está instalado, así que corre donde haya uno o e
 instalarlo; **no es trabajo de escritorio**. Eso sigue siendo cierto para `O2` y `F1`~~ **En la
 máquina de Joaquín hay dos, así que `F1` tampoco está bloqueado por entorno ahí**; lo que la
 frena es el transcriptoma del investigador. En la de Luca hay `miniprot` pero no el de proteína
-contra proteína que pide la ortología recíproca (entrada 55). **Para `O3` el bloqueo por
+contra proteína que pide la ortología recíproca (entrada 61). **Para `O3` el bloqueo por
 entorno tampoco aplica ya.**
 
 **Qué hay que hacer.**
@@ -461,7 +461,7 @@ numpy no, así que **el ancla de `C4` es la que autoriza leer cualquier cifra nu
 de `work/C11/` están, ~~pero sin `blastn` no hay quién las consulte~~ **y `blastn` también, así
 que se pueden consultar**.
 
-### La otra máquina, medida el 2026-10-27 (entrada 55)
+### La otra máquina, medida el 2026-10-27 (entrada 61)
 
 La de Luca **no tiene el reparto de `micromamba`**: lo que hay está repartido entre dos
 intérpretes a los dos lados de la frontera Windows/WSL, y **ninguno de los dos corre el port
@@ -494,7 +494,7 @@ instalar un alineador, es `O2` (ya cerrada por otra vía) y `F1`.~~ **Corregido 
 —`tblastn` y `miniprot` para proteína contra nucleótido, `diamond` y `blastp` para la ortología
 recíproca—, así que lo que falta para la primera corrida real de `F1` **no es el entorno: es el
 transcriptoma del investigador**. En la de Luca sigue faltando el alineador proteína contra
-proteína, así que ahí `F1` sí necesita instalar algo (entrada 55).
+proteína, así que ahí `F1` sí necesita instalar algo (entrada 61).
 
 ---
 

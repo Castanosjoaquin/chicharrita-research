@@ -1364,3 +1364,25 @@ descartamos **nosotros** al procesarla.
   directorio equivocado, y se la hizo pasar cambiando **el insumo** en vez de la ruta. Eso
   rompió en silencio tres anclas de otra línea. Cuando un ancla falla, lo primero es
   comprobar que esté mirando el archivo que su propio informe nombra.
+
+### Ola 6, `F1` (issue #25, 2026-10-27)
+
+- **Un solo ORF por contig, el más largo. Descartado por su propio control.** El contig
+  `GITV01003502.1` mide 8.004 nt, tiene la V-ATPasa B (517 aa, hebra `+`) y otro gen más largo en
+  la hebra `-` (622 aa, vitelogenina). La v1 se quedó con el segundo y el control positivo
+  preregistrado falló. Se pasó a todos los ORF de ≥ 100 aa (`D84`). Es el límite 3 del
+  preregistro, declarado sin medir y medido después.
+- **«Empate es no recíproco» como única lectura. Se conserva, pero ya no sola.** Con ella la
+  mitad de los ORF con hit queda fuera, y el control positivo de nuevo falla (empate del lado
+  inverso). No se la reemplaza: se publica al lado de una lectura inclusiva post hoc.
+- **Pedirle secuencia idéntica a los ORF empatados para resolver el empate. Descartado antes de
+  implementarlo**, al medir que sólo el 53,7 % de los empates inversos contra *Macrosteles* (44,5 %
+  contra *Homalodisca*) son copias idénticas. Los empates no son simple redundancia.
+- **`brew install diamond`. No pudo:** pide aceptar la licencia de Xcode, que necesita `sudo`.
+  Se instaló por conda (bioconda, `osx-arm64`, 2.2.8) en un entorno propio, `f1_homologia`.
+- **Reproducir la corrida desde cero tras un cambio de formato de salida.** Al pasar las tablas de
+  15 MB a `.tsv.gz` se volvió a correr todo; las cifras salieron idénticas, y esa es la
+  verificación de que el script versionado produce lo versionado.
+- **Una lección de proceso.** Dos números míos estaban mal en documentos ya commiteados (un
+  porcentaje de empates y el final de un `md5`): el primero se corrigió con una nota a la vista en
+  `PREREGISTRO.md`, sin reescribir el commit. Contar de nuevo contra la tabla antes de citar.
