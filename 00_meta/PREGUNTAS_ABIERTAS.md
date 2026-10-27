@@ -2533,3 +2533,21 @@ entre las cuatro que sí deciden, la máxima es de 0,3 puntos. Detalle en `resea
     *D. maidis*, *F. candida*, *A. mellifera*, *H. vitripennis*, maíz y *H. axyridis*— y
     **no incluye la referencia humana** `[M]`. Con ese archivo `test_ranking.py` pasa sus
     cuatro anclas de `sifi21_reproduccion.md` §4.
+
+74. **El gancho de pre-commit corrió completo por primera vez, y la predicción de que
+    rechazaría igual era falsa.** La entrada 55 anotaba, leído y no corrido: «el gancho de
+    pre-commit debería rechazar aunque `openpyxl` esté, porque su código pide además la
+    planilla de EPILAB» `[H]`. Medido al commitear este barrido: con `w5bio` en el `PATH`
+    —el único de los doce entornos que tiene `openpyxl`, 3.1.5— y la planilla en
+    `YHat-Biotech/Sequences_EPILAB.xlsx`, que **está** en esta máquina, el gancho corre la
+    pasada contra EPILAB —4 regiones, 18.737 21-meros— y devuelve **0 hallazgos** `[M]`.
+    No rechaza.
+
+    `[H]` Lo que sí se confirmó es el otro lado del gancho, y conviene dejarlo escrito
+    porque es la parte bien diseñada: con el `python3` del sistema **rechaza**, y su mensaje
+    distingue las dos cosas que importan —«no es un hallazgo: es que la verificación no
+    corrió»— y nombra el remedio exacto, incluido el `PATH=<env con openpyxl>/bin:$PATH`.
+    Un verificador que falla cerrado y explica cómo abrirlo es la razón por la que este
+    commit no se hizo con `--no-verify`. Hasta ahora todas las pasadas de
+    `sin_secuencias.py` del proyecto se habían corrido **sin** el corpus de EPILAB, o sea en
+    el modo que su propio aviso declara que no mira nada: ésta es la primera que lo miró.
