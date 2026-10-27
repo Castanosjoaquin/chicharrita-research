@@ -62,3 +62,19 @@ negativa `[M]`.
 se arman combinando mecanismos que no se solapan, una de las tres patas del esquema se apoya
 en una fila, y el mecanismo que `D67` **no** reconoce —transmisión— tiene cuatro veces más
 candidatos que ésa. Va como entrada abierta, junto con la 54.
+
+---
+
+## 4. El eje 3 tiene dos razones para estar declarado, no una (2026-10-27)
+
+El preregistro §3 declara el eje de off-target no calculable **por falta de
+`work/sifi_v2/`**. Al llegar al paso 3 apareció una segunda razón, independiente de la
+primera: las ocho filas del catálogo que **sí** traen conteos de off-target los traen contra
+**otro panel** —cinco referencias, con *Macrosteles quadrilineatus* adentro y sin
+*Harmonia axyridis* ni *Folsomia candida*—, de modo que tampoco servirían si `work/sifi_v2/`
+apareciera mañana. El detalle, con la tabla de referencias y la consecuencia, está en
+`escala_fenotipo.md`, al final.
+
+Importa porque las dos razones se arreglan distinto. La falta de `work/sifi_v2/` se arregla
+pidiendo un directorio. El panel se arregla **tamizando de nuevo** las ocho secuencias del
+catálogo contra el panel de seis, que es una corrida que nadie hizo todavía.
