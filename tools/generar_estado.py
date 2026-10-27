@@ -128,32 +128,191 @@ HECHO = [
      "La tabla unida a su razón de riesgo ya estaba en el remoto desde el 2026-10-21. Son datos públicos CC BY y no secuencias de EPILAB. "
      "Se decidió dejarla publicada con la advertencia de que la unión no tiene clave publicada.",
      ["research/ola3/C9_sensibilidad_umbral/datos/LEEME.md", "00_meta/DECISIONS.md"]),
+
+    # ----------------------------------------------------------- ola 4 (M1-M9)
+    ("Reconciliación de conteos: la matriz de once bases (M1)",
+     "La columna «Efficient siRNA hits» del si-Fi21 original <strong>cuenta aciertos de Bowtie en la hebra +, no "
+     "ventanas</strong>, así que comparar nuestros conteos contra los de la planilla fue desde el principio comparar "
+     "dos unidades distintas. La matriz corrió: once bases, treinta y ocho celdas, y una base genómica puede borrar "
+     "un gen entero de la tabla —<code>ATPaseD_Dm</code> da 0—. <strong>Leer con la nota del 25-10:</strong> la "
+     "discrepancia de los cuatro conteos quedó explicada por otra vía (N1, D62), y el «200 contra 199» de "
+     "<code>BicC_Dm</code> era coincidencia y no un acierto parcial de la hipótesis.",
+     ["research/ola4/M1_conteo_y_referencia/REPORT.md"]),
+    ("Comparador ventana por ventana (M2)",
+     "Lo que él pidió textualmente: no el conteo final sino <strong>cuáles ventanas cambian de clasificación</strong>. "
+     "Los cuatro pares corridos, con la matriz de confusión, las posiciones que cambian y cuál de los cuatro booleanos "
+     "del veredicto cambió en cada una. En <code>MP_MRFV</code> el par de modos da 142 contra 123 con 19 ventanas que "
+     "cambian. El par de motores pedía un binario que no estaba en la máquina: se compiló RNAplfold 2.1.5 del fuente "
+     "oficial y reproduce los cuatro conteos del binario del instalador.",
+     ["research/ola4/M2_ventana_a_ventana/REPORT.md"]),
+    ("La tercera vía: los términos continuos sin corte (M3)",
+     "Su tercera alternativa, implementada: conservar los valores termodinámicos, las preferencias terminales y la "
+     "accesibilidad como variables independientes de la clasificación. Con una corrección al propio pedido: las "
+     "columnas <code>nt19</code> y <code>nt2</code> <strong>no son inocuas</strong> —sobre un gen sintético de 500 nt "
+     "reconstruyen 497, el 99,4 %, sin producir una sola racha de 21 nt—, así que se publican las categorías que la "
+     "regla usa y no los nucleótidos.",
+     ["research/ola4/M3_features/REPORT.md"]),
+    ("Cuánta evidencia haría falta para distinguir los dos modelos (M4)",
+     "Del orden de <strong>2.800 siRNA</strong> con eficacia medida replicando el diseño de Cedden —2.784 en la "
+     "estimación honesta, noventa y seis veces los 29 que existen—. Y un resultado más fuerte que el número: con los "
+     "29 actuales la prueba <strong>no puede rechazar nunca</strong>, cualquiera sea el dato, porque los dos modos "
+     "discrepan en un solo siRNA. El ensayo que sí discrimina no mide siRNA al azar: elige los discordantes, y pide "
+     "32 por brazo.",
+     ["research/ola4/M4_evidencia_y_potencia/REPORT.md",
+      "research/ola4/M4_evidencia_y_potencia/PREREGISTRO_tercera_via.md"]),
+    ("Del veto binario a la alerta justificada, y su compuerta (M6)",
+     "La tabla de alertas con los cuatro campos de D48, validada, y el estado de las doce regiones bajo la regla "
+     "nueva. Más <code>alertas.exigir_decidida()</code>, que se niega a tratar como usable una región con alguna "
+     "fila en «pendiente» — <strong>implementada sin adoptar</strong>: ningún entregable la llama todavía. Y el "
+     "umbral decide casi todo: con D48 literal pasan <strong>9 de 12</strong> y ninguna región vigente se mueve; con "
+     "el umbral laxo de D28 pasan <strong>3 de 12</strong> y se frenan cuatro de las seis vigentes. Va como pregunta "
+     "abierta, no decidida.",
+     ["research/ola4/M6_alertas/REPORT.md",
+      "research/ola4/M6_alertas/resultados/alertas.tsv",
+      "tools/sifi21_port/alertas.py"]),
+    ("Hasta dónde compara el número de eficientes (M8)",
+     "La pregunta que él dejó para pensar, contestada sin correr nada. El número compara <strong>regiones dentro de "
+     "un mismo gen, con la misma configuración, la misma referencia y la misma unidad</strong>, y no compara genes "
+     "entre sí: cuatro cosas que no son el blanco biológico lo mueven lo suficiente para invertir el orden de los "
+     "candidatos, y las cuatro ya estaban medidas en este repositorio sin habérnoslo propuesto. Para comparar "
+     "estrategias contra genes distintos el conteo es, como máximo, uno de los términos; el que decide es la "
+     "evidencia de fenotipo.",
+     ["research/ola4/M8_que_compara_el_conteo/REPORT.md"]),
+    ("Auditoría de secuencia antes de compartir nada (M9)",
+     "La verificación promovida a <code>tools/verificacion/sin_secuencias.py</code>, con tres pasadas, corrida sobre "
+     "el árbol y sobre el historial y dejada como gancho de pre-commit fail-closed. Árbol e historial dan "
+     "<strong>cero hallazgos no exceptuados</strong> (D61). La salvedad viaja con el cero: la pasada 3 necesita la "
+     "planilla de EPILAB y <code>openpyxl</code>, y donde no están el gancho rechaza en vez de declarar un cero "
+     "incompleto.",
+     ["research/ola4/M9_auditoria_secuencias/REPORT.md",
+      "tools/verificacion/sin_secuencias.py"]),
+
+    # ---------------------------------------------------------- ola 5 (N1-N10)
+    ("La función histórica de conteo, reproducida con insumos propios (N1)",
+     "Su explicación es correcta y <strong>se verificó sin pedirle un archivo</strong>: la curva asigna 20 posiciones "
+     "de cobertura a cada ventana de 21 nt y el contador registra los incrementos positivos, de modo que cuando una "
+     "ventana eficiente termina donde otra empieza los dos efectos se compensan y la segunda no se cuenta. Aplicada a "
+     "las ventanas eficientes de nuestro propio port, los cuatro valores de la planilla salen exactos. Es D62.",
+     ["research/ola5/N1_regla_de_conteo/REPORT.md"]),
+    ("El ancho de cobertura: son dos curvas distintas (N2)",
+     "Duda propia que abrió N1: si la función histórica asigna 20 posiciones por ventana y nuestro módulo asigna 21, "
+     "¿cuál está mal? <strong>Ninguna.</strong> Las tres marcas que la pantalla del original dejó registradas "
+     "coinciden con ancho 21 y caen un nucleótido antes con ancho 20. El «20 por ventana» de su carta describe la "
+     "curva que EPILAB guarda en su base, no el gráfico del si-Fi21.",
+     ["research/ola5/N2_ancho_de_cobertura/REPORT.md"]),
+    ("Los tres marcos de conteo, y la partición de la diferencia (N3)",
+     "El tercer marco que él propuso —las ventanas de la molécula con la accesibilidad evaluada en el transcrito "
+     "blanco— medido: da <strong>29</strong>, contra 36 en contexto y 26 en la molécula. Y la diferencia queda "
+     "partida: 36 = 29 + 7 y 26 = 29 − 3. Cada conteo se publica con su marco declarado (D63). Dos de las cuatro "
+     "fuentes del eje de referencia no tienen marco intermedio y el motivo está escrito: una necesita un contig que "
+     "no está en la máquina y <code>GCWP01</code> no es un pendiente sino un límite.",
+     ["research/ola5/N3_marcos/REPORT.md"]),
+    ("Las ventanas de juntura: eficientes y sin blanco (N4)",
+     "La segunda mitad de su punto 3, que nadie había mirado: de las <strong>240</strong> ventanas de juntura de las "
+     "doce quimeras, <strong>4 son eficientes y ninguna de esas 4 tiene blanco continuo</strong> de 21 nt; las 8 que "
+     "sí tienen blanco son todas de los extremos de la unión y ninguna es eficiente. Una quimera no agrega ventanas: "
+     "<strong>canjea</strong> los veinte arranques de cola de cada fragmento por veinte de juntura. Y la otra mitad, "
+     "que la intuición da por segura: la banda de contexto cambió el veredicto de <strong>61 ventanas heredadas</strong>, "
+     "quince veces más que el empalme.",
+     ["research/ola5/N4_quimeras/REPORT.md",
+      "entregables/quimeras-juntura-y-contexto.md"]),
+    ("Ficha: las 4.368 configuraciones y la identidad de C7 (N5)",
+     "Sus dos pedidos explícitos del punto 5, sin correr nada: qué son exactamente las 4.368 configuraciones —el "
+     "producto de cinco ejes, medidas además en dos marcos, de donde salen las 13.104 filas de la grilla— y cuál es "
+     "la región de C7 que entra en la comparación.",
+     ["research/ola5/N5_ficha_grilla/REPORT.md"]),
+    ("El port, empaquetado y auditado para mostrárselo (N9)",
+     "La auditoría del paquete autocontenido en verde: <strong>36 archivos</strong>, cuatro con nucleótidos y los "
+     "cuatro con su fuente pública escrita, <strong>cero hallazgos sin exceptuar</strong>. Lo pidió dos veces y "
+     "queda listo; lo único que falta es el canal, que es una acción hacia afuera.",
+     ["research/ola5/N9_paquete_port/REPORT.md"]),
+    ("La función histórica aplicada a regiones: el 36 contra 35 es un empate (N10)",
+     "No sale de la carta: sale de la pregunta que abrió N1 y que no estaba en el plan. Si la planilla construyó "
+     "también los conteos de región con el contador histórico, el orden entre candidatas podría no ser el mismo. "
+     "Medido: <strong>lo es en dos de los tres marcos y no en el tercero</strong>. En el marco de contexto la ventaja "
+     "de <code>BicC_Dm</code> 922-1221 sobre la región de C7 —36 contra 35, una ventana— <strong>se convierte en un "
+     "empate, 33 a 33</strong>. Contra la región del laboratorio la ventaja no se mueve en ningún marco.",
+     ["research/ola5/N10_conteo_historico_por_region/REPORT.md"]),
+
+    # -------------------------------------------------------------- checkpoint 2
+    ("Checkpoint 2 · La reunión, transcripta y mapeada",
+     "El acta de la reunión del 26 de octubre, con las transcripciones crudas auditables al lado —cinco audios "
+     "transcriptos localmente con <code>faster-whisper large-v3</code>—. <strong>No corrigió nada de fondo:</strong> "
+     "validó la lectura de <code>BicC_Dm</code> como gen poblacional, volvió a validar la ruta de homología y pidió "
+     "el análisis de sensibilidad a los pesos que ya estaba hecho. De los ocho puntos que salieron, "
+     "<strong>cinco ya estaban cerrados</strong>, uno depende del transcriptoma que ofreció mandar, uno es de "
+     "presentación y <strong>uno solo es trabajo nuevo</strong>: las quimeras por combinación de fenotipos (D67). "
+     "Dos salvedades declaradas: cuatro de los cinco audios no son su voz sino la propuesta de un compañero, y la "
+     "primera parte de la reunión no tiene registro.",
+     ["research/checkpoints/checkpoint2.md", "docs/plan_cierre/PLAN_CIERRE.md",
+      "docs/plan_ola6/PLAN_OLA6.md"]),
 ]
 
 FALTA = [
-    ("Fecha y texto del correo enviado", "decision", True,
-     "El correo se envió, como confirmó el usuario, pero el repo no registra la fecha ni el texto enviado. "
-     "El borrador tiene siete preguntas y <code>PLAN_DESARROLLO.md</code> §8 decía cinco."),
-    ("Qué cifra de ventanas eficientes se publica, y con qué argumento", "decision", True,
-     "Esta página y los entregables dicen que <code>BicC_Dm</code> 922-1221 «pasa de 20 a 36 ventanas que pasan el "
-     "filtro». Son los conteos <em>en contexto</em>; M7 midió que la cifra de la molécula que se sintetizaría es "
-     "<strong>26 contra 17</strong>, y que el «32 idénticas en los tres transcriptomas contra 22» de D25 mezcla "
-     "conservación con cobertura, porque <code>GCWP01</code> no cubre 922-1221. Las dos cifras y su fuente están en "
-     "<code>research/ola4/M7_robustez_bicc/NOTAS_PARA_META.md</code>. No se corrigió por cuenta propia: cambia una "
-     "recomendación publicada."),
-    ("Los dos pesos de M5: exposici\u00f3n y conservaci\u00f3n", "decision", True,
-     "Es el pedido 4 de la reuni\u00f3n. La medici\u00f3n ya est\u00e1 hecha y dice que la decisi\u00f3n no es <em>cu\u00e1nto</em> sino "
-     "<strong>cero o no cero</strong>: con la regla de riesgo de hoy, entre 0,05 y 1,00 de peso relativo al ma\u00edz no "
-     "cambia nada, y todo el cambio est\u00e1 entre 0,00 y 0,05, porque el veto es binario. Si se quiere un reparto "
-     "intermedio hay que resolver antes M6 (#10). Y si se adopta cero, dejan de estar sostenidas tres afirmaciones "
-     "publicadas, listadas en <code>research/ola4/M5_dos_ejes/NOTAS_PARA_META.md</code>. Tambi\u00e9n queda abierto si el "
-     "tercer puesto se reporta como empate declarado o se sigue ordenando."),
-    ("Confirmar el criterio de commits", "decision", False,
-     "El prompt de C9 pide un commit por tarea y la regla general de la ola 3 dice no commitear (D5). Se "
-     "siguió la instrucción específica del prompt; si se prefiere la regla general, se reescribe."),
-    ("Escala para ordenar pares dentro de un grupo", "decision", False,
-     "<code>eth</code> y <code>burs-α</code>: el orden cambia entre escala absoluta y min-max. La regla de D38 "
-     "exige que el orden se sostenga en las dos. Pregunta de método para el equipo."),
+    ("Las dos cifras viejas de los entregables (issue #19)", "decision", True,
+     "<strong>La decisión ya está tomada; falta aplicarla.</strong> D63 fijó que la cifra que se publica para una "
+     "región candidata es la del marco de la molécula, que es <strong>26</strong>; D64 retiró el «32 idénticas contra "
+     "22» y lo reemplazó por la cobertura declarada por fuente, porque <code>GCWP01</code> no cubre un solo "
+     "nucleótido de 922-1221; y D65 le retiró al conteo el papel de argumento entre 922-1221 y 2121-2420. Pero "
+     "<code>entregables/checkpoint2-una-pagina.md</code> y <code>entregables/para-el-investigador.md</code> siguen "
+     "diciendo «pasa de 20 a 36» y «32 de sus 36», mientras <code>recomendacion-defendida.md</code> y "
+     "<code>reunion-lunes.html</code> publican 26. No se corrige por cuenta propia: <strong>cambia cifras "
+     "publicadas</strong>, y la convención del repositorio es dejar la frase vieja tachada con la nueva al lado."),
+    ("El tercer marco y el empate declarado (issue #20)", "decision", True,
+     "Dos decisiones chicas, las dos con la medición hecha. <strong>El tercer marco:</strong> él lo propuso en la "
+     "carta del 25 y N3 lo midió —da <strong>29</strong>, contra 36 en contexto y 26 en la molécula—; se sigue "
+     "publicando 26 y la adopción quedó sin decidir. En la reunión del 26 no lo volvió a mencionar, así que la "
+     "decisión es nuestra. <strong>El tercer puesto:</strong> si se reporta como empate declarado o se sigue "
+     "ordenando. D66 cerró lo que bloqueaba a las dos: la exposición de <i>H. vitripennis</i> se declara como "
+     "decisión abierta y <strong>no se le pide un número</strong> —dijo que el organismo no está en la Argentina y "
+     "«puede no importar», y también que «puede venir eventualmente»—. Lo que pidió es que la decisión esté "
+     "explicitada, con los dos extremos a la vista."),
+    ("Firmar las 17 alertas de off-target (issue #15)", "decision", True,
+     "Es la que la reunión destrabó, y arregla un problema real: hoy <strong>una alerta no leída queda "
+     "operativamente igual que una aceptada</strong>. Las 17 filas siguen en «pendiente». El argumento que faltaba "
+     "para las tres de <i>H. vitripennis</i> —las únicas con coincidencia perfecta de 21 nt— lo dio él en la reunión, "
+     "y conviene citarlo a él en vez de inventar un criterio nuestro. <strong>Ojo con el orden:</strong> "
+     "<code>tabla_alertas.py</code> escribe «pendiente» fijo, así que regenerar la tabla borra cualquier firma "
+     "escrita a mano. La persistencia va primero o el trabajo se pierde."),
+    ("Que un entregable llame de verdad a la compuerta (issue #16)", "trabajo", False,
+     "<code>alertas.exigir_decidida()</code> está implementada y probada, pero <strong>ningún entregable la "
+     "llama</strong>: las únicas referencias fuera de la prueba están en un script de la ola 4 y en los REPORT. Una "
+     "compuerta que nadie llama no es una compuerta, y hoy nada en el código impide usar una región cuya fila sigue "
+     "en «pendiente». Depende de que las alertas estén firmadas: si se corre antes falla sobre las seis regiones "
+     "vigentes, y eso es correcto."),
+    ("La secuencia de <code>V-ATPase B</code> (issue #22)", "trabajo", False,
+     "Es el único insumo que bloquea lo único realmente nuevo que dejó el checkpoint 2. <code>DM-02</code> está en "
+     "el catálogo de C5 con fenotipo publicado en la especie —<strong>alas deformes</strong>, supervivencia 16 % al "
+     "día 4 contra 37 % del control— pero <strong>sin secuencia en el panel de trabajo</strong>. Dos vías: el zip "
+     "que él ofreció mandar, o <strong>recuperarla por homología a nivel proteína</strong> contra los tres "
+     "transcriptomas públicos, que ya están en disco como bases de búsqueda. La segunda no espera a nadie, y si no "
+     "sale, el resultado útil es saber que esos transcriptomas no la contienen."),
+    ("La quimera <code>BicC_Dm</code> + <code>V-ATPase B</code> (issue #23)", "trabajo", False,
+     "D67 decidió que las quimeras se arman por <strong>combinación de fenotipos que no se solapan</strong> y no por "
+     "densidad de ventanas eficientes. La combinación cubre los dos ejes que a <code>BicC_Dm</code> le faltan, y los "
+     "candidatos ya estaban en el catálogo: no hay que salir a buscarlos. Es la única línea de cómputo nueva. Dos "
+     "obstáculos declarados: el evaluador de quimeras tiene los cuatro genes de EPILAB <strong>fijos</strong> y hay "
+     "que generalizarlo, y la corrida <strong>necesita ViennaRNA</strong>, que no está en esta máquina."),
+    ("<code>UMBRAL_OFF_ALERTA = 17</code> contra el piso de D28 (issue #18)", "trabajo", False,
+     "<code>pipeline/region_scoring.py</code> tiene el umbral en 17 y D28 decidió no reportar coincidencias de 16 a "
+     "18 nt. M6 lo dejó <em>medido y declarado, no corregido</em>. El alcance está verificado y es chico: <strong>no "
+     "mueve ninguna cifra publicada</strong> y el cambio queda contenido en ese módulo. Si al correr alguna cifra se "
+     "mueve, hay que parar: entonces el alcance no era el verificado."),
+    ("Fecha y texto del correo enviado (issue #28)", "decision", True,
+     "El correo se envió, como confirmó el usuario, pero el repo no registra la fecha ni el texto enviado. El "
+     "borrador tiene siete preguntas y <code>PLAN_DESARROLLO.md</code> §8 decía cinco: sin el texto efectivamente "
+     "enviado <strong>no se puede cotejar ninguna numeración</strong>, y varios documentos citan «la pregunta 4» o "
+     "«el pedido 6» sin una fuente que los fije."),
+    ("El canal por el que se le entrega el port (issue #28)", "decision", False,
+     "La auditoría está hecha y en verde (N9) y lo pidió dos veces. Falta elegir el canal: paquete autocontenido —la "
+     "recomendación, porque no arrastra nada derivado de las secuencias de EPILAB— o acceso al repositorio privado. "
+     "<strong>El canal se abrió solo en la reunión:</strong> él va a escribir para mandar el zip, y responder ese "
+     "correo con el paquete es el momento natural."),
+    ("Escribir el criterio de commits como enmienda a D5", "decision", False,
+     "D5 decidió que las investigaciones no commitean y que el orquestador hace un commit por informe integrado. "
+     "Desde la ola 4 la práctica es otra y está asentada —un commit por línea, con el issue asignado antes de "
+     "empezar— y funciona. Lo que falta no es decidir: es escribirlo como enmienda a D5 para que el historial y la "
+     "regla digan lo mismo."),
 ]
 
 LIMITES = [
@@ -272,23 +431,31 @@ doc = f"""<!doctype html>
 <header>
   <p class="eyebrow">Investigathón Y-Hat · track chicharrita del maíz</p>
   <h1>Qué está hecho y qué falta</h1>
-  <p class="sub">Foto del entregable al 2026-10-21. Generada con
-  <code>tools/generar_estado.py</code>, que comprueba contra el disco que cada archivo nombrado
-  existe. <strong>Esta página no es fuente de verdad</strong>: el estado se declara en
-  <a href="PLAN_DESARROLLO.md">PLAN_DESARROLLO.md</a> (§1 bis y §3 ter) y cada afirmación vive en
-  el informe que enlaza.</p>
+  <p class="sub">Foto del entregable al <strong>2026-10-26</strong>, después del checkpoint 2.
+  Generada con <code>tools/generar_estado.py</code>, que comprueba contra el disco que cada archivo
+  nombrado existe. <strong>Esta página no es fuente de verdad</strong>: el estado se declara en
+  <a href="PLAN_DESARROLLO.md">PLAN_DESARROLLO.md</a> (§1 bis y §3 ter), el plan vigente está en
+  <a href="docs/plan_ola6/PLAN_OLA6.md">PLAN_OLA6.md</a>, y cada afirmación vive en el informe que
+  enlaza.</p>
   <p class="sub"><a href="index.html">← Volver a la portada</a></p>
 </header>
 
 <div class="verdict">
 <p><strong>Los cinco pedidos del Checkpoint 1 están cerrados</strong>, más los dos opcionales, y las
-tres tareas de fortalecimiento de C9 tienen entregable. No queda ninguna medición grande pendiente.
-Lo que sigue son <strong>{contar(n_dec, "una decisión", "decisiones")} y
+cinco olas de investigación tienen entregable: las nueve líneas de la ola 4 y las siete de la ola 5
+están cerradas. <strong>No queda ninguna medición grande pendiente</strong>, y de los ocho puntos
+que dejó el checkpoint 2, cinco ya estaban cerrados. Lo que sigue son
+<strong>{contar(n_dec, "una decisión", "decisiones")} y
 {contar(n_tra, "un trabajo chico", "trabajos chicos")}</strong>, no producir el
 entregable.</p>
-<p>Dos cosas bloquean al resto: el dato que falta para mandar el correo al investigador, y cuál es
-el análisis primario de la validación retrospectiva, porque decidirlo después de ver los datos
-anula el pre-registro.</p>
+<p>Lo que bloquea de verdad son dos cosas, y ninguna es una medición. <strong>La primera</strong>
+es que cuatro entregables no dicen la misma cifra para la misma región: D63 a D65 ya decidieron que
+se publica 26 y dos documentos viejos siguen diciendo 36. <strong>La segunda</strong> es que las 17
+alertas de off-target siguen sin firmar, y mientras eso pase una alerta no leída vale
+operativamente lo mismo que una aceptada. Lo único realmente nuevo que dejó la reunión es la
+quimera por combinación de fenotipos, y su único insumo faltante es la secuencia de
+<code>V-ATPase B</code>. El tablero completo, features de plataforma incluidas, está en el
+<a href="https://github.com/Castanosjoaquin/chicharrita-research/issues/29">índice de la ola 6</a>.</p>
 </div>
 
 <h2>Lo que está hecho</h2>
