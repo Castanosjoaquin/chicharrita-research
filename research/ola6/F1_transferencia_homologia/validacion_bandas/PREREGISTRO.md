@@ -111,3 +111,23 @@ concordancia e IC95), `resultados/resumen.json` (insumos con sus sha256, versió
 conteos, el veredicto según el criterio de arriba y el esperado recalculado) y `REPORT.md`. Las
 tablas por par van en `resultados/pares_{P,O}.tsv.gz`. Ninguna salida lleva secuencia: rige el
 cortafuego de `D37` igual que en `F1`.
+
+---
+
+## Enmienda 1 — reponderación por cobertura (2026-10-27, post hoc, `[H]`)
+
+**Escrita después de ver el resultado principal.** Se declara como post hoc y no reemplaza nada de
+lo de arriba.
+
+Lo de arriba comprometía comparar la distribución de `rotulo_cobertura` del brazo O contra la de
+`GITV01` para **acotar el signo** del sesgo que el diseño no cubre. Vista la tabla, esa comparación
+se puede llevar un paso más: el brazo O también permite medir la concordancia **por rótulo de
+cobertura**, y no sólo por banda de identidad. Con eso, el esperado sobre `GITV01` se puede
+reponderar por la celda banda × cobertura, que es lo que corrige el exceso de ORF parciales y
+fragmentos del transcriptoma real. Se agrega esa tercera cifra, rotulada `[H]` y post hoc, al lado
+de las dos preregistradas, en `scripts/recalcular_esperado.py`. Una celda con menos de 20 pares en
+el brazo O no se usa para reponderar.
+
+**Lo que esta enmienda no cambia:** el criterio de decisión del supuesto, que ya está fijado
+arriba y se resuelve con la comparación O contra P; y la regla 3, que prohíbe corregir la cifra de
+`F1` hacia arriba. Las tres cifras del recálculo se publican como medición, no como reemplazo.
