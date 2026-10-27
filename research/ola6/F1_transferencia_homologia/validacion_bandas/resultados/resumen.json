@@ -1,0 +1,424 @@
+{
+ "pregunta": "56 (issue #25): valen las bandas de C12 sobre ORF de un transcriptoma",
+ "preregistro": "validacion_bandas/PREREGISTRO.md",
+ "diamond": "diamond version 2.2.8",
+ "insumos": {
+  "MQ_proteoma": {
+   "ruta": "work/C11_diseno_nuevo/blast/mq_proteome.faa",
+   "sha256": "1ea13a15f993da629b1daf8951ad2f54d9f62319d92294db77dff3f711992810"
+  },
+  "HV_proteoma": {
+   "ruta": "work/F1v/ref/GCF_021130785.1_UT_GWSS_2.1_protein.faa",
+   "sha256": "fa6f44f11de5c2ff60ae425a102d7e983b8138dd428d81cff87b707fd85998b3"
+  },
+  "MQ_rna": {
+   "ruta": "work/F1v/ref/GCF_028750875.1_UCM_ALF_1.0_rna.fna.gz",
+   "sha256": "9a8232c30999f70641ccd8700dd674ae09a51ca10d8b6df848a477fa7646bafc"
+  },
+  "feature_table": {
+   "ruta": "work/F1v/ref/GCF_028750875.1_UCM_ALF_1.0_feature_table.txt.gz",
+   "sha256": "adab41fa03f5a2b2f5dda27dba77c3bb8e9ad07e789bc3b22917623498c9da44"
+  }
+ },
+ "conteos": {
+  "MQ_proteinas": 34269,
+  "HV_proteinas": 31163,
+  "transcriptos_con_CDS": 34256,
+  "transcriptos_sin_CDS": 2373,
+  "orfs": 117393
+ },
+ "resultados": {
+  "estricta": {
+   "no_pareado": {
+    "P": {
+     "<40": {
+      "n": 73,
+      "aciertos": 38,
+      "conc": 0.5205,
+      "lo": 0.4078,
+      "hi": 0.6312
+     },
+     "40-60": {
+      "n": 689,
+      "aciertos": 497,
+      "conc": 0.7213,
+      "lo": 0.6867,
+      "hi": 0.7535
+     },
+     "60-80": {
+      "n": 2235,
+      "aciertos": 1829,
+      "conc": 0.8183,
+      "lo": 0.8018,
+      "hi": 0.8338
+     },
+     "80-90": {
+      "n": 1394,
+      "aciertos": 1233,
+      "conc": 0.8845,
+      "lo": 0.8667,
+      "hi": 0.9002
+     },
+     ">=90": {
+      "n": 797,
+      "aciertos": 745,
+      "conc": 0.9348,
+      "lo": 0.9154,
+      "hi": 0.9499
+     },
+     "total": {
+      "n": 5188,
+      "aciertos": 4342,
+      "conc": 0.8369,
+      "lo": null,
+      "hi": null
+     }
+    },
+    "O": {
+     "<40": {
+      "n": 71,
+      "aciertos": 37,
+      "conc": 0.5211,
+      "lo": 0.4069,
+      "hi": 0.6332
+     },
+     "40-60": {
+      "n": 693,
+      "aciertos": 494,
+      "conc": 0.7128,
+      "lo": 0.6781,
+      "hi": 0.7453
+     },
+     "60-80": {
+      "n": 2253,
+      "aciertos": 1849,
+      "conc": 0.8207,
+      "lo": 0.8043,
+      "hi": 0.836
+     },
+     "80-90": {
+      "n": 1396,
+      "aciertos": 1235,
+      "conc": 0.8847,
+      "lo": 0.8668,
+      "hi": 0.9004
+     },
+     ">=90": {
+      "n": 796,
+      "aciertos": 743,
+      "conc": 0.9334,
+      "lo": 0.9139,
+      "hi": 0.9487
+     },
+     "total": {
+      "n": 5209,
+      "aciertos": 4358,
+      "conc": 0.8366,
+      "lo": null,
+      "hi": null
+     }
+    }
+   },
+   "pareado": {
+    "P": {
+     "<40": {
+      "n": 70,
+      "aciertos": 36,
+      "conc": 0.5143,
+      "lo": 0.3995,
+      "hi": 0.6275
+     },
+     "40-60": {
+      "n": 672,
+      "aciertos": 482,
+      "conc": 0.7173,
+      "lo": 0.6821,
+      "hi": 0.75
+     },
+     "60-80": {
+      "n": 2189,
+      "aciertos": 1793,
+      "conc": 0.8191,
+      "lo": 0.8024,
+      "hi": 0.8347
+     },
+     "80-90": {
+      "n": 1378,
+      "aciertos": 1217,
+      "conc": 0.8832,
+      "lo": 0.8651,
+      "hi": 0.8991
+     },
+     ">=90": {
+      "n": 778,
+      "aciertos": 727,
+      "conc": 0.9344,
+      "lo": 0.9148,
+      "hi": 0.9498
+     },
+     "total": {
+      "n": 5087,
+      "aciertos": 4255,
+      "conc": 0.8364,
+      "lo": null,
+      "hi": null
+     }
+    },
+    "O": {
+     "<40": {
+      "n": 70,
+      "aciertos": 36,
+      "conc": 0.5143,
+      "lo": 0.3995,
+      "hi": 0.6275
+     },
+     "40-60": {
+      "n": 677,
+      "aciertos": 481,
+      "conc": 0.7105,
+      "lo": 0.6752,
+      "hi": 0.7434
+     },
+     "60-80": {
+      "n": 2193,
+      "aciertos": 1798,
+      "conc": 0.8199,
+      "lo": 0.8032,
+      "hi": 0.8354
+     },
+     "80-90": {
+      "n": 1371,
+      "aciertos": 1213,
+      "conc": 0.8848,
+      "lo": 0.8668,
+      "hi": 0.9006
+     },
+     ">=90": {
+      "n": 778,
+      "aciertos": 727,
+      "conc": 0.9344,
+      "lo": 0.9148,
+      "hi": 0.9498
+     },
+     "total": {
+      "n": 5089,
+      "aciertos": 4255,
+      "conc": 0.8361,
+      "lo": null,
+      "hi": null
+     }
+    },
+    "genes_en_comun": 5087
+   },
+   "cobertura_O": {
+    "cobertura_alta": 4780,
+    "parcial": 381,
+    "fragmento": 48
+   }
+  },
+  "ampliada": {
+   "no_pareado": {
+    "P": {
+     "<40": {
+      "n": 148,
+      "aciertos": 83,
+      "conc": 0.5608,
+      "lo": 0.4803,
+      "hi": 0.6382
+     },
+     "40-60": {
+      "n": 1368,
+      "aciertos": 1024,
+      "conc": 0.7485,
+      "lo": 0.7249,
+      "hi": 0.7708
+     },
+     "60-80": {
+      "n": 5003,
+      "aciertos": 4159,
+      "conc": 0.8313,
+      "lo": 0.8207,
+      "hi": 0.8414
+     },
+     "80-90": {
+      "n": 3316,
+      "aciertos": 2930,
+      "conc": 0.8836,
+      "lo": 0.8722,
+      "hi": 0.8941
+     },
+     ">=90": {
+      "n": 2240,
+      "aciertos": 2084,
+      "conc": 0.9304,
+      "lo": 0.9191,
+      "hi": 0.9402
+     },
+     "total": {
+      "n": 12075,
+      "aciertos": 10280,
+      "conc": 0.8513,
+      "lo": null,
+      "hi": null
+     }
+    },
+    "O": {
+     "<40": {
+      "n": 147,
+      "aciertos": 83,
+      "conc": 0.5646,
+      "lo": 0.4838,
+      "hi": 0.6421
+     },
+     "40-60": {
+      "n": 1375,
+      "aciertos": 1021,
+      "conc": 0.7425,
+      "lo": 0.7188,
+      "hi": 0.765
+     },
+     "60-80": {
+      "n": 4960,
+      "aciertos": 4105,
+      "conc": 0.8276,
+      "lo": 0.8169,
+      "hi": 0.8379
+     },
+     "80-90": {
+      "n": 3234,
+      "aciertos": 2863,
+      "conc": 0.8853,
+      "lo": 0.8738,
+      "hi": 0.8958
+     },
+     ">=90": {
+      "n": 2153,
+      "aciertos": 2000,
+      "conc": 0.9289,
+      "lo": 0.9173,
+      "hi": 0.939
+     },
+     "total": {
+      "n": 11869,
+      "aciertos": 10072,
+      "conc": 0.8486,
+      "lo": null,
+      "hi": null
+     }
+    }
+   },
+   "pareado": {
+    "P": {
+     "<40": {
+      "n": 145,
+      "aciertos": 81,
+      "conc": 0.5586,
+      "lo": 0.4773,
+      "hi": 0.6369
+     },
+     "40-60": {
+      "n": 1345,
+      "aciertos": 1005,
+      "conc": 0.7472,
+      "lo": 0.7233,
+      "hi": 0.7697
+     },
+     "60-80": {
+      "n": 4871,
+      "aciertos": 4045,
+      "conc": 0.8304,
+      "lo": 0.8196,
+      "hi": 0.8407
+     },
+     "80-90": {
+      "n": 3220,
+      "aciertos": 2846,
+      "conc": 0.8839,
+      "lo": 0.8723,
+      "hi": 0.8945
+     },
+     ">=90": {
+      "n": 2146,
+      "aciertos": 1993,
+      "conc": 0.9287,
+      "lo": 0.917,
+      "hi": 0.9388
+     },
+     "total": {
+      "n": 11727,
+      "aciertos": 9970,
+      "conc": 0.8502,
+      "lo": null,
+      "hi": null
+     }
+    },
+    "O": {
+     "<40": {
+      "n": 147,
+      "aciertos": 83,
+      "conc": 0.5646,
+      "lo": 0.4838,
+      "hi": 0.6421
+     },
+     "40-60": {
+      "n": 1352,
+      "aciertos": 1006,
+      "conc": 0.7441,
+      "lo": 0.7202,
+      "hi": 0.7666
+     },
+     "60-80": {
+      "n": 4889,
+      "aciertos": 4054,
+      "conc": 0.8292,
+      "lo": 0.8184,
+      "hi": 0.8395
+     },
+     "80-90": {
+      "n": 3202,
+      "aciertos": 2835,
+      "conc": 0.8854,
+      "lo": 0.8739,
+      "hi": 0.896
+     },
+     ">=90": {
+      "n": 2141,
+      "aciertos": 1988,
+      "conc": 0.9285,
+      "lo": 0.9168,
+      "hi": 0.9387
+     },
+     "total": {
+      "n": 11731,
+      "aciertos": 9966,
+      "conc": 0.8495,
+      "lo": null,
+      "hi": null
+     }
+    },
+    "genes_en_comun": 11727
+   },
+   "cobertura_O": {
+    "cobertura_alta": 10617,
+    "parcial": 1032,
+    "fragmento": 220
+   }
+  }
+ },
+ "veredicto": {
+  "estricta": {
+   "<40": "no decide (n < 100)",
+   "40-60": "se sostiene",
+   "60-80": "se sostiene",
+   "80-90": "se sostiene",
+   ">=90": "se sostiene"
+  },
+  "ampliada": {
+   "<40": "se sostiene",
+   "40-60": "se sostiene",
+   "60-80": "se sostiene",
+   "80-90": "se sostiene",
+   ">=90": "se sostiene"
+  }
+ }
+}

@@ -1487,3 +1487,41 @@ Corrido sobre el par que motivó el issue —la versión de `38ad686` contra la 
 ---
 
 **Nota de numeracion:** esta decision se escribio como `D84` el mismo dia en que la sesion de `F1` escribia la suya con el mismo numero. Se renumero a `D85` al mergear, porque la de `F1` ya estaba en `origin`. Precedente: `D71` y `D75`.
+
+## D86 — El supuesto de las bandas de `F1` se midió y se sostiene; las bandas de `C12` resultaron conservadoras y la cifra publicada no se corrige hacia arriba
+**Fecha:** 2026-10-27
+**Quién:** la sesión que revisó y cerró `F1` (issue #25), ejecutando
+`research/ola6/F1_transferencia_homologia/validacion_bandas/PREREGISTRO.md`, commiteado antes de la
+primera corrida. Cierra la pregunta abierta 56. Aplica `D84`; no lo reabre.
+**Decisión:** el supuesto que `D84` declaró `[H]` —que las bandas de concordancia de `C12`, medidas
+entre dos proteomas RefSeq curados, se puedan aplicar a ORF de seis marcos de un transcriptoma—
+**pasa a ser medición**: se sostiene. Y, pese a que la medición completa da concordancias más altas
+que las de `C12`, **el 81 % que publica el informe de `F1` no se corrige**, porque el preregistro de
+la validación fijaba de antemano que una diferencia hacia arriba se reporta y no se aplica. Las
+cifras recalculadas (88,5 % con las bandas medidas, 87,4 % reponderando por cobertura) se publican
+al lado, como medición, no en reemplazo.
+**Hecho que motivó la decisión:** *M. quadrilineatus* tiene en RefSeq su proteoma anotado y sus
+transcriptos, así que el mismo organismo se leyó de las dos maneras contra la misma referencia
+(*H. vitripennis*), con el código de `F1` importado tal cual: brazo P con las 34.269 proteínas
+curadas, brazo O con los 117.393 ORF de ≥ 100 aa de sus 34.256 transcriptos con CDS. Sobre los
+11.727 genes en común, la concordancia de nombre es 85,0 % contra 85,0 %, y en las cinco bandas de
+identidad la diferencia máxima entre brazos es de **0,3 puntos**, sin que ningún IC95 se separe
+(con n ≈ 4.900 en la banda central, dos puntos habrían caído fuera) `[M]`. Lo que sí depende de la
+cobertura: el par de cobertura alta concuerda 86,7 % y el parcial 68,6 %, unos 16 puntos menos.
+**Alternativas consideradas:** (a) la ruta que sugería la entrada 56, validar contra la curación de
+`C5`, descartada por potencia —del orden de una docena de genes, y `C12` necesitó 1.152 pares para
+cinco bandas—; (b) reemplazar el 81 % del informe de `F1` por el 87,4 % medido; (c) la elegida.
+**Criterio:** sobre (b), el preregistro fijó las tres salidas posibles antes de ver el resultado, y
+la regla para «la medición quedó por encima» era reportar sin corregir. Cambiarla al verla es
+exactamente lo que `D81` cierra: elegir después de ver. Que la cifra publicada quede conservadora es
+el error barato.
+**Consecuencia:** el 81 % del informe de `F1` se lee como **cota inferior**, no como valor central, y
+así quedó anotado ahí. Quien use la salida de `F1` ya no arrastra el supuesto `[H]` sobre el paso de
+ORF. `[H]` Sigue sin cubrirse el error de ensamblado de novo: un `rna.fna` de RefSeq es un
+transcripto curado, y la quimera y el marco roto de un TSA no tienen rótulo. La reponderación por
+cobertura estima esa parte del sesgo en 1,1 puntos, y es post hoc.
+**Lo que esta decisión no hace:** no valida la anotación de RefSeq (dos errores iguales cuentan como
+acierto, igual que en `C12`); no mide sobre *D. maidis*, sino sobre el organismo que tiene las dos
+lecturas; no explica por qué el brazo P, que es el diseño de `C12` corrido completo, queda entre 6 y
+10 puntos por encima de lo que `C12` publicó en los tramos altos —submuestra, reverso parcial o
+`diamond` contra BLAST+, no se separó—; y no toca el diseño ni el ranking, que siguen bajo `D37`.

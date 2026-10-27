@@ -50,9 +50,16 @@ Por ORF, la lectura inclusiva da 10.280 recíprocos con nombre informativo, dist
 identidad así: ≥ 90 %, 4.467; 80–90 %, 3.233; 60–80 %, 2.132; 40–60 %, 401; < 40 %, 47. Con la
 concordancia de `C12` en cada tramo, el valor esperado sobre esos 10.280 es cerca del **81 %** `[H]`:
 una cifra que sólo vale si las bandas de proteoma contra proteoma se pueden aplicar a ORF de un
-TSA, que es el supuesto central y no está probado. La cobertura alta (≥ 70 % en los dos lados)
+TSA, que es el supuesto central ~~y no está probado~~ **y quedó probado después** (`D86`,
+`validacion_bandas/`): el paso por ORF no degrada la concordancia, y las bandas de `C12` resultaron
+ser una **cota conservadora**, de modo que el esperado medido es 87–89 % y no 81 %. **El 81 % se
+deja como está** —el preregistro de esa validación prohibía corregir hacia arriba—; lo que cambia
+es cómo se lee. La cobertura alta (≥ 70 % en los dos lados)
 alcanza a 8.574 de esos 10.280; el resto es parcial (1.400) o fragmento (306) y viaja rotulado,
-sin filtrar. Las proteínas de referencia distintas alcanzadas son 9.567 (28 % del proteoma), pero son
+sin filtrar. ~~Las proteínas de referencia distintas alcanzadas son 9.567 (28 % del proteoma)~~ **Las
+proteínas de referencia distintas alcanzadas son 9.567 (27,9 % del proteoma) contando todos los
+recíprocos de la lectura inclusiva; si se cuentan sólo los que tienen nombre informativo —el
+universo de los 10.280 del que viene hablando este párrafo— son 7.942 (23,2 %)** `[M]`, pero son
 proteínas y no genes: RefSeq tiene varias isoformas por gen.
 
 El contraste entre las dos referencias da una consistencia de nombres de **86,3 %** (6.455 de 7.478

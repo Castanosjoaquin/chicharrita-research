@@ -1386,3 +1386,17 @@ descartamos **nosotros** al procesarla.
 - **Una lección de proceso.** Dos números míos estaban mal en documentos ya commiteados (un
   porcentaje de empates y el final de un `md5`): el primero se corrigió con una nota a la vista en
   `PREREGISTRO.md`, sin reescribir el commit. Contar de nuevo contra la tabla antes de citar.
+
+## Validar las bandas de `C12` contra la curación de `C5` — descartado por potencia (2026-10-27, `D86`)
+
+La pregunta abierta 56 proponía validar el supuesto de las bandas de `F1` «tomando un subconjunto
+de contigs cuyos genes tengan anotación independiente (los de la curación de `C5`)». No alcanza:
+`research/ola3/C5_.../catalogo_genes_blanco.json` es un catálogo de genes blanco de RNAi con una
+fila por gen y por estudio, del orden de una docena de genes, y `C12` necesitó 1.152 pares para
+estimar cinco bandas de identidad. Con ese n no se puede estimar ninguna.
+
+**Lo que sí funcionó, y es reutilizable:** usar un organismo que tenga en RefSeq **las dos cosas**,
+proteoma anotado y transcriptos, y leerlo de las dos maneras contra la misma referencia. El propio
+*M. quadrilineatus* lo cumple. Da miles de pares, no necesita curación manual y la comparación es
+pareada gen a gen. Es el patrón a usar la próxima vez que haya que medir cuánto cuesta un paso del
+pipeline: buscar dónde existe la versión curada del mismo dato.

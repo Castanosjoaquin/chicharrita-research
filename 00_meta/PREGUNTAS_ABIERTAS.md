@@ -2328,3 +2328,29 @@ esa sección: 15→27, 16→28, 17→29, 18→30, 19→31, 20→32, 21→33.
     En la de Joaquín el reparto lo hacía `micromamba`; en esta lo hace la frontera
     Windows/WSL. Y al anotar un hecho de entorno sobre una máquina ajena conviene citar la
     decisión que de verdad lo registra: la entrada 54 citó `D78` por `D71`.
+
+### Ola 6, validación del supuesto de las bandas y cierre de `F1` (`D86`, issue #25, 2026-10-27)
+
+**Se cierra la 56.** El supuesto se midió y se sostiene: el paso por ORF de seis marcos no degrada
+la concordancia (85,0 % contra 85,0 % sobre 11.727 genes en común, diferencia máxima por banda de
+0,3 puntos). Detalle en `research/ola6/F1_transferencia_homologia/validacion_bandas/REPORT.md`.
+
+62. **¿Por qué el par completo no reproduce lo que publicó `C12`?** El brazo P es el diseño de
+    `C12` —MQ contra HV, proteínas curadas, recíproco— corrido entero, y da 85,1 % contra el 78,2 %
+    publicado, con los tres tramos altos entre 6 y 10 puntos por encima y diez veces más pares
+    `[M]`. Las candidatas son dos y no se separaron: `C12` usó una submuestra de 4.000 consultas con
+    un **reverso parcial** (sólo los 3.100 mejores hits), que puede declarar recíprocos pares que no
+    lo son, y corrió con BLAST+ en vez de `diamond`, que no dan la misma `pident`. Separarlas es
+    barato: repetir el brazo P con `blastp` del entorno `alineador`. **Hasta que se haga, las bandas
+    publicadas de `C12` quedan en duda, y las usa `F1` y cualquier cosa que cite el 78,2 %.**
+63. **¿Cuánto cuesta el error de ensamblado de novo, que la validación no cubre?** Se midió el
+    efecto de traducir en seis marcos sobre transcriptos **curados** de RefSeq. La quimera, el
+    fragmento y el marco roto de un TSA ensamblado de novo no están en ese diseño; sólo se acotó por
+    cobertura, que estima 1,1 puntos. Medirlo exigiría un organismo con TSA de novo **y** proteoma
+    anotado, los dos públicos, y no se buscó si existe.
+64. **El rótulo de cobertura separa «alta» del resto, pero no separa `parcial` de `fragmento`.**
+    La concordancia del par `fragmento` (71,4 %, IC95 65,1–76,9, n = 220) es nominalmente mayor que
+    la del `parcial` (68,6 %, IC95 65,7–71,4, n = 1.032) `[M]`: los intervalos se solapan de lado a
+    lado, así que la inversión **no** es un hallazgo, pero tampoco hay evidencia de que el corte en
+    30 % de cobertura ordene nada. Si los dos rótulos miden lo mismo, conviene colapsarlos en «no
+    alta» y no sugerir una gradación que no se midió. No se revisó el umbral.
