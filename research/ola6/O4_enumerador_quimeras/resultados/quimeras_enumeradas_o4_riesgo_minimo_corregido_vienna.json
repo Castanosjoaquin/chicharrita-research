@@ -27,14 +27,14 @@
   },
   "grilla": {
     "combinaciones_antes_de_podar": 47833512,
-    "combinaciones_admisibles": 1124,
+    "combinaciones_admisibles": 3204,
     "paso": 50,
     "l1_min": 100,
     "l1_max": 500,
     "largo_total": 600,
     "marco_de_la_grilla": 2
   },
-  "plegados": 1242,
+  "plegados": 3405,
   "tamizado_de_juntura": {
     "que_se_busca": "bloques de 19, 20 y 21 nt que cruzan la union, exactos y en las dos hebras; fabricado es el bloque que toma al menos un nucleotido de cada gen (paso 2 de O3, C13)",
     "bloques_por_juntura": 57,

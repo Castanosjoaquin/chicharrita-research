@@ -116,6 +116,17 @@ con el panel `[M]`. Por referencia: humano 249, *Homalodisca vitripennis* 145, m
 *Harmonia axyridis* 32, *Folsomia candida* 7, *Apis mellifera* 5. No es un caso raro: el de
 `D74` era el primero que miramos, no el único que hay.
 
+**Pero ese 16,1 % hay que leerlo con el aporte, y baja bastante.** De las 515, en **262 —la
+mitad— el bloque más repartido toma un solo nucleótido del segundo gen**, y sólo **118**
+tienen algún bloque repartido 5/5 o mejor `[M]`. Un bloque de 19 nt con 18 de un gen y 1 del
+otro es casi el gen solo, y **existe por azar en una de cada cuatro** referencias que
+contengan al gen padre, porque basta con que el nucleótido siguiente del padre coincida — por
+eso el proyecto necesita el aporte y no sólo el conteo, y por eso el caso de `D74`, que era
+justamente 18 + 1, se firmó mirando también en qué transcriptos caía. La misma aritmética
+explica que 1.362 de las 3.204 junturas tengan un bloque que existe en el **genoma del
+vector**: eso no es riesgo, es on-target, y por eso la columna del aporte cuenta sólo los
+bloques que coinciden en el panel y el vector viaja en su propia columna.
+
 ## 6. La asimetría, que es el agujero del objetivo y no de la grilla
 
 El mejor conteo de heredadas por proporción, con largo total 600 `[M]`:
