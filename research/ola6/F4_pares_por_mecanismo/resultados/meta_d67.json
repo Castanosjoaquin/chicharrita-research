@@ -1,0 +1,204 @@
+{
+  "que_es_esto": "los pares de candidatos elegibles para armar una quimera por mecanismo, leidos de la asignacion de F3. No hay orden de calidad, no hay puntaje y no hay primer puesto: el orden de las filas es alfabetico por identificador y no significa nada",
+  "criterio": "research/ola6/F4_pares_por_mecanismo/PREREGISTRO.md, commiteado antes de enumerar un solo par",
+  "entrada": {
+    "tabla": "research\\ola6\\F3_recomendador_genes\\resultados\\eje_fenotipo.tsv",
+    "filas": 36,
+    "contraevidencia_declarada": "research\\ola6\\F4_pares_por_mecanismo\\contraevidencia.tsv"
+  },
+  "regla_de_elegibilidad": "etiqueta_de_ausencia vacia Y entra_al_orden_por_fenotipo = si Y mecanismos no vacio; las tres tienen que coincidir o la corrida aborta. Ningun identificador de candidato esta escrito en el codigo",
+  "especie_blanco": "Dalbulus maidis",
+  "restringido_a_especie": null,
+  "elegibles": [
+    "CI-01",
+    "CI-02",
+    "CI-03",
+    "CI-04",
+    "CI-05",
+    "CI-06",
+    "CI-07",
+    "CI-09",
+    "CI-10",
+    "CI-11",
+    "CI-12",
+    "DE-01",
+    "DE-02",
+    "DE-03",
+    "DE-04",
+    "DE-05",
+    "DM-01",
+    "DM-02",
+    "DM-03",
+    "DM-05",
+    "DM-06",
+    "HE-01",
+    "HE-02",
+    "HE-05",
+    "HE-07"
+  ],
+  "excluidos": {
+    "CI-08": "fenotipo_invertido",
+    "CI-13": "fenotipo_invertido",
+    "DE-06": "sin_fenotipo_publicado",
+    "DM-04": "potenciador_de_entrega",
+    "HE-03": "sin_fenotipo_publicado",
+    "HE-04": "sin_fenotipo_atribuible_al_blanco",
+    "HE-06": "sin_fenotipo_publicado",
+    "HE-08": "sin_fenotipo_atribuible_al_blanco",
+    "HE-09": "fenotipo_fuera_de_los_cuatro",
+    "HE-10": "sin_fenotipo_publicado",
+    "HE-11": "sin_fenotipo_publicado"
+  },
+  "soporte_por_mecanismo": {
+    "reproduccion": {
+      "ids": [
+        "CI-01",
+        "CI-02",
+        "CI-03",
+        "CI-10",
+        "DE-01",
+        "DE-02",
+        "DE-03",
+        "DE-04",
+        "DE-05",
+        "DM-01",
+        "HE-01",
+        "HE-05",
+        "HE-07"
+      ],
+      "n": 13,
+      "ids_en_la_especie_blanco": [
+        "DM-01"
+      ],
+      "n_en_la_especie_blanco": 1,
+      "descansa_en_un_solo_candidato": false,
+      "en_d67": true
+    },
+    "movilidad": {
+      "ids": [
+        "DM-02"
+      ],
+      "n": 1,
+      "ids_en_la_especie_blanco": [
+        "DM-02"
+      ],
+      "n_en_la_especie_blanco": 1,
+      "descansa_en_un_solo_candidato": true,
+      "en_d67": true
+    },
+    "letalidad": {
+      "ids": [
+        "CI-01",
+        "CI-02",
+        "CI-04",
+        "CI-05",
+        "CI-10",
+        "CI-11",
+        "CI-12",
+        "DE-01",
+        "DE-04",
+        "DE-05",
+        "DM-02",
+        "DM-03",
+        "DM-05",
+        "DM-06",
+        "HE-02",
+        "HE-07"
+      ],
+      "n": 16,
+      "ids_en_la_especie_blanco": [
+        "DM-02",
+        "DM-03",
+        "DM-05",
+        "DM-06"
+      ],
+      "n_en_la_especie_blanco": 4,
+      "descansa_en_un_solo_candidato": false,
+      "en_d67": true
+    },
+    "transmision": {
+      "ids": [
+        "CI-06",
+        "CI-07",
+        "CI-09",
+        "DE-05"
+      ],
+      "n": 4,
+      "ids_en_la_especie_blanco": [],
+      "n_en_la_especie_blanco": 0,
+      "descansa_en_un_solo_candidato": false,
+      "en_d67": false
+    }
+  },
+  "contraevidencia_verificada_textual": {
+    "movilidad": [
+      {
+        "mecanismo": "movilidad",
+        "fila_que_la_sostiene": "DM-03",
+        "frase_textual_en_eje_fenotipo": "efecto en alas no significativo",
+        "por_que_cuenta_como_contraevidencia": "es la otra subunidad de la misma bomba, en la misma especie y con la misma via de entrega que el unico candidato de movilidad: ahi el efecto sobre alas se midio y NO dio significativo",
+        "fuente_de_la_lectura": "00_meta/PREGUNTAS_ABIERTAS.md entrada 70"
+      }
+    ]
+  },
+  "pedidos": [
+    {
+      "mecanismos_pedidos": "reproduccion+letalidad",
+      "asignaciones_de_rol": 201,
+      "pares_de_genes_distintos": 180,
+      "sostenido_por": {
+        "reproduccion": 13,
+        "letalidad": 16
+      },
+      "roles_que_descansan_en_un_solo_candidato": [],
+      "pares_con_mecanismos_solapados": 147,
+      "pares_con_las_dos_mitades_de_la_especie_blanco": 4,
+      "pares_con_alguna_fila_que_agrupa_varios_genes": 63,
+      "amplia_d67": []
+    },
+    {
+      "mecanismos_pedidos": "reproduccion+movilidad",
+      "asignaciones_de_rol": 13,
+      "pares_de_genes_distintos": 13,
+      "sostenido_por": {
+        "reproduccion": 13,
+        "movilidad": 1
+      },
+      "roles_que_descansan_en_un_solo_candidato": [
+        "movilidad"
+      ],
+      "pares_con_mecanismos_solapados": 7,
+      "pares_con_las_dos_mitades_de_la_especie_blanco": 1,
+      "pares_con_alguna_fila_que_agrupa_varios_genes": 2,
+      "amplia_d67": []
+    },
+    {
+      "mecanismos_pedidos": "letalidad+movilidad",
+      "asignaciones_de_rol": 15,
+      "pares_de_genes_distintos": 15,
+      "sostenido_por": {
+        "letalidad": 16,
+        "movilidad": 1
+      },
+      "roles_que_descansan_en_un_solo_candidato": [
+        "movilidad"
+      ],
+      "pares_con_mecanismos_solapados": 15,
+      "pares_con_las_dos_mitades_de_la_especie_blanco": 3,
+      "pares_con_alguna_fila_que_agrupa_varios_genes": 3,
+      "amplia_d67": []
+    }
+  ],
+  "ampliacion_de_d67": {
+    "estado": "no pedida",
+    "que_significa": "transmision es categoria declarada de F3 con cuatro candidatos y D67 define tres. Entrar al armado es ampliar D67 y pide su propio ADR (PREGUNTAS_ABIERTAS 65). Medir no es adoptar: con la puerta abierta cada fila lleva ampliacion_de_d67_sin_adr = si"
+  },
+  "lo_que_no_hace": [
+    "no recomienda ningun par: enumera y mide",
+    "no afirma eficacia: el criterio de eficiencia de si-Fi21 no esta validado en hemipteros: rho = +0,142, IC95 [-0,247, +0,492], n = 29 [M]",
+    "no decide si movilidad sigue siendo una pata del esquema (PREGUNTAS_ABIERTAS 70)",
+    "no mira secuencias: un par elegible no es un par corrible. El enumerador de O4 necesita el gen entero de cada mitad",
+    "un par no pasa todavia por el inventario de alertas de M6: la clave de juntura que D78 le dio a una quimera no esta implementada (PREGUNTAS_ABIERTAS 41)"
+  ],
+  "python": "3.13.15"
+}

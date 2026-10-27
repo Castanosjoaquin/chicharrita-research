@@ -50,12 +50,34 @@ decision **no esta implementada** por falta de insumo, asi que una quimera todav
 pasar la compuerta con su empalme sin tamizar (`PREGUNTAS_ABIERTAS.md` 41). La salida
 declara la clave que le corresponde en vez de dar el hueco por cerrado.
 
+El eje de fenotipo entra por una de dos vias, y nunca por las dos (`F4`, issue #39). La
+original es `--eje NOMBRE=eje[:fuente]`, que lo recibe **escrito**: fue lo correcto mientras
+el eje no existia en forma legible por maquina, y es lo que el §2 del preregistro declara
+como «entrada declarada, no inferencia». La nueva es `--mecanismos X,Y` con un
+`--candidato ID=NOMBRE` por gen, que **lo resuelve desde la tabla** que dejo `F3` en
+`research/ola6/F3_recomendador_genes/resultados/eje_fenotipo.tsv`: el par pedido tiene que
+ser uno de los elegibles que enumera `research/ola6/F4_pares_por_mecanismo/`, y si no lo es
+esto **no enumera** —aborta nombrando el motivo que da la tabla, que para dos candidatos es
+que silenciarlos AUMENTA la colonizacion del vector por el patogeno—. El orden de los
+`--candidato` fija el rol: el primero cubre `X` y el segundo `Y`, para que una asignacion
+ambigua no se resuelva en silencio. Ninguna columna cambia por esta via y el valor que va en
+`eje_izq`/`eje_der` es el mismo que escribia la vieja; la clave del JSON que la declara
+aparece **solo** cuando se usa.
+
 Uso:
     python research/ola6/O4_enumerador_quimeras/scripts/enumerar_quimeras.py \\
         --gen BicC_Dm=work/O3/fasta/BicC_Dm_full.fasta \\
         --gen VATPaseB_Dm=work/O3/fasta/VATPaseB_Dm_full.fasta \\
         --eje BicC_Dm=reproduccion:C5/DM-01 \\
         --eje VATPaseB_Dm=movilidad:C5/DM-02 \\
+        --largo-total 600 --objetivo cobertura_fenotipica
+
+    # lo mismo, con el eje resuelto desde la tabla de F3 en vez de escrito:
+    python research/ola6/O4_enumerador_quimeras/scripts/enumerar_quimeras.py \\
+        --gen BicC_Dm=work/O3/fasta/BicC_Dm_full.fasta \\
+        --gen VATPaseB_Dm=work/O3/fasta/VATPaseB_Dm_full.fasta \\
+        --candidato DM-01=BicC_Dm --candidato DM-02=VATPaseB_Dm \\
+        --mecanismos reproduccion,movilidad \\
         --largo-total 600 --objetivo cobertura_fenotipica
 """
 
@@ -133,6 +155,127 @@ def leer_eje(spec: str) -> tuple[str, dict]:
     if not eje:
         raise SystemExit("%s: el eje no puede estar vacio" % nombre)
     return nombre, {"eje": eje, "fuente": fuente or "sin fuente declarada"}
+
+
+def ejes_por_mecanismo(spec: str, candidatos: list[str], nombres: list[str],
+                       ampliar_d67: bool) -> tuple[dict, dict]:
+    """El eje de cada gen resuelto desde la tabla de `F3`, en vez de recibido escrito.
+
+    Devuelve los ejes con la forma que usa `leer_eje` —para que el resto del enumerador no
+    distinga de donde vinieron— y la declaracion que viaja al JSON. El par pedido tiene que
+    ser uno de los elegibles de `F4`; si no lo es, esto **no enumera**.
+
+    El orden de los `--candidato` fija el rol: el primero cubre `X` y el segundo `Y`. Dos
+    candidatos que tengan los dos mecanismos admiten las dos asignaciones, y esa eleccion no
+    se resuelve en silencio: la hace quien corre, con el orden en que los pasa.
+
+    La importacion es perezosa a proposito: una corrida por la via de `--eje` no importa
+    nada nuevo, asi que las tres salidas commiteadas se regeneran con el mismo codigo que
+    las produjo.
+    """
+    sys.path.insert(0, str(RAIZ / "research/ola6/F4_pares_por_mecanismo/scripts"))
+    import pares_por_mecanismo as PM   # noqa: E402  el selector, que es de F4 y no de aca
+
+    x, y = PM.pedido(spec, ampliar_d67)
+    pedido_ids = []
+    por_id = {}
+    for c in candidatos:
+        if "=" not in c:
+            raise SystemExit("--candidato pide ID=NOMBRE, llego '%s'" % c)
+        ident, nombre = c.split("=", 1)
+        if nombre not in nombres:
+            raise SystemExit("--candidato %s apunta al gen '%s', que no es ninguno de los "
+                             "--gen (%s)" % (ident, nombre, ", ".join(nombres)))
+        if ident in por_id:
+            raise SystemExit("%s aparece en dos --candidato" % ident)
+        por_id[ident] = nombre
+        pedido_ids.append(ident)
+    if len(pedido_ids) != 2:
+        raise SystemExit("--mecanismos pide exactamente dos --candidato ID=NOMBRE, uno por "
+                         "gen, y llegaron %d. El orden fija el rol: el primero cubre %s y "
+                         "el segundo %s" % (len(pedido_ids), x, y))
+
+    filas = PM.leer_tabla()
+    elegibles, excluidos = PM.clasificar(filas)
+    PM.verificar(filas, elegibles, excluidos)
+    contra = PM.leer_contraevidencia(elegibles, filas)
+    sop = PM.soporte(elegibles)
+
+    ia, ib = pedido_ids
+    for ident in pedido_ids:
+        if ident in excluidos:
+            raise SystemExit(
+                "el par pedido no es elegible y esta corrida no enumera nada.\n  %s\nEsa "
+                "etiqueta la puso F3 leyendo la fuente, y una quimera que incluya a este "
+                "candidato es peor que no hacer nada."
+                % PM.motivo_de_exclusion(excluidos, ident))
+        if ident not in elegibles:
+            raise SystemExit("%s no esta en las %d filas del catalogo de C5 que lee %s"
+                             % (ident, len(filas), PM.TABLA.relative_to(RAIZ)))
+    buscado = ((ia, x), (ib, y))
+    elegido = next((p for p in PM.pares(elegibles, x, y, sop, contra, ampliar_d67)
+                    if ((p["id_a"], p["rol_a"]), (p["id_b"], p["rol_b"])) == buscado), None)
+    if elegido is None:
+        reves = (y in elegibles[ia]["mecanismos_lista"]
+                 and x in elegibles[ib]["mecanismos_lista"])
+        detalle = ["%s cubriendo %s: la fila tiene %s" % (i, m, f["mecanismos"] or "ninguno")
+                   for i, m, f in ((ia, x, elegibles[ia]), (ib, y, elegibles[ib]))
+                   if m not in f["mecanismos_lista"]]
+        raise SystemExit(
+            "la asignacion pedida no es un par elegible y esta corrida no enumera nada.\n"
+            "  %s\n%s"
+            % ("\n  ".join(detalle) or "los dos candidatos son el mismo gen",
+               "  El mismo par SI es elegible con los roles al reves: pasa los --candidato "
+               "en el otro orden." if reves else
+               "  Los pares elegibles para %s+%s los lista "
+               "research/ola6/F4_pares_por_mecanismo/scripts/pares_por_mecanismo.py"
+               % (x, y)))
+
+    print("eje de fenotipo resuelto desde %s (F4, issue #39)"
+          % PM.TABLA.relative_to(RAIZ))
+    for ident, rol in buscado:
+        print("  %-7s %-14s %-12s  %s"
+              % (ident, por_id[ident], rol, elegibles[ident]["gen"]))
+    print("  respaldo de cada mecanismo pedido, sobre las %d filas elegibles de %d:"
+          % (len(elegibles), len(filas)))
+    for m in (x, y):
+        aviso = []
+        if sop[m]["descansa_en_un_solo_candidato"]:
+            aviso.append("DESCANSA EN UNA SOLA FILA, asi que esta combinacion no es una "
+                         "opcion entre varias")
+        for c in contra.get(m, []):
+            aviso.append("contraevidencia %s: «%s»"
+                         % (c["fila_que_la_sostiene"], c["frase_textual_en_eje_fenotipo"]))
+        if m not in PM.MECANISMOS_D67:
+            aviso.append("AMPLIA D67 SIN ADR (PREGUNTAS_ABIERTAS 65)")
+        print("    %-13s %2d candidatos elegibles, %d en %s  %s"
+              % (m, sop[m]["n"], sop[m]["n_en_la_especie_blanco"], PM.ESPECIE_BLANCO,
+                 "; ".join(aviso)))
+    if elegido["mecanismos_de_los_dos_se_solapan"] == "si":
+        print("  AVISO: los mecanismos de los dos candidatos se solapan en %s, asi que la "
+              "segunda pata agrega menos de lo que su rotulo promete"
+              % elegido["mecanismos_en_comun"])
+
+    ejes = {por_id[ident]: {"eje": rol, "fuente": "C5/%s" % ident} for ident, rol in buscado}
+    declaracion = {
+        "pedido": "%s+%s" % (x, y),
+        "tabla": str(PM.TABLA.relative_to(RAIZ)),
+        "criterio": "research/ola6/F4_pares_por_mecanismo/PREREGISTRO.md",
+        "candidatos": {ident: {"gen_del_enumerador": por_id[ident], "rol": rol,
+                              "gen_del_catalogo": elegibles[ident]["gen"],
+                              "especie": elegibles[ident]["especie"],
+                              "marcador": elegibles[ident]["marcador_evidencia"],
+                              "fila_agrupa_varios_genes":
+                                  elegibles[ident]["agrupa_varios_genes"]}
+                       for ident, rol in buscado},
+        "soporte_por_mecanismo_pedido": {m: sop[m] for m in (x, y)},
+        "contraevidencia_verificada_textual": {m: contra.get(m, []) for m in (x, y)},
+        "mecanismos_de_los_dos_se_solapan":
+            elegido["mecanismos_de_los_dos_se_solapan"] == "si",
+        "mecanismos_en_comun": elegido["mecanismos_en_comun"],
+        "ampliacion_de_d67_sin_adr": elegido["ampliacion_de_d67_sin_adr"] == "si",
+    }
+    return ejes, declaracion
 
 
 def enumerar(genes: dict, mascaras: dict, largo_total: int, l1_min: int, l1_max: int,
@@ -369,6 +512,14 @@ def main(argv=None) -> int:
                     help="se repite por gen; hacen falta exactamente dos")
     ap.add_argument("--eje", action="append", default=[], metavar="NOMBRE=eje[:fuente]",
                     help="eje de fenotipo declarado, con su fila del catalogo de C5")
+    ap.add_argument("--mecanismos", default=None, metavar="X,Y",
+                    help="resuelve el eje de cada gen desde la tabla de F3 en vez de "
+                         "recibirlo escrito; excluyente con --eje")
+    ap.add_argument("--candidato", action="append", default=[], metavar="ID=NOMBRE",
+                    help="uno por gen, con --mecanismos. El orden fija el rol: el primero "
+                         "cubre X y el segundo Y")
+    ap.add_argument("--ampliar-d67", action="store_true", dest="ampliar",
+                    help="habilita `transmision`, que D67 no tiene; estampa la condicion")
     ap.add_argument("--largo-total", type=int, required=True, dest="largo_total")
     ap.add_argument("--objetivo", choices=OBJETIVOS, required=True,
                     help="obligatorio y sin default (§2 del preregistro)")
@@ -388,7 +539,22 @@ def main(argv=None) -> int:
         if g["nombre"] in genes:
             raise SystemExit("%s aparece dos veces" % g["nombre"])
         genes[g["nombre"]] = g
-    ejes = dict(leer_eje(s) for s in a.eje)
+    if a.mecanismos and a.eje:
+        raise SystemExit(
+            "--eje y --mecanismos son las dos vias por las que entra el eje de fenotipo y "
+            "son excluyentes: la primera lo recibe escrito, la segunda lo resuelve desde "
+            "research/ola6/F3_recomendador_genes/resultados/eje_fenotipo.tsv. Pasar las dos "
+            "dejaria sin decidir cual manda.")
+    if a.candidato and not a.mecanismos:
+        raise SystemExit("--candidato solo tiene sentido con --mecanismos")
+    if a.ampliar and not a.mecanismos:
+        raise SystemExit("--ampliar-d67 es la puerta del cuarto mecanismo y solo tiene "
+                         "sentido con --mecanismos")
+    if a.mecanismos:
+        ejes, par_por_mecanismo = ejes_por_mecanismo(
+            a.mecanismos, a.candidato, list(genes), a.ampliar)
+    else:
+        ejes, par_por_mecanismo = dict(leer_eje(s) for s in a.eje), None
     L = a.largo_total
     l1_min = a.l1_min if a.l1_min is not None else 100
     l1_max = a.l1_max if a.l1_max is not None else L - 100
@@ -491,7 +657,7 @@ def main(argv=None) -> int:
             "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(filas[0].keys()), delimiter="\t")
         w.writeheader(); w.writerows(filas)
-    (res / ("quimeras_enumeradas_%s.json" % suf)).write_text(json.dumps({
+    meta = {
         "objetivo": a.objetivo, "advertencia": SIN_VALIDAR,
         "genes": {n: {k: g[k] for k in ("ruta", "n", "desde", "hasta")}
                   for n, g in genes.items()},
@@ -517,7 +683,13 @@ def main(argv=None) -> int:
             "la_fila_completa": "la produce research/ola6/O3_quimera_bicc_vatpase_b/"
                                 "scripts/03_alerta_d48.py, que resuelve las anotaciones"},
         "python": sys.version.split()[0],
-    }, indent=2, ensure_ascii=False), encoding="utf-8")
+    }
+    # La clave aparece **solo** cuando se uso la via de `--mecanismos`, para que una corrida
+    # por la via de `--eje` siga produciendo el mismo archivo que las tres commiteadas.
+    if par_por_mecanismo is not None:
+        meta["par_por_mecanismo"] = par_por_mecanismo
+    (res / ("quimeras_enumeradas_%s.json" % suf)).write_text(
+        json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print("\nlas diez primeras bajo el objetivo '%s'" % a.objetivo)
     print("  las tres cuentas van separadas y no se suman en una sola cifra (D67):")

@@ -1,0 +1,5 @@
+mecanismo	en_d67	candidatos_elegibles	ids	candidatos_en_la_especie_blanco	ids_en_la_especie_blanco	descansa_en_un_solo_candidato	contraevidencia_declarada
+reproduccion	si	13	CI-01|CI-02|CI-03|CI-10|DE-01|DE-02|DE-03|DE-04|DE-05|DM-01|HE-01|HE-05|HE-07	1	DM-01	no	
+movilidad	si	1	DM-02	1	DM-02	si	DM-03: efecto en alas no significativo
+letalidad	si	16	CI-01|CI-02|CI-04|CI-05|CI-10|CI-11|CI-12|DE-01|DE-04|DE-05|DM-02|DM-03|DM-05|DM-06|HE-02|HE-07	4	DM-02|DM-03|DM-05|DM-06	no	
+transmision	no	4	CI-06|CI-07|CI-09|DE-05	0		no	
