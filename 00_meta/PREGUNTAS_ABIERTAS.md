@@ -3022,7 +3022,7 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     conserven los dinucleótidos y ver si el piso baja, y mirar qué ventanas permutadas coinciden.
 
 101. **El largo que el paper declara para las dos V-ATPasas de *Peregrinus maidis* (`DE-01`) no
-    coincide con el de las accesiones que cita.** Yao *et al.* 2013 dicen 2.495 nt para la subunidad
+    coincide con el de las accesiones que cita.** Yao, Rotenberg, Afsharifar, Barandoc-Alviar y Whitfield 2013 (*PLoS ONE* 8:e70243, doi:10.1371/journal.pone.0070243, PMID 23950915) dicen 2.495 nt `[R]` para la subunidad
     B y 985 nt para la D; NCBI da `KC473163.1` en 2.391 nt y `KC473162.1` en 1.002 nt, las dos
     «mRNA, complete cds» `[M]` (`research/ola6/F3_recomendador_genes/resultados/recuperacion_6filas_verificacion.tsv`).
     La diferencia es de −104 y +17 nt. En cambio `MN815919.1` (`CI-13`) coincide exacto con los 1.911 pb

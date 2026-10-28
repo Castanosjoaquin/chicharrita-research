@@ -58,3 +58,74 @@ por qué: podría ser que el paper cuente UTR de un ensamblado previo y la entra
 off-target ni ranking se corrió con estas secuencias. Tampoco se abrieron los suplementarios de
 `DE-03` (S1 File, DOCX) ni de `CI-07` (Supplementary Table S1), y es el siguiente paso más barato.
 
+---
+
+## Suplementarios abiertos y referencias (agregado el 2026-10-28)
+
+Pedido del equipo: **todo lo que sale de un paper lleva su referencia**. Abajo van las citas
+completas de los seis papers usados, tomadas de Europe PMC por DOI o PMID (`referencias_recuperacion.tsv`,
+`scripts/09_suplementarios_y_referencias.py`) y no de memoria. Cada dato de este informe que viene de un
+paper lleva `[R]` y el número de su referencia. Los resultados propios (verificación en NCBI, ORF, cebadores)
+son `[M]`.
+
+### Referencias
+
+**[R1]** Yao J, Rotenberg D, Afsharifar A, Barandoc-Alviar K, Whitfield AE (2013). Development of RNAi methods for Peregrinus maidis, the corn planthopper. *PloS one* 8(8):e70243. doi:10.1371/journal.pone.0070243; PMID 23950915; PMC3737204. (fila `DE-01`)
+
+**[R2]** Wang YH, Rivera DE, Klobasa W, Lorenzen MD (2024). Evaluation of Peregrinus maidis transformer-2 as a target for CRISPR-based control. *PloS one* 19(4):e0295335. doi:10.1371/journal.pone.0295335; PMID 38635824; PMC11025951. (fila `DE-03`)
+
+**[R3]** Arricau-Bouvery N, Dubrana MP, Canuto F, Duret S, Brocard L, Claverol S, Malembic-Maher S, Foissac X (2023). Flavescence dorée phytoplasma enters insect cells by a clathrin-mediated endocytosis allowing infection of its insect vector. *Scientific reports* 13(1):2211. doi:10.1038/s41598-023-29341-1; PMID 36750707; PMC9905606. (fila `CI-07`)
+
+**[R4]** Wang H, Liu Y, Mo L, Huo C, Wang Z, Zhong P, Jia D, Zhang X, Chen Q, Chen H, Wei T (2020). A Neuron-Specific Antiviral Mechanism Modulates the Persistent Infection of Rice Rhabdoviruses in Leafhopper Vectors. *Frontiers in microbiology* 11:513. doi:10.3389/fmicb.2020.00513; PMID 32362876; PMC7180231. (fila `CI-13`)
+
+**[R5]** Galdeano DM, Breton MC, Lopes JR, Falk BW, Machado MA (2017). Oral delivery of double-stranded RNAs induces mortality in nymphs and adults of the Asian citrus psyllid, Diaphorina citri. *PloS one* 12(3):e0171847. doi:10.1371/journal.pone.0171847; PMID 28282380; PMC5345766. (fila `HE-04`)
+
+**[R6]** Andrada NL, Crespo M, Baricalla AA, Dalaisón-Fuentes LI, Sterkel M, Catalano MI (2026). ETH and Burs-α are necessary for the normal molting in &lt;i&gt;Dalbulus maidis&lt;/i&gt; and &lt;i&gt;Delphacodes kuscheli&lt;/i&gt;. *Frontiers in insect science* 6:1811933. doi:10.3389/finsc.2026.1811933; PMID 42328018; PMC13279319. (fila `DE-06`)
+
+`[M]` Tres de estos papers figuraban en el catálogo de `C5` sin autores («autores no verificados» o sin
+DOI): `DE-03` (R2), `CI-07` (R3) y `CI-13` (R4). Quedan verificados con estas citas. El catálogo no se
+modificó.
+
+### Cada fila y su referencia
+
+| fila | qué se tomó del paper | dónde | referencia |
+| --- | --- | --- | --- |
+| `DE-01` | accesiones `KC473163` (V-ATPase B) y `KC473162` (V-ATPase D); largos de 2.495 y 985 nt `[R]` | texto y Table 2 | R1 |
+| `DE-03` | las secuencias de *Pmtra-2* (S1 File), y los tres cebadores (S1 Table) `[R]` | suplementarios S1 File y S1 Table | R2 |
+| `CI-07` | que su única accesión es el TSA `GFTU00000000.1` `[R]`; su suplementario es una tabla proteómica | sección de disponibilidad de datos; Supplementary Table S1 | R3 |
+| `CI-13` | accesión `MN815919`; ORF de 1.911 pb `[R]` | métodos y resultados | R4 |
+| `HE-04` | que los transcriptos se identificaron por BlastX sin citar ID `[R]` | métodos | R5 |
+| `DE-06` | accesiones `PZ371509` y `PZ371510` asignadas a *D. kuscheli* `[R]` | métodos y *data availability statement* | R6 |
+
+### `DE-03`: recuperada desde el suplementario del paper, sin accesión de NCBI
+
+El texto de R2 dice que las secuencias de *Pmtra-2* «pueden encontrarse» en el S1 File `[R]`, y ese archivo
+es un DOCX abierto en PMC con dos secuencias: `Pmtra-2_167888_1` (1038 nt) y `Pmtra-2_167888_2` (1139 nt)
+`[R]` (R2, S1 File). **No traen accesión de GenBank** y el paper no la cita. Lo medido `[M]`
+(`recuperacion_suplementarios.tsv`): las dos contienen los **tres cebadores** que el mismo paper publica en
+su S1 Table —dsRNA directo, dsRNA inverso y qPCR directo— con la semilla completa de 21 nt, lo que las ata al
+gen que el paper silenció; y su ORF más largo es de 308 y 312 aa. Están en **orientación inversa** a la de
+los cebadores. El sha256 de cada una está en el TSV. **Lo que no se pudo hacer:** verificarlas en NCBI, porque no
+tienen accesión; su identidad descansa en R2 y en la coincidencia con los cebadores. `[?]` El número
+`167888` parece un identificador del transcriptoma de *P. maidis* del paper, y ese transcriptoma no se abrió.
+
+### `CI-07`: sigue sin accesión
+
+El Supplementary Table S1 de R3 (`41598_2023_29341_MOESM1_ESM.pdf`, 3 páginas) es una tabla de proteínas que
+interactúan con VmpA en un pull-down con LC-MS/MS, clasificadas por KEGG `[R]`. No contiene secuencias ni
+clatrina. La única accesión que R3 cita es el ensamblado completo `GFTU00000000.1`, y extraer de ahí el
+transcripto de `chc` sería elegirlo por nombre. La fila queda `sin_accesion_en_el_paper`.
+
+### Estado de las seis filas, actualizado
+
+| fila | estado |
+| --- | --- |
+| `DE-01` | recuperada y verificada en NCBI (R1) |
+| `CI-13` | recuperada y verificada en NCBI (R4) |
+| `DE-06` | recuperada y verificada en NCBI (R6) |
+| `DE-03` | **recuperada desde suplementario**, sin accesión; coincide con los cebadores del paper (R2) |
+| `HE-04` | sin accesión en el paper (R5) |
+| `CI-07` | sin accesión en el paper; el suplementario no la trae (R3) |
+
+Con `DE-03`, son **4 de las 6** filas con secuencia en mano. `HE-04` y `CI-07` no se pueden recuperar desde
+estos papers.

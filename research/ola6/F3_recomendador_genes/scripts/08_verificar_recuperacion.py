@@ -39,6 +39,9 @@ def main():
     ids = ",".join(a for _, a, *_ in ESPERADO)
     res = json.loads(get(EU + "esummary.fcgi?db=nuccore&retmode=json&id=" + ids))["result"]
     por_acc = {res[u]["caption"]: res[u] for u in res["uids"]}
+    # la referencia de cada paper sale de referencias_recuperacion.tsv (script 09, Europe PMC), no de memoria
+    with open(OUT / "referencias_recuperacion.tsv", encoding="utf-8") as fh:
+        REF = {r["fila"]: r for r in csv.DictReader(fh, delimiter="\t")}
     filas = []
     for fila, acc, org, prod, largo_paper in ESPERADO:
         r = por_acc[acc]
@@ -56,6 +59,8 @@ def main():
             "largo_nt_ncbi": len(seq), "largo_nt_que_declara_el_paper": largo_paper if largo_paper else "",
             "diferencia_con_el_paper": (len(seq) - largo_paper) if largo_paper else "",
             "sha256_secuencia": hashlib.sha256(seq.encode()).hexdigest(),
+            "paper": f"{REF[fila]['autores']} ({REF[fila]['anio']}) {REF[fila]['revista']} {REF[fila]['volumen']}:{REF[fila]['paginas']}",
+            "paper_doi": REF[fila]["doi"], "paper_pmid": REF[fila]["pmid"], "paper_pmcid": REF[fila]["pmcid"],
         })
     with open(OUT / "recuperacion_6filas_verificacion.tsv", "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(filas[0]), delimiter="\t", lineterminator="\n")
