@@ -21,6 +21,11 @@
       <button role="tab" id="tab-diseno" aria-selected="true" data-vista="diseno">Diseño</button>
       <button role="tab" id="tab-off" aria-selected="false" data-vista="off">Off-target</button>
       <button role="tab" id="tab-rangos" aria-selected="false" data-vista="rangos">Rangos guardados</button>
+      <button role="tab" id="tab-regionv" aria-selected="false" data-vista="regionv">Mover la región</button>
+      <button role="tab" id="tab-marcos" aria-selected="false" data-vista="marcos">Tres marcos</button>
+      <button role="tab" id="tab-juntura" aria-selected="false" data-vista="juntura">Juntura</button>
+      <button role="tab" id="tab-ejes" aria-selected="false" data-vista="ejes">Ejes</button>
+      <button role="tab" id="tab-firmas" aria-selected="false" data-vista="firmas">Bandeja de firmas</button>
     </nav>
   </div>
 </header>
@@ -189,6 +194,61 @@
     produjo — nunca la secuencia. Se escriben en <code id="ruta-salidas"></code>, fuera del
     control de versiones.</p>
   <div id="salida-rangos"></div>
+</section>
+
+<!-- ============ LAS VISTAS DE LECTURA (V1) ============
+     Estas cinco vistas LEEN resultados que otras líneas ya calcularon y versionaron. No
+     calculan ningún criterio: ningún veredicto de eficiencia, ningún tamizado de off-target y
+     ningún puntaje de ranking se decide acá. Cada número viaja con su etiqueta de procedencia
+     —modo, motor, panel y archivo de origen— y un archivo que falta produce «no corrido» y no
+     un cero. El contrato completo está en `sifi_plus/PREREGISTRO_DEMO.md`. -->
+
+<section class="vista" id="vista-regionv" role="tabpanel" aria-labelledby="tab-regionv" hidden>
+  <h2>Antes y después de mover la región</h2>
+  <p class="nota">Dos regiones del mismo gen sobre el mismo eje de posición, con una marca por
+    ventana con alerta y el organismo que la produce. Se lee del inventario de alertas de M6;
+    esta vista <b>no tamiza nada</b>.</p>
+  <div class="fila" style="max-width:720px">
+    <div><label for="par-a">Región A</label><select id="par-a"></select></div>
+    <div><label for="par-b">Región B</label><select id="par-b"></select></div>
+  </div>
+  <div id="aviso-regionv"></div>
+  <div id="salida-regionv"></div>
+</section>
+
+<section class="vista" id="vista-marcos" role="tabpanel" aria-labelledby="tab-marcos" hidden>
+  <h2>Los tres marcos de conteo</h2>
+  <p class="nota">Tres cifras para la misma región, que contestan tres preguntas distintas. La
+    destacada es la del marco 3 —la molécula que existiría—; las otras dos van al lado, nunca
+    en vez de. La vista no las promedia ni elige entre ellas.</p>
+  <div id="salida-marcos"></div>
+</section>
+
+<section class="vista" id="vista-juntura" role="tabpanel" aria-labelledby="tab-juntura" hidden>
+  <h2>La juntura de la quimera</h2>
+  <p class="nota">Un bloque <b>heredado</b> entra entero en el aporte de un solo gen; uno
+    <b>fabricado</b> toma al menos un nucleótido de cada lado y por eso no existe en ninguno de
+    los dos genes. Esa distinción es la que decide la alerta.</p>
+  <div id="salida-juntura"></div>
+</section>
+
+<section class="vista" id="vista-ejes" role="tabpanel" aria-labelledby="tab-ejes" hidden>
+  <h2>Los dos ejes por objeto</h2>
+  <p class="nota">Las dos regiones sueltas y las dos quimeras, con sus dos ejes bajo las dos
+    reglas de trato del vector. Van separados: combinarlos en un puntaje es un criterio, y el
+    criterio no es de la demo.</p>
+  <div id="salida-ejes"></div>
+</section>
+
+<section class="vista" id="vista-firmas" role="tabpanel" aria-labelledby="tab-firmas" hidden>
+  <h2>Bandeja de firmas</h2>
+  <p class="nota">D48 pide que cada alerta se acepte o se descarte con una justificación
+    escrita que cite la fila. El motor completa los cuatro campos obligatorios y deja la
+    decisión vacía a propósito: firmar es del equipo, no del motor. La firma se escribe en el
+    archivo de firmas y el inventario se regenera desde él — <b>esta vista no edita el
+    inventario en el lugar</b>.</p>
+  <div id="aviso-firmas"></div>
+  <div id="salida-firmas"></div>
 </section>
 
 </main>

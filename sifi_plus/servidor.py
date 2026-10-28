@@ -31,6 +31,7 @@ import traceback
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import parse_qs
 
 AQUI = Path(__file__).resolve().parent
 sys.path.insert(0, str(AQUI))
@@ -40,6 +41,14 @@ import complejidad
 import exportar
 import offtarget
 import proyecto
+# Las vistas de lectura de V1. No pasan por `api` ni por el motor: leen archivos versionados
+# que escribieron corridas verificadas y los sirven con su etiqueta de procedencia. La unica
+# que escribe es `vista_firmas`, y escribe en el archivo de firmas y en ningun otro lado.
+import vista_ejes
+import vista_firmas
+import vista_juntura
+import vista_marcos
+import vista_region
 
 ESTATICO = AQUI / "estatico"
 EJEMPLOS = AQUI / "datos_ejemplo"
@@ -150,6 +159,24 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(est) if est else self._error(404, "no hay tal trabajo")
             if ruta == "/api/rangos":
                 return self._json({"rangos": proyecto.listar()})
+            # --- las vistas de lectura (V1). Todas GET: no cambian nada. ---
+            if ruta == "/api/vista/regiones":
+                return self._json(vista_region.inventario())
+            if ruta == "/api/vista/region":
+                q = parse_qs(self.path.partition("?")[2])
+                a = (q.get("a") or [""])[0]
+                b = (q.get("b") or [""])[0]
+                if not a or not b:
+                    return self._error(400, "hacen falta las dos regiones del par: ?a=…&b=…")
+                return self._json(vista_region.ver(a, b))
+            if ruta == "/api/vista/marcos":
+                return self._json(vista_marcos.ver())
+            if ruta == "/api/vista/juntura":
+                return self._json(vista_juntura.ver())
+            if ruta == "/api/vista/ejes":
+                return self._json(vista_ejes.ver())
+            if ruta == "/api/vista/firmas":
+                return self._json(vista_firmas.ver())
             return self._error(404, "no hay ruta %s" % ruta)
         except Exception as e:  # noqa: BLE001
             traceback.print_exc()
@@ -172,6 +199,15 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(proyecto.guardar(cuerpo))
             if ruta == "/api/exportar":
                 return self._json(self._exportar(cuerpo))
+            # La unica ruta de esta linea que escribe, y escribe en el archivo de firmas.
+            # `FirmaRechazada` hereda de `ValueError`, asi que una firma mal escrita sale como
+            # 400 con el motivo —cual de las reglas de D48 no cumple— y no como un 500.
+            if ruta == "/api/vista/firmar":
+                return self._json(vista_firmas.firmar(
+                    clave=cuerpo.get("clave") or "",
+                    decision=cuerpo.get("decision") or "",
+                    justificacion=cuerpo.get("justificacion") or "",
+                    firmado_por=cuerpo.get("firmado_por") or ""))
             return self._error(404, "no hay ruta %s" % ruta)
         except ValueError as e:
             # Parametro fuera de rango o cadena mal escrita: el mensaje ya es para leer.
