@@ -1,13 +1,13 @@
 {
- "commit_al_correr": "43c7fa0",
+ "commit_al_correr": "e166438",
  "conteos": {
   "cohorte_A34_ejes_1_2_3_y_4": 5,
-  "cohorte_A3_ejes_1_2_y_3_proxy": 1,
+  "cohorte_A3_ejes_1_2_y_3_proxy": 4,
   "cohorte_A4_ejes_1_2_y_4": 0,
-  "cohorte_A_ejes_1_y_2": 11,
-  "cohorte_B3_ejes_1_y_3_proxy": 1,
+  "cohorte_A_ejes_1_y_2": 8,
+  "cohorte_B3_ejes_1_y_3_proxy": 4,
   "cohorte_B4_ejes_1_y_4": 0,
-  "cohorte_B_solo_eje_1": 7,
+  "cohorte_B_solo_eje_1": 4,
   "con_eje2_desde_fuente_primaria_no_abierta": 1,
   "en_el_orden": 25,
   "filas_del_catalogo": 36,
@@ -57,27 +57,31 @@
   "cambios_de_primer_puesto_al_mover_el_peso_de_fenotipo_de_0_a_1": [
    {
     "a": [
-     "CI-01",
-     "CI-02",
-     "CI-03"
+     "CI-04",
+     "CI-05",
+     "CI-06",
+     "CI-07",
+     "DE-04",
+     "HE-01",
+     "HE-02",
+     "HE-05"
     ],
     "de": [
-     "CI-01",
-     "CI-02",
-     "CI-03",
      "CI-04",
      "CI-06",
      "CI-07",
      "DE-04",
      "HE-02"
     ],
-    "peso_fenotipo_aprox": 0.0005
+    "peso_fenotipo_aprox": 1.0
    }
   ],
   "lider_con_los_pesos_de_D87": [
-   "CI-01",
-   "CI-02",
-   "CI-03"
+   "CI-04",
+   "CI-06",
+   "CI-07",
+   "DE-04",
+   "HE-02"
   ],
   "peso_de_fenotipo_en_D87_renormalizado": 0.6154
  },

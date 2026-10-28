@@ -92,6 +92,10 @@ def main() -> int:
     # Filas recuperadas de papers (PREREGISTRO_EJE3_FILAS_NUEVAS.md): PROXY de la especie del paper.
     c3n = leer_tsv(BLOQUE / "resultados/eje3_filas_nuevas.tsv")
     n3n = leer_tsv(BLOQUE / "resultados/eje3_filas_nuevas_nulo.tsv")
+    # Seis filas de C5 re-tamizadas contra el panel de seis (enmienda 1): la secuencia es la sustituta
+    # que C5 declaro en `secuencia_usada`, de una tercera especie -> proxy_sustituto_declarado.
+    c3c = leer_tsv(BLOQUE / "resultados/eje3_filas_c5.tsv")
+    n3c = leer_tsv(BLOQUE / "resultados/eje3_filas_c5_nulo.tsv")
 
     en_orden, fuera = [], []
     for ident, f in sorted(fen.items()):
@@ -113,15 +117,21 @@ def main() -> int:
             "familia_id": f["familia_id"],
             "_f": p_f, "_e": p_e,
             "_o": (float(c3[ident]["fraccion_limpia"]) if ident in c3 else
-                   float(c3n[ident]["fraccion_limpia"]) if ident in c3n else None),
+                   float(c3n[ident]["fraccion_limpia"]) if ident in c3n else
+                   float(c3c[ident]["fraccion_limpia"]) if ident in c3c else None),
             "eje3_puntaje": (c3[ident]["fraccion_limpia"] if ident in c3 else
-                             c3n[ident]["fraccion_limpia"] if ident in c3n else ""),
-            "eje3_lectura": "proxy_especie_del_paper" if ident in c3n else ("D_maidis" if ident in c3 else ""),
-            "eje3_vs_nulo": (n3n[ident]["real_frente_al_nulo"] if ident in n3n else "" if ident not in n3 else
+                             c3n[ident]["fraccion_limpia"] if ident in c3n else
+                             c3c[ident]["fraccion_limpia"] if ident in c3c else ""),
+            "eje3_lectura": ("D_maidis" if ident in c3 else "proxy_especie_del_paper" if ident in c3n
+                             else "proxy_sustituto_declarado" if ident in c3c else ""),
+            "eje3_vs_nulo": (n3n[ident]["real_frente_al_nulo"] if ident in n3n else
+                             n3c[ident]["real_frente_al_nulo"] if ident in n3c else "" if ident not in n3 else
                              "dentro del rango del nulo" if float(n3[ident]["minimo"]) <= float(c3[ident]["fraccion_limpia"]) <= float(n3[ident]["maximo"])
                              else "fuera del rango del nulo"),
             "eje3_nulo_rango": (f"{n3n[ident]['minimo']}-{n3n[ident]['maximo']} (mediana {n3n[ident]['fraccion_limpia_mediana']})"
                                 if ident in n3n else
+                                f"{n3c[ident]['minimo']}-{n3c[ident]['maximo']} (mediana {n3c[ident]['fraccion_limpia_mediana']})"
+                                if ident in n3c else
                                 f"{n3[ident]['minimo']}-{n3[ident]['maximo']} (mediana {n3[ident]['fraccion_limpia_mediana']})"
                                 if ident in n3 else ""),
             "_c": (float(c4[ident]["enm1_fraccion"])
@@ -199,9 +209,12 @@ def main() -> int:
     for r in filas:
         v = cat[r["id"]].get("ventanas_21nt")
         r["eje3_estado"] = (
-            f"calculado (PREREGISTRO_EJE3{'_FILAS_NUEVAS' if r['eje3_lectura'] == 'proxy_especie_del_paper' else ''}.md): "
+            f"calculado (PREREGISTRO_EJE3{'_FILAS_NUEVAS' if r['eje3_lectura'].startswith('proxy') else ''}.md): "
             f"fraccion limpia {r['eje3_puntaje']}, {r['eje3_vs_nulo']}"
-            + ("; PROXY: gen de la especie del paper, no el transcripto de D. maidis" if r['eje3_lectura'] == 'proxy_especie_del_paper' else "")
+            + ("; PROXY: gen de la especie del paper, no el transcripto de D. maidis"
+               if r["eje3_lectura"] == "proxy_especie_del_paper" else
+               "; PROXY: secuencia sustituta declarada por C5, de una tercera especie"
+               if r["eje3_lectura"] == "proxy_sustituto_declarado" else "")
             if r["eje3_puntaje"] else EJES_NO_CALCULABLE_FILA)
         r["eje4_estado"] = (
             f"calculado, regla de la enmienda 1: {r['eje4_puntaje']} "

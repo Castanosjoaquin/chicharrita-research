@@ -19,9 +19,7 @@
    "glosa": "reducir la poblacion entre generaciones, sin cortar la transmision de la temporada en curso (es la lectura del fenotipo de BicC que el investigador confirmo)",
    "mecanismo_exigido": "reproduccion",
    "primer_puesto_cohorte_A": [
-    "CI-01",
-    "CI-02",
-    "CI-03"
+    "DE-04"
    ],
    "primer_puesto_cohorte_A34": [
     "DM-01"
@@ -32,8 +30,9 @@
    "glosa": "reducir la poblacion matando al vector dentro de la temporada",
    "mecanismo_exigido": "letalidad",
    "primer_puesto_cohorte_A": [
-    "CI-01",
-    "CI-02"
+    "CI-04",
+    "DE-04",
+    "HE-02"
    ],
    "primer_puesto_cohorte_A34": [
     "DM-02",

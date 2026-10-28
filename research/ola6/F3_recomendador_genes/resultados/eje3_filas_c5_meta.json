@@ -1,0 +1,15 @@
+{
+ "semilla_nulo": 20261030,
+ "permutaciones": 50,
+ "panel_orden_D76": [
+  "maiz",
+  "H_axyridis",
+  "A_mellifera",
+  "H_vitripennis",
+  "F_candida",
+  "humano"
+ ],
+ "preregistro": "PREREGISTRO_EJE3_FILAS_NUEVAS.md enmienda 1 (e166438)",
+ "ancla": "eth_Dm reproduce work/sifi_v2 columna por columna",
+ "fuente_secuencias": "research/ola3/C5_.../resultados/candidatos_c5.fa (secuencia_usada del catalogo)"
+}

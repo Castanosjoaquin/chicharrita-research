@@ -3,28 +3,28 @@ matar	letalidad	A34	1	DM-03|DM-02	DM-05	eth	Dalbulus maidis	0.9868	F3	E3	letalid
 matar	letalidad	A34	1	DM-05|DM-02	DM-03	V-ATPase D	Dalbulus maidis	0.9865	F3	E3	letalidad	no
 matar	letalidad	A34	1	DM-05|DM-03	DM-02	V-ATPase B	Dalbulus maidis	0.9664	F3	E3	letalidad|movilidad	no
 matar	letalidad	A34	4	no	DM-06	burs-alpha	Dalbulus maidis	0.8821	F3	E2	letalidad	no
-matar	letalidad	A3	1	no	DE-01	V-ATPase B y V-ATPase D	Peregrinus maidis	0.8307	F2	E3	letalidad|reproduccion	si
-matar	letalidad	A	1	CI-02	CI-01	Rpn6 (segun los autores)	Scaphoideus titanus	0.7908	F2	E3	letalidad|reproduccion	si
-matar	letalidad	A	1	CI-01	CI-02	Rpn6 (segun los autores)	Euscelidius variegatus	0.7908	F2	E3	letalidad|reproduccion	si
-matar	letalidad	A	3	DE-04|HE-02	CI-04	ATP synthase beta	Euscelidius variegatus	0.5877	F1	E3	letalidad	no
-matar	letalidad	A	3	CI-04|HE-02	DE-04	PmABCB_160306_3, PmABCE_118332_5, PmABCF_24241_1	Peregrinus maidis	0.5877	F1	E3	letalidad|reproduccion	si
-matar	letalidad	A	3	CI-04|DE-04	HE-02	V-ATPase A	Nezara viridula	0.5877	F1	E3	letalidad	no
-matar	letalidad	A	6	no	CI-05	muscle actin	Euscelidius variegatus	0.4569	F1	E2	letalidad	no
-matar	letalidad	B	1	CI-11|CI-12|DE-05|HE-07	CI-10	Nc-TnC (troponina C)	Nephotettix cincticeps	0.3300	F1	E0	letalidad|reproduccion	si
-matar	letalidad	B	1	CI-10|CI-12|DE-05|HE-07	CI-11	NcLac2 y NcLac5	Nephotettix cincticeps	0.3300	F1	E0	letalidad	no
-matar	letalidad	B	1	CI-10|CI-11|DE-05|HE-07	CI-12	NcLac2 (RNAi parental)	Nephotettix cincticeps	0.3300	F1	E0	letalidad	no
-matar	letalidad	B	1	CI-10|CI-11|CI-12|HE-07	DE-05	XPO1 (exportina 1)	Peregrinus maidis	0.3300	F1	E0	letalidad|reproduccion|transmision	si
-matar	letalidad	B	1	CI-10|CI-11|CI-12|DE-05	HE-07	NcSP75	Nephotettix cincticeps	0.3300	F1	E0	letalidad|reproduccion	si
+matar	letalidad	A3	1	CI-01|DE-01	CI-02	Rpn6 (segun los autores)	Euscelidius variegatus	0.8403	F2	E3	letalidad|reproduccion	si
+matar	letalidad	A3	1	CI-02|DE-01	CI-01	Rpn6 (segun los autores)	Scaphoideus titanus	0.8383	F2	E3	letalidad|reproduccion	si
+matar	letalidad	A3	1	CI-02|CI-01	DE-01	V-ATPase B y V-ATPase D	Peregrinus maidis	0.8307	F2	E3	letalidad|reproduccion	si
+matar	letalidad	B3	1	CI-10	DE-05	XPO1 (exportina 1)	Peregrinus maidis	0.5717	F1	E0	letalidad|reproduccion|transmision	si
+matar	letalidad	B3	1	DE-05	CI-10	Nc-TnC (troponina C)	Nephotettix cincticeps	0.5523	F1	E0	letalidad|reproduccion	si
+matar	letalidad	A	1	DE-04|HE-02	CI-04	ATP synthase beta	Euscelidius variegatus	0.5877	F1	E3	letalidad	no
+matar	letalidad	A	1	CI-04|HE-02	DE-04	PmABCB_160306_3, PmABCE_118332_5, PmABCF_24241_1	Peregrinus maidis	0.5877	F1	E3	letalidad|reproduccion	si
+matar	letalidad	A	1	CI-04|DE-04	HE-02	V-ATPase A	Nezara viridula	0.5877	F1	E3	letalidad	no
+matar	letalidad	A	4	no	CI-05	muscle actin	Euscelidius variegatus	0.4569	F1	E2	letalidad	no
+matar	letalidad	B	1	CI-12|HE-07	CI-11	NcLac2 y NcLac5	Nephotettix cincticeps	0.3300	F1	E0	letalidad	no
+matar	letalidad	B	1	CI-11|HE-07	CI-12	NcLac2 (RNAi parental)	Nephotettix cincticeps	0.3300	F1	E0	letalidad	no
+matar	letalidad	B	1	CI-11|CI-12	HE-07	NcSP75	Nephotettix cincticeps	0.3300	F1	E0	letalidad|reproduccion	si
 esterilizar	reproduccion	A34	1	no	DM-01	BicC	Dalbulus maidis	0.8128	F3	E1	reproduccion	no
-esterilizar	reproduccion	A3	1	no	DE-01	V-ATPase B y V-ATPase D	Peregrinus maidis	0.8307	F2	E3	letalidad|reproduccion	si
-esterilizar	reproduccion	B3	1	no	DE-03	tra-2 (transformer-2)	Peregrinus maidis	0.5840	F1	E0	reproduccion	no
-esterilizar	reproduccion	A	1	CI-02|CI-03	CI-01	Rpn6 (segun los autores)	Scaphoideus titanus	0.7908	F2	E3	letalidad|reproduccion	si
-esterilizar	reproduccion	A	1	CI-01|CI-03	CI-02	Rpn6 (segun los autores)	Euscelidius variegatus	0.7908	F2	E3	letalidad|reproduccion	si
-esterilizar	reproduccion	A	1	CI-01|CI-02	CI-03	ATP synthase beta	Scaphoideus titanus	0.7908	F2	E3	reproduccion	no
-esterilizar	reproduccion	A	4	no	DE-04	PmABCB_160306_3, PmABCE_118332_5, PmABCF_24241_1	Peregrinus maidis	0.5877	F1	E3	letalidad|reproduccion	si
-esterilizar	reproduccion	A	5	HE-05	HE-01	Bicaudal-C	Nilaparvata lugens	0.3300	F1	E1	reproduccion	no
-esterilizar	reproduccion	A	5	HE-01	HE-05	BicC	Rhodnius prolixus	0.3300	F1	E1	reproduccion	no
-esterilizar	reproduccion	B	1	no	DE-02	Ruvbl1	Peregrinus maidis	0.6600	F2	E0	reproduccion	no
-esterilizar	reproduccion	B	2	DE-05|HE-07	CI-10	Nc-TnC (troponina C)	Nephotettix cincticeps	0.3300	F1	E0	letalidad|reproduccion	si
-esterilizar	reproduccion	B	2	CI-10|HE-07	DE-05	XPO1 (exportina 1)	Peregrinus maidis	0.3300	F1	E0	letalidad|reproduccion|transmision	si
-esterilizar	reproduccion	B	2	CI-10|DE-05	HE-07	NcSP75	Nephotettix cincticeps	0.3300	F1	E0	letalidad|reproduccion	si
+esterilizar	reproduccion	A3	1	CI-01|DE-01|CI-03	CI-02	Rpn6 (segun los autores)	Euscelidius variegatus	0.8403	F2	E3	letalidad|reproduccion	si
+esterilizar	reproduccion	A3	1	CI-02|DE-01|CI-03	CI-01	Rpn6 (segun los autores)	Scaphoideus titanus	0.8383	F2	E3	letalidad|reproduccion	si
+esterilizar	reproduccion	A3	1	CI-02|CI-01|CI-03	DE-01	V-ATPase B y V-ATPase D	Peregrinus maidis	0.8307	F2	E3	letalidad|reproduccion	si
+esterilizar	reproduccion	A3	1	CI-02|CI-01|DE-01	CI-03	ATP synthase beta	Scaphoideus titanus	0.8195	F2	E3	reproduccion	no
+esterilizar	reproduccion	B3	1	no	DE-02	Ruvbl1	Peregrinus maidis	0.7771	F2	E0	reproduccion	no
+esterilizar	reproduccion	B3	2	DE-05|CI-10	DE-03	tra-2 (transformer-2)	Peregrinus maidis	0.5840	F1	E0	reproduccion	no
+esterilizar	reproduccion	B3	2	DE-03|CI-10	DE-05	XPO1 (exportina 1)	Peregrinus maidis	0.5717	F1	E0	letalidad|reproduccion|transmision	si
+esterilizar	reproduccion	B3	2	DE-03|DE-05	CI-10	Nc-TnC (troponina C)	Nephotettix cincticeps	0.5523	F1	E0	letalidad|reproduccion	si
+esterilizar	reproduccion	A	1	no	DE-04	PmABCB_160306_3, PmABCE_118332_5, PmABCF_24241_1	Peregrinus maidis	0.5877	F1	E3	letalidad|reproduccion	si
+esterilizar	reproduccion	A	2	HE-05	HE-01	Bicaudal-C	Nilaparvata lugens	0.3300	F1	E1	reproduccion	no
+esterilizar	reproduccion	A	2	HE-01	HE-05	BicC	Rhodnius prolixus	0.3300	F1	E1	reproduccion	no
+esterilizar	reproduccion	B	1	no	HE-07	NcSP75	Nephotettix cincticeps	0.3300	F1	E0	letalidad|reproduccion	si
