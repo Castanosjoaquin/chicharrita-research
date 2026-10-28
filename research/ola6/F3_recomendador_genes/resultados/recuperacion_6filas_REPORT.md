@@ -103,7 +103,7 @@ El texto de R2 dice que las secuencias de *Pmtra-2* «pueden encontrarse» en el
 es un DOCX abierto en PMC con dos secuencias: `Pmtra-2_167888_1` (1038 nt) y `Pmtra-2_167888_2` (1139 nt)
 `[R]` (R2, S1 File). **No traen accesión de GenBank** y el paper no la cita. Lo medido `[M]`
 (`recuperacion_suplementarios.tsv`): las dos contienen los **tres cebadores** que el mismo paper publica en
-su S1 Table —dsRNA directo, dsRNA inverso y qPCR directo— con la semilla completa de 21 nt, lo que las ata al
+su S1 Table —los dos de la primera ronda de PCR (la plantilla del dsRNA) y el directo de qPCR— completos, lo que las ata al
 gen que el paper silenció; y su ORF más largo es de 308 y 312 aa. Están en **orientación inversa** a la de
 los cebadores. El sha256 de cada una está en el TSV. **Lo que no se pudo hacer:** verificarlas en NCBI, porque no
 tienen accesión; su identidad descansa en R2 y en la coincidencia con los cebadores. `[?]` El número
@@ -129,3 +129,5 @@ transcripto de `chc` sería elegirlo por nombre. La fila queda `sin_accesion_en_
 
 Con `DE-03`, son **4 de las 6** filas con secuencia en mano. `HE-04` y `CI-07` no se pueden recuperar desde
 estos papers.
+
+`[M]` **Nota de método.** Los cebadores no se escriben en el script: se leen del DOCX de R2 en cada corrida, porque dos de ellos son rachas de 21 nt o más y el repo no las versiona (`tools/verificacion/sin_secuencias.py` da 0 hallazgos en `F3`). **Una versión anterior del script (`4e22f09`) sí llevaba uno de esos cebadores escrito**; es un cebador público de R2, no de EPILAB, y queda en el historial porque no se reescribe lo ya pusheado. El rótulo de «dsRNA» que figuraba en ese commit era incorrecto: son cebadores de la primera ronda de PCR.

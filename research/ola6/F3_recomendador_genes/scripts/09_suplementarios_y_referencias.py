@@ -70,7 +70,15 @@ def main():
             cur = l[1:]; seqs[cur] = ""
         elif cur and l:
             seqs[cur] += re.sub(r"[^ACGTacgt]", "", l).upper()
-    prim = {"dsRNA_F": "TCTCGGTTGTGTAGATGTTCA", "dsRNA_R": "TTGTCTCACAGCAGAGCATA", "qPCR_F": "ACGATATCCTCCTCCCCT"}
+    # Los cebadores se LEEN del S1 Table del paper (no se escriben aqui: son rachas de 21 nt y el repo
+    # no versiona rachas asi). Primera ronda de PCR de Pmtra-2 = primer par F/R de la tabla; qPCR = el
+    # primer F/R despues del encabezado qRT-PCR.
+    tz = zipfile.ZipFile(W / "suplementarios/PMC11025951/pone.0295335.s001.docx").read("word/document.xml").decode()
+    tt = re.sub(r"<[^>]+>", " ", re.sub(r"</w:p>", "\n", tz)); tt = re.sub(r"\s+", " ", tt)
+    antes, despues = tt.split("qRT", 1)   # el guion de "qRT-PCR" no es ASCII en el DOCX
+    pcr1 = re.findall(r"\b[FR]: ([ACGT]{15,})", antes)
+    pq = re.findall(r"\bF: ([ACGT]{15,})", despues)
+    prim = {"PCR1_F": pcr1[0], "PCR1_R": pcr1[1], "qPCR_F": pq[0]}
     (W / "DE-03_S1File.fasta").write_text("".join(f">{k}\n{s}\n" for k, s in seqs.items()))
     filas = []
     for k, s in seqs.items():
