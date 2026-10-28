@@ -1,0 +1,6 @@
+id	accesion	organismo_ncbi	organismo_coincide	producto_ncbi	producto_coincide	moltype	largo_nt_ncbi	largo_nt_que_declara_el_paper	diferencia_con_el_paper	sha256_secuencia
+DE-01	KC473163.1	Peregrinus maidis	si	Peregrinus maidis V-ATPase B subunit mRNA, complete cds	si	rna	2391	2495	-104	488710e15363246481f0259a29657187eeae102b9f2f7d2514564219839dd77e
+DE-01	KC473162.1	Peregrinus maidis	si	Peregrinus maidis V-ATPase D mRNA, complete cds	si	rna	1002	985	17	1da2d8a998d137fc1919d4bf7d2d5ce87b79f8bd388e45af0410f0d053953a64
+CI-13	MN815919.1	Nephotettix cincticeps	si	Nephotettix cincticeps hikaru genki (Hig) mRNA, complete cds	si	rna	1911	1911	0	f853ad07c6cc5b3f5f3435295acc3f5dfc8727e085ad5fefbd8323fd006ee2f5
+DE-06	PZ371509.1	Delphacodes kuscheli	si	Delphacodes kuscheli voucher CeBio_02_1 ecdysis triggering hormone (eth) mRNA, complete cds	si	rna	645			c8c4a655cb74ed3555529cf27f9527d04e5e4a21e0f15e5249f3062f80d91f5e
+DE-06	PZ371510.1	Delphacodes kuscheli	si	Delphacodes kuscheli voucher CeBio_02_2 bursicon alpha (burs alpha) mRNA, complete cds	si	rna	480			eb0f560a81c0268bf9c64352b2310a652ea2fa738a983dde8a7d0d09e44fac6f

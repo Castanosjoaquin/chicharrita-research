@@ -3020,3 +3020,13 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     estar leyendo ese piso como señal. `V-ATPase B` (0,8827) está por encima de él; `eth` (0,9815) y
     `burs-alpha` (1,0000) están dentro. Para cerrarla: repetir el nulo con permutaciones que además
     conserven los dinucleótidos y ver si el piso baja, y mirar qué ventanas permutadas coinciden.
+
+101. **El largo que el paper declara para las dos V-ATPasas de *Peregrinus maidis* (`DE-01`) no
+    coincide con el de las accesiones que cita.** Yao *et al.* 2013 dicen 2.495 nt para la subunidad
+    B y 985 nt para la D; NCBI da `KC473163.1` en 2.391 nt y `KC473162.1` en 1.002 nt, las dos
+    «mRNA, complete cds» `[M]` (`research/ola6/F3_recomendador_genes/resultados/recuperacion_6filas_verificacion.tsv`).
+    La diferencia es de −104 y +17 nt. En cambio `MN815919.1` (`CI-13`) coincide exacto con los 1.911 pb
+    del paper. `[?]` **No se averiguó la causa**; la lectura más barata es que el paper cuente UTR o
+    una versión previa de la secuencia, y no se probó. **Qué cambia:** hasta saberlo, la secuencia que
+    se tamice para `DE-01` es la de NCBI y no la que describe el texto. Para cerrarla: leer la
+    sección de métodos de la que sale el 2.495 y comparar con el registro de GenBank.
