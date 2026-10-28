@@ -21,8 +21,7 @@
    "primer_puesto_cohorte_A": [
     "CI-01",
     "CI-02",
-    "CI-03",
-    "DE-01"
+    "CI-03"
    ],
    "primer_puesto_cohorte_A34": [
     "DM-01"
@@ -34,8 +33,7 @@
    "mecanismo_exigido": "letalidad",
    "primer_puesto_cohorte_A": [
     "CI-01",
-    "CI-02",
-    "DE-01"
+    "CI-02"
    ],
    "primer_puesto_cohorte_A34": [
     "DM-02",

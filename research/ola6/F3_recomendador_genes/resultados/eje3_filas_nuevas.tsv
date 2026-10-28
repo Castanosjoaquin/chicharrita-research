@@ -1,0 +1,5 @@
+id	especie	estado_en_el_orden	lectura	n_secuencias	ventanas_distintas	limpias	fraccion_limpia	fraccion_limpia_sin_humano	fraccion_con_perfecto_21	fraccion_con_mm1_21	ge19_maiz	ge19_H_axyridis	ge19_A_mellifera	ge19_H_vitripennis	ge19_F_candida	ge19_humano
+DE-01	Peregrinus maidis	en el orden (cohorte A)	proxy_especie_del_paper	2	3353	3133	0.9344	0.9424	0.0173	0.1420	0.0119	0.0218	0.0185	0.0176	0.0107	0.0191
+DE-03	Peregrinus maidis	en el orden (cohorte B)	proxy_especie_del_paper	2	1254	1242	0.9904	0.9952	0.0000	0.0183	0.0024	0.0000	0.0024	0.0000	0.0000	0.0048
+CI-13	Nephotettix cincticeps	fuera del orden: fenotipo_invertido	proxy_especie_del_paper	1	1891	1851	0.9788	0.9873	0.0016	0.0386	0.0016	0.0000	0.0000	0.0111	0.0000	0.0085
+DE-06	Delphacodes kuscheli	fuera del orden: sin_fenotipo_publicado	proxy_especie_del_paper	2	1085	1046	0.9641	0.9724	0.0055	0.0498	0.0065	0.0092	0.0037	0.0092	0.0000	0.0083

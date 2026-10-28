@@ -1,0 +1,5 @@
+id	n_permutaciones	fraccion_limpia_mediana	minimo	maximo	real_frente_al_nulo
+DE-01	50	0.9878	0.9785	0.9949	fuera del rango del nulo
+DE-03	50	0.9944	0.9860	1.0000	dentro del rango del nulo
+CI-13	50	0.9952	0.9894	1.0000	fuera del rango del nulo
+DE-06	50	0.9908	0.9788	1.0000	fuera del rango del nulo

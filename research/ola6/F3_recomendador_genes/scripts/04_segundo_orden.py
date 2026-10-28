@@ -82,11 +82,13 @@ def ordenar(candidatos: list) -> dict:
     DEF = {(True, True, True): ("A34", ("fenotipo", "esencialidad", "off_target", "conservacion")),
            (True, False, True): ("A4", ("fenotipo", "esencialidad", "conservacion")),
            (False, False, True): ("B4", ("fenotipo", "conservacion")),
+           (True, True, False): ("A3", ("fenotipo", "esencialidad", "off_target")),
+           (False, True, False): ("B3", ("fenotipo", "off_target")),
            (True, False, False): ("A", ("fenotipo", "esencialidad")),
            (False, False, False): ("B", ("fenotipo",))}
     COL = {"fenotipo": "eje1_puntaje", "esencialidad": "eje2_puntaje", "off_target": "eje3_puntaje",
            "conservacion": "eje4_puntaje"}
-    cohortes = {"A34": [], "A4": [], "B4": [], "A": [], "B": []}
+    cohortes = {"A34": [], "A4": [], "B4": [], "A3": [], "B3": [], "A": [], "B": []}
     for r in candidatos:
         clave, ejes = DEF[(bool(r["eje2_puntaje"]), bool(r["eje3_puntaje"]), bool(r["eje4_puntaje"]))]
         base = sum(PESOS_D87[e] for e in ejes)
@@ -172,7 +174,7 @@ def main() -> int:
 
     for nombre in OBJETIVOS:
         print(f"--- objetivo «{nombre}» (exige {OBJETIVOS[nombre]['mecanismo_exigido']}) ---")
-        for coh in ("A34", "A4", "B4", "A", "B"):
+        for coh in ("A34", "A4", "B4", "A3", "B3", "A", "B"):
             filas = resultados[nombre][coh]["filas"]
             if not filas:
                 continue

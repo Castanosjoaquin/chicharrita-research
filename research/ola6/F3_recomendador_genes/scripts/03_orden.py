@@ -89,6 +89,9 @@ def main() -> int:
     # Eje 3 (PREREGISTRO_EJE3.md): fraccion limpia contra el panel de seis, solo cinco filas DM.
     c3 = leer_tsv(BLOQUE / "resultados/eje3_offtarget.tsv")
     n3 = leer_tsv(BLOQUE / "resultados/eje3_nulo.tsv")
+    # Filas recuperadas de papers (PREREGISTRO_EJE3_FILAS_NUEVAS.md): PROXY de la especie del paper.
+    c3n = leer_tsv(BLOQUE / "resultados/eje3_filas_nuevas.tsv")
+    n3n = leer_tsv(BLOQUE / "resultados/eje3_filas_nuevas_nulo.tsv")
 
     en_orden, fuera = [], []
     for ident, f in sorted(fen.items()):
@@ -109,12 +112,17 @@ def main() -> int:
             "id": ident, "gen": c["gen"], "especie": c["especie"],
             "familia_id": f["familia_id"],
             "_f": p_f, "_e": p_e,
-            "_o": float(c3[ident]["fraccion_limpia"]) if ident in c3 else None,
-            "eje3_puntaje": c3[ident]["fraccion_limpia"] if ident in c3 else "",
-            "eje3_vs_nulo": ("" if ident not in n3 else
+            "_o": (float(c3[ident]["fraccion_limpia"]) if ident in c3 else
+                   float(c3n[ident]["fraccion_limpia"]) if ident in c3n else None),
+            "eje3_puntaje": (c3[ident]["fraccion_limpia"] if ident in c3 else
+                             c3n[ident]["fraccion_limpia"] if ident in c3n else ""),
+            "eje3_lectura": "proxy_especie_del_paper" if ident in c3n else ("D_maidis" if ident in c3 else ""),
+            "eje3_vs_nulo": (n3n[ident]["real_frente_al_nulo"] if ident in n3n else "" if ident not in n3 else
                              "dentro del rango del nulo" if float(n3[ident]["minimo"]) <= float(c3[ident]["fraccion_limpia"]) <= float(n3[ident]["maximo"])
                              else "fuera del rango del nulo"),
-            "eje3_nulo_rango": (f"{n3[ident]['minimo']}-{n3[ident]['maximo']} (mediana {n3[ident]['fraccion_limpia_mediana']})"
+            "eje3_nulo_rango": (f"{n3n[ident]['minimo']}-{n3n[ident]['maximo']} (mediana {n3n[ident]['fraccion_limpia_mediana']})"
+                                if ident in n3n else
+                                f"{n3[ident]['minimo']}-{n3[ident]['maximo']} (mediana {n3[ident]['fraccion_limpia_mediana']})"
                                 if ident in n3 else ""),
             "_c": (float(c4[ident]["enm1_fraccion"])
                    if ident in c4 and c4[ident]["enm1_estado"] == "puntuado" else None),
@@ -141,6 +149,10 @@ def main() -> int:
                              ("fenotipo", "esencialidad", "off_target", "conservacion")),
         (True, False, True): ("A4", "A+4: ejes 1, 2 y 4", ("fenotipo", "esencialidad", "conservacion")),
         (False, False, True): ("B4", "B+4: ejes 1 y 4", ("fenotipo", "conservacion")),
+        (True, True, False): ("A3", "A+3: ejes 1, 2 y 3 (eje 3 = proxy de la especie del paper)",
+                              ("fenotipo", "esencialidad", "off_target")),
+        (False, True, False): ("B3", "B+3: ejes 1 y 3 (eje 3 = proxy de la especie del paper)",
+                               ("fenotipo", "off_target")),
         (True, False, False): ("A", "A: ejes 1 y 2", ("fenotipo", "esencialidad")),
         (False, False, False): ("B", "B: solo eje 1", ("fenotipo",)),
     }
@@ -159,10 +171,11 @@ def main() -> int:
         cohortes[clave].append(r)
     coh_a, coh_b = cohortes["A"], cohortes["B"]
     coh_a34, coh_a4, coh_b4 = cohortes["A34"], cohortes["A4"], cohortes["B4"]
+    coh_a3, coh_b3 = cohortes["A3"], cohortes["B3"]
     w_fen_a = pesos_coh["A"]["fenotipo"] if coh_a else None
 
     filas = []
-    for cohorte in (coh_a34, coh_a4, coh_b4, coh_a, coh_b):
+    for cohorte in (coh_a34, coh_a4, coh_b4, coh_a3, coh_b3, coh_a, coh_b):
         cohorte.sort(key=lambda r: (-r["puntaje"], r["id"]))
         # Empates declarados: grupos consecutivos a menos de UMBRAL_EMPATE del primero del grupo.
         grupos, actual = [], []
@@ -186,7 +199,9 @@ def main() -> int:
     for r in filas:
         v = cat[r["id"]].get("ventanas_21nt")
         r["eje3_estado"] = (
-            f"calculado (PREREGISTRO_EJE3.md): fraccion limpia {r['eje3_puntaje']}, {r['eje3_vs_nulo']}"
+            f"calculado (PREREGISTRO_EJE3{'_FILAS_NUEVAS' if r['eje3_lectura'] == 'proxy_especie_del_paper' else ''}.md): "
+            f"fraccion limpia {r['eje3_puntaje']}, {r['eje3_vs_nulo']}"
+            + ("; PROXY: gen de la especie del paper, no el transcripto de D. maidis" if r['eje3_lectura'] == 'proxy_especie_del_paper' else "")
             if r["eje3_puntaje"] else EJES_NO_CALCULABLE_FILA)
         r["eje4_estado"] = (
             f"calculado, regla de la enmienda 1: {r['eje4_puntaje']} "
@@ -207,7 +222,7 @@ def main() -> int:
         "empate_declarado", "puntaje", "pesos_renormalizados",
         "eje1_nivel", "eje1_puntaje", "mecanismos", "n_mecanismos_publicado_no_puntuado",
         "eje2_nivel", "eje2_puntaje", "eje2_via", "eje2_especie_donde_se_demostro",
-        "eje2_fuente_primaria_abierta", "eje3_puntaje", "eje3_vs_nulo", "eje3_nulo_rango", "eje4_puntaje", "eje4_cobertura", "eje4_tsa_con_el_gen",
+        "eje2_fuente_primaria_abierta", "eje3_puntaje", "eje3_lectura", "eje3_vs_nulo", "eje3_nulo_rango", "eje4_puntaje", "eje4_cobertura", "eje4_tsa_con_el_gen",
         "eje3_estado", "eje4_estado", "eje5_estado_FALTANTE",
         "marcador_evidencia", "evidencia_negativa_medida",
     ] + [f"panelC5_NO_es_el_de_seis__21meros_perfectos_en_{r}" for r in PANEL_C5] + [
@@ -275,6 +290,8 @@ def main() -> int:
             "en_el_orden": len(filas),
             "fuera_del_orden": len(fuera),
             "cohorte_A34_ejes_1_2_3_y_4": len(coh_a34),
+            "cohorte_A3_ejes_1_2_y_3_proxy": len(coh_a3),
+            "cohorte_B3_ejes_1_y_3_proxy": len(coh_b3),
             "cohorte_A4_ejes_1_2_y_4": len(coh_a4),
             "cohorte_B4_ejes_1_y_4": len(coh_b4),
             "cohorte_A_ejes_1_y_2": len(coh_a),
@@ -319,8 +336,8 @@ def main() -> int:
         json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
     print(f"orden: {len(filas)} candidatos en el orden, {len(fuera)} fuera")
-    print(f"  cohortes: A+3+4 {len(coh_a34)} | A+4 {len(coh_a4)} | B+4 {len(coh_b4)} | A {len(coh_a)} | B {len(coh_b)}")
-    for cohorte, nombre in ((coh_a34, "A+3+4"), (coh_a4, "A+4"), (coh_b4, "B+4"), (coh_a, "A"), (coh_b, "B")):
+    print(f"  cohortes: A+3+4 {len(coh_a34)} | A+4 {len(coh_a4)} | B+4 {len(coh_b4)} | A+3 {len(coh_a3)} | B+3 {len(coh_b3)} | A {len(coh_a)} | B {len(coh_b)}")
+    for cohorte, nombre in ((coh_a34, "A+3+4"), (coh_a4, "A+4"), (coh_a3, "A+3"), (coh_b3, "B+3"), (coh_b4, "B+4"), (coh_a, "A"), (coh_b, "B")):
         if not cohorte:
             continue
         print(f"  --- cohorte {nombre} ---")
