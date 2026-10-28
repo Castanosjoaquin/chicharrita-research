@@ -1503,6 +1503,18 @@ accionables eran **cuatro** y que de esos cuatro **uno solo** había perdido dat
 verificador que no separa «tiene la forma del problema» de «está causando el problema»
 convierte un arreglo de cuatro archivos en una migración de cuarenta y tres.
 
+### Issue #43, eje 3 de `F3`: enlaces de GenBank por paper como vía a las 28 secuencias
+
+**Se intentó** preguntarle a E-utilities (`elink`, pubmed → nuccore y pubmed → protein) qué
+registros enlazó el depositante a cada uno de los doce PMID que el catálogo cita para las filas
+sin `ventanas_21nt`. **Resultado:** diez PMID con cero enlaces, uno con 2 y uno con 1 `[M]`.
+**Se descartó como vía general**: no alcanza para recuperar «por accesión y de forma verificable».
+**Un tropiezo propio, para que no se repita:** la primera pasada devolvió ceros en los doce y
+parecía el mismo resultado; eran **fallas de conexión tragadas por un `except`** (el Python del
+sistema no trae certificados y `urllib` fallaba en silencio). Se detectó porque el script publicado
+no traía una columna de «la consulta anduvo». Desde entonces el script lleva `consulta_ok` y usa
+`curl`. `[H]` Un cero que viene de un `except` no es una medición.
+
 ## Eje 4 de `F3`: consultas desde los contigs de `F1`, y los ensamblados genómicos como fuente — descartados (2026-10-27, `PREREGISTRO_EJE4.md` §2, `D94`)
 
 **Qué se consideró.** Para darle el eje de conservación a más filas del catálogo, buscar en los
@@ -1525,7 +1537,7 @@ genómicos como fuente de conservación.
 **Lo que se hizo en su lugar.** Sólo los tres TSA, con cinco consultas cuya procedencia es
 independiente de ellos (planilla de EPILAB, el CDS de `V-ATPase B` predicho por `miniprot` sobre
 el genoma, y los ARNm públicos `PZ371507.1` y `PZ371508.1`). Las 31 filas restantes quedan sin el
-eje, declarado (entrada 98).
+eje, declarado (entrada 99).
 
 ## Eje 4 de `F3`: la regla de «los tres TSA» — descartada por una de «al menos dos» (2026-10-27, `D94`)
 

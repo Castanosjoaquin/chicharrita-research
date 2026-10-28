@@ -2962,7 +2962,23 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     pasar: cuando una renumeración toca un ADR, buscar el número viejo en todo `00_meta/` antes
     de cerrar, no sólo en los títulos.
 
-97. **`C8` dio `eth` y `bursA` sin transcriptoma que los cubra, y el eje 4 de `F3` los encontró en
+97. **Issue #43 (eje 3 de `F3`): recuperar las 28 secuencias «por accesión» no se puede hacer
+    desde los enlaces de GenBank.** De los doce PMID que el catálogo de `C5` cita para las filas
+    sin `ventanas_21nt`, **diez no tienen ningún registro de nucleótido ni de proteína enlazado**
+    al paper, y los otros dos tienen muy pocos: 32362876 (`CI-13`) enlaza 2 y 36912710 (`DE-04`)
+    enlaza 1 `[M]` (`research/ola6/F3_recomendador_genes/scripts/06_enlaces_genbank_por_paper.py`,
+    salida en `resultados/eje3_enlaces_genbank_por_paper.tsv`; consulta pública a E-utilities,
+    sin secuencias propias). Además, diez de las veintiocho filas citan un trabajo que `C5` no
+    abrió (`apertura: no_abierta`), de modo que su accesión, si existe, está en un texto que
+    nadie leyó. **Lo que falta no es insumo de máquina sino trabajo de lectura**, fila por fila,
+    o la decisión de usar el ortólogo recíproco en una especie anotada como sustituto, como ya
+    hizo `C5` con *Macrosteles quadrilineatus* (`CI-03`, `CI-10`, `DE-02`, `DE-05`), declarándolo
+    en `secuencia_usada`. `[H]` Varias filas no tienen una secuencia única que recuperar
+    (`HE-08` es un control de dosis, `HE-10` dice «varios», `HE-11` «respuesta inmune»): para
+    ellas el eje 3 se declara no aplicable, no faltante. Pendiente de decisión del equipo antes
+    de correr nada.
+
+98. **`C8` dio `eth` y `bursA` sin transcriptoma que los cubra, y el eje 4 de `F3` los encontró en
     dos de los tres.** `conservacion.json` de `C8` declara las 595 ventanas de `eth_Dm` y las 448
     de `bursA_Dm` «sin transcriptoma suficiente», con cero fuentes. `blastn` contra los TSA
     completos (`research/ola6/F3_recomendador_genes/scripts/05_eje_conservacion.py`) los ubica en
@@ -2979,7 +2995,7 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     contigs que `blastn` encontró (`GHCC01027218.1` y `GITV01054587.1` para `eth`;
     `GHCC01014529.1` y `GITV01010186.1` para `burs-alpha`).
 
-98. **El eje 4 de `F3` sólo llega a 5 de las 36 filas, y las otras 31 no son falta de cálculo sino
+99. **El eje 4 de `F3` sólo llega a 5 de las 36 filas, y las otras 31 no son falta de cálculo sino
     falta de secuencia.** Reciben el eje `DM-01`, `DM-02`, `DM-03`, `DM-05` y `DM-06`
     (`PREREGISTRO_EJE4.md` §2). `DM-04` es de la propia especie pero no hay secuencia en esta
     máquina, y las 30 restantes son genes de otras especies: lo que habría que medir es la
@@ -2987,7 +3003,8 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     4.110 contigs de `GITV01` que `F1` dejó con ortólogo recíproco, por dos razones declaradas en
     el preregistro: ese contig es de uno de los tres TSA y su presencia ahí estaría garantizada
     por construcción, y el emparejamiento pasaría por el nombre del producto. **Es la misma
-    recuperación que pide el eje de off-target (#43)**, así que conviene hacerla una sola vez:
+    recuperación que pide el eje de off-target (#43)**, y la entrada 97 ya midió que los enlaces de
+    GenBank por paper no alcanzan para hacerla, así que conviene hacerla una sola vez:
     28 secuencias de transcripto de 15 especies para el eje 3, y el ortólogo en *D. maidis* de
     cada candidato para el eje 4. `[H]` Quien tome #43 debería dejar la tabla candidato → secuencia
     con su accesión, para que sirva a los dos ejes.

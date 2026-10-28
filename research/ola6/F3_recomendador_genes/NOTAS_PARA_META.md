@@ -79,8 +79,8 @@ calculó en la máquina de Joaquín. Todo está **ya aplicado**:
 
 - **`DECISIONS.md`: `D94`.** La enmienda 1 del preregistro del eje (dato en al menos dos de tres
   TSA), declarada como posterior al resultado, con las dos reglas publicadas lado a lado.
-- **`PREGUNTAS_ABIERTAS.md`: entradas 97 y 98.** La 97, la diferencia con `C8` para `eth` y
-  `burs-alpha`, sin causa averiguada `[?]`. La 98, que el eje sólo llega a 5 de 36 filas por falta
+- **`PREGUNTAS_ABIERTAS.md`: entradas 98 y 99.** La 98, la diferencia con `C8` para `eth` y
+  `burs-alpha`, sin causa averiguada `[?]`. La 99, que el eje sólo llega a 5 de 36 filas por falta
   de secuencia, no de cálculo, y que la recuperación es la misma que pide #43.
 - **`CAMINOS_PROBADOS.md`:** dos descartes, las consultas desde contigs de `F1` y los genomas como
   fuente, y la regla de los tres TSA.
