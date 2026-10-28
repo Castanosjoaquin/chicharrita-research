@@ -279,6 +279,119 @@ escrito de un modo en que un booleano no puede».
 
 ---
 
+---
+
+# Ampliación: las dos vistas de V2 (issue #46)
+
+`V1` excluyó por alcance el enumerador de quimeras y la transferencia por homología. Revisado
+con el usuario, son las dos que hacían falta, y **el motivo de la exclusión no se sostiene para
+ellas**: el argumento de que el enumerador «es una corrida de ~71 días y un botón ahí sería una
+mentira» es sobre **correr** el enumerador, y las 3.204 quimeras ya están enumeradas y escritas
+en disco. Mostrarlas no corre nada. El alcance de `V1` mezcló «no pongas un botón que lo corra»
+con «no muestres el resultado».
+
+Lo que **no** cambia: la regla de la línea, el contrato de procedencia y los cuatro estados.
+Estas dos vistas leen y no calculan, igual que las otras cinco.
+
+## Vista F — el enumerador de quimeras
+
+**Qué contesta.** De todas las quimeras de dos regiones que caben en la grilla, cuáles sobreviven
+y cómo se ordenan según qué se quiera optimizar.
+
+**Archivos que lee.** Tres pares TSV + JSON en
+`research/ola6/O4_enumerador_quimeras/resultados/`, uno por objetivo:
+`quimeras_enumeradas_o4_<objetivo>_corregido_vienna.tsv`, con
+`<objetivo>` en `eficiencia_heredada`, `riesgo_minimo` y `cobertura_fenotipica`. Son **3.204
+filas × 35 columnas** cada uno `[M]`. El JSON hermano declara `modo`, `backend`, `temp_c`,
+`tabla_nn`, `grilla`, `plegados`, `tamizado_de_juntura`, `ejes_declarados` y `advertencia`.
+
+Columnas que usa: `quimera`, `izquierda`, `derecha`, `a1`, `l1`, `a2`, `l2`, `largo_total_nt`,
+`eje_izq`, `eje_der`, `ventanas_molecula`, `ef_fragmento_izq_solo`, `ef_fragmento_der_solo`,
+`suma_de_las_partes`, `ef_heredadas`, `delta_heredadas_menos_suma`, `heredadas_que_cambiaron`,
+`max_nt_hasta_la_union_de_un_cambio`, `ventanas_juntura`, `ef_juntura`,
+`juntura_con_blanco_continuo`, `fabricados_21_refs`, `fabricados_ge19_refs`, `fabricados_refs`,
+`aporte_del_bloque_mas_repartido`, `fabricados_en_ventana_eficiente`,
+`existe_en_el_genoma_del_vector`, `alerta_juntura_nueva`.
+
+**Qué muestra.** Un selector de objetivo, y para el elegido la tabla en **el orden que el archivo
+trae**, con la grilla y su poda declaradas arriba (de 47.833.512 combinaciones a 3.204
+admisibles, paso 50) `[M]`. Filtra por gen de cada lado, por largo del fragmento izquierdo y por
+si el empalme fabrica alerta nueva.
+
+**La regla que esta vista tiene que respetar y es la más fácil de romper: el orden ES el
+criterio.** Los tres objetivos son **las mismas 3.204 quimeras ordenadas distinto** `[M]`, así
+que el primer puesto de cada uno es la respuesta de ese objetivo y no una propiedad de la
+quimera. La vista **no reordena por un índice propio ni combina los objetivos**: muestra el
+orden del archivo y dice de qué archivo salió. Ordenar la tabla por una columna para mirarla es
+una comodidad de lectura y queda marcado como tal, separado del puesto que trae el archivo.
+
+**Procedencia.** modo `corregido`, motor `ViennaRNA 2.7.2`, tabla NN3, 22 °C, y el panel de
+referencias del tamizado de juntura, todo leído del JSON del objetivo elegido.
+
+**Y la advertencia viaja con la tabla, no al pie.** El JSON declara que «el criterio de eficiencia
+de si-Fi21 no está validado en hemípteros: rho = +0,142, IC95 [-0,247, +0,492], n = 29». Eso
+califica **todas** las columnas de eficiencia de esta vista, así que se muestra arriba y no
+escondido: una tabla de 3.204 quimeras ordenadas por eficiencia invita a leer el primer puesto
+como una recomendación, y no lo es.
+
+**Lo que esta vista no muestra.** La grilla fina de paso 10 —169.648 combinaciones, en un TSV
+comprimido de 4,7 MB— existe en disco pero no entra a la vista: son dos órdenes de magnitud más
+filas y la decisión de si esa grilla se reparte o se archiva está abierta (`D89`, issue #42). La
+vista lo declara y nombra el archivo.
+
+**Si falta un archivo.** Cada objetivo declara «no corrido» por separado: faltar uno no apaga los
+otros dos. Falta el JSON de un objetivo y su tabla va con «procedencia no declarada».
+
+## Vista G — la transferencia por homología
+
+**Qué contesta.** De los contigs del transcriptoma del vector, a cuántos se les puede poner nombre
+de gen por homología recíproca con un proteoma de referencia, y con cuánta confianza.
+
+**Archivos que lee.** En `research/ola6/F1_transferencia_homologia/resultados/`:
+
+- `resumen_lectura.json` — la cifra de cabecera. Trae **dos variantes**:
+  `estricta_preregistrada` y `ampliada_H_post_hoc`, cada una con `MQ` y `HV`, sus bandas de
+  identidad, su reparto por cobertura y el contraste entre las dos referencias.
+- `transferencia_HV.tsv.gz` y `transferencia_MQ.tsv.gz` — el detalle por ORF, **131.683 filas ×
+  33 columnas** el de HV `[M]`. Columnas que usa: `contig`, `orf_aa`, `orf_hebra`, `orf_ini`,
+  `orf_fin`, `categoria`, `categoria_ampliada`, `ref_id`, `ref_producto`,
+  `nombre_normalizado`, `pident`, `cob_orf`, `rotulo_cobertura`, `banda_identidad`, `evalue`.
+- `resumen.json` — los parámetros de la corrida: versión de DIAMOND, `min_aa`, `evalue`,
+  sensibilidad, y los SHA-256 de la consulta y de los dos proteomas.
+- `controles.json` — el control positivo, el de cordura sobre Bicaudal C y el señuelo.
+
+**Qué muestra.** El embudo de las seis categorías por referencia, las dos variantes lado a lado,
+las bandas de identidad y de cobertura, y los controles. El detalle por ORF se pagina y se filtra
+por categoría: **131.683 filas no se vuelcan al navegador**.
+
+**Las dos cosas que esta vista tiene que decir y que una pantalla haría fácil suavizar.**
+
+1. **Cuál variante está preregistrada.** `estricta_preregistrada` es la del preregistro;
+   `ampliada_H_post_hoc` se definió **después de ver los datos** y rinde más del doble de ORFs
+   recíprocos (12.269 contra 5.936 en MQ) `[M]`. Las dos se muestran, la etiqueta dice cuál es
+   cuál, y **la cifra de cabecera es la preregistrada**. Poner la ampliada de cabecera porque es
+   más grande sería elegir el número después de verlo, que es exactamente lo que un preregistro
+   existe para impedir.
+2. **El control positivo no pasa la variante estricta.** `controles.json` dice
+   `pasa_estricta: false` y `pasa_ampliada: true` para el ORF de la subunidad B de la V-ATPasa,
+   que cae en `d_empate` en la estricta `[M]`. Es el dato que más califica la lectura de toda la
+   vista y va **junto a la cifra**, no en una nota al pie. El señuelo, en cambio, sale limpio:
+   0 de 1.000 consultas con hit en las dos referencias `[M]`.
+
+**Procedencia.** Esta vista **no lleva modo ni motor**: `no aplica`. Una transferencia por
+homología no pasa por el criterio de eficiencia de si-Fi ni por RNAplfold — la hace DIAMOND
+2.2.8 contra dos proteomas—. El campo de panel se reemplaza por las **dos referencias con su
+SHA-256**, leídas de `resumen.json`, que es la forma que tiene este archivo de declarar contra
+qué se corrió. Es el primer caso donde el contrato de procedencia pide un campo distinto, y se
+resuelve declarándolo, no dejándolo vacío.
+
+**Lo que esta vista no muestra.** `v1_resumen_un_orf_por_contig.json` existe y la vista **no lo
+lee**: su propio archivo declara `estado: "v1 DESCARTADA POR SU PROPIO CONTROL: no se lee"`. Un
+resultado que su autor declaró no leíble no se muestra como resultado; la vista lo nombra como
+descartado y nada más.
+
+---
+
 ## Lo que esta línea no va a poder mostrar, por falta de archivo
 
 Esto es resultado, no pendiente de trabajo.
