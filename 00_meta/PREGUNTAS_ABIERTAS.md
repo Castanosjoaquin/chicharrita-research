@@ -3042,3 +3042,28 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     `onlinelibrary.wiley.com`)— no se leyeron porque esos dominios no están en la lista permitida del entorno,
     no porque el paper sea cerrado: se destraban autorizando los dos dominios.
 
+103. **¿Tiene el transcriptoma del investigador el contig de *D. maidis* de los candidatos del
+    catálogo que hoy no tienen secuencia propia?** De las 36 filas de `C5`, sólo **cinco** tienen
+    secuencia de *D. maidis*; las otras 31 son genes de otras especies, y por eso el eje 3 de `F3`
+    quedó en 19 de 36 y el eje 4 en 5 de 36. `F1` anotó los 56.117 contigs de `GITV01` —el TSA que
+    mandó el investigador— y dejó **4.110 contigs con ortólogo recíproco y nombre informativo**
+    `[M]`, así que la pregunta es si entre ellos está el ortólogo de cada candidato. **Qué
+    destrabaría:** el eje de off-target de esas filas —y acá **no** hay autoacierto, porque `GITV01`
+    no está en el panel de seis, a diferencia del eje de conservación, donde sí lo está y por eso
+    se descartó usar sus contigs (`CAMINOS_PROBADOS.md`)— y, más importante, daría **secuencia de
+    la especie propia** para candidatos que hoy sólo tienen evidencia en otra, que es el cuello de
+    botella que midió la fase 2: con *M. quadrilineatus* de intermediario sólo 2 de 14 familias
+    pasaban el criterio de nucleótido `[M]`. **Cómo NO hacerlo:** emparejando candidato con contig
+    **por nombre de producto**; elegir por nombre en vez de por ortología recíproca movió un conteo
+    de ventanas eficientes un 65 % `[M]`. Tiene que ir por la ortología recíproca que `F1` ya tiene
+    montada, y pide preregistro porque toca cifras publicadas del recomendador.
+    `[H]` **Y una razón para no hacerlo:** el eje 3, medido sobre 18 filas, no cambió ningún primer
+    puesto, así que ampliar la cobertura probablemente tampoco lo cambie. Lo que falta no es cómputo
+    sobre más genes.
+
+    **Descartado en el camino (2026-10-28):** contar los 4.110 contigs por vía metabólica para
+    proponer candidatos nuevos. La regla de elegibilidad de `F3` exige mecanismo de fenotipo
+    publicado —11 de las 36 filas ya salen del orden por no tenerlo—, así que la salida sería una
+    lista de genes que el recomendador está diseñado para excluir; y el resultado es predecible sin
+    correrlo, porque un transcriptoma de cuerpo entero contiene esas vías por construcción `[H]`.
+
