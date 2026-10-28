@@ -1502,3 +1502,15 @@ defecto» habría pedido 43 arreglos; contar sus tres partes por separado mostr�
 accionables eran **cuatro** y que de esos cuatro **uno solo** había perdido datos. Un
 verificador que no separa «tiene la forma del problema» de «está causando el problema»
 convierte un arreglo de cuatro archivos en una migración de cuarenta y tres.
+
+### Issue #43, eje 3 de `F3`: enlaces de GenBank por paper como vía a las 28 secuencias
+
+**Se intentó** preguntarle a E-utilities (`elink`, pubmed → nuccore y pubmed → protein) qué
+registros enlazó el depositante a cada uno de los doce PMID que el catálogo cita para las filas
+sin `ventanas_21nt`. **Resultado:** diez PMID con cero enlaces, uno con 2 y uno con 1 `[M]`.
+**Se descartó como vía general**: no alcanza para recuperar «por accesión y de forma verificable».
+**Un tropiezo propio, para que no se repita:** la primera pasada devolvió ceros en los doce y
+parecía el mismo resultado; eran **fallas de conexión tragadas por un `except`** (el Python del
+sistema no trae certificados y `urllib` fallaba en silencio). Se detectó porque el script publicado
+no traía una columna de «la consulta anduvo». Desde entonces el script lleva `consulta_ok` y usa
+`curl`. `[H]` Un cero que viene de un `except` no es una medición.

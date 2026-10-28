@@ -2961,3 +2961,19 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     cierre de `F1`, línea 2252, es correcto y se dejó—. `[H]` La forma barata de que no vuelva a
     pasar: cuando una renumeración toca un ADR, buscar el número viejo en todo `00_meta/` antes
     de cerrar, no sólo en los títulos.
+
+97. **Issue #43 (eje 3 de `F3`): recuperar las 28 secuencias «por accesión» no se puede hacer
+    desde los enlaces de GenBank.** De los doce PMID que el catálogo de `C5` cita para las filas
+    sin `ventanas_21nt`, **diez no tienen ningún registro de nucleótido ni de proteína enlazado**
+    al paper, y los otros dos tienen muy pocos: 32362876 (`CI-13`) enlaza 2 y 36912710 (`DE-04`)
+    enlaza 1 `[M]` (`research/ola6/F3_recomendador_genes/scripts/06_enlaces_genbank_por_paper.py`,
+    salida en `resultados/eje3_enlaces_genbank_por_paper.tsv`; consulta pública a E-utilities,
+    sin secuencias propias). Además, diez de las veintiocho filas citan un trabajo que `C5` no
+    abrió (`apertura: no_abierta`), de modo que su accesión, si existe, está en un texto que
+    nadie leyó. **Lo que falta no es insumo de máquina sino trabajo de lectura**, fila por fila,
+    o la decisión de usar el ortólogo recíproco en una especie anotada como sustituto, como ya
+    hizo `C5` con *Macrosteles quadrilineatus* (`CI-03`, `CI-10`, `DE-02`, `DE-05`), declarándolo
+    en `secuencia_usada`. `[H]` Varias filas no tienen una secuencia única que recuperar
+    (`HE-08` es un control de dosis, `HE-10` dice «varios», `HE-11` «respuesta inmune»): para
+    ellas el eje 3 se declara no aplicable, no faltante. Pendiente de decisión del equipo antes
+    de correr nada.
