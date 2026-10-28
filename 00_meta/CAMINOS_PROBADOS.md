@@ -1502,3 +1502,42 @@ defecto» habría pedido 43 arreglos; contar sus tres partes por separado mostr�
 accionables eran **cuatro** y que de esos cuatro **uno solo** había perdido datos. Un
 verificador que no separa «tiene la forma del problema» de «está causando el problema»
 convierte un arreglo de cuatro archivos en una migración de cuarenta y tres.
+
+## Eje 4 de `F3`: consultas desde los contigs de `F1`, y los ensamblados genómicos como fuente — descartados (2026-10-27, `PREREGISTRO_EJE4.md` §2, `D94`)
+
+**Qué se consideró.** Para darle el eje de conservación a más filas del catálogo, buscar en los
+4.110 contigs de `GITV01` con ortólogo recíproco de `F1` el ortólogo de cada candidato por nombre
+de producto, y usar esos contigs como consulta. Aparte, sumar a los tres TSA los ensamblados
+genómicos como fuente de conservación.
+
+**Por qué se descartó, cada uno por separado.**
+
+1. *Contigs de `F1` como consulta:* la consulta saldría de uno de los tres TSA, así que su
+   presencia ahí está garantizada por construcción y el eje mediría dos poblaciones disfrazadas de
+   tres. Y el emparejamiento candidato → contig pasaría por el nombre del producto: elegir el gen
+   por nombre en vez de por ortología recíproca movió el conteo de ventanas eficientes un 65 %
+   `[M]` (`PREREGISTRO.md` §4.1).
+2. *Genoma del Reino Unido, haplotipo 2:* está incompleto en estos loci y contaría huecos como
+   variación; un primer intento en `C8` lo hizo y dio números absurdos.
+3. *Genoma de Córdoba (ONT, 20x):* la tasa de error del ensamblado es del orden de la variación
+   que se busca, así que una ventana con un desajuste puede ser variación o error de lectura.
+
+**Lo que se hizo en su lugar.** Sólo los tres TSA, con cinco consultas cuya procedencia es
+independiente de ellos (planilla de EPILAB, el CDS de `V-ATPase B` predicho por `miniprot` sobre
+el genoma, y los ARNm públicos `PZ371507.1` y `PZ371508.1`). Las 31 filas restantes quedan sin el
+eje, declarado (entrada 98).
+
+## Eje 4 de `F3`: la regla de «los tres TSA» — descartada por una de «al menos dos» (2026-10-27, `D94`)
+
+La regla preregistrada, presencia exacta en los **tres** TSA con denominador en la intersección,
+puntuó **una** de cinco filas: `eth` y `burs-alpha` no están en `GCWP01` (454, el ensamblado más
+viejo) y `V-ATPase B` quedó en 0,467 de cobertura contra un umbral de 0,50 `[M]`. Se descartó
+**bajar el umbral**, porque habría sido mover un número después de ver qué fila sube, y se adoptó
+la enmienda 1 (dato en al menos dos de tres TSA, umbral intacto).
+
+**Lo que el descarte enseña.** La enmienda se escribió sabiendo el resultado; lo que la acota es
+haberla commiteado antes de recalcular y publicar las dos reglas lado a lado. Y la regla original
+no fallaba por exigente: fallaba porque su aritmética contradecía el principio que el propio
+preregistro enunciaba («ausencia no es conservación cero»). `[H]` Cuando un criterio preregistrado
+deja casi vacío un eje, conviene comprobar antes si el defecto está en el criterio o en cómo se
+implementó, porque sólo el segundo caso se arregla sin tocar nada de lo preregistrado.

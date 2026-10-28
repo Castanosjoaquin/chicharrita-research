@@ -2961,3 +2961,33 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     cierre de `F1`, línea 2252, es correcto y se dejó—. `[H]` La forma barata de que no vuelva a
     pasar: cuando una renumeración toca un ADR, buscar el número viejo en todo `00_meta/` antes
     de cerrar, no sólo en los títulos.
+
+97. **`C8` dio `eth` y `bursA` sin transcriptoma que los cubra, y el eje 4 de `F3` los encontró en
+    dos de los tres.** `conservacion.json` de `C8` declara las 595 ventanas de `eth_Dm` y las 448
+    de `bursA_Dm` «sin transcriptoma suficiente», con cero fuentes. `blastn` contra los TSA
+    completos (`research/ola6/F3_recomendador_genes/scripts/05_eje_conservacion.py`) los ubica en
+    `GHCC01` y `GITV01`: `eth` con 595 y 420 ventanas con dato, `burs-alpha` con 419 y 419; en
+    `GCWP01` no aparece ninguno de los dos `[M]`. En cambio `ATPaseD_Dm` (450 de 471) y `BicC_Dm`
+    en `GHCC01` (2.417 de 2.500) **coinciden** exactamente con `C8`. `[?]` **La causa no se
+    averiguó.** La explicación más simple es que `C8` partía de los contigs que `W5` ya había
+    ubicado y esos dos genes no estaban entre ellos, pero no se abrió `W5` ni `generar_informes.py`
+    para comprobarlo. **Qué cambia si es eso:** la conclusión de `C8` sobre `eth` y `burs-alpha`
+    («la región propuesta para `eth` queda entera dentro de lo probado», conservación de
+    `burs-alpha` sólo en un 70 %) usaba el amplicón y no la conservación entre fuentes, así que no
+    se mueve; lo que sí cambiaría es la frase de que no hay transcriptoma que los cubra. Para
+    cerrarla: leer cómo `C8` eligió los contigs y repetir su alineamiento local sobre los dos
+    contigs que `blastn` encontró (`GHCC01027218.1` y `GITV01054587.1` para `eth`;
+    `GHCC01014529.1` y `GITV01010186.1` para `burs-alpha`).
+
+98. **El eje 4 de `F3` sólo llega a 5 de las 36 filas, y las otras 31 no son falta de cálculo sino
+    falta de secuencia.** Reciben el eje `DM-01`, `DM-02`, `DM-03`, `DM-05` y `DM-06`
+    (`PREREGISTRO_EJE4.md` §2). `DM-04` es de la propia especie pero no hay secuencia en esta
+    máquina, y las 30 restantes son genes de otras especies: lo que habría que medir es la
+    conservación de **su ortólogo en *D. maidis***, que nadie recuperó `[M]`. Se descartó usar los
+    4.110 contigs de `GITV01` que `F1` dejó con ortólogo recíproco, por dos razones declaradas en
+    el preregistro: ese contig es de uno de los tres TSA y su presencia ahí estaría garantizada
+    por construcción, y el emparejamiento pasaría por el nombre del producto. **Es la misma
+    recuperación que pide el eje de off-target (#43)**, así que conviene hacerla una sola vez:
+    28 secuencias de transcripto de 15 especies para el eje 3, y el ortólogo en *D. maidis* de
+    cada candidato para el eje 4. `[H]` Quien tome #43 debería dejar la tabla candidato → secuencia
+    con su accesión, para que sirva a los dos ejes.
