@@ -96,6 +96,11 @@ def main() -> int:
     # que C5 declaro en `secuencia_usada`, de una tercera especie -> proxy_sustituto_declarado.
     c3c = leer_tsv(BLOQUE / "resultados/eje3_filas_c5.tsv")
     n3c = leer_tsv(BLOQUE / "resultados/eje3_filas_c5_nulo.tsv")
+    # Segunda vuelta de recuperacion (accesiones leidas de los papers). Una fila cuya especie esta
+    # en el panel de seis NO entra al puntaje: su fraccion limpia es un autoacierto (HE-06).
+    c3r = {k: v for k, v in leer_tsv(BLOQUE / "resultados/eje3_filas_resto.tsv").items()
+           if v["autoacierto_especie_en_el_panel"] == "no"}
+    n3r = leer_tsv(BLOQUE / "resultados/eje3_filas_resto_nulo.tsv")
 
     en_orden, fuera = [], []
     for ident, f in sorted(fen.items()):
@@ -118,20 +123,26 @@ def main() -> int:
             "_f": p_f, "_e": p_e,
             "_o": (float(c3[ident]["fraccion_limpia"]) if ident in c3 else
                    float(c3n[ident]["fraccion_limpia"]) if ident in c3n else
-                   float(c3c[ident]["fraccion_limpia"]) if ident in c3c else None),
+                   float(c3c[ident]["fraccion_limpia"]) if ident in c3c else
+                   float(c3r[ident]["fraccion_limpia"]) if ident in c3r else None),
             "eje3_puntaje": (c3[ident]["fraccion_limpia"] if ident in c3 else
                              c3n[ident]["fraccion_limpia"] if ident in c3n else
-                             c3c[ident]["fraccion_limpia"] if ident in c3c else ""),
-            "eje3_lectura": ("D_maidis" if ident in c3 else "proxy_especie_del_paper" if ident in c3n
+                             c3c[ident]["fraccion_limpia"] if ident in c3c else
+                             c3r[ident]["fraccion_limpia"] if ident in c3r else ""),
+            "eje3_lectura": ("D_maidis" if ident in c3 else
+                             "proxy_especie_del_paper" if ident in c3n or ident in c3r
                              else "proxy_sustituto_declarado" if ident in c3c else ""),
             "eje3_vs_nulo": (n3n[ident]["real_frente_al_nulo"] if ident in n3n else
-                             n3c[ident]["real_frente_al_nulo"] if ident in n3c else "" if ident not in n3 else
+                             n3c[ident]["real_frente_al_nulo"] if ident in n3c else
+                             n3r[ident]["real_frente_al_nulo"] if ident in c3r else "" if ident not in n3 else
                              "dentro del rango del nulo" if float(n3[ident]["minimo"]) <= float(c3[ident]["fraccion_limpia"]) <= float(n3[ident]["maximo"])
                              else "fuera del rango del nulo"),
             "eje3_nulo_rango": (f"{n3n[ident]['minimo']}-{n3n[ident]['maximo']} (mediana {n3n[ident]['fraccion_limpia_mediana']})"
                                 if ident in n3n else
                                 f"{n3c[ident]['minimo']}-{n3c[ident]['maximo']} (mediana {n3c[ident]['fraccion_limpia_mediana']})"
                                 if ident in n3c else
+                                f"{n3r[ident]['minimo']}-{n3r[ident]['maximo']} (mediana {n3r[ident]['fraccion_limpia_mediana']})"
+                                if ident in c3r else
                                 f"{n3[ident]['minimo']}-{n3[ident]['maximo']} (mediana {n3[ident]['fraccion_limpia_mediana']})"
                                 if ident in n3 else ""),
             "_c": (float(c4[ident]["enm1_fraccion"])

@@ -1,13 +1,13 @@
 {
- "commit_al_correr": "e166438",
+ "commit_al_correr": "dcb77cd",
  "conteos": {
   "cohorte_A34_ejes_1_2_3_y_4": 5,
-  "cohorte_A3_ejes_1_2_y_3_proxy": 4,
+  "cohorte_A3_ejes_1_2_y_3_proxy": 5,
   "cohorte_A4_ejes_1_2_y_4": 0,
-  "cohorte_A_ejes_1_y_2": 8,
-  "cohorte_B3_ejes_1_y_3_proxy": 4,
+  "cohorte_A_ejes_1_y_2": 7,
+  "cohorte_B3_ejes_1_y_3_proxy": 5,
   "cohorte_B4_ejes_1_y_4": 0,
-  "cohorte_B_solo_eje_1": 4,
+  "cohorte_B_solo_eje_1": 3,
   "con_eje2_desde_fuente_primaria_no_abierta": 1,
   "en_el_orden": 25,
   "filas_del_catalogo": 36,
@@ -59,7 +59,6 @@
     "a": [
      "CI-04",
      "CI-05",
-     "CI-06",
      "CI-07",
      "DE-04",
      "HE-01",
@@ -68,7 +67,6 @@
     ],
     "de": [
      "CI-04",
-     "CI-06",
      "CI-07",
      "DE-04",
      "HE-02"
@@ -78,7 +76,6 @@
   ],
   "lider_con_los_pesos_de_D87": [
    "CI-04",
-   "CI-06",
    "CI-07",
    "DE-04",
    "HE-02"

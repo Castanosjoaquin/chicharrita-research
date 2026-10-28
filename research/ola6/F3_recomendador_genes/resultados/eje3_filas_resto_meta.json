@@ -1,0 +1,20 @@
+{
+ "semilla_nulo": 20261031,
+ "permutaciones": 50,
+ "panel_orden_D76": [
+  "maiz",
+  "H_axyridis",
+  "A_mellifera",
+  "H_vitripennis",
+  "F_candida",
+  "humano"
+ ],
+ "preregistro": "PREREGISTRO_EJE3_FILAS_NUEVAS.md (43c7fa0), mismo caso",
+ "ancla": "eth_Dm reproduce work/sifi_v2 columna por columna",
+ "accesiones": {
+  "HE-06": "AY588061.1",
+  "HE-07": "LC009512.1",
+  "HE-10": "MF101769.1",
+  "CI-06": "GFTU01013594.1"
+ }
+}

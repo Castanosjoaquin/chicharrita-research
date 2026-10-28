@@ -3030,3 +3030,15 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     una versión previa de la secuencia, y no se probó. **Qué cambia:** hasta saberlo, la secuencia que
     se tamice para `DE-01` es la de NCBI y no la que describe el texto. Para cerrarla: leer la
     sección de métodos de la que sale el 2.495 y comparar con el registro de GenBank.
+
+102. **Nueve filas del catálogo quedan «sin accesión» leyendo sólo el resumen, y eso no es una ausencia
+    comprobada.** `HE-01`, `HE-02`, `HE-03`, `HE-09`, `HE-11`, `DM-04`, `CI-09`, `CI-11` y `CI-12`: su texto
+    completo está detrás de un muro de pago y ninguna vía abierta (Europe PMC, PMC, Unpaywall, Semantic
+    Scholar, el enlace TDM de Crossref) lo devolvió `[M]`
+    (`research/ola6/F3_recomendador_genes/resultados/recuperacion_resto.tsv`). `[?]` **«No está en el resumen»
+    no es «no está en el paper»**, así que esas nueve no cuentan como evidencia de que el trabajo no depositó
+    secuencias. Para cerrarlas hace falta el texto completo, por biblioteca institucional o pidiéndoselo a los
+    autores. Tres filas más —`CI-04`, `CI-05` (PDF libre en `iris.unito.it`) y `DE-04` (PDF abierto en
+    `onlinelibrary.wiley.com`)— no se leyeron porque esos dominios no están en la lista permitida del entorno,
+    no porque el paper sea cerrado: se destraban autorizando los dos dominios.
+

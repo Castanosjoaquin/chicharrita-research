@@ -1,0 +1,5 @@
+id	n_permutaciones	fraccion_limpia_mediana	minimo	maximo	real_frente_al_nulo
+HE-06	50	0.9946	0.9883	1.0000	fuera del rango del nulo
+HE-07	50	0.9841	0.9660	0.9934	fuera del rango del nulo
+HE-10	50	0.9944	0.9864	1.0000	fuera del rango del nulo
+CI-06	50	0.9941	0.9872	1.0000	fuera del rango del nulo

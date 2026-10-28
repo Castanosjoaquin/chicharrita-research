@@ -1570,3 +1570,22 @@ Lo que se intentó: correr la retícula de paso 1. Lo que se midió: el enumerad
 ## Nulo del eje 3 de `F3`: el tamizado en un solo archivo no escala, y se corre en lotes (2026-10-28, `D97`)
 
 Lo que se intentó: tamizar las 50 permutaciones de cada gen en una sola invocación de `offtarget_21nt.py`; el primer gen (`BicC`, 125.000 ventanas permutadas) no terminó en 55 minutos y se cortó. Lo que se midió: un lote de unas 6.000 ventanas, que es el tamaño de la corrida real, tarda **157 s** en un solo procesador `[M]`, así que el tiempo crece más que lineal con el tamaño del archivo. Lo que se hizo: 51 lotes de unas 6.000 ventanas, 6 en paralelo, **35 min** en total, reanudable. **No cambia el método**: mismas permutaciones, motor, panel y parámetros. `[H]` Antes de tamizar permutaciones, partir en lotes del tamaño de la corrida real, y medir uno antes de lanzar todo.
+
+## Rellenar el eje 3 de `F3` con secuencias sustitutas (ortólogo recíproco) — descartado (2026-10-28, `D100`)
+
+Lo que se consideró: para las filas cuyo paper no cita accesión, usar el ortólogo recíproco en una especie con
+genoma anotado, declarándolo en `secuencia_usada` como ya había hecho `C5` en cuatro filas.
+
+**Por qué se descartó.** Tres razones medidas, no estéticas. *(1)* El eje 3, calculado sobre 18 filas, **no cambió
+ningún primer puesto**: el empate de tres de A+3+4 sigue y los cuatro primeros de A+3 caen dentro de 0,021 contra
+un umbral de 0,05 `[M]`. *(2)* Ya hay tres lecturas que no se comparan entre sí; una cuarta dejaría casi todo el
+catálogo en proxies incomparables. *(3)* El sustituto distorsiona en silencio y se midió **dos veces**: el panel
+de cinco de `C5` incluía *M. quadrilineatus* y cuatro filas publicaban el 100 % de sus ventanas como coincidencia
+(`D99`), y la actina de `HE-06` es de *H. vitripennis*, que está en el panel de seis, con el 98,6 % de sus
+ventanas contra su propia especie `[M]`.
+
+**Lo que quedó en su lugar:** sólo accesiones reales citadas en el texto del paper, 19 de 36 filas con secuencia y
+las 17 restantes declaradas con su motivo, distinguiendo la ausencia comprobada de la provisional (entrada 102).
+`[H]` La regla de método que sale de acá, y que es lo más reutilizable: **antes de tamizar, comprobar que la
+especie de la secuencia no esté en el panel**.
+
