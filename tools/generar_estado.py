@@ -416,11 +416,11 @@ HECHO = [
      "<code>F2</code> sólo puede resumir <strong>el nombre de producto</strong>: los términos GO, los dominios "
      "conservados y los papers que su issue nombraba como entrada <strong>no están en ninguna salida versionada</strong>, "
      "porque <code>F1</code> entrega nombre de producto, identidad, cobertura y banda y nada más. La limitación se "
-     "escribió en el encabezado del módulo y no en una nota al pie —<code>F2</code> no tiene <code>REPORT.md</code>, "
+     "escribió en el encabezado de su módulo en <code>pipeline/</code> y no en una nota al pie —<code>F2</code> no tiene <code>REPORT.md</code>, "
      "así que el lugar equivalente es el docstring—, con la regla explícita de que no se infiere función del nombre "
      "del gen: «V-ATPase» no se convierte en «letalidad». Ampliar la entrada exige una fuente nueva con su versión y "
      "su verificación de procedencia declaradas <strong>antes</strong> de correr, y eso sería una línea propia.",
-     ["pipeline/evidencia_en_prosa.py", "pipeline/fichas_desde_f1.py", "00_meta/DECISIONS.md"]),
+     ["pipeline/README.md", "00_meta/DECISIONS.md"]),
 ]
 
 FALTA = [
