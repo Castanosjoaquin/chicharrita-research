@@ -428,7 +428,16 @@ FALTA = [
      "La tabla de alertas tiene <strong>32 filas: 14 aceptadas, 5 bloqueantes y 13 en «pendiente»</strong>, entre "
      "ellas las <strong>cuatro de <code>V-ATPase B</code> 517-816</strong> que dejó el barrido del inventario. "
      "Ninguna la firma el motor (D48, D68, D73) y una región con alerta sin firmar <strong>no sale como "
-     "recomendada</strong>, así que esto bloquea de hecho a la compuerta. El argumento que la firma tiene que "
+     "recomendada</strong>, <s>así que esto bloquea de hecho a la compuerta</s>. "
+     "<strong>Corregido el 2026-10-28 (<code>V1</code>, issue #45):</strong> medido al construir la bandeja de "
+     "firmas, <strong>las trece pendientes tienen cero ventanas con coincidencia perfecta de 21 nt</strong>, y el "
+     "umbral con el que la compuerta exige decisión es <code>perfecto_21</code> —D48 literal, "
+     "<code>ranking.UMBRAL_COMPUERTA</code>—, así que <strong>hoy no bloquean ninguna región</strong>: en ese "
+     "umbral pasan las 23 del inventario y hay cero frenadas. Cuentan en el umbral laxo de D28, donde son seis las "
+     "regiones frenadas y <strong>ninguna vigente</strong> "
+     "(<code>research/ola4/M6_alertas/resultados/umbral_compuerta.json</code>). Firmarlas sigue valiendo —una "
+     "alerta no leída vale operativamente lo mismo que una aceptada, que es el default invertido de D48— pero no "
+     "es lo que traba la compuerta. El argumento que la firma tiene que "
      "atender está escrito: la de <i>H. vitripennis</i> es la única que además aporta ventanas eficientes, y el "
      "peso de exposición de ese organismo es justo la decisión que D47 dejó abierta."),
     ("Nueve filas del eje 3 cuya ausencia de accesión es provisional (entrada 102)", "insumo", False,

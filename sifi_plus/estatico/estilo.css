@@ -198,6 +198,57 @@ tr.es-efic td:first-child{border-left:3px solid var(--efic)}
 code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.85em;
   background:var(--surface-2); padding:1px 4px; border-radius:2px}
 
+/* --- las vistas de lectura (V1) ---
+ *
+ * El sello de procedencia es el elemento nuevo que lleva significado: un sello INCOMPLETO
+ * —algun campo en «procedencia no declarada»— se tiene que ver distinto de uno completo, y no
+ * por color solamente. Lleva el borde de aviso y los campos que faltan en gris, que es el mismo
+ * recurso con el que la interfaz ya distingue «sin medir» de un cero en sus tiras.
+ *
+ * Los dos colores del dibujo de la juntura son el par que ya esta validado: el azul de
+ * eficiencia para el bloque heredado y el rojo de riesgo para el fabricado. Es el par
+ * categorico que pasa las seis verificaciones en los dos modos, y acá lleva el mismo
+ * significado que en el resto de la interfaz: el fabricado es el que trae riesgo nuevo.
+ */
+.sello{display:flex; flex-wrap:wrap; gap:14px; align-items:baseline; font-size:.78rem;
+  background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent);
+  border-radius:3px; padding:8px 11px; margin:0 0 14px; color:var(--text-dim)}
+.sello b{color:var(--text); font-weight:650}
+.sello code{font-size:.95em}
+.sello .nota{flex-basis:100%; margin:0}
+.sello-falta{border-left-color:var(--warn); background:var(--warn-soft)}
+
+.kpis li.kpi-dest{border-color:var(--efic); background:var(--accent-soft)}
+.kpis li.kpi-dest .n{color:var(--efic)}
+.kpis li.kpi-mal .n{color:var(--stop)}
+.kpis .nota{display:block; margin:4px 0 0; font-size:.72rem; white-space:normal}
+
+/* bloques de la juntura: heredado contra fabricado */
+.bl-her{fill:var(--efic); opacity:.75}
+.bl-fab{fill:var(--risk); stroke:var(--stop); stroke-width:1}
+
+/* la bandeja de firmas */
+.ficha{background:var(--surface); border:1px solid var(--line); border-radius:4px;
+  padding:9px 12px; margin:0 0 9px}
+.ficha summary{cursor:pointer; font-size:.88rem; display:flex; flex-wrap:wrap; gap:10px;
+  align-items:baseline}
+.ficha summary::marker{color:var(--text-dim)}
+.ficha[open] summary{margin-bottom:10px; border-bottom:1px solid var(--line);
+  padding-bottom:8px}
+.estado-pendiente{color:var(--warn); font-weight:650; font-size:.76rem;
+  background:var(--warn-soft); border-radius:2px; padding:1px 7px}
+.estado-bloqueante{color:var(--stop); font-weight:650; font-size:.76rem;
+  background:var(--stop-soft); border-radius:2px; padding:1px 7px}
+.estado-aceptada{color:var(--accent); font-weight:650; font-size:.76rem;
+  background:var(--accent-soft); border-radius:2px; padding:1px 7px}
+.campos{display:grid; grid-template-columns:150px minmax(0,1fr); gap:4px 14px;
+  margin:0 0 12px; font-size:.82rem}
+.campos dt{font-weight:650; color:var(--text-dim)}
+.campos dd{margin:0}
+.campos dd .nota{white-space:normal}
+.form-firma{border-top:1px solid var(--line); padding-top:11px; max-width:760px}
+.form-firma textarea{width:100%; margin-bottom:8px}
+
 /* --- progreso --- */
 .barra{height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden;
   margin:8px 0}

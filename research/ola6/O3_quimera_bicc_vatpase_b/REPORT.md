@@ -368,7 +368,7 @@ juntura 26 s, los tres marcos menos de 1 s, las tres anclas 2 min.
 | `resultados/quimeras_ventanas_cambiadas_o3_corregido_vienna.tsv` | las cinco heredadas que cambiaron, con su distancia |
 | `resultados/ejes_ranking_o3_corregido_vienna.tsv` | los dos ejes de las partes y de las quimeras, en las dos reglas |
 | `resultados/empalmes_offtarget_o3_corregido_vienna.json` | aciertos del empalme por referencia y criterio |
-| `resultados/juntura_detalle_o3_corregido_vienna.json` | los 240 bloques, con aporte por gen y sin secuencias |
+| `resultados/juntura_detalle_o3_corregido_vienna.json` | ~~los 240 bloques, con aporte por gen y sin secuencias~~ **corregido el 2026-10-28 (`V1`, issue #45):** las **19** fichas de bloque **con acierto**, con aporte por gen y sin secuencias. Medido sobre el archivo en disco, que tiene 19 entradas bajo `bloques_con_acierto` `[M]`. La §«Los bloques» de este mismo REPORT lo dice bien —«de las 240 fichas de bloque, 19 tienen acierto»—, así que lo que estaba mal escrito es esta celda y no la medición. Los otros 221 bloques no están en ningún archivo versionado |
 | `resultados/juntura_resumen_o3_corregido_vienna.tsv` | las dos cuentas de juntura y los bloques fabricados |
 | `resultados/juntura_alertas_o3_corregido_vienna.json` | los tres bloques fabricados, crudos |
 | `resultados/alertas_juntura_d48_o3_corregido_vienna.tsv` | la fila de alerta con el esquema de `M6` y los cuatro campos de `D48` |

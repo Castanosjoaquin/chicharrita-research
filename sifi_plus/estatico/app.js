@@ -719,14 +719,378 @@ async function cargarRangos() {
   });
 }
 
+// ------------------------------------------------- las vistas de lectura (V1)
+//
+// Estas cinco vistas LEEN resultados que otras lineas ya calcularon y versionaron. Ninguna
+// calcula un criterio: no hay un solo veredicto de eficiencia, un tamizado ni un puntaje
+// decidido en este archivo, y por eso ninguna puede mover un numero del motor.
+//
+// Las tres reglas que el dibujo tiene que respetar, y que son el contrato de datos:
+//   * ningun numero aparece solo: cada uno lleva modo, motor, panel y archivo de origen;
+//   * un archivo que falta produce «no corrido», NUNCA un cero;
+//   * «sin medir», «no aplica», «declarado faltante» y «cero medido» son cuatro estados
+//     distintos y se dibujan distinto. La interfaz ya lo hace en sus tiras; esto lo hereda.
+
+/** La etiqueta de procedencia. Va arriba de los numeros que describe, no al pie. */
+function sello(p) {
+  if (!p) return '';
+  const campo = (k, v) => {
+    const falta = String(v).startsWith('procedencia no declarada');
+    return `<span class="${falta ? 'no' : ''}"><b>${k}:</b> ${esc(
+      Array.isArray(v) ? v.join(', ') : v)}</span>`;
+  };
+  return `<div class="sello ${p.declarada ? '' : 'sello-falta'}">
+    ${campo('modo', p.modo)} ${campo('motor', p.motor)} ${campo('panel', p.panel)}
+    <span><b>archivo:</b> <code>${esc(p.archivo)}</code></span>
+    ${p.nota ? `<p class="nota">${esc(p.nota)}</p>` : ''}</div>`;
+}
+
+/** El bloque «no corrido». Sin una sola cifra al lado: un cero aca seria una afirmacion. */
+function noCorrido(d) {
+  return `<div class="aviso ojo"><p><b>No corrido.</b> Falta
+    <code>${esc(d.archivo)}</code> (${esc(d.motivo || 'no esta en disco')}).</p>
+    ${d.comando ? `<p class="nota">Se genera con: <code>${esc(d.comando)}</code></p>` : ''}
+    <p class="nota">Esto no es un cero. Un cero significaria que se miro y no hay nada; acá
+      no se miró.</p></div>`;
+}
+
+/** Una contradiccion entre dos archivos se anota con las dos cifras y las dos rutas. */
+function contradicciones(lista) {
+  if (!lista || !lista.length) return '';
+  return `<div class="aviso mal"><p><b>Dos archivos de la misma corrida no coinciden.</b>
+    No se corrige ninguno de los dos: van las dos cifras con sus dos rutas.</p>
+    <ul class="nota">${lista.map((c) => `<li>${esc(c.quimera || c.clave || '')} —
+      ${esc(c.que)}: ${c.en_el_detalle ?? c.por_ventana} contra
+      ${c.en_el_resumen ?? c.por_region}</li>`).join('')}</ul></div>`;
+}
+
+// --- Vista A: mover la region ---
+
+async function cargarInventarioRegiones() {
+  const d = await pedir('/api/vista/regiones');
+  if (d.estado !== 'listo') { $('#salida-regionv').innerHTML = noCorrido(d); return; }
+  const op = d.regiones.map((r) =>
+    `<option value="${esc(r.clave)}">${esc(r.gen)} ${esc(r.region)}</option>`).join('');
+  $('#par-a').innerHTML = op;
+  $('#par-b').innerHTML = op;
+  // El par de BicC es el caso que motiva la vista, asi que arranca ahi; cualquier otro par
+  // del directorio se elige en los desplegables.
+  if (d.regiones.some((r) => r.clave === 'BicC_Dm_264-563')) $('#par-a').value = 'BicC_Dm_264-563';
+  if (d.regiones.some((r) => r.clave === 'BicC_Dm_922-1221')) $('#par-b').value = 'BicC_Dm_922-1221';
+  verRegiones();
+}
+
+/** El eje compartido con una tira por organismo x criterio, y una marca por tramo. */
+function dibujarPanelRegion(p, eje) {
+  if (p.estado !== 'listo') return noCorrido(p);
+  const W = 860, ML = 128, MR = 14, H_TIRA = 13, GAP = 6;
+  const n = Math.max(1, eje.hasta - eje.desde);
+  const x = (pos) => ML + (pos - eje.desde) * (W - ML - MR) / n;
+  const alto = 26 + p.marcas.length * (H_TIRA + GAP) + 24;
+
+  const regionIni = p.inicio, regionFin = p.fin;
+  const tiras = p.marcas.map((m, i) => {
+    const y = 26 + i * (H_TIRA + GAP);
+    const clase = m.criterio === 'perfecto_21' ? 'tick-off' : 'tick-mm1';
+    const marcas = m.tramos.map(([a, b]) =>
+      `<rect class="${clase}" x="${x(a).toFixed(1)}" y="${y}"
+         width="${Math.max(2, x(b) - x(a) + 2).toFixed(1)}" height="${H_TIRA}">
+         <title>${esc(m.organismo_corto)} · ${esc(m.criterio)} · ${a}–${b}</title></rect>`).join('');
+    return `<rect class="lane" x="${ML}" y="${y}" width="${W - ML - MR}" height="${H_TIRA}"/>
+      ${marcas}
+      <text class="lane-lab" x="${ML - 6}" y="${y + H_TIRA - 3}" text-anchor="end">${
+        esc(m.organismo_corto)} · ${m.criterio === 'perfecto_21' ? '21/21' : '≥19'}</text>`;
+  }).join('');
+
+  const sinAlertas = !p.marcas.length
+    ? `<text class="lane-lab" x="${ML}" y="40">se tamizó y no hay ninguna ventana con alerta
+        en esta región — cero medido, no «sin medir»</text>` : '';
+
+  return `<figure>
+    <figcaption><b>${esc(p.gen)} ${esc(p.region)}</b> — ${esc(p.que_es || '')}
+      ${p.vigente === 'sí' ? '<span class="si">· vigente</span>' : '<span class="no">· no vigente</span>'}
+      <br>${p.n_filas} fila(s) de alerta · ${p.posiciones_distintas} posición(es) con alerta
+      · <code>${esc(p.archivo_region)}</code></figcaption>
+    <svg class="plot" viewBox="0 0 ${W} ${alto}" role="img">
+      <rect class="band" x="${x(regionIni).toFixed(1)}" y="14"
+        width="${(x(regionFin) - x(regionIni)).toFixed(1)}" height="${alto - 38}"/>
+      <text class="band-lab" x="${((x(regionIni) + x(regionFin)) / 2).toFixed(1)}" y="11">${
+        regionIni}–${regionFin}</text>
+      ${tiras}${sinAlertas}
+      <line class="axis" x1="${ML}" y1="${alto - 20}" x2="${W - MR}" y2="${alto - 20}"/>
+      <text class="tick" x="${ML}" y="${alto - 7}">${eje.desde}</text>
+      <text class="tick" x="${W - MR}" y="${alto - 7}" text-anchor="end">${eje.hasta}</text>
+    </svg>
+  </figure>
+  <div class="tabla-marco"><table>
+    <thead><tr><th>Organismo</th><th>Gen impactado</th><th class="n">21/21</th>
+      <th class="n">≥19 nt</th><th class="n">21/21 eficientes</th><th>Evidencia</th>
+      <th>Firma</th></tr></thead>
+    <tbody>${p.filas.map((f) => `<tr>
+      <td title="${esc(f.organismo_rol || '')}">${esc(f.organismo_corto)}</td>
+      <td>${esc(f.gen_simbolo || '—')}<br><span class="nota">${esc(f.gen_locus || '')}</span></td>
+      <td class="n">${f.ventanas_perfecto_21 ?? '<span class="no">sin medir</span>'}</td>
+      <td class="n">${f.ventanas_perfecto_ge19 ?? '<span class="no">sin medir</span>'}</td>
+      <td class="n">${f.ventanas_21_eficientes.valor ?? '—'}
+        <span class="no" title="${esc(f.ventanas_21_eficientes.procedencia)}">⚠</span></td>
+      <td><span class="nota">${esc(f.evidencia_clave || '')}</span></td>
+      <td>${esc(f.decision_usuario || '')}</td>
+    </tr>`).join('')}</tbody></table></div>`;
+}
+
+async function verRegiones() {
+  const a = $('#par-a').value, b = $('#par-b').value;
+  if (!a || !b) return;
+  aviso('#aviso-regionv', '');
+  const d = await pedir(`/api/vista/region?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`);
+  if (d.estado !== 'listo') { $('#salida-regionv').innerHTML = noCorrido(d); return; }
+  if (d.aviso) aviso('#aviso-regionv', esc(d.aviso), 'ojo');
+  $('#salida-regionv').innerHTML = sello(d.procedencia)
+    + contradicciones(d.paneles.flatMap((p) => p.contradicciones || []))
+    + `<p class="nota">El eje va de ${d.eje ? d.eje.desde : '—'} a ${d.eje ? d.eje.hasta : '—'}:
+        ${esc(d.eje ? d.eje.que_es : '')}.</p>`
+    + d.paneles.map((p) => dibujarPanelRegion(p, d.eje || { desde: 1, hasta: 2 })).join('')
+    + `<p class="nota"><b>${esc(d.organismos_nota)}</b> En estas dos regiones:
+        ${d.organismos_con_alerta.map(esc).join(', ') || '—'}.</p>`;
+}
+
+// --- Vista B: los tres marcos ---
+
+async function verMarcos() {
+  const d = await pedir('/api/vista/marcos');
+  if (d.estado !== 'listo') { $('#salida-marcos').innerHTML = noCorrido(d); return; }
+  const tarjeta = (r) => `<figure>
+    <figcaption><b>${esc(r.gen)} ${r.inicio}–${r.fin}</b> · ${r.largo} nt ·
+      ${esc(r.nota || '')}</figcaption>
+    <ul class="kpis">${r.cifras.map((c) => `<li ${c.destacado ? 'class="kpi-dest"' : ''}>
+      <span class="n">${c.valor ?? '<span class="no">sin medir</span>'}</span>
+      <span class="k">marco ${c.marco}${c.destacado ? ' — la molécula que existiría' : ''}</span>
+      <span class="nota">${esc(c.pregunta)}</span></li>`).join('')}</ul>
+    <p class="nota">Diferencias que el archivo trae, no calculadas acá: límite físico
+      ${r.derivadas.limite_fisico ?? '—'}, contexto neto ${r.derivadas.contexto_neto ?? '—'},
+      pierden ${r.derivadas.pierden ?? '—'}, ganan ${r.derivadas.ganan ?? '—'}.</p>
+  </figure>`;
+  $('#salida-marcos').innerHTML = sello(d.procedencia)
+    + (d.configuracion_declarada ? '' : `<div class="aviso ojo"><p><b>Procedencia no
+        declarada.</b> Falta <code>${esc(d.archivo_configuracion)}</code>, que es el único
+        archivo que dice con qué modo y qué motor se contaron estas cifras.</p></div>`)
+    + `<p class="nota">${esc(d.texto)}</p>` + d.regiones.map(tarjeta).join('');
+}
+
+// --- Vista C: la juntura ---
+
+async function verJuntura() {
+  const d = await pedir('/api/vista/juntura');
+  if (d.estado !== 'listo') { $('#salida-juntura').innerHTML = noCorrido(d); return; }
+
+  const dibujo = (o) => {
+    const W = 860, ML = 14, MR = 14, Y = 34, ALTO = 30;
+    const total = (o.resumen.ventanas_de_juntura || 20) + 40;
+    const centro = ML + (W - ML - MR) / 2;
+    const esc_x = (nt) => centro + nt * (W - ML - MR) / (2 * total / 2) / 2;
+    const bloques = o.bloques.map((b) => {
+      const ini = (b.offset || 0) + ((b.j || 1) - 1) - 10;
+      const x1 = esc_x(ini), x2 = esc_x(ini + 1.0);
+      return `<rect class="${b.fabricado ? 'bl-fab' : 'bl-her'}" x="${x1.toFixed(1)}"
+        y="${Y + (b.fabricado ? 0 : ALTO + 6)}" width="${Math.max(6, x2 - x1).toFixed(1)}"
+        height="${ALTO}"><title>j=${b.j} · ${b.largo} nt · ${b.nt_de_izquierda} nt de
+        ${esc(o.izquierda)} + ${b.nt_de_derecha} nt de ${esc(o.derecha)} ·
+        ${b.fabricado ? 'FABRICADO por el empalme' : 'heredado'} ·
+        aciertos: ${esc(b.organismos.join(', ') || 'ninguno')}</title></rect>`;
+    }).join('');
+    return `<svg class="plot" viewBox="0 0 ${W} ${Y + 2 * ALTO + 34}" role="img">
+      <line class="cross" x1="${centro}" y1="${Y - 8}" x2="${centro}" y2="${Y + 2 * ALTO + 12}"/>
+      <text class="band-lab" x="${centro}" y="${Y - 12}">la unión</text>
+      <text class="lane-lab" x="${ML}" y="${Y + ALTO - 10}">fabricados</text>
+      <text class="lane-lab" x="${ML}" y="${Y + 2 * ALTO - 4}">heredados</text>
+      ${bloques}
+      <text class="tick" x="${ML}" y="${Y + 2 * ALTO + 28}">← ${esc(o.izquierda)}</text>
+      <text class="tick" x="${W - MR}" y="${Y + 2 * ALTO + 28}" text-anchor="end">${
+        esc(o.derecha)} →</text>
+    </svg>`;
+  };
+
+  const orden = (o) => `<figure>
+    <figcaption><b>${esc(o.quimera)}</b> — ${esc(o.izquierda)} + ${esc(o.derecha)},
+      corte en ${o.corte_nt ?? '—'} nt</figcaption>
+    ${dibujo(o)}
+    <ul class="kpis">
+      <li><span class="n">${o.heredados}</span><span class="k">bloques heredados con acierto</span></li>
+      <li class="${o.fabricados ? 'kpi-mal' : ''}"><span class="n">${o.fabricados}</span>
+        <span class="k">bloques fabricados por el empalme</span></li>
+      <li><span class="n">${o.resumen.juntura_eficientes ?? '<span class="no">sin medir</span>'}</span>
+        <span class="k">ventanas eficientes de juntura</span></li>
+      <li><span class="n">${o.resumen.juntura_con_blanco_continuo_21nt ?? '—'}</span>
+        <span class="k">con blanco continuo de 21 nt</span></li>
+    </ul>
+    <p class="nota">Referencias contra las que el empalme fabrica riesgo:
+      <b>${o.referencias_fabricadas.map(esc).join(', ') || 'ninguna'}</b>.</p>
+    ${o.cambiadas.length ? `<div class="tabla-marco"><table>
+      <thead><tr><th class="n">Posición</th><th>Lado</th><th>Antes</th><th>Ahora</th>
+        <th class="n">nt hasta la unión</th></tr></thead>
+      <tbody>${o.cambiadas.map((c) => `<tr><td class="n">${c.pos_quimera}</td>
+        <td>${esc(c.lado)}</td><td>${esc(c.antes)}</td><td>${esc(c.ahora)}</td>
+        <td class="n">${c.nt_hasta_la_union}</td></tr>`).join('')}</tbody></table></div>
+      <p class="nota">Ventanas heredadas que cambiaron de veredicto, con su distancia a la
+        unión.</p>` : '<p class="nota">Ninguna ventana heredada cambió de veredicto.</p>'}
+  </figure>`;
+
+  const c = d.cobertura_de_bloques;
+  $('#salida-juntura').innerHTML = sello(d.procedencia) + contradicciones(d.contradicciones)
+    + `<div class="aviso ojo"><p><b>El dibujo muestra ${c.en_el_archivo} bloques de los
+        ${c.publicados} que la juntura enumera.</b> ${esc(c.nota)}</p>
+      <p class="nota">Los ${c.no_medidos ?? '—'} restantes se dibujan como <b>no medidos</b>:
+        ni heredados ni sin acierto. Deducir su geometría sería calcular, y esta vista lee.</p>
+      <p class="nota">${esc(c.contradiccion_publicada)}</p></div>`
+    + d.ordenes.map(orden).join('');
+}
+
+// --- Vista E: los dos ejes ---
+
+async function verEjes() {
+  const d = await pedir('/api/vista/ejes');
+  if (d.estado !== 'listo') { $('#salida-ejes').innerHTML = noCorrido(d); return; }
+  const pct = (v) => (v === null || v === undefined ? '—' : (v * 100).toFixed(2) + ' %');
+  const bloque = (regla) => `<h3>Regla ${esc(regla)}</h3>
+    <div class="tabla-marco"><table>
+      <thead><tr><th>Objeto</th><th>Clase</th><th class="n">nt</th><th class="n">ventanas</th>
+        <th class="n">eficientes</th><th class="n">eficacia</th><th class="n">limpieza</th>
+        <th class="n">con off-target</th><th class="n">21/21</th><th>vetada</th></tr></thead>
+      <tbody>${d.objetos.filter((o) => o.regla === regla).map((o) => `<tr>
+        <td><b>${esc(o.objeto)}</b></td><td>${esc(o.clase)}</td>
+        <td class="n">${num(o.largo_nt || 0)}</td><td class="n">${num(o.n_ventanas || 0)}</td>
+        <td class="n">${o.eficientes ?? '<span class="no">sin medir</span>'}</td>
+        <td class="n">${pct(o.eficacia)}</td>
+        <td class="n">${pct(o.limpieza.valor)} <span class="no"
+          title="${esc(o.limpieza.procedencia)}">⚠</span></td>
+        <td class="n">${o.con_off_target.valor ?? '—'} <span class="no"
+          title="${esc(o.con_off_target.procedencia)}">⚠</span></td>
+        <td class="n">${o.con_21_perfecto.valor ?? esc(String(o.con_21_perfecto.valor))}</td>
+        <td>${esc(o.vetada)}</td></tr>`).join('')}</tbody></table></div>`;
+  $('#salida-ejes').innerHTML = sello(d.procedencia)
+    + `<div class="aviso ojo"><p>Las columnas
+        <b>${d.columnas_sin_panel.map(esc).join(', ')}</b> dependen del panel de referencias, y
+        ningún archivo de esta corrida lo declara: van marcadas con ⚠ y
+        «procedencia no declarada».</p></div>`
+    + `<p class="nota">${esc(d.texto)}</p>` + d.reglas.map(bloque).join('');
+}
+
+// --- Vista D: la bandeja de firmas, la unica que escribe ---
+
+function fichaDeFirma(f) {
+  const campo = (titulo, cols) => `<dt>${esc(titulo)}</dt><dd>${
+    Object.entries(cols).map(([k, v]) => `<span class="nota"><b>${esc(k)}:</b> ${
+      esc(v || '—')}</span>`).join('<br>')}</dd>`;
+  const d = f.destraba;
+  return `<details class="ficha" data-clave="${esc(f.clave)}">
+    <summary><b>${esc(f.gen)} ${esc(f.region)}</b> · ${esc(f.organismo_corto)} ·
+      ${esc(f.campos.gen_involucrado.gen_locus || '')}
+      <span class="etq">21/21: ${f.conteos.ventanas_perfecto_21 ?? 'sin medir'} ·
+        ≥19: ${f.conteos.ventanas_perfecto_ge19 ?? 'sin medir'}</span>
+      <span class="estado-${esc(f.decision_usuario)}">${esc(f.decision_usuario)}</span></summary>
+
+    <p class="nota"><b>Qué destraba esta firma.</b> ${esc(d.region)} —
+      ${esc(d.que_es || '')} (vigente: ${esc(d.vigente || '—')}).
+      Estado D48: ${esc(d.estado_D48 || '—')}. Decide: ${esc(d.decide || '—')}.<br>
+      <b>${esc(d.nota)}</b></p>
+
+    <dl class="campos">
+      ${campo('1 · Organismo', f.campos.organismo)}
+      ${campo('2 · Exposición', f.campos.exposicion)}
+      ${campo('3 · Gen involucrado', f.campos.gen_involucrado)}
+      ${campo('4 · Evidencia biológica', f.campos.evidencia_biologica)}
+    </dl>
+
+    ${f.firma ? `<p class="nota">Firmada por <b>${esc(f.firma.firmado_por)}</b> el
+      ${esc(f.firma.fecha)} — huella 21/21 ${esc(f.firma.huella_21)}, ≥19
+      ${esc(f.firma.huella_ge19)}.</p>` : ''}
+    ${f.justificacion_usuario ? `<p class="nota"><b>Justificación en el inventario:</b>
+      ${esc(f.justificacion_usuario)}</p>` : ''}
+
+    <form class="form-firma">
+      <div class="fila">
+        <div><label>Decisión</label><select class="f-decision">
+          <option value="aceptada">aceptada</option>
+          <option value="bloqueante">bloqueante</option></select></div>
+        <div><label>Firmado por</label><input type="text" class="f-autor"
+          placeholder="quién firma"></div>
+      </div>
+      <label>Justificación — un párrafo que cite la fila (el LOC o una accesión)</label>
+      <textarea class="f-just" rows="4"
+        placeholder="D48 pide un párrafo, no un clic. Mínimo 40 caracteres, y tiene que nombrar ${
+          esc(f.campos.gen_involucrado.gen_locus || 'el LOC')} o una de las accesiones."></textarea>
+      <button type="submit" class="boton">Escribir la firma</button>
+      <p class="nota">Se escribe en el archivo de firmas, con fecha y autor. El inventario
+        <b>no</b> se edita acá: se regenera desde el archivo de firmas.</p>
+    </form>
+  </details>`;
+}
+
+async function verFirmas() {
+  const d = await pedir('/api/vista/firmas');
+  if (d.estado !== 'listo') { $('#salida-firmas').innerHTML = noCorrido(d); return; }
+
+  const grupo = (estado) => {
+    const filas = d.filas.filter((f) => f.decision_usuario === estado);
+    if (!filas.length) return '';
+    return `<h3>${esc(estado)} — ${filas.length}</h3>${filas.map(fichaDeFirma).join('')}`;
+  };
+
+  $('#salida-firmas').innerHTML = sello(d.procedencia)
+    + `<ul class="kpis">
+        <li><span class="n">${d.cuenta.pendiente || 0}</span><span class="k">pendientes</span></li>
+        <li><span class="n">${d.cuenta.aceptada || 0}</span><span class="k">aceptadas</span></li>
+        <li><span class="n">${d.cuenta.bloqueante || 0}</span><span class="k">bloqueantes</span></li>
+        <li><span class="n">${d.total}</span><span class="k">filas en el inventario</span></li>
+      </ul>
+      <div class="aviso ojo"><p><b>${esc(d.nota_del_umbral)}</b></p>
+        <p class="nota">Presentar las pendientes como regiones trabadas sería inventar una
+          urgencia que la medición no respalda.</p></div>
+      <p class="nota">${esc(d.regla)}</p>`
+    + ['pendiente', 'bloqueante', 'aceptada'].map(grupo).join('');
+
+  $$('#salida-firmas .form-firma').forEach((form) => {
+    form.onsubmit = async (ev) => {
+      ev.preventDefault();
+      const ficha = form.closest('.ficha');
+      try {
+        const r = await pedir('/api/vista/firmar', {
+          clave: ficha.dataset.clave,
+          decision: $('.f-decision', form).value,
+          justificacion: $('.f-just', form).value,
+          firmado_por: $('.f-autor', form).value,
+        });
+        aviso('#aviso-firmas', `Firma escrita en <code>${esc(r.archivo)}</code>
+          (${r.firmas} firmas). ${esc(r.siguiente_paso)}`, 'bien');
+        verFirmas();
+      } catch (err) {
+        aviso('#aviso-firmas', `<b>La firma no se escribió.</b> ${esc(err.message)}`, 'mal');
+      }
+    };
+  });
+}
+
 // ---------------------------------------------------------------- arranque
 
 function verVista(cual) {
-  for (const v of ['diseno', 'off', 'rangos']) {
+  for (const v of ['diseno', 'off', 'rangos', 'regionv', 'marcos', 'juntura', 'ejes',
+    'firmas']) {
     $('#vista-' + v).hidden = (v !== cual);
     $('#tab-' + v).setAttribute('aria-selected', String(v === cual));
   }
   if (cual === 'rangos') cargarRangos();
+  // Las vistas de lectura se cargan al entrar y no al arrancar: leen archivos de `research/`
+  // que pueden no estar, y un «no corrido» en una pestana que nadie abrio seria ruido.
+  const carga = {
+    regionv: cargarInventarioRegiones, marcos: verMarcos, juntura: verJuntura,
+    ejes: verEjes, firmas: verFirmas,
+  }[cual];
+  if (carga) {
+    carga().catch((e) => {
+      $('#salida-' + cual).innerHTML = `<div class="aviso mal">No pude leer la vista: ${
+        esc(e.message)}</div>`;
+    });
+  }
   if (cual === 'off') {
     const pares = $('#secuencia').value.trim();
     $('#off-consulta').innerHTML = pares
@@ -807,6 +1171,10 @@ async function iniciar() {
       aviso('#aviso-diseno', esc(err.message), 'mal');
     }
   };
+
+  // Vista A: cambiar cualquiera de los dos desplegables redibuja el par.
+  $('#par-a').onchange = () => verRegiones();
+  $('#par-b').onchange = () => verRegiones();
 
   $('#btn-panel').onclick = () => $$('.base').forEach((i) => {
     i.checked = S.arranque.bases.find((b) => b.id === i.value).en_panel;

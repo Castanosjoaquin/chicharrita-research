@@ -36,6 +36,7 @@ sys.path.insert(0, str(AQUI))
 
 import api
 import complejidad
+import lectura
 import perfil
 import proyecto
 
@@ -508,6 +509,504 @@ def test_lectura_de_fasta():
           "secuencia sin encabezado")
     igual(api.leer_fasta("   "), [], "texto vacio no da ninguna secuencia")
     igual(api.leer_fasta(">solo_encabezado\n"), [], "un encabezado sin secuencia no cuenta")
+
+
+# ------------------------------------------- las vistas de lectura (V1, issue #45)
+#
+# Que prueban estas verificaciones y que NO prueban. Prueban **lectura y procedencia**: que
+# cada vista levante su archivo, que un archivo ausente produzca «no corrido» y no un cero, y
+# que ninguna vista escriba fuera del archivo de firmas. No prueban ningun criterio, porque las
+# vistas no calculan ninguno: ese es el criterio de terminado de la linea.
+#
+# Y entran por donde las verificaciones de arriba **no** miran. Las noventa de este archivo
+# entran por `api.correr_diseno`, que es el camino del motor; las vistas no lo tocan, asi que
+# una vista nueva no puede mover un conteo ancla. Eso no se supone: se verifica leyendo los
+# imports de cada modulo de vista.
+
+
+def _fuente(nombre: str) -> str:
+    return (AQUI / nombre).read_text(encoding="utf-8")
+
+
+VISTAS = ("lectura.py", "vista_region.py", "vista_marcos.py", "vista_juntura.py",
+          "vista_ejes.py", "vista_firmas.py")
+
+
+def test_vistas_no_importan_el_motor():
+    """Ninguna vista importa `api` ni nada de `tools/sifi21_port/`. Leido, no supuesto.
+
+    Es la garantia de que las vistas no pueden mover un numero: no llaman al motor. Se mira el
+    arbol sintactico y no una expresion regular, porque `import api` adentro de un comentario o
+    de una cadena no es un import y un grep no sabe la diferencia.
+    """
+    import ast
+
+    prohibidos = {"api", "sifi_pipeline", "sifi_core", "ranking", "ranking_v2", "alertas",
+                  "offtarget_21nt", "identidad", "ejes_separados", "conservacion"}
+    for nombre in VISTAS:
+        arbol = ast.parse(_fuente(nombre), filename=nombre)
+        importados = set()
+        for nodo in ast.walk(arbol):
+            if isinstance(nodo, ast.Import):
+                importados |= {a.name.split(".")[0] for a in nodo.names}
+            elif isinstance(nodo, ast.ImportFrom) and nodo.module:
+                importados.add(nodo.module.split(".")[0])
+        igual(sorted(importados & prohibidos), [],
+              "%s no importa el motor ni el port" % nombre)
+
+
+def test_vistas_leen_su_archivo():
+    """Cada vista levanta su archivo y devuelve las filas que el archivo tiene.
+
+    Las cifras se comparan contra el conteo de filas del archivo en disco, no contra un numero
+    escrito aca: lo que se verifica es que la vista no pierda ni invente filas, no cuantas filas
+    tiene hoy el archivo.
+    """
+    import csv as _csv
+
+    import vista_ejes
+    import vista_firmas
+    import vista_juntura
+    import vista_marcos
+    import vista_region
+
+    def filas_de(ruta):
+        with open(ruta, encoding="utf-8", newline="") as fh:
+            return [f for f in _csv.DictReader(fh, delimiter="\t")
+                    if any((v or "").strip() for v in f.values())]
+
+    # Vista A: el inventario de regiones son los archivos que hay en el directorio.
+    inv = vista_region.inventario()
+    if inv["estado"] != "listo":
+        NO_CORRIDO.append("vista A: %s" % inv.get("motivo"))
+    else:
+        igual(len(inv["regiones"]), len(list(vista_region.POR_REGION.glob("*.tsv"))),
+              "la vista A lista todas las regiones del directorio")
+        # El nombre se parte por el ultimo guion bajo: los genes tienen guiones adentro.
+        claves = {r["clave"]: r for r in inv["regiones"]}
+        if "ATPaseD_Dm_137-436" in claves:
+            igual([claves["ATPaseD_Dm_137-436"]["gen"],
+                   claves["ATPaseD_Dm_137-436"]["region"]], ["ATPaseD_Dm", "137-436"],
+                  "un gen con guion bajo en el nombre se parte bien")
+
+    v = vista_region.ver("BicC_Dm_264-563", "BicC_Dm_922-1221")
+    if v["estado"] != "listo":
+        NO_CORRIDO.append("vista A: %s" % v.get("motivo"))
+    else:
+        a, b = v["paneles"]
+        igual([a["n_filas"], b["n_filas"]],
+              [len(filas_de(vista_region.POR_REGION / "BicC_Dm_264-563.tsv")),
+               len(filas_de(vista_region.POR_REGION / "BicC_Dm_922-1221.tsv"))],
+              "la vista A devuelve las filas que tienen los dos archivos")
+        check(not a["contradicciones"] and not b["contradicciones"],
+              "las dos cifras del mismo hecho coinciden entre los dos archivos de M6")
+        # La unidad de conteo es la posicion y no la fila: las isoformas del mismo gen son
+        # varias filas de la tabla por ventana para una sola posicion.
+        por_org = {m["organismo_corto"]: m for m in a["marcas"] if m["criterio"] == "perfecto_21"}
+        if "H_vitripennis" in por_org:
+            igual(por_org["H_vitripennis"]["posiciones"],
+                  por_org["H_vitripennis"]["filas_del_archivo"],
+                  "las posiciones con 21/21 coinciden con lo que declara la tabla por region")
+        igual(v["procedencia"]["panel"], lectura.NO_DECLARADA,
+              "el panel de M6 no esta declarado y la vista A lo dice")
+        igual([v["procedencia"]["modo"], v["procedencia"]["motor"]],
+              [lectura.NO_APLICA, lectura.NO_APLICA],
+              "un conteo de coincidencias exactas no depende del modo ni del motor")
+
+    # Vista B: una fila por region, y la cabecera es la del marco 3.
+    m = vista_marcos.ver()
+    if m["estado"] != "listo":
+        NO_CORRIDO.append("vista B: %s" % m.get("motivo"))
+    else:
+        igual(len(m["regiones"]), len(filas_de(vista_marcos.TSV)),
+              "la vista B devuelve las regiones que tiene el archivo")
+        igual([r["cabecera"]["marco"] for r in m["regiones"]], [3] * len(m["regiones"]),
+              "la cifra de cabecera de cada region es la del marco 3")
+        for r in m["regiones"]:
+            igual(r["cabecera"]["valor"],
+                  next(c["valor"] for c in r["cifras"] if c["marco"] == 3),
+                  "y es la misma cifra que la del marco 3 en la lista (%s)" % r["gen"])
+        igual(len(m["regiones"][0]["cifras"]), 3, "las tres cifras van las tres")
+        check(m["procedencia"]["declarada"],
+              "la vista B declara su procedencia: %s / %s" % (m["procedencia"]["modo"],
+                                                             m["procedencia"]["motor"]))
+
+    # Vista C: los bloques del detalle, contrastados con el resumen de la misma corrida.
+    j = vista_juntura.ver()
+    if j["estado"] != "listo":
+        NO_CORRIDO.append("vista C: %s" % j.get("motivo"))
+    else:
+        igual(len(j["ordenes"]), len(filas_de(vista_juntura.RESUMEN)),
+              "la vista C devuelve los ordenes que tiene el resumen")
+        igual(j["contradicciones"], [],
+              "el detalle y el resumen de la juntura coinciden en los dos conteos")
+        for o in j["ordenes"]:
+            igual(o["fabricados"], o["resumen"]["bloques_fabricados_por_el_empalme"],
+                  "%s: los bloques fabricados del dibujo son los del resumen" % o["quimera"])
+            igual(o["heredados"] + o["fabricados"], o["resumen"]["bloques_con_acierto"],
+                  "%s: heredados mas fabricados son los bloques con acierto" % o["quimera"])
+        # Lo que el archivo NO trae se declara como no medido, con las dos cifras y su fuente.
+        c = j["cobertura_de_bloques"]
+        igual(c["en_el_archivo"] + c["no_medidos"], c["publicados"],
+              "los bloques del archivo mas los no medidos son los publicados")
+        check(c["en_el_archivo"] < c["publicados"],
+              "el detalle trae %d de los %d bloques publicados, y la vista lo declara"
+              % (c["en_el_archivo"], c["publicados"]))
+
+    # Vista E: las dos columnas que dependen del panel van sin procedencia.
+    e = vista_ejes.ver()
+    if e["estado"] != "listo":
+        NO_CORRIDO.append("vista E: %s" % e.get("motivo"))
+    else:
+        igual(len(e["objetos"]), len(filas_de(vista_ejes.TSV)),
+              "la vista E devuelve los objetos que tiene el archivo")
+        igual(e["procedencia"]["panel"], lectura.NO_DECLARADA,
+              "el panel de los ejes no esta declarado y la vista E lo dice")
+        for o in e["objetos"]:
+            igual(o["limpieza"]["procedencia"], lectura.NO_DECLARADA,
+                  "la limpieza de %s depende del panel y va sin procedencia" % o["objeto"])
+
+    # Vista D: el contador de pendientes es el del inventario.
+    f = vista_firmas.ver()
+    if f["estado"] != "listo":
+        NO_CORRIDO.append("vista D: %s" % f.get("motivo"))
+    else:
+        filas = filas_de(vista_firmas.INVENTARIO)
+        igual(f["total"], len(filas), "la bandeja devuelve las filas del inventario")
+        igual(f["pendientes"],
+              sum(1 for x in filas if (x.get("decision_usuario") or "").strip() == "pendiente"),
+              "el contador de pendientes coincide con las filas en «pendiente»")
+        igual(sum(f["cuenta"].values()), len(filas),
+              "cada fila esta en exactamente un estado")
+        # Los cuatro campos obligatorios de D48, completos en cada ficha.
+        for x in f["filas"]:
+            igual(sorted(x["campos"]), sorted(vista_firmas.CAMPOS_OBLIGATORIOS),
+                  "la ficha de %s trae los cuatro campos de D48" % x["clave"])
+            break
+        vacios = [x["clave"] for x in f["filas"]
+                  for campo, cols in x["campos"].items()
+                  for c, v in cols.items() if not str(v).strip()]
+        igual(vacios, [], "ninguna ficha tiene un campo obligatorio vacio")
+
+
+def test_una_vista_sin_su_archivo_dice_no_corrido():
+    """Un insumo que no esta produce «no corrido» y **no** un cero.
+
+    Se apunta cada modulo a una ruta que no existe en vez de renombrar el archivo de verdad:
+    renombrar un resultado de otra linea para correr una prueba es la clase de cosa que queda
+    renombrada. El efecto sobre el codigo de la vista es el mismo.
+    """
+    import vista_ejes
+    import vista_firmas
+    import vista_juntura
+    import vista_marcos
+    import vista_region
+
+    falso = AQUI / "no_existe_este_archivo_de_prueba.tsv"
+    casos = [
+        (vista_region, "POR_VENTANA", lambda: vista_region.ver("BicC_Dm_264-563",
+                                                               "BicC_Dm_922-1221")),
+        (vista_marcos, "TSV", vista_marcos.ver),
+        (vista_juntura, "RESUMEN", vista_juntura.ver),
+        (vista_ejes, "TSV", vista_ejes.ver),
+        (vista_firmas, "INVENTARIO", vista_firmas.ver),
+    ]
+    for modulo, atributo, llamar in casos:
+        original = getattr(modulo, atributo)
+        try:
+            setattr(modulo, atributo, falso)
+            d = llamar()
+        finally:
+            setattr(modulo, atributo, original)
+        igual(d.get("estado"), "no corrido",
+              "%s sin su archivo declara «no corrido»" % modulo.__name__)
+        check(falso.name in d.get("archivo", ""),
+              "%s dice cual es el archivo que falta" % modulo.__name__)
+        # Lo que importa: ni una sola cifra en la respuesta. Un cero aca se leeria como «se
+        # miro y no hay nada», que es justo lo contrario de lo que paso.
+        numeros = [k for k, v in d.items() if isinstance(v, (int, float))
+                   and not isinstance(v, bool)]
+        igual(numeros, [], "%s no devuelve ningun numero cuando falta el archivo"
+              % modulo.__name__)
+
+
+def test_la_vista_de_marcos_sin_su_configuracion():
+    """Falta el JSON de configuracion: las cifras salen con «procedencia no declarada».
+
+    Es el caso intermedio y el mas facil de hacer mal: el TSV esta, asi que hay cifras, pero el
+    unico archivo que dice con que modo y que motor se contaron no esta. Adivinarlo del nombre
+    del archivo seria exactamente lo que el preregistro prohibe.
+    """
+    import vista_marcos
+
+    original = vista_marcos.JSON
+    try:
+        vista_marcos.JSON = AQUI / "no_existe_esta_configuracion.json"
+        d = vista_marcos.ver()
+    finally:
+        vista_marcos.JSON = original
+
+    igual(d["estado"], "listo", "con el TSV presente la vista igual muestra las cifras")
+    igual(d["configuracion_declarada"], False, "pero declara que la configuracion no esta")
+    igual([d["procedencia"]["modo"], d["procedencia"]["motor"]],
+          [lectura.NO_DECLARADA, lectura.NO_DECLARADA],
+          "y el modo y el motor salen como «procedencia no declarada»")
+    check(d["regiones"][0]["cabecera"]["valor"] is not None,
+          "la cifra sigue estando: lo que falta es su procedencia, no el numero")
+
+
+def test_las_constantes_de_firma_no_se_separaron_del_motor():
+    """El tripwire: las reglas de D48 de la vista son las mismas que las del motor.
+
+    La vista no puede importar `tools/sifi21_port/alertas.py` —la linea no toca el motor— asi
+    que las constantes estan duplicadas. Duplicadas sin red es como las dos copias se separan
+    en silencio. El archivo del motor se lee como **texto** y se parsea su arbol sintactico: ni
+    se importa ni se ejecuta, que es lo que mantiene la frontera.
+    """
+    import ast
+
+    import vista_firmas
+
+    ruta = api.RAIZ / "tools" / "sifi21_port" / "alertas.py"
+    if not ruta.is_file():
+        NO_CORRIDO.append("tripwire de firmas: no esta %s" % ruta)
+        return
+
+    arbol = ast.parse(ruta.read_text(encoding="utf-8"), filename=str(ruta))
+    delmotor = {}
+    for nodo in arbol.body:
+        if isinstance(nodo, ast.Assign) and isinstance(nodo.targets[0], ast.Name):
+            try:
+                delmotor[nodo.targets[0].id] = ast.literal_eval(nodo.value)
+            except ValueError:
+                pass
+
+    igual(vista_firmas.DECISIONES, delmotor.get("DECISIONES"),
+          "el vocabulario de decisiones de la vista es el del motor")
+    igual(vista_firmas.MARCA_PENDIENTE, delmotor.get("MARCA_PENDIENTE"),
+          "la marca de pendiente es la del motor")
+    igual(vista_firmas.PROSA_MINIMA, delmotor.get("PROSA_MINIMA"),
+          "el minimo de prosa de D48 es el del motor")
+    igual(vista_firmas.COLUMNAS_DECISION, delmotor.get("COLUMNAS_DECISION"),
+          "el esquema del archivo de firmas es el del motor")
+    igual(sorted(vista_firmas.CAMPOS_OBLIGATORIOS),
+          sorted(delmotor.get("CAMPOS_OBLIGATORIOS", ())),
+          "los cuatro campos obligatorios son los del motor")
+    # Y las columnas que materializan cada campo, que es donde mas facil se separan.
+    igual({k: tuple(v) for k, v in vista_firmas.CAMPOS_OBLIGATORIOS.items()},
+          {k: tuple(v) for k, v in (delmotor.get("COLUMNAS_DE") or {}).items()},
+          "y las columnas de cada campo tambien")
+
+
+def test_una_firma_sin_justificacion_se_rechaza():
+    """Las cinco formas de rechazar una firma, y el inventario sin tocar.
+
+    La escritura se prueba contra una **copia** del archivo de firmas: esta linea construye la
+    bandeja y no firma ninguna alerta, asi que una prueba que dejara una firma de verdad en
+    `decisiones.tsv` estaria firmando en nombre del equipo.
+    """
+    import hashlib
+    import shutil
+    import tempfile
+
+    import vista_firmas
+
+    def huella_del_inventario():
+        return hashlib.sha256(vista_firmas.INVENTARIO.read_bytes()).hexdigest()
+
+    antes = huella_del_inventario()
+    filas, _ = lectura.leer_tsv(vista_firmas.INVENTARIO)
+    pendientes = [f for f in filas
+                  if (f.get("decision_usuario") or "").strip() == "pendiente"]
+    if not pendientes:
+        NO_CORRIDO.append("firmas: no hay ninguna fila en «pendiente» para probar")
+        return
+    fila = pendientes[0]
+    clave = "|".join(str(x) for x in vista_firmas.clave_de(fila))
+    locus = (fila.get("gen_locus") or "").strip()
+    buena = ("Justificacion de prueba, larga y que cita la fila por su locus %s, escrita "
+             "solo para verificar el camino de escritura." % locus)
+
+    malas = [
+        ("aceptada", "corto", "una justificacion de una palabra"),
+        ("aceptada", "pendiente: " + "x" * 80 + " " + locus, "el texto de relleno"),
+        ("aceptada", "Un parrafo largo que no nombra el locus ni ninguna accesion de la fila, "
+                     "pero pasa el minimo de caracteres sin ningun problema.",
+         "una justificacion que no cita la fila"),
+        ("pendiente", buena, "una firma que dice «pendiente»"),
+        ("tal vez", buena, "una decision fuera del vocabulario"),
+    ]
+    for decision, texto, que in malas:
+        try:
+            vista_firmas.firmar(clave, decision, texto, firmado_por="test_api")
+            check(False, "%s tendria que ser rechazada" % que)
+        except vista_firmas.FirmaRechazada as e:
+            check(len(str(e)) > 40, "%s se rechaza con un mensaje que explica" % que)
+
+    # Sin autor tampoco, que es la quinta.
+    try:
+        vista_firmas.firmar(clave, "aceptada", buena, firmado_por="  ")
+        check(False, "una firma sin autor tendria que ser rechazada")
+    except vista_firmas.FirmaRechazada:
+        check(True, "una firma sin autor se rechaza")
+
+    igual(huella_del_inventario(), antes,
+          "ninguna firma rechazada toco el inventario de alertas")
+
+    # Y ahora el camino que si escribe, contra una copia.
+    original = vista_firmas.FIRMAS
+    carpeta = tempfile.mkdtemp(prefix="sifi_firmas_")
+    copia = Path(carpeta) / "decisiones.tsv"
+    try:
+        if original.is_file():
+            shutil.copy2(original, copia)
+        firmas_antes = len(lectura.leer_tsv(copia)[0]) if copia.is_file() else 0
+        vista_firmas.FIRMAS = copia
+        r = vista_firmas.firmar(clave, "aceptada", buena, firmado_por="test_api")
+
+        igual(r["escrito"], True, "una firma bien escrita se escribe")
+        igual(r["reemplazada"], False, "y es nueva, no un reemplazo")
+        escritas, _ = lectura.leer_tsv(copia)
+        igual(len(escritas), firmas_antes + 1, "el archivo de firmas gana exactamente una fila")
+
+        nueva = next(f for f in escritas
+                     if "|".join(str(x) for x in vista_firmas.clave_de(f)) == clave)
+        # La huella se lee de la fila, no de lo que mande quien firma: es lo unico que ata la
+        # firma a la fila que el firmante tenia delante.
+        igual([nueva["huella_21"], nueva["huella_ge19"]],
+              [str(fila["ventanas_perfecto_21"]).strip(),
+               str(fila["ventanas_perfecto_ge19"]).strip()],
+              "la huella de la firma es la de la fila del inventario")
+        igual(nueva["firmado_por"], "test_api", "la firma guarda quien firmo")
+        check(len(nueva["fecha"]) == 10 and nueva["fecha"][4] == "-",
+              "y cuando, en formato de fecha")
+        igual(sorted(nueva), sorted(vista_firmas.COLUMNAS_DECISION),
+              "el archivo de firmas tiene las diez columnas del esquema y ninguna mas")
+
+        # Firmar de nuevo la misma clave reemplaza, no duplica: dos firmas para la misma fila
+        # son un error que el generador levanta.
+        r2 = vista_firmas.firmar(clave, "bloqueante", buena, firmado_por="test_api")
+        igual(r2["reemplazada"], True, "volver a firmar la misma fila reemplaza la firma")
+        igual(len(lectura.leer_tsv(copia)[0]), firmas_antes + 1,
+              "y no deja dos firmas para la misma fila")
+
+        igual(huella_del_inventario(), antes,
+              "escribir una firma no modifica el inventario de alertas")
+        check(not original.is_file() or
+              hashlib.sha256(original.read_bytes()).hexdigest() !=
+              hashlib.sha256(copia.read_bytes()).hexdigest(),
+              "y la escritura fue a la copia, no al archivo de firmas del repositorio")
+    finally:
+        vista_firmas.FIRMAS = original
+        shutil.rmtree(carpeta, ignore_errors=True)
+
+
+def test_ninguna_vista_escribe_fuera_del_archivo_de_firmas():
+    """Las cuatro vistas de lectura no escriben en ningun lado, y la quinta en un solo lugar.
+
+    Se verifica de dos formas, porque ninguna sola alcanza: leyendo el arbol sintactico de cada
+    modulo —ninguna llamada de escritura fuera de `vista_firmas`— y corriendo las cuatro vistas
+    con el arbol del repositorio vigilado por huella.
+    """
+    import ast
+    import hashlib
+
+    import vista_ejes
+    import vista_juntura
+    import vista_marcos
+    import vista_region
+
+    # 1. Estatico: que no haya una sola llamada de escritura en las vistas de lectura.
+    escritura = {"write_text", "write_bytes", "mkdir", "unlink", "replace", "rename",
+                 "mkstemp", "rmtree", "remove"}
+    for nombre in ("lectura.py", "vista_region.py", "vista_marcos.py", "vista_juntura.py",
+                   "vista_ejes.py"):
+        arbol = ast.parse(_fuente(nombre), filename=nombre)
+        usos = set()
+        for nodo in ast.walk(arbol):
+            if isinstance(nodo, ast.Call):
+                f = nodo.func
+                if isinstance(f, ast.Attribute) and f.attr in escritura:
+                    usos.add(f.attr)
+                if isinstance(f, ast.Name) and f.id == "open":
+                    modos = [a.value for a in nodo.args[1:2]
+                             if isinstance(a, ast.Constant)]
+                    modos += [k.value.value for k in nodo.keywords
+                              if k.arg == "mode" and isinstance(k.value, ast.Constant)]
+                    if any("w" in str(m) or "a" in str(m) for m in modos):
+                        usos.add("open en modo escritura")
+                if isinstance(f, ast.Attribute) and f.attr == "open":
+                    modos = [a.value for a in nodo.args[:1] if isinstance(a, ast.Constant)]
+                    modos += [k.value.value for k in nodo.keywords
+                              if k.arg == "mode" and isinstance(k.value, ast.Constant)]
+                    if any("w" in str(m) or "a" in str(m) for m in modos):
+                        usos.add("Path.open en modo escritura")
+        igual(sorted(usos), [], "%s no tiene ninguna llamada de escritura" % nombre)
+
+    # 2. Dinamico: correr las cuatro vistas y verificar que el arbol no cambio.
+    vigilados = [vista_region.POR_VENTANA, vista_marcos.TSV, vista_marcos.JSON,
+                 vista_juntura.RESUMEN, vista_juntura.DETALLE, vista_juntura.CAMBIADAS,
+                 vista_ejes.TSV, vista_region.POR_REGION / "BicC_Dm_264-563.tsv"]
+    huellas = {p: hashlib.sha256(p.read_bytes()).hexdigest()
+               for p in vigilados if p.is_file()}
+    vista_region.ver("BicC_Dm_264-563", "BicC_Dm_922-1221")
+    vista_marcos.ver()
+    vista_juntura.ver()
+    vista_ejes.ver()
+    for p, h in huellas.items():
+        igual(hashlib.sha256(p.read_bytes()).hexdigest(), h,
+              "leer las vistas no modifico %s" % p.name)
+
+
+def test_el_servidor_sigue_atado_a_localhost():
+    """El socket se ata a `127.0.0.1` y a ninguna interfaz de red.
+
+    Es la regla de confidencialidad del proyecto y no una promesa en un documento: si alguien
+    cambia esa linea, cambia la garantia. Las vistas nuevas no la tocan, y esto lo verifica.
+    """
+    import ast
+
+    fuente = _fuente("servidor.py")
+    arbol = ast.parse(fuente, filename="servidor.py")
+    direcciones = set()
+    for nodo in ast.walk(arbol):
+        if isinstance(nodo, ast.Tuple) and nodo.elts:
+            primero = nodo.elts[0]
+            if isinstance(primero, ast.Constant) and isinstance(primero.value, str):
+                if primero.value.count(".") == 3 or primero.value in ("", "localhost"):
+                    direcciones.add(primero.value)
+    igual(sorted(direcciones), ["127.0.0.1"],
+          "el servidor se ata solo a 127.0.0.1")
+
+    # `0.0.0.0` **si** aparece en el servidor, en la prosa que explica por que no se usa, y esa
+    # frase es parte de la garantia: dice cual es la decision y que pasa si alguien la cambia.
+    # Lo que no puede existir es una cadena `0.0.0.0` en el codigo. Se separan las dos cosas
+    # sacando los docstrings del arbol, que es la diferencia entre documentar una decision y
+    # tomarla al reves.
+    docs = set()
+    for nodo in ast.walk(arbol):
+        if isinstance(nodo, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+            d = ast.get_docstring(nodo, clean=False)
+            if d is not None:
+                docs.add(d)
+    cadenas = [n.value for n in ast.walk(arbol)
+               if isinstance(n, ast.Constant) and isinstance(n.value, str)
+               and n.value not in docs]
+    check(not any("0.0.0.0" in s for s in cadenas),
+          "no hay ninguna cadena 0.0.0.0 en el codigo del servidor")
+    check("0.0.0.0" in fuente,
+          "y la prosa sigue explicando por que no se ata a 0.0.0.0")
+
+    # Las rutas de las vistas estan ruteadas, que es lo que hace que la verificacion de arriba
+    # sea sobre el servidor que de verdad las sirve.
+    for ruta in ("/api/vista/region", "/api/vista/marcos", "/api/vista/juntura",
+                 "/api/vista/ejes", "/api/vista/firmas", "/api/vista/firmar"):
+        check(ruta in fuente, "el servidor rutea %s" % ruta)
+    # Y la unica que escribe es POST: una vista de lectura detras de un GET no puede cambiar
+    # nada ni aunque alguien la llame de mas.
+    get, _, post = fuente.partition("def do_POST")
+    check("/api/vista/firmar" not in get, "firmar no esta en el camino de GET")
+    check("/api/vista/firmar" in post, "firmar es POST")
 
 
 def main():
