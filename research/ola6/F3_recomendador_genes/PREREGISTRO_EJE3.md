@@ -142,3 +142,21 @@ tamizado quedan declarados** en el `meta.json` del eje, como en `R8`.
 - Cada fila trae las seis fracciones por referencia, la de `perfecto_21`, la de `mm1_21`, la fracción
   limpia sin humano, y el nulo.
 - El umbral de empate es el de `PREREGISTRO.md` §4.3, sin ajustar después de ver los números.
+
+---
+
+## Enmienda 1 (2026-10-28, escrita antes de calcular el nulo del eje 4)
+
+El §3 define el nulo del eje 4 como «fracción de ventanas con presencia en todos los TSA donde
+hay dato». **Eso no se puede calcular para una permutación**: «con dato» sale de un alineamiento
+`blastn` de la secuencia contra el TSA (`PREREGISTRO_EJE4.md` §3 paso 2), y una secuencia con la
+composición conservada pero sin homología no alinea contra nada, así que no tendría ninguna ventana
+«con dato». El error fue de redacción mía, no de método.
+
+**Nulo del eje 4, corregido:** por cada una de las cinco secuencias y cada uno de los tres TSA,
+la **fracción de ventanas de 21 nt de las 50 permutaciones con presencia exacta en ese TSA**
+(las dos hebras, el mismo autómata de `05_eje_conservacion.py`), con mediana y rango. Se compara
+con la fracción de ventanas **idénticas** de la secuencia real en ese mismo TSA, que es lo que
+`eje4_conservacion.tsv` ya publica. Lo que contesta es la pregunta del nulo: cuánta presencia
+exacta daría el azar, para saber qué parte de la conservación medida es homología. Lo demás del
+§3 no cambia.
