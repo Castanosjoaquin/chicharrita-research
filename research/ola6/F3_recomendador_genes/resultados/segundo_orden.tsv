@@ -1,8 +1,8 @@
 objetivo	mecanismo_exigido	cohorte	puesto_en_su_cohorte	empate_declarado_con	id	gen	especie	puntaje	eje1_nivel	eje2_nivel	mecanismos_del_candidato	aparece_en_los_dos_objetivos
-matar	letalidad	A4	1	DM-03|DM-05	DM-02	V-ATPase B	Dalbulus maidis	0.9943	F3	E3	letalidad|movilidad	no
-matar	letalidad	A4	1	DM-02|DM-05	DM-03	V-ATPase D	Dalbulus maidis	0.9941	F3	E3	letalidad	no
-matar	letalidad	A4	1	DM-02|DM-03	DM-05	eth	Dalbulus maidis	0.9886	F3	E3	letalidad	no
-matar	letalidad	A4	4	no	DM-06	burs-alpha	Dalbulus maidis	0.8427	F3	E2	letalidad	no
+matar	letalidad	A34	1	DM-03|DM-02	DM-05	eth	Dalbulus maidis	0.9868	F3	E3	letalidad	no
+matar	letalidad	A34	1	DM-05|DM-02	DM-03	V-ATPase D	Dalbulus maidis	0.9865	F3	E3	letalidad	no
+matar	letalidad	A34	1	DM-05|DM-03	DM-02	V-ATPase B	Dalbulus maidis	0.9664	F3	E3	letalidad|movilidad	no
+matar	letalidad	A34	4	no	DM-06	burs-alpha	Dalbulus maidis	0.8821	F3	E2	letalidad	no
 matar	letalidad	A	1	CI-02|DE-01	CI-01	Rpn6 (segun los autores)	Scaphoideus titanus	0.7908	F2	E3	letalidad|reproduccion	si
 matar	letalidad	A	1	CI-01|DE-01	CI-02	Rpn6 (segun los autores)	Euscelidius variegatus	0.7908	F2	E3	letalidad|reproduccion	si
 matar	letalidad	A	1	CI-01|CI-02	DE-01	V-ATPase B y V-ATPase D	Peregrinus maidis	0.7908	F2	E3	letalidad|reproduccion	si
@@ -15,7 +15,7 @@ matar	letalidad	B	1	CI-10|CI-12|DE-05|HE-07	CI-11	NcLac2 y NcLac5	Nephotettix ci
 matar	letalidad	B	1	CI-10|CI-11|DE-05|HE-07	CI-12	NcLac2 (RNAi parental)	Nephotettix cincticeps	0.3300	F1	E0	letalidad	no
 matar	letalidad	B	1	CI-10|CI-11|CI-12|HE-07	DE-05	XPO1 (exportina 1)	Peregrinus maidis	0.3300	F1	E0	letalidad|reproduccion|transmision	si
 matar	letalidad	B	1	CI-10|CI-11|CI-12|DE-05	HE-07	NcSP75	Nephotettix cincticeps	0.3300	F1	E0	letalidad|reproduccion	si
-esterilizar	reproduccion	A4	1	no	DM-01	BicC	Dalbulus maidis	0.7617	F3	E1	reproduccion	no
+esterilizar	reproduccion	A34	1	no	DM-01	BicC	Dalbulus maidis	0.8128	F3	E1	reproduccion	no
 esterilizar	reproduccion	A	1	CI-02|CI-03|DE-01	CI-01	Rpn6 (segun los autores)	Scaphoideus titanus	0.7908	F2	E3	letalidad|reproduccion	si
 esterilizar	reproduccion	A	1	CI-01|CI-03|DE-01	CI-02	Rpn6 (segun los autores)	Euscelidius variegatus	0.7908	F2	E3	letalidad|reproduccion	si
 esterilizar	reproduccion	A	1	CI-01|CI-02|DE-01	CI-03	ATP synthase beta	Scaphoideus titanus	0.7908	F2	E3	reproduccion	no

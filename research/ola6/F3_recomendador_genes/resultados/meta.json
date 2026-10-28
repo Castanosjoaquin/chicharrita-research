@@ -1,11 +1,12 @@
 {
- "commit_al_correr": "629086b",
+ "commit_al_correr": "402e0a5",
  "conteos": {
-  "cohorte_A4_ejes_1_2_y_4": 5,
+  "cohorte_A34_ejes_1_2_3_y_4": 5,
+  "cohorte_A4_ejes_1_2_y_4": 0,
   "cohorte_A_ejes_1_y_2": 12,
   "cohorte_B4_ejes_1_y_4": 0,
   "cohorte_B_solo_eje_1": 8,
-  "con_eje2_desde_fuente_primaria_no_abierta": 0,
+  "con_eje2_desde_fuente_primaria_no_abierta": 1,
   "en_el_orden": 25,
   "filas_del_catalogo": 36,
   "fuera_del_orden": 11
@@ -81,7 +82,7 @@
   ],
   "peso_de_fenotipo_en_D87_renormalizado": 0.6154
  },
- "sensibilidad_cohorte_A4": {
+ "sensibilidad_cohorte_A34": {
   "cambios_de_primer_puesto_al_mover_el_peso_de_fenotipo_de_0_a_1": [
    {
     "a": [
@@ -92,14 +93,19 @@
      "DM-06"
     ],
     "de": [
-     "DM-02"
+     "DM-05"
     ],
     "peso_fenotipo_aprox": 1.0
    }
   ],
   "lider_con_los_pesos_de_D87": [
-   "DM-02"
+   "DM-05"
   ],
-  "peso_de_fenotipo_en_D87_renormalizado": 0.5333
+  "peso_de_fenotipo_en_D87_renormalizado": 0.4
+ },
+ "sensibilidad_cohorte_A4": {
+  "cambios_de_primer_puesto_al_mover_el_peso_de_fenotipo_de_0_a_1": [],
+  "lider_con_los_pesos_de_D87": [],
+  "peso_de_fenotipo_en_D87_renormalizado": null
  }
 }

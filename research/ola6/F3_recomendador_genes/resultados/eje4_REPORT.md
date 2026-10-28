@@ -106,3 +106,10 @@ anticipó:
 - El hallazgo del control con `C8` para `eth` y `burs-alpha` sigue sin explicación probada.
 - El eje 4 es conservación entre **fuentes públicas** (Illinois, Ohio State, Argentina), no entre
   poblaciones de campo del noroeste argentino.
+
+### Nulo del eje 4 (agregado el 2026-10-28)
+
+El eje se publicó primero sin su nulo, que el preregistro daba por vigente. Se calculó después, con la
+definición corregida por la enmienda 1 de `PREREGISTRO_EJE3.md`: **ninguna de las 250 permutaciones
+supera 0,0050 de ventanas con presencia exacta en un TSA** (`eje4_nulo.tsv`). Los puntajes de arriba
+son homología y no azar. Detalle y límites en `eje3_REPORT.md`.

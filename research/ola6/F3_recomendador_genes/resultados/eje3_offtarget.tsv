@@ -1,0 +1,6 @@
+id	gen	consulta	tamizado	ventanas	limpias	fraccion_limpia	fraccion_limpia_sin_humano	fraccion_con_perfecto_21	fraccion_con_mm1_21	ge19_maiz	ge19_H_axyridis	ge19_A_mellifera	ge19_H_vitripennis	ge19_F_candida	ge19_humano
+DM-01	BicC	BicC_Dm_full	work/sifi_v2/offtarget_k21	2500	2415	0.9660	0.9708	0.0172	0.0404	0.0024	0.0028	0.0000	0.0224	0.0016	0.0048
+DM-02	V-ATPase B	VATPaseB_Dm_full	work/O3/offtarget/cds_completo	1483	1309	0.8827	0.9225	0.0479	0.2637	0.0148	0.0054	0.0000	0.0553	0.0020	0.0398
+DM-03	V-ATPase D	ATPaseD_Dm_full	work/sifi_v2/offtarget_k21	471	454	0.9639	0.9788	0.0064	0.0701	0.0064	0.0000	0.0000	0.0149	0.0000	0.0149
+DM-05	eth	eth_Dm_full	work/sifi_v2/offtarget_k21	595	584	0.9815	0.9916	0.0017	0.0269	0.0000	0.0000	0.0000	0.0084	0.0000	0.0101
+DM-06	burs-alpha	bursA_Dm_full	work/sifi_v2/offtarget_k21	448	448	1.0000	1.0000	0.0000	0.0112	0.0000	0.0000	0.0000	0.0000	0.0000	0.0000

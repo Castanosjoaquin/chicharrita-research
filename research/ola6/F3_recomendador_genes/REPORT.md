@@ -130,6 +130,13 @@ conservación entre poblaciones falta porque no están los tres TSA en esta máq
 > reciben y pasan a la cohorte A+4; el empate de tres del primer puesto sigue declarado. El
 > párrafo de arriba se deja como estaba: describía lo que había entonces.
 
+> **Segunda nota, 2026-10-28 (issue #43).** El eje 3 también se calculó, para las mismas cinco filas
+> `DM`: criterio en [`PREREGISTRO_EJE3.md`](PREREGISTRO_EJE3.md), resultado en
+> [`resultados/eje3_REPORT.md`](resultados/eje3_REPORT.md) y ADR `D97`. Las otras 31 filas siguen con
+> el eje faltante. Los cinco pasan a la cohorte A+3+4 con los pesos de `D87` sin renormalizar; el
+> empate de tres del primer puesto sigue declarado. Donde este informe diga que el eje 3 «no se puede
+> calcular por falta de `work/sifi_v2/`», vale para 31 filas y no para esas cinco.
+
 **El eje 2 de `DM-05`, que es uno de los tres primeros, se apoya en una fuente secundaria.** El
 98 % de mortalidad del nulo de `eth` sale de la ficha de InteractiveFly, que se leyó; la
 primaria que esa ficha cita, Park y colaboradores 2002 en *Development*, devolvió HTTP 403 y

@@ -43,7 +43,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[4]
 BLOQUE = Path(__file__).resolve().parents[1]
 
-PESOS_D87 = {"fenotipo": 0.40, "esencialidad": 0.25, "conservacion": 0.10}
+PESOS_D87 = {"fenotipo": 0.40, "esencialidad": 0.25, "off_target": 0.25, "conservacion": 0.10}
 UMBRAL_EMPATE = 0.05
 
 OBJETIVOS = {
@@ -79,14 +79,16 @@ def ordenar(candidatos: list) -> dict:
     Desde la enmienda 1 del eje 4 hay cuatro cohortes: A+4 (ejes 1, 2 y 4), B+4 (1 y 4),
     A (1 y 2) y B (solo 1). El eje 4 sale de `eje4_puntaje` de orden_genes.tsv.
     """
-    DEF = {(True, True): ("A4", ("fenotipo", "esencialidad", "conservacion")),
-           (False, True): ("B4", ("fenotipo", "conservacion")),
-           (True, False): ("A", ("fenotipo", "esencialidad")),
-           (False, False): ("B", ("fenotipo",))}
-    COL = {"fenotipo": "eje1_puntaje", "esencialidad": "eje2_puntaje", "conservacion": "eje4_puntaje"}
-    cohortes = {"A4": [], "B4": [], "A": [], "B": []}
+    DEF = {(True, True, True): ("A34", ("fenotipo", "esencialidad", "off_target", "conservacion")),
+           (True, False, True): ("A4", ("fenotipo", "esencialidad", "conservacion")),
+           (False, False, True): ("B4", ("fenotipo", "conservacion")),
+           (True, False, False): ("A", ("fenotipo", "esencialidad")),
+           (False, False, False): ("B", ("fenotipo",))}
+    COL = {"fenotipo": "eje1_puntaje", "esencialidad": "eje2_puntaje", "off_target": "eje3_puntaje",
+           "conservacion": "eje4_puntaje"}
+    cohortes = {"A34": [], "A4": [], "B4": [], "A": [], "B": []}
     for r in candidatos:
-        clave, ejes = DEF[(bool(r["eje2_puntaje"]), bool(r["eje4_puntaje"]))]
+        clave, ejes = DEF[(bool(r["eje2_puntaje"]), bool(r["eje3_puntaje"]), bool(r["eje4_puntaje"]))]
         base = sum(PESOS_D87[e] for e in ejes)
         r["puntaje"] = sum(PESOS_D87[e] / base * float(r[COL[e]]) for e in ejes)
         cohortes[clave].append(r)
@@ -143,7 +145,7 @@ def main() -> int:
     # A, se evaluan las dos lecturas y se dice si coinciden. Si discreparan, la respuesta es
     # «depende de la cohorte», no se elige la que convenga.
     cambia_por = {c: resultados["matar"][c]["primer_puesto"] != resultados["esterilizar"][c]["primer_puesto"]
-                  for c in ("A4", "A")}
+                  for c in ("A34", "A")}
     cambia = all(cambia_por.values()) if len(set(cambia_por.values())) == 1 else None
 
     meta = {
@@ -156,7 +158,7 @@ def main() -> int:
         "objetivos": {k: {"mecanismo_exigido": v["mecanismo_exigido"], "glosa": v["glosa"],
                           "elegibles": sum(1 for f in filas_salida if f["objetivo"] == k),
                           "primer_puesto_cohorte_A": resultados[k]["A"]["primer_puesto"],
-                          "primer_puesto_cohorte_A4": resultados[k]["A4"]["primer_puesto"]}
+                          "primer_puesto_cohorte_A34": resultados[k]["A34"]["primer_puesto"]}
                       for k, v in OBJETIVOS.items()},
         "respuesta": ("DEPENDE de la cohorte: " + json.dumps(cambia_por) if cambia is None else
                       "SI, el orden cambia segun el objetivo" if cambia
@@ -170,7 +172,7 @@ def main() -> int:
 
     for nombre in OBJETIVOS:
         print(f"--- objetivo «{nombre}» (exige {OBJETIVOS[nombre]['mecanismo_exigido']}) ---")
-        for coh in ("A4", "B4", "A", "B"):
+        for coh in ("A34", "A4", "B4", "A", "B"):
             filas = resultados[nombre][coh]["filas"]
             if not filas:
                 continue
@@ -183,7 +185,7 @@ def main() -> int:
             if len(filas) > 6:
                 print(f"       … y {len(filas) - 6} mas")
         print()
-    for c in ("A4", "A"):
+    for c in ("A34", "A"):
         print(f"primer puesto de {c}, matar      : {resultados['matar'][c]['primer_puesto']}")
         print(f"primer puesto de {c}, esterilizar: {resultados['esterilizar'][c]['primer_puesto']}")
     print()

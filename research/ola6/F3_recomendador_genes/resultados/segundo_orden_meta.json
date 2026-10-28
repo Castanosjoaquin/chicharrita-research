@@ -1,7 +1,7 @@
 {
  "cambia_por_cohorte": {
   "A": true,
-  "A4": true
+  "A34": true
  },
  "candidatos_en_los_dos_objetivos": [
   "CI-01",
@@ -24,7 +24,7 @@
     "CI-03",
     "DE-01"
    ],
-   "primer_puesto_cohorte_A4": [
+   "primer_puesto_cohorte_A34": [
     "DM-01"
    ]
   },
@@ -37,7 +37,7 @@
     "CI-02",
     "DE-01"
    ],
-   "primer_puesto_cohorte_A4": [
+   "primer_puesto_cohorte_A34": [
     "DM-02",
     "DM-03",
     "DM-05"

@@ -88,3 +88,11 @@ calculó en la máquina de Joaquín. Todo está **ya aplicado**:
 Lo que **no** sube: los puntajes del eje (`resultados/eje4_REPORT.md`) ni el cambio de cohorte,
 que son un resultado con su criterio al lado. El orden de los candidatos tampoco: el empate de
 tres del primer puesto sigue declarado y no es una decisión.
+
+## Adenda del 2026-10-28 (issue #43): el eje 3 se calculó para cinco filas
+
+Ya aplicado: **`DECISIONS.md` `D97`** (el criterio del eje 3, con su nulo); **`PREGUNTAS_ABIERTAS.md`
+entrada 100** (el nulo mostró un piso de ~0,5 % de ventanas con coincidencia en una secuencia sin
+homología, sin causa averiguada `[?]`); **`CAMINOS_PROBADOS.md`**: el nulo en un solo archivo no
+escala y se corre en lotes. Las entradas 98 y 99 de la adenda anterior siguen vigentes: el eje 3
+cubre 5 de 36 filas y las otras 31 dependen de recuperar secuencias (entrada 97, #43).

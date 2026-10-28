@@ -1,0 +1,6 @@
+id	gen	n_permutaciones	fraccion_limpia_mediana	minimo	maximo
+DM-01	BicC	50	0.9948	0.9832	1.0000
+DM-02	V-ATPase B	50	0.9943	0.9872	0.9980
+DM-03	V-ATPase D	50	0.9936	0.9660	1.0000
+DM-05	eth	50	0.9950	0.9748	1.0000
+DM-06	burs-alpha	50	0.9933	0.9777	1.0000

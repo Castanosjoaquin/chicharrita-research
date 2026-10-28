@@ -1566,3 +1566,7 @@ Lo que se intentó: correr la retícula de paso 1. Lo que se midió: el enumerad
 | 10 | 173.289 | ~2,3 h de plegado puro; unas 5 h medidas con el enumerador |
 
 `[M]` Las cifras de plegados salen de `research/ola6/O4_enumerador_quimeras/REPORT.md` y de `research/ola6/R12_corridas_pendientes/REPORT.md`; las horas son `plegados / 21` y sólo el paso 10 se corrió. **Lo que se conserva como resultado:** el paso 10 movió el primer puesto respecto del paso 50 por una ventana de 65, y el orden de esta grilla no es estable al paso. **Para reabrir:** `--paso 2` repartido, y sólo si el conteo vuelve a usarse como argumento entre candidatos (`D65`).
+
+## Nulo del eje 3 de `F3`: el tamizado en un solo archivo no escala, y se corre en lotes (2026-10-28, `D97`)
+
+Lo que se intentó: tamizar las 50 permutaciones de cada gen en una sola invocación de `offtarget_21nt.py`; el primer gen (`BicC`, 125.000 ventanas permutadas) no terminó en 55 minutos y se cortó. Lo que se midió: un lote de unas 6.000 ventanas, que es el tamaño de la corrida real, tarda **157 s** en un solo procesador `[M]`, así que el tiempo crece más que lineal con el tamaño del archivo. Lo que se hizo: 51 lotes de unas 6.000 ventanas, 6 en paralelo, **35 min** en total, reanudable. **No cambia el método**: mismas permutaciones, motor, panel y parámetros. `[H]` Antes de tamizar permutaciones, partir en lotes del tamaño de la corrida real, y medir uno antes de lanzar todo.

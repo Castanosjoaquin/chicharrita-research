@@ -3008,3 +3008,15 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     28 secuencias de transcripto de 15 especies para el eje 3, y el ortólogo en *D. maidis* de
     cada candidato para el eje 4. `[H]` Quien tome #43 debería dejar la tabla candidato → secuencia
     con su accesión, para que sirva a los dos ejes.
+
+100. **Una secuencia sin homología trae un 0,5 % de ventanas con un bloque ≥19 nt coincidente contra
+    el panel de seis, y no se sabe por qué.** El nulo del eje 3 de `F3` (50 permutaciones que
+    conservan la composición, por gen) da una fracción limpia mediana de 0,9933 a 0,9950 y mínimos
+    de 0,9660 a 0,9872 `[M]` (`resultados/eje3_nulo.tsv`). Por azar puro de 4^19 contra transcriptomas de
+    algunos cientos de Mb se esperaba bastante menos, así que el piso es más alto que la intuición.
+    `[?]` **No se averiguó la causa.** La hipótesis es que parte de las referencias tiene regiones de baja
+    complejidad o repeticiones (poli-A, microsatélites) que coinciden con ventanas de composición
+    sesgada; no se probó. **Qué cambia:** cualquier conteo de off-target que no traiga su nulo puede
+    estar leyendo ese piso como señal. `V-ATPase B` (0,8827) está por encima de él; `eth` (0,9815) y
+    `burs-alpha` (1,0000) están dentro. Para cerrarla: repetir el nulo con permutaciones que además
+    conserven los dinucleótidos y ver si el piso baja, y mirar qué ventanas permutadas coinciden.

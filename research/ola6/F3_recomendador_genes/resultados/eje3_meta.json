@@ -1,0 +1,18 @@
+{
+ "panel_orden_D76": [
+  "maiz",
+  "H_axyridis",
+  "A_mellifera",
+  "H_vitripennis",
+  "F_candida",
+  "humano"
+ ],
+ "size": 21,
+ "min_block": 19,
+ "sha256_tamizados": {
+  "work/O3/offtarget/cds_completo": "5c837324594f02372794c8134d692e31dedf614924886a0bbea295414be49945",
+  "work/sifi_v2/offtarget_k21": "002a610f923d6bd728e2ed40b45228543c7b2e5b83f21bb0aa02d01190a4422a"
+ },
+ "semilla_nulo": 20261028,
+ "permutaciones": 50
+}
