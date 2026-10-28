@@ -3067,3 +3067,5 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
     lista de genes que el recomendador está diseñado para excluir; y el resultado es predecible sin
     correrlo, porque un transcriptoma de cuerpo entero contiene esas vías por construcción `[H]`.
 
+
+104. **Datos del póster que el repo no tiene** (`entregables/poster/`, `D101`). Hay que completar el ID del equipo, el contacto y el logo de la universidad, y confirmar el apellido de Joaquín, que se tomó del usuario de GitHub (`Castanosjoaquin`) y puede estar mal. Falta además la fecha de entrega y saber si el QR del repositorio público es lo que el equipo quiere mostrar. Tampoco hay una copia de la rúbrica de evaluación del póster en el repo.

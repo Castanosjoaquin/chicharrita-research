@@ -1589,3 +1589,6 @@ las 17 restantes declaradas con su motivo, distinguiendo la ausencia comprobada 
 `[H]` La regla de método que sale de acá, y que es lo más reutilizable: **antes de tamizar, comprobar que la
 especie de la secuencia no esté en el panel**.
 
+
+## Pasar las fuentes del póster a curvas con Ghostscript — descartado (2026-10-28, `D101`)
+**Qué se intentó:** `brew install ghostscript` para usar `-dNoOutputFonts`. **Por qué se descartó:** Homebrew aborta con «You have not agreed to the Xcode license» y la solución necesita `sudo`. **Qué quedó en su lugar:** Chromium imprime el PDF, `pdftocairo -svg` vuelve trazado cada glifo y Chromium imprime ese SVG; `pdffonts` da cero fuentes. **Lo que se aprendió:** en ese camino cualquier patrón, `opacity`, `rgba` o `box-shadow` sale rasterizado a 300 ppi, así que el póster se dibuja sin ellos.
