@@ -1138,6 +1138,55 @@ def test_la_homologia_distingue_lo_preregistrado_de_lo_post_hoc():
           "la v1 descartada se nombra como descartada y no como resultado")
 
 
+def test_las_pestanas_apagadas_siguen_construidas_y_ruteadas():
+    """Las siete vistas estan escondidas en la interfaz y enteras por debajo.
+
+    Esconder una pestana es apagar su boton, no desconectar la vista. Lo que esta verificacion
+    cuida es que las dos cosas no se confundan: que la lista de apagadas nombre pestanas que
+    **existen** —una entrada con un nombre viejo apagaria nada y nadie se enteraria— y que cada
+    vista apagada siga teniendo su seccion, su ruta y su modulo. El dia que alguien vuelva a
+    prender una, tiene que encontrarla funcionando.
+    """
+    import re
+
+    js = (AQUI / "estatico" / "app.js").read_text(encoding="utf-8")
+    html = (AQUI / "estatico" / "index.html").read_text(encoding="utf-8")
+    servidor = _fuente("servidor.py")
+
+    m = re.search(r"const VISTAS_OCULTAS = \[(.*?)\];", js, re.S)
+    if m is None:
+        check(False, "no encontre la lista VISTAS_OCULTAS en app.js")
+        return
+    ocultas = re.findall(r"'([a-z]+)'", m.group(1))
+    igual(len(ocultas), len(set(ocultas)), "la lista de apagadas no repite ninguna")
+
+    # Toda pestana apagada tiene que existir: boton, seccion y cargador.
+    botones = set(re.findall(r'data-vista="([a-z]+)"', html))
+    for v in ocultas:
+        check(v in botones, "la pestana apagada %r existe en el HTML" % v)
+        check('id="vista-%s"' % v in html, "y la seccion de %r sigue en el HTML" % v)
+    # Y ninguna de las tres originales esta apagada: apagar «diseno» dejaria la demo sin nada.
+    for v in ("diseno", "off", "rangos"):
+        check(v not in ocultas, "la pestana original %r sigue visible" % v)
+
+    # Las vistas de V1 y V2 estan todas apagadas hoy. Si alguna se prende, esta verificacion
+    # falla y hay que decidirlo a proposito en vez de que pase por un descuido.
+    esperadas = {"regionv", "marcos", "juntura", "ejes", "quimeras", "homologia", "firmas"}
+    igual(set(ocultas), esperadas,
+          "las siete vistas de V1 y V2 estan apagadas en la interfaz")
+
+    # Lo que NO se apago: las rutas siguen ruteadas y los modulos siguen importados, que es la
+    # diferencia entre «escondida» y «desconectada».
+    for ruta in ("/api/vista/region", "/api/vista/marcos", "/api/vista/juntura",
+                 "/api/vista/ejes", "/api/vista/firmas", "/api/vista/quimeras",
+                 "/api/vista/homologia"):
+        check(ruta in servidor, "la ruta %s sigue ruteada con la pestana apagada" % ruta)
+    for modulo in ("vista_region", "vista_marcos", "vista_juntura", "vista_ejes",
+                   "vista_firmas", "vista_quimeras", "vista_homologia"):
+        check(re.search(r"^import %s$" % modulo, servidor, re.M) is not None,
+              "el servidor sigue importando %s" % modulo)
+
+
 def test_el_servidor_sigue_atado_a_localhost():
     """El socket se ata a `127.0.0.1` y a ninguna interfaz de red.
 

@@ -70,6 +70,10 @@ nav button{background:none; border:1px solid transparent; border-bottom:none;
   padding:9px 18px; font:inherit; font-size:.9rem; color:var(--text-dim); cursor:pointer;
   border-radius:4px 4px 0 0; margin-bottom:-1px}
 nav button:hover{color:var(--text); background:var(--surface)}
+/* Una pestana apagada (VISTAS_OCULTAS en app.js). El atributo `hidden` ya trae display:none de
+   la hoja del navegador, pero `nav` es flex y conviene decirlo explicito: un boton que sigue
+   ocupando lugar en la fila seria peor que uno visible. */
+nav button[hidden]{display:none}
 nav button[aria-selected="true"]{background:var(--bg); border-color:var(--line);
   color:var(--text); font-weight:650}
 

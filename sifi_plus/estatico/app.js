@@ -1293,6 +1293,23 @@ async function verFirmas() {
 
 // ---------------------------------------------------------------- arranque
 
+/** Las vistas que estan CONSTRUIDAS y RUTEADAS pero cuya pestana no se muestra todavia.
+ *
+ *  No estan borradas ni desconectadas: sus modulos, sus rutas y sus verificaciones siguen
+ *  enteros, y `test_api.py` las sigue probando. Lo unico que esta apagado es el boton que las
+ *  abre. Para volver a mostrar una, se la saca de esta lista; para mostrarlas todas, se vacia.
+ *
+ *  Esta en un solo lugar a proposito. La alternativa era poner `hidden` en los siete botones del
+ *  HTML, y entonces el dia que alguien agregue una vista nueva tiene que acordarse de dos
+ *  archivos; aca el estado de cada pestana se lee de un renglon.
+ *
+ *  Si alguna vez una de estas vistas no tiene que existir mas, lo que se borra es su modulo y su
+ *  ruta, no su entrada en esta lista: una vista que nadie puede abrir pero sigue en el codigo es
+ *  distinto de una vista que no esta.
+ */
+const VISTAS_OCULTAS = ['regionv', 'marcos', 'juntura', 'ejes', 'quimeras', 'homologia',
+  'firmas'];
+
 function verVista(cual) {
   for (const v of ['diseno', 'off', 'rangos', 'regionv', 'marcos', 'juntura', 'ejes',
     'quimeras', 'homologia', 'firmas']) {
@@ -1344,6 +1361,21 @@ async function iniciar() {
 
   // navegacion
   $$('nav button').forEach((b) => { b.onclick = () => verVista(b.dataset.vista); });
+
+  // Las pestanas apagadas: se esconde el boton y nada mas. La seccion, el modulo de lectura y
+  // la ruta siguen ahi, asi que `/api/vista/...` sigue contestando y las verificaciones
+  // siguen pasando: lo unico que falta es por donde abrirlas.
+  for (const v of VISTAS_OCULTAS) {
+    const boton = $('#tab-' + v);
+    if (boton) boton.hidden = true;
+  }
+  // Y si la vista abierta quedo escondida —no pasa hoy, porque la que arranca es Diseno, pero
+  // pasaria el dia que alguien cambie el arranque— se vuelve a la primera visible en vez de
+  // dejar la pagina sin ninguna pestana marcada.
+  if (VISTAS_OCULTAS.includes('diseno')) {
+    const primera = $$('nav button').find((b) => !b.hidden);
+    if (primera) verVista(primera.dataset.vista);
+  }
 
   // formularios
   $('#form-diseno').onsubmit = correrDiseno;
