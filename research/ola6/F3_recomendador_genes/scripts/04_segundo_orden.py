@@ -43,7 +43,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[4]
 BLOQUE = Path(__file__).resolve().parents[1]
 
-PESOS_D87 = {"fenotipo": 0.40, "esencialidad": 0.25}
+PESOS_D87 = {"fenotipo": 0.40, "esencialidad": 0.25, "conservacion": 0.10}
 UMBRAL_EMPATE = 0.05
 
 OBJETIVOS = {
@@ -74,17 +74,24 @@ def agrupar_por_empate(cohorte: list) -> list:
 
 
 def ordenar(candidatos: list) -> dict:
-    """Mismo criterio que 03_orden.py: cohortes por ejes disponibles y pesos renormalizados."""
-    coh_a = [r for r in candidatos if r["eje2_puntaje"]]
-    coh_b = [r for r in candidatos if not r["eje2_puntaje"]]
-    base = PESOS_D87["fenotipo"] + PESOS_D87["esencialidad"]
-    w_f, w_e = PESOS_D87["fenotipo"] / base, PESOS_D87["esencialidad"] / base
-    for r in coh_a:
-        r["puntaje"] = w_f * float(r["eje1_puntaje"]) + w_e * float(r["eje2_puntaje"])
-    for r in coh_b:
-        r["puntaje"] = float(r["eje1_puntaje"])
+    """Mismo criterio que 03_orden.py: cohortes por ejes disponibles y pesos renormalizados.
+
+    Desde la enmienda 1 del eje 4 hay cuatro cohortes: A+4 (ejes 1, 2 y 4), B+4 (1 y 4),
+    A (1 y 2) y B (solo 1). El eje 4 sale de `eje4_puntaje` de orden_genes.tsv.
+    """
+    DEF = {(True, True): ("A4", ("fenotipo", "esencialidad", "conservacion")),
+           (False, True): ("B4", ("fenotipo", "conservacion")),
+           (True, False): ("A", ("fenotipo", "esencialidad")),
+           (False, False): ("B", ("fenotipo",))}
+    COL = {"fenotipo": "eje1_puntaje", "esencialidad": "eje2_puntaje", "conservacion": "eje4_puntaje"}
+    cohortes = {"A4": [], "B4": [], "A": [], "B": []}
+    for r in candidatos:
+        clave, ejes = DEF[(bool(r["eje2_puntaje"]), bool(r["eje4_puntaje"]))]
+        base = sum(PESOS_D87[e] for e in ejes)
+        r["puntaje"] = sum(PESOS_D87[e] / base * float(r[COL[e]]) for e in ejes)
+        cohortes[clave].append(r)
     salida = {}
-    for nombre, cohorte in (("A", coh_a), ("B", coh_b)):
+    for nombre, cohorte in cohortes.items():
         grupos = agrupar_por_empate(cohorte)
         puesto, filas = 0, []
         for g in grupos:
@@ -132,9 +139,12 @@ def main() -> int:
         esc.writeheader()
         esc.writerows(filas_salida)
 
-    primero_matar = resultados["matar"]["A"]["primer_puesto"]
-    primero_ester = resultados["esterilizar"]["A"]["primer_puesto"]
-    cambia = primero_matar != primero_ester
+    # La regla declarada habla de «la cohorte A». Desde que el eje 4 parte esa cohorte en A+4 y
+    # A, se evaluan las dos lecturas y se dice si coinciden. Si discreparan, la respuesta es
+    # «depende de la cohorte», no se elige la que convenga.
+    cambia_por = {c: resultados["matar"][c]["primer_puesto"] != resultados["esterilizar"][c]["primer_puesto"]
+                  for c in ("A4", "A")}
+    cambia = all(cambia_por.values()) if len(set(cambia_por.values())) == 1 else None
 
     meta = {
         "pregunta": "¿cambia el orden de los candidatos del insecto segun el objetivo?",
@@ -145,10 +155,13 @@ def main() -> int:
                     "cambia quien es elegible",
         "objetivos": {k: {"mecanismo_exigido": v["mecanismo_exigido"], "glosa": v["glosa"],
                           "elegibles": sum(1 for f in filas_salida if f["objetivo"] == k),
-                          "primer_puesto_cohorte_A": resultados[k]["A"]["primer_puesto"]}
+                          "primer_puesto_cohorte_A": resultados[k]["A"]["primer_puesto"],
+                          "primer_puesto_cohorte_A4": resultados[k]["A4"]["primer_puesto"]}
                       for k, v in OBJETIVOS.items()},
-        "respuesta": ("SI, el orden cambia segun el objetivo" if cambia
+        "respuesta": ("DEPENDE de la cohorte: " + json.dumps(cambia_por) if cambia is None else
+                      "SI, el orden cambia segun el objetivo" if cambia
                       else "NO, el orden no cambia segun el objetivo"),
+        "cambia_por_cohorte": cambia_por,
         "candidatos_en_los_dos_objetivos": sorted(
             {f["id"] for f in filas_salida if f["aparece_en_los_dos_objetivos"] == "si"}),
     }
@@ -157,8 +170,10 @@ def main() -> int:
 
     for nombre in OBJETIVOS:
         print(f"--- objetivo «{nombre}» (exige {OBJETIVOS[nombre]['mecanismo_exigido']}) ---")
-        for coh in ("A", "B"):
+        for coh in ("A4", "B4", "A", "B"):
             filas = resultados[nombre][coh]["filas"]
+            if not filas:
+                continue
             print(f"  cohorte {coh}: {len(filas)} candidatos")
             for r in filas[:6]:
                 emp = (f"  [empata con {', '.join(r['empate_con'])}]"
@@ -168,8 +183,9 @@ def main() -> int:
             if len(filas) > 6:
                 print(f"       … y {len(filas) - 6} mas")
         print()
-    print(f"primer puesto de A, matar      : {primero_matar}")
-    print(f"primer puesto de A, esterilizar: {primero_ester}")
+    for c in ("A4", "A"):
+        print(f"primer puesto de {c}, matar      : {resultados['matar'][c]['primer_puesto']}")
+        print(f"primer puesto de {c}, esterilizar: {resultados['esterilizar'][c]['primer_puesto']}")
     print()
     print(f"RESPUESTA: {meta['respuesta']}")
     print(f"escrito: {salida.relative_to(RAIZ)}, segundo_orden_meta.json")

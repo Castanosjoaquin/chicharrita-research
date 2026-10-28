@@ -1,6 +1,6 @@
-id	gen	ruta_consulta	largo_nt	ventanas_totales	contig_GCWP01	contig_GHCC01	contig_GITV01	con_dato_GCWP01	identicas_GCWP01	con_dato_GHCC01	identicas_GHCC01	con_dato_GITV01	identicas_GITV01	evaluables_en_los_3	identicas_en_los_3	cobertura	fraccion	estado
-DM-01	BicC	work/sifi_v2/fasta/BicC_Dm_full.fasta	2520	2500	GCWP01003535.1	GHCC01002326.1	GITV01000968.1	404	265	2500	2417	2500	2357	404	244	0.1616		cobertura insuficiente
-DM-02	V-ATPase B	research/ola6/O2_vatpase_b/resultados/VATPaseB_Dm_cds.fna	1503	1483	GCWP01020173.1	GHCC01013224.1	GITV01003502.1	693	693	1483	1420	1483	1462	693	672	0.4673		cobertura insuficiente
-DM-03	V-ATPase D	work/sifi_v2/fasta/ATPaseD_Dm_full.fasta	491	471	GCWP01010867.1	GHCC01051703.1	GITV01001458.1	471	471	471	450	471	450	471	450	1.0	0.9554	puntuado
-DM-05	eth	work/sifi_v2/fasta/eth_Dm_full.fasta	615	595	ausente	GHCC01027218.1	GITV01054587.1	0	0	595	595	420	384	0	0	0.0		ausente en algun TSA: cobertura insuficiente
-DM-06	burs-alpha	work/sifi_v2/fasta/bursA_Dm_full.fasta	468	448	ausente	GHCC01014529.1	GITV01010186.1	0	0	419	419	419	281	0	0	0.0		ausente en algun TSA: cobertura insuficiente
+id	gen	ruta_consulta	largo_nt	ventanas_totales	contig_GCWP01	contig_GHCC01	contig_GITV01	con_dato_GCWP01	identicas_GCWP01	con_dato_GHCC01	identicas_GHCC01	con_dato_GITV01	identicas_GITV01	evaluables_en_los_3	identicas_en_los_3	cobertura	fraccion	estado	enm1_tsa_con_el_gen	enm1_evaluables	enm1_conservadas	enm1_cobertura	enm1_fraccion	enm1_estado
+DM-01	BicC	work/sifi_v2/fasta/BicC_Dm_full.fasta	2520	2500	GCWP01003535.1	GHCC01002326.1	GITV01000968.1	404	265	2500	2417	2500	2357	404	244	0.1616		cobertura insuficiente	3	2500	2219	1.0	0.8876	puntuado
+DM-02	V-ATPase B	research/ola6/O2_vatpase_b/resultados/VATPaseB_Dm_cds.fna	1503	1483	GCWP01020173.1	GHCC01013224.1	GITV01003502.1	693	693	1483	1420	1483	1462	693	672	0.4673		cobertura insuficiente	3	1483	1420	1.0	0.9575	puntuado
+DM-03	V-ATPase D	work/sifi_v2/fasta/ATPaseD_Dm_full.fasta	491	471	GCWP01010867.1	GHCC01051703.1	GITV01001458.1	471	471	471	450	471	450	471	450	1.0	0.9554	puntuado	3	471	450	1.0	0.9554	puntuado
+DM-05	eth	work/sifi_v2/fasta/eth_Dm_full.fasta	615	595	ausente	GHCC01027218.1	GITV01054587.1	0	0	595	595	420	384	0	0	0.0		ausente en algun TSA: cobertura insuficiente	2	420	384	0.7059	0.9143	puntuado
+DM-06	burs-alpha	work/sifi_v2/fasta/bursA_Dm_full.fasta	468	448	ausente	GHCC01014529.1	GITV01010186.1	0	0	419	419	419	281	0	0	0.0		ausente en algun TSA: cobertura insuficiente	2	419	281	0.9353	0.6706	puntuado

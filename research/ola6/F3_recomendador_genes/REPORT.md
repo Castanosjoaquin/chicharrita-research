@@ -123,6 +123,13 @@ da un conteo **optimista**. Esos números se publican igual, en columnas cuyo en
 `panelC5_NO_es_el_de_seis__…`, y **ningún candidato se ordena por ellos**. El eje de
 conservación entre poblaciones falta porque no están los tres TSA en esta máquina.
 
+> **Nota del 2026-10-27, posterior a este informe (issue #37).** Lo anterior se escribió en una
+> máquina sin los tres TSA. El eje 4 se calculó después en la de Joaquín: criterio en
+> [`PREREGISTRO_EJE4.md`](PREREGISTRO_EJE4.md) y su [enmienda 1](PREREGISTRO_EJE4_ENMIENDA1.md),
+> resultado en [`resultados/eje4_REPORT.md`](resultados/eje4_REPORT.md). Cinco filas `DM` lo
+> reciben y pasan a la cohorte A+4; el empate de tres del primer puesto sigue declarado. El
+> párrafo de arriba se deja como estaba: describía lo que había entonces.
+
 **El eje 2 de `DM-05`, que es uno de los tres primeros, se apoya en una fuente secundaria.** El
 98 % de mortalidad del nulo de `eth` sale de la ficha de InteractiveFly, que se leyó; la
 primaria que esa ficha cita, Park y colaboradores 2002 en *Development*, devolvió HTTP 403 y

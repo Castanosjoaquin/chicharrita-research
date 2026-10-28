@@ -34,7 +34,6 @@ EJES_NO_CALCULABLES = {
     "off_target": "no calculable: falta work/sifi_v2/ Y los conteos del catalogo son contra "
                   "otro panel (5 referencias, con M. quadrilineatus y sin H. axyridis ni "
                   "F. candida). Ver escala_fenotipo.md",
-    "conservacion": "no calculable: faltan los tres TSA de D. maidis en work/W5/ref/",
     "expresion_tejido": "FALTANTE para todos los candidatos: los transcriptomas publicos son "
                         "de cuerpo entero y huevos. El zip del investigador no lo trae "
                         "(verificacion_zip_expresion.md)",
@@ -61,9 +60,11 @@ def leer_tsv(ruta: Path) -> dict:
         return {r["id"]: r for r in csv.DictReader(fh, delimiter="\t")}
 
 
-def primero_de(cohorte: list, w_fen: float) -> list:
-    """Quien queda primero en la cohorte A con un peso de fenotipo dado (el resto a esencialidad)."""
-    puntuados = [(r["id"], w_fen * r["_f"] + (1 - w_fen) * r["_e"]) for r in cohorte]
+def primero_de(cohorte: list, w_fen: float, resto: dict) -> list:
+    """Quien queda primero con un peso de fenotipo dado; el resto se reparte segun `resto`
+    (claves de puntaje -> peso relativo, que suma 1)."""
+    puntuados = [(r["id"], w_fen * r["_f"] + (1 - w_fen) * sum(w * r[k] for k, w in resto.items()))
+                 for r in cohorte]
     tope = max(p for _, p in puntuados)
     return sorted(i for i, p in puntuados if abs(p - tope) < 1e-12)
 
@@ -72,6 +73,9 @@ def main() -> int:
     cat = {f["id"]: f for f in json.loads(CATALOGO.read_text(encoding="utf-8"))["filas"]}
     fen = leer_tsv(BLOQUE / "resultados/eje_fenotipo.tsv")
     ese = leer_tsv(BLOQUE / "resultados/eje_esencialidad.tsv")
+    # Eje 4: regla de la enmienda 1 (PREREGISTRO_EJE4_ENMIENDA1.md). La regla original
+    # queda en eje4_conservacion.tsv y NO entra al puntaje.
+    c4 = leer_tsv(BLOQUE / "resultados/eje4_conservacion.tsv")
 
     en_orden, fuera = [], []
     for ident, f in sorted(fen.items()):
@@ -92,6 +96,12 @@ def main() -> int:
             "id": ident, "gen": c["gen"], "especie": c["especie"],
             "familia_id": f["familia_id"],
             "_f": p_f, "_e": p_e,
+            "_c": (float(c4[ident]["enm1_fraccion"])
+                   if ident in c4 and c4[ident]["enm1_estado"] == "puntuado" else None),
+            "eje4_puntaje": (c4[ident]["enm1_fraccion"]
+                             if ident in c4 and c4[ident]["enm1_estado"] == "puntuado" else ""),
+            "eje4_cobertura": c4[ident]["enm1_cobertura"] if ident in c4 else "",
+            "eje4_tsa_con_el_gen": c4[ident]["enm1_tsa_con_el_gen"] if ident in c4 else "",
             "eje1_nivel": nivel_f, "eje1_puntaje": f"{p_f:.2f}",
             "mecanismos": f["mecanismos"],
             "n_mecanismos_publicado_no_puntuado": str(len(f["mecanismos"].split("|"))),
@@ -105,23 +115,32 @@ def main() -> int:
         })
 
     # --- Cohortes: por que ejes tiene calculados cada candidato (D87 4.2) ---
-    coh_a = [r for r in en_orden if r["_e"] is not None]
-    coh_b = [r for r in en_orden if r["_e"] is None]
-    base_a = PESOS_D87["fenotipo"] + PESOS_D87["esencialidad"]
-    w_fen_a = PESOS_D87["fenotipo"] / base_a
-    w_ese_a = PESOS_D87["esencialidad"] / base_a
-
-    for r in coh_a:
-        r["cohorte"] = "A: ejes 1 y 2"
-        r["pesos_renormalizados"] = f"fenotipo {w_fen_a:.3f} | esencialidad {w_ese_a:.3f}"
-        r["puntaje"] = w_fen_a * r["_f"] + w_ese_a * r["_e"]
-    for r in coh_b:
-        r["cohorte"] = "B: solo eje 1"
-        r["pesos_renormalizados"] = "fenotipo 1,000"
-        r["puntaje"] = r["_f"]
+    # Eje 1 lo tienen todos los que entran al orden. Los ejes 2 y 4 definen la cohorte.
+    DEF = {  # (tiene eje 2, tiene eje 4) -> (clave, nombre, ejes presentes)
+        (True, True): ("A4", "A+4: ejes 1, 2 y 4", ("fenotipo", "esencialidad", "conservacion")),
+        (False, True): ("B4", "B+4: ejes 1 y 4", ("fenotipo", "conservacion")),
+        (True, False): ("A", "A: ejes 1 y 2", ("fenotipo", "esencialidad")),
+        (False, False): ("B", "B: solo eje 1", ("fenotipo",)),
+    }
+    CLAVE_PUNTAJE = {"fenotipo": "_f", "esencialidad": "_e", "conservacion": "_c"}
+    cohortes = {k: [] for k, _, _ in DEF.values()}
+    pesos_coh = {}
+    for r in en_orden:
+        clave, nombre, ejes = DEF[(r["_e"] is not None, r["_c"] is not None)]
+        base = sum(PESOS_D87[e] for e in ejes)
+        w = {e: PESOS_D87[e] / base for e in ejes}
+        pesos_coh[clave] = w
+        r["cohorte"] = nombre
+        r["pesos_renormalizados"] = " | ".join(
+            f"{e} {w[e]:.3f}" if len(ejes) > 1 else "fenotipo 1,000" for e in ejes)
+        r["puntaje"] = sum(w[e] * r[CLAVE_PUNTAJE[e]] for e in ejes)
+        cohortes[clave].append(r)
+    coh_a, coh_b = cohortes["A"], cohortes["B"]
+    coh_a4, coh_b4 = cohortes["A4"], cohortes["B4"]
+    w_fen_a = pesos_coh["A"]["fenotipo"] if coh_a else None
 
     filas = []
-    for cohorte in (coh_a, coh_b):
+    for cohorte in (coh_a4, coh_b4, coh_a, coh_b):
         cohorte.sort(key=lambda r: (-r["puntaje"], r["id"]))
         # Empates declarados: grupos consecutivos a menos de UMBRAL_EMPATE del primero del grupo.
         grupos, actual = [], []
@@ -145,7 +164,12 @@ def main() -> int:
     for r in filas:
         v = cat[r["id"]].get("ventanas_21nt")
         r["eje3_estado"] = EJES_NO_CALCULABLES["off_target"]
-        r["eje4_estado"] = EJES_NO_CALCULABLES["conservacion"]
+        r["eje4_estado"] = (
+            f"calculado, regla de la enmienda 1: {r['eje4_puntaje']} "
+            f"(cobertura {r['eje4_cobertura']}, {r['eje4_tsa_con_el_gen']} de 3 TSA con el gen)"
+            if r["eje4_puntaje"] else
+            "sin secuencia de D. maidis admisible en esta maquina (PREREGISTRO_EJE4.md §2)"
+            if not r["eje4_cobertura"] else "cobertura insuficiente")
         r["eje5_estado_FALTANTE"] = EJES_NO_CALCULABLES["expresion_tejido"]
         for ref in PANEL_C5:
             clave = f"panelC5_NO_es_el_de_seis__21meros_perfectos_en_{ref}"
@@ -159,7 +183,7 @@ def main() -> int:
         "empate_declarado", "puntaje", "pesos_renormalizados",
         "eje1_nivel", "eje1_puntaje", "mecanismos", "n_mecanismos_publicado_no_puntuado",
         "eje2_nivel", "eje2_puntaje", "eje2_via", "eje2_especie_donde_se_demostro",
-        "eje2_fuente_primaria_abierta",
+        "eje2_fuente_primaria_abierta", "eje4_puntaje", "eje4_cobertura", "eje4_tsa_con_el_gen",
         "eje3_estado", "eje4_estado", "eje5_estado_FALTANTE",
         "marcador_evidencia", "evidencia_negativa_medida",
     ] + [f"panelC5_NO_es_el_de_seis__21meros_perfectos_en_{r}" for r in PANEL_C5] + [
@@ -179,17 +203,24 @@ def main() -> int:
         esc.writeheader()
         esc.writerows(fuera)
 
-    # --- Sensibilidad: en que rango del peso de fenotipo cambia el primer puesto (cohorte A) ---
-    pasos = 2001
-    cambios, previo = [], None
-    for i in range(pasos):
-        w = i / (pasos - 1)
-        lider = primero_de(coh_a, w)
-        if previo is not None and lider != previo:
-            cambios.append({"peso_fenotipo_aprox": round(w, 4),
-                            "de": previo, "a": lider})
-        previo = lider
-    lider_d84 = primero_de(coh_a, w_fen_a)
+    # --- Sensibilidad: en que rango del peso de fenotipo cambia el primer puesto, por cohorte ---
+    def barrido(cohorte, resto):
+        pasos, cambios, previo = 2001, [], None
+        for i in range(pasos):
+            w = i / (pasos - 1)
+            lider = primero_de(cohorte, w, resto)
+            if previo is not None and lider != previo:
+                cambios.append({"peso_fenotipo_aprox": round(w, 4), "de": previo, "a": lider})
+            previo = lider
+        return cambios
+    resto_a = {"_e": 1.0}
+    b_ese = PESOS_D87["esencialidad"] + PESOS_D87["conservacion"]
+    resto_a4 = {"_e": PESOS_D87["esencialidad"] / b_ese, "_c": PESOS_D87["conservacion"] / b_ese}
+    cambios = barrido(coh_a, resto_a) if coh_a else []
+    lider_d84 = primero_de(coh_a, w_fen_a, resto_a) if coh_a else []
+    cambios_a4 = barrido(coh_a4, resto_a4) if coh_a4 else []
+    w_fen_a4 = pesos_coh["A4"]["fenotipo"] if coh_a4 else None
+    lider_a4 = primero_de(coh_a4, w_fen_a4, resto_a4) if coh_a4 else []
 
     meta = {
         "linea": "F3 — recomendador de genes",
@@ -213,11 +244,21 @@ def main() -> int:
             "filas_del_catalogo": len(fen),
             "en_el_orden": len(filas),
             "fuera_del_orden": len(fuera),
+            "cohorte_A4_ejes_1_2_y_4": len(coh_a4),
+            "cohorte_B4_ejes_1_y_4": len(coh_b4),
             "cohorte_A_ejes_1_y_2": len(coh_a),
             "cohorte_B_solo_eje_1": len(coh_b),
             "con_eje2_desde_fuente_primaria_no_abierta": sum(
                 1 for r in coh_a if r["eje2_fuente_primaria_abierta"] == "no"),
         },
+        "sensibilidad_cohorte_A4": {
+            "lider_con_los_pesos_de_D87": lider_a4,
+            "peso_de_fenotipo_en_D87_renormalizado": round(w_fen_a4, 4) if w_fen_a4 else None,
+            "cambios_de_primer_puesto_al_mover_el_peso_de_fenotipo_de_0_a_1": cambios_a4,
+        },
+        "eje4": {"regla": "enmienda 1 (PREREGISTRO_EJE4_ENMIENDA1.md); la original queda en "
+                          "eje4_conservacion.tsv y no entra al puntaje",
+                 "reporte": "resultados/eje4_REPORT.md"},
         "sensibilidad_cohorte_A": {
             "lider_con_los_pesos_de_D87": lider_d84,
             "peso_de_fenotipo_en_D87_renormalizado": round(w_fen_a, 4),
@@ -226,8 +267,9 @@ def main() -> int:
         "entorno": {
             "python": sys.version.split()[0],
             "plataforma": sys.platform,
-            "nota": "esta linea no usa ViennaRNA, Biopython, ahocorasick ni alineador: los dos "
-                    "ejes calculados salen de material versionado",
+            "nota": "03_orden.py no usa herramientas externas: lee los ejes ya calculados. El eje 4 "
+                    "lo calcula 05_eje_conservacion.py (BLAST+, Biopython, ahocorasick; ver "
+                    "eje4_meta.json)",
         },
     }
     try:
@@ -241,18 +283,20 @@ def main() -> int:
         json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
     print(f"orden: {len(filas)} candidatos en el orden, {len(fuera)} fuera")
-    print(f"  cohorte A (ejes 1 y 2): {len(coh_a)} | cohorte B (solo eje 1): {len(coh_b)}")
-    print(f"  pesos renormalizados en A: fenotipo {w_fen_a:.3f}, esencialidad {w_ese_a:.3f}")
-    print()
-    for cohorte, nombre in ((coh_a, "A"), (coh_b, "B")):
+    print(f"  cohortes: A+4 {len(coh_a4)} | B+4 {len(coh_b4)} | A {len(coh_a)} | B {len(coh_b)}")
+    for cohorte, nombre in ((coh_a4, "A+4"), (coh_b4, "B+4"), (coh_a, "A"), (coh_b, "B")):
+        if not cohorte:
+            continue
         print(f"  --- cohorte {nombre} ---")
         for r in cohorte:
             emp = "" if r["empate_declarado"] == "no" else "  [EMPATE DECLARADO]"
             print(f"   {r['puesto_en_su_cohorte']:>2}. {r['id']} {r['puntaje']:.4f}  "
                   f"{r['eje1_nivel']}/{r['eje2_nivel']}  {r['gen'][:26]}{emp}")
     print()
-    print(f"  lider de A con los pesos de D87: {lider_d84}")
-    print(f"  cambios de primer puesto al mover el peso de fenotipo de 0 a 1: {len(cambios)}")
+    print(f"  lider de A+4 con los pesos de D87: {lider_a4}; cambios al mover w_fenotipo: {len(cambios_a4)}")
+    for c in cambios_a4:
+        print(f"    en w_fenotipo ~ {c['peso_fenotipo_aprox']}: {c['de']} -> {c['a']}")
+    print(f"  lider de A con los pesos de D87: {lider_d84}; cambios al mover w_fenotipo: {len(cambios)}")
     for c in cambios:
         print(f"    en w_fenotipo ~ {c['peso_fenotipo_aprox']}: {c['de']} -> {c['a']}")
     print(f"escrito: {salida.relative_to(RAIZ)}, {salida_fuera.relative_to(RAIZ)}, meta.json")

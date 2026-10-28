@@ -95,9 +95,18 @@ for i, (gen, ruta) in CAND.items():
     if "ausente" in ids.values(): r["fraccion"], r["estado"] = "", "ausente en algun TSA: cobertura insuficiente"
     elif r["cobertura"] < MIN_COB: r["fraccion"], r["estado"] = "", "cobertura insuficiente"
     else: r["fraccion"], r["estado"] = round(len(id3) / len(ev3), 4), "puntuado"
+    # Enmienda 1 (PREREGISTRO_EJE4_ENMIENDA1.md): evaluable = dato en >=2 de 3 TSA;
+    # conservada = exacta en todos los TSA donde tiene dato.
+    ev2 = {j for j in range(n) if sum(j in cob[t] for t in TSAS) >= 2}
+    cons2 = {j for j in ev2 if all(j in idt[t] for t in TSAS if j in cob[t])}
+    r["enm1_tsa_con_el_gen"] = sum(1 for t in TSAS if ids[t] != "ausente")
+    r["enm1_evaluables"] = len(ev2); r["enm1_conservadas"] = len(cons2)
+    r["enm1_cobertura"] = round(len(ev2) / n, 4)
+    if r["enm1_cobertura"] < MIN_COB: r["enm1_fraccion"], r["enm1_estado"] = "", "cobertura insuficiente"
+    else: r["enm1_fraccion"], r["enm1_estado"] = round(len(cons2) / len(ev2), 4), "puntuado"
     filas.append(r)
 with open(OUT / "eje4_conservacion.tsv", "w", newline="", encoding="utf-8") as fh:
     w = csv.DictWriter(fh, fieldnames=list(filas[0]), delimiter="\t", lineterminator="\n")
     w.writeheader(); w.writerows(filas)
 (OUT / "eje4_meta.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-for r in filas: print({k: r[k] for k in ("id", "ventanas_totales", "evaluables_en_los_3", "identicas_en_los_3", "cobertura", "fraccion", "estado")})
+for r in filas: print({k: r[k] for k in ("id", "ventanas_totales", "estado", "fraccion", "enm1_tsa_con_el_gen", "enm1_evaluables", "enm1_conservadas", "enm1_cobertura", "enm1_fraccion", "enm1_estado")})

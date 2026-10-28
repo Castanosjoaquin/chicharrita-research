@@ -1,4 +1,8 @@
 {
+ "cambia_por_cohorte": {
+  "A": true,
+  "A4": true
+ },
  "candidatos_en_los_dos_objetivos": [
   "CI-01",
   "CI-02",
@@ -18,7 +22,9 @@
     "CI-01",
     "CI-02",
     "CI-03",
-    "DE-01",
+    "DE-01"
+   ],
+   "primer_puesto_cohorte_A4": [
     "DM-01"
    ]
   },
@@ -27,6 +33,11 @@
    "glosa": "reducir la poblacion matando al vector dentro de la temporada",
    "mecanismo_exigido": "letalidad",
    "primer_puesto_cohorte_A": [
+    "CI-01",
+    "CI-02",
+    "DE-01"
+   ],
+   "primer_puesto_cohorte_A4": [
     "DM-02",
     "DM-03",
     "DM-05"
