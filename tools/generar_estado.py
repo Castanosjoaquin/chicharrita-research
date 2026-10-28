@@ -363,9 +363,82 @@ HECHO = [
      "No se corrió ningún alineamiento nuevo: salió de archivos que ya estaban en disco.",
      ["research/ola6/R13_brecha_c12/REPORT.md", "research/ola3/C12_validacion_homologia/REPORT_A.md",
       "00_meta/DECISIONS.md"]),
+    ("Ola 6 · El eje de conservación del recomendador, calculado (issues #27 y #37)",
+     "El eje que <code>F3</code> había declarado no calculable se corrió en la máquina que sí tiene los tres "
+     "transcriptomas de <i>D. maidis</i>. Con la regla preregistrada —presencia exacta en los <strong>tres</strong> "
+     "TSA— puntuaba <strong>una</strong> de cinco filas: <code>eth</code> y <code>burs-alpha</code> no están en "
+     "<code>GCWP01</code>, el ensamblado más viejo, y <code>V-ATPase B</code> quedaba a 0,033 del umbral de "
+     "cobertura. La <strong>enmienda 1</strong> (dato en al menos dos de tres TSA, umbral intacto) puntúa las "
+     "cinco: 0,8876, 0,9575, 0,9554, 0,9143 y 0,6706. La enmienda se escribió <strong>sabiendo el resultado</strong> "
+     "y por eso las dos reglas se publican lado a lado (D94). <strong>El empate de tres del primer puesto sigue "
+     "declarado</strong>: hacía falta una diferencia de más de 0,375 y la mayor es 0,043.",
+     ["research/ola6/F3_recomendador_genes/PREREGISTRO_EJE4.md",
+      "research/ola6/F3_recomendador_genes/resultados/eje4_REPORT.md",
+      "00_meta/DECISIONS.md"]),
+    ("Ola 6 · El eje de off-target, con su nulo, y lo que el nulo corrigió (issue #43)",
+     "El eje más sólido del recomendador —el único que no depende del criterio de eficiencia sin validar en "
+     "hemípteros— se calculó para <strong>19 de las 36 filas</strong> del catálogo, en tres lecturas que "
+     "<strong>no se comparan entre sí</strong> (D97, D98, D99, D100). Y el nulo cambió cómo se lee: una secuencia "
+     "sin homología trae <strong>0,5 % de ventanas con coincidencia</strong>, no cero, así que "
+     "<code>eth</code> y <code>burs-alpha</code> <strong>no se distinguen del azar</strong> y sólo "
+     "<code>V-ATPase B</code> (0,8827) queda claramente por encima. <strong>La conclusión que importa para el "
+     "entregable:</strong> el eje <strong>no cambió ningún primer puesto</strong> —el empate de tres sigue y los "
+     "cuatro primeros de la cohorte nueva caen dentro de 0,021 contra un umbral de 0,05—, lo que refuerza por otra "
+     "vía lo que D65 ya había decidido sobre el conteo.",
+     ["research/ola6/F3_recomendador_genes/PREREGISTRO_EJE3.md",
+      "research/ola6/F3_recomendador_genes/resultados/eje3_REPORT.md",
+      "research/ola6/F3_recomendador_genes/resultados/manifiesto_secuencias_eje3.tsv",
+      "00_meta/DECISIONS.md"]),
+    ("Ola 6 · El panel se autoacierta si contiene la especie de la secuencia (D99, D100)",
+     "Apareció <strong>dos veces</strong> y por eso es una regla y no una anécdota. Cuatro filas de <code>C5</code> "
+     "usan una secuencia sustituta de <i>Macrosteles quadrilineatus</i> y el panel de cinco con el que se midieron "
+     "<strong>incluía</strong> esa especie: publicaban el <strong>100 %</strong> de sus ventanas como coincidencia "
+     "perfecta —1835/1835, 663/663, 1487/1487, 4409/4409— que no era off-target sino la secuencia contra sí misma. "
+     "El segundo caso es la actina de <code>HE-06</code>, de <i>Homalodisca vitripennis</i>, que está en el panel "
+     "de seis: <strong>98,6 %</strong> de sus ventanas contra su propia especie. Ninguno es un error de quien lo "
+     "midió —la sustitución estaba declarada fila por fila—: es lo que pasa cuando el panel contiene la especie de "
+     "la que se tomó prestada la secuencia. <strong>La regla queda escrita y verificable:</strong> antes de tamizar, "
+     "comprobar que la especie de la secuencia no esté en el panel; el valor se publica rotulado y no entra al puntaje.",
+     ["research/ola6/F3_recomendador_genes/resultados/eje3_filas_c5_REPORT.md",
+      "research/ola6/F3_recomendador_genes/resultados/eje3_filas_resto_REPORT.md",
+      "00_meta/CAMINOS_PROBADOS.md"]),
+    ("Ola 6 · La grilla fina de quimeras, archivada con su costo escrito (issue #42, D95)",
+     "La retícula de <code>--paso 1</code> del enumerador <strong>no se corre</strong>, y el motivo quedó medido: "
+     "no pide los 136.446 plegados que decía la prosa sino <strong>129.761.738</strong>, unos <strong>71 días</strong> "
+     "de una máquina sola a los 21 plegados/s medidos. El costo de las cuatro retículas queda escrito para que nadie "
+     "lo vuelva a estimar. Lo que sí se corrió, la de paso 10, dejó un resultado propio: <strong>el paso mueve el "
+     "primer puesto</strong> —por <strong>una ventana</strong> sobre 65—, así que lo medido es que el orden de esa "
+     "grilla <strong>no es estable al paso</strong>, no que la gruesa eligiera mal. Condición para reabrir: sólo si "
+     "alguien vuelve a usar el conteo como argumento entre candidatos, y entonces <code>--paso 2</code> repartido.",
+     ["00_meta/DECISIONS.md", "00_meta/CAMINOS_PROBADOS.md",
+      "research/ola6/O4_enumerador_quimeras/REPORT.md"]),
+    ("Ola 6 · F2 declara su límite donde se lee el código (issue #44, D96)",
+     "<code>F2</code> sólo puede resumir <strong>el nombre de producto</strong>: los términos GO, los dominios "
+     "conservados y los papers que su issue nombraba como entrada <strong>no están en ninguna salida versionada</strong>, "
+     "porque <code>F1</code> entrega nombre de producto, identidad, cobertura y banda y nada más. La limitación se "
+     "escribió en el encabezado del módulo y no en una nota al pie —<code>F2</code> no tiene <code>REPORT.md</code>, "
+     "así que el lugar equivalente es el docstring—, con la regla explícita de que no se infiere función del nombre "
+     "del gen: «V-ATPase» no se convierte en «letalidad». Ampliar la entrada exige una fuente nueva con su versión y "
+     "su verificación de procedencia declaradas <strong>antes</strong> de correr, y eso sería una línea propia.",
+     ["pipeline/evidencia_en_prosa.py", "pipeline/fichas_desde_f1.py", "00_meta/DECISIONS.md"]),
 ]
 
 FALTA = [
+    ("Firmar las 13 filas de alertas que siguen en «pendiente»", "decision", True,
+     "La tabla de alertas tiene <strong>32 filas: 14 aceptadas, 5 bloqueantes y 13 en «pendiente»</strong>, entre "
+     "ellas las <strong>cuatro de <code>V-ATPase B</code> 517-816</strong> que dejó el barrido del inventario. "
+     "Ninguna la firma el motor (D48, D68, D73) y una región con alerta sin firmar <strong>no sale como "
+     "recomendada</strong>, así que esto bloquea de hecho a la compuerta. El argumento que la firma tiene que "
+     "atender está escrito: la de <i>H. vitripennis</i> es la única que además aporta ventanas eficientes, y el "
+     "peso de exposición de ese organismo es justo la decisión que D47 dejó abierta."),
+    ("Nueve filas del eje 3 cuya ausencia de accesión es provisional (entrada 102)", "insumo", False,
+     "<code>HE-01</code>, <code>HE-02</code>, <code>HE-03</code>, <code>HE-09</code>, <code>HE-11</code>, "
+     "<code>DM-04</code>, <code>CI-09</code>, <code>CI-11</code> y <code>CI-12</code> se cerraron leyendo "
+     "<strong>sólo el resumen</strong>: el texto completo está tras un muro de pago y ninguna vía abierta lo "
+     "devolvió. <strong>«No está en el resumen» no es «no está en el paper»</strong>, así que esas nueve "
+     "<strong>no cuentan como evidencia</strong> de que el trabajo no depositó secuencias. Tres filas más "
+     "—<code>CI-04</code>, <code>CI-05</code> y <code>DE-04</code>— tienen <strong>el PDF abierto</strong> pero su "
+     "dominio no está en la lista permitida del entorno: se destraban autorizando dos dominios, no consiguiendo el paper."),
     ("Fecha y texto del correo enviado (issue #28)", "decision", True,
      "El correo se envió, como confirmó el usuario, pero el repo no registra la fecha ni el texto enviado. El "
      "borrador tiene siete preguntas y <code>PLAN_DESARROLLO.md</code> §8 decía cinco: sin el texto efectivamente "
@@ -384,6 +457,13 @@ FALTA = [
 ]
 
 LIMITES = [
+    ("Un conteo de off-target sin su nulo puede estar leyendo un piso, no una señal",
+     "Medido al cerrar el eje 3 de <code>F3</code>: una secuencia <strong>sin homología</strong> —permutada "
+     "conservando su composición— trae <strong>0,5 a 0,7 % de ventanas con un bloque de 19 nt o más coincidente</strong> "
+     "contra el panel de seis, y en el peor caso 3,4 %. No es cero, que es lo que la intuición supone. Por eso "
+     "<code>eth</code> (0,9815) y <code>burs-alpha</code> (1,0000) <strong>no se distinguen del azar</strong> y sólo "
+     "<code>V-ATPase B</code> (0,8827) queda claramente por encima. La causa del piso no se averiguó (entrada 100); "
+     "la lectura que sí vale es la regla: todo conteo de off-target se publica con su nulo al lado."),
     ("No hay etiquetas de eficacia para el vector",
      "Ningún dato experimental de silenciamiento en <i>Dalbulus maidis</i> respalda el umbral. Por eso el "
      "barrido mide fragilidad de la recomendación y no si el umbral es correcto: lo segundo necesita "
@@ -450,8 +530,13 @@ def tarjeta(titulo, desc, rutas):
     aviso = ("" if not faltantes else
              '<p class="f" style="color:var(--stop)">No encontrado en disco: %s</p>'
              % html.escape(", ".join(faltantes)))
+    # El titulo se escapa, pero varias tarjetas lo escriben con <code> o <i> (un gen, un nombre
+    # cientifico). Sin esto esas etiquetas se ven literales en la pagina.
+    t = html.escape(titulo)
+    for etq in ("code", "i"):
+        t = t.replace("&lt;%s&gt;" % etq, "<%s>" % etq).replace("&lt;/%s&gt;" % etq, "</%s>" % etq)
     return ('<div class="card"><p class="t">%s</p><p class="d">%s</p>'
-            '<p class="f">%s</p>%s</div>' % (html.escape(titulo), desc, enlaces, aviso))
+            '<p class="f">%s</p>%s</div>' % (t, desc, enlaces, aviso))
 
 
 hechos = "\n".join(tarjeta(t, d, r) for t, d, r in HECHO)
