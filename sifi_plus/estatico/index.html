@@ -25,6 +25,8 @@
       <button role="tab" id="tab-marcos" aria-selected="false" data-vista="marcos">Tres marcos</button>
       <button role="tab" id="tab-juntura" aria-selected="false" data-vista="juntura">Juntura</button>
       <button role="tab" id="tab-ejes" aria-selected="false" data-vista="ejes">Ejes</button>
+      <button role="tab" id="tab-quimeras" aria-selected="false" data-vista="quimeras">Quimeras</button>
+      <button role="tab" id="tab-homologia" aria-selected="false" data-vista="homologia">Homología</button>
       <button role="tab" id="tab-firmas" aria-selected="false" data-vista="firmas">Bandeja de firmas</button>
     </nav>
   </div>
@@ -238,6 +240,37 @@
     reglas de trato del vector. Van separados: combinarlos en un puntaje es un criterio, y el
     criterio no es de la demo.</p>
   <div id="salida-ejes"></div>
+</section>
+
+<section class="vista" id="vista-quimeras" role="tabpanel" aria-labelledby="tab-quimeras" hidden>
+  <h2>Enumerador de quimeras</h2>
+  <p class="nota">Las quimeras de dos regiones que la grilla deja pasar, <b>ya enumeradas</b>: esta
+    pantalla las muestra, no las enumera. Los tres objetivos son <b>las mismas quimeras ordenadas
+    distinto</b>, así que el primer puesto es la respuesta de ese objetivo y no una propiedad de
+    la quimera. La vista no reordena ni combina los objetivos.</p>
+  <div class="fila" style="max-width:980px;flex-wrap:wrap">
+    <div><label for="q-objetivo">Objetivo</label><select id="q-objetivo"></select></div>
+    <div><label for="q-izq">Gen izquierdo</label><select id="q-izq"></select></div>
+    <div><label for="q-der">Gen derecho</label><select id="q-der"></select></div>
+    <div><label for="q-l1">Largo del fragmento izquierdo</label><select id="q-l1"></select></div>
+  </div>
+  <div class="casilla"><input type="checkbox" id="q-alerta">
+    <label for="q-alerta" style="margin:0">Sólo las que el empalme fabrica alerta nueva
+      <span>bloques que no existen en ninguno de los dos genes</span></label></div>
+  <div id="aviso-quimeras"></div>
+  <div id="salida-quimeras"></div>
+</section>
+
+<section class="vista" id="vista-homologia" role="tabpanel" aria-labelledby="tab-homologia" hidden>
+  <h2>Transferencia de nombre de gen por homología</h2>
+  <p class="nota">El transcriptoma del vector viene sin anotar. Esta pantalla muestra a cuántos
+    ORF se les puede poner nombre por homología recíproca contra un proteoma de referencia, y con
+    cuánta confianza. No corre DIAMOND: lee lo que ya corrió.</p>
+  <div class="fila" style="max-width:720px">
+    <div><label for="h-ref">Referencia</label><select id="h-ref"></select></div>
+  </div>
+  <div id="aviso-homologia"></div>
+  <div id="salida-homologia"></div>
 </section>
 
 <section class="vista" id="vista-firmas" role="tabpanel" aria-labelledby="tab-firmas" hidden>

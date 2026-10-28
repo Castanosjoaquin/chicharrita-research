@@ -249,6 +249,37 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size
 .form-firma{border-top:1px solid var(--line); padding-top:11px; max-width:760px}
 .form-firma textarea{width:100%; margin-bottom:8px}
 
+/* --- las dos vistas de V2 ---
+ *
+ * El embudo de homologia es una barra por categoria, de arriba hacia abajo, y la ultima —la que
+ * si consigue nombre— va en el color de eficiencia porque es la que sirve. Las cinco de arriba
+ * van en gris: no son errores, son los filtros que el metodo aplica, y pintarlas de rojo
+ * sugeriria que algo salio mal.
+ *
+ * Las dos variantes se distinguen por el borde y no solo por el rotulo: la preregistrada lleva
+ * el borde de acento y la post hoc el de aviso. Que una rinda mas que la otra no la hace mejor,
+ * y la pantalla no puede dar a entender lo contrario.
+ */
+.embudo{margin:0 0 18px; display:flex; flex-direction:column; gap:3px}
+.embudo-fila{display:grid; grid-template-columns:190px minmax(80px,1fr) 70px; gap:10px;
+  align-items:center; font-size:.8rem}
+.embudo-fila .nota{grid-column:1/-1; margin:0 0 4px; font-size:.74rem}
+.embudo-lab{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.76rem;
+  color:var(--text-dim)}
+.embudo-barra{background:var(--surface-2); border-radius:2px; height:14px; overflow:hidden}
+.embudo-barra > i{display:block; height:100%; background:var(--muted)}
+.embudo-fin .embudo-barra > i{background:var(--efic)}
+.embudo-fin .embudo-lab{color:var(--text); font-weight:650}
+.embudo-n{text-align:right; font-variant-numeric:tabular-nums; font-weight:650}
+
+.dos-col{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:14px;
+  align-items:start}
+.var-pre{border-left:3px solid var(--accent)}
+.var-post{border-left:3px solid var(--warn)}
+
+/* una quimera cuyo empalme fabrica alerta nueva */
+tr.fila-alerta td:first-child{border-left:3px solid var(--stop)}
+
 /* --- progreso --- */
 .barra{height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden;
   margin:8px 0}

@@ -529,7 +529,12 @@ def _fuente(nombre: str) -> str:
 
 
 VISTAS = ("lectura.py", "vista_region.py", "vista_marcos.py", "vista_juntura.py",
-          "vista_ejes.py", "vista_firmas.py")
+          "vista_ejes.py", "vista_firmas.py", "vista_quimeras.py", "vista_homologia.py")
+
+# Las que SOLO leen. `vista_firmas.py` queda afuera a proposito: es la unica que escribe, y por
+# eso es la unica a la que la verificacion de escritura no se le aplica.
+VISTAS_DE_LECTURA = ("lectura.py", "vista_region.py", "vista_marcos.py", "vista_juntura.py",
+                     "vista_ejes.py", "vista_quimeras.py", "vista_homologia.py")
 
 
 def test_vistas_no_importan_el_motor():
@@ -698,6 +703,7 @@ def test_una_vista_sin_su_archivo_dice_no_corrido():
     """
     import vista_ejes
     import vista_firmas
+    import vista_homologia
     import vista_juntura
     import vista_marcos
     import vista_region
@@ -710,6 +716,7 @@ def test_una_vista_sin_su_archivo_dice_no_corrido():
         (vista_juntura, "RESUMEN", vista_juntura.ver),
         (vista_ejes, "TSV", vista_ejes.ver),
         (vista_firmas, "INVENTARIO", vista_firmas.ver),
+        (vista_homologia, "RESUMEN_LECTURA", vista_homologia.ver),
     ]
     for modulo, atributo, llamar in casos:
         original = getattr(modulo, atributo)
@@ -912,15 +919,16 @@ def test_ninguna_vista_escribe_fuera_del_archivo_de_firmas():
     import hashlib
 
     import vista_ejes
+    import vista_homologia
     import vista_juntura
     import vista_marcos
+    import vista_quimeras
     import vista_region
 
     # 1. Estatico: que no haya una sola llamada de escritura en las vistas de lectura.
     escritura = {"write_text", "write_bytes", "mkdir", "unlink", "replace", "rename",
                  "mkstemp", "rmtree", "remove"}
-    for nombre in ("lectura.py", "vista_region.py", "vista_marcos.py", "vista_juntura.py",
-                   "vista_ejes.py"):
+    for nombre in VISTAS_DE_LECTURA:
         arbol = ast.parse(_fuente(nombre), filename=nombre)
         usos = set()
         for nodo in ast.walk(arbol):
@@ -946,16 +954,188 @@ def test_ninguna_vista_escribe_fuera_del_archivo_de_firmas():
     # 2. Dinamico: correr las cuatro vistas y verificar que el arbol no cambio.
     vigilados = [vista_region.POR_VENTANA, vista_marcos.TSV, vista_marcos.JSON,
                  vista_juntura.RESUMEN, vista_juntura.DETALLE, vista_juntura.CAMBIADAS,
-                 vista_ejes.TSV, vista_region.POR_REGION / "BicC_Dm_264-563.tsv"]
+                 vista_ejes.TSV, vista_region.POR_REGION / "BicC_Dm_264-563.tsv",
+                 vista_quimeras._rutas("eficiencia_heredada")[0],
+                 vista_quimeras._rutas("eficiencia_heredada")[1],
+                 vista_homologia.RESUMEN_LECTURA, vista_homologia.RESUMEN,
+                 vista_homologia.CONTROLES,
+                 vista_homologia.F1 / "transferencia_HV.tsv.gz"]
     huellas = {p: hashlib.sha256(p.read_bytes()).hexdigest()
                for p in vigilados if p.is_file()}
     vista_region.ver("BicC_Dm_264-563", "BicC_Dm_922-1221")
     vista_marcos.ver()
     vista_juntura.ver()
     vista_ejes.ver()
+    if vista_quimeras._rutas("eficiencia_heredada")[0].is_file():
+        vista_quimeras.ver("eficiencia_heredada", cuantas=5)
+    if vista_homologia.RESUMEN_LECTURA.is_file():
+        vista_homologia.ver("HV")
+        vista_homologia.detalle("HV", "f_reciproco_con_nombre", cuantas=5)
     for p, h in huellas.items():
         igual(hashlib.sha256(p.read_bytes()).hexdigest(), h,
               "leer las vistas no modifico %s" % p.name)
+
+
+def test_las_quimeras_no_se_reordenan():
+    """El orden de la tabla es el del archivo, y el filtro no renumera (V2).
+
+    Es la forma de romper la regla de la linea que esta vista trae y las cinco de V1 no: los tres
+    objetivos son **las mismas quimeras ordenadas distinto**, asi que el primer puesto es la
+    respuesta de ese objetivo. Si la vista reordenara por una columna propia, estaria calculando
+    un criterio nuevo y presentandolo como el de O4.
+    """
+    import csv as _csv
+
+    import vista_quimeras
+
+    primeras, conjuntos = {}, {}
+    for objetivo in vista_quimeras.OBJETIVOS:
+        tsv, _ = vista_quimeras._rutas(objetivo)
+        if not tsv.is_file():
+            NO_CORRIDO.append("quimeras: no esta %s" % lectura.rel(tsv))
+            continue
+        d = vista_quimeras.ver(objetivo, cuantas=5)
+        igual(d["estado"], "listo", "el objetivo %s se lee" % objetivo)
+
+        with tsv.open(encoding="utf-8", newline="") as fh:
+            crudas = [f for f in _csv.DictReader(fh, delimiter="\t")
+                      if (f.get("quimera") or "").strip()]
+        igual(d["total_en_el_archivo"], len(crudas),
+              "%s: la vista devuelve las filas del archivo" % objetivo)
+        # El orden, fila por fila, es el del archivo.
+        igual([f["quimera"] for f in d["filas"]],
+              [f["quimera"] for f in crudas[:5]],
+              "%s: las primeras cinco salen en el orden del archivo" % objetivo)
+        igual([f["puesto_en_el_archivo"] for f in d["filas"]], [1, 2, 3, 4, 5],
+              "%s: el puesto es la posicion en el archivo" % objetivo)
+        primeras[objetivo] = crudas[0]["quimera"]
+        conjuntos[objetivo] = {f["quimera"] for f in crudas}
+
+    if len(conjuntos) > 1:
+        # Las mismas quimeras en los tres, y al menos dos primeros puestos distintos: eso es lo
+        # que hace que el orden sea el criterio y no una propiedad de la quimera.
+        valores = list(conjuntos.values())
+        check(all(v == valores[0] for v in valores),
+              "los tres objetivos traen exactamente las mismas quimeras")
+        check(len(set(primeras.values())) > 1,
+              "y el primer puesto cambia segun el objetivo: %s"
+              % ", ".join("%s=%s" % (k, v.split("__")[0]) for k, v in primeras.items()))
+
+    # El filtro recorta y NO renumera: si renumerara, el filtro seria un criterio.
+    if "eficiencia_heredada" in conjuntos:
+        f = vista_quimeras.ver("eficiencia_heredada", solo_con_alerta=True, cuantas=10)
+        if f["total_filtrado"]:
+            puestos = [x["puesto_en_el_archivo"] for x in f["filas"]]
+            igual(puestos, sorted(puestos), "el filtro conserva el orden del archivo")
+            check(puestos != list(range(1, len(puestos) + 1)) or f["total_filtrado"] ==
+                  f["total_en_el_archivo"],
+                  "y conserva el puesto original en vez de renumerar desde 1 (%s)"
+                  % puestos[:5])
+            check(all((x["alerta_juntura_nueva"] or "").strip() == "si" for x in f["filas"]),
+                  "el filtro de alerta devuelve solo las que la tienen")
+        # Un objetivo que no existe se rechaza con los que si.
+        try:
+            vista_quimeras.ver("no_existe_este_objetivo")
+            check(False, "un objetivo inexistente tendria que ser rechazado")
+        except ValueError as e:
+            check("eficiencia_heredada" in str(e),
+                  "y el error dice cuales son los objetivos validos")
+        # La advertencia del archivo viaja con la tabla.
+        d = vista_quimeras.ver("eficiencia_heredada", cuantas=1)
+        check(len(d["advertencia"]) > 40,
+              "la advertencia del archivo viaja con la tabla y no se pierde")
+        check(d["grilla"]["combinaciones_antes_de_podar"] >
+              d["grilla"]["combinaciones_admisibles"],
+              "la grilla declara cuanto podo: %s a %s"
+              % (d["grilla"]["combinaciones_antes_de_podar"],
+                 d["grilla"]["combinaciones_admisibles"]))
+
+
+def test_la_homologia_distingue_lo_preregistrado_de_lo_post_hoc():
+    """La cifra de cabecera es la variante preregistrada, no la que rinde mas (V2).
+
+    La ampliada se definio despues de ver los datos y da mas del doble de ORFs reciprocos.
+    Mostrarla de cabecera porque es mas grande seria elegir el numero despues de verlo, que es
+    lo que un preregistro existe para impedir.
+    """
+    import vista_homologia
+
+    if not vista_homologia.RESUMEN_LECTURA.is_file():
+        NO_CORRIDO.append("homologia: no esta %s"
+                          % lectura.rel(vista_homologia.RESUMEN_LECTURA))
+        return
+
+    d = vista_homologia.ver("HV")
+    igual(d["estado"], "listo", "la vista de homologia se lee")
+
+    cabecera = [v for v in d["variantes"] if v["es_la_de_cabecera"]]
+    igual(len(cabecera), 1, "hay exactamente una variante de cabecera")
+    igual(cabecera[0]["variante"], "estricta_preregistrada",
+          "y la de cabecera es la preregistrada")
+    igual(cabecera[0]["rotulo"], "preregistrada", "rotulada como tal")
+
+    post = next(v for v in d["variantes"] if v["variante"] == "ampliada_H_post_hoc")
+    igual(post["rotulo"], "post hoc", "y la otra queda rotulada post hoc")
+    # El punto entero: la post hoc rinde MAS y aun asi no es la de cabecera.
+    check(post["orfs_reciprocos"] > cabecera[0]["orfs_reciprocos"],
+          "la post hoc rinde mas ORF reciprocos (%s contra %s) y aun asi no es la de cabecera"
+          % (post["orfs_reciprocos"], cabecera[0]["orfs_reciprocos"]))
+
+    # El control positivo va junto a la cifra, con su veredicto tal como el archivo lo trae.
+    c = d["controles"]["positivo"]
+    check(c["pasa_estricta"] is not None,
+          "el control positivo declara si pasa la variante estricta")
+    check(len(c["lectura"]) > 40, "y viene con su lectura, no suelto")
+    sen = d["controles"]["senuelo"]["por_referencia"]
+    check(bool(sen), "el senuelo se muestra")
+
+    # La procedencia de esta vista no lleva modo ni motor, y lo dice.
+    igual([d["procedencia"]["modo"], d["procedencia"]["motor"]],
+          [lectura.NO_APLICA, lectura.NO_APLICA],
+          "una transferencia por homologia no pasa por el criterio de si-Fi: no aplica")
+    check(len(d["referencias_con_huella"]) >= 1,
+          "y el lugar del panel lo ocupan las referencias con su huella")
+
+    # El embudo cierra contra el resumen: la categoria final es «con nombre informativo».
+    if d["embudo"]:
+        con_nombre = next(e["n"] for e in d["embudo"]
+                          if e["categoria"] == "f_reciproco_con_nombre")
+        igual(con_nombre, cabecera[0]["con_nombre_informativo"],
+              "la ultima categoria del embudo es la cifra de ORF con nombre del resumen")
+        reciprocos = con_nombre + next(e["n"] for e in d["embudo"]
+                                       if e["categoria"] == "e_reciproco_sin_nombre")
+        igual(reciprocos, cabecera[0]["orfs_reciprocos"],
+              "y las dos categorias reciprocas suman los ORF reciprocos")
+
+    # El detalle se pagina: 131.683 filas no se vuelcan enteras.
+    det = vista_homologia.detalle("HV", "f_reciproco_con_nombre", cuantas=10)
+    igual(det["estado"], "listo", "el detalle se lee")
+    check(len(det["filas"]) <= 10, "y respeta el tope de filas pedido")
+    check(det["total_del_archivo"] > len(det["filas"]),
+          "el archivo tiene %s filas y la pagina trae %s"
+          % (det["total_del_archivo"], len(det["filas"])))
+    igual(det["total"], con_nombre if d["embudo"] else det["total"],
+          "el total filtrado por categoria es el del embudo")
+    # Un tope absurdo se recorta en vez de volcar el archivo entero.
+    grande = vista_homologia.detalle("HV", "f_reciproco_con_nombre", cuantas=99999)
+    check(len(grande["filas"]) <= 500,
+          "un tope absurdo se recorta a 500 y no vuelca el archivo entero")
+
+    for malo, que in (("no_existe", "una referencia inexistente"),):
+        try:
+            vista_homologia.ver(malo)
+            check(False, "%s tendria que ser rechazada" % que)
+        except ValueError:
+            check(True, "%s se rechaza" % que)
+    try:
+        vista_homologia.detalle("HV", "no_es_una_categoria")
+        check(False, "una categoria inexistente tendria que ser rechazada")
+    except ValueError as e:
+        check("f_reciproco_con_nombre" in str(e), "y el error lista las categorias validas")
+
+    # La v1 descartada no se lee ni se muestra como resultado.
+    check("DESCARTADA" in d["descartado"]["estado"],
+          "la v1 descartada se nombra como descartada y no como resultado")
 
 
 def test_el_servidor_sigue_atado_a_localhost():
@@ -1000,7 +1180,9 @@ def test_el_servidor_sigue_atado_a_localhost():
     # Las rutas de las vistas estan ruteadas, que es lo que hace que la verificacion de arriba
     # sea sobre el servidor que de verdad las sirve.
     for ruta in ("/api/vista/region", "/api/vista/marcos", "/api/vista/juntura",
-                 "/api/vista/ejes", "/api/vista/firmas", "/api/vista/firmar"):
+                 "/api/vista/ejes", "/api/vista/firmas", "/api/vista/firmar",
+                 "/api/vista/quimeras", "/api/vista/homologia",
+                 "/api/vista/homologia/detalle"):
         check(ruta in fuente, "el servidor rutea %s" % ruta)
     # Y la unica que escribe es POST: una vista de lectura detras de un GET no puede cambiar
     # nada ni aunque alguien la llame de mas.

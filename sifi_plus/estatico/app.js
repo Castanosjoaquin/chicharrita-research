@@ -975,6 +975,227 @@ async function verEjes() {
     + `<p class="nota">${esc(d.texto)}</p>` + d.reglas.map(bloque).join('');
 }
 
+// --- Vista F: el enumerador de quimeras (V2) ---
+//
+// El orden de la tabla es el del archivo y la columna «#» lo dice: es el puesto en el archivo,
+// no la posicion en lo que quedo despues de filtrar. Por eso al filtrar los numeros salen
+// salteados —11, 13, 19— y eso es correcto: el filtro recorta, no reordena.
+
+const Q = { objetivos: null, datos: null };
+
+async function cargarObjetivos() {
+  const d = await pedir('/api/vista/quimeras/objetivos');
+  $('#q-objetivo').innerHTML = d.objetivos.map((o) =>
+    `<option value="${esc(o.objetivo)}" ${o.en_disco ? '' : 'disabled'}>${esc(o.titulo)}${
+      o.en_disco ? '' : ' — no está'}</option>`).join('');
+  Q.objetivos = d.objetivos;
+  await verQuimeras(true);
+}
+
+async function verQuimeras(primera) {
+  const p = new URLSearchParams({
+    objetivo: $('#q-objetivo').value,
+    cuantas: '50',
+    izquierda: $('#q-izq').value || '',
+    derecha: $('#q-der').value || '',
+    l1: $('#q-l1').value || '',
+    alerta: $('#q-alerta').checked ? '1' : '',
+  });
+  const d = await pedir('/api/vista/quimeras?' + p.toString());
+  if (d.estado !== 'listo') { $('#salida-quimeras').innerHTML = noCorrido(d); return; }
+  Q.datos = d;
+
+  if (primera) {
+    const op = (vals) => '<option value="">— todos —</option>'
+      + vals.map((v) => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+    $('#q-izq').innerHTML = op(d.izquierdas);
+    $('#q-der').innerHTML = op(d.derechas);
+    $('#q-l1').innerHTML = op(d.l1_posibles.map(String));
+  }
+
+  const g = d.grilla;
+  const obj = (Q.objetivos || []).find((o) => o.objetivo === d.objetivo) || {};
+
+  $('#salida-quimeras').innerHTML = sello(d.procedencia)
+    // La advertencia del archivo, ARRIBA de la tabla. Califica todas las columnas de
+    // eficiencia: una tabla ordenada por eficiencia invita a leer el primer puesto como una
+    // recomendacion, y no lo es.
+    + (d.advertencia ? `<div class="aviso mal"><p><b>Lo que el archivo advierte sobre estas
+        cifras:</b> ${esc(d.advertencia)}</p>
+      <p class="nota">Califica todas las columnas de eficiencia de esta tabla. El primer puesto
+        de un objetivo <b>no es una recomendación</b>.</p></div>` : '')
+    + `<p class="nota"><b>${esc(obj.titulo || d.titulo)}</b> — ${esc(d.pregunta)}.</p>
+      <ul class="kpis">
+        <li><span class="n">${num(g.combinaciones_antes_de_podar || 0)}</span>
+          <span class="k">combinaciones que recorre la grilla</span></li>
+        <li class="kpi-dest"><span class="n">${num(g.combinaciones_admisibles || 0)}</span>
+          <span class="k">admisibles, que son las que están en el archivo</span></li>
+        <li><span class="n">${num(d.plegados || 0)}</span><span class="k">plegados que costó</span></li>
+        <li class="${d.con_alerta_de_juntura_nueva ? 'kpi-mal' : ''}">
+          <span class="n">${num(d.con_alerta_de_juntura_nueva)}</span>
+          <span class="k">con alerta que fabrica el empalme</span></li>
+      </ul>
+      <p class="nota">Grilla de paso ${g.paso}, fragmento izquierdo de ${g.l1_min} a ${g.l1_max} nt,
+        largo total ${g.largo_total} nt. <b>El orden es el del archivo:</b> ${esc(d.orden)}</p>
+      <p class="nota">Mostrando ${d.filas.length} de ${num(d.total_filtrado)}${
+        d.total_filtrado !== d.total_en_el_archivo
+          ? ` filtradas (de ${num(d.total_en_el_archivo)} en el archivo)` : ''}.</p>`
+    + `<div class="tabla-marco"><table>
+      <thead><tr><th class="n" title="puesto en el archivo, no en lo filtrado">#</th>
+        <th>Quimera</th><th class="n">izq</th><th class="n">der</th><th class="n">nt</th>
+        <th class="n">ef. sueltas</th><th class="n">ef. heredadas</th><th class="n">Δ vs suma</th>
+        <th class="n">cambiaron</th><th class="n">ef. juntura</th><th class="n">fabricados ≥19</th>
+        <th>refs fabricadas</th><th>alerta nueva</th><th>en el vector</th></tr></thead>
+      <tbody>${d.filas.map((f) => `<tr class="${
+        (f.alerta_juntura_nueva || '').trim() === 'si' ? 'fila-alerta' : ''}">
+        <td class="n">${f.puesto_en_el_archivo}</td>
+        <td><code>${esc(f.quimera)}</code><br><span class="nota">${esc(f.eje_izq)} + ${
+          esc(f.eje_der)}</span></td>
+        <td class="n">${f.a1}<span class="no">+${f.l1}</span></td>
+        <td class="n">${f.a2}<span class="no">+${f.l2}</span></td>
+        <td class="n">${num(f.largo_total_nt || 0)}</td>
+        <td class="n">${f.ef_fragmento_izq_solo}+${f.ef_fragmento_der_solo}=${f.suma_de_las_partes}</td>
+        <td class="n"><b>${f.ef_heredadas}</b></td>
+        <td class="n">${f.delta_heredadas_menos_suma > 0 ? '+' : ''}${f.delta_heredadas_menos_suma}</td>
+        <td class="n">${f.heredadas_que_cambiaron}</td>
+        <td class="n">${f.ef_juntura}</td>
+        <td class="n">${f.fabricados_ge19_refs}</td>
+        <td>${f.fabricados_refs.map(esc).join(', ') || '<span class="no">ninguna</span>'}</td>
+        <td>${(f.alerta_juntura_nueva || '').trim() === 'si'
+          ? '<span class="estado-bloqueante">sí</span>' : '<span class="no">no</span>'}</td>
+        <td>${esc(f.existe_en_el_genoma_del_vector)}</td>
+      </tr>`).join('')}</tbody></table></div>
+      <p class="nota">La columna <b>#</b> es el puesto en el archivo. Al filtrar los números
+        salen salteados a propósito: el filtro recorta las filas y <b>no las renumera</b>, porque
+        renumerar convertiría el filtro en un criterio.</p>
+      <div class="aviso ojo"><p><b>Lo que esta vista no muestra.</b> ${esc(d.grilla_fina.nota)}</p>
+        <p class="nota">El archivo es <code>${esc(d.grilla_fina.archivo)}</code>${
+          d.grilla_fina.en_disco ? ' y está en disco' : ' y no está en disco'}.</p></div>`;
+}
+
+// --- Vista G: la transferencia por homologia (V2) ---
+
+async function cargarHomologia() {
+  const d = await pedir('/api/vista/homologia?ref=HV');
+  if (d.estado !== 'listo') { $('#salida-homologia').innerHTML = noCorrido(d); return; }
+  $('#h-ref').innerHTML = d.referencias_disponibles.map((r) =>
+    `<option value="${esc(r.id)}">${esc(r.nombre)}</option>`).join('');
+  $('#h-ref').value = d.ref;
+  pintarHomologia(d);
+}
+
+async function verHomologia() {
+  const d = await pedir('/api/vista/homologia?ref=' + encodeURIComponent($('#h-ref').value));
+  if (d.estado !== 'listo') { $('#salida-homologia').innerHTML = noCorrido(d); return; }
+  pintarHomologia(d);
+}
+
+function pintarHomologia(d) {
+  const c = d.controles.positivo;
+  const maxE = Math.max(...(d.embudo || [{ n: 1 }]).map((e) => e.n));
+
+  // El embudo como barras: seis categorias excluyentes que se leen de arriba hacia abajo.
+  const embudo = !d.embudo ? '' : `<div class="embudo">${d.embudo.map((e) => `
+    <div class="embudo-fila ${e.categoria === 'f_reciproco_con_nombre' ? 'embudo-fin' : ''}">
+      <span class="embudo-lab">${esc(e.categoria)}</span>
+      <span class="embudo-barra"><i style="width:${(100 * e.n / maxE).toFixed(1)}%"></i></span>
+      <span class="embudo-n">${num(e.n)}</span>
+      <span class="nota">${esc(e.que_es)}</span>
+    </div>`).join('')}</div>`;
+
+  const variante = (v) => `<figure class="${v.es_la_de_cabecera ? 'var-pre' : 'var-post'}">
+    <figcaption><b>${esc(v.titulo)}</b>
+      <span class="${v.es_la_de_cabecera ? 'estado-aceptada' : 'estado-pendiente'}">${
+        esc(v.rotulo)}</span><br><span class="nota">${esc(v.que_es)}</span></figcaption>
+    <ul class="kpis">
+      <li><span class="n">${num(v.orfs_reciprocos || 0)}</span><span class="k">ORF recíprocos</span></li>
+      <li><span class="n">${num(v.con_nombre_informativo || 0)}</span>
+        <span class="k">con nombre informativo</span></li>
+      <li><span class="n">${num(v.en_banda_ge90_y_cobertura_alta || 0)}</span>
+        <span class="k">con nombre, ≥90 % de identidad y cobertura alta</span></li>
+    </ul>
+    <p class="nota">Por banda de identidad: ${Object.entries(v.por_banda_de_identidad)
+      .map(([k, n]) => `${esc(k)} <b>${num(n)}</b>`).join(' · ')}</p>
+    <p class="nota">Por cobertura: ${Object.entries(v.por_cobertura)
+      .map(([k, n]) => `${esc(k)} <b>${num(n)}</b>`).join(' · ')}</p>
+    <p class="nota">Las dos referencias coinciden en el nombre de
+      <b>${num(v.contraste_MQ_vs_HV.coinciden || 0)}</b> de
+      ${num(v.contraste_MQ_vs_HV.orfs_con_nombre_informativo_en_las_dos || 0)} ORF
+      (${esc(String(v.contraste_MQ_vs_HV.pct ?? '—'))} %).</p>
+  </figure>`;
+
+  $('#salida-homologia').innerHTML = sello(d.procedencia)
+    // Los controles van ARRIBA, junto a la cifra. El positivo no pasa la variante estricta y eso
+    // califica la lectura de toda la vista.
+    + `<div class="aviso ${c.pasa_estricta === false ? 'mal' : 'bien'}">
+        <p><b>Control positivo:</b> <code>${esc(c.orf)}</code> — ${esc(c.esperado)},
+          ${esc(String(c.pident))} % de identidad.
+          Pasa la estricta: <b>${c.pasa_estricta ? 'sí' : 'NO'}</b>
+          (cae en <code>${esc(c.categoria_estricta)}</code>) ·
+          pasa la ampliada: <b>${c.pasa_ampliada ? 'sí' : 'no'}</b>.</p>
+        <p class="nota">${esc(c.lectura)}</p></div>
+      <div class="aviso bien"><p><b>Señuelo:</b> ${Object.entries(d.controles.senuelo.por_referencia)
+        .map(([k, v]) => `${esc(k)} ${v.con_hit}/${num(v.consultas)}`).join(' · ')} con hit.</p>
+        <p class="nota">${esc(d.controles.senuelo.lectura)}</p></div>
+      <p class="nota"><b>${esc(d.referencia_nombre)}</b> · ${num(d.contigs || 0)} contigs,
+        ${num(d.orfs || 0)} ORF, ${num(d.total_filas_del_detalle || 0)} filas de detalle ·
+        ${esc(d.diamond)} · ${Object.entries(d.parametros || {})
+          .map(([k, v]) => `${esc(k)} ${esc(String(v))}`).join(', ')}</p>
+      <h3>El embudo: de contig a nombre de gen</h3>${embudo}
+      <h3>Las dos variantes</h3>
+      <div class="aviso ojo"><p><b>${esc(d.nota_de_las_variantes)}</b></p></div>
+      <div class="dos-col">${d.variantes.map(variante).join('')}</div>
+      <h3>El detalle por ORF</h3>
+      <div class="fila" style="max-width:860px">
+        <div><label for="h-cat">Categoría</label><select id="h-cat">${
+          d.embudo.map((e) => `<option value="${esc(e.categoria)}" ${
+            e.categoria === 'f_reciproco_con_nombre' ? 'selected' : ''}>${esc(e.categoria)} — ${
+            num(e.n)}</option>`).join('')}</select></div>
+        <div><label for="h-busca">Buscar en el producto o el contig</label>
+          <input type="text" id="h-busca" placeholder="p. ej. bicaudal"></div>
+      </div>
+      <div id="salida-h-detalle"></div>
+      <p class="nota">Un resultado que su propio autor declaró no leíble no se muestra como
+        resultado: <code>${esc(d.descartado.archivo)}</code> — ${esc(d.descartado.estado)}</p>`;
+
+  $('#h-cat').onchange = verDetalleHomologia;
+  $('#h-busca').oninput = () => {
+    clearTimeout(window._tH);
+    window._tH = setTimeout(verDetalleHomologia, 300);
+  };
+  verDetalleHomologia();
+}
+
+async function verDetalleHomologia() {
+  const p = new URLSearchParams({
+    ref: $('#h-ref').value, categoria: $('#h-cat').value,
+    contiene: $('#h-busca').value || '', cuantas: '50',
+  });
+  const d = await pedir('/api/vista/homologia/detalle?' + p.toString());
+  if (d.estado !== 'listo') { $('#salida-h-detalle').innerHTML = noCorrido(d); return; }
+  if (!d.filas.length) {
+    $('#salida-h-detalle').innerHTML = '<div class="vacio">Ninguna fila con ese filtro.</div>';
+    return;
+  }
+  $('#salida-h-detalle').innerHTML = `
+    <p class="nota">${esc(d.que_es)}. Mostrando ${d.filas.length} de ${num(d.total)}
+      (${num(d.total_del_archivo)} filas en el archivo, que no se vuelcan enteras).</p>
+    <div class="tabla-marco"><table>
+      <thead><tr><th>Contig</th><th class="n">aa</th><th class="n">ORF</th>
+        <th>Producto de la referencia</th><th>Nombre normalizado</th><th class="n">identidad</th>
+        <th class="n">cobertura</th><th>banda</th></tr></thead>
+      <tbody>${d.filas.map((f) => `<tr>
+        <td><code>${esc(f.contig)}</code></td>
+        <td class="n">${f.orf_aa ?? '—'}</td>
+        <td class="n">${f.orf_ini ?? '—'}–${f.orf_fin ?? '—'} ${esc(f.orf_hebra)}</td>
+        <td>${esc(f.ref_producto || '—')}</td>
+        <td>${esc(f.nombre_normalizado || '—')}</td>
+        <td class="n">${esc(f.pident || '—')}</td>
+        <td class="n">${esc(f.cob_orf || '—')} <span class="nota">${esc(f.rotulo_cobertura || '')}</span></td>
+        <td>${esc(f.banda_identidad || '—')}</td>
+      </tr>`).join('')}</tbody></table></div>`;
+}
+
 // --- Vista D: la bandeja de firmas, la unica que escribe ---
 
 function fichaDeFirma(f) {
@@ -1074,7 +1295,7 @@ async function verFirmas() {
 
 function verVista(cual) {
   for (const v of ['diseno', 'off', 'rangos', 'regionv', 'marcos', 'juntura', 'ejes',
-    'firmas']) {
+    'quimeras', 'homologia', 'firmas']) {
     $('#vista-' + v).hidden = (v !== cual);
     $('#tab-' + v).setAttribute('aria-selected', String(v === cual));
   }
@@ -1084,6 +1305,8 @@ function verVista(cual) {
   const carga = {
     regionv: cargarInventarioRegiones, marcos: verMarcos, juntura: verJuntura,
     ejes: verEjes, firmas: verFirmas,
+    quimeras: () => (Q.objetivos ? verQuimeras(false) : cargarObjetivos()),
+    homologia: cargarHomologia,
   }[cual];
   if (carga) {
     carga().catch((e) => {
@@ -1175,6 +1398,15 @@ async function iniciar() {
   // Vista A: cambiar cualquiera de los dos desplegables redibuja el par.
   $('#par-a').onchange = () => verRegiones();
   $('#par-b').onchange = () => verRegiones();
+
+  // Vista F: el objetivo y los tres filtros. Cambiar el objetivo cambia el ORDEN, que es el
+  // criterio; los otros tres solo recortan.
+  $('#q-objetivo').onchange = () => verQuimeras(false);
+  ['#q-izq', '#q-der', '#q-l1'].forEach((s) => { $(s).onchange = () => verQuimeras(false); });
+  $('#q-alerta').onchange = () => verQuimeras(false);
+
+  // Vista G: la referencia.
+  $('#h-ref').onchange = () => verHomologia();
 
   $('#btn-panel').onclick = () => $$('.base').forEach((i) => {
     i.checked = S.arranque.bases.find((b) => b.id === i.value).en_panel;

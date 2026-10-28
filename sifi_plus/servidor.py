@@ -46,8 +46,10 @@ import proyecto
 # que escribe es `vista_firmas`, y escribe en el archivo de firmas y en ningun otro lado.
 import vista_ejes
 import vista_firmas
+import vista_homologia
 import vista_juntura
 import vista_marcos
+import vista_quimeras
 import vista_region
 
 ESTATICO = AQUI / "estatico"
@@ -177,7 +179,36 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(vista_ejes.ver())
             if ruta == "/api/vista/firmas":
                 return self._json(vista_firmas.ver())
+            if ruta == "/api/vista/quimeras":
+                q = parse_qs(self.path.partition("?")[2])
+                uno = lambda k, d="": (q.get(k) or [d])[0]  # noqa: E731
+                return self._json(vista_quimeras.ver(
+                    uno("objetivo", "eficiencia_heredada"),
+                    desde=int(uno("desde", "0") or 0),
+                    cuantas=int(uno("cuantas", "50") or 50),
+                    izquierda=uno("izquierda"), derecha=uno("derecha"),
+                    solo_con_alerta=uno("alerta") == "1",
+                    l1=int(uno("l1")) if uno("l1") else None))
+            if ruta == "/api/vista/quimeras/objetivos":
+                return self._json(vista_quimeras.inventario())
+            if ruta == "/api/vista/homologia":
+                q = parse_qs(self.path.partition("?")[2])
+                return self._json(vista_homologia.ver((q.get("ref") or ["HV"])[0]))
+            if ruta == "/api/vista/homologia/detalle":
+                q = parse_qs(self.path.partition("?")[2])
+                uno = lambda k, d="": (q.get(k) or [d])[0]  # noqa: E731
+                return self._json(vista_homologia.detalle(
+                    uno("ref", "HV"), uno("categoria", "f_reciproco_con_nombre"),
+                    desde=int(uno("desde", "0") or 0),
+                    cuantas=int(uno("cuantas", "50") or 50),
+                    contiene=uno("contiene")))
             return self._error(404, "no hay ruta %s" % ruta)
+        except ValueError as e:
+            # Un parametro de consulta mal escrito —un objetivo que no existe, una referencia
+            # que no esta— es un pedido malformado y no un servidor roto: 400 con el mensaje,
+            # que ya enumera los valores validos. Antes caia en el 500 de abajo junto con los
+            # errores de verdad, y mezclar las dos cosas esconde las que importan.
+            return self._error(400, str(e))
         except Exception as e:  # noqa: BLE001
             traceback.print_exc()
             return self._error(500, "%s: %s" % (type(e).__name__, e))
