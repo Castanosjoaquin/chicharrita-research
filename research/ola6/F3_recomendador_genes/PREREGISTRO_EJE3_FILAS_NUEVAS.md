@@ -96,3 +96,49 @@ completas están en `resultados/referencias_recuperacion.tsv`.
 Sólo los identificadores, largos y verificaciones de organismo del paso anterior. **No se tamizó ninguna de
 estas secuencias** ni se calculó ninguna fracción para ellas. Sí se conoce, por el paso 1 de este issue, que
 `DE-03` contiene los cebadores del paper y que `CI-07` y `HE-04` no tienen secuencia.
+
+---
+
+## Enmienda 1 (2026-10-28): las seis filas del catálogo con conteos contra el panel de cinco
+
+Escrita **antes** de tamizarlas. Cubre `CI-01`, `CI-02`, `CI-03`, `CI-10`, `DE-02` y `DE-05`: las seis que traen
+`ventanas_21nt` en el catálogo de `C5` contra **cinco** referencias y que no se habían re-tamizado contra el panel
+de seis (de las ocho originales, `DM-05` y `DM-06` ya están en `eje3_REPORT.md`).
+
+### El hallazgo que motiva la enmienda, y que ya se puede declarar sin tamizar nada
+
+`C5` usó **secuencias sustitutas**, declaradas en `secuencia_usada`, y en cuatro de las seis esa sustituta es de
+***Macrosteles quadrilineatus***: `CI-03` (`ATPsynBeta_Mquadrilineatus_XM_054410120`), `CI-10`
+(`TnC_Mquadrilineatus_XM_054409464`), `DE-02` (`Ruvbl1_Mquadrilineatus_XM_054402769`) y `DE-05`
+(`XPO1_Mquadrilineatus_XM_054404977`). **El panel de cinco de `C5` incluye a *M. quadrilineatus*.** El resultado
+es que esas cuatro filas publican **el 100 % de sus ventanas como coincidencia perfecta** contra esa referencia
+—1835/1835, 663/663, 1487/1487 y 4409/4409 `[M]`— que no es un off-target: es la secuencia coincidiendo consigo
+misma. `[H]` No es un error de `C5`, que declaró la sustitución en cada fila; es lo que pasa cuando el panel
+contiene la especie de la que se tomó prestada la secuencia, y es un argumento más del tipo que `D83` ya había
+señalado: equivocarse de panel produce números plausibles.
+
+El panel de seis de `D76` **no** incluye a *M. quadrilineatus*, así que re-tamizar quita ese artefacto. Es la razón
+principal para hacerlo, y queda escrita antes de ver el resultado.
+
+### Qué se hace
+
+La misma medida de `D97` y de este preregistro §2, sobre las secuencias de
+`research/ola3/C5_estructura_genes_ingenieria_inversa/resultados/candidatos_c5.fa` (versionadas, públicas, una por
+fila), con el mismo motor, panel y parámetros, el mismo control con `eth_Dm` y el mismo nulo de 50 permutaciones
+(semilla `20261030`).
+
+**Rótulo de lectura: `proxy_sustituto_declarado`.** Es un escalón más débil que el `proxy_especie_del_paper` de
+las cuatro filas anteriores, y conviene no confundirlos: acá la secuencia no es ni la de *D. maidis* ni la de la
+especie del paper, sino la de una tercera especie que `C5` eligió como sustituta. Se publica en la misma columna
+`eje3_lectura` y **no es comparable** con los otros dos grupos.
+
+### Qué le pasa al orden, anotado antes de calcular
+
+Las seis están hoy en las cohortes A (`CI-01`, `CI-02`, `CI-03`, `DE-05` no; ver abajo) o B según su eje 2, y al
+recibir el eje 3 pasan a **A+3** o **B+3**. Consecuencia prevista: **la cohorte A puede quedar casi vacía**, porque
+`CI-01`, `CI-02`, `CI-03` son hoy su empate de primer puesto y las tres reciben el eje. Si eso pasa, el primer
+puesto de A lo heredan las filas que queden, y **eso no es un ascenso por mérito**: es que sus compañeras cambiaron
+de cohorte. Se dice así en el informe. Las cinco filas `DM` no se mueven.
+
+**Lo que no se toca:** el catálogo de `C5` no se edita, sus columnas `panelC5_NO_es_el_de_seis__…` siguen
+publicándose fuera del puntaje, y los pesos de `D87` no cambian.
