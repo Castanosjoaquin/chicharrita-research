@@ -43,6 +43,17 @@ modelo, el que verifica nunca. Y el limite declarado es el mismo: **la verificac
 que las palabras salen de la ficha, no que la frase sea cierta.** Una pieza real puesta en
 un orden equivocado pasa el chequeo lexico. Eso no lo arregla ningun script.
 
+**Limitacion vigente (issue #44, `D96`): hoy `F2` solo puede resumir el nombre de producto.**
+Los terminos GO, los dominios conservados y los papers que arriba figuran como entrada
+**no estan en ninguna salida versionada**: `F1` entrega nombre de producto, identidad,
+cobertura y banda, y nada mas `[M]`. El redactor y el verificador estan listos para los
+tres campos, pero sobre los 4.122 parrafos reales esos campos llegan vacios, asi que cada
+parrafo dice como mucho de que producto es el locus y con que identidad se alinea. Un parrafo
+corto no es un fallo del modulo: es lo unico que la fuente sostiene. Lo que **no** se hace
+para llenarlo: inferir una funcion del nombre del gen («V-ATPase» no se convierte en
+«letalidad»); sin fuente abierta no entra (`CLAUDE.md`). Ampliar la entrada exige una fuente
+nueva con su version y su verificacion de procedencia declaradas **antes** de correr.
+
 **Una frase, una fuente, y la fuente es la que corresponde.** La identidad y la cobertura
 del alineamiento son medicion nuestra `[M]`, no un dato de RefSeq, asi que viajan con la
 fuente de la corrida que las produjo y no con la accesion del ortologo; la accesion

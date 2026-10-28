@@ -1553,3 +1553,16 @@ no fallaba por exigente: fallaba porque su aritmética contradecía el principio
 preregistro enunciaba («ausencia no es conservación cero»). `[H]` Cuando un criterio preregistrado
 deja casi vacío un eje, conviene comprobar antes si el defecto está en el criterio o en cómo se
 implementó, porque sólo el segundo caso se arregla sin tocar nada de lo preregistrado.
+
+## Grilla fina del enumerador de quimeras de `O4` (`--paso 1`) — descartada por costo, y el costo queda escrito (2026-10-28, `D95`)
+
+Lo que se intentó: correr la retícula de paso 1. Lo que se midió: el enumerador **se detuvo y lo dijo**, porque la grilla pide 129.761.738 plegados (129.430.632 combinaciones admisibles de 2.133.868.568, más 331.106 fragmentos), no los 136.446 que decía la entrada 48. El costo de las cuatro retículas, para que nadie lo vuelva a estimar:
+
+| paso | plegados | tiempo en una máquina a 21 plegados/s |
+| ---: | ---: | --- |
+| 1 | 129.761.738 | ~71 días |
+| 2 | 16.816.657 | ~9 días |
+| 5 | 1.177.056 | ~15 h |
+| 10 | 173.289 | ~2,3 h de plegado puro; unas 5 h medidas con el enumerador |
+
+`[M]` Las cifras de plegados salen de `research/ola6/O4_enumerador_quimeras/REPORT.md` y de `research/ola6/R12_corridas_pendientes/REPORT.md`; las horas son `plegados / 21` y sólo el paso 10 se corrió. **Lo que se conserva como resultado:** el paso 10 movió el primer puesto respecto del paso 50 por una ventana de 65, y el orden de esta grilla no es estable al paso. **Para reabrir:** `--paso 2` repartido, y sólo si el conteo vuelve a usarse como argumento entre candidatos (`D65`).
