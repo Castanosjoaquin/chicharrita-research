@@ -1,0 +1,85 @@
+{
+ "P4": {
+  "molecula_Rpn6_GITV01": {
+   "fiel": 30,
+   "corregido": 26
+  },
+  "GHCC01050726.1 (Argentina)": {
+   "hebra": "+",
+   "posiciones_distintas_de_300": [
+    21,
+    261
+   ],
+   "fiel": {
+    "eficientes": 29,
+    "conservadas": 27,
+    "perdidas": 3,
+    "ganadas": 2
+   },
+   "corregido": {
+    "eficientes": 25,
+    "conservadas": 23,
+    "perdidas": 3,
+    "ganadas": 2
+   }
+  },
+  "GCWP01019967.1 (Illinois)": {
+   "hebra": "-",
+   "posiciones_distintas_de_300": [
+    21,
+    261
+   ],
+   "fiel": {
+    "eficientes": 29,
+    "conservadas": 27,
+    "perdidas": 3,
+    "ganadas": 2
+   },
+   "corregido": {
+    "eficientes": 25,
+    "conservadas": 23,
+    "perdidas": 3,
+    "ganadas": 2
+   }
+  }
+ },
+ "P5": {
+  "ventanas_con_acierto_por_criterio": {
+   "perfecto_21": 0,
+   "perfecto_ge19": 0,
+   "mm1_21": 12
+  },
+  "limpieza": {
+   "solo perfecto_21": {
+    "conservadora": 1.0,
+    "mecanicista": 1.0,
+    "limpias_y_eficientes": 26,
+    "con_acierto": 0
+   },
+   "solo perfecto_ge19": {
+    "conservadora": 1.0,
+    "mecanicista": 1.0,
+    "limpias_y_eficientes": 26,
+    "con_acierto": 0
+   },
+   "perfecto_21 + ge19 (sin mm1)": {
+    "conservadora": 1.0,
+    "mecanicista": 1.0,
+    "limpias_y_eficientes": 26,
+    "con_acierto": 0
+   },
+   "los tres (oficial)": {
+    "conservadora": 0.991,
+    "mecanicista": 0.9989,
+    "limpias_y_eficientes": 25,
+    "con_acierto": 12
+   }
+  },
+  "BicC_922_1221_publicado_O3": {
+   "conservadora": 0.9884,
+   "mecanicista": 0.9974,
+   "limpias_y_eficientes": 22,
+   "con_acierto": 19
+  }
+ }
+}
