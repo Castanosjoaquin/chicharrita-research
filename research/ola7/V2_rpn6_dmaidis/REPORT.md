@@ -96,6 +96,40 @@ puntajes casi iguales (819, 816, 813 y 813) que no se pueden desempatar. Confirm
 `GITV01002972.1` no debe tratarse como candidato, y de paso reproduce la lección de empates que
 `F1` ya había medido sobre este mismo transcriptoma.
 
+## 3ter. Conservación entre los tres transcriptomas (eje 4), medida después de §3bis
+
+Esta sección se agregó **después** de los resultados de §2 y §3 y **no estaba en el §3 del
+preregistro**: es una medición adicional pedida al ver el resultado, no un criterio fijado
+antes. Se reporta como exploratoria en ese sentido. Método: coincidencia exacta de las ventanas de
+21 nt de la región 325-624 contra los tres TSA, en las dos hebras, con Aho-Corasick `[M]`.
+
+| Fuente | Ventanas idénticas | Eficientes idénticas (marco contexto, 28) |
+| --- | ---: | ---: |
+| `GITV01` (Ohio) | 280 de 280 | 28 de 28 |
+| `GHCC01` (Pergamino, Argentina) | 238 de 280 | **22 de 28 (79 %)** |
+| `GCWP01` (Illinois) | 238 de 280 | **22 de 28 (79 %)** |
+
+**La fila de Ohio es circular**: el contig sale de ese transcriptoma, así que coincide consigo
+mismo por construcción. No cuenta como conservación. Las dos que cuentan son Argentina e Illinois.
+
+`[M]` Cada transcriptoma aporta **un solo contig** que cubre la región (`GHCC01050726.1`,
+`GCWP01019967.1`), y el conjunto de ventanas ausentes es **el mismo** en los dos. Son **dos
+posiciones divergentes**, 21 y 261 de la región, y las dos son **cambios sinónimos en tercera
+posición de codón** (AGA→AGG, Arg→Arg; TGC→TGT, Cys→Cys). Cada SNP toca 21 ventanas
+(sin solape): 42 de 280 afectadas, 238 intactas (85,0 %). Seis de las 26 eficientes en marco
+molécula caen sobre un SNP.
+
+`[H]` Que los dos SNPs sean **idénticos en Argentina y en Illinois** y que **los dos sean
+sinónimos** es compatible con variación real entre poblaciones y no con error de secuenciación,
+pero con dos fuentes y dos posiciones no se puede afirmar. Illinois es 454 y esa tecnología tiene
+errores de homopolímero que `C8` ya documentó.
+
+**Contra `BicC_Dm` 922-1221, en el mismo marco contexto** (`C8`): 32 de 36 eficientes idénticas
+en los tres transcriptomas, 36 de 36 en el argentino. `Rpn6` 325-624: **22 de 28 en el argentino
+y en el de Illinois**. `BicC_Dm` conserva mejor (89 % contra 79 %), y la diferencia es
+**de dos SNPs sinónimos que a `BicC` no le tocan**. Es el único eje de los medidos en que
+`BicC_Dm` 922-1221 supera a esta región.
+
 ## 4. Lo que este resultado NO autoriza a decir
 
 1. ~~**La ortología no está confirmada.** Es la ida sin la vuelta.~~ **Cerrado en §3bis para
@@ -115,8 +149,8 @@ puntajes casi iguales (819, 816, 813 y 813) que no se pueden desempatar. Confirm
    Las 26 ventanas son una hipótesis sobre eficacia, no una prueba.
 6. **La región no está en el inventario de alertas de `M6`**, así que la compuerta de `D72` la
    rechaza como recomendación. Es un resultado de medición, no una región recomendada.
-7. El contig viene de un TSA: no hay estructura exónica que verificar, y el eje 4
-   (conservación entre los tres transcriptomas) **no se corrió**.
+7. El contig viene de un TSA: no hay estructura exónica que verificar. ~~El eje 4 (conservación
+   entre los tres transcriptomas) **no se corrió**.~~ Corrido en §3ter, como medición posterior.
 
 ## 5. Reproducibilidad
 
