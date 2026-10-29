@@ -133,65 +133,81 @@ def fig1():
     return fig(W, H, "".join(b))
 
 
-# ---------------------------------------------------------------- figura 2
+# ---------------------------------------------------------------- figura 2 (rho, compacta)
 def fig2():
-    W, H = 253, 84
-    filas = [("BicC_Dm", 212), ("MP_MRFV", 133), ("ATPaseD_Dm", 42), ("CP_MRFV", 32)]
-    esc = 0.62
-    x0 = 64
-    b = []
-    b.append(f'<rect x="0" y="0" width="9" height="3.8" fill="{VERDE}"/>')
-    b.append(T(11.5, 4.2, "nuestro port en Python", 16, 600, fill=VERDE))
-    b.append(f'<line x1="118" y1="-0.4" x2="118" y2="4.6" stroke="{INK}" stroke-width="1.6"/>')
-    b.append(T(121.5, 4.2, "marca: programa original", 16, 500, fill=INK))
-    y = 14
-    for g, n in filas:
-        b.append(T(0, y + 6.6, g, 19, 500, mono=True))
-        w = n * esc
-        b.append(f'<rect x="{x0}" y="{y}" width="{w:.1f}" height="7" fill="{VERDE}"/>')
-        b.append(f'<line x1="{x0 + w:.1f}" y1="{y - 2}" x2="{x0 + w:.1f}" y2="{y + 9}" stroke="{INK}" stroke-width="1.6"/>')
-        b.append(T(x0 + w + 4, y + 6.8, f"{n} = {n}", 19, 700, fill=VERDE_OSC, mono=True))
-        y += 17
-    return fig(W, H, "".join(b))
-
-
-# ---------------------------------------------------------------- figura 3
-def fig3():
-    W, H = 253, 80
+    """Los dos intervalos de rho contra el 0 y el 0,35, sin eje numerado: las dos
+    referencias con nombre alcanzan para leerlos y el panel 02 no tiene mas de 36 mm."""
+    W, H = 253, 36
     a, c = -0.6, 0.8
     x0, x1 = 6, 247
 
     def X(v):
         return x0 + (v - a) / (c - a) * (x1 - x0)
     b = []
-    b.append(f'<line x1="{X(0)}" y1="9" x2="{X(0)}" y2="62" stroke="{INK}" stroke-width=".9" stroke-dasharray="2 1.6"/>')
+    b.append(f'<line x1="{X(0)}" y1="8" x2="{X(0)}" y2="27" stroke="{INK}" stroke-width=".9" stroke-dasharray="2 1.6"/>')
     b.append(T(X(0), 4.2, "0 · sin relación", 15, 500, "middle", fill=GRIS))
-    b.append(f'<line x1="{X(0.35)}" y1="9" x2="{X(0.35)}" y2="62" stroke="{VERDE}" stroke-width=".9" stroke-dasharray="2 1.6"/>')
+    b.append(f'<line x1="{X(0.35)}" y1="8" x2="{X(0.35)}" y2="27" stroke="{VERDE}" stroke-width=".9" stroke-dasharray="2 1.6"/>')
     b.append(T(X(0.35) + 2, 4.2, "0,35 · criterio bueno", 15, 600, "start", fill=VERDE))
 
-    def fila(y, lo, mid, hi, color, rot, sub):
+    def fila(y, lo, mid, hi, color, rot):
         s = (f'<line x1="{X(lo)}" y1="{y}" x2="{X(hi)}" y2="{y}" stroke="{color}" stroke-width="1.8"/>'
              f'<line x1="{X(lo)}" y1="{y - 2.6}" x2="{X(lo)}" y2="{y + 2.6}" stroke="{color}" stroke-width="1.8"/>'
              f'<line x1="{X(hi)}" y1="{y - 2.6}" x2="{X(hi)}" y2="{y + 2.6}" stroke="{color}" stroke-width="1.8"/>'
              f'<rect x="{X(mid) - 2.6}" y="{y - 2.6}" width="5.2" height="5.2" fill="{color}"/>')
-        s += T(X(lo) - 1.5, y - 5.2, rot, 17, 700, "start", fill=color, mono=True, halo=True)
-        s += T(X(lo) - 1.5, y + 9, sub, 15, 500, "start", fill=GRIS, italic=True, halo=True)
-        return s
-    b.append(fila(24, -0.247, 0.142, 0.492, VERDE_OSC, "ρ = +0,142 [−0,247; +0,492]", "primario · 31 siRNA de Tc-gawky, n = 29"))
-    b.append(fila(51, -0.161, 0.236, 0.568, GRIS, "ρ = +0,236 [−0,161; +0,568]", "confirmatorio · 28 ARNdc, n = 28"))
-    b.append(f'<line x1="{x0}" y1="66" x2="{x1}" y2="66" stroke="{INK}" stroke-width=".7"/>')
-    for v in (-0.5, -0.25, 0, 0.25, 0.5, 0.75):
-        b.append(f'<line x1="{X(v)}" y1="66" x2="{X(v)}" y2="68" stroke="{INK}" stroke-width=".7"/>')
-        lab = "0" if v == 0 else f"{v:+.2f}".replace(".", ",")
-        b.append(T(X(v), 74.4, lab, 15, 500, "middle", fill=GRIS, mono=True))
+        return s + T(0, y + 2.2, rot, 18, 700, "start", fill=color, mono=True)
+    b.append(fila(13, -0.247, 0.142, 0.492, VERDE_OSC, "ρ = +0,142"))
+    b.append(fila(23, -0.161, 0.236, 0.568, GRIS, "ρ = +0,236"))
+    b.append(T(0, 33, f"{sp('Tribolium castaneum')}, laboratorio · 31 siRNA (n = 29) y 28 ARNdc (n = 28)", 15, 500, fill=GRIS, italic=True))
+    return fig(W, H, "".join(b))
+
+
+# ---------------------------------------------------------------- figura 3 (el contador historico)
+def fig3():
+    """Arriba, por que el contador pierde una ventana: dos arranques eficientes separados por
+    veinte posiciones dejan la curva de cobertura plana y el segundo no se registra. Abajo, los
+    cuatro conteos. Numeros de research/ola5/N1_regla_de_conteo/resultados/conteo_por_curva.tsv."""
+    W, H = 253, 97
+    b = []
+
+    # --- el mecanismo: las cajas y sus etiquetas primero, la curva despues, sin solaparse
+    b.append(T(0, 4, "ventanas eficientes, de 21 nt", 14, 600, fill=GRIS))
+    for xa, xb, col, et in ((14, 74, OCRE, "arranca en p"), (74, 134, OCRE, "arranca en p + 20"),
+                            (170, 230, VERDE, "aislada")):
+        b.append(f'<rect x="{xa}" y="8" width="{xb - xa}" height="5.5" fill="{PAPEL}" stroke="{col}" stroke-width="1.1"/>')
+        b.append(T(xa + 2, 19, et, 13, 500, fill=GRIS))
+    b.append(T(0, 25, "curva de cobertura", 14, 600, fill=GRIS))
+    b.append(f'<path d="M0 41 H14 V32 H134 V41 H170 V32 H230 V41 H253" fill="none" stroke="{OCRE}" stroke-width="1.3"/>')
+    b.append(f'<line x1="74" y1="31" x2="74" y2="42" stroke="{INK}" stroke-width=".8" stroke-dasharray="2 1.6"/>')
+    for x, et, col in ((14, "+1 · se cuenta", VERDE_OSC), (74, "0 · no se cuenta", OXIDO),
+                       (170, "+1 · se cuenta", VERDE_OSC)):
+        b.append(T(x + 2, 47, et, 14, 700 if col == OXIDO else 500, fill=col))
+
+    # --- los cuatro conteos
+    cols = (("las nuestras", 96), ("su contador", 140), ("la planilla", 182), ("tapadas", 236))
+    b.append(f'<line x1="0" y1="56" x2="253" y2="56" stroke="{VERDE_OSC}" stroke-width=".7"/>')
+    for et, x in cols:
+        b.append(T(x, 54, et, 13, 600, "end", fill=GRIS))
+    filas = (("MP_MRFV", 138, 114, "17,4 %"), ("CP_MRFV", 40, 35, "12,5 %"),
+             ("BicC_Dm", 218, 199, "8,7 %"), ("ATPaseD_Dm", 35, 33, "5,7 %"))
+    y = 64
+    for g, ef, ct, oc in filas:
+        b.append(T(0, y, g, 19, 500, mono=True))
+        b.append(T(96, y, str(ef), 19, 500, "end", fill=INK, mono=True))
+        b.append(T(108, y, "→", 17, 500, "middle", fill=GRIS))
+        b.append(T(140, y, str(ct), 19, 800, "end", fill=VERDE_OSC, mono=True))
+        b.append(T(150, y, "=", 17, 500, "middle", fill=VERDE))
+        b.append(T(182, y, str(ct), 19, 800, "end", fill=VERDE_OSC, mono=True))
+        b.append(T(236, y, oc, 19, 700, "end", fill=OXIDO, mono=True))
+        y += 8
+    b.append(T(0, 95, "el ancho de cobertura es 20: con 19 o con 21 fallan tres de los cuatro", 15, 500, fill=GRIS, italic=True))
     return fig(W, H, "".join(b))
 
 
 # ---------------------------------------------------------------- figura 4
 def fig4():
-    W, H = 253, 130
+    W, H = 253, 134
     xl, xr = 72, 162
-    ys = [30, 60, 90, 120]
+    ys = [30, 64, 98, 132]
     izq = [("BicC_Dm", "212", 0, "i"), ("MP_MRFV", "133", 1, "v"), ("ATPaseD_Dm", "42", 2, "i"), ("CP_MRFV", "32", 3, "v")]
     der = {"MP_MRFV": ("10,70", 0), "ATPaseD_Dm": ("8,92", 1), "BicC_Dm": ("8,48", 2), "CP_MRFV": ("6,30", 3)}
     col = {"i": VERDE, "v": OCRE}
@@ -303,37 +319,9 @@ def fig7():
     return fig(W, H, "".join(b))
 
 
-# ---------------------------------------------------------------- figura 8 (escalon de exposicion)
-def fig8():
-    W, H = 253, 66
-    x0, x1 = 24, 247
-    b = []
-    y0, yt = 48, 14
-
-    def Y(n):
-        return y0 - n * (y0 - yt) / 3
-    for n in (0, 3):
-        b.append(f'<line x1="{x0 - 2}" y1="{Y(n)}" x2="{x0}" y2="{Y(n)}" stroke="{INK}" stroke-width=".7"/>')
-        b.append(T(x0 - 4, Y(n) + 2.4, str(n), 16, 600, "end", fill=GRIS, mono=True))
-    b.append(f'<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y0}" stroke="{INK}" stroke-width=".7"/>')
-    b.append(f'<line x1="{x0}" y1="{Y(3)}" x2="{x0}" y2="{y0}" stroke="{INK}" stroke-width=".7"/>')
-    b.append(f'<line x1="{x0 + 5}" y1="{y0}" x2="{x0 + 5}" y2="{Y(3)}" stroke="{OXIDO}" stroke-width="1.8"/>')
-    b.append(f'<circle cx="{x0 + 5}" cy="{Y(3)}" r="3" fill="{OXIDO}"/>')
-    b.append(T(x0 + 11, Y(3) + 2.4, "exposición exactamente 0: 3 de 6 regiones se mudan", 16, 700, fill=OXIDO))
-    xa = x0 + 26
-    b.append(f'<line x1="{xa}" y1="{y0}" x2="{x1}" y2="{y0}" stroke="{VERDE}" stroke-width="2.6"/>')
-    b.append(f'<circle cx="{xa}" cy="{y0}" r="2.5" fill="{VERDE}"/>')
-    b.append(T(xa + 4, y0 - 6, "de 0,05 a 1,00: no se muda ninguna", 16, 700, fill=VERDE))
-    b.append(f'<path d="M{x0 + 13},{y0 - 2.4} l2,4.8 M{x0 + 16.4},{y0 - 2.4} l2,4.8" stroke="{INK}" stroke-width=".8"/>')
-    for lab, x in [("0", x0 + 5), ("0,05", xa), ("0,50", (xa + x1) / 2), ("1,00", x1 - 4)]:
-        b.append(T(x, y0 + 10, lab, 16, 500, "middle", fill=GRIS, mono=True))
-    b.append(T(x1, y0 + 17.6, "peso de exposición de H. vitripennis (maíz = 1,00)", 15, 500, "end", fill=GRIS, italic=True))
-    b.append(T(0, 6, "regiones que se mudan, de 6", 15, 500, "start", fill=GRIS, italic=True))
-    return fig(W, H, "".join(b))
-
 # ---------------------------------------------------------------- figura 9 (quimera)
 def fig9():
-    W, H = 322, 126
+    W, H = 322, 103
     b = []
     esc = 0.49
     xa, xj = 12, 12 + 300 * esc
@@ -345,9 +333,9 @@ def fig9():
     b.append(T(xa + 3, yc + 5.8, "fragmento A · 300 nt", 16, 700, fill=PAPEL, mono=True))
     b.append(T(xj + 3, yc + 5.8, "fragmento B", 16, 700, fill=PAPEL, mono=True))
     b.append(T(xj, yc - 11.4, "unión", 15, 700, "middle"))
-    b.append(T(xj, yc + 24, "sombreado: hasta 66 nt de la unión cambió un veredicto", 14, 500, "middle", fill=GRIS, italic=True))
+    b.append(T(xj, yc + 20.5, "sombreado: hasta 66 nt de la unión cambió un veredicto", 14, 500, "middle", fill=GRIS, italic=True))
 
-    y1 = 49
+    y1 = 45
     b.append(T(0, y1, "ventanas de juntura, en doce combinaciones de cuatro regiones", 17, 700))
     esc2 = 0.85
     filas = [("240", 240, GRIS, "ventanas que cruzan una unión"), ("4", 4, OCRE, "eficientes"), ("0", 0, OXIDO, "eficientes y con blanco continuo")]
@@ -378,15 +366,43 @@ def fig9():
     b.append(T(cx - 2, y2 + 18.5, "pierden eficiencia", 14, 500, "end", fill=OXIDO, italic=True))
     b.append(T(cx + 2, y2 + 18.5, "la ganan", 14, 500, "start", fill=VERDE, italic=True))
     b.append(T(320, y2 + 10, "= 61", 20, 800, "end", mono=True))
-    y3 = y2 + 29
-    b.append(T(0, y3, "caso BicC_Dm + V-ATPasa B: 71 ventanas vetadas", 17, 700))
-    L = 1483
-    esc4 = 260 / L
-    b.append(rayado("r9", 0, y3 + 4.5, L * esc4, 6.4, "#cf9279", OXIDO, grosor=1))
-    b.append(f'<rect x="{517 * esc4:.1f}" y="{y3 + 3.2}" width="{300 * esc4:.1f}" height="9" fill="{VERDE}"/>')
-    b.append(T(517 * esc4 + 26, y3 + 20, "517–816", 15, 700, "middle", fill=VERDE_OSC, mono=True))
-    b.append(T(320, y3 + 11, "1.184 → 1", 20, 800, "end", mono=True))
-    b.append(T(517 * esc4 + 56, y3 + 20, "rayado: contiene alguna ventana vetada", 14, 500, "start", fill=OXIDO, italic=True))
+    return fig(W, H, "".join(b))
+
+
+# ---------------------------------------------------------------- figura 11 (benchmark de las tres herramientas)
+def fig11():
+    """Adaptada de la version B a una columna de 253 mm: los dos contrastes apilados en vez de
+    lado a lado, y un gen por herramienta en lugar de dos en el bloque de dsRNA-Engineer.
+    Cifras de research/ola2/W7_ranking/benchmark_tres_herramientas.md."""
+    W, H = 253, 113
+    b = []
+
+    # ---- dsRNA-Engineer contra el tamizaje exacto, off-target en maiz
+    b.append(T(0, 4.6, "dsRNA-Engineer informa · el tamizaje exacto encuentra", 15, 600, fill=GRIS))
+    x0, esc = 58, 0.474
+    b.append(T(0, 17.4, "MP_MRFV", 19, 700, mono=True))
+    y = 11
+    for v, tag, col in ((215, "informa", OCRE), (97, "k = 16 nt", GRIS), (3, "k ≥ 19 nt", VERDE)):
+        w = v * esc
+        b.append(f'<rect x="{x0}" y="{y}" width="{max(w, 1.4):.1f}" height="6.6" fill="{col}"/>')
+        b.append(T(x0 + w + 4, y + 6.2, str(v), 19, 700, fill=col, mono=True))
+        b.append(T(x0 + w + 4 + (15 if v >= 100 else 11 if v >= 10 else 7), y + 6.2, tag, 15, 500, fill=GRIS))
+        y += 10
+    b.append(T(0, 44, "en CP_MRFV pasa lo mismo: 87, 48 y 0", 15, 500, fill=GRIS, italic=True))
+
+    # ---- BLAST a un desajuste contra el conteo exacto
+    b.append(f'<line x1="0" y1="50" x2="253" y2="50" stroke="{LINEA}" stroke-width=".7"/>')
+    b.append(T(0, 58, "BLAST a 1 desajuste · contra el conteo exacto", 15, 600, fill=GRIS))
+    esc2 = 5.4
+    for g, y0, blast, exacto, razon in (("BicC_Dm", 64, 5, 16, "3,2"), ("ATPaseD_Dm", 86, 9, 17, "1,9")):
+        b.append(T(0, y0 + 6.2, g, 19, 700, mono=True))
+        for k, (v, tag, col) in enumerate(((blast, "BLAST+", AZUL), (exacto, "exacto", VERDE))):
+            yy = y0 + k * 10
+            b.append(f'<rect x="{x0}" y="{yy}" width="{v * esc2:.1f}" height="6.6" fill="{col}"/>')
+            b.append(T(x0 + v * esc2 + 4, yy + 6.2, str(v), 19, 700, fill=col, mono=True))
+            b.append(T(x0 + v * esc2 + 4 + (11 if v >= 10 else 7), yy + 6.2, tag, 15, 500, fill=GRIS))
+        b.append(T(196, y0 + 11.5, f"subestima × {razon}", 15, 700, fill=OXIDO))
+    b.append(T(0, 110, "bloque perfecto: las dos coinciden en las 20 celdas", 15, 500, fill=GRIS, italic=True))
     return fig(W, H, "".join(b))
 
 
@@ -493,7 +509,8 @@ ul.l li:before{{content:"";position:absolute;left:0;top:3.4mm;width:2.8mm;height
 .rule{{font-weight:800;font-size:27pt;line-height:1.2;color:var(--vd);border-top:.5mm solid var(--vd);border-bottom:.5mm solid var(--vd);padding:3mm 0;margin:0 0 4mm}}
 .pie{{position:absolute;left:0;right:0;bottom:0;height:82mm;color:#fff;background:#0b1d1c url(assets/footer.jpg) center/100% 100% no-repeat}}
 .pie .in{{position:absolute;left:0;right:0;top:0;height:68mm;padding:7mm 22mm 0;display:grid;display:flex;justify-content:space-between;align-items:flex-start}}
-.pie .cont p{{margin:0;font-size:26pt;font-weight:500}}
+.pie .cont p{{margin:0;font-size:20pt;font-weight:500;line-height:1.5}}
+.pie .cont .mail{{font-family:'IBM Plex Mono',Menlo,monospace;font-size:.94em;color:#d6e2da}}
 .pie h4{{margin:0 0 2.6mm;font-family:'IBM Plex Mono',Menlo,monospace;font-weight:600;font-size:16pt;letter-spacing:.12em;text-transform:uppercase;color:#a9c7b2}}
 .qr{{display:grid;grid-template-columns:50mm auto;column-gap:7mm;align-items:start}}
 .qr h4{{grid-column:1/3}}
@@ -506,7 +523,7 @@ ul.l li:before{{content:"";position:absolute;left:0;top:3.4mm;width:2.8mm;height
 
 
 def construir():
-    f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 = fig1(), fig2(), fig3(), fig4(), fig5(), fig6(), fig7(), fig8(), fig9(), fig10()
+    f1, f2, f3, f4, f5, f6, f7, f9, f10, f11 = fig1(), fig2(), fig3(), fig4(), fig5(), fig6(), fig7(), fig9(), fig10(), fig11()
     html = f"""<!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <title>Decidir mejor sin laboratorio — póster Investigathon Y-Hat (track biotecnología)</title>
@@ -524,7 +541,7 @@ def construir():
 <main>
 
 <div class="hilo"><span class="k">El hilo</span>
-<p>Sin laboratorio no podemos probar que un ARN silencia. Podemos <b>decidir mejor</b>, mostrar cada decisión y decir qué no sabemos.</p></div>
+<p>Sin laboratorio no podemos probar que un ARN silencia. Podemos <b>decidir mejor</b>, mostrando&nbsp;cada decisión.</p></div>
 
 <section class="pan">
   <p class="n">01 · LA PREGUNTA</p>
@@ -536,15 +553,16 @@ def construir():
 <section class="pan">
   <p class="n">02 · EL MOTOR PROPIO</p>
   <h2>Reimplementamos el criterio del laboratorio y reproduce al original</h2>
+  <p>si-Fi21, en que se basa el pipeline de EPILAB, recorre un gen con una ventana de 21 nt y la aprueba si su hebra guía se carga bien y el sitio del mensajero no está plegado. Nuestro port en Python reproduce sus cuatro conteos clavados: <strong>133, 32, 212 y 42</strong>.</p>
   {f2}
-  <p>si-Fi21, en que se basa el pipeline de EPILAB, recorre un gen con una ventana de 21 nt; una ventana pasa el filtro si su hebra guía se carga bien y el sitio del mensajero no está plegado. Nuestra versión en Python reproduce <strong>los cuatro conteos</strong> del original. «Eficiente» es un sí o un no, no un puntaje.</p>
+  <p><strong>«Eficiente» no es «silencia».</strong> ρ mide si las ventanas aprobadas son las que más silencian; con los únicos datos abiertos no se puede decidir. Decidimos sobre el riesgo, que es secuencia exacta, no una predicción.</p>
 </section>
 
 <section class="pan">
-  <p class="n">03 · EL LÍMITE</p>
-  <h2>«Eficiente» no es «silencia»</h2>
+  <p class="n">03 · EL CONTEO</p>
+  <h2>La planilla tapa ventanas, y no las mismas en cada gen</h2>
   {f3}
-  <p>ρ mide si las ventanas aprobadas son las que más silencian (1 = siempre, 0 = ninguna relación). Con los únicos datos abiertos (<em>Tribolium castaneum</em>, en laboratorio, n = 29) da +0,142: su intervalo incluye el 0 y el 0,35 de un criterio bueno, así que no se puede decidir. Decidimos sobre el riesgo, que es coincidencia exacta de secuencia, no una predicción.</p>
+  <p>Aplicado a nuestras ventanas eficientes, su contador devuelve las cuatro cifras de la planilla, exactas: no cuenta ventanas, cuenta las subidas de una curva de cobertura de 20 posiciones. Por eso ninguna cifra de la planilla es comparable con otra.</p>
 </section>
 
 <section class="pan">
@@ -554,6 +572,7 @@ def construir():
   <div class="v"><b>Virus</b><span>MP_MRFV</span><span>CP_MRFV</span></div></div>
   <p class="nocomp">no se comparan entre sí</p>
   <p class="tight">Contar ventanas eficientes mide el diseño <em>dentro</em> de un gen, no el valor del blanco. <em>BicC_Dm</em> (2.500 nt) es primero por conteo, con 212 ventanas, pero <strong>tercero por densidad</strong>: 8,48 cada 100, detrás de <em>MP_MRFV</em> (10,70; 1.243 nt). Un gen largo junta más ventanas sin ser mejor blanco.</p>
+  <p class="tight">Con 2.000 juegos de pesos, <em>MP_MRFV</em> va antes que <em>CP_MRFV</em> en ≥ <strong>78,5 %</strong> y <em>BicC_Dm</em> es primero en el insecto en 76 a 100 %; el par <em>eth_Dm</em>–<em>bursA_Dm</em> no es firme.</p>
   {f4}
 </section>
 
@@ -571,27 +590,25 @@ def construir():
     <div><h3>La tensión de la V-ATPasa</h3>{f7}
       <p class="tight">La V-ATPasa D es el único candidato con efecto medido por dieta, pero su región tiene más tramos idénticos a humano que el azar: <strong>mejor evidencia y peor riesgo en el mismo gen</strong>.</p></div>
   </div>
+  <p class="tight"><strong>La exposición de <em>H. vitripennis</em> es nuestra y está abierta.</strong> Es el peso que le damos a no afectarla, y no inventamos un número: con exposición exactamente 0 se mudan 3 de las 6 regiones elegidas, y de 0,05 a 1,00 no se muda ninguna. 922–1221 no cambia en todo el rango.</p>
 </section>
 
+
 <section class="pan">
-  <p class="n">06 · LAS DECISIONES NUESTRAS</p>
-  <h2>La exposición de <em>H. vitripennis</em> es nuestra y está abierta</h2>
-  {f8}
-  <p class="tight"><em>H. vitripennis</em> es una plaga cuarentenaria ausente de la Argentina que podría llegar. La «exposición» es el peso que le damos a no afectarla; no inventamos un número, mostramos los dos extremos.</p>
-  <table class="t"><tr><th>región elegida para</th><th>exposición &gt; 0</th><th>exposición = 0</th></tr>
-  <tr><td class="g">BicC_Dm</td><td class="a">2121–2420</td><td class="b">922–1221</td></tr>
-  <tr><td class="g">ATPaseD_Dm</td><td class="a">72–371</td><td class="b">137–436</td></tr>
-  <tr><td class="g">eth_Dm</td><td class="a">114–313</td><td class="b">194–393</td></tr></table>
-  <p class="tight">922–1221 no cambia. Sus ventanas eficientes: <span class="kw">26</span> en la molécula de 300 nt sola, <span class="kw">36</span> contando todos los arranques en el gen, <span class="kw">29</span> las comparables. No se mezclan.</p>
+  <p class="n">06 · EL BENCHMARK</p>
+  <h2>Las tres herramientas no miden lo mismo</h2>
+  {f11}
+  <p class="tight">si-Fi21 es la única que estima eficiencia. <strong>dsRNA-Engineer</strong> informa 215 off-targets en maíz donde el tamizaje exacto encuentra 3: todo su número sale de la condición de 16 nt. <strong>Eficiencia: si-Fi21. Off-target: tamizaje exacto local. BLAST: exploración.</strong></p>
+  <p class="src">Los genes del insecto no se subieron al servicio: material no publicado, así que ese benchmark se hizo con dos herramientas.</p>
 </section>
 
 <section class="pan s5">
   <p class="n">07 · QUIMERAS</p>
-  <h2>El riesgo se hereda de las partes; la eficacia, no</h2>
-  <p class="tight">Una molécula puede combinar fenotipos que no se solapan (reproducción, movilidad, letalidad). La juntura crea 20 ventanas nuevas por unión; el resto se hereda de cada fragmento.</p>
+  <h2>El riesgo se hereda; la eficacia, no</h2>
+  <p class="tight">Una molécula puede combinar fenotipos que no se solapan; la juntura crea 20 ventanas nuevas.</p>
   {f9}
   <div class="rule">Revisar sólo la juntura no alcanza: hay que recalcular.</div>
-  <p class="tight">Las 4 ventanas de juntura eficientes no tienen blanco continuo; en cambio 61 heredadas cambian de veredicto porque el plegado cruza la unión. El empalme también puede fabricar secuencia nueva: una de las doce creó un bloque perfecto de 19 nt presente en maíz.</p>
+  <p class="tight">Las 4 de juntura eficientes no tienen blanco continuo, pero <strong>61 heredadas cambian de veredicto</strong> porque el plegado cruza la unión.</p>
 </section>
 
 <section class="pan s3 chica">
@@ -599,12 +616,11 @@ def construir():
   <h2>Lo que no sabemos</h2>
   {f10}
   <ul class="l">
-    <li>Si el insecto transmite antes de que haga efecto, matarlo no corta la transmisión.</li>
-    <li>No hay datos de silenciamiento medido en este insecto; distinguir los dos modos del filtro pediría 2.784 siRNA medidos.</li>
-    <li>No hay expresión medida en el tejido expuesto.</li>
-    <li>13 de 32 alertas de off-target siguen sin firmar.</li>
+    <li>Si transmite antes de que el ARN haga efecto, matarlo no corta la transmisión.</li>
+    <li>No hay silenciamiento medido en este insecto.</li>
+    <li>13 de 32 alertas de off-target sin firmar.</li>
   </ul>
-  <p class="tight"><strong>La refutarían</strong> un bioensayo de dieta con oviposición medida más allá de los 20 días y un ensayo de 32 siRNA por brazo. Los proponemos; no los corremos.</p>
+  <p class="tight"><strong>La refutarían</strong> un bioensayo de más de 20 días y 32 siRNA por brazo. Los proponemos; no los corremos.</p>
 </section>
 
 </main>
@@ -612,7 +628,10 @@ def construir():
 <footer class="pie"><div class="in">
   <div class="cont">
     <h4>Contacto</h4>
-    <p>[completar]</p>
+    <p>Lorenzo Door · <span class="mail">lolodoor3@gmail.com</span><br>
+    Luca Fassio · <span class="mail">lucavfassio@gmail.com</span><br>
+    Santino Cardelli · <span class="mail">sancardelli@gmail.com</span><br>
+    Joaquín Castaños · <span class="mail">castanosjoaquin@gmail.com</span></p>
   </div>
   <div class="qr">
     <h4>Repositorio</h4>
