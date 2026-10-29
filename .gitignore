@@ -1,5 +1,14 @@
 # Material de referencia pesado: se guarda local, no en git
 *.pdf
+# ...pero los PDF de `entregables/` son nuestros y se publican. Esta excepcion existe
+# porque el `*.pdf` de arriba esta por los papers de referencia y el material con derechos,
+# y en `entregables/` no hay nada de eso: son las piezas que el equipo produce e imprime.
+# Habia que forzarlos a mano con `git add -f` uno por uno —el informe, el poster A y el
+# poster B—, y la tercera vez salio mal: `git add entregables/poster_b` salto el PDF **en
+# silencio** y el commit entro con 26 archivos en vez de 27, afirmando en su mensaje que el
+# PDF estaba. `git add <directorio>` no avisa cuando el `.gitignore` se come un archivo, asi
+# que la regla se arregla aca y no en la memoria de quien commitea.
+!entregables/**/*.pdf
 
 # Ruido de macOS
 .DS_Store
