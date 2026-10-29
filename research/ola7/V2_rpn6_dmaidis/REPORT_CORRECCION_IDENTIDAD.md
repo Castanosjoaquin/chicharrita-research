@@ -31,6 +31,73 @@ candidato, es la subunidad 11 y **no es el gen del paper**.
 Que el control de parálogo resultara ser el candidato es, visto en frío, lo que el control estaba
 diseñado para detectar; lo que falló fue que no miré su resultado a la luz de `C5`.
 
+## 1bis. Por qué la confusión es fácil de cometer, explicada entera
+
+El **proteasoma 26S** es un complejo de muchas subunidades, y cada subunidad tiene **dos nombres**
+según la tradición de donde venga: la numeración `PSMD` del humano y la numeración `Rpn` de
+levadura y *Drosophila*. **La correspondencia cruza los números**, que es justamente lo que hace
+que el error no salte a la vista:
+
+| Nomenclatura humana | Nomenclatura levadura / *Drosophila* |
+| --- | --- |
+| **PSMD11** | **`Rpn6`** |
+| **PSMD6** | **`Rpn7`** |
+
+El «6» de un sistema es el «11» del otro, y el «6» del otro es el «7» del primero. Está verificado
+en la base revisada de artrópodos de Swiss-Prot: el `Rpn6` de *Drosophila* es `PSD11` y `PSMD6`
+figura como `Rpn7` (`C12`), que es lo que sostiene `D30`.
+
+Entonces la cadena del error es corta y cada paso parece razonable:
+
+1. el paper dice que silenció «`Rpn6`»;
+2. `Rpn6` en UniProt es `Q7KLV9`, la **subunidad 11** — hasta acá todo correcto;
+3. busco la subunidad 11 en el transcriptoma de *D. maidis* y la encuentro, con ortología que
+   además **cierra limpio**;
+4. y resulta que **la secuencia que el paper publicó no es la de `Rpn6`**: es PSMD6, o sea `Rpn7`.
+
+El paso 4 es el único que no se puede saltear, y es el que `C5` ya había hecho. Nada en los pasos
+1 a 3 da una señal de alarma: la recuperación funciona, los controles pasan, la ortología cierra.
+**El error no se manifiesta como un fallo, se manifiesta como un éxito sobre el gen equivocado.**
+Por eso la verificación tiene que ser un paso explícito y no una precaución.
+
+## 1ter. Por qué la subunidad 11 no sirve como candidato, aunque exista y esté bien recuperada
+
+`GITV01002940.1` **es un gen real de *D. maidis*, correctamente recuperado**, y de hecho su
+ortología recíproca es **mejor** que la del gen correcto: un solo acierto de vuelta y sin
+competidor, contra cuatro empatados. Nada de lo que se midió sobre él está mal. Lo que falla es
+el uso que se le dio.
+
+Un gen entra al ranking por tres cosas y la secuencia es sólo una:
+
+| | subunidad 11 (`GITV01002940.1`) | subunidad 6-like (`GITV01002972.1`) |
+| --- | --- | --- |
+| ¿Existe en *D. maidis*? | **sí**, 97,11 % | sí, 97,09 % |
+| ¿Ortología recíproca confirmada? | **sí**, sin competidor | no, cuatro empatados |
+| **¿Fenotipo publicado?** | **no, ninguna fila en el catálogo** | **sí** (`CI-01` y `CI-02`) |
+
+El eje de fenotipo **pesa 0,40** en `F3`, más que cualquier otro. Un gen sin fenotipo no saca poco
+puntaje: no entra al orden. Tenemos la secuencia de un gen del que no sabemos si silenciarlo hace
+algo `[M]`.
+
+**Y el argumento de «es del mismo complejo, debería andar igual» ya está medido y descartado dos
+veces en este repositorio:** la transferencia de esencialidad por ortología es de **40 a 52 %**
+incluso dentro de Coleoptera por vía oral, y no está probada en hemípteros `[E]`; y el
+contraejemplo está en casa, porque `V-ATPase B` y `V-ATPase D` son dos subunidades del **mismo**
+complejo, en la **misma** especie y con la **misma** vía de entrega, y la B da alas deformes
+mientras que en la D el efecto sobre alas **no dio significativo** `[R]`.
+
+Además, aunque mañana apareciera un fenotipo, la subunidad 11 es la peor de las dos en el eje que
+sí sabemos medir: **14 ventanas con coincidencia perfecta de 21 nt** en su CDS —todas contra
+*H. vitripennis*— contra **0** de la subunidad 6-like, y 680 regiones admisibles de 828 contra
+777 de 777 `[M]`.
+
+**Lo medido sobre la subunidad 11 no se descarta:** queda como la caracterización completa de un
+gen real —perfil de eficiencia en los dos modos, tamizaje contra el panel de seis, barrido de
+2.184 configuraciones, nulo de 50 permutaciones y conservación entre los tres transcriptomas—, con
+el aviso de a qué gen corresponde. **No se buscó** si existe literatura de fenotipo para PSMD11 en
+otros insectos: el catálogo de `C5` no la trae, pero el catálogo cubre lo que esa línea encontró y
+no todo lo publicado `[?]`.
+
 ## 2. Los dos ejes del gen correcto
 
 Mismo panel de seis, modo `corregido`, backend `vienna`, `NN3` `[M]`:
