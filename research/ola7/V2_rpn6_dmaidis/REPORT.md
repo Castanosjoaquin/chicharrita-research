@@ -72,11 +72,36 @@ Con la misma eficacia, en los dos ejes del ranking medidos igual, **la región n
 (0,9624 contra 0,9660) y la **región** es más limpia (1,0000 contra 0,9884). Lo que limpia no
 es cambiar de gen, es mover la región dentro del gen.
 
+## 3bis. La vuelta recíproca: cierra para el candidato y NO cierra para el control
+
+Corrida después de escribir §4 y agregada acá; el límite 1 de esa sección queda **cerrado para
+`GITV01002940.1`** y **confirmado para el control**. Consulta: la proteína predicha en
+*D. maidis*. Bases: los transcriptomas RefSeq completos de los dos cicadélidos anotados.
+`tblastn`, `--evalue 1e-20`, hasta 20 aciertos `[M]`:
+
+| Consulta predicha | Base | Aciertos | Mejor acierto | Identidad | Competidor |
+| --- | --- | ---: | --- | ---: | --- |
+| `GITV01002940.1` | *M. quadrilineatus* | **1** | **`XM_054432574.1`** | 97,11 % sobre 415 | **ninguno** |
+| `GITV01002940.1` | *H. vitripennis* | **1** | `XM_046822455.1` | 96,15 % sobre 415 | **ninguno** |
+| `GITV01002972.1` (control) | *M. quadrilineatus* | **4** | `XM_054426831.1` | 97,49 % sobre 398 | 816, 813 y 813 contra 819 |
+| `GITV01002972.1` (control) | *H. vitripennis* | **4** | `XM_046820804.1` | 92,48 % sobre 399 | 781, 780 y 780 contra 781 |
+
+`[M]` **La ortología recíproca de la subunidad 11 cierra sin ambigüedad.** La ida salió de
+`XP_054288549.1`, que es la proteína de `XM_054432574.1`, y la vuelta cae **exactamente en ese
+mRNA**, con un solo acierto por encima del umbral y ningún competidor. Es el mismo patrón que
+`O2` exigió para `V-ATPase B`.
+
+`[M]` **El control de parálogo no cierra**, y era para eso que estaba: cuatro aciertos con
+puntajes casi iguales (819, 816, 813 y 813) que no se pueden desempatar. Confirma que
+`GITV01002972.1` no debe tratarse como candidato, y de paso reproduce la lección de empates que
+`F1` ya había medido sobre este mismo transcriptoma.
+
 ## 4. Lo que este resultado NO autoriza a decir
 
-1. **La ortología no está confirmada.** Es la ida sin la vuelta: no se corrió la recíproca desde
-   la proteína predicha en *D. maidis* contra el transcriptoma del pariente. `GITV01002940.1`
-   podría ser un parálogo de la subunidad 11 y no su ortólogo.
+1. ~~**La ortología no está confirmada.** Es la ida sin la vuelta.~~ **Cerrado en §3bis para
+   `GITV01002940.1`**: la vuelta recíproca cae en el mRNA de la consulta con un solo acierto y
+   sin competidor. Para el control `GITV01002972.1` el límite **se confirma**: cuatro aciertos
+   empatados, sin resolver.
 2. **Los aciertos secundarios siguen sin resolver**: `GITV01001189.1` (98,6 % sobre 277 aa),
    `GITV01003958.1` (96,0 % sobre 225) y, para el control, `GITV01002452.1` y
    `GITV01004786.1`. No se sabe si son fragmentos del mismo transcripto, isoformas o parálogos.
