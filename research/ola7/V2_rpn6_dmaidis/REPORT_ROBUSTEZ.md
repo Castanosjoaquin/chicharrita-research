@@ -1,5 +1,19 @@
 # V2 — Robustez y nulo de `Rpn6` 325-624: aguanta la grilla, y su ventaja de limpieza no se distingue del azar
 
+> ## ⚠ CORREGIDO — leer [`REPORT_CORRECCION_IDENTIDAD.md`](REPORT_CORRECCION_IDENTIDAD.md) primero
+>
+> El gen que este informe trata como candidato, `GITV01002940.1` (subunidad 11), **no es el del
+> fenotipo publicado**. Elegí por nombre y no por secuencia: el paper lo llama `Rpn6` y en
+> *Drosophila* ese nombre es la subunidad 11, pero `C5` ya había medido que la secuencia del gen
+> silenciado es **PSMD6**. Verificado con `tblastx`: los transcritos del paper en *S. titanus* y
+> *E. variegatus* alinean al **96,7 %** y **96,5 %** con `GITV01002972.1` —el que acá figura como
+> control de parálogo— y **no** con `GITV01002940.1`. Con el gen correcto, `BicC_Dm` 922-1221
+> **gana en eficacia** (79,3 % y 96,1 % de las configuraciones) y la ventaja de limpieza no se
+> sostiene (percentil 9,8 del nulo). Todo lo que estos informes dicen de `GITV01002940.1` sigue
+> siendo una medición válida **de la subunidad 11**, que no es el candidato.
+
+
+
 **Veredicto: la región aguanta el barrido de parámetros y la elección es estable, pero el nulo
 desarma el argumento de limpieza — la ventaja de 0,9910 contra 0,9884 cae en el percentil 51,6
 del azar.** Criterio en [`PREREGISTRO_ROBUSTEZ.md`](PREREGISTRO_ROBUSTEZ.md), commiteado
