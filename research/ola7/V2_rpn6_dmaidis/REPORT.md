@@ -1,11 +1,41 @@
-# V2 — `Rpn6` recuperado en *D. maidis*: la región gana a `BicC_Dm` 922-1221 en los dos ejes
+# V2 — `Rpn6` recuperado en *D. maidis*: ~~la región gana a `BicC_Dm` 922-1221 en los dos ejes~~ la región iguala a `BicC_Dm` 922-1221 en eficacia y queda apenas por encima en limpieza
 
-**Veredicto: el gen existe en *D. maidis*, y la región que elige la cascada iguala a
-`BicC_Dm` 922-1221 en eficacia y la supera en limpieza — pero la ortología no está
-confirmada y el eje de fenotipo sigue medido en otra especie.** Criterio en
+**Veredicto (corregido en §0): el gen existe en *D. maidis*, su ortología recíproca cierra, y la región que elige la cascada iguala a `BicC_Dm` 922-1221 en eficacia (26 de 280 las dos) y queda apenas por encima en limpieza (0,9910 contra 0,9884) — pero el eje de fenotipo sigue medido en otra especie.** Criterio en
 [`PREREGISTRO.md`](PREREGISTRO.md), commiteado (`486aeb1`, 2026-10-29 18:20:42 -0300)
 **antes** del primer cálculo. Fecha de corrida: 2026-10-29. Ninguna secuencia salió de la
 máquina: el transcriptoma y las seis referencias se leyeron de disco.
+
+## 0. Corrección, escrita después de §3ter y antes de seguir
+
+**Error mío en la primera versión de este informe, y de las cifras que di al equipo de palabra.**
+En §3 comparé una «limpieza» que calculé yo —la fracción de ventanas sin ningún bloque de
+≥ 19 nt— con la `0,9884` publicada de `BicC_Dm` 922-1221, que sale de `ranking.ejes()`. **No son
+la misma definición.** La de `ranking.ejes()` es `1 − exposición ponderada` (peso por referencia ×
+peso por criterio: `perfecto_21` 1,00, `perfecto_ge19` 0,60, `mm1_21` 0,30), y «limpia» allí
+significa sin riesgo bajo **ningún** criterio, `mm1_21` incluido. Mi cifra ignoraba `mm1_21` y los
+pesos, y por eso daba 1,0000 y «26 de 26».
+
+Recalculado con `ranking.ejes()` importado sin tocar, regla conservadora, panel de seis, marco
+molécula (`D63`), las tres regiones en la **misma** función `[M]`:
+
+| Objeto | Ventanas | Eficientes | Eficacia | Limpieza | Limpias y eficientes | Con algún acierto |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `Rpn6` `GITV01002940.1` 325-624 | 280 | 26 | 0,0929 | **0,9910** | **25** | 12 |
+| control de parálogo `GITV01002972.1` 345-644 | 280 | 26 | 0,0929 | 0,9901 | 26 | 11 |
+| `BicC_Dm` 922-1221 (`O3`, `ejes_ranking_o3_corregido_vienna.tsv`) | 280 | 26 | 0,0929 | 0,9884 | 22 | 19 |
+
+Regla mecanicista: `Rpn6` 0,9989 contra 0,9974 de `BicC_Dm`. Los 12 aciertos de `Rpn6` son **todos
+`mm1_21`** (un desapareo): cero perfectos de 21 nt y cero bloques de ≥ 19 nt contra las seis.
+
+**Lo que sobrevive y lo que no.** Sobrevive la dirección —`Rpn6` queda por encima de `BicC_Dm` en
+limpieza y en limpias y eficientes, bajo las dos reglas— y sobrevive el veto en cero. **No sobrevive
+la magnitud:** la brecha es de **0,0026** en limpieza y de **3 ventanas** en limpias y eficientes,
+dentro de la dispersión que `C9` midió entre candidatos (un factor 1,015 a 1,064). Se lee como
+**empate técnico con una leve ventaja de `Rpn6`**, y no como «gana».
+
+**Lo que no cambia.** La fracción limpia **del gen entero** de §2 (0,9624) sí está en la
+definición de `F3` (ventanas sin bloque ≥ 19 nt en ninguna de las seis, sobre todas las ventanas),
+y se compara con sus anclajes sin problema. El error está sólo en la columna de **región**.
 
 ## 1. El control del §2 pasa, y acota qué se midió
 
@@ -55,21 +85,22 @@ excluidas. Marco 3 (`D63`): la molécula recortada, que es la cifra que se publi
 
 | Objeto | Ventanas | Eficientes | Eficacia | Limpieza | Limpias y eficientes | Veto |
 | --- | ---: | ---: | ---: | ---: | ---: | :-: |
-| **`GITV01002940.1` 325-624** | 280 | **26** | **0,0929** | **1,0000** | **26** | no |
-| `GITV01002972.1` 345-644 | 280 | 26 | 0,0929 | 0,9857 | 26 | no |
+| **`GITV01002940.1` 325-624** | 280 | **26** | **0,0929** | ~~1,0000~~ **0,9910** | ~~26~~ **25** | no |
+| `GITV01002972.1` 345-644 | 280 | 26 | 0,0929 | ~~0,9857~~ 0,9901 | 26 | no |
 | `BicC_Dm` 922-1221 (publicado) | 280 | 26 | 0,0929 | 0,9884 | 22 | no |
 
 `[M]` **Las tres regiones dan 26 eficientes de 280 ventanas.** La coincidencia es exacta en los
 tres casos y no significa nada: 280 es el número de ventanas de cualquier molécula de 300 nt, y
 26 salió tres veces. Se reporta como coincidencia.
 
-`[M]` **La región 325-624 de la subunidad 11 tiene limpieza 1,0000** —ninguna de sus 280
+~~`[M]` **La región 325-624 de la subunidad 11 tiene limpieza 1,0000** —ninguna de sus 280
 ventanas tiene un bloque de 19 nt o más en ninguna de las seis referencias— contra 0,9884 de
 `BicC_Dm` 922-1221, y **26 de 26 ventanas eficientes son además limpias**, contra 22 de 26.
-Con la misma eficacia, en los dos ejes del ranking medidos igual, **la región nueva gana**.
+Con la misma eficacia, en los dos ejes del ranking medidos igual, **la región nueva gana**.~~
+`[M]` Ninguna de sus 280 ventanas tiene un bloque de ≥ 19 nt en las seis referencias, pero **12 tienen un acierto con un desapareo (`mm1_21`)**, y por eso la limpieza oficial es 0,9910 y no 1,0000. Con la misma eficacia, `Rpn6` queda **apenas por encima** de `BicC_Dm` en los dos ejes (§0): empate técnico.
 
-`[H]` Y el patrón repite la tesis del proyecto: el **gen** es más sucio que el de `BicC`
-(0,9624 contra 0,9660) y la **región** es más limpia (1,0000 contra 0,9884). Lo que limpia no
+`[H]` Y el patrón repite la tesis del proyecto: el **gen** es un poco más sucio que el de `BicC`
+(0,9624 contra 0,9660, ambos en la definición de `F3`) y la **región** queda ~~más limpia (1,0000 contra 0,9884)~~ algo más limpia en la definición oficial (0,9910 contra 0,9884). Lo que limpia no
 es cambiar de gen, es mover la región dentro del gen.
 
 ## 3bis. La vuelta recíproca: cierra para el candidato y NO cierra para el control
@@ -103,11 +134,11 @@ preregistro**: es una medición adicional pedida al ver el resultado, no un crit
 antes. Se reporta como exploratoria en ese sentido. Método: coincidencia exacta de las ventanas de
 21 nt de la región 325-624 contra los tres TSA, en las dos hebras, con Aho-Corasick `[M]`.
 
-| Fuente | Ventanas idénticas | Eficientes idénticas (marco contexto, 28) |
+| Fuente | Ventanas idénticas | Eficientes idénticas (marco contexto de `C8`: 300 arranques, 29 eficientes) |
 | --- | ---: | ---: |
 | `GITV01` (Ohio) | 280 de 280 | 28 de 28 |
-| `GHCC01` (Pergamino, Argentina) | 238 de 280 | **22 de 28 (79 %)** |
-| `GCWP01` (Illinois) | 238 de 280 | **22 de 28 (79 %)** |
+| `GHCC01` (Pergamino, Argentina) | ~~238 de 280~~ 258 de 300 | ~~22 de 28 (79 %)~~ **23 de 29 (79 %)** |
+| `GCWP01` (Illinois) | ~~238 de 280~~ 258 de 300 | ~~22 de 28 (79 %)~~ **23 de 29 (79 %)** |
 
 **La fila de Ohio es circular**: el contig sale de ese transcriptoma, así que coincide consigo
 mismo por construcción. No cuenta como conservación. Las dos que cuentan son Argentina e Illinois.
@@ -125,8 +156,8 @@ pero con dos fuentes y dos posiciones no se puede afirmar. Illinois es 454 y esa
 errores de homopolímero que `C8` ya documentó.
 
 **Contra `BicC_Dm` 922-1221, en el mismo marco contexto** (`C8`): 32 de 36 eficientes idénticas
-en los tres transcriptomas, 36 de 36 en el argentino. `Rpn6` 325-624: **22 de 28 en el argentino
-y en el de Illinois**. `BicC_Dm` conserva mejor (89 % contra 79 %), y la diferencia es
+en los tres transcriptomas, 36 de 36 en el argentino. `Rpn6` 325-624: **23 de 29 en el argentino
+y en el de Illinois** (~~22 de 28~~: la primera versión contó 280 arranques y no los 300 de `C8`; el porcentaje no cambia). `BicC_Dm` conserva mejor (89 % contra 79 %), y la diferencia es
 **de dos SNPs sinónimos que a `BicC` no le tocan**. Es el único eje de los medidos en que
 `BicC_Dm` 922-1221 supera a esta región.
 
