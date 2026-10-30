@@ -30,5 +30,5 @@ comandos exactos en `datos/COMANDOS.md` o `scripts/`.
 | [`ola4`](ola4/) | Lo que sale de la respuesta del mentor. Incluye la validación retrospectiva y los análisis de robustez. |
 | [`ola5`](ola5/) | Lo que sale de la carta del 25 de octubre. |
 | [`ola6`](ola6/) | Transferencia por homología, recomendador de genes, pares por mecanismo y el enumerador de quimeras. |
-| [`ola7`](ola7/) | Demo de lectura y quimeras con homología. |
+| [`ola7`](ola7/) | Demo de lectura, quimeras con homología, y el caso `Rpn6` en *D. maidis* —que incluye una corrección de identidad del propio equipo: el gen elegido por nombre no era el del fenotipo publicado. |
 | [`checkpoints`](checkpoints/) | Actas y transcripciones de los dos checkpoints con los organizadores. |
