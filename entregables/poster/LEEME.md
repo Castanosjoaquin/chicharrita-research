@@ -34,7 +34,7 @@ Para completar a mano en `construir.py`: el contacto y el enlace del informe (el
 
 ## Versión actual (D105)
 
-`poster_vista_v2.pdf` es el póster rehecho como una historia en ocho pasos (títulos y textos más simples, benchmark en el panel 6, una frase y una miniatura de *Rpn6* en el panel 5). Todo sale de `construir.py`: los textos están en el HTML dentro de la función `construir()`, y cada figura es una función `figN()` con sus cifras y la ruta de donde salen. Para modificarlo:
+`poster_vista_v2.pdf` es el póster rehecho como una historia en ocho pasos (títulos y textos más simples, benchmark en el panel 6). La frase y la miniatura de *Rpn6* que tuvo el panel 5 ya no están (`D105`, sexta enmienda). Todo sale de `construir.py`: los textos están en el HTML dentro de la función `construir()`, y cada figura es una función `figN()` con sus cifras y la ruta de donde salen. Para modificarlo:
 
 ```bash
 python construir.py          # reescribe poster.html
@@ -42,4 +42,10 @@ chrome-headless-shell --no-sandbox --no-pdf-header-footer --virtual-time-budget=
        --print-to-pdf=poster_vista_v2.pdf poster.html
 ```
 
-El contenido tiene que terminar antes de que empiece el pie (1.107 mm desde arriba): si agregás texto, bajá la letra del cuerpo (`font-size` de `body` en el CSS) o sacá algo. `poster_vista.pdf` es la versión anterior, y `poster_A0.pdf` sigue siendo el de impresión viejo.
+El contenido tiene que terminar antes de que empiece el pie (1.107 mm desde arriba): si agregás texto, bajá la letra del cuerpo (`font-size` de `body` en el CSS) o sacá algo. Hoy termina en **1.091,1 mm**, con 15,9 mm de aire `[M]` (medido sobre el PNG con Pillow, no con `render.py`, que necesita `playwright`). `poster_vista.pdf` es la versión anterior, y `poster_A0.pdf` sigue siendo el de impresión viejo.
+
+### Lo que le falta a `poster_vista_v2.pdf` para ser el archivo de imprenta
+
+Sale de Chrome, así que es **para ver, no para imprimir**, por lo mismo que `poster_vista.pdf`: las tipografías van incrustadas y no en curvas. El A0 de impresión sigue saliendo sólo de `exportar.py`, con `playwright` y el `pdftocairo` de poppler. Lo que sí está bien: una página de 841,0 × 1.188,9 mm, y todo el texto y todas las figuras en vectores. Las dos únicas imágenes rasterizadas son las bandas de la cabecera (4967 × 992 px) y del pie (4967 × 484 px), que al ancho final dan **150 dpi** `[M]`.
+
+Dos detalles menores del PDF de Chrome: los glifos `ρ` y `≥` no están en los subsets de Montserrat ni de IBM Plex Mono, así que caen en la tipografía del sistema (en esta máquina, Arial y Consolas; en otra, Helvetica Neue y Menlo). Son tres apariciones en todo el póster.

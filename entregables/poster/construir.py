@@ -380,28 +380,6 @@ def fig11():
     return fig(W, H, "".join(b))
 
 
-# ---------------------------------------------------------------- figura 12 (Rpn6 contra BicC, miniatura)
-def fig12():
-    """Rpn6 (GITV01002972.1, tramo 345-644) contra BicC_Dm 922-1221 en las 2.184 configuraciones del
-    barrido, marco recorte (la molecula que se sintetizaria). Cifras de
-    research/ola7/V2_rpn6_dmaidis/resultados_002972/robustez_resumen.json (358 / 94 / 1.732 de 2.184)
-    y de REPORT_CORRECCION_IDENTIDAD.md §3."""
-    W, H = 170, 40
-    b = []
-    b.append(T(0, 4.6, "Rpn6 frente a BicC_Dm, en 2.184 configuraciones", 14, 600, fill=GRIS, italic=True))
-    x, y, hh, ancho = 0, 10, 12, 170
-    for n, pct, col, txt in ((358, 16.4, VERDE, "16,4 %"), (94, 4.3, SALVIA, ""), (1732, 79.3, OXIDO, "79,3 %")):
-        w = ancho * n / 2184
-        b.append(f'<rect x="{x:.2f}" y="{y}" width="{w:.2f}" height="{hh}" fill="{col}"/>')
-        if txt:
-            b.append(T(x + w / 2, y + 8.2, txt, 15, 800, "middle", fill=PAPEL, mono=True))
-        x += w
-    b.append(T(0, y + 20, "rinde más", 14, 600, fill=VERDE))
-    b.append(T(170, y + 20, "rinde menos que BicC_Dm", 14, 700, "end", fill=OXIDO))
-    b.append(T(0, y + 27.5, "el 4,3 % restante empata", 13, 500, fill=GRIS, italic=True))
-    return fig(W, H, "".join(b))
-
-
 # ---------------------------------------------------------------- figura 10 (tiempo)
 def fig10():
     W, H = 186, 62
@@ -489,9 +467,6 @@ main{{height:939mm;padding:11mm 22mm 10mm;display:grid;grid-template-columns:rep
 .sub3{{display:grid;grid-template-columns:1fr 1fr 1fr;column-gap:12mm;margin-top:2mm}}
 .sub3 h3{{margin:0 0 3.4mm;font-size:20pt;font-weight:800;color:var(--vd);text-transform:uppercase;letter-spacing:.06em;border-bottom:.5mm solid var(--linea);padding-bottom:1.6mm}}
 .sub3 p{{font-size:25pt;line-height:1.36;margin:0 0 3.4mm}}
-.rival{{display:flex;align-items:center;column-gap:12mm;margin:1mm 0 0}}
-.pan .rival p{{flex:1;margin:0;font-size:24.5pt;line-height:1.32}}
-.rival .fig{{flex:none;width:170mm;margin:0}}
 .call{{border-left:2.2mm solid var(--ocre);background:#f0e7d1;padding:3mm 5mm 3.2mm;margin:0 0 3mm}}
 .call p{{margin:0!important;font-weight:600}}
 table.t{{width:100%;border-collapse:collapse;font-size:22pt;line-height:1.3;margin:0 0 5mm}}
@@ -520,7 +495,7 @@ ul.l li:before{{content:"";position:absolute;left:0;top:3.4mm;width:2.8mm;height
 
 
 def construir():
-    f1, f2, f3, f4, f5, f6, f9, f10, f11, f12 = fig1(), fig2(), fig3(), fig4(), fig5(), fig6(), fig9(), fig10(), fig11(), fig12()
+    f1, f2, f3, f4, f5, f6, f9, f10, f11 = fig1(), fig2(), fig3(), fig4(), fig5(), fig6(), fig9(), fig10(), fig11()
     html = f"""<!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <title>Decidir mejor sin laboratorio — póster Investigathon Y-Hat (track biotecnología)</title>
@@ -581,7 +556,6 @@ def construir():
     <div><h3>Una decisión abierta</h3>
       <p class="tight">Cuánto nos importa no afectar a <em>H. vitripennis</em> es nuestro y no inventamos el número: con peso exactamente 0 cambian 3 de las 6 regiones elegidas; con cualquier peso entre 0,05 y 1,00 no cambia ninguna. 922–1221 se mantiene siempre.</p></div>
   </div>
-  <div class="rival"><p>Encontramos otro gen, <em>Rpn6</em>, que además de la reproducción afecta la supervivencia (en otros insectos), pero rinde menos que <em>BicC_Dm</em> en la mayoría de las configuraciones. Recomendamos más a <em>BicC_Dm</em> y dejamos a <em>Rpn6</em> como posibilidad.</p>{f12}</div>
 </section>
 
 
