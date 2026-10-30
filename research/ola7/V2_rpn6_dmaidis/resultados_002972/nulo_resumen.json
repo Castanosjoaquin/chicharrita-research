@@ -1,0 +1,26 @@
+{
+ "N1": {
+  "observado": 0.9796,
+  "nulo_mediana": 0.9949,
+  "nulo_min": 0.983,
+  "nulo_max": 1.0,
+  "dentro_del_rango": false,
+  "percentil_del_observado": 0.0,
+  "n_permutaciones": 50
+ },
+ "N2": {
+  "observado_325_624": 0.9901,
+  "nulo_n_regiones": 38850,
+  "nulo_mediana": 0.9974,
+  "nulo_p5": 0.9852,
+  "nulo_p25": 0.9936,
+  "nulo_p75": 0.9991,
+  "nulo_min": 0.9679,
+  "nulo_max": 1.0,
+  "percentil_del_observado": 9.8,
+  "tasa_base_de_veto_en_el_nulo": 0.0119,
+  "tasa_de_veto_en_el_gen_real": 0.0,
+  "mejor_region_del_gen_real": 0.9994
+ },
+ "semilla": 20261029
+}
