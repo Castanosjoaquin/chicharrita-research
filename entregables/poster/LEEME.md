@@ -31,3 +31,15 @@ Eso es `poster_vista.pdf`, **para ver, no para imprimir**: lleva las fuentes inc
 **El `poster_A0.pdf` de este directorio es más viejo que `poster.html`** (`D103`): el de impresión sale sólo de `exportar.py`, en una máquina con `playwright` y el `pdftocairo` de poppler, que son los que pasan las fuentes a curvas.
 
 Para completar a mano en `construir.py`: el contacto y el enlace del informe (el QR del informe hoy codifica el texto «INFORME PENDIENTE»; se regenera con `segno` en `assets/qr_informe.svg`). Cada cifra sale de los entregables que cita su panel; ninguna secuencia de EPILAB entra al póster.
+
+## Versión actual (D105)
+
+`poster_vista_v2.pdf` es el póster rehecho como una historia en ocho pasos (títulos y textos más simples, benchmark en el panel 6, una frase y una miniatura de *Rpn6* en el panel 5). Todo sale de `construir.py`: los textos están en el HTML dentro de la función `construir()`, y cada figura es una función `figN()` con sus cifras y la ruta de donde salen. Para modificarlo:
+
+```bash
+python construir.py          # reescribe poster.html
+chrome-headless-shell --no-sandbox --no-pdf-header-footer --virtual-time-budget=20000 \
+       --print-to-pdf=poster_vista_v2.pdf poster.html
+```
+
+El contenido tiene que terminar antes de que empiece el pie (1.107 mm desde arriba): si agregás texto, bajá la letra del cuerpo (`font-size` de `body` en el CSS) o sacá algo. `poster_vista.pdf` es la versión anterior, y `poster_A0.pdf` sigue siendo el de impresión viejo.
