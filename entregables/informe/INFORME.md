@@ -67,8 +67,6 @@ Partimos de siete artículos, dos bases de datos, dos herramientas de diseño y 
 | `eth` | *D. maidis* | hormona desencadenante de la ecdisis | n/d | Andrada *et al.* 2026 |
 | `burs-α` | *D. maidis* | bursicón α, muda | n/d | Andrada *et al.* 2026 |
 
-Las secuencias de EPILAB son datos no publicados. Todo cálculo sobre ellas se hizo con herramientas locales, ninguna se subió a servicios web y el repositorio no contiene nucleótidos de esos diseños; un verificador automático lo comprueba en el árbol, en el índice y en el historial.
-
 ### 3.2 Diseño general
 
 La Figura 1 resume la cadena de análisis. Cada etapa tiene entrada, salida y script en el repositorio, y las cifras de este informe se leen de archivos versionados.
@@ -216,13 +214,11 @@ Sobre las 36 filas del catálogo de genes blanco, 25 entran al recomendador y 11
 
 ### 4.12 Lo que el trabajo nos enseñó sobre el método
 
-Tres hallazgos de método surgieron al verificar nuestros propios resultados.
+Dos hallazgos de método surgieron al verificar nuestros propios resultados.
 
 El primero es que **un panel se autoacierta si contiene la especie de la secuencia**. Ocurrió dos veces: cuatro filas del catálogo con secuencia sustituta de otra especie publicaban 100 % de ventanas con coincidencia perfecta, y la actina de *H. vitripennis* mostraba 98,6 % de ventanas con bloque de al menos 19 nt, porque se la comparaba contra sí misma. La sustitución estaba declarada fila por fila, así que no fue un descuido de quien midió. La regla ahora está escrita y se verifica antes de tamizar.
 
 El segundo es que **un conteo de off-target sin su nulo puede estar leyendo un piso**. Una secuencia sin homología, permutada para conservar su composición, trae entre 0,5 y 0,7 % de ventanas con bloque coincidente de al menos 19 nt, y 3,4 % en el peor caso. Por eso `eth` y `burs-α` no se distinguen del azar, y sólo la V-ATPasa B queda claramente por encima. La causa del piso no se averiguó.
-
-El tercero es operativo. Al destrabarse un generador, empezó a escribir en una carpeta versionada, y su primera corrida, con `--muestras 50`, reemplazó dos cifras publicadas por el resultado de cincuenta sorteos. Se revirtió antes de confirmar el cambio. Es el defecto más costoso de los que aparecieron, porque no avisa. Un auditor encontró 43 módulos con el mismo patrón, pero contar sus partes por separado mostró que los accionables eran cuatro y que sólo uno había perdido datos; contar «43 módulos» habría pedido 43 arreglos. De paso rebajamos el umbral de alerta de 17 a 19 nt, el piso que usa la literatura: de 23.612 ventanas, 1.902 alertas (81,4 %) eran ruido, y ninguna región pasó de apta a inapta.
 
 ## 5. Discusión
 
@@ -262,13 +258,11 @@ Hay además límites de cobertura. El eje de off-target cubre 19 de las 36 filas
 
 Las cinco hipótesis se pusieron a prueba y cuatro se sostuvieron por completo. Las herramientas oficiales no estiman eficacia, y la que se ofrece para off-target informa casi todo su riesgo desde una condición que no se distingue del azar. «Eficiente» es una regla de diseño con fundamentos desiguales, sin respaldo en hemípteros, y el número de ventanas no compara genes. Las dos regiones que EPILAB eligió para el insecto contienen coincidencias perfectas con *H. vitripennis*, y la región recomendada para `BicC_Dm`, 922-1221, las evita y se conserva entre fuentes: mover la región redujo las coincidencias de 22 a 0 y subió las ventanas que pasan el criterio de 17 a 26 en la molécula recortada. La cuarta se sostuvo en parte: la recomendación es firme frente a la región de la planilla y débil frente a 2121-2420, y el marco de conteo y el peso de exposición mueven tres de las seis regiones recomendadas. Y las quimeras heredan el riesgo y no la eficacia, de modo que la juntura se cuenta aparte y las ventanas heredadas se recalculan.
 
-Lo más transferible, sin embargo, es lo que aprendimos sobre cómo decidir cuando faltan datos. El número de ventanas eficientes no compara genes, un conteo sin su marco ni su nulo no se puede interpretar, un panel que contiene la especie de la secuencia se autoacierta y una decisión que no nos corresponde tomar, como la exposición de un organismo ausente, se muestra en sus dos extremos en lugar de resolverse en silencio. Una quimera hereda el riesgo de sus partes pero no su eficacia. Todo el trabajo, con sus descartes, sus preguntas abiertas y sus decisiones, vive en un repositorio reproducible, y las herramientas que lo sostienen se pueden correr sobre el transcriptoma del laboratorio cuando llegue.
+Lo más transferible, sin embargo, es lo que aprendimos sobre cómo decidir cuando faltan datos. El número de ventanas eficientes no compara genes, un conteo sin su marco ni su nulo no se puede interpretar, un panel que contiene la especie de la secuencia se autoacierta y una decisión que no nos corresponde tomar, como la exposición de un organismo ausente, se muestra en sus dos extremos en lugar de resolverse en silencio. Una quimera hereda el riesgo de sus partes pero no su eficacia.
 
 ### 6.2 Recomendaciones y trabajo futuro
 
 Tres resultados refutarían la recomendación de `BicC_Dm` 922-1221, y los tres son experimentos que no podemos hacer. El primero es un bioensayo de dieta con oviposición medida más allá de la ventana de latencia: si el ARNdc de `BicC` ingerido no reduce la postura, o sólo la reduce después de los 20 días en que el insecto ya transmitió, la recomendación pierde su mecanismo. El segundo es un ensayo prospectivo de 32 siRNA por brazo que diseñamos para discriminar los dos modos del filtro. Mide los discordantes entre modos (84 ventanas ya contadas, 50 en `BicC_Dm`) contra concordantes eficientes, con un brazo de concordantes rechazados como control y un control no dirigido, con el silenciamiento del transcripto como respuesta, asignación ciega y análisis preregistrado. Si los discordantes silencian como los concordantes, la rama que saltea la termodinámica no infla nada y nuestra corrección descarta diseños buenos; si no silencian, la corrección vale. El tercero es un conteo de la región en el marco que use el laboratorio: si su planilla cuenta en contexto y con la función histórica, nuestro 26 y su cifra no son el mismo número.
-
-Para cerrar la recomendación falta información que no depende de nosotros, y ninguna es un archivo de secuencias. Primero, qué objetivo manda, cortar la transmisión en la temporada o reducir la población entre generaciones. Segundo, el dato de latencia del MRFV, hoy disponible sólo para *S. kunkelii*. Tercero, el marco y la función de conteo de la planilla, para saber si nuestras cifras y las del laboratorio son el mismo número. El transcriptoma de *D. maidis* que usa el laboratorio, y que ofreció enviar, permitiría medir la conservación de `eth` y `burs-α` y verificar las posiciones de la planilla; hasta que llegue, esas líneas quedan bloqueadas.
 
 ## Referencias
 

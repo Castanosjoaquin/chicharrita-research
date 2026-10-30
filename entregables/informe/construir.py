@@ -215,7 +215,6 @@ def arte_portada():
   <g transform="rotate(-9 {cx} {cy})">
     {helice_svg}
     <rect x="{cx - 21}" y="{cy - 24}" width="42" height="48" rx="5" fill="#ffffff" fill-opacity=".06" stroke="#f3c969" stroke-width=".7" stroke-dasharray="2.2 1.6"/>
-    <text x="{cx}" y="{cy - 27.5}" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="3.6" fill="#f3c969" letter-spacing=".25">VENTANA DE 21 NT</text>
   </g>
   <!-- hojas de maiz -->
   <path d="M-6 258 C18 222 56 204 110 198 C74 214 50 232 34 258 Z" fill="#17583e"/>
@@ -294,7 +293,10 @@ def pagina_html(cuerpo_md, marcar, paginas):
 
 
 def imprimir(pagina, salida):
-    shell = next(Path.home().glob("Library/Caches/ms-playwright/chromium_headless_shell-*/*/chrome-headless-shell"), None)
+    # playwright guarda sus descargas en Library/Caches en macOS y en AppData/Local en Windows
+    shell = next((p for raiz in ("Library/Caches/ms-playwright", "AppData/Local/ms-playwright")
+                  for p in Path.home().glob(f"{raiz}/chromium_headless_shell-*/*/chrome-headless-shell*")
+                  if p.suffix in ("", ".exe")), None)
     if shell is None:
         sys.exit("falta chrome-headless-shell (viene con playwright)")
     with tempfile.TemporaryDirectory() as d:

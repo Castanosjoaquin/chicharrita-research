@@ -3069,3 +3069,22 @@ y el ADR de esta línea, escrito como `D91`, pasó a **`D93`**: `D91` y `D92` se
 
 
 104. **Datos del póster que el repo no tiene** (`entregables/poster/`, `D101`). Hay que completar el ID del equipo, el contacto y el logo de la universidad, y confirmar el apellido de Joaquín, que se tomó del usuario de GitHub (`Castanosjoaquin`) y puede estar mal. Falta además la fecha de entrega y saber si el QR del repositorio público es lo que el equipo quiere mostrar. Tampoco hay una copia de la rúbrica de evaluación del póster en el repo.
+
+105. **Dos cosas pendientes antes de mandar el póster a imprenta** (`entregables/poster/`, `D106`).
+
+    **(a) El repositorio tiene que pasar a público, y sólo lo puede hacer Joaquín.** Los dos QR del
+    pie —el del repositorio y el del informe— apuntan a
+    `github.com/Castanosjoaquin/chicharrita-research`, que hoy es privado `[M]`: sin autenticar, los
+    dos dan 404. `SantinoCardelli` tiene `push` pero no `admin`, así que el cambio de visibilidad
+    pasa por el dueño. **Si el póster se imprime antes, va con dos QR muertos.** Se verifica con
+    `curl -s -o /dev/null -w "%{http_code}\n" <url>` sobre las dos URL que lista
+    `entregables/poster/generar_qr.py`: 200 es que sirve, 404 es que todavía no.
+
+    **(b) Avisarle al investigador antes de abrirlo.** Abrir el repositorio publica 48 nt de
+    `BicC_Dm` (16,0 % de la región de 300 nt, en ventanas sueltas, tramo contiguo mayor de 25 nt)
+    dentro de `research/ola3/C4_offtargets_quimeras_largo/resultados/q2_aciertos_localizados.tsv`
+    `[M]`. No reconstruyen la región, y el equipo lo asumió como riesgo residual en `D106`. Pero la
+    secuencia es de EPILAB y no del equipo, así que la decisión de publicarla no es sólo nuestra:
+    **falta que alguien se lo diga al investigador y que él conteste.** Las dos regiones virales que
+    el verificador también marca no entran en esto: son subcadenas del genoma público
+    `NC_002786.2`.

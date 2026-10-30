@@ -1,0 +1,287 @@
+{
+ "anclas": {
+  "M7_gen_entero_y_regiones": {
+   "gen_entero": {
+    "vienna/fiel": {
+     "obtenido": {
+      "MP_MRFV": 142,
+      "CP_MRFV": 39,
+      "BicC_Dm": 223,
+      "ATPaseD_Dm": 35
+     },
+     "esperado": {
+      "MP_MRFV": 142,
+      "CP_MRFV": 39,
+      "BicC_Dm": 223,
+      "ATPaseD_Dm": 35
+     },
+     "coincide": true
+    },
+    "vienna/corregido": {
+     "obtenido": {
+      "MP_MRFV": 123,
+      "CP_MRFV": 30,
+      "BicC_Dm": 171,
+      "ATPaseD_Dm": 29
+     },
+     "esperado": {
+      "MP_MRFV": 123,
+      "CP_MRFV": 30,
+      "BicC_Dm": 171,
+      "ATPaseD_Dm": 29
+     },
+     "coincide": true
+    }
+   },
+   "regiones_vigentes": {
+    "obtenido": {
+     "MP_MRFV": 38,
+     "CP_MRFV": 21,
+     "BicC_Dm": 36,
+     "ATPaseD_Dm": 21
+    },
+    "esperado": {
+     "MP_MRFV": 38,
+     "CP_MRFV": 21,
+     "BicC_Dm": 36,
+     "ATPaseD_Dm": 21
+    },
+    "coincide": true,
+    "medido_con": "vienna/corregido/NN3, punto por defecto"
+   }
+  },
+  "BicC_vs_grilla_M7": {
+   "filas": 20,
+   "coinciden": 20
+  }
+ },
+ "region_rpn6": [
+  325,
+  624
+ ],
+ "region_bicc": [
+  922,
+  1221
+ ],
+ "regiones_admisibles": {
+  "n": 680,
+  "de": 828
+ },
+ "rival_densidad": {
+  "region": [
+   309,
+   608
+  ],
+  "conteo_defecto_ctx": 30
+ },
+ "configuraciones": 2184,
+ "motor": "vienna (RNAplfold 2.1.5: NO CORRIDO, binario no disponible)",
+ "P1": {
+  "contexto": {
+   "en conjunto": {
+    "n": 2184,
+    "gana": 700,
+    "empata": 175,
+    "pierde": 1309,
+    "gana_pct": 32.1,
+    "empata_pct": 8.0,
+    "pierde_pct": 59.9,
+    "dif_mediana": -2.0,
+    "dif_min": -18,
+    "dif_max": 8
+   },
+   "modo = fiel": {
+    "n": 1092,
+    "gana": 169,
+    "empata": 93,
+    "pierde": 830,
+    "gana_pct": 15.5,
+    "empata_pct": 8.5,
+    "pierde_pct": 76.0,
+    "dif_mediana": -4.0,
+    "dif_min": -18,
+    "dif_max": 5
+   },
+   "modo = corregido": {
+    "n": 1092,
+    "gana": 531,
+    "empata": 82,
+    "pierde": 479,
+    "gana_pct": 48.6,
+    "empata_pct": 7.5,
+    "pierde_pct": 43.9,
+    "dif_mediana": 0.0,
+    "dif_min": -15,
+    "dif_max": 8
+   },
+   "tabla = NN3": {
+    "n": 1092,
+    "gana": 341,
+    "empata": 80,
+    "pierde": 671,
+    "gana_pct": 31.2,
+    "empata_pct": 7.3,
+    "pierde_pct": 61.4,
+    "dif_mediana": -2.0,
+    "dif_min": -18,
+    "dif_max": 8
+   },
+   "tabla = NN4": {
+    "n": 1092,
+    "gana": 359,
+    "empata": 95,
+    "pierde": 638,
+    "gana_pct": 32.9,
+    "empata_pct": 8.7,
+    "pierde_pct": 58.4,
+    "dif_mediana": -2.0,
+    "dif_min": -18,
+    "dif_max": 8
+   },
+   "punto por defecto": {
+    "n": 4,
+    "gana": 0,
+    "empata": 0,
+    "pierde": 4,
+    "gana_pct": 0.0,
+    "empata_pct": 0.0,
+    "pierde_pct": 100.0,
+    "dif_mediana": -8.5,
+    "dif_min": -12,
+    "dif_max": -5
+   }
+  },
+  "recorte": {
+   "en conjunto": {
+    "n": 2184,
+    "gana": 1401,
+    "empata": 140,
+    "pierde": 643,
+    "gana_pct": 64.1,
+    "empata_pct": 6.4,
+    "pierde_pct": 29.4,
+    "dif_mediana": 3.0,
+    "dif_min": -14,
+    "dif_max": 13
+   },
+   "modo = fiel": {
+    "n": 1092,
+    "gana": 594,
+    "empata": 62,
+    "pierde": 436,
+    "gana_pct": 54.4,
+    "empata_pct": 5.7,
+    "pierde_pct": 39.9,
+    "dif_mediana": 1.0,
+    "dif_min": -14,
+    "dif_max": 10
+   },
+   "modo = corregido": {
+    "n": 1092,
+    "gana": 807,
+    "empata": 78,
+    "pierde": 207,
+    "gana_pct": 73.9,
+    "empata_pct": 7.1,
+    "pierde_pct": 19.0,
+    "dif_mediana": 4.0,
+    "dif_min": -12,
+    "dif_max": 13
+   },
+   "tabla = NN3": {
+    "n": 1092,
+    "gana": 691,
+    "empata": 72,
+    "pierde": 329,
+    "gana_pct": 63.3,
+    "empata_pct": 6.6,
+    "pierde_pct": 30.1,
+    "dif_mediana": 3.0,
+    "dif_min": -14,
+    "dif_max": 13
+   },
+   "tabla = NN4": {
+    "n": 1092,
+    "gana": 710,
+    "empata": 68,
+    "pierde": 314,
+    "gana_pct": 65.0,
+    "empata_pct": 6.2,
+    "pierde_pct": 28.8,
+    "dif_mediana": 3.0,
+    "dif_min": -13,
+    "dif_max": 13
+   },
+   "punto por defecto": {
+    "n": 4,
+    "gana": 1,
+    "empata": 1,
+    "pierde": 2,
+    "gana_pct": 25.0,
+    "empata_pct": 25.0,
+    "pierde_pct": 50.0,
+    "dif_mediana": -2.5,
+    "dif_min": -6,
+    "dif_max": 1
+   }
+  }
+ },
+ "P3": {
+  "contexto": {
+   "n": 2184,
+   "gana": 261,
+   "empata": 1707,
+   "pierde": 216,
+   "gana_pct": 12.0,
+   "empata_pct": 78.2,
+   "pierde_pct": 9.9,
+   "dif_mediana": 0.0,
+   "dif_min": -1,
+   "dif_max": 3
+  },
+  "recorte": {
+   "n": 2184,
+   "gana": 1307,
+   "empata": 562,
+   "pierde": 315,
+   "gana_pct": 59.8,
+   "empata_pct": 25.7,
+   "pierde_pct": 14.4,
+   "dif_mediana": 1.0,
+   "dif_min": -2,
+   "dif_max": 4
+  }
+ },
+ "P2": {
+  "configuraciones": 2184,
+  "Rpn6_en_el_maximo": 1478,
+  "pct": 67.7,
+  "reemplazos_mas_frecuentes": [
+   {
+    "inicio": 497,
+    "veces": 113
+   },
+   {
+    "inicio": 312,
+    "veces": 80
+   },
+   {
+    "inicio": 513,
+    "veces": 76
+   },
+   {
+    "inicio": 309,
+    "veces": 72
+   },
+   {
+    "inicio": 313,
+    "veces": 69
+   },
+   {
+    "inicio": 510,
+    "veces": 62
+   }
+  ],
+  "conteo_Rpn6_vs_maximo_mediana_brecha": 0.0
+ }
+}
