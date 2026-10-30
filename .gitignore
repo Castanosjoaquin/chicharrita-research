@@ -40,3 +40,8 @@ research/R7_microgravedad/M4_mollicutes_estructura/datos/afdb_bulk_*.jsonl
 
 # Ola 3: bytecode de los scripts de investigacion
 research/ola3/*/scripts/__pycache__/
+
+# Estado local del agente y caches de herramientas
+.claude/
+.pytest_cache/
+.ruff_cache/

@@ -1,7 +1,9 @@
-# Investigathon Y-Hat — ARN exógeno contra la chicharrita del maíz
+# ARN exógeno contra la chicharrita del maíz
 
-Repositorio de la investigación previa de un equipo de cuatro estudiantes de
-Ingeniería en IA (UdeSA) para el Investigathon de Y-Hat (UBA).
+Investigación de un equipo de cuatro estudiantes de Ingeniería en Inteligencia
+Artificial (Universidad de San Andrés) para el Investigathón de Y-Hat (UBA), en
+el track de diseño de soluciones basadas en ARN interferente (RNAi) contra
+*Dalbulus maidis* —la chicharrita del maíz— y los patógenos que transmite.
 
 La pregunta del track, textual:
 
@@ -11,98 +13,102 @@ La pregunta del track, textual:
 > mayor probabilidad de acción y menor riesgo para el maíz, los organismos no
 > objetivo y el ecosistema?
 
-El equipo no aporta laboratorio. Aporta bioinformática y datos, desarrollo
-computacional e innovación abierta, y compite en esos tres ejes en lugar del eje
-de biología y evidencia experimental (`00_meta/DECISIONS.md`, D1). Todo lo que
-propongamos tiene que ser demostrable sin un solo experimento húmedo.
+El equipo no aporta laboratorio. Aporta bioinformática, datos y desarrollo
+computacional: todo lo que hay acá es reproducible sin un solo experimento
+húmedo.
 
-## Para qué sirve este repositorio
+## Qué construimos
 
-Es la investigación que hacemos **antes** de que nos entreguen las herramientas,
-las bases de datos y la bibliografía oficiales del evento. Su objetivo es que el
-día del Investigathon no se nos vaya la primera mitad entendiendo el dominio:
-que lleguemos sabiendo qué silencia qué, qué hace ya la industria, qué datos
-existen y qué vamos a construir cada uno.
+Un sistema de **priorización auditable de candidatos a silenciamiento**, que
+toma un gen blanco y devuelve no sólo un puntaje sino la evidencia que lo
+sostiene y el riesgo que arrastra.
+
+Tres piezas:
+
+1. **Priorización con incertidumbre declarada** (`pipeline/`). Cada candidato
+   se ordena por evidencia de esencialidad, conservación y facilidad de entrega,
+   y cada número viaja con su fuente y su grado de confianza. Las herramientas
+   del estado del arte devuelven un conteo; nosotros devolvemos una ficha que se
+   puede discutir.
+2. **Mapa de riesgo fuera de blanco ponderado** (`tools/sifi21_port/`). El
+   tamizaje habitual cuenta coincidencias y las suma. Nosotros las desagregamos
+   por tamaño de ventana, por posición y por transcripto afectado, y las medimos
+   contra organismos que no son el objetivo: maíz, abeja, enemigos naturales,
+   fauna del suelo.
+3. **Validación retrospectiva** (`baseline_dsrip/`, `research/ola4/`). Un
+   ranking que nunca se midió contra resultados conocidos es una opinión. Acá se
+   mide cuánto discrimina.
+
+Dos resultados que salieron del camino y vale la pena mirar:
+
+- La **conservación entre aislados** del virus del rayado fino (MRFV) rompe
+  candidatos que parecían sólidos: una región de cápside que funciona contra el
+  aislado costarricense pierde la mayoría de sus siRNA contra los brasileños.
+- El riesgo fuera de blanco **no estaba donde lo buscábamos**: aparece
+  concentrado en el ortólogo de *Homalodisca vitripennis*, no en los organismos
+  no objetivo que suelen evaluarse.
 
 ## Por dónde empezar
 
-| Si querés… | Leé |
+| Si querés… | Andá a |
 | --- | --- |
-| el panorama completo en una sentada | `SINTESIS_V2.md` |
-| qué cambió al llegar el material oficial | `research/ola2/CORRECCIONES.md` |
-| los cuatro candidatos del EPILAB | `research/ola2/W5_secuencias_epilab/REPORT.md` |
-| entender la biología desde cero | `research/R1_fundamentos/REPORT.md` |
-| saber qué significa cada término | `00_meta/GLOSARIO.md` |
-| la versión navegable, para leer en el celular | `index.html` y el `index.html` de cada carpeta |
+| el resumen de la investigación completa | [`SINTESIS_V2.md`](SINTESIS_V2.md) |
+| el póster y el informe | [`entregables/`](entregables/) |
+| la recomendación con su defensa | [`entregables/recomendacion-defendida.md`](entregables/recomendacion-defendida.md) |
+| el código que produce los números | [`pipeline/`](pipeline/), [`tools/`](tools/) |
+| la investigación cruda, por tema | [`research/`](research/) |
+| por qué decidimos cada cosa | [`00_meta/DECISIONS.md`](00_meta/DECISIONS.md) |
+| lo que probamos y descartamos | [`00_meta/CAMINOS_PROBADOS.md`](00_meta/CAMINOS_PROBADOS.md) |
 
-`SINTESIS_V2.md` es el entregable del equipo: qué cambió al contrastar con el
-corpus oficial, qué nos habilita concretamente cada herramienta y cada dato, la
-cartera de enfoques re-priorizada con su matriz, el reparto para cuatro personas
-y las preguntas concretas para el investigador.
+## Cómo correrlo
 
-`SINTESIS_v1.md` es la versión anterior y se conserva a propósito: es el estado
-de lo que sabíamos **antes** de recibir el material oficial. El historial de lo
-que creíamos y por qué cambiamos de opinión es parte del valor del repositorio, y
-por eso las correcciones se agregan fechadas en lugar de reescribir los reportes.
+El pipeline es Python puro y se ejecuta de punta a punta con un comando:
 
-## Las dos olas
+```bash
+python pipeline/correr_todo.py
+```
 
-| Ola | Qué es | Dónde |
-| --- | --- | --- |
-| **Ola 1** | Investigación previa con fuentes públicas, sin el material oficial. Cinco investigaciones, R1 a R5. | `research/R1_*` a `research/R5_*`, `SINTESIS_v1.md` |
-| **Ola 2** | Contraste contra el corpus oficial del Investigathón: papers, bases de datos, herramientas y los candidatos del EPILAB. Cinco investigaciones, W1 a W5. | `research/ola2/`, `SINTESIS_V2.md` |
+Las salidas (`pipeline/salida/`) no están versionadas: se regeneran. Algunos
+módulos necesitan ViennaRNA y BLAST+ instalados; los que dependen de datos de
+terceros sin licencia abierta publican el generador, no el dato.
 
-El corpus oficial vive en `YHat-Biotech/` y **no está en el control de
-versiones**: contiene secuencias no publicadas del EPILAB y PDF con derechos de
-autor, y este repositorio tiene remoto público (`00_meta/DECISIONS.md`, D10). Su
-inventario completo, archivo por archivo, está en `research/ola2/MANIFEST.md`.
+Las pruebas:
 
-## Las cinco investigaciones
+```bash
+python -m pytest pipeline tools -q
+```
 
-| Carpeta | Qué responde |
+## Cómo leer las afirmaciones
+
+Todo lo que se afirma en este repositorio lleva una etiqueta que dice de dónde
+viene. No es decoración: es la regla con la que trabajamos.
+
+| | |
 | --- | --- |
-| `research/R1_fundamentos/` | La biología, desde ADN hasta el complejo de achaparramiento, escrita para gente de IA sin biología. Incluye la pregunta que define la estrategia: ¿sobre qué actores funciona realmente el RNAi? |
-| `research/R2_attention_diseno_arn/` | Evaluación de una idea del equipo (usar *attention* para diseñar el ARN): qué parte se sostiene, qué parte era un malentendido, y qué queda reformulado con rigor. Veredicto en la primera página. |
-| `research/R3_apolo_biotech/` | Qué hace Apolo Biotech y qué hace el resto de la industria del ARN aplicado al agro. Sirve para no proponer como novedad algo que ya está hecho. |
-| `research/R4_frontier_ml_rna/` | Estado del arte en aprendizaje automático aplicado a biotecnología de ARN: modelos fundacionales, estructura, predicción de eficacia. Nuestro eje de mayor ventaja comparativa. |
-| `research/R5_metodologias_ejes/` | Cómo se trabaja en cada uno de los tres ejes, la rúbrica de priorización y el plan para cuatro personas. |
+| `[E]` | establecido: consenso en literatura revisada por pares |
+| `[R]` | reportado: una o pocas fuentes, preprint, patente, web de empresa |
+| `[M]` | medido por nosotros, reproducible desde este repositorio |
+| `[H]` | hipótesis del equipo, todavía sin respaldo |
+| `[?]` | incierto, o fuentes que se contradicen |
 
-Cada carpeta contiene `REPORT.md` (la fuente de verdad, con el contenido
-completo y citado), `index.html` (la vista de lectura), `sources.json` (las
-fuentes estructuradas) y `notes/` con el material de trabajo.
+Un resultado computacional propio nunca es `[E]`, por más estándar que sea la
+herramienta. Un resultado *in silico* es una hipótesis sobre eficacia, no una
+prueba.
 
-## La memoria del proyecto
+## Alcance
 
-`00_meta/` es lo que sobrevive a cualquier sesión de trabajo:
-
-- `GLOSARIO.md` — cada término con su definición en una línea y por qué nos importa.
-- `DECISIONS.md` — una entrada por decisión, en formato ADR liviano.
-- `CAMINOS_PROBADOS.md` — qué se intentó y qué se descartó, con el motivo.
-- `PREGUNTAS_ABIERTAS.md` — lo que no sabemos y lo que hay que pedir o preguntar.
-- `FUENTES.md` — la bibliografía consolidada, con nivel de evidencia y acceso.
-
-## Reglas de trabajo
-
-Están en `CLAUDE.md` y rigen para todo el repositorio. Las tres que más se
-notan al leer:
-
-- Toda afirmación técnica lleva fuente, y nadie cita una fuente que no abrió.
-  Sin fuente, no entra al reporte.
-- Cada afirmación relevante va marcada `[E]` establecido, `[R]` reportado, `[H]`
-  hipótesis nuestra o `[?]` incierto. Cuando dos fuentes se contradicen se
-  reportan las dos y se marca `[?]`.
-- Un vacío documentado es un resultado válido; un vacío tapado con texto
-  plausible, no.
-
-El alcance es control fitosanitario agrícola con información pública. Queda
-fuera, sin excepción, cualquier cosa que aumente la virulencia, la
+Esto es control fitosanitario agrícola construido con información pública. Queda
+explícitamente fuera de alcance cualquier trabajo que aumente la virulencia, la
 transmisibilidad o el rango de hospedadores de un patógeno, y cualquier diseño
-dirigido a dañar especies no objetivo. Toda propuesta de diseño va con su
-contracara de riesgo.
+dirigido a dañar especies no objetivo. Toda propuesta de diseño viene con su
+contracara de riesgo: efectos fuera de blanco en maíz y en organismos no
+objetivo, persistencia ambiental y resistencia.
 
-## Los HTML
+Las secuencias no publicadas que nos facilitaron no se versionan ni se suben a
+servicios de terceros; lo que está acá son coordenadas y resultados derivados.
 
-Cada `index.html` es un archivo autocontenido, sin build: se abre con doble clic
-y se lee en el celular. Son la vista de lectura; el `REPORT.md` es la fuente de
-verdad y no hay nada afirmado en un HTML que no esté en su `REPORT.md` con su
-fuente.
+## Equipo
+
+Joaquín Castaños · Santino Cardelli · Lorenzo Door · Luca Fassio
+
+Ingeniería en Inteligencia Artificial, Universidad de San Andrés.
