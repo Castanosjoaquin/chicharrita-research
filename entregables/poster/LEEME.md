@@ -30,7 +30,13 @@ Eso es `poster_vista.pdf`, **para ver, no para imprimir**: lleva las fuentes inc
 
 **El `poster_A0.pdf` de este directorio es más viejo que `poster.html`** (`D103`): el de impresión sale sólo de `exportar.py`, en una máquina con `playwright` y el `pdftocairo` de poppler, que son los que pasan las fuentes a curvas.
 
-Para completar a mano en `construir.py`: el contacto y el enlace del informe (el QR del informe hoy codifica el texto «INFORME PENDIENTE»; se regenera con `segno` en `assets/qr_informe.svg`). Cada cifra sale de los entregables que cita su panel; ninguna secuencia de EPILAB entra al póster.
+Los dos QR del pie se regeneran con `python generar_qr.py`, que tiene las URL adentro y escribe `assets/qr_repo.svg` y `assets/qr_informe.svg`. **Las dos apuntan a un repositorio que todavía es privado**, así que no resuelven hasta que el dueño lo haga público (`D106`, y el punto 105 de `00_meta/PREGUNTAS_ABIERTAS.md`). Antes de mandar a imprenta, verificar las dos:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" <url>   # 200 = sirve, 404 = todavía no
+```
+
+Cada cifra sale de los entregables que cita su panel; ninguna secuencia de EPILAB entra al póster.
 
 ## Versión actual (D105)
 
